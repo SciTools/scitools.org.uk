@@ -1,0 +1,153 @@
+/* taken from http://www.maxdesign.com.au/articles/css-layouts/one-liquid/ */
+#header h1 { margin: 0; }
+
+#content
+{
+    margin: 1% 4%;
+}
+
+#hd
+{
+    background-color: white;
+    padding: 0.5%;
+    margin-left: 15px; 
+    font-weight:bolder; 
+    font-size:300%; 
+    letter-spacing:0.1ex;
+}
+
+div.navigation
+{
+    float: left;
+    width: 100%;
+    padding:0px;
+    background-color: #F8F8F8;
+}
+
+/* horizontal navigation */
+div.navigation ul
+{
+    border-bottom: 1px solid #DDDDDD;
+    border-top: 1px solid #DDDDDD;
+    height: 2em;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    list-style-type: none;
+}
+
+div.navigation ul li
+{
+    float: left;
+    height: 2.5em;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: block;
+}
+
+div.navigation ul li a
+{
+    color: #EE9816;
+    line-height: 1.75em;
+    margin: 0;
+    padding: 0 5px;
+    float: left;
+    text-decoration: none;
+    border-right: 1px solid black;
+}
+div.navigation ul li > a:visited
+{
+    color: #cc0099;
+}
+
+div.navigation ul li a:hover 
+{ 
+    color: #3CA8E7; 
+}
+
+
+/* vertical submenu - 1st level */
+div.navigation ul ul 
+{
+	margin-top: 2px;
+	display: none;
+	position: absolute;
+	height: auto;
+	/* vertical-menus width */
+	width: 160px;
+	border: none;
+	background-color: #F8F8F8;
+}
+
+
+div.navigation li:hover > ul 
+{
+	display: block;
+	margin-top: 35px;
+}
+
+div.navigation ul ul li 
+{
+	position: relative;
+	float: none;
+	display: block;
+	height: 28px;
+	width: 100%;
+	border: none;
+}
+
+div.navigation ul ul li > span, 
+div.navigation ul ul li > a,
+div.navigation ul ul li > a:link, 
+div.navigation ul ul li > a:active 
+{
+	height: 100%;
+	width: 96%;
+	padding: 0 0 0 4%;
+	line-height: 28px;
+	background-color: transparent;
+	border-top-style: none;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-color: black;
+	border-width: 1px;
+	color: #EE9816;
+}
+
+div.navigation ul ul li > a:visited
+{
+    color: #cc0099;
+}
+
+div.navigation ul ul li:hover > span,
+div.navigation ul ul li:hover > a 
+{
+	background-color: transparent;
+	color: #3CA8E7;
+}
+
+/* vertical submenu - 2nd level */
+div.navigation ul ul ul 
+{
+	/* relative to the parent */
+	position: absolute;
+	top: 4px;
+	left: 155px;
+	margin: 0;
+}
+
+#bd
+{	
+    background-color: #F8F8F8;
+
+}
+
+#ft
+{
+    background-color: white;
+    height: 1%;
+    text-align: right;
+    padding: 10px;
+}
