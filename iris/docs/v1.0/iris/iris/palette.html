@@ -182,45 +182,8 @@ cmap and norm keyword arguments.</p>
 <div><dl class="class">
 <dt id="iris.palette.SymmetricNormalize">
 <em class="property">class </em><tt class="descclassname">iris.palette.</tt><tt class="descname">SymmetricNormalize</tt><big>(</big><em>pivot</em>, <em>*args</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Provides a symmetric normalization class around a given pivot point.</p>
-<dl class="method">
-<dt id="iris.palette.SymmetricNormalize.autoscale">
-<tt class="descname">autoscale</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize.autoscale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set <em>vmin</em>, <em>vmax</em> to min, max of <em>A</em>.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.palette.SymmetricNormalize.autoscale_None">
-<tt class="descname">autoscale_None</tt><big>(</big><em>A</em><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize.autoscale_None" title="Permalink to this definition">¶</a></dt>
-<dd><p>autoscale only None-valued vmin or vmax</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.palette.SymmetricNormalize.inverse">
-<tt class="descname">inverse</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize.inverse" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="staticmethod">
-<dt id="iris.palette.SymmetricNormalize.process_value">
-<em class="property">static </em><tt class="descname">process_value</tt><big>(</big><em>value</em><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize.process_value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Homogenize the input <em>value</em> for easy and efficient normalization.</p>
-<p><em>value</em> can be a scalar or sequence.</p>
-<p>Returns <em>result</em>, <em>is_scalar</em>, where <em>result</em> is a
-masked array matching <em>value</em>.  Float dtypes are preserved;
-integer types with two bytes or smaller are converted to
-np.float32, and larger types are converted to np.float.
-Preserving float32 when possible, and using in-place operations,
-can greatly improve speed for large arrays.</p>
-<p>Experimental; we may want to add an option to force the
-use of float32.</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.palette.SymmetricNormalize.scaled">
-<tt class="descname">scaled</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.palette.SymmetricNormalize.scaled" title="Permalink to this definition">¶</a></dt>
-<dd><p>return true if vmin and vmax set</p>
-</dd></dl>
-
+<dd><p>Bases: <a class="reference external" href="http://matplotlib.sourceforge.net/api/colors_api.html#matplotlib.colors.Normalize" title="(in Matplotlib v1.1.1)"><tt class="xref py py-class docutils literal"><span class="pre">matplotlib.colors.Normalize</span></tt></a>, <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Provides a symmetric normalization class around a given pivot point.</p>
 <dl class="attribute">
 <dt id="iris.palette.SymmetricNormalize.vmax">
 <tt class="descname">vmax</tt><a class="headerlink" href="#iris.palette.SymmetricNormalize.vmax" title="Permalink to this definition">¶</a></dt>

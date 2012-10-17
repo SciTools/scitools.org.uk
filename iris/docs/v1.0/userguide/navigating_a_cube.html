@@ -165,7 +165,7 @@ and <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.un
 </div>
 <p>Interrogating these with the standard <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#type" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">type()</span></tt></a> function will tell you that <tt class="docutils literal"><span class="pre">standard_name</span></tt> and <tt class="docutils literal"><span class="pre">long_name</span></tt> 
 are either a string or <tt class="docutils literal"><span class="pre">None</span></tt>, and <tt class="docutils literal"><span class="pre">units</span></tt> is an instance of <a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-class docutils literal"><span class="pre">iris.unit.Unit</span></tt></a>.</p>
-<p>You can access a string representing the &#8220;name&#8221; of a cube with the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.name" title="iris.cube.Cube.name"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.name()</span></tt></a> method:</p>
+<p>You can access a string representing the &#8220;name&#8221; of a cube with the <tt class="xref py py-meth docutils literal"><span class="pre">Cube.name()</span></tt> method:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="n">cube</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -198,7 +198,7 @@ cube with the <a class="reference internal" href="../iris/iris/cube.html#iris.cu
 <div class="section" id="accessing-coordinates-on-the-cube">
 <h2>3.3. Accessing coordinates on the cube<a class="headerlink" href="#accessing-coordinates-on-the-cube" title="Permalink to this headline">¶</a></h2>
 <p>A cube&#8217;s coordinates can be retrieved via <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.coords" title="iris.cube.Cube.coords"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.coords</span></tt></a>. 
-A simple for loop over the coords can print a coordinate&#8217;s <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.name" title="iris.coords.Coord.name"><tt class="xref py py-meth docutils literal"><span class="pre">name()</span></tt></a>:</p>
+A simple for loop over the coords can print a coordinate&#8217;s <tt class="xref py py-meth docutils literal"><span class="pre">name()</span></tt>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">cube</span><span class="o">.</span><span class="n">coords</span><span class="p">():</span>
     <span class="k">print</span> <span class="n">coord</span><span class="o">.</span><span class="n">name</span><span class="p">()</span>
 </pre></div>

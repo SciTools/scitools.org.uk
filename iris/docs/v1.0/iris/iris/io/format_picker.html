@@ -146,28 +146,28 @@ and file based <em>magic</em> numbers.</p>
 <hr class="docutils" />
 <dl class="data">
 <dt id="iris.io.format_picker.FILE_EXTENSION">
-<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">FILE_EXTENSION</tt><em class="property"> = FileElement('File extension', &lt;function &lt;lambda&gt; at 0x285caa0&gt;)</em><a class="headerlink" href="#iris.io.format_picker.FILE_EXTENSION" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">FILE_EXTENSION</tt><em class="property"> = FileElement('File extension', &lt;function &lt;lambda&gt; at 0x2db8a28&gt;)</em><a class="headerlink" href="#iris.io.format_picker.FILE_EXTENSION" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a specific aspect of a FileFormat which can be identified using the given element getter function.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="data">
 <dt id="iris.io.format_picker.LEADING_LINE">
-<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">LEADING_LINE</tt><em class="property"> = FileElement('Leading line', &lt;function &lt;lambda&gt; at 0x285cb18&gt;)</em><a class="headerlink" href="#iris.io.format_picker.LEADING_LINE" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">LEADING_LINE</tt><em class="property"> = FileElement('Leading line', &lt;function &lt;lambda&gt; at 0x2db8aa0&gt;)</em><a class="headerlink" href="#iris.io.format_picker.LEADING_LINE" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a specific aspect of a FileFormat which can be identified using the given element getter function.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="data">
 <dt id="iris.io.format_picker.MAGIC_NUMBER_32_BIT">
-<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">MAGIC_NUMBER_32_BIT</tt><em class="property"> = FileElement('32-bit magic number', &lt;function &lt;lambda&gt; at 0x285c0c8&gt;)</em><a class="headerlink" href="#iris.io.format_picker.MAGIC_NUMBER_32_BIT" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">MAGIC_NUMBER_32_BIT</tt><em class="property"> = FileElement('32-bit magic number', &lt;function &lt;lambda&gt; at 0x2db8050&gt;)</em><a class="headerlink" href="#iris.io.format_picker.MAGIC_NUMBER_32_BIT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a specific aspect of a FileFormat which can be identified using the given element getter function.</p>
 </dd></dl>
 
 <hr class="docutils" />
 <dl class="data">
 <dt id="iris.io.format_picker.MAGIC_NUMBER_64_BIT">
-<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">MAGIC_NUMBER_64_BIT</tt><em class="property"> = FileElement('64-bit magic number', &lt;function &lt;lambda&gt; at 0x285ca28&gt;)</em><a class="headerlink" href="#iris.io.format_picker.MAGIC_NUMBER_64_BIT" title="Permalink to this definition">¶</a></dt>
+<tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">MAGIC_NUMBER_64_BIT</tt><em class="property"> = FileElement('64-bit magic number', &lt;function &lt;lambda&gt; at 0x2db89b0&gt;)</em><a class="headerlink" href="#iris.io.format_picker.MAGIC_NUMBER_64_BIT" title="Permalink to this definition">¶</a></dt>
 <dd><p>Represents a specific aspect of a FileFormat which can be identified using the given element getter function.</p>
 </dd></dl>
 
@@ -177,7 +177,8 @@ and file based <em>magic</em> numbers.</p>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FileElement">
 <em class="property">class </em><tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">FileElement</tt><big>(</big><em>name</em>, <em>element_getter_fn</em><big>)</big><a class="headerlink" href="#iris.io.format_picker.FileElement" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a new FileElement given a name and a file element getter function.</p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Constructs a new FileElement given a name and a file element getter function.</p>
 <p>Args:</p>
 <ul>
 <li><p class="first">name - The name (string) of what the element is representing</p>
@@ -228,7 +229,8 @@ by interrogating its children FormatSpecification instances.</p>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FormatAgent">
 <em class="property">class </em><tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">FormatAgent</tt><big>(</big><em>format_specs=None</em><big>)</big><a class="headerlink" href="#iris.io.format_picker.FormatAgent" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="method">
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<dl class="method">
 <dt id="iris.io.format_picker.FormatAgent.add_spec">
 <tt class="descname">add_spec</tt><big>(</big><em>format_spec</em><big>)</big><a class="headerlink" href="#iris.io.format_picker.FormatAgent.add_spec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a FormatSpecification instance to this agent for format consideration.</p>
@@ -251,7 +253,8 @@ a FileElement, such as filename extension or 32-bit magic number, with an associ
 <div><dl class="class">
 <dt id="iris.io.format_picker.FormatSpecification">
 <em class="property">class </em><tt class="descclassname">iris.io.format_picker.</tt><tt class="descname">FormatSpecification</tt><big>(</big><em>format_name</em>, <em>file_element</em>, <em>file_element_value</em>, <em>handler=None</em>, <em>priority=0</em><big>)</big><a class="headerlink" href="#iris.io.format_picker.FormatSpecification" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a new FormatSpecification given the format_name and particular FileElements</p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Constructs a new FormatSpecification given the format_name and particular FileElements</p>
 <p>Args:</p>
 <ul class="simple">
 <li>format_name - string name of fileformat being described</li>

@@ -118,22 +118,14 @@ converted into a real data array.</p>
 <div><dl class="class">
 <dt id="iris.fileformats.manager.DataManager">
 <em class="property">class </em><tt class="descclassname">iris.fileformats.manager.</tt><tt class="descname">DataManager</tt><big>(</big><em>data_shape</em>, <em>data_type</em>, <em>mdi</em>, <em>deferred_slices=()</em><big>)</big><a class="headerlink" href="#iris.fileformats.manager.DataManager" title="Permalink to this definition">¶</a></dt>
-<dd><p>Holds the context that allows a corresponding array of DataProxy objects to be
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">iris.util._OrderedHashable</span></tt></p>
+<p>Holds the context that allows a corresponding array of DataProxy objects to be
 converted into a real data array.</p>
 <dl class="class">
 <dt id="iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace">
 <em class="property">class </em><tt class="descname">ArrayTooBigForAddressSpace</tt><a class="headerlink" href="#iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace" title="Permalink to this definition">¶</a></dt>
-<dd><p>Raised when numpy cannot possibly allocate an array as it is too big for the address space.</p>
-<dl class="attribute">
-<dt id="iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace.args">
-<tt class="descname">args</tt><a class="headerlink" href="#iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
-<dt id="iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace.message">
-<tt class="descname">message</tt><a class="headerlink" href="#iris.fileformats.manager.DataManager.ArrayTooBigForAddressSpace.message" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">exceptions.Exception</span></tt></p>
+<p>Raised when numpy cannot possibly allocate an array as it is too big for the address space.</p>
 </dd></dl>
 
 <dl class="method">

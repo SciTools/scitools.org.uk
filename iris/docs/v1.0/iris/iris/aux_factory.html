@@ -125,7 +125,8 @@ properties of the resulting auxiliary coordinates.</p>
 <div><dl class="class">
 <dt id="iris.aux_factory.AuxCoordFactory">
 <em class="property">class </em><tt class="descclassname">iris.aux_factory.</tt><tt class="descname">AuxCoordFactory</tt><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory" title="Permalink to this definition">¶</a></dt>
-<dd><p>Represents a &#8220;factory&#8221; which can manufacture an additional auxiliary
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">iris._cube_coord_common.CFVariableMixin</span></tt></p>
+<p>Represents a &#8220;factory&#8221; which can manufacture an additional auxiliary
 coordinate on demand, by combining the values of other coordinates.</p>
 <p>Each concrete subclass represents a specific formula for deriving
 values from other coordinates.</p>
@@ -166,20 +167,6 @@ See <a class="reference internal" href="cube.html#iris.cube.Cube.coord_dims" tit
 </li>
 </ul>
 </dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.AuxCoordFactory.name">
-<tt class="descname">name</tt><big>(</big><em>default='unknown'</em><big>)</big><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a human-readable name.</p>
-<p>First it tries <a class="reference internal" href="#iris.aux_factory.AuxCoordFactory.standard_name" title="iris.aux_factory.AuxCoordFactory.standard_name"><tt class="xref py py-attr docutils literal"><span class="pre">standard_name</span></tt></a>, then it tries the &#8216;long_name&#8217;
-attributes, before falling back to the value of <cite>default</cite> (which
-itself defaults to &#8216;unknown&#8217;).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.AuxCoordFactory.rename">
-<tt class="descname">rename</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.rename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="iris.aux_factory.AuxCoordFactory.update">
@@ -228,11 +215,6 @@ used instead.</p>
 </dd></dl>
 
 <dl class="attribute">
-<dt id="iris.aux_factory.AuxCoordFactory.attributes">
-<tt class="descname">attributes</tt><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.attributes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="attribute">
 <dt id="iris.aux_factory.AuxCoordFactory.coord_system">
 <tt class="descname">coord_system</tt><em class="property"> = None</em><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.coord_system" title="Permalink to this definition">¶</a></dt>
 <dd><p>Coordinate system (if any) of the coordinate made by the factory</p>
@@ -251,26 +233,6 @@ the corresponding coordinates.</p>
 <dd><p>Descriptive name of the coordinate made by the factory</p>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="iris.aux_factory.AuxCoordFactory.standard_name">
-<tt class="descname">standard_name</tt><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.standard_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The standard name for the Cube&#8217;s data.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.AuxCoordFactory.unit">
-<tt class="descname">unit</tt><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">iris.unit.Unit</span></tt></a> instance representing the unit of the phenomenon.</p>
-<p class="deprecated">
-<span class="versionmodified">Deprecated since version 0.9.</span></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.AuxCoordFactory.units">
-<tt class="descname">units</tt><a class="headerlink" href="#iris.aux_factory.AuxCoordFactory.units" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">Unit</span></tt></a> instance of the phenomenon.</p>
-</dd></dl>
-
 </dd></dl>
 
 </div></blockquote>
@@ -283,7 +245,8 @@ the corresponding coordinates.</p>
 <div><dl class="class">
 <dt id="iris.aux_factory.HybridHeightFactory">
 <em class="property">class </em><tt class="descclassname">iris.aux_factory.</tt><tt class="descname">HybridHeightFactory</tt><big>(</big><em>delta=None</em>, <em>sigma=None</em>, <em>orography=None</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
+<dd><p>Bases: <a class="reference internal" href="#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><tt class="xref py py-class docutils literal"><span class="pre">iris.aux_factory.AuxCoordFactory</span></tt></a></p>
+<dl class="docutils">
 <dt>Creates a hybrid-height coordinate factory with the formula:</dt>
 <dd>z = a + b * orog</dd>
 </dl>
@@ -310,23 +273,6 @@ the corresponding coordinates.</p>
 </li>
 </ul>
 <dl class="method">
-<dt id="iris.aux_factory.HybridHeightFactory.derived_dims">
-<tt class="descname">derived_dims</tt><big>(</big><em>coord_dims_func</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.derived_dims" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the virtual dim-mapping for the derived coordinate.</p>
-<p>Args:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>coord_dims_func:</dt>
-<dd><p class="first last">A callable which can return the list of dimensions relevant
-to a given coordinate. 
-See <a class="reference internal" href="cube.html#iris.cube.Cube.coord_dims" title="iris.cube.Cube.coord_dims"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.coord_dims()</span></tt></a>.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
 <dt id="iris.aux_factory.HybridHeightFactory.make_coord">
 <tt class="descname">make_coord</tt><big>(</big><em>coord_dims_func</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.make_coord" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a new <a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><tt class="xref py py-class docutils literal"><span class="pre">iris.coords.AuxCoord</span></tt></a> as defined by this
@@ -343,20 +289,6 @@ See <a class="reference internal" href="cube.html#iris.cube.Cube.coord_dims" tit
 </li>
 </ul>
 </dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridHeightFactory.name">
-<tt class="descname">name</tt><big>(</big><em>default='unknown'</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a human-readable name.</p>
-<p>First it tries <a class="reference internal" href="#iris.aux_factory.HybridHeightFactory.standard_name" title="iris.aux_factory.HybridHeightFactory.standard_name"><tt class="xref py py-attr docutils literal"><span class="pre">standard_name</span></tt></a>, then it tries the &#8216;long_name&#8217;
-attributes, before falling back to the value of <cite>default</cite> (which
-itself defaults to &#8216;unknown&#8217;).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridHeightFactory.rename">
-<tt class="descname">rename</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.rename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="iris.aux_factory.HybridHeightFactory.update">
@@ -381,60 +313,11 @@ any dependency using old_coord is updated to use new_coord.</p>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="iris.aux_factory.HybridHeightFactory.updated">
-<tt class="descname">updated</tt><big>(</big><em>new_coord_mapping</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.updated" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new instance of this factory where the dependencies
-are replaced according to the given mapping.</p>
-<p>Args:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>new_coord_mapping:</dt>
-<dd><p class="first last">A dictionary mapping from the object IDs potentially used
-by this factory, to the coordinate objects that should be
-used instead.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridHeightFactory.xml_element">
-<tt class="descname">xml_element</tt><big>(</big><em>doc</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.xml_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a DOM element describing this coordinate factory.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridHeightFactory.attributes">
-<tt class="descname">attributes</tt><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.attributes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="iris.aux_factory.HybridHeightFactory.dependencies">
 <tt class="descname">dependencies</tt><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.dependencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary mapping from constructor argument names to
 the corresponding coordinates.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridHeightFactory.standard_name">
-<tt class="descname">standard_name</tt><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.standard_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The standard name for the Cube&#8217;s data.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridHeightFactory.unit">
-<tt class="descname">unit</tt><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">iris.unit.Unit</span></tt></a> instance representing the unit of the phenomenon.</p>
-<p class="deprecated">
-<span class="versionmodified">Deprecated since version 0.9.</span></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridHeightFactory.units">
-<tt class="descname">units</tt><a class="headerlink" href="#iris.aux_factory.HybridHeightFactory.units" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">Unit</span></tt></a> instance of the phenomenon.</p>
 </dd></dl>
 
 </dd></dl>
@@ -449,7 +332,8 @@ the corresponding coordinates.</p>
 <div><dl class="class">
 <dt id="iris.aux_factory.HybridPressureFactory">
 <em class="property">class </em><tt class="descclassname">iris.aux_factory.</tt><tt class="descname">HybridPressureFactory</tt><big>(</big><em>delta=None</em>, <em>sigma=None</em>, <em>surface_pressure=None</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="docutils">
+<dd><p>Bases: <a class="reference internal" href="#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><tt class="xref py py-class docutils literal"><span class="pre">iris.aux_factory.AuxCoordFactory</span></tt></a></p>
+<dl class="docutils">
 <dt>Creates a hybrid-height coordinate factory with the formula:</dt>
 <dd>p = ap + b * ps</dd>
 </dl>
@@ -476,23 +360,6 @@ the corresponding coordinates.</p>
 </li>
 </ul>
 <dl class="method">
-<dt id="iris.aux_factory.HybridPressureFactory.derived_dims">
-<tt class="descname">derived_dims</tt><big>(</big><em>coord_dims_func</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.derived_dims" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the virtual dim-mapping for the derived coordinate.</p>
-<p>Args:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>coord_dims_func:</dt>
-<dd><p class="first last">A callable which can return the list of dimensions relevant
-to a given coordinate. 
-See <a class="reference internal" href="cube.html#iris.cube.Cube.coord_dims" title="iris.cube.Cube.coord_dims"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.coord_dims()</span></tt></a>.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
 <dt id="iris.aux_factory.HybridPressureFactory.make_coord">
 <tt class="descname">make_coord</tt><big>(</big><em>coord_dims_func</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.make_coord" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a new <a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><tt class="xref py py-class docutils literal"><span class="pre">iris.coords.AuxCoord</span></tt></a> as defined by this
@@ -509,20 +376,6 @@ See <a class="reference internal" href="cube.html#iris.cube.Cube.coord_dims" tit
 </li>
 </ul>
 </dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridPressureFactory.name">
-<tt class="descname">name</tt><big>(</big><em>default='unknown'</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a human-readable name.</p>
-<p>First it tries <a class="reference internal" href="#iris.aux_factory.HybridPressureFactory.standard_name" title="iris.aux_factory.HybridPressureFactory.standard_name"><tt class="xref py py-attr docutils literal"><span class="pre">standard_name</span></tt></a>, then it tries the &#8216;long_name&#8217;
-attributes, before falling back to the value of <cite>default</cite> (which
-itself defaults to &#8216;unknown&#8217;).</p>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridPressureFactory.rename">
-<tt class="descname">rename</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.rename" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="iris.aux_factory.HybridPressureFactory.update">
@@ -547,60 +400,11 @@ any dependency using old_coord is updated to use new_coord.</p>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="iris.aux_factory.HybridPressureFactory.updated">
-<tt class="descname">updated</tt><big>(</big><em>new_coord_mapping</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.updated" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new instance of this factory where the dependencies
-are replaced according to the given mapping.</p>
-<p>Args:</p>
-<ul>
-<li><dl class="first docutils">
-<dt>new_coord_mapping:</dt>
-<dd><p class="first last">A dictionary mapping from the object IDs potentially used
-by this factory, to the coordinate objects that should be
-used instead.</p>
-</dd>
-</dl>
-</li>
-</ul>
-</dd></dl>
-
-<dl class="method">
-<dt id="iris.aux_factory.HybridPressureFactory.xml_element">
-<tt class="descname">xml_element</tt><big>(</big><em>doc</em><big>)</big><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.xml_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a DOM element describing this coordinate factory.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridPressureFactory.attributes">
-<tt class="descname">attributes</tt><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.attributes" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
 <dl class="attribute">
 <dt id="iris.aux_factory.HybridPressureFactory.dependencies">
 <tt class="descname">dependencies</tt><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.dependencies" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns a dictionary mapping from constructor argument names to
 the corresponding coordinates.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridPressureFactory.standard_name">
-<tt class="descname">standard_name</tt><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.standard_name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The standard name for the Cube&#8217;s data.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridPressureFactory.unit">
-<tt class="descname">unit</tt><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.unit" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">iris.unit.Unit</span></tt></a> instance representing the unit of the phenomenon.</p>
-<p class="deprecated">
-<span class="versionmodified">Deprecated since version 0.9.</span></p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.aux_factory.HybridPressureFactory.units">
-<tt class="descname">units</tt><a class="headerlink" href="#iris.aux_factory.HybridPressureFactory.units" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference internal" href="unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-mod docutils literal"><span class="pre">Unit</span></tt></a> instance of the phenomenon.</p>
 </dd></dl>
 
 </dd></dl>
@@ -617,7 +421,8 @@ computed and cached for any subsequent access.</p>
 <div><dl class="class">
 <dt id="iris.aux_factory.LazyArray">
 <em class="property">class </em><tt class="descclassname">iris.aux_factory.</tt><tt class="descname">LazyArray</tt><big>(</big><em>shape</em>, <em>func</em><big>)</big><a class="headerlink" href="#iris.aux_factory.LazyArray" title="Permalink to this definition">¶</a></dt>
-<dd><p>Args:</p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Args:</p>
 <ul>
 <li><dl class="first docutils">
 <dt>shape (tuple):</dt>

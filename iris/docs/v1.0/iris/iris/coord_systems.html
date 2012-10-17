@@ -120,7 +120,8 @@ Iris 1.0
 <div><dl class="class">
 <dt id="iris.coord_systems.CoordSystem">
 <em class="property">class </em><tt class="descclassname">iris.coord_systems.</tt><tt class="descname">CoordSystem</tt><a class="headerlink" href="#iris.coord_systems.CoordSystem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Abstract base class for coordinate systems.</p>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Abstract base class for coordinate systems.</p>
 <dl class="method">
 <dt id="iris.coord_systems.CoordSystem.as_cartopy_crs">
 <tt class="descname">as_cartopy_crs</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.coord_systems.CoordSystem.as_cartopy_crs" title="Permalink to this definition">¶</a></dt>
@@ -158,7 +159,8 @@ the Earth and a prime meridian.</p>
 <div><dl class="class">
 <dt id="iris.coord_systems.GeogCS">
 <em class="property">class </em><tt class="descclassname">iris.coord_systems.</tt><tt class="descname">GeogCS</tt><big>(</big><em>semi_major_axis=None</em>, <em>semi_minor_axis=None</em>, <em>inverse_flattening=None</em>, <em>longitude_of_prime_meridian=0</em><big>)</big><a class="headerlink" href="#iris.coord_systems.GeogCS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a new GeogCS.</p>
+<dd><p>Bases: <a class="reference internal" href="#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.CoordSystem</span></tt></a></p>
+<p>Creates a new GeogCS.</p>
 <p>Kwargs:</p>
 <blockquote>
 <div><ul>
@@ -247,7 +249,8 @@ Examples:</p>
 <div><dl class="class">
 <dt id="iris.coord_systems.OSGB">
 <em class="property">class </em><tt class="descclassname">iris.coord_systems.</tt><tt class="descname">OSGB</tt><a class="headerlink" href="#iris.coord_systems.OSGB" title="Permalink to this definition">¶</a></dt>
-<dd><p>A Specific transverse mercator projection on a specific ellipsoid.</p>
+<dd><p>Bases: <a class="reference internal" href="#iris.coord_systems.TransverseMercator" title="iris.coord_systems.TransverseMercator"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.TransverseMercator</span></tt></a></p>
+<p>A Specific transverse mercator projection on a specific ellipsoid.</p>
 <dl class="method">
 <dt id="iris.coord_systems.OSGB.as_cartopy_crs">
 <tt class="descname">as_cartopy_crs</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.coord_systems.OSGB.as_cartopy_crs" title="Permalink to this definition">¶</a></dt>
@@ -256,17 +259,6 @@ Examples:</p>
 <dl class="method">
 <dt id="iris.coord_systems.OSGB.as_cartopy_projection">
 <tt class="descname">as_cartopy_projection</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.coord_systems.OSGB.as_cartopy_projection" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="iris.coord_systems.OSGB.xml_element">
-<tt class="descname">xml_element</tt><big>(</big><em>doc</em>, <em>attrs=None</em><big>)</big><a class="headerlink" href="#iris.coord_systems.OSGB.xml_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>Default behaviour for coord systems.</p>
-</dd></dl>
-
-<dl class="attribute">
-<dt id="iris.coord_systems.OSGB.grid_mapping_name">
-<tt class="descname">grid_mapping_name</tt><em class="property"> = 'transverse_mercator'</em><a class="headerlink" href="#iris.coord_systems.OSGB.grid_mapping_name" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -278,7 +270,8 @@ Examples:</p>
 <div><dl class="class">
 <dt id="iris.coord_systems.RotatedGeogCS">
 <em class="property">class </em><tt class="descclassname">iris.coord_systems.</tt><tt class="descname">RotatedGeogCS</tt><big>(</big><em>grid_north_pole_latitude</em>, <em>grid_north_pole_longitude</em>, <em>north_pole_grid_longitude=0</em>, <em>ellipsoid=None</em><big>)</big><a class="headerlink" href="#iris.coord_systems.RotatedGeogCS" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a coordinate system with rotated pole, on an
+<dd><p>Bases: <a class="reference internal" href="#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.CoordSystem</span></tt></a></p>
+<p>Constructs a coordinate system with rotated pole, on an
 optional <a class="reference internal" href="#iris.coord_systems.GeogCS" title="iris.coord_systems.GeogCS"><tt class="xref py py-class docutils literal"><span class="pre">GeogCS</span></tt></a>.</p>
 <p>Args:</p>
 <blockquote>
@@ -372,7 +365,8 @@ optional <a class="reference internal" href="#iris.coord_systems.GeogCS" title="
 <div><dl class="class">
 <dt id="iris.coord_systems.TransverseMercator">
 <em class="property">class </em><tt class="descclassname">iris.coord_systems.</tt><tt class="descname">TransverseMercator</tt><big>(</big><em>latitude_of_projection_origin</em>, <em>longitude_of_central_meridian</em>, <em>false_easting</em>, <em>false_northing</em>, <em>scale_factor_at_central_meridian</em>, <em>ellipsoid=None</em><big>)</big><a class="headerlink" href="#iris.coord_systems.TransverseMercator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constructs a TransverseMercator object.</p>
+<dd><p>Bases: <a class="reference internal" href="#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.CoordSystem</span></tt></a></p>
+<p>Constructs a TransverseMercator object.</p>
 <p>Args:</p>
 <blockquote>
 <div><ul>
@@ -435,12 +429,6 @@ distortion in the area of interest.</p>
 <dt id="iris.coord_systems.TransverseMercator.as_cartopy_projection">
 <tt class="descname">as_cartopy_projection</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.coord_systems.TransverseMercator.as_cartopy_projection" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
-
-<dl class="method">
-<dt id="iris.coord_systems.TransverseMercator.xml_element">
-<tt class="descname">xml_element</tt><big>(</big><em>doc</em>, <em>attrs=None</em><big>)</big><a class="headerlink" href="#iris.coord_systems.TransverseMercator.xml_element" title="Permalink to this definition">¶</a></dt>
-<dd><p>Default behaviour for coord systems.</p>
-</dd></dl>
 
 <dl class="attribute">
 <dt id="iris.coord_systems.TransverseMercator.ellipsoid">
