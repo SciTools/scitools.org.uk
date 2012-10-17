@@ -1,7 +1,7 @@
 scitools.org.uk
 ===============
 
-Web Pages for Project Iris
+Web pages for SciTools.
 
 (C) British Crown Copyright 2010 - 2012, Met Office
 
