@@ -1,0 +1,167 @@
+/* taken from http://www.maxdesign.com.au/articles/css-layouts/one-liquid/ */
+body {
+    font-family: 'goudy old style', 'minion pro', 'bell mt', Georgia, 'Hiragino Mincho Pro';
+    font-family:"Trebuchet MS", Helvetica, sans-serif
+}
+
+#hd
+{
+    background-color: white;
+    padding: 0.5%;
+    font-size:300%;
+    font-weight:bolder;
+    letter-spacing:0.1ex;
+}
+div.wrapper
+{
+    width:80%;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+div.navigation
+{
+    float: left;
+    width: 100%;
+    padding:0px;
+    background-color: #F8F8F8;
+}
+
+/* horizontal navigation */
+div.navigation ul
+{
+    border-bottom: 2px solid #DDDDDD;
+    border-top: 2px solid #DDDDDD;
+    height: 2em;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    list-style-type: none;
+}
+
+div.navigation ul li
+{
+    float: left;
+    height: 1.75em;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: block;
+}
+
+div.navigation ul li a
+{
+    color: #EE9816;
+    line-height: 2.0em;
+    margin: 0;
+    padding: 0 8px;
+    float: left;
+    text-decoration: none;
+    border-right: 2px solid #DDDDDD;
+}
+/*div.navigation ul li > a:visited
+{
+    color: #cc0099;
+}*/
+
+div.navigation ul li a:hover 
+{ 
+    color: #3CA8E7; 
+}
+
+
+/* vertical submenu - 1st level */
+div.navigation ul ul 
+{
+	margin-top: 2px;
+	display: none;
+	position: absolute;
+	height: auto;
+	/* vertical-menus width */
+	width: 160px;
+	border: none;
+	background-color: #F8F8F8;
+}
+
+
+div.navigation li:hover > ul 
+{
+	display: block;
+	margin-top: 35px;
+}
+
+div.navigation ul ul li 
+{
+	position: relative;
+	float: none;
+	display: block;
+	height: 28px;
+	width: 100%;
+	border: none;
+}
+
+div.navigation ul ul li > span, 
+div.navigation ul ul li > a,
+div.navigation ul ul li > a:link, 
+div.navigation ul ul li > a:active 
+{
+	height: 100%;
+	width: 95%;
+	padding: 0 0 0 4%;
+	line-height: 28px;
+	background-color: transparent;
+	border-top-style: solid;
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-left-style: solid;
+	border-color: #DDDDDD;
+	border-width: 2px;
+	color: #EE9816;
+}
+
+/*div.navigation ul ul li > a:visited
+{
+    color: #cc0099;
+}*/
+
+div.navigation ul ul li:hover > span,
+div.navigation ul ul li:hover > a 
+{
+	background-color: transparent;
+	color: #3CA8E7;
+}
+
+/* vertical submenu - 2nd level */
+div.navigation ul ul ul 
+{
+	/* relative to the parent */
+	position: absolute;
+	top: 4px;
+	left: 155px;
+	margin: 0;
+}
+
+pre.code
+{
+    background:#E0FFB8; 
+    border: 1px solid #94DA3A; 
+    border-width: 1px 0;
+    margin: 1em 0;
+    padding: 0.3em 0.4em;
+    overflow: auto;
+}
+
+#bd
+{
+    background-color: white;
+    padding: 0.5%;
+    margin-top: 20px;
+}
+
+#ft
+{
+    background-color: white;
+    height: 1%;
+    text-align: right;
+    padding: 10px;
+}
