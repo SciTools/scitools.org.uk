@@ -50,7 +50,6 @@
 
 					// get data
 					$.getJSON(url, function(data) {
-						console.log(data);
 						for (var i=0; i<data.contributors.length; i++){
 							$('#contributors').append("<p>"+data.contributors[i].profile_name+"<\/p>")
 						 }
