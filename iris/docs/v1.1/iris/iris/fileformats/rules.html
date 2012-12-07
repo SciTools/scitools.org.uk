@@ -1,0 +1,580 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.fileformats.rules &mdash; Iris 1.1.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.1.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.1.0rc1 documentation" href="../../../index.html" />
+    <link rel="up" title="iris.fileformats" href="../fileformats.html" />
+    <link rel="next" title="iris.fileformats.um_cf_map" href="um_cf_map.html" />
+    <link rel="prev" title="iris.fileformats.pp_packing" href="pp_packing.html" />
+ 
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.1 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="um_cf_map.html" title="iris.fileformats.um_cf_map"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pp_packing.html" title="iris.fileformats.pp_packing"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../fileformats.html" accesskey="U">iris.fileformats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pp_packing.html"
+                        title="previous chapter">iris.fileformats.pp_packing</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="um_cf_map.html"
+                        title="next chapter">iris.fileformats.um_cf_map</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/iris/iris/fileformats/rules.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-fileformats-rules">
+<span id="id1"></span><h1>iris.fileformats.rules<a class="headerlink" href="#iris-fileformats-rules" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.fileformats.rules"></span><p>Units of measure.</p>
+<p>Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the
+netcdftime calendar functionality.</p>
+<p>See also: <a class="reference external" href="http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html">UDUNITS-2</a>.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.fileformats.rules.is_regular" title="iris.fileformats.rules.is_regular"><tt class="xref py py-obj docutils literal"><span class="pre">is_regular</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.load_cubes" title="iris.fileformats.rules.load_cubes"><tt class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.log" title="iris.fileformats.rules.log"><tt class="xref py py-obj docutils literal"><span class="pre">log</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.regular_step" title="iris.fileformats.rules.regular_step"><tt class="xref py py-obj docutils literal"><span class="pre">regular_step</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.scalar_cell_method" title="iris.fileformats.rules.scalar_cell_method"><tt class="xref py py-obj docutils literal"><span class="pre">scalar_cell_method</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.scalar_coord" title="iris.fileformats.rules.scalar_coord"><tt class="xref py py-obj docutils literal"><span class="pre">scalar_coord</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.vector_coord" title="iris.fileformats.rules.vector_coord"><tt class="xref py py-obj docutils literal"><span class="pre">vector_coord</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.CMAttribute" title="iris.fileformats.rules.CMAttribute"><tt class="xref py py-obj docutils literal"><span class="pre">CMAttribute</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.CMCustomAttribute" title="iris.fileformats.rules.CMCustomAttribute"><tt class="xref py py-obj docutils literal"><span class="pre">CMCustomAttribute</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.ConcreteReferenceTarget" title="iris.fileformats.rules.ConcreteReferenceTarget"><tt class="xref py py-obj docutils literal"><span class="pre">ConcreteReferenceTarget</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.CoordAndDims" title="iris.fileformats.rules.CoordAndDims"><tt class="xref py py-obj docutils literal"><span class="pre">CoordAndDims</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.DebugString" title="iris.fileformats.rules.DebugString"><tt class="xref py py-obj docutils literal"><span class="pre">DebugString</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.Factory" title="iris.fileformats.rules.Factory"><tt class="xref py py-obj docutils literal"><span class="pre">Factory</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.FunctionRule" title="iris.fileformats.rules.FunctionRule"><tt class="xref py py-obj docutils literal"><span class="pre">FunctionRule</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.Loader" title="iris.fileformats.rules.Loader"><tt class="xref py py-obj docutils literal"><span class="pre">Loader</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.ObjectReturningRule" title="iris.fileformats.rules.ObjectReturningRule"><tt class="xref py py-obj docutils literal"><span class="pre">ObjectReturningRule</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.ProcedureRule" title="iris.fileformats.rules.ProcedureRule"><tt class="xref py py-obj docutils literal"><span class="pre">ProcedureRule</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.Reference" title="iris.fileformats.rules.Reference"><tt class="xref py py-obj docutils literal"><span class="pre">Reference</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.ReferenceTarget" title="iris.fileformats.rules.ReferenceTarget"><tt class="xref py py-obj docutils literal"><span class="pre">ReferenceTarget</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.Rule" title="iris.fileformats.rules.Rule"><tt class="xref py py-obj docutils literal"><span class="pre">Rule</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.RuleResult" title="iris.fileformats.rules.RuleResult"><tt class="xref py py-obj docutils literal"><span class="pre">RuleResult</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.rules.RulesContainer" title="iris.fileformats.rules.RulesContainer"><tt class="xref py py-obj docutils literal"><span class="pre">RulesContainer</span></tt></a></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.is_regular">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">is_regular</tt><big>(</big><em>coord</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.is_regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the given coord is regular.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.load_cubes">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">load_cubes</tt><big>(</big><em>filenames</em>, <em>user_callback</em>, <em>loader</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.load_cubes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.log">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">log</tt><big>(</big><em>format</em>, <em>filename</em>, <em>rules</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.log" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.regular_step">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">regular_step</tt><big>(</big><em>coord</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.regular_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the regular step from a coord or fail.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.scalar_cell_method">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">scalar_cell_method</tt><big>(</big><em>cube</em>, <em>method</em>, <em>coord_name</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.scalar_cell_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to find the given type of cell method over a single coord with the given name.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.scalar_coord">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">scalar_coord</tt><big>(</big><em>cube</em>, <em>coord_name</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.scalar_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to find a single-valued coord with the given name.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.fileformats.rules.vector_coord">
+<tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">vector_coord</tt><big>(</big><em>cube</em>, <em>coord_name</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.vector_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Try to find a one-dimensional, multi-valued coord with the given name.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<p>Used by the rules for defining attributes on the Cube in a consistent manner.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.CMAttribute">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">CMAttribute</tt><big>(</big><em>name</em>, <em>value</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.CMAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Used by the rules for defining attributes on the Cube in a consistent manner.</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.CMAttribute.name">
+<tt class="descname">name</tt><a class="headerlink" href="#iris.fileformats.rules.CMAttribute.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.CMAttribute.value">
+<tt class="descname">value</tt><a class="headerlink" href="#iris.fileformats.rules.CMAttribute.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Used by the rules for defining custom attributes on the Cube in a consistent manner.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.CMCustomAttribute">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">CMCustomAttribute</tt><big>(</big><em>name</em>, <em>value</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.CMCustomAttribute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Used by the rules for defining custom attributes on the Cube in a consistent manner.</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.CMCustomAttribute.name">
+<tt class="descname">name</tt><a class="headerlink" href="#iris.fileformats.rules.CMCustomAttribute.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.CMCustomAttribute.value">
+<tt class="descname">value</tt><a class="headerlink" href="#iris.fileformats.rules.CMCustomAttribute.value" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Everything you need to make a real Cube for a named reference.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.ConcreteReferenceTarget">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">ConcreteReferenceTarget</tt><big>(</big><em>name</em>, <em>transform=None</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ConcreteReferenceTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Everything you need to make a real Cube for a named reference.</p>
+<dl class="method">
+<dt id="iris.fileformats.rules.ConcreteReferenceTarget.add_cube">
+<tt class="descname">add_cube</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ConcreteReferenceTarget.add_cube" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.rules.ConcreteReferenceTarget.as_cube">
+<tt class="descname">as_cube</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ConcreteReferenceTarget.as_cube" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Used within rules to represent a mapping of coordinate to data dimensions.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.CoordAndDims">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">CoordAndDims</tt><big>(</big><em>coord</em>, <em>dims=None</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.CoordAndDims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Used within rules to represent a mapping of coordinate to data dimensions.</p>
+<dl class="method">
+<dt id="iris.fileformats.rules.CoordAndDims.add_coord">
+<tt class="descname">add_coord</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.CoordAndDims.add_coord" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Used by the rules for debug purposes</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.DebugString">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">DebugString</tt><a class="headerlink" href="#iris.fileformats.rules.DebugString" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">str</span></tt></p>
+<p>Used by the rules for debug purposes</p>
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Factory(factory_class, args)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.Factory">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">Factory</tt><big>(</big><em>_cls</em>, <em>factory_class</em>, <em>args</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Create new instance of Factory(factory_class, args)</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Factory.args">
+<tt class="descname">args</tt><a class="headerlink" href="#iris.fileformats.rules.Factory.args" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Factory.factory_class">
+<tt class="descname">factory_class</tt><a class="headerlink" href="#iris.fileformats.rules.Factory.factory_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>A Rule with values returned by its actions.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.FunctionRule">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">FunctionRule</tt><big>(</big><em>conditions</em>, <em>actions</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.FunctionRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.fileformats.rules.Rule" title="iris.fileformats.rules.Rule"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.rules.Rule</span></tt></a></p>
+<p>Create instance methods from our conditions and actions.</p>
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>Loader(field_generator, load_rules, cross_ref_rules, log_name)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.Loader">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">Loader</tt><big>(</big><em>_cls</em>, <em>field_generator</em>, <em>load_rules</em>, <em>cross_ref_rules</em>, <em>log_name</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Loader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Create new instance of Loader(field_generator, load_rules, cross_ref_rules, log_name)</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Loader.cross_ref_rules">
+<tt class="descname">cross_ref_rules</tt><a class="headerlink" href="#iris.fileformats.rules.Loader.cross_ref_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Loader.field_generator">
+<tt class="descname">field_generator</tt><a class="headerlink" href="#iris.fileformats.rules.Loader.field_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Loader.load_rules">
+<tt class="descname">load_rules</tt><a class="headerlink" href="#iris.fileformats.rules.Loader.load_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.Loader.log_name">
+<tt class="descname">log_name</tt><a class="headerlink" href="#iris.fileformats.rules.Loader.log_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>A rule which returns a list of objects when its actions are run.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.ObjectReturningRule">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">ObjectReturningRule</tt><big>(</big><em>conditions</em>, <em>actions</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ObjectReturningRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.fileformats.rules.FunctionRule" title="iris.fileformats.rules.FunctionRule"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.rules.FunctionRule</span></tt></a></p>
+<p>Create instance methods from our conditions and actions.</p>
+<dl class="method">
+<dt id="iris.fileformats.rules.ObjectReturningRule.run_actions">
+<tt class="descname">run_actions</tt><big>(</big><em>cube</em>, <em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ObjectReturningRule.run_actions" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>A Rule with nothing returned by its actions.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.ProcedureRule">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">ProcedureRule</tt><big>(</big><em>conditions</em>, <em>actions</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ProcedureRule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.fileformats.rules.Rule" title="iris.fileformats.rules.Rule"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.rules.Rule</span></tt></a></p>
+<p>Create instance methods from our conditions and actions.</p>
+<dl class="method">
+<dt id="iris.fileformats.rules.ProcedureRule.conditional_warning">
+<tt class="descname">conditional_warning</tt><big>(</big><em>condition</em>, <em>warning</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ProcedureRule.conditional_warning" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>None</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.Reference">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">Reference</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">iris.util._OrderedHashable</span></tt></p>
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>ReferenceTarget(name, transform)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.ReferenceTarget">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">ReferenceTarget</tt><big>(</big><em>_cls</em>, <em>name</em>, <em>transform</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.ReferenceTarget" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Create new instance of ReferenceTarget(name, transform)</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.ReferenceTarget.name">
+<tt class="descname">name</tt><a class="headerlink" href="#iris.fileformats.rules.ReferenceTarget.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.ReferenceTarget.transform">
+<tt class="descname">transform</tt><a class="headerlink" href="#iris.fileformats.rules.ReferenceTarget.transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>A collection of condition expressions and their associated action expressions.</p>
+<p>Example rule:</p>
+<div class="highlight-python"><pre>IF
+    f.lbuser[6] == 2
+    f.lbuser[3] == 101
+THEN
+    CMAttribute('standard_name', 'sea_water_potential_temperature')
+    CMAttribute('units', 'Celsius')</pre>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.Rule">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">Rule</tt><big>(</big><em>conditions</em>, <em>actions</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Rule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Create instance methods from our conditions and actions.</p>
+<dl class="method">
+<dt id="iris.fileformats.rules.Rule.evaluates_true">
+<tt class="descname">evaluates_true</tt><big>(</big><em>cube</em>, <em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Rule.evaluates_true" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns True if and only if all the conditions evaluate to True for the given field.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.rules.Rule.run_actions">
+<tt class="descname">run_actions</tt><big>(</big><em>cube</em>, <em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.Rule.run_actions" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds to the given cube based on the return values of all the actions.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>RuleResult(cube, matching_rules, factories)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.RuleResult">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">RuleResult</tt><big>(</big><em>_cls</em>, <em>cube</em>, <em>matching_rules</em>, <em>factories</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RuleResult" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">tuple</span></tt></p>
+<p>Create new instance of RuleResult(cube, matching_rules, factories)</p>
+<dl class="attribute">
+<dt id="iris.fileformats.rules.RuleResult.cube">
+<tt class="descname">cube</tt><a class="headerlink" href="#iris.fileformats.rules.RuleResult.cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.RuleResult.factories">
+<tt class="descname">factories</tt><a class="headerlink" href="#iris.fileformats.rules.RuleResult.factories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.rules.RuleResult.matching_rules">
+<tt class="descname">matching_rules</tt><a class="headerlink" href="#iris.fileformats.rules.RuleResult.matching_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<hr class="docutils" />
+<p>A collection of <a class="reference internal" href="#iris.fileformats.rules.Rule" title="iris.fileformats.rules.Rule"><tt class="xref py py-class docutils literal"><span class="pre">Rule</span></tt></a> instances, with the ability to read rule
+definitions from files and run the rules against given fields.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.rules.RulesContainer">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.rules.</tt><tt class="descname">RulesContainer</tt><big>(</big><em>filepath=None</em>, <em>rule_type=&lt;class 'iris.fileformats.rules.FunctionRule'&gt;</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RulesContainer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></p>
+<p>Create a new rule set, optionally adding rules from the specified file.</p>
+<p>The rule_type defaults to <a class="reference internal" href="#iris.fileformats.rules.FunctionRule" title="iris.fileformats.rules.FunctionRule"><tt class="xref py py-class docutils literal"><span class="pre">FunctionRule</span></tt></a>,
+e.g for CM loading actions that return objects, such as <em>AuxCoord(...)</em></p>
+<p>rule_type can also be set to <a class="reference internal" href="#iris.fileformats.rules.ProcedureRule" title="iris.fileformats.rules.ProcedureRule"><tt class="xref py py-class docutils literal"><span class="pre">ProcedureRule</span></tt></a>
+e.g for PP saving actions that do not return anything, such as <em>pp.lbuser[3] = 16203</em></p>
+<dl class="method">
+<dt id="iris.fileformats.rules.RulesContainer.import_rules">
+<tt class="descname">import_rules</tt><big>(</big><em>filepath</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RulesContainer.import_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend the rule collection with the rules defined in the specified file.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.rules.RulesContainer.matching_rules">
+<tt class="descname">matching_rules</tt><big>(</big><em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RulesContainer.matching_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of rules which match the given field.</p>
+<p>Returns: list of Rule instances</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.rules.RulesContainer.result">
+<tt class="descname">result</tt><big>(</big><em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RulesContainer.result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> resulting from running this
+set of rules with the given field.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>field:</dt>
+<dd><p class="first last">A field object relevant to the rule set.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns: (cube, matching_rules)</p>
+<ul class="simple">
+<li>cube - the resultant cube</li>
+<li>matching_rules - a list of rules which matched</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.rules.RulesContainer.verify">
+<tt class="descname">verify</tt><big>(</big><em>cube</em>, <em>field</em><big>)</big><a class="headerlink" href="#iris.fileformats.rules.RulesContainer.verify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add to the given <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> by running this set of
+rules with the given field.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>cube:</dt>
+<dd><p class="first last">An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>field:</dt>
+<dd><p class="first last">A field object relevant to the rule set.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns: (cube, matching_rules)</p>
+<ul class="simple">
+<li>cube - the resultant cube</li>
+<li>matching_rules - a list of rules which matched</li>
+</ul>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="um_cf_map.html" title="iris.fileformats.um_cf_map"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pp_packing.html" title="iris.fileformats.pp_packing"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../fileformats.html" >iris.fileformats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2012, Met Office
+    </div>
+
+
+  </body>
+</html>
