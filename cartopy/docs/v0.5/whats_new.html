@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s new in Cartopy 0.5 &mdash; cartopy 0.5.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.5.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="cartopy 0.5.0 documentation" href="index.html" />
+    <link rel="next" title="Who uses cartopy" href="who_uses_cartopy.html" />
+    <link rel="prev" title="Introduction" href="index.html" />
+ 
+<META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+<link rel="stylesheet" href="_static/linewidth.css" type="text/css" />
+
+  </head>
+  <body>
+<!--
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<a href="index.html"><img src="_static/cartopy.png" style="float:left; clear:right; margin-right: 40px; " border="0" alt="Cartopy"/></a>
+<p style="clear: both;">i.</p>
+-->
+<!--
+<p style="margin-left: 15px; font-weight:bolder; font-size:300%; letter-spacing:0.1ex;">
+cartopy 0.5.0
+</p>
+-->
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="who_uses_cartopy.html" title="Who uses cartopy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <!-- <li><a href="examples/index.html">examples</a>|&nbsp;</li>
+             <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        -->
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s new in Cartopy 0.5</a><ul>
+<li><a class="reference internal" href="#cartopy-0-5-features">Cartopy 0.5 features</a><ul>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feature-api">Feature API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="who_uses_cartopy.html"
+                        title="next chapter">Who uses cartopy</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/whats_new.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- put an empty image aligned right to clear the logo. -->
+        <img align="right" src="" alt="" style="width: 100px; height: 125px;" />
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-s-new-in-cartopy-0-5">
+<h1>What&#8217;s new in Cartopy 0.5<a class="headerlink" href="#what-s-new-in-cartopy-0-5" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.5.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">?? ???, 2012</td>
+</tr>
+</tbody>
+</table>
+<p>This document explains the new/changed features of Cartopy in version 0.5.</p>
+<p>Release 0.5 of Cartopy continues the work to expand the feature-set of
+Cartopy to encompass common operations, and provide performance
+improvements.</p>
+<div class="section" id="cartopy-0-5-features">
+<h2>Cartopy 0.5 features<a class="headerlink" href="#cartopy-0-5-features" title="Permalink to this headline">¶</a></h2>
+<p>A summary of the main features added with version 0.5:</p>
+<ul class="simple">
+<li>An improved feature API to support future expansion and
+sophistication, and a wider range of pre-defined Natural Earth
+datasets.</li>
+</ul>
+<div class="section" id="incompatible-changes">
+<h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
+<p>None</p>
+</div>
+<div class="section" id="deprecations">
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The method <tt class="xref py py-meth docutils literal"><span class="pre">Axes.natural_earth_shp()</span></tt> has been replaced by the
+method <tt class="xref py py-meth docutils literal"><span class="pre">Axes.add_feature()</span></tt> and the <tt class="xref py py-mod docutils literal"><span class="pre">cartopy.feature</span></tt>
+module.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="feature-api">
+<h2>Feature API<a class="headerlink" href="#feature-api" title="Permalink to this headline">¶</a></h2>
+<p>Features (i.e. collections of lines and polygons) are now added to a map
+via the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="cartopy.mpl.geoaxes.GeoAxes.add_feature"><tt class="xref py py-meth docutils literal"><span class="pre">add_feature()</span></tt></a>
+method.</p>
+<p>Pre-defined features exist for the small-scale (1:110m)
+<a class="reference external" href="http://www.naturalearthdata.com">Natural Earth</a> datasets detailed
+below:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="82%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>BORDERS</td>
+<td>Country boundaries.</td>
+</tr>
+<tr class="row-odd"><td>COASTLINE</td>
+<td>Coastline, including major islands.</td>
+</tr>
+<tr class="row-even"><td>LAKES</td>
+<td>Natural and artificial lakes.</td>
+</tr>
+<tr class="row-odd"><td>LAND</td>
+<td>Land polygons, including major islands.</td>
+</tr>
+<tr class="row-even"><td>OCEAN</td>
+<td>Ocean polygons.</td>
+</tr>
+<tr class="row-odd"><td>RIVERS</td>
+<td>Single-line drainages, including lake centerlines.</td>
+</tr>
+</tbody>
+</table>
+<p>But any Natural Earth dataset can easily be used by creating an
+instance of <tt class="xref py py-class docutils literal"><span class="pre">cartopy.feature.NaturalEarthFeature</span></tt>.</p>
+<p>For example, one can draw a map of Africa demonstrating all of the
+pre-defined features with the following code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cartopy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;:&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//features.py">Source code</a>, <a class="reference external" href=".//features.png">png</a>)</p>
+<div class="figure">
+<img alt="_images/features.png" src="_images/features.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="who_uses_cartopy.html" title="Who uses cartopy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <!-- <li><a href="examples/index.html">examples</a>|&nbsp;</li>
+             <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        -->
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2012, Met Office
+    </div>
+
+
+  </body>
+</html>
