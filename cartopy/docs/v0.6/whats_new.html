@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>What’s new in Cartopy 0.5 &mdash; cartopy 0.6.0rc1 documentation</title>
+    <title>What’s new in Cartopy 0.6 &mdash; cartopy 0.6.0 documentation</title>
     
     <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '',
-        VERSION:     '0.6.0rc1',
+        VERSION:     '0.6.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,12 +26,12 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="copyright.html" />
-    <link rel="top" title="cartopy 0.6.0rc1 documentation" href="index.html" />
-    <link rel="next" title="Who uses cartopy" href="who_uses_cartopy.html" />
+    <link rel="top" title="cartopy 0.6.0 documentation" href="index.html" />
+    <link rel="next" title="Building cartopy from source" href="building_from_source/index.html" />
     <link rel="prev" title="Introduction" href="index.html" />
  
 <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
-<link rel="stylesheet" href="_static/linewidth.css" type="text/css" />
+<link rel="stylesheet" href="_static/layout.css" type="text/css" />
 
   </head>
   <body>
@@ -42,7 +42,7 @@
 -->
 <!--
 <p style="margin-left: 15px; font-weight:bolder; font-size:300%; letter-spacing:0.1ex;">
-cartopy 0.6.0rc1
+cartopy 0.6.0
 </p>
 -->
 </div>
@@ -54,15 +54,17 @@ cartopy 0.6.0rc1
           <a href="genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="who_uses_cartopy.html" title="Who uses cartopy"
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="building_from_source/index.html" title="Building cartopy from source"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Introduction"
              accesskey="P">previous</a> |</li>
         <li><a href="index.html">home</a>|&nbsp;</li>
-        <!-- <li><a href="examples/index.html">examples</a>|&nbsp;</li>
-             <li><a href="gallery.html">gallery</a>|&nbsp;</li>
-        -->
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
  
       </ul>
     </div>
@@ -77,7 +79,11 @@ border="0" alt="Cartopy" style="margin-left: -60px;"/>
 
   <h3><a href="index.html">Table Of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">What&#8217;s new in Cartopy 0.5</a><ul>
+<li><a class="reference internal" href="#">What&#8217;s new in Cartopy 0.6</a><ul>
+<li><a class="reference internal" href="#development-plans-for-cartopy-0-7-and-beyond">Development plans for Cartopy 0.7 and beyond</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-5">What&#8217;s new in Cartopy 0.5</a><ul>
 <li><a class="reference internal" href="#cartopy-0-5-features">Cartopy 0.5 features</a><ul>
 <li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
 <li><a class="reference internal" href="#deprecations">Deprecations</a></li>
@@ -92,8 +98,8 @@ border="0" alt="Cartopy" style="margin-left: -60px;"/>
   <p class="topless"><a href="index.html"
                         title="previous chapter">Introduction</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="who_uses_cartopy.html"
-                        title="next chapter">Who uses cartopy</a></p>
+  <p class="topless"><a href="building_from_source/index.html"
+                        title="next chapter">Building cartopy from source</a></p>
   <h3>This Page</h3>
   <ul class="this-page-menu">
     <li><a href="_sources/whats_new.txt"
@@ -123,7 +129,45 @@ border="0" alt="Cartopy" style="margin-left: -60px;"/>
         <div class="bodywrapper">
           <div class="body">
             
-  <div class="section" id="what-s-new-in-cartopy-0-5">
+  <div class="section" id="what-s-new-in-cartopy-0-6">
+<h1>What&#8217;s new in Cartopy 0.6<a class="headerlink" href="#what-s-new-in-cartopy-0-6" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.6.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">19 Feb 2013</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Patrick Peglar added the ability to draw ticks for some limited projections
+when using the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><tt class="xref py py-func docutils literal"><span class="pre">gridlines()</span></tt></a> method on an Axes.</li>
+<li>Phil Elson and Carwyn Pelley extended the cartopy documentation to include
+new tutorials such as <a class="reference internal" href="tutorials/using_the_shapereader.html#using-the-shapereader"><em>Using the cartopy shapereader</em></a>.</li>
+<li>Ian Edwards <a class="reference internal" href="examples/favicon.html"><em>added a new example</em></a> to create a favicon for cartopy.</li>
+<li>Phil Elson <a class="reference internal" href="examples/hurricane_katrina.html"><em>added a new example</em></a> to show polygon analysis
+and visualisation with Shapely and Cartopy.</li>
+<li>Edward Campbell added a new <tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.EuroPP</span></tt> projection for UTM zone 32.</li>
+<li>Andrew Dawson added a <tt class="docutils literal"><span class="pre">central_longitude</span></tt> keyword for the Stereographic family of projections.</li>
+<li>Phil Elson added a <a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt></a> class which allows
+automatic downloading of shapefiles (currently from Natural Earth and GSHHS).
+The extension requires no user action and can be configured via the <tt class="xref py py-data docutils literal"><span class="pre">cartopy.config</span></tt> dictionary.</li>
+</ul>
+<div class="section" id="development-plans-for-cartopy-0-7-and-beyond">
+<h2>Development plans for Cartopy 0.7 and beyond<a class="headerlink" href="#development-plans-for-cartopy-0-7-and-beyond" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Improve the projection definitions to support better control over datum definitions
+and consider adding WKT support (<a class="reference external" href="https://github.com/SciTools/cartopy/issues/153">ticket</a>).</li>
+<li>Begin work on vector field support (barbs, quiver, streamlines etc.).</li>
+<li>Continue identifying and implementing performance enhancements (particularly in contour drawing).</li>
+<li>Extend the number of projections for which it is possible to draw tick marks.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-5">
 <h1>What&#8217;s new in Cartopy 0.5<a class="headerlink" href="#what-s-new-in-cartopy-0-5" title="Permalink to this headline">¶</a></h1>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -162,65 +206,34 @@ module.</li>
 </div>
 <div class="section" id="feature-api">
 <h2>Feature API<a class="headerlink" href="#feature-api" title="Permalink to this headline">¶</a></h2>
-<p>Features (i.e. collections of lines and polygons) are now added to a map
-via the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="cartopy.mpl.geoaxes.GeoAxes.add_feature"><tt class="xref py py-meth docutils literal"><span class="pre">add_feature()</span></tt></a>
-method.</p>
-<p>Pre-defined features exist for the small-scale (1:110m)
-<a class="reference external" href="http://www.naturalearthdata.com">Natural Earth</a> datasets detailed
-below:</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="18%" />
-<col width="82%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Name</th>
-<th class="head">Description</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>BORDERS</td>
-<td>Country boundaries.</td>
-</tr>
-<tr class="row-odd"><td>COASTLINE</td>
-<td>Coastline, including major islands.</td>
-</tr>
-<tr class="row-even"><td>LAKES</td>
-<td>Natural and artificial lakes.</td>
-</tr>
-<tr class="row-odd"><td>LAND</td>
-<td>Land polygons, including major islands.</td>
-</tr>
-<tr class="row-even"><td>OCEAN</td>
-<td>Ocean polygons.</td>
-</tr>
-<tr class="row-odd"><td>RIVERS</td>
-<td>Single-line drainages, including lake centerlines.</td>
-</tr>
-</tbody>
-</table>
-<p>But any Natural Earth dataset can easily be used by creating an
-instance of <tt class="xref py py-class docutils literal"><span class="pre">cartopy.feature.NaturalEarthFeature</span></tt>.</p>
-<p>For example, one can draw a map of Africa demonstrating all of the
-pre-defined features with the following code:</p>
+<p>A new features api is now available, see <a class="reference internal" href="tutorials/using_the_shapereader.html"><em>Using the cartopy shapereader</em></a>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cartopy</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
-<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;:&#39;</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href=".//features.py">Source code</a>, <a class="reference external" href=".//features.png">png</a>)</p>
+<p>(<a class="reference external" href="./examples/features.py">Source code</a>)</p>
 <div class="figure">
-<img alt="_images/features.png" src="_images/features.png" />
+<img alt="_images/features_01_001.png" src="_images/features_01_001.png" />
 </div>
 </div>
 </div>
@@ -239,15 +252,17 @@ pre-defined features with the following code:</p>
           <a href="genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="who_uses_cartopy.html" title="Who uses cartopy"
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="building_from_source/index.html" title="Building cartopy from source"
              >next</a> |</li>
         <li class="right" >
           <a href="index.html" title="Introduction"
              >previous</a> |</li>
         <li><a href="index.html">home</a>|&nbsp;</li>
-        <!-- <li><a href="examples/index.html">examples</a>|&nbsp;</li>
-             <li><a href="gallery.html">gallery</a>|&nbsp;</li>
-        -->
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
  
       </ul>
     </div>
