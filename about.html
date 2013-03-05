@@ -8,29 +8,13 @@
 <!--#include virtual="includes/navbar.shtml" --> 
       <div id="bd">
           <h1>About</h1>
-          <h2>Blog</h2>
-          Follow the Developers on the <a href="http://blog.scitools.org.uk/" target="_blank" name="Scitools blog">Scitools blog</a> to hear news on current activity. 
+              <h2>Blog</h2>
+              Follow the Developers on the <a href="http://blog.scitools.org.uk/" target="_blank" name="Scitools blog">Scitools blog</a> to hear news on current activity. 
           
           <h2>Contributors</h2>
-			<div class="contributors" id="contributors"></div>
-			<script language="Javascript" type="text/javascript">
-				$(document).ready(function() {
-				 	
-					var url = "http://www.scitools.org.uk/jsondata/contributors.json";
-
-					// get data
-					$.getJSON(url, function(data) {
-						for (var i=0; i<data.contributors.length; i++){
-							$('#contributors').append("<p>"+data.contributors[i].profile_name+"<\/p>")
-						 }
-						 $('#contributors').append("<h2>Alumni</h2>");
-						for (var i=0; i<data.alumni.length; i++){
-							$('#contributors').append("<p>"+data.alumni[i].profile_name+"<\/p>")
-						 }
-						});						
-				    });		
-			</script>
-          
+              <p>ajdawson (University of Oxford)</p>
+              <p>dmcdougall</p>
+              <p>Iris logo designed by richh98 (rich.hancock@ragtagdev.com)</p>
           
       </div>
       <div id="ft">© British Crown Copyright 2012, Met Office<br></div>
