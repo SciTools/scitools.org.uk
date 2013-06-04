@@ -1,0 +1,340 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cartopy developer interfaces &mdash; cartopy 0.8.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.8.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="cartopy 0.8.0 documentation" href="index.html" />
+    <link rel="prev" title="The cartopy Feature interface" href="matplotlib/feature_interface.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="matplotlib/feature_interface.html" title="The cartopy Feature interface"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cartopy developer interfaces</a><ul>
+<li><a class="reference internal" href="#data-download-api">Data/Download API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="matplotlib/feature_interface.html"
+                        title="previous chapter">The cartopy Feature interface</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/developer_interfaces.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cartopy-developer-interfaces">
+<span id="id1"></span><h1>Cartopy developer interfaces<a class="headerlink" href="#cartopy-developer-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>Cartopy exposes several interfaces to help make it easier to add new
+functionality quickly and easily.</p>
+<div class="section" id="data-download-api">
+<h2>Data/Download API<a class="headerlink" href="#data-download-api" title="Permalink to this headline">¶</a></h2>
+<p>In order to keep the size of a cartopy release low, the majority of data is
+not included as standard. This means that, when developing new features, it is
+often necessary to provide interfaces which can acquire data from external
+sources (normally via HTTP). The <a class="reference internal" href="#cartopy.io.Downloader" title="cartopy.io.Downloader"><tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt></a> class
+has been designed to make this process as easy as possible for developers to
+extend, whilst still making it possible for users to configure in their own
+way.</p>
+<dl class="class">
+<dt id="cartopy.io.Downloader">
+<em class="property">class </em><tt class="descclassname">cartopy.io.</tt><tt class="descname">Downloader</tt><big>(</big><em>url_template</em>, <em>target_path_template</em>, <em>pre_downloaded_path_template=''</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a resource, that can be configured easily, which knows
+how to acquire itself (perhaps via HTTP).</p>
+<p>The key interface method is <tt class="xref py py-meth docutils literal"><span class="pre">path()</span></tt> - typically <em>all</em> external calls
+will be made to that method. To get hold of an appropriate
+<tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt> instance the <tt class="xref py py-func docutils literal"><span class="pre">Downloader.from_config()</span></tt> static
+method should be considered.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">url_template</span></tt> - The template of the full URL representing this</dt>
+<dd>resource.</dd>
+<dt><tt class="docutils literal"><span class="pre">target_path_template</span></tt> - The template of the full path to the file</dt>
+<dd>that this Downloader represents. Typically
+the path will be a subdirectory of
+<tt class="docutils literal"><span class="pre">config['data_dir']</span></tt>, but this is not a
+strict requirement. If the file does not
+exist when calling <tt class="xref py py-meth docutils literal"><span class="pre">Downloader.path()</span></tt>
+it will be downloaded to this location.</dd>
+</dl>
+<p>Kwargs:</p>
+<dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">pre_downloaded_path_template</span></tt> - The template of a full path of a</dt>
+<dd>file which has been downloaded
+outside of this Downloader which
+should be used as the file that
+this resource represents. If the
+file does not exist when
+<tt class="xref py py-meth docutils literal"><span class="pre">Downloader.path()</span></tt> is called
+it will not be downloaded to this
+location (unlike the
+<tt class="docutils literal"><span class="pre">target_path_template</span></tt> argument).</dd>
+</dl>
+</div></blockquote>
+<dl class="attribute">
+<dt id="cartopy.io.Downloader.FORMAT_KEYS">
+<tt class="descname">FORMAT_KEYS</tt><em class="property"> = ('config',)</em><a class="headerlink" href="#cartopy.io.Downloader.FORMAT_KEYS" title="Permalink to this definition">¶</a></dt>
+<dd><p>The minimum keys which should be provided in the <tt class="docutils literal"><span class="pre">format_dict</span></tt>
+argument for the <tt class="docutils literal"><span class="pre">path</span></tt>, <tt class="docutils literal"><span class="pre">url</span></tt>, <tt class="docutils literal"><span class="pre">target_path</span></tt>,
+<tt class="docutils literal"><span class="pre">pre_downloaded_path</span></tt> and <tt class="docutils literal"><span class="pre">acquire_resource</span></tt> methods.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.Downloader.path">
+<tt class="descname">path</tt><big>(</big><em>format_dict</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to a file on disk that this resource represents.</p>
+<p>If the file doesn&#8217;t exist in <tt class="xref py py-meth docutils literal"><span class="pre">pre_downloaded_path()</span></tt> then it
+will check whether it exists in <tt class="xref py py-meth docutils literal"><span class="pre">target_path()</span></tt>, otherwise
+the resource will be downloaded via <tt class="xref py py-meth docutils literal"><span class="pre">acquire_resouce()</span></tt> from
+<tt class="xref py py-meth docutils literal"><span class="pre">url()</span></tt> to <tt class="xref py py-meth docutils literal"><span class="pre">target_path()</span></tt>.</p>
+<p>Typically, this is the method that most applications will call,
+allowing implementors of new Downloaders to specialise
+<tt class="xref py py-meth docutils literal"><span class="pre">acquire_resource()</span></tt>.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">format_dict</span></tt> - The dictionary which is used to replace</dt>
+<dd>certain template variables. Subclasses should
+document which keys are expected as a minimum
+in their <tt class="docutils literal"><span class="pre">FORMAT_KEYS</span></tt> class attribute.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.Downloader.url">
+<tt class="descname">url</tt><big>(</big><em>format_dict</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.url"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.url" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full URL that this resource represents.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">format_dict</span></tt> - The dictionary which is used to replace</dt>
+<dd>certain template variables. Subclasses should
+document which keys are expected as a minimum
+in their <tt class="docutils literal"><span class="pre">FORMAT_KEYS</span></tt> class attribute.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.Downloader.target_path">
+<tt class="descname">target_path</tt><big>(</big><em>format_dict</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.target_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.target_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path on disk of the file that this resource represents, must
+either exist, or be writable by the current user. This method
+does not check either of these conditions.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">format_dict</span></tt> - The dictionary which is used to replace</dt>
+<dd>certain template variables. Subclasses should
+document which keys are expected as a minimum
+in their <tt class="docutils literal"><span class="pre">FORMAT_KEYS</span></tt> class attribute.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.Downloader.pre_downloaded_path">
+<tt class="descname">pre_downloaded_path</tt><big>(</big><em>format_dict</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.pre_downloaded_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.pre_downloaded_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>The path on disk of the file that this resource represents, if it does
+not exist, then no further action will be taken with this path, and all
+further processing will be done using <tt class="xref py py-meth docutils literal"><span class="pre">target_path()</span></tt> instead.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">format_dict</span></tt> - The dictionary which is used to replace</dt>
+<dd>certain template variables. Subclasses should
+document which keys are expected as a minimum
+in their <tt class="docutils literal"><span class="pre">FORMAT_KEYS</span></tt> class attribute.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.Downloader.acquire_resource">
+<tt class="descname">acquire_resource</tt><big>(</big><em>target_path</em>, <em>format_dict</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.acquire_resource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.acquire_resource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Downloads, via HTTP, the file that this resource represents.
+Subclasses will typically override this method.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">format_dict</span></tt> - The dictionary which is used to replace</dt>
+<dd>certain template variables. Subclasses should
+document which keys are expected as a minimum
+in their <tt class="docutils literal"><span class="pre">FORMAT_KEYS</span></tt> class attribute.</dd>
+</dl>
+</div></blockquote>
+</dd></dl>
+
+<dl class="staticmethod">
+<dt id="cartopy.io.Downloader.from_config">
+<em class="property">static </em><tt class="descname">from_config</tt><big>(</big><em>specification</em>, <em>config_dict=None</em><big>)</big><a class="reference internal" href="_modules/cartopy/io.html#Downloader.from_config"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.Downloader.from_config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <tt class="docutils literal"><span class="pre">from_config</span></tt> static method implements the logic for acquiring a
+Downloader (sub)class instance from the config dictionary.</p>
+<p>Args:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">specification</span></tt> - should be iterable, as it will be traversed</dt>
+<dd>in reverse order to find the most appropriate
+Downloader instance for this specification.
+An example specification is
+<tt class="docutils literal"><span class="pre">('shapefiles',</span> <span class="pre">'natural_earth')</span></tt> for the
+Natural Earth shapefiles.</dd>
+</dl>
+</div></blockquote>
+<p>Kwargs:</p>
+<blockquote>
+<div><dl class="docutils">
+<dt><tt class="docutils literal"><span class="pre">config_dict</span></tt> - typically this is left as None to use the</dt>
+<dd>default <tt class="docutils literal"><span class="pre">cartopy.config</span></tt> &#8220;downloaders&#8221;
+dictionary.</dd>
+</dl>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">Downloader</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dnldr</span> <span class="o">=</span> <span class="n">Downloader</span><span class="p">(</span><span class="s">&#39;http://example.com/{name}&#39;</span><span class="p">,</span> <span class="s">&#39;./{name}.txt&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">config</span> <span class="o">=</span> <span class="p">{(</span><span class="s">&#39;level_1&#39;</span><span class="p">,</span> <span class="s">&#39;level_2&#39;</span><span class="p">):</span> <span class="n">dnldr</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span> <span class="o">=</span> <span class="n">Downloader</span><span class="o">.</span><span class="n">from_config</span><span class="p">((</span><span class="s">&#39;level_1&#39;</span><span class="p">,</span> <span class="s">&#39;level_2&#39;</span><span class="p">,</span> <span class="s">&#39;level_3&#39;</span><span class="p">),</span>
+<span class="gp">... </span>                            <span class="n">config_dict</span><span class="o">=</span><span class="n">config</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">d1</span><span class="o">.</span><span class="n">url_template</span>
+<span class="go">http://example.com/{name}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">d1</span><span class="o">.</span><span class="n">url</span><span class="p">({</span><span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;item_name&#39;</span><span class="p">})</span>
+<span class="go">http://example.com/item_name</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>An example of specialising this class can be found in
+<tt class="xref py py-mod docutils literal"><span class="pre">cartopy.io.shapereader.NEShpDownloader</span></tt> which enables the downloading of
+zipped shapefiles from the <a class="reference external" href="http://NaturalEarthData.com">http://NaturalEarthData.com</a> website. All known
+subclasses of <a class="reference internal" href="#cartopy.io.Downloader" title="cartopy.io.Downloader"><tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt></a> are listed below for
+reference:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="xref py py-class docutils literal"><span class="pre">cartopy.io.shapereader.NEShpDownloader</span></tt></li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">cartopy.io.srtm.SRTM3Downloader</span></tt></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="matplotlib/feature_interface.html" title="The cartopy Feature interface"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
