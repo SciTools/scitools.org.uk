@@ -1,0 +1,220 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.experimental.regrid &mdash; Iris 1.4.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.4.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.4.0rc1 documentation" href="../../../index.html" />
+    <link rel="up" title="iris.experimental" href="../experimental.html" />
+    <link rel="next" title="iris.experimental.regrid_conservative" href="regrid_conservative.html" />
+    <link rel="prev" title="iris.experimental.raster" href="raster.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.4 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="regrid_conservative.html" title="iris.experimental.regrid_conservative"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="raster.html" title="iris.experimental.raster"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../experimental.html" accesskey="U">iris.experimental</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="raster.html"
+                        title="previous chapter">iris.experimental.raster</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="regrid_conservative.html"
+                        title="next chapter">iris.experimental.regrid_conservative</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/iris/iris/experimental/regrid.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-experimental-regrid">
+<span id="id1"></span><h1>iris.experimental.regrid<a class="headerlink" href="#iris-experimental-regrid" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.experimental.regrid"></span><p>Regridding functions.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid"><tt class="xref py py-obj docutils literal"><span class="pre">regrid_area_weighted_rectilinear_src_and_grid</span></tt></a></li>
+<li><a class="reference internal" href="#iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid"><tt class="xref py py-obj docutils literal"><span class="pre">regrid_bilinear_rectilinear_src_and_grid</span></tt></a></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid">
+<tt class="descclassname">iris.experimental.regrid.</tt><tt class="descname">regrid_area_weighted_rectilinear_src_and_grid</tt><big>(</big><em>src_cube</em>, <em>grid_cube</em><big>)</big><a class="headerlink" href="#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new cube with data values calculated using the area weighted
+mean of data values from src_grid regridded onto the horizontal grid of
+grid_cube.</p>
+<p>This function requires that the horizontal grids of both cubes are
+rectilinear (i.e. expressed in terms of two orthogonal 1D coordinates)
+and that these grids are in the same coordinate system. This function
+also requires that the coordinates describing the horizontal grids
+all have bounds.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>src_cube:</dt>
+<dd><p class="first last">An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> that supplies the data,
+metadata and coordinates.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>grid_cube:</dt>
+<dd><p class="first last">An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> that supplies the desired
+horizontal grid definition.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A new <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> instance.</dd>
+</dl>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid">
+<tt class="descclassname">iris.experimental.regrid.</tt><tt class="descname">regrid_bilinear_rectilinear_src_and_grid</tt><big>(</big><em>src</em>, <em>grid</em><big>)</big><a class="headerlink" href="#iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new Cube that is the result of regridding the source Cube
+onto the grid of the grid Cube using bilinear interpolation.</p>
+<p>Both the source and grid Cubes must be defined on rectilinear grids.</p>
+<p>Auxiliary coordinates which span the grid dimensions are ignored,
+except where they provide a reference surface for an
+<a class="reference internal" href="../aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><tt class="xref py py-class docutils literal"><span class="pre">iris.aux_factory.AuxCoordFactory</span></tt></a>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>src:</dt>
+<dd><p class="first last">The source <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> providing the data.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>grid:</dt>
+<dd><p class="first last">The <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> which defines the new grid.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>The <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> resulting from regridding the source
+data onto the grid defined by the grid Cube.</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="regrid_conservative.html" title="iris.experimental.regrid_conservative"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="raster.html" title="iris.experimental.raster"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../experimental.html" >iris.experimental</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2012, Met Office
+    </div>
+
+
+  </body>
+</html>
