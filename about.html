@@ -21,7 +21,7 @@
 					// get data
 					$.getJSON(url, function(data) {
 						for (var i=0; i<data.contributors.length; i++){
-							$('#contributors').append("<p>"+data.contributors[i].profile_name+"&nbsp&nbsp&nbsp"+data.contributors[i].organisation+"<\/p>")
+							$('#contributors').append("<p>"+data.contributors[i].profile_name+"<\/p>")
 						 }
 						 $('#contributors').append("<h2>Alumni</h2>");
 						for (var i=0; i<data.alumni.length; i++){
