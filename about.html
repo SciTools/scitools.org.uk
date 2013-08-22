@@ -13,11 +13,17 @@
           <h2>Contributors</h2>
             <p>Iris logo designed by richh98 (rich.hancock@ragtagdev.com)</p>
 			<div class="contributors" id="contributors"></div>
+
 			<script language="Javascript" type="text/javascript">
 				$(document).ready(function() {
-				 	
-					var url = "http://www.scitools.org.uk/jsondata/contributors.json";
-
+                    var fjson = "jsondata/contributors.json";
+                    var patharray = window.location.pathname.split('/');
+                    var path = "";
+                    for (i=0; i < patharray.length-1; i++){
+                        path += patharray[i] + '/';
+                    }
+                    var url = location.protocol + "//" + location.host + cwp + fjson
+ 
 					// get data
 					$.getJSON(url, function(data) {
 						for (var i=0; i<data.contributors.length; i++){
