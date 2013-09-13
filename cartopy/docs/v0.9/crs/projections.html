@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Cartopy projection list &mdash; cartopy 0.9.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.9.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.9.0 documentation" href="../index.html" />
+    <link rel="next" title="Using the cartopy shapereader" href="../tutorials/using_the_shapereader.html" />
+    <link rel="prev" title="Coordinate reference systems in Cartopy" href="index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/using_the_shapereader.html" title="Using the cartopy shapereader"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Coordinate reference systems in Cartopy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Cartopy projection list</a><ul>
+<li><a class="reference internal" href="#platecarree">PlateCarree</a></li>
+<li><a class="reference internal" href="#lambertconformal">LambertConformal</a></li>
+<li><a class="reference internal" href="#lambertcylindrical">LambertCylindrical</a></li>
+<li><a class="reference internal" href="#mercator">Mercator</a></li>
+<li><a class="reference internal" href="#miller">Miller</a></li>
+<li><a class="reference internal" href="#mollweide">Mollweide</a></li>
+<li><a class="reference internal" href="#orthographic">Orthographic</a></li>
+<li><a class="reference internal" href="#robinson">Robinson</a></li>
+<li><a class="reference internal" href="#stereographic">Stereographic</a></li>
+<li><a class="reference internal" href="#transversemercator">TransverseMercator</a></li>
+<li><a class="reference internal" href="#interruptedgoodehomolosine">InterruptedGoodeHomolosine</a></li>
+<li><a class="reference internal" href="#rotatedpole">RotatedPole</a></li>
+<li><a class="reference internal" href="#osgb">OSGB</a></li>
+<li><a class="reference internal" href="#europp">EuroPP</a></li>
+<li><a class="reference internal" href="#geostationary">Geostationary</a></li>
+<li><a class="reference internal" href="#gnomonic">Gnomonic</a></li>
+<li><a class="reference internal" href="#northpolarstereo">NorthPolarStereo</a></li>
+<li><a class="reference internal" href="#osni">OSNI</a></li>
+<li><a class="reference internal" href="#southpolarstereo">SouthPolarStereo</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Coordinate reference systems in Cartopy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tutorials/using_the_shapereader.html"
+                        title="next chapter">Using the cartopy shapereader</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/crs/projections.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="cartopy-projection-list">
+<span id="cartopy-projections"></span><h1>Cartopy projection list<a class="headerlink" href="#cartopy-projection-list" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="platecarree">
+<h2>PlateCarree<a class="headerlink" href="#platecarree" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.PlateCarree">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">PlateCarree</tt><big>(</big><em>central_longitude=0.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#PlateCarree"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.PlateCarree" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-1.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-1.png" src="../_images/projections-1.png" />
+</div>
+<p>(<a class="reference external" href="../crs/projections-2.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-2.png" src="../_images/projections-2.png" />
+</div>
+</div>
+<div class="section" id="lambertconformal">
+<h2>LambertConformal<a class="headerlink" href="#lambertconformal" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.LambertConformal">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">LambertConformal</tt><big>(</big><em>central_longitude=-96.0</em>, <em>central_latitude=39.0</em>, <em>false_easting=0.0</em>, <em>false_northing=0.0</em>, <em>secant_latitudes=(33</em>, <em>45)</em>, <em>globe=None</em>, <em>cutoff=-30</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#LambertConformal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.LambertConformal" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Lambert Conformal conic projection.</p>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">central_longitude - The central longitude. Defaults to 0.</p>
+</li>
+<li><p class="first">central_latitude - The central latitude. Defaults to 0.</p>
+</li>
+<li><dl class="first docutils">
+<dt>false_easting - X offset from planar origin in metres.</dt>
+<dd><p class="first last">Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>false_northing - Y offset from planar origin in metres.</dt>
+<dd><p class="first last">Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>secant_latitudes - The two latitudes of secant intersection.</dt>
+<dd><p class="first last">Defaults to (33, 45).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>globe - A <a class="reference internal" href="index.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.Globe</span></tt></a>.</dt>
+<dd><p class="first last">If omitted, a default globe is created.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>cutoff - Latitude of map cutoff.</dt>
+<dd><p class="first last">The map extends to infinity opposite the central pole
+so we must cut off the map drawing before then.
+A value of 0 will draw half the globe. Defaults to -30.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-3.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-3.png" src="../_images/projections-3.png" />
+</div>
+</div>
+<div class="section" id="lambertcylindrical">
+<h2>LambertCylindrical<a class="headerlink" href="#lambertcylindrical" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.LambertCylindrical">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">LambertCylindrical</tt><big>(</big><em>central_longitude=0.0</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#LambertCylindrical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.LambertCylindrical" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-4.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-4.png" src="../_images/projections-4.png" />
+</div>
+</div>
+<div class="section" id="mercator">
+<h2>Mercator<a class="headerlink" href="#mercator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Mercator">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Mercator</tt><big>(</big><em>central_longitude=0.0</em>, <em>min_latitude=-80.0</em>, <em>max_latitude=84.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Mercator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Mercator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Mercator projection.</p>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><p class="first">central_longitude - the central longitude. Defaults to 0.</p>
+</li>
+<li><dl class="first docutils">
+<dt>min_latitude - the maximum southerly extent of the projection.</dt>
+<dd><p class="first last">Defaults to -80 degrees.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>max_latitude - the maximum northerly extent of the projection.</dt>
+<dd><p class="first last">Defaults to 84 degrees.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>globe - A <a class="reference internal" href="index.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.Globe</span></tt></a>.</dt>
+<dd><p class="first last">If omitted, a default globe is created.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-5.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-5.png" src="../_images/projections-5.png" />
+</div>
+</div>
+<div class="section" id="miller">
+<h2>Miller<a class="headerlink" href="#miller" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Miller">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Miller</tt><big>(</big><em>central_longitude=0.0</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Miller"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Miller" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-6.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-6.png" src="../_images/projections-6.png" />
+</div>
+</div>
+<div class="section" id="mollweide">
+<h2>Mollweide<a class="headerlink" href="#mollweide" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Mollweide">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Mollweide</tt><big>(</big><em>central_longitude=0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Mollweide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Mollweide" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-7.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-7.png" src="../_images/projections-7.png" />
+</div>
+</div>
+<div class="section" id="orthographic">
+<h2>Orthographic<a class="headerlink" href="#orthographic" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Orthographic">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Orthographic</tt><big>(</big><em>central_longitude=0.0</em>, <em>central_latitude=0.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Orthographic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Orthographic" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-8.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-8.png" src="../_images/projections-8.png" />
+</div>
+</div>
+<div class="section" id="robinson">
+<h2>Robinson<a class="headerlink" href="#robinson" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Robinson">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Robinson</tt><big>(</big><em>central_longitude=0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Robinson"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Robinson" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-9.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-9.png" src="../_images/projections-9.png" />
+</div>
+</div>
+<div class="section" id="stereographic">
+<h2>Stereographic<a class="headerlink" href="#stereographic" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Stereographic">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Stereographic</tt><big>(</big><em>central_latitude=0.0</em>, <em>central_longitude=0.0</em>, <em>false_easting=0.0</em>, <em>false_northing=0.0</em>, <em>true_scale_latitude=None</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Stereographic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Stereographic" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-10.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-10.png" src="../_images/projections-10.png" />
+</div>
+</div>
+<div class="section" id="transversemercator">
+<h2>TransverseMercator<a class="headerlink" href="#transversemercator" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.TransverseMercator">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">TransverseMercator</tt><big>(</big><em>central_longitude=0.0</em>, <em>central_latitude=0.0</em>, <em>false_easting=0.0</em>, <em>false_northing=0.0</em>, <em>scale_factor=1.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#TransverseMercator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.TransverseMercator" title="Permalink to this definition">¶</a></dt>
+<dd><p>A Transverse Mercator projection.</p>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>central_longitude - The true longitude of the central meridian in</dt>
+<dd><p class="first last">degrees. Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>central_latitude - The true latitude of the planar origin in</dt>
+<dd><p class="first last">degrees. Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>false_easting - X offset from the planar origin in metres.</dt>
+<dd><p class="first last">Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>false_northing - Y offset from the planar origin in metres.</dt>
+<dd><p class="first last">Defaults to 0.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>scale_factor - Scale factor at the central meridian. Defaults</dt>
+<dd><p class="first last">to 1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>globe - An instance of <a class="reference internal" href="index.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.Globe</span></tt></a>. If omitted, a</dt>
+<dd><p class="first last">default globe is created.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-11.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-11.png" src="../_images/projections-11.png" />
+</div>
+</div>
+<div class="section" id="interruptedgoodehomolosine">
+<h2>InterruptedGoodeHomolosine<a class="headerlink" href="#interruptedgoodehomolosine" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.InterruptedGoodeHomolosine">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">InterruptedGoodeHomolosine</tt><big>(</big><em>central_longitude=0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#InterruptedGoodeHomolosine"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.InterruptedGoodeHomolosine" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-12.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-12.png" src="../_images/projections-12.png" />
+</div>
+</div>
+<div class="section" id="rotatedpole">
+<h2>RotatedPole<a class="headerlink" href="#rotatedpole" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.RotatedPole">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">RotatedPole</tt><big>(</big><em>pole_longitude=0.0</em>, <em>pole_latitude=90.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#RotatedPole"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.RotatedPole" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-13.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-13.png" src="../_images/projections-13.png" />
+</div>
+</div>
+<div class="section" id="osgb">
+<h2>OSGB<a class="headerlink" href="#osgb" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.OSGB">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">OSGB</tt><a class="reference internal" href="../_modules/cartopy/crs.html#OSGB"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.OSGB" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-14.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-14.png" src="../_images/projections-14.png" />
+</div>
+</div>
+<div class="section" id="europp">
+<h2>EuroPP<a class="headerlink" href="#europp" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.EuroPP">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">EuroPP</tt><a class="reference internal" href="../_modules/cartopy/crs.html#EuroPP"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.EuroPP" title="Permalink to this definition">¶</a></dt>
+<dd><p>UTM Zone 32 projection for EuroPP domain.</p>
+<p>Ellipsoid is International 1924, Datum is ED50.</p>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-15.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-15.png" src="../_images/projections-15.png" />
+</div>
+</div>
+<div class="section" id="geostationary">
+<h2>Geostationary<a class="headerlink" href="#geostationary" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Geostationary">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Geostationary</tt><big>(</big><em>central_longitude=0.0</em>, <em>satellite_height=35785831</em>, <em>false_easting=0</em>, <em>false_northing=0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Geostationary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Geostationary" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-16.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-16.png" src="../_images/projections-16.png" />
+</div>
+</div>
+<div class="section" id="gnomonic">
+<h2>Gnomonic<a class="headerlink" href="#gnomonic" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.Gnomonic">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">Gnomonic</tt><big>(</big><em>central_latitude=0.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#Gnomonic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Gnomonic" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-17.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-17.png" src="../_images/projections-17.png" />
+</div>
+</div>
+<div class="section" id="northpolarstereo">
+<h2>NorthPolarStereo<a class="headerlink" href="#northpolarstereo" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.NorthPolarStereo">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">NorthPolarStereo</tt><big>(</big><em>central_longitude=0.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#NorthPolarStereo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.NorthPolarStereo" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-18.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-18.png" src="../_images/projections-18.png" />
+</div>
+</div>
+<div class="section" id="osni">
+<h2>OSNI<a class="headerlink" href="#osni" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.OSNI">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">OSNI</tt><a class="reference internal" href="../_modules/cartopy/crs.html#OSNI"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.OSNI" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-19.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-19.png" src="../_images/projections-19.png" />
+</div>
+</div>
+<div class="section" id="southpolarstereo">
+<h2>SouthPolarStereo<a class="headerlink" href="#southpolarstereo" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="cartopy.crs.SouthPolarStereo">
+<em class="property">class </em><tt class="descclassname">cartopy.crs.</tt><tt class="descname">SouthPolarStereo</tt><big>(</big><em>central_longitude=0.0</em>, <em>globe=None</em><big>)</big><a class="reference internal" href="../_modules/cartopy/crs.html#SouthPolarStereo"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.SouthPolarStereo" title="Permalink to this definition">¶</a></dt>
+</dd></dl>
+
+<p>(<a class="reference external" href="../crs/projections-20.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/projections-20.png" src="../_images/projections-20.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/using_the_shapereader.html" title="Using the cartopy shapereader"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Coordinate reference systems in Cartopy"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
