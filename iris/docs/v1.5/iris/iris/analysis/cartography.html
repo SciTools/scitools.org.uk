@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.analysis.cartography &mdash; Iris 1.5.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.5.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.5.0 documentation" href="../../../index.html" />
+    <link rel="up" title="iris.analysis" href="../analysis.html" />
+    <link rel="next" title="iris.analysis.geometry" href="geometry.html" />
+    <link rel="prev" title="iris.analysis.calculus" href="calculus.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.5 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="geometry.html" title="iris.analysis.geometry"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="calculus.html" title="iris.analysis.calculus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../analysis.html" accesskey="U">iris.analysis</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="calculus.html"
+                        title="previous chapter">iris.analysis.calculus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="geometry.html"
+                        title="next chapter">iris.analysis.geometry</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/iris/iris/analysis/cartography.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-analysis-cartography">
+<span id="id1"></span><h1>iris.analysis.cartography<a class="headerlink" href="#iris-analysis-cartography" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.analysis.cartography"></span><p>Various utilities and numeric transformations relevant to cartography.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><tt class="xref py py-obj docutils literal"><span class="pre">area_weights</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.cosine_latitude_weights" title="iris.analysis.cartography.cosine_latitude_weights"><tt class="xref py py-obj docutils literal"><span class="pre">cosine_latitude_weights</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.get_xy_contiguous_bounded_grids" title="iris.analysis.cartography.get_xy_contiguous_bounded_grids"><tt class="xref py py-obj docutils literal"><span class="pre">get_xy_contiguous_bounded_grids</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.get_xy_grids" title="iris.analysis.cartography.get_xy_grids"><tt class="xref py py-obj docutils literal"><span class="pre">get_xy_grids</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.project" title="iris.analysis.cartography.project"><tt class="xref py py-obj docutils literal"><span class="pre">project</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.rotate_pole" title="iris.analysis.cartography.rotate_pole"><tt class="xref py py-obj docutils literal"><span class="pre">rotate_pole</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.unrotate_pole" title="iris.analysis.cartography.unrotate_pole"><tt class="xref py py-obj docutils literal"><span class="pre">unrotate_pole</span></tt></a></li>
+<li><a class="reference internal" href="#iris.analysis.cartography.wrap_lons" title="iris.analysis.cartography.wrap_lons"><tt class="xref py py-obj docutils literal"><span class="pre">wrap_lons</span></tt></a></li>
+</ul>
+</div></blockquote>
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.area_weights">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">area_weights</tt><big>(</big><em>cube</em>, <em>normalize=False</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.area_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of area weights, with the same dimensions as the cube.</p>
+<p>This is a 2D lat/lon area weights array, repeated over the non lat/lon
+dimensions.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>):</dt>
+<dd><p class="first last">The cube to calculate area weights for.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>normalize (False/True):</dt>
+<dd><p class="first last">If False, weights are grid cell areas. If True, weights are grid
+cell areas divided by the total grid area.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The cube must have coordinates &#8216;latitude&#8217; and &#8216;longitude&#8217; with contiguous
+bounds.</p>
+<p>Area weights are calculated for each lat/lon cell as:</p>
+<blockquote>
+<div><img src="../../../_images/mathmpl/math-9437489a79.png" class="center" /></div></blockquote>
+<p>Currently, only supports a spherical datum.
+Uses earth radius from the cube, if present and spherical.
+Defaults to iris.analysis.cartography.DEFAULT_SPHERICAL_EARTH_RADIUS.</p>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.cosine_latitude_weights">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">cosine_latitude_weights</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.cosine_latitude_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of latitude weights, with the same dimensions as
+the cube. The weights are the cosine of latitude.</p>
+<p>These are n-dimensional latitude weights repeated over the dimensions
+not covered by the latitude coordinate.</p>
+<p>The cube must have a coordinate with &#8216;latitude&#8217; in the name. Out of
+range values (greater than 90 degrees or less than -90 degrees) will
+be clipped to the valid range.</p>
+<p>Weights are calculated for each latitude as:</p>
+<blockquote>
+<div><img src="../../../_images/mathmpl/math-4953676fbd.png" class="center" /></div></blockquote>
+<p>Examples:</p>
+<p>Compute weights suitable for averaging type operations:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">iris.analysis.cartography</span> <span class="kn">import</span> <span class="n">cosine_latitude_weights</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">cosine_latitude_weights</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Compute weights suitable for EOF analysis (or other covariance type
+analyses):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">iris.analysis.cartography</span> <span class="kn">import</span> <span class="n">cosine_latitude_weights</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cosine_latitude_weights</span><span class="p">(</span><span class="n">cube</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.get_xy_contiguous_bounded_grids">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">get_xy_contiguous_bounded_grids</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.get_xy_contiguous_bounded_grids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 2d arrays for x and y bounds.</p>
+<p>Returns array of shape (n+1, m+1).</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">get_xy_contiguous_bounded_grids</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.get_xy_grids">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">get_xy_grids</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.get_xy_grids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 2D X and Y points for a given cube.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>cube - The cube for which to generate 2D X and Y points.</li>
+</ul>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_xy_grids</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.project">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">project</tt><big>(</big><em>cube</em>, <em>target_proj</em>, <em>nx=None</em>, <em>ny=None</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new cube that is the result of projecting a cube from its
+coordinate system into a specified projection e.g. Robinson or Polar
+Stereographic. This function is intended to be used in cases where the
+cube&#8217;s coordinates prevent one from directly visualising the data, e.g.
+when the longitude and latitude are two dimensional and do not make up
+a regular grid.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>cube</dt>
+<dd><p class="first last">An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>target_proj</dt>
+<dd><p class="first last">An instance of the Cartopy Projection class, or an instance of
+<a class="reference internal" href="../coord_systems.html#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.CoordSystem</span></tt></a> from which a projection
+will be obtained.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Kwargs:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>nx</dt>
+<dd><p class="first last">Desired number of sample points in the x direction.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ny</dt>
+<dd><p class="first last">Desired number of sample points in the y direction.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd>An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> and a list describing the
+extent of the projection.</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function uses a nearest neighbour approach rather than any form
+of linear/non-linear interpolation to determine the data value of each
+cell in the resulting cube. Consequently it may have an adverse effect
+on the statistics of the data e.g. the mean and standard deviation
+will not be preserved.</p>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">This function assumes global data and will if necessary extrapolate
+beyond the geographical extent of the source cube using a nearest
+neighbour approach.</p>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.rotate_pole">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">rotate_pole</tt><big>(</big><em>lons</em>, <em>lats</em>, <em>pole_lon</em>, <em>pole_lat</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.rotate_pole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert arrays of lons and lats to ones on a rotated pole.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">grid_lons</span><span class="p">,</span> <span class="n">grid_lats</span> <span class="o">=</span> <span class="n">rotate_pole</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span> <span class="n">pole_lon</span><span class="p">,</span> <span class="n">pole_lat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses proj.4 to perform the conversion.</p>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.unrotate_pole">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">unrotate_pole</tt><big>(</big><em>rotated_lons</em>, <em>rotated_lats</em>, <em>pole_lon</em>, <em>pole_lat</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.unrotate_pole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert rotated-pole lons and lats to unrotated ones.</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span> <span class="o">=</span> <span class="n">unrotate_pole</span><span class="p">(</span><span class="n">grid_lons</span><span class="p">,</span> <span class="n">grid_lats</span><span class="p">,</span> <span class="n">pole_lon</span><span class="p">,</span> <span class="n">pole_lat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Uses proj.4 to perform the conversion.</p>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<dl class="function">
+<dt id="iris.analysis.cartography.wrap_lons">
+<tt class="descclassname">iris.analysis.cartography.</tt><tt class="descname">wrap_lons</tt><big>(</big><em>lons</em>, <em>base</em>, <em>period</em><big>)</big><a class="headerlink" href="#iris.analysis.cartography.wrap_lons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap longitude values into the range between base and base+period.</p>
+<dl class="docutils">
+<dt>For example:</dt>
+<dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">wrap_lons</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">185</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">75</span><span class="p">]),</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+<span class="go">[-175   30  160   75]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="geometry.html" title="iris.analysis.geometry"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="calculus.html" title="iris.analysis.calculus"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../analysis.html" >iris.analysis</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
