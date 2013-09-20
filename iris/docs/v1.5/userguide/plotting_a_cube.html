@@ -136,43 +136,43 @@
             
   <div class="section" id="plotting-a-cube">
 <span id="id1"></span><h1>5. Plotting a cube<a class="headerlink" href="#plotting-a-cube" title="Permalink to this headline">¶</a></h1>
-<p>Iris utilises the power of Python&#8217;s
-<a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a> package in order to generate
-high quality, production ready 1D and 2D plots.
-The functionality of the Matplotlib
-<a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html">pyplot</a> module has
+<p>Iris utilises the power of Python&#8217;s 
+<a class="reference external" href="http://matplotlib.sourceforge.net/">Matplotlib</a> package in order to generate 
+high quality, production ready 1D and 2D plots. 
+The functionality of the Matplotlib 
+<a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html">pyplot</a> module has 
 been extended within Iris to facilitate easy visualisation of a cube&#8217;s data.</p>
 <div class="section" id="matplotlib-s-pyplot-basics">
 <h2>5.1. Matplotlib&#8217;s pyplot basics<a class="headerlink" href="#matplotlib-s-pyplot-basics" title="Permalink to this headline">¶</a></h2>
-<p>A simple line plot can be created using the
+<p>A simple line plot can be created using the 
 <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.plot()</span></tt></a> function:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>This code will automatically create a figure with appropriate axes for the plot
-and show it on screen.
-The call to <strong>plt.plot([1, 2, 2.5])</strong> will create a line plot with
-appropriate axes for the data (x=0, y=1; x=1, y=2; x=2, y=2.5).
-The call to <strong>plt.show()</strong> tells Matplotlib that you have finished with
-this plot and that you would like to visualise it in a window.
+<p>This code will automatically create a figure with appropriate axes for the plot 
+and show it on screen. 
+The call to <strong>plt.plot([1, 2, 2.5])</strong> will create a line plot with 
+appropriate axes for the data (x=0, y=1; x=1, y=2; x=2, y=2.5). 
+The call to <strong>plt.show()</strong> tells Matplotlib that you have finished with 
+this plot and that you would like to visualise it in a window. 
 This is an example of using matplotlib in <em>non-interactive</em> mode.</p>
-<p>There are two modes of rendering within Matplotlib; <strong>interactive</strong> and
+<p>There are two modes of rendering within Matplotlib; <strong>interactive</strong> and 
 <strong>non-interactive</strong>.</p>
 <div class="section" id="interactive-plot-rendering">
 <h3>5.1.1. Interactive plot rendering<a class="headerlink" href="#interactive-plot-rendering" title="Permalink to this headline">¶</a></h3>
-<p>The previous example was <em>non-interactive</em> as the figure is only rendered
-<em>after</em> the call to <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.show" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">plt.show()</span></tt></a>.
-Rendering plots <em>interactively</em> can be achieved by changing the interactive
+<p>The previous example was <em>non-interactive</em> as the figure is only rendered 
+<em>after</em> the call to <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.show" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">plt.show()</span></tt></a>. 
+Rendering plots <em>interactively</em> can be achieved by changing the interactive 
 mode:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>In this case the plot is rendered automatically with no need to explicitly call
-<a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.show" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.show()</span></tt></a> after <strong>plt.plot</strong>.
+<p>In this case the plot is rendered automatically with no need to explicitly call 
+<a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.show" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.show()</span></tt></a> after <strong>plt.plot</strong>. 
 Subsequent changes to your figure will be automatically rendered in the window.</p>
 <p>The current rendering mode can be determined as follows:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -181,8 +181,8 @@ Subsequent changes to your figure will be automatically rendered in the window.<
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>For clarity, each example includes all of the imports required to run on its
-own; when combining examples such as the two above, it would not be necessary
+<p>For clarity, each example includes all of the imports required to run on its 
+own; when combining examples such as the two above, it would not be necessary 
 to repeat the import statement more than once:</p>
 <div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="bp">True</span><span class="p">)</span>
@@ -191,18 +191,18 @@ to repeat the import statement more than once:</p>
 </pre></div>
 </div>
 </div>
-<p>Interactive mode does not clear out the figure buffer, so figures have to be
+<p>Interactive mode does not clear out the figure buffer, so figures have to be 
 explicitly closed when they are finished with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>&#8211; or just close the figure window.</p>
-<p>Interactive mode sometimes requires an extra draw command to update all changes,
+<p>Interactive mode sometimes requires an extra draw command to update all changes, 
 which can be done with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>For the remainder of this tutorial we will work in non-interactive mode,
+<p>For the remainder of this tutorial we will work in non-interactive mode, 
 so ensure that interactive mode is turned off with:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">plt</span><span class="o">.</span><span class="n">interactive</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
 </pre></div>
@@ -210,17 +210,17 @@ so ensure that interactive mode is turned off with:</p>
 </div>
 <div class="section" id="saving-a-plot">
 <h3>5.1.2. Saving a plot<a class="headerlink" href="#saving-a-plot" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a> function is similar to <strong>plt.show()</strong>
-in that they are both <em>non-interactive</em> visualisation modes.
+<p>The <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a> function is similar to <strong>plt.show()</strong> 
+in that they are both <em>non-interactive</em> visualisation modes. 
 As you might expect, <strong>plt.savefig</strong> saves your figure as an image:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s">&#39;plot123.png&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The filename extension passed to the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a>
-function can be used to control the output file format of the plot
-(keywords can also be used to control this and other aspects,
+<p>The filename extension passed to the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a> 
+function can be used to control the output file format of the plot 
+(keywords can also be used to control this and other aspects, 
 see <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.savefig" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.savefig()</span></tt></a>).</p>
 <p>Some of the formats which are supported by <strong>plt.savefig</strong>:</p>
 <blockquote>
@@ -264,31 +264,31 @@ see <a class="reference external" href="http://matplotlib.sourceforge.net/api/py
 </div>
 <div class="section" id="iris-cube-plotting">
 <h2>5.2. Iris cube plotting<a class="headerlink" href="#iris-cube-plotting" title="Permalink to this headline">¶</a></h2>
-<p>The Iris modules <a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.quickplot</span></tt></a> and <a class="reference internal" href="../iris/iris/plot.html#module-iris.plot" title="iris.plot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.plot</span></tt></a> extend the
-Matplotlib pyplot interface by implementing thin <em>wrapper</em> functions.
-These wrapper functions simply bridge the gap between an Iris cube and
-the data expected by standard Matplotlib pyplot functions.
-This means that <em>all</em> Matplotlib pyplot functionality,
-including keyword options, are still available through the Iris plotting
+<p>The Iris modules <a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.quickplot</span></tt></a> and <a class="reference internal" href="../iris/iris/plot.html#module-iris.plot" title="iris.plot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.plot</span></tt></a> extend the 
+Matplotlib pyplot interface by implementing thin <em>wrapper</em> functions. 
+These wrapper functions simply bridge the gap between an Iris cube and 
+the data expected by standard Matplotlib pyplot functions. 
+This means that <em>all</em> Matplotlib pyplot functionality, 
+including keyword options, are still available through the Iris plotting 
 wrapper functions.</p>
 <p>As a rule of thumb:</p>
 <blockquote>
 <div><ul class="simple">
-<li>if you wish to do a visualisation with a cube, use <tt class="docutils literal"><span class="pre">iris.plot</span></tt> or
+<li>if you wish to do a visualisation with a cube, use <tt class="docutils literal"><span class="pre">iris.plot</span></tt> or 
 <tt class="docutils literal"><span class="pre">iris.quickplot</span></tt>.</li>
-<li>if you wish to show, save or manipulate <strong>any</strong> visualisation,
+<li>if you wish to show, save or manipulate <strong>any</strong> visualisation, 
 including ones created with Iris, use <tt class="docutils literal"><span class="pre">matplotlib.pyplot</span></tt>.</li>
-<li>if you wish to create a non cube visualisation, also use
+<li>if you wish to create a non cube visualisation, also use 
 <tt class="docutils literal"><span class="pre">matplotlib.pyplot</span></tt>.</li>
 </ul>
 </div></blockquote>
-<p>The <tt class="docutils literal"><span class="pre">iris.quickplot</span></tt> module is exactly the same as the <tt class="docutils literal"><span class="pre">iris.plot</span></tt> module,
-except that <tt class="docutils literal"><span class="pre">quickplot</span></tt> will add a title, x and y labels and a colorbar
+<p>The <tt class="docutils literal"><span class="pre">iris.quickplot</span></tt> module is exactly the same as the <tt class="docutils literal"><span class="pre">iris.plot</span></tt> module, 
+except that <tt class="docutils literal"><span class="pre">quickplot</span></tt> will add a title, x and y labels and a colorbar 
 where appropriate.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>In all subsequent examples the <tt class="docutils literal"><span class="pre">matplotlib.pyplot</span></tt>, <tt class="docutils literal"><span class="pre">iris.plot</span></tt> and
-<tt class="docutils literal"><span class="pre">iris.quickplot</span></tt> modules are imported as <tt class="docutils literal"><span class="pre">plt</span></tt>, <tt class="docutils literal"><span class="pre">iplt</span></tt> and <tt class="docutils literal"><span class="pre">qplt</span></tt>
+<p>In all subsequent examples the <tt class="docutils literal"><span class="pre">matplotlib.pyplot</span></tt>, <tt class="docutils literal"><span class="pre">iris.plot</span></tt> and 
+<tt class="docutils literal"><span class="pre">iris.quickplot</span></tt> modules are imported as <tt class="docutils literal"><span class="pre">plt</span></tt>, <tt class="docutils literal"><span class="pre">iplt</span></tt> and <tt class="docutils literal"><span class="pre">qplt</span></tt> 
 respectively in order to make the code more readable.
 This is equivalent to:</p>
 <div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -299,9 +299,9 @@ This is equivalent to:</p>
 </div>
 <div class="section" id="plotting-1-dimensional-cubes">
 <h3>5.2.1. Plotting 1-dimensional cubes<a class="headerlink" href="#plotting-1-dimensional-cubes" title="Permalink to this headline">¶</a></h3>
-<p>The simplest 1D plot is achieved with the <a class="reference internal" href="../iris/iris/plot.html#iris.plot.plot" title="iris.plot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.plot()</span></tt></a> function.
-The syntax is very similar to that which you would provide to Matplotlib&#8217;s
-equivalent <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.plot()</span></tt></a> and indeed all of the
+<p>The simplest 1D plot is achieved with the <a class="reference internal" href="../iris/iris/plot.html#iris.plot.plot" title="iris.plot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.plot()</span></tt></a> function. 
+The syntax is very similar to that which you would provide to Matplotlib&#8217;s 
+equivalent <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.plot" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.plot()</span></tt></a> and indeed all of the 
 keyword arguments are equivalent:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -325,7 +325,7 @@ keyword arguments are equivalent:</p>
 <img alt="../_images/1d_simple.png" src="../_images/1d_simple.png" />
 </div>
 </div></blockquote>
-<p>For more information on how this example reduced the 2D cube to 1 dimension see
+<p>For more information on how this example reduced the 2D cube to 1 dimension see 
 the previous section entitled <a class="reference internal" href="reducing_a_cube.html"><em>Reducing a Cube</em></a>.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
@@ -335,7 +335,7 @@ the previous section entitled <a class="reference internal" href="reducing_a_cub
 <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.ylabel" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">plt.ylabel()</span></tt></a> functions.</p>
 </div>
 <p>As well as providing simple Matplotlib wrappers, Iris also has a
-<a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.quickplot</span></tt></a> module, which adds extra cube based metadata
+<a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><tt class="xref py py-mod docutils literal"><span class="pre">iris.quickplot</span></tt></a> module, which adds extra cube based metadata 
 to a plot.
 For example, the previous plot can be improved quickly by replacing
 <strong>iris.plot</strong> with <strong>iris.quickplot</strong>:</p>
@@ -363,10 +363,10 @@ For example, the previous plot can be improved quickly by replacing
 </div></blockquote>
 <div class="section" id="multi-line-plot">
 <h4>5.2.1.1. Multi-line plot<a class="headerlink" href="#multi-line-plot" title="Permalink to this headline">¶</a></h4>
-<p>A multi-lined (or over-plotted) plot, with a legend, can be achieved easily by
-calling <a class="reference internal" href="../iris/iris/plot.html#iris.plot.plot" title="iris.plot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.plot()</span></tt></a> or <a class="reference internal" href="../iris/iris/quickplot.html#iris.quickplot.plot" title="iris.quickplot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.quickplot.plot()</span></tt></a> consecutively
+<p>A multi-lined (or over-plotted) plot, with a legend, can be achieved easily by 
+calling <a class="reference internal" href="../iris/iris/plot.html#iris.plot.plot" title="iris.plot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.plot()</span></tt></a> or <a class="reference internal" href="../iris/iris/quickplot.html#iris.quickplot.plot" title="iris.quickplot.plot"><tt class="xref py py-func docutils literal"><span class="pre">iris.quickplot.plot()</span></tt></a> consecutively 
 and providing the label keyword to identify it.
-Once all of the lines have been added the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.legend()</span></tt></a>
+Once all of the lines have been added the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.legend" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.legend()</span></tt></a> 
 function can be called to indicate that a legend is desired:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Multi-line temperature profile plot</span>
@@ -422,19 +422,19 @@ function can be called to indicate that a legend is desired:</p>
 <img alt="../_images/lineplot_with_legend.png" src="../_images/lineplot_with_legend.png" />
 </div>
 </div></blockquote>
-<p>This example of consecutive <tt class="docutils literal"><span class="pre">qplt.plot</span></tt> calls coupled with the
-<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><tt class="xref py py-func docutils literal"><span class="pre">Cube.slices()</span></tt></a> method on a cube shows
+<p>This example of consecutive <tt class="docutils literal"><span class="pre">qplt.plot</span></tt> calls coupled with the 
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><tt class="xref py py-func docutils literal"><span class="pre">Cube.slices()</span></tt></a> method on a cube shows 
 the temperature at some latitude cross-sections.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>The previous example uses the <tt class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></tt> style to run
+<p>The previous example uses the <tt class="docutils literal"><span class="pre">if</span> <span class="pre">__name__</span> <span class="pre">==</span> <span class="pre">&quot;__main__&quot;</span></tt> style to run 
 the desired code if and only if the script is run from the command line.</p>
-<p>This is a good habit to get into when writing scripts in Python as it means
-that any useful functions or variables defined within the script can be
-imported into other scripts without running all of the code and thus
-creating an unwanted plot. This is discussed in more detail at
+<p>This is a good habit to get into when writing scripts in Python as it means 
+that any useful functions or variables defined within the script can be 
+imported into other scripts without running all of the code and thus 
+creating an unwanted plot. This is discussed in more detail at 
 <a class="reference external" href="http://effbot.org/pyfaq/tutor-what-is-if-name-main-for.htm">http://effbot.org/pyfaq/tutor-what-is-if-name-main-for.htm</a>.</p>
-<p class="last">In order to run this example, you will need to copy the code into a file
+<p class="last">In order to run this example, you will need to copy the code into a file 
 and run it using <tt class="docutils literal"><span class="pre">python2.7</span> <span class="pre">my_file.py</span></tt>.</p>
 </div>
 </div>
@@ -446,7 +446,7 @@ and run it using <tt class="docutils literal"><span class="pre">python2.7</span>
 <p>Whenever a 2D plot is created using an <a class="reference internal" href="../iris/iris/coord_systems.html#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><tt class="xref py py-class docutils literal"><span class="pre">iris.coord_systems.CoordSystem</span></tt></a>,
 a cartopy <tt class="xref py py-class docutils literal"><span class="pre">GeoAxes</span></tt> instance is created, which can be
 accessed with the <a class="reference external" href="http://matplotlib.sourceforge.net/api/pyplot_api.html#matplotlib.pyplot.gca" title="(in Matplotlib v1.3.0)"><tt class="xref py py-func docutils literal"><span class="pre">matplotlib.pyplot.gca()</span></tt></a> function.</p>
-<p>Given the current map, you can draw gridlines and coastlines amongst other
+<p>Given the current map, you can draw gridlines and coastlines amongst other 
 things.</p>
 <div class="admonition-see-also admonition seealso">
 <p class="first admonition-title">See also</p>
@@ -456,7 +456,7 @@ things.</p>
 </div>
 <div class="section" id="cube-contour">
 <h4>5.2.2.2. Cube contour<a class="headerlink" href="#cube-contour" title="Permalink to this headline">¶</a></h4>
-<p>A simple contour plot of a cube can be created with either the
+<p>A simple contour plot of a cube can be created with either the 
 <a class="reference internal" href="../iris/iris/plot.html#iris.plot.contour" title="iris.plot.contour"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.contour()</span></tt></a> or <a class="reference internal" href="../iris/iris/quickplot.html#iris.quickplot.contour" title="iris.quickplot.contour"><tt class="xref py py-func docutils literal"><span class="pre">iris.quickplot.contour()</span></tt></a> functions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -488,7 +488,7 @@ things.</p>
 </div>
 <div class="section" id="cube-filled-contour">
 <h4>5.2.2.3. Cube filled contour<a class="headerlink" href="#cube-filled-contour" title="Permalink to this headline">¶</a></h4>
-<p>Similarly a filled contour plot of a cube can be created with the
+<p>Similarly a filled contour plot of a cube can be created with the 
 <a class="reference internal" href="../iris/iris/plot.html#iris.plot.contourf" title="iris.plot.contourf"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.contourf()</span></tt></a> or <a class="reference internal" href="../iris/iris/quickplot.html#iris.quickplot.contourf" title="iris.quickplot.contourf"><tt class="xref py py-func docutils literal"><span class="pre">iris.quickplot.contourf()</span></tt></a> functions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 
@@ -556,7 +556,7 @@ based on their points (see also <a class="reference internal" href="../iris/iris
 </div>
 <div class="section" id="brewer-colour-palettes">
 <span id="brewer-info"></span><h2>5.3. Brewer colour palettes<a class="headerlink" href="#brewer-colour-palettes" title="Permalink to this headline">¶</a></h2>
-<p>Iris includes colour specifications and designs developed by
+<p>Iris includes colour specifications and designs developed by 
 <a class="reference external" href="http://colorbrewer.org/">Cynthia Brewer</a>.
 These colour schemes are freely available under the following licence:</p>
 <div class="highlight-python"><pre>Apache-Style Software License for ColorBrewer software and ColorBrewer Color Schemes
@@ -573,13 +573,13 @@ under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
 CONDITIONS OF ANY KIND, either express or implied. See the License for the
 specific language governing permissions and limitations under the License.</pre>
 </div>
-<p>To include a reference in a journal article or report please refer to
+<p>To include a reference in a journal article or report please refer to 
 <a class="reference external" href="http://www.personal.psu.edu/cab38/ColorBrewer/ColorBrewer_updates.html">section 5</a>
 in the citation guidance provided by Cynthia Brewer.</p>
 <p>For adding citations to Iris plots, see <a class="reference internal" href="#brewer-cite"><em>Adding a citation</em></a> (below).</p>
 <div class="section" id="available-brewer-schemes">
 <h3>5.3.1. Available Brewer Schemes<a class="headerlink" href="#available-brewer-schemes" title="Permalink to this headline">¶</a></h3>
-<p>The following subset of Brewer palettes found at
+<p>The following subset of Brewer palettes found at 
 <a class="reference external" href="http://colorbrewer.org/">colorbrewer.org</a> are available within Iris.</p>
 <p id="brewer">[<a class="reference external" href="../plot_directive/userguide/plotting_examples/brewer.py">source code</a>]</p>
 <blockquote>
@@ -590,7 +590,7 @@ in the citation guidance provided by Cynthia Brewer.</p>
 </div>
 <div class="section" id="plotting-with-brewer">
 <h3>5.3.2. Plotting with Brewer<a class="headerlink" href="#plotting-with-brewer" title="Permalink to this headline">¶</a></h3>
-<p>To plot a cube using a Brewer colour palette, simply select one of the Iris
+<p>To plot a cube using a Brewer colour palette, simply select one of the Iris 
 registered Brewer colour palettes and plot the cube as normal.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="kn">as</span> <span class="nn">mpl_cm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
@@ -624,9 +624,9 @@ registered Brewer colour palettes and plot the cube as normal.</p>
 </div>
 <div class="section" id="adding-a-citation">
 <span id="brewer-cite"></span><h3>5.3.3. Adding a citation<a class="headerlink" href="#adding-a-citation" title="Permalink to this headline">¶</a></h3>
-<p>Citations can be easily added to a plot using the
+<p>Citations can be easily added to a plot using the 
 <a class="reference internal" href="../iris/iris/plot.html#iris.plot.citation" title="iris.plot.citation"><tt class="xref py py-func docutils literal"><span class="pre">iris.plot.citation()</span></tt></a> function.
-The recommended text for the Cynthia Brewer citation is provided by
+The recommended text for the Cynthia Brewer citation is provided by 
 <tt class="xref py py-data docutils literal"><span class="pre">iris.plot.BREWER_CITE</span></tt>.</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.cm</span> <span class="kn">as</span> <span class="nn">mpl_cm</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
