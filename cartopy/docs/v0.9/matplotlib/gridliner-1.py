@@ -8,7 +8,7 @@ from cartopy.mpl.gridliner import LONGITUDE_FORMATTER, LATITUDE_FORMATTER
 ax = plt.axes(projection=ccrs.Mercator())
 ax.coastlines()
 
-gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True,
+gl = ax.gridlines(crs=ccrs.PlateCarree(), draw_labels=True, 
                   linewidth=2, color='gray', alpha=0.5, linestyle='--')
 gl.xlabels_top = False
 gl.ylabels_left = False
