@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>4. Reducing a Cube &mdash; Iris 1.5.0 documentation</title>
+    <title>4. Reducing a Cube &mdash; Iris 1.5.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.5.0 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.5.1 documentation" href="../index.html" />
     <link rel="up" title="Iris user guide" href="index.html" />
     <link rel="next" title="5. Plotting a cube" href="plotting_a_cube.html" />
     <link rel="prev" title="3. Navigating a cube" href="navigating_a_cube.html" />
@@ -114,7 +114,7 @@
             
   <div class="section" id="reducing-a-cube">
 <span id="id1"></span><h1>4. Reducing a Cube<a class="headerlink" href="#reducing-a-cube" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="loading_iris_cubes.html"><em>Loading Iris cubes</em></a> section of the user guide showed how to load data into multidimensional Iris cubes.
+<p>The <a class="reference internal" href="loading_iris_cubes.html"><em>Loading Iris cubes</em></a> section of the user guide showed how to load data into multidimensional Iris cubes. 
 However it is often necessary to reduce the dimensionality of a cube down to something more appropriate.</p>
 <p>Iris provides several ways of reducing both the amount of data and/or the number of dimensions in your cube depending on the circumstance.
 In all cases <strong>the subset of a valid cube is itself a valid cube</strong>.</p>
@@ -144,7 +144,7 @@ and extract every point where the latitude is 0, resulting in a 2d cube with axe
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
 <p>Caution is required when using equality constraints with floating point coordinates such as <tt class="docutils literal"><span class="pre">grid_latitude</span></tt>.
-Printing the points of a coordinate does not necessarily show the full precision of the underlying number and it
+Printing the points of a coordinate does not necessarily show the full precision of the underlying number and it 
 is very easy return no matches to a constraint when one was expected.
 This can be avoided by using a function as the argument to the constraint:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">near_zero</span><span class="p">(</span><span class="n">cell</span><span class="p">):</span>
@@ -170,8 +170,8 @@ This can be avoided by using a function as the argument to the constraint:</p>
 <span class="k">print</span> <span class="n">equator_height_9km_slice</span>
 </pre></div>
 </div>
-<p>As we saw in <a class="reference internal" href="loading_iris_cubes.html"><em>Loading Iris cubes</em></a> the result of <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><tt class="xref py py-func docutils literal"><span class="pre">iris.load()</span></tt></a> is a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a>.
-The <tt class="docutils literal"><span class="pre">extract</span></tt> method also exists on a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a> and behaves in exactly the
+<p>As we saw in <a class="reference internal" href="loading_iris_cubes.html"><em>Loading Iris cubes</em></a> the result of <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><tt class="xref py py-func docutils literal"><span class="pre">iris.load()</span></tt></a> is a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a>. 
+The <tt class="docutils literal"><span class="pre">extract</span></tt> method also exists on a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a> and behaves in exactly the 
 same way as loading with constraints:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">air_temp_and_fp_6</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="s">&#39;air_potential_temperature&#39;</span><span class="p">,</span> <span class="n">forecast_period</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
@@ -204,8 +204,8 @@ same way as loading with constraints:</p>
 </div>
 <div class="section" id="cube-iteration">
 <h2>4.2. Cube iteration<a class="headerlink" href="#cube-iteration" title="Permalink to this headline">¶</a></h2>
-<p>A useful way of dealing with a Cube in its <strong>entirety</strong> is by iterating over its layers or slices.
-For example, to deal with a 3 dimensional cube (z,y,x) you could iterate over all 2 dimensional slices in y and x
+<p>A useful way of dealing with a Cube in its <strong>entirety</strong> is by iterating over its layers or slices. 
+For example, to deal with a 3 dimensional cube (z,y,x) you could iterate over all 2 dimensional slices in y and x 
 which make up the full 3d cube.:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris</span>
 <span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;hybrid_height.nc&#39;</span><span class="p">)</span>
@@ -219,7 +219,7 @@ which make up the full 3d cube.:</p>
 line <tt class="docutils literal"><span class="pre">print</span> <span class="pre">repr(yx_slice)</span></tt> was run 15 times.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p>The order of latitude and longitude in the list is important; had they been swapped the resultant cube slices
+<p>The order of latitude and longitude in the list is important; had they been swapped the resultant cube slices 
 would have been transposed.</p>
 <p class="last">For further information see <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.slices</span></tt></a>.</p>
 </div>
@@ -232,7 +232,7 @@ would have been transposed.</p>
    <span class="k">print</span> <span class="n">i</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="n">x_slice</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The Python function <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#enumerate" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">enumerate()</span></tt></a> is used in this example to provide an incrementing variable <strong>i</strong> which is
+<p>The Python function <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#enumerate" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">enumerate()</span></tt></a> is used in this example to provide an incrementing variable <strong>i</strong> which is 
 printed with the summary of each cube slice. Note that there were 1500 1d longitude cubes as a result of
 slicing the 3 dimensional cube (15, 100, 100) by longitude (i starts at 0 and 1500 = 15 * 100).</p>
 <div class="admonition hint">
@@ -242,13 +242,13 @@ This can be achieved by using the <tt class="docutils literal"><span class="pre"
 <div class="highlight-python"><div class="highlight"><pre><span class="n">first_slice</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">slices</span><span class="p">([</span><span class="s">&#39;grid_latitude&#39;</span><span class="p">,</span> <span class="s">&#39;grid_longitude&#39;</span><span class="p">])</span><span class="o">.</span><span class="n">next</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="last">Once the your code can handle a 2d slice, it is then an easy step to loop over <strong>all</strong> 2d slices within the bigger
+<p class="last">Once the your code can handle a 2d slice, it is then an easy step to loop over <strong>all</strong> 2d slices within the bigger 
 cube using the slices method.</p>
 </div>
 </div>
 <div class="section" id="cube-indexing">
 <h2>4.3. Cube indexing<a class="headerlink" href="#cube-indexing" title="Permalink to this headline">¶</a></h2>
-<p>In the same way that you would expect a numeric multidimensional array to be <strong>indexed</strong> to take a subset of your
+<p>In the same way that you would expect a numeric multidimensional array to be <strong>indexed</strong> to take a subset of your 
 original array, you can <strong>index</strong> a Cube for the same purpose.</p>
 <p>Here are some examples of array indexing in <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/index.html#numpy" title="(in NumPy v1.7)"><tt class="xref py py-mod docutils literal"><span class="pre">numpy</span></tt></a>:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>

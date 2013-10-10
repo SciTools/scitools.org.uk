@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>6. Cube statistics &mdash; Iris 1.5.0 documentation</title>
+    <title>6. Cube statistics &mdash; Iris 1.5.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.5.0 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.5.1 documentation" href="../index.html" />
     <link rel="up" title="Iris user guide" href="index.html" />
     <link rel="next" title="7. Basic cube mathematics" href="cube_maths.html" />
     <link rel="prev" title="5. Plotting a cube" href="plotting_a_cube.html" />
@@ -121,11 +121,11 @@
 <h1>6. Cube statistics<a class="headerlink" href="#cube-statistics" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="collapsing-entire-data-dimensions">
 <h2>6.1. Collapsing entire data dimensions<a class="headerlink" href="#collapsing-entire-data-dimensions" title="Permalink to this headline">¶</a></h2>
-<p>In the section <a class="reference internal" href="reducing_a_cube.html"><em>Reducing a Cube</em></a> we saw how to extract a subset of a cube
-in order to reduce either its dimensionality or its resolution.
-Instead of simply extracting a sub-region of the data,
-we can produce statistical functions of the data values
-across a particular dimension,
+<p>In the section <a class="reference internal" href="reducing_a_cube.html"><em>Reducing a Cube</em></a> we saw how to extract a subset of a cube 
+in order to reduce either its dimensionality or its resolution. 
+Instead of simply extracting a sub-region of the data, 
+we can produce statistical functions of the data values 
+across a particular dimension, 
 such as a &#8216;mean over time&#8217; or &#8216;minimum over latitude&#8217;.</p>
 <p>For instance, suppose we have a cube:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
@@ -152,9 +152,9 @@ such as a &#8216;mean over time&#8217; or &#8216;minimum over latitude&#8217;.</
 <span class="go">          source: Data from Met Office Unified Model 7.03</span>
 </pre></div>
 </div>
-<p>In this case we have a 4 dimensional cube;
-to mean the vertical (z) dimension down to a single valued extent
-we can pass the coordinate name and the aggregation definition to the
+<p>In this case we have a 4 dimensional cube; 
+to mean the vertical (z) dimension down to a single valued extent 
+we can pass the coordinate name and the aggregation definition to the 
 <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.collapsed()</span></tt></a> method:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris.analysis</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">vertical_mean</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s">&#39;model_level_number&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
@@ -182,18 +182,18 @@ we can pass the coordinate name and the aggregation definition to the
 <span class="go">          mean: model_level_number</span>
 </pre></div>
 </div>
-<p>Similarly other analysis operators such as <tt class="docutils literal"><span class="pre">MAX</span></tt>, <tt class="docutils literal"><span class="pre">MIN</span></tt> and <tt class="docutils literal"><span class="pre">STD_DEV</span></tt>
-can be used instead of <tt class="docutils literal"><span class="pre">MEAN</span></tt>, see <a class="reference internal" href="../iris/iris/analysis.html#module-iris.analysis" title="iris.analysis"><tt class="xref py py-mod docutils literal"><span class="pre">iris.analysis</span></tt></a> for a full list
+<p>Similarly other analysis operators such as <tt class="docutils literal"><span class="pre">MAX</span></tt>, <tt class="docutils literal"><span class="pre">MIN</span></tt> and <tt class="docutils literal"><span class="pre">STD_DEV</span></tt> 
+can be used instead of <tt class="docutils literal"><span class="pre">MEAN</span></tt>, see <a class="reference internal" href="../iris/iris/analysis.html#module-iris.analysis" title="iris.analysis"><tt class="xref py py-mod docutils literal"><span class="pre">iris.analysis</span></tt></a> for a full list 
 of currently supported operators.</p>
 <div class="section" id="area-averaging">
 <h3>6.1.1. Area averaging<a class="headerlink" href="#area-averaging" title="Permalink to this headline">¶</a></h3>
-<p>Some operators support additional keywords to the <tt class="docutils literal"><span class="pre">cube.collapsed</span></tt> method.
-For example, <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.MEAN" title="iris.analysis.MEAN"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.MEAN</span></tt></a> supports
-a weights keyword which can be combined with
+<p>Some operators support additional keywords to the <tt class="docutils literal"><span class="pre">cube.collapsed</span></tt> method. 
+For example, <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.MEAN" title="iris.analysis.MEAN"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.MEAN</span></tt></a> supports 
+a weights keyword which can be combined with 
 <a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.area_weights()</span></tt></a> to calculate an area average.</p>
-<p>Let&#8217;s use the same data as was loaded in the previous example.
-Since <tt class="docutils literal"><span class="pre">grid_latitude</span></tt> and <tt class="docutils literal"><span class="pre">grid_longitude</span></tt> were both point coordinates
-we must guess bound positions for them
+<p>Let&#8217;s use the same data as was loaded in the previous example. 
+Since <tt class="docutils literal"><span class="pre">grid_latitude</span></tt> and <tt class="docutils literal"><span class="pre">grid_longitude</span></tt> were both point coordinates 
+we must guess bound positions for them 
 in order to calculate the area of the grid boxes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris.analysis.cartography</span>
 <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;grid_latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
@@ -231,20 +231,20 @@ in order to calculate the area of the grid boxes:</p>
 </div>
 <div class="section" id="partially-reducing-data-dimensions">
 <h2>6.2. Partially reducing data dimensions<a class="headerlink" href="#partially-reducing-data-dimensions" title="Permalink to this headline">¶</a></h2>
-<p>Instead of completely collapsing a dimension, other methods can be applied
+<p>Instead of completely collapsing a dimension, other methods can be applied 
 to reduce or filter the number of data points of a particular dimension.</p>
 <div class="section" id="aggregation-of-grouped-data">
 <h3>6.2.1. Aggregation of grouped data<a class="headerlink" href="#aggregation-of-grouped-data" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.aggregated_by</span></tt></a> operation
-combines data for all points with the same value of a given coordinate.
-To do this, you need a coordinate whose points take on only a limited set
-of different values &#8211; the <em>number</em> of these then determines the size of the
+<p>The <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.aggregated_by</span></tt></a> operation 
+combines data for all points with the same value of a given coordinate. 
+To do this, you need a coordinate whose points take on only a limited set 
+of different values &#8211; the <em>number</em> of these then determines the size of the 
 reduced dimension.
-The <a class="reference internal" href="../iris/iris/coord_categorisation.html#module-iris.coord_categorisation" title="iris.coord_categorisation"><tt class="xref py py-mod docutils literal"><span class="pre">iris.coord_categorisation</span></tt></a> module can be used to make such
-&#8216;categorical&#8217; coordinates out of ordinary ones: The most common use is
-to aggregate data over regular <em>time intervals</em>,
+The <a class="reference internal" href="../iris/iris/coord_categorisation.html#module-iris.coord_categorisation" title="iris.coord_categorisation"><tt class="xref py py-mod docutils literal"><span class="pre">iris.coord_categorisation</span></tt></a> module can be used to make such 
+&#8216;categorical&#8217; coordinates out of ordinary ones: The most common use is 
+to aggregate data over regular <em>time intervals</em>, 
 such as by calendar month or day of the week.</p>
-<p>For example, let&#8217;s create two new coordinates on the cube
+<p>For example, let&#8217;s create two new coordinates on the cube 
 to represent the climatological seasons and the season year respectively:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris</span>
 <span class="kn">import</span> <span class="nn">iris.coord_categorisation</span>
@@ -258,8 +258,8 @@ to represent the climatological seasons and the season year respectively:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">The &#8216;season year&#8217; is not the same as year number, because (e.g.) the months
-Dec11, Jan12 + Feb12 all belong to &#8216;DJF-12&#8217;.
+<p class="last">The &#8216;season year&#8217; is not the same as year number, because (e.g.) the months 
+Dec11, Jan12 + Feb12 all belong to &#8216;DJF-12&#8217;.  
 See <a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season_year" title="iris.coord_categorisation.add_season_year"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coord_categorisation.add_season_year()</span></tt></a>.</p>
 </div>
 <p>Printing this cube now shows that two extra coordinates exist on the cube:</p>
@@ -285,38 +285,38 @@ See <a class="reference internal" href="../iris/iris/coord_categorisation.html#i
 </div>
 <p>These two coordinates can now be used to aggregate by season and climate-year:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">annual_seasonal_mean</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">aggregated_by</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="p">[</span><span class="s">&#39;clim_season&#39;</span><span class="p">,</span> <span class="s">&#39;season_year&#39;</span><span class="p">],</span>
+<span class="gp">... </span>    <span class="p">[</span><span class="s">&#39;clim_season&#39;</span><span class="p">,</span> <span class="s">&#39;season_year&#39;</span><span class="p">],</span> 
 <span class="gp">... </span>    <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">repr</span><span class="p">(</span><span class="n">annual_seasonal_mean</span><span class="p">)</span>
 <span class="go">&lt;iris &#39;Cube&#39; of surface_temperature / (K) (time: 19; latitude: 18; longitude: 432)&gt;</span>
 </pre></div>
 </div>
-<p>The primary change in the cube is that the cube&#8217;s data has been
-reduced in the &#8216;time&#8217; dimension by aggregation (taking means, in this case).
-This has collected together all datapoints with the same values of season and
+<p>The primary change in the cube is that the cube&#8217;s data has been 
+reduced in the &#8216;time&#8217; dimension by aggregation (taking means, in this case). 
+This has collected together all datapoints with the same values of season and 
 season-year.
 The results are now indexed by the 19 different possible values of season and
 season-year in a new, reduced &#8216;time&#8217; dimension.</p>
-<p>We can see this by printing the first 10 values of season+year
-from the original cube:  These points are individual months,
+<p>We can see this by printing the first 10 values of season+year 
+from the original cube:  These points are individual months, 
 so adjacent ones are often in the same season:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">zip</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> 
 <span class="gp">... </span>    <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;season_year&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
 <span class="go">[(&#39;mam&#39;, 2006), (&#39;mam&#39;, 2006), (&#39;jja&#39;, 2006), (&#39;jja&#39;, 2006), (&#39;jja&#39;, 2006), (&#39;son&#39;, 2006), (&#39;son&#39;, 2006), (&#39;son&#39;, 2006), (&#39;djf&#39;, 2007), (&#39;djf&#39;, 2007)]</span>
 </pre></div>
 </div>
-<p>Compare this with the first 10 values of the new cube&#8217;s coordinates:
+<p>Compare this with the first 10 values of the new cube&#8217;s coordinates:  
 All the points now have distinct season+year values:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">zip</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">annual_seasonal_mean</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">annual_seasonal_mean</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> 
 <span class="gp">... </span>    <span class="n">annual_seasonal_mean</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;season_year&#39;</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
 <span class="go">[(&#39;mam&#39;, 2006), (&#39;jja&#39;, 2006), (&#39;son&#39;, 2006), (&#39;djf&#39;, 2007), (&#39;mam&#39;, 2007), (&#39;jja&#39;, 2007), (&#39;son&#39;, 2007), (&#39;djf&#39;, 2008), (&#39;mam&#39;, 2008), (&#39;jja&#39;, 2008)]</span>
 </pre></div>
 </div>
 <p>Because the original data started in April 2006 we have some incomplete seasons
 (e.g. there were only two months worth of data for &#8216;mam-2006&#8217;).
-In this case we can fix this by removing all of the resultant &#8216;times&#8217; which
+In this case we can fix this by removing all of the resultant &#8216;times&#8217; which 
 do not cover a three month period (note: judged here as &gt; 3*28 days):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">spans_three_months</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">bound</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="o">.</span><span class="n">bound</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">&gt;</span> <span class="mi">3</span><span class="o">*</span><span class="mi">28</span><span class="o">*</span><span class="mf">24.0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">three_months_bound</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">spans_three_months</span><span class="p">)</span>
@@ -325,10 +325,10 @@ do not cover a three month period (note: judged here as &gt; 3*28 days):</p>
 <span class="go">&lt;iris &#39;Cube&#39; of surface_temperature / (K) (time: 17; latitude: 18; longitude: 432)&gt;</span>
 </pre></div>
 </div>
-<p>The final result now represents the seasonal mean temperature for 17 seasons
+<p>The final result now represents the seasonal mean temperature for 17 seasons 
 from jja-2006 to jja-2010:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">zip</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">full_season_means</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">full_season_means</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;clim_season&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">,</span> 
 <span class="gp">... </span>    <span class="n">full_season_means</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;season_year&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
 <span class="go">[(&#39;jja&#39;, 2006), (&#39;son&#39;, 2006), (&#39;djf&#39;, 2007), (&#39;mam&#39;, 2007), (&#39;jja&#39;, 2007), (&#39;son&#39;, 2007), (&#39;djf&#39;, 2008), (&#39;mam&#39;, 2008), (&#39;jja&#39;, 2008), (&#39;son&#39;, 2008), (&#39;djf&#39;, 2009), (&#39;mam&#39;, 2009), (&#39;jja&#39;, 2009), (&#39;son&#39;, 2009), (&#39;djf&#39;, 2010), (&#39;mam&#39;, 2010), (&#39;jja&#39;, 2010)]</span>
 </pre></div>
