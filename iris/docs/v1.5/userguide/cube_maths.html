@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7. Basic cube mathematics &mdash; Iris 1.5.0 documentation</title>
+    <title>7. Basic cube mathematics &mdash; Iris 1.5.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.5.0 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.5.1 documentation" href="../index.html" />
     <link rel="up" title="Iris user guide" href="index.html" />
     <link rel="next" title="8. Citing Iris" href="citation.html" />
     <link rel="prev" title="6. Cube statistics" href="cube_statistics.html" />
@@ -113,8 +113,8 @@
             
   <div class="section" id="basic-cube-mathematics">
 <h1>7. Basic cube mathematics<a class="headerlink" href="#basic-cube-mathematics" title="Permalink to this headline">¶</a></h1>
-<p>The section <a class="reference internal" href="navigating_a_cube.html"><em>Navigating a cube</em></a> highlighted that
-every cube has a data attribute;
+<p>The section <a class="reference internal" href="navigating_a_cube.html"><em>Navigating a cube</em></a> highlighted that 
+every cube has a data attribute; 
 this attribute can then be manipulated directly:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">cube</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="mf">273.15</span>
 </pre></div>
@@ -144,14 +144,14 @@ and multiplication can be applied directly to any cube.</p>
 <span class="n">air_temp</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;air_temperature&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We can now get the first and last time slices using indexing
+<p>We can now get the first and last time slices using indexing 
 (see <a class="reference internal" href="reducing_a_cube.html"><em>Reducing a Cube</em></a> for a reminder):</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">t_first</span> <span class="o">=</span> <span class="n">air_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
 <span class="n">t_last</span> <span class="o">=</span> <span class="n">air_temp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
 </pre></div>
 </div>
-<p>And finally we can subtract the two.
-The result is a cube of the same size as the original two time slices,
+<p>And finally we can subtract the two. 
+The result is a cube of the same size as the original two time slices, 
 but with the data representing their difference:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">t_last</span> <span class="o">-</span> <span class="n">t_first</span>
 <span class="go">unknown / (K)                       (latitude: 37; longitude: 49)</span>
@@ -167,19 +167,19 @@ but with the data representing their difference:</p>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Notice that the coordinates &#8220;time&#8221; and &#8220;forecast_period&#8221; have been removed
-from the resultant cube;
-this is because these coordinates differed between the two input cubes.
-For more control on whether or not coordinates should be automatically
+<p class="last">Notice that the coordinates &#8220;time&#8221; and &#8220;forecast_period&#8221; have been removed 
+from the resultant cube; 
+this is because these coordinates differed between the two input cubes. 
+For more control on whether or not coordinates should be automatically 
 ignored <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.subtract" title="iris.analysis.maths.subtract"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.maths.subtract()</span></tt></a> can be used instead.</p>
 </div>
 </div>
 <div class="section" id="combining-multiple-phenomena-to-form-a-new-one">
 <h2>7.2. Combining multiple phenomena to form a new one<a class="headerlink" href="#combining-multiple-phenomena-to-form-a-new-one" title="Permalink to this headline">¶</a></h2>
-<p>Combining cubes of potential-temperature and pressure we can calculate
+<p>Combining cubes of potential-temperature and pressure we can calculate 
 the associated temperature using the equation:</p>
-<img src="../_images/mathmpl/math-d56229f700.png" class="center" /><p>Where <img src="../_images/mathmpl/math-fb97a8c47a.png" style="position: relative; bottom: -7px"/> is pressure, <img src="../_images/mathmpl/math-5dc8912759.png" style="position: relative; bottom: -3px"/> is potential temperature,
-<img src="../_images/mathmpl/math-e76b349545.png" style="position: relative; bottom: -7px"/> is the potential temperature reference pressure
+<img src="../_images/mathmpl/math-d56229f700.png" class="center" /><p>Where <img src="../_images/mathmpl/math-fb97a8c47a.png" style="position: relative; bottom: -7px"/> is pressure, <img src="../_images/mathmpl/math-5dc8912759.png" style="position: relative; bottom: -3px"/> is potential temperature, 
+<img src="../_images/mathmpl/math-e76b349545.png" style="position: relative; bottom: -7px"/> is the potential temperature reference pressure 
 and <img src="../_images/mathmpl/math-fa4ff731d3.png" style="position: relative; bottom: -3px"/> is temperature.</p>
 <p>First, let&#8217;s load pressure and potential temperature cubes:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;colpex.pp&#39;</span><span class="p">)</span>
@@ -187,7 +187,7 @@ and <img src="../_images/mathmpl/math-fa4ff731d3.png" style="position: relative;
 <span class="n">pot_temperature</span><span class="p">,</span> <span class="n">pressure</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cubes</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">phenomenon_names</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In order to calculate <img src="../_images/mathmpl/math-179dee9bcd.png" style="position: relative; bottom: -10px"/> we can define a coordinate which
+<p>In order to calculate <img src="../_images/mathmpl/math-179dee9bcd.png" style="position: relative; bottom: -10px"/> we can define a coordinate which 
 represents the standard reference pressure of 1000 hPa:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris.coords</span>
 <span class="n">p0</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">,</span>
@@ -201,7 +201,7 @@ the <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coo
 <div class="highlight-python"><div class="highlight"><pre><span class="n">p0</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="n">pressure</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Now we can combine all of this information to calculate the air temperature
+<p>Now we can combine all of this information to calculate the air temperature 
 using the equation above:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">temperature</span> <span class="o">=</span> <span class="n">pot_temperature</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">pressure</span> <span class="o">/</span> <span class="n">p0</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">287.05</span> <span class="o">/</span> <span class="mi">1005</span><span class="p">)</span> <span class="p">)</span>
 </pre></div>
@@ -210,9 +210,9 @@ using the equation above:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">temperature</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s">&#39;air_temperature&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The result could now be plotted using the guidance provided in the
+<p>The result could now be plotted using the guidance provided in the 
 <a class="reference internal" href="plotting_a_cube.html"><em>Plotting a cube</em></a> section.</p>
-A very similar example to this can be found in
+A very similar example to this can be found in 
 <a class="reference internal" href="../examples/graphics/deriving_phenomena.html"><em>Deriving Exner Pressure and Air Temperature</em></a>.</div>
 </div>
 

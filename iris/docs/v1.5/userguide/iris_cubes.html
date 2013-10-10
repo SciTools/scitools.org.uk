@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>1. Introduction &mdash; Iris 1.5.0 documentation</title>
+    <title>1. Introduction &mdash; Iris 1.5.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.5.0',
+        VERSION:     '1.5.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.5.0 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.5.1 documentation" href="../index.html" />
     <link rel="up" title="Iris user guide" href="index.html" />
     <link rel="next" title="2. Loading Iris cubes" href="loading_iris_cubes.html" />
     <link rel="prev" title="Iris user guide" href="index.html" />
@@ -126,18 +126,18 @@
 <p>The top level object in Iris is called a cube. A cube contains data and metadata about a phenomenon.</p>
 <p>In Iris, a cube is an interpretation of the <em>Climate and Forecast (CF) Metadata Conventions</em> whose purpose is to:</p>
 <blockquote>
-<div><em>require conforming datasets to contain sufficient metadata that they are self-describing... including physical
+<div><em>require conforming datasets to contain sufficient metadata that they are self-describing... including physical 
 units if appropriate, and that each value can be located in space (relative to earth-based coordinates) and time.</em></div></blockquote>
 <p>Whilst the CF conventions are often mentioned alongside NetCDF, Iris implements several major format importers which can take
 files of specific formats and turn them into Iris cubes. Additionally, a framework is provided which allows users
 to extend Iris&#8217; import capability to cater for specialist or unimplemented formats.</p>
-<p>A single cube describes one and only one phenomenon, always has a name, a unit and
+<p>A single cube describes one and only one phenomenon, always has a name, a unit and 
 an n-dimensional data array to represents the cube&#8217;s phenomenon. In order to locate the
-data spatially, temporally, or in any other higher-dimensional space, a collection of <em>coordinates</em>
+data spatially, temporally, or in any other higher-dimensional space, a collection of <em>coordinates</em> 
 exist on the cube.</p>
 <div class="section" id="coordinates">
 <h3>1.1.1. Coordinates<a class="headerlink" href="#coordinates" title="Permalink to this headline">¶</a></h3>
-<p>A coordinate is a container to store metadata about some dimension(s) of a cube&#8217;s data array and therefore,
+<p>A coordinate is a container to store metadata about some dimension(s) of a cube&#8217;s data array and therefore, 
 by definition, its phenomenon.</p>
 <blockquote>
 <div><ul>
@@ -159,7 +159,7 @@ bounded to represent interval extents (e.g. temperature at <em>point x</em> <str
 </li>
 <li><p class="first">Coordinates have an attributes dictionary which can hold arbitrary extra metadata, excluding certain restricted CF names</p>
 </li>
-<li><p class="first">More complex coordinates may contain a coordinate system which is necessary to fully interpret the values
+<li><p class="first">More complex coordinates may contain a coordinate system which is necessary to fully interpret the values 
 contained within the coordinate.</p>
 </li>
 </ul>
@@ -214,7 +214,7 @@ contained within the coordinate.</p>
 <h2>1.2. Cubes in practice<a class="headerlink" href="#cubes-in-practice" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="a-simple-cube-example">
 <h3>1.2.1. A simple cube example<a class="headerlink" href="#a-simple-cube-example" title="Permalink to this headline">¶</a></h3>
-<p>Suppose we have some gridded data which has 24 air temperature readings (in Kelvin) which is located at
+<p>Suppose we have some gridded data which has 24 air temperature readings (in Kelvin) which is located at 
 4 different longitudes, 2 different latitudes and 3 different heights. Our data array can be represented pictorially:</p>
 <img alt="../_images/multi_array.png" src="../_images/multi_array.png" />
 <p>Where dimensions 0, 1, and 2 have lengths 3, 2 and 4 respectively.</p>
@@ -255,7 +255,7 @@ contained within the coordinate.</p>
 </div></blockquote>
 <p>Pictorially the cube has taken on more information than a simple array:</p>
 <img alt="../_images/multi_array_to_cube.png" src="../_images/multi_array_to_cube.png" />
-<p>Additionally further information may be optionally attached to the cube.
+<p>Additionally further information may be optionally attached to the cube. 
 For example, it is possible to attach any of the following:</p>
 <blockquote>
 <div><ul>
@@ -283,7 +283,7 @@ For example, it is possible to attach any of the following:</p>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">a cell method of &#8220;mean&#8221; over &#8220;ensemble&#8221; to indicate that the data has been meaned over
+<li><p class="first">a cell method of &#8220;mean&#8221; over &#8220;ensemble&#8221; to indicate that the data has been meaned over 
 a collection of &#8220;ensembles&#8221; (i.e. multiple model runs).</p>
 </li>
 </ul>
@@ -318,7 +318,7 @@ output as this is the quickest way of inspecting the contents of a cube. Here is
 <div><ul class="simple">
 <li>The cube represents air potential temperature.</li>
 <li>There are 4 data dimensions, and the data has a shape of <tt class="docutils literal"><span class="pre">(3,</span> <span class="pre">7,</span> <span class="pre">204,</span> <span class="pre">187)</span></tt></li>
-<li>The 4 data dimensions are mapped to the <tt class="docutils literal"><span class="pre">time</span></tt>, <tt class="docutils literal"><span class="pre">model_level_number</span></tt>,
+<li>The 4 data dimensions are mapped to the <tt class="docutils literal"><span class="pre">time</span></tt>, <tt class="docutils literal"><span class="pre">model_level_number</span></tt>, 
 <tt class="docutils literal"><span class="pre">grid_latitude</span></tt>, <tt class="docutils literal"><span class="pre">grid_longitude</span></tt> coordinates respectively</li>
 <li>There are three 1d auxiliary coordinates and one 2d auxiliary (<tt class="docutils literal"><span class="pre">surface_altitude</span></tt>)</li>
 <li>There is a single <tt class="docutils literal"><span class="pre">altitude</span></tt> derived coordinate, which spans 3 data dimensions</li>
@@ -326,7 +326,7 @@ output as this is the quickest way of inspecting the contents of a cube. Here is
 be made for the other dimension coordinates.</li>
 <li>There are 7, not necessarily distinct, values in the <tt class="docutils literal"><span class="pre">level_height</span></tt> coordinate.</li>
 <li>There is a single <tt class="docutils literal"><span class="pre">forecast_reference_time</span></tt> scalar coordinate representing the entire cube.</li>
-<li>The cube has one further attribute relating to the  phenomenon.
+<li>The cube has one further attribute relating to the  phenomenon. 
 In this case the originating file format, PP, encodes information in a STASH code which in some cases can
 be useful for identifying advanced experiment information relating to the phenomenon.</li>
 </ul>
