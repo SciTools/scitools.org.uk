@@ -1,0 +1,400 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s new in cartopy 0.10 &mdash; cartopy 0.10.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.10.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="cartopy 0.10.0 documentation" href="index.html" />
+    <link rel="next" title="Building cartopy from source" href="building_from_source/index.html" />
+    <link rel="prev" title="Introduction" href="index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="building_from_source/index.html" title="Building cartopy from source"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s new in cartopy 0.10</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-9">What&#8217;s new in cartopy 0.9</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-8">What&#8217;s new in cartopy 0.8</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-7">What&#8217;s new in cartopy 0.7</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-6">What&#8217;s new in cartopy 0.6</a><ul>
+<li><a class="reference internal" href="#development-plans-for-cartopy-0-7-and-beyond">Development plans for cartopy 0.7 and beyond</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-5">What&#8217;s new in cartopy 0.5</a><ul>
+<li><a class="reference internal" href="#cartopy-0-5-features">Cartopy 0.5 features</a><ul>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#feature-api">Feature API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="building_from_source/index.html"
+                        title="next chapter">Building cartopy from source</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/whats_new.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-s-new-in-cartopy-0-10">
+<h1>What&#8217;s new in cartopy 0.10<a class="headerlink" href="#what-s-new-in-cartopy-0-10" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.10.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<p>We are very pleased to announce that Andrew Dawson was added to the cartopy
+core development team. In this release Andrew has single-handedly
+implemented comprehensive vector transformation and visualisation
+capabilities, including:</p>
+<ul class="simple">
+<li>The ability to transform vector fields between different coordinate
+reference systems via the <a class="reference internal" href="crs/index.html#cartopy.crs.CRS.transform_vectors" title="cartopy.crs.CRS.transform_vectors"><tt class="xref py py-meth docutils literal"><span class="pre">transform_vectors()</span></tt></a>
+CRS method.</li>
+<li><a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.quiver" title="cartopy.mpl.geoaxes.GeoAxes.quiver"><tt class="xref py py-meth docutils literal"><span class="pre">GeoAxes.quiver</span></tt></a> and
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.barbs" title="cartopy.mpl.geoaxes.GeoAxes.barbs"><tt class="xref py py-meth docutils literal"><span class="pre">GeoAxes.barbs</span></tt></a> for arrow and
+barb plotting. More information is available at <a class="reference internal" href="matplotlib/advanced_plotting.html#vector-plotting"><em>Vector plotting</em></a>.</li>
+<li>A regridding function for &#8220;regularising&#8221; a vector field in the target
+coordinate system. See also
+<tt class="xref py py-func docutils literal"><span class="pre">cartopy.vector_transform.vector_scalar_to_grid()</span></tt>. Both
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.quiver" title="cartopy.mpl.geoaxes.GeoAxes.quiver"><tt class="xref py py-meth docutils literal"><span class="pre">quiver()</span></tt></a> and
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.barbs" title="cartopy.mpl.geoaxes.GeoAxes.barbs"><tt class="xref py py-meth docutils literal"><span class="pre">barbs()</span></tt></a> accept the <tt class="docutils literal"><span class="pre">regrid_shape</span></tt>
+keyword to trigger this behaviour automatically.</li>
+<li><a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.streamplot" title="cartopy.mpl.geoaxes.GeoAxes.streamplot"><tt class="xref py py-meth docutils literal"><span class="pre">GeoAxes.streamplot</span></tt></a> adds
+the ability to draw streamlines in any projection from a vector field in
+any other projection.</li>
+</ul>
+<p>(<a class="reference external" href="./examples/barbs.py">Source code</a>)</p>
+<div class="figure">
+<img alt="_images/barbs_01_001.png" src="_images/barbs_01_001.png" style="width: 300pt;" />
+</div>
+</div>
+<div class="section" id="what-s-new-in-cartopy-0-9">
+<h1>What&#8217;s new in cartopy 0.9<a class="headerlink" href="#what-s-new-in-cartopy-0-9" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.9.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">12 September 2013</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p class="first">We are very pleased to announce that Bill Little was added to the cartopy
+core development team. Bill has made some excellent contributions to cartopy,
+and <a class="reference external" href="https://www.euroscipy.org/schedule/presentation/35/">his presentation at EuroScipy&#8216;13 on
+&#8220;Iris &amp; Cartopy&#8221;</a>
+was voted best talk of the conference.</p>
+</li>
+<li><p class="first">Other talks and tutorials during this release cycle include Phil Elson&#8217;s <a class="reference external" href="http://conference.scipy.org/scipy2013/presentation_detail.php?id=132">talk at SciPy&#8216;13
+(with video)</a>,
+<a class="reference external" href="https://www.euroscipy.org/schedule/presentation/27/">Thomas Lecocq&#8217;s tutorial at EuroSciPy</a>
+and a forthcoming <a class="reference external" href="http://2013.foss4g.org/conf/programme/presentations/29/">talk at FOSS4G</a>.</p>
+</li>
+<li><p class="first">Christoph Gohlke updated cartopy to support Windows 7.</p>
+</li>
+<li><p class="first">The Plate Carree projection was updated to fully handle arbitrary globe definitions.</p>
+</li>
+<li><p class="first">Peter Killick updated the Mercator class&#8217; default globe to WGS84. His refactor paved the way
+for some follow on work to fully implement the Google Spherical Mercator (EPSG:3857) projection.</p>
+<blockquote>
+<div><p><a class="reference external" href="examples/eyja_volcano.html"><img alt="image_eyja_volcano" src="examples/eyja_volcano_01_00.thumb.png" /></a></p>
+</div></blockquote>
+</li>
+<li><p class="first">The TransverseMercator class saw a tidy up to include several common arguments (<a class="reference external" href="https://github.com/SciTools/cartopy/issues/309">ticket</a>)</p>
+</li>
+<li><p class="first">Bill Little added the Geostationary projection to allow geolocation of satellite imagery.</p>
+<blockquote>
+<div><p><a class="reference external" href="examples/geostationary.html"><img alt="image_geostationary" src="examples/geostationary_01_00.thumb.png" /></a></p>
+</div></blockquote>
+</li>
+<li><p class="first">Byron Blay added the <a class="reference internal" href="crs/projections.html#cartopy.crs.LambertConformal" title="cartopy.crs.LambertConformal"><tt class="xref py py-class docutils literal"><span class="pre">Lambert</span> <span class="pre">conformal</span> <span class="pre">conic</span> <span class="pre">projection</span></tt></a>.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="what-s-new-in-cartopy-0-8">
+<h1>What&#8217;s new in cartopy 0.8<a class="headerlink" href="#what-s-new-in-cartopy-0-8" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.8.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">3 June 2013</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Bill Little added support for the OSNI projection and enhanced the image nest capability. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/263">PR #263</a>)</li>
+<li><tt class="xref py py-class docutils literal"><span class="pre">cartopy.io.img_nest.Img</span></tt> has been extended to include a
+<tt class="xref py py-func docutils literal"><span class="pre">cartopy.io.img_nest.Img.from_world_file()</span></tt> static method for
+easier loading of georeferenced images.</li>
+<li>Phil Elson added a major performance improvement when plotting data from PlateCarree onto a
+PlateCarree map. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/260">PR #260</a>)</li>
+<li>Byron Blay and Richard Hattersley added a <a class="reference internal" href="crs/index.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.Globe</span></tt></a> class to encapsulate ellipsoid and optionally
+datum information for CRSs. Globe handling in many projections, including Stereographic, has been added.</li>
+</ul>
+</div>
+<div class="section" id="what-s-new-in-cartopy-0-7">
+<h1>What&#8217;s new in cartopy 0.7<a class="headerlink" href="#what-s-new-in-cartopy-0-7" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.7.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">21 Mar 2013</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Carwyn Pelley added support for 2D arrays of points to <a class="reference internal" href="crs/index.html#cartopy.crs.CRS.transform_points" title="cartopy.crs.CRS.transform_points"><tt class="xref py py-meth docutils literal"><span class="pre">cartopy.crs.CRS.transform_points()</span></tt></a>. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/192">PR #192</a>)</li>
+<li>Phil Elson added control for the gridlines and tick labels drawn with
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><tt class="xref py py-meth docutils literal"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.gridlines()</span></tt></a>. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/238">PR #238</a>)</li>
+<li>Various documentation enhancements have been added. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/247">PR #247</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/244">PR #244</a> <a class="reference external" href="https://github.com/SciTools/cartopy/pull/240">PR #240</a> and <a class="reference external" href="https://github.com/SciTools/cartopy/pull/242">PR #242</a>)</li>
+</ul>
+<p>This is a quick release which targets two very specific requirements. The goals outlined in the development plan at
+<tt class="docutils literal"><span class="pre">v0.6</span></tt> still remain the primary target for <tt class="docutils literal"><span class="pre">v0.8</span></tt> and beyond.</p>
+</div>
+<div class="section" id="what-s-new-in-cartopy-0-6">
+<h1>What&#8217;s new in cartopy 0.6<a class="headerlink" href="#what-s-new-in-cartopy-0-6" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.6.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">19 Feb 2013</td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>Patrick Peglar added the ability to draw ticks for some limited projections
+when using the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><tt class="xref py py-func docutils literal"><span class="pre">gridlines()</span></tt></a> method on an Axes.</li>
+<li>Phil Elson and Carwyn Pelley extended the cartopy documentation to include
+new tutorials such as <a class="reference internal" href="tutorials/using_the_shapereader.html#using-the-shapereader"><em>Using the cartopy shapereader</em></a>.</li>
+<li>Ian Edwards <a class="reference internal" href="examples/favicon.html"><em>added a new example</em></a> to create a favicon for cartopy.</li>
+<li>Phil Elson <a class="reference internal" href="examples/hurricane_katrina.html"><em>added a new example</em></a> to show polygon analysis
+and visualisation with Shapely and cartopy.</li>
+<li>Edward Campbell added a new <a class="reference internal" href="crs/projections.html#cartopy.crs.EuroPP" title="cartopy.crs.EuroPP"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.EuroPP</span></tt></a> projection for UTM zone 32.</li>
+<li>Andrew Dawson added a <tt class="docutils literal"><span class="pre">central_longitude</span></tt> keyword for the Stereographic family of projections.</li>
+<li>Phil Elson added a <a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt></a> class which allows
+automatic downloading of shapefiles (currently from Natural Earth and GSHHS).
+The extension requires no user action and can be configured via the <a class="reference internal" href="cartopy.html#cartopy.config" title="cartopy.config"><tt class="xref py py-data docutils literal"><span class="pre">cartopy.config</span></tt></a> dictionary.</li>
+</ul>
+<div class="section" id="development-plans-for-cartopy-0-7-and-beyond">
+<h2>Development plans for cartopy 0.7 and beyond<a class="headerlink" href="#development-plans-for-cartopy-0-7-and-beyond" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Improve the projection definitions to support better control over datum definitions
+and consider adding WKT support (<a class="reference external" href="https://github.com/SciTools/cartopy/issues/153">ticket</a>).</li>
+<li>Begin work on vector field support (barbs, quiver, streamlines etc.).</li>
+<li>Continue identifying and implementing performance enhancements (particularly in contour drawing).</li>
+<li>Extend the number of projections for which it is possible to draw tick marks.</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-5">
+<h1>What&#8217;s new in cartopy 0.5<a class="headerlink" href="#what-s-new-in-cartopy-0-5" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">0.5.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">7 Dec 2012</td>
+</tr>
+</tbody>
+</table>
+<p>This document explains the new/changed features of cartopy in version 0.5.</p>
+<p>Release 0.5 of cartopy continues the work to expand the feature-set of
+cartopy to encompass common operations, and provide performance
+improvements.</p>
+<div class="section" id="cartopy-0-5-features">
+<h2>Cartopy 0.5 features<a class="headerlink" href="#cartopy-0-5-features" title="Permalink to this headline">¶</a></h2>
+<p>A summary of the main features added with version 0.5:</p>
+<ul class="simple">
+<li>An improved feature API to support future expansion and
+sophistication, and a wider range of pre-defined Natural Earth
+datasets.</li>
+</ul>
+<div class="section" id="incompatible-changes">
+<h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
+<p>None</p>
+</div>
+<div class="section" id="deprecations">
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The method <tt class="xref py py-meth docutils literal"><span class="pre">Axes.natural_earth_shp()</span></tt> has been replaced by the
+method <tt class="xref py py-meth docutils literal"><span class="pre">Axes.add_feature()</span></tt> and the <tt class="xref py py-mod docutils literal"><span class="pre">cartopy.feature</span></tt>
+module.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="feature-api">
+<h2>Feature API<a class="headerlink" href="#feature-api" title="Permalink to this headline">¶</a></h2>
+<p>A new features api is now available, see <a class="reference internal" href="tutorials/using_the_shapereader.html"><em>Using the cartopy shapereader</em></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cartopy</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">OCEAN</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">COASTLINE</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">BORDERS</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;:&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAKES</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">RIVERS</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">,</span> <span class="mi">40</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="./examples/features.py">Source code</a>)</p>
+<div class="figure">
+<img alt="_images/features_01_001.png" src="_images/features_01_001.png" />
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="building_from_source/index.html" title="Building cartopy from source"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>

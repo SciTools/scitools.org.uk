@@ -1,0 +1,223 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>hurricane_katrina example &mdash; cartopy 0.10.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.10.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.10.0 documentation" href="../index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/examples/hurricane_katrina.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="hurricane-katrina-example">
+<span id="examples-hurricane-katrina"></span><h1>hurricane_katrina example<a class="headerlink" href="#hurricane-katrina-example" title="Permalink to this headline">¶</a></h1>
+<p>(<a class="reference external" href="../examples/hurricane_katrina.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/hurricane_katrina_01_00.png" src="../_images/hurricane_katrina_01_00.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="kn">as</span> <span class="nn">mpatches</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="kn">as</span> <span class="nn">sgeom</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.io.shapereader</span> <span class="kn">as</span> <span class="nn">shpreader</span>
+
+
+<span class="k">def</span> <span class="nf">sample_data</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a list of latitudes and a list of longitudes (lons, lats)</span>
+<span class="sd">    for Hurricane Katrina (2005).</span>
+
+<span class="sd">    The data was originally sourced from the HURDAT2 dataset from AOML/NOAA:</span>
+<span class="sd">    http://www.aoml.noaa.gov/hrd/hurdat/newhurdat-all.html on 14th Dec 2012.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lons</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">75.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">75.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">76.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">77.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">78.4</span><span class="p">,</span> <span class="o">-</span><span class="mf">79.0</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">79.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">80.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">80.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">81.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">82.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">82.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">83.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">84.0</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">84.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">85.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">85.9</span><span class="p">,</span> <span class="o">-</span><span class="mf">86.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.7</span><span class="p">,</span> <span class="o">-</span><span class="mf">88.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.2</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.6</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">89.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">89.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">88.6</span><span class="p">,</span> <span class="o">-</span><span class="mf">88.0</span><span class="p">,</span> <span class="o">-</span><span class="mf">87.0</span><span class="p">,</span>
+            <span class="o">-</span><span class="mf">85.3</span><span class="p">,</span> <span class="o">-</span><span class="mf">82.9</span><span class="p">]</span>
+
+    <span class="n">lats</span> <span class="o">=</span> <span class="p">[</span><span class="mf">23.1</span><span class="p">,</span> <span class="mf">23.4</span><span class="p">,</span> <span class="mf">23.8</span><span class="p">,</span> <span class="mf">24.5</span><span class="p">,</span> <span class="mf">25.4</span><span class="p">,</span> <span class="mf">26.0</span><span class="p">,</span> <span class="mf">26.1</span><span class="p">,</span> <span class="mf">26.2</span><span class="p">,</span> <span class="mf">26.2</span><span class="p">,</span> <span class="mf">26.0</span><span class="p">,</span>
+            <span class="mf">25.9</span><span class="p">,</span> <span class="mf">25.4</span><span class="p">,</span> <span class="mf">25.1</span><span class="p">,</span> <span class="mf">24.9</span><span class="p">,</span> <span class="mf">24.6</span><span class="p">,</span> <span class="mf">24.4</span><span class="p">,</span> <span class="mf">24.4</span><span class="p">,</span> <span class="mf">24.5</span><span class="p">,</span> <span class="mf">24.8</span><span class="p">,</span> <span class="mf">25.2</span><span class="p">,</span>
+            <span class="mf">25.7</span><span class="p">,</span> <span class="mf">26.3</span><span class="p">,</span> <span class="mf">27.2</span><span class="p">,</span> <span class="mf">28.2</span><span class="p">,</span> <span class="mf">29.3</span><span class="p">,</span> <span class="mf">29.5</span><span class="p">,</span> <span class="mf">30.2</span><span class="p">,</span> <span class="mf">31.1</span><span class="p">,</span> <span class="mf">32.6</span><span class="p">,</span> <span class="mf">34.1</span><span class="p">,</span>
+            <span class="mf">35.6</span><span class="p">,</span> <span class="mf">37.0</span><span class="p">,</span> <span class="mf">38.6</span><span class="p">,</span> <span class="mf">40.1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">lons</span><span class="p">,</span> <span class="n">lats</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                  <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">LambertConformal</span><span class="p">())</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">125</span><span class="p">,</span> <span class="o">-</span><span class="mf">66.5</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">())</span>
+
+    <span class="n">shapename</span> <span class="o">=</span> <span class="s">&#39;admin_1_states_provinces_lakes_shp&#39;</span>
+    <span class="n">states_shp</span> <span class="o">=</span> <span class="n">shpreader</span><span class="o">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                                         <span class="n">category</span><span class="o">=</span><span class="s">&#39;cultural&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="n">shapename</span><span class="p">)</span>
+
+    <span class="n">lons</span><span class="p">,</span> <span class="n">lats</span> <span class="o">=</span> <span class="n">sample_data</span><span class="p">()</span>
+
+    <span class="c"># to get the effect of having just the states without a map &quot;background&quot;</span>
+    <span class="c"># turn off the outline and background patches</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">background_patch</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">outline_patch</span><span class="o">.</span><span class="n">set_visible</span><span class="p">(</span><span class="bp">False</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;US States which intersect the track &#39;</span>
+              <span class="s">&#39;of Hurricane Katrina (2005)&#39;</span><span class="p">)</span>
+
+    <span class="c"># turn the lons and lats into a shapely LineString</span>
+    <span class="n">track</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">LineString</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">))</span>
+
+    <span class="c"># buffer the linestring by two degrees (note: this is a non-physical</span>
+    <span class="c"># distance)</span>
+    <span class="n">track_buffer</span> <span class="o">=</span> <span class="n">track</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">state</span> <span class="ow">in</span> <span class="n">shpreader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">states_shp</span><span class="p">)</span><span class="o">.</span><span class="n">geometries</span><span class="p">():</span>
+        <span class="c"># pick a default color for the land with a black outline,</span>
+        <span class="c"># this will change if the storm intersects with our track</span>
+        <span class="n">facecolor</span> <span class="o">=</span> <span class="p">[</span><span class="mf">0.9375</span><span class="p">,</span> <span class="mf">0.9375</span><span class="p">,</span> <span class="mf">0.859375</span><span class="p">]</span>
+        <span class="n">edgecolor</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span>
+
+        <span class="k">if</span> <span class="n">state</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">track</span><span class="p">):</span>
+            <span class="n">facecolor</span> <span class="o">=</span> <span class="s">&#39;red&#39;</span>
+        <span class="k">elif</span> <span class="n">state</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">track_buffer</span><span class="p">):</span>
+            <span class="n">facecolor</span> <span class="o">=</span> <span class="s">&#39;#FF7E00&#39;</span>
+
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">state</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                          <span class="n">facecolor</span><span class="o">=</span><span class="n">facecolor</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="n">edgecolor</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">track_buffer</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                      <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;#C8A2C8&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">track</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                      <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+
+    <span class="c"># make two proxy artists to add to a legend</span>
+    <span class="n">direct_hit</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">within_2_deg</span> <span class="o">=</span> <span class="n">mpatches</span><span class="o">.</span><span class="n">Rectangle</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&quot;#FF7E00&quot;</span><span class="p">)</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;State directly intersects</span><span class="se">\n</span><span class="s">with track&#39;</span><span class="p">,</span>
+              <span class="s">&#39;State is within </span><span class="se">\n</span><span class="s">2 degrees of track&#39;</span><span class="p">]</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">([</span><span class="n">direct_hit</span><span class="p">,</span> <span class="n">within_2_deg</span><span class="p">],</span> <span class="n">labels</span><span class="p">,</span>
+               <span class="n">loc</span><span class="o">=</span><span class="s">&#39;lower left&#39;</span><span class="p">,</span> <span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.025</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">),</span> <span class="n">fancybox</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
