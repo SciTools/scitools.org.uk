@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>What’s new in Iris 1.6 &mdash; Iris 1.6.0-dev documentation</title>
+    <title>What’s new in Iris 1.6 &mdash; Iris 1.6.1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -16,7 +16,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.6.0-dev',
+        VERSION:     '1.6.1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -26,7 +26,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.6.0-dev documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.6.1 documentation" href="../index.html" />
     <link rel="next" title="Iris examples" href="../examples/index.html" />
     <link rel="prev" title="iris.util" href="../iris/iris/util.html" />
  
@@ -126,9 +126,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.6.0</td>
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.6.1</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">23rd January 2014</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">18th February 2014</td>
 </tr>
 </tbody>
 </table>
@@ -384,6 +384,12 @@ removed.</p>
 </tr>
 </tbody>
 </table>
+</li>
+<li><p class="first">When a cube is loaded from PP or GRIB and it has both time and forecast period
+coordinates, and the time coordinate has bounds, the forecast period coordinate
+will now also have bounds. These bounds will be aligned with the bounds of the
+time coordinate taking into account the forecast reference time. Also,
+the forecast period point will now be aligned with the time point.</p>
 </li>
 </ul>
 </div>
