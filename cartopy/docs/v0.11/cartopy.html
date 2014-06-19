@@ -1,0 +1,183 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The cartopy module &mdash; cartopy 0.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="top" title="cartopy 0.11.0 documentation" href="index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/cartopy.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-cartopy-module">
+<h1>The cartopy module<a class="headerlink" href="#the-cartopy-module" title="Permalink to this headline">¶</a></h1>
+<p>The top level cartopy module contains the <a class="reference internal" href="#cartopy.config" title="cartopy.config"><tt class="xref py py-attr docutils literal"><span class="pre">config</span></tt></a> dictionary which controls various aspects of cartopy&#8217;s behaviour.</p>
+<dl class="data">
+<dt id="cartopy.config">
+<tt class="descclassname">cartopy.</tt><tt class="descname">config</tt><a class="headerlink" href="#cartopy.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The config dictionary stores global configuration values for cartopy.</p>
+<p>In the first instance, the config is defined in <tt class="docutils literal"><span class="pre">cartopy/__init__.py</span></tt>. It
+is possible to provide site wide customisations by including a
+<tt class="docutils literal"><span class="pre">siteconfig.py</span></tt> file along with the cartopy source code. <tt class="docutils literal"><span class="pre">siteconfig.py</span></tt>
+should contain a function called <tt class="docutils literal"><span class="pre">update_config</span></tt> which takes the config
+dictionary instance as its first and only argument (from where it is
+possible to update the dictionary howsoever desired).</p>
+<p>For users without write permission to the cartopy source directory, a package
+called <tt class="docutils literal"><span class="pre">cartopy_userconfig</span></tt> should be made importable (consider putting it
+in <tt class="docutils literal"><span class="pre">site.getusersitepackages()</span></tt>) and should expose a
+function called <tt class="docutils literal"><span class="pre">update_config</span></tt> which takes the config dictionary as its
+first and only argument.</p>
+<p>Keys in the config dictionary:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">pre_existing_data_dir</span></tt> - the absolute path to a directory where standard</dt>
+<dd><p class="first last">data (such as that from NaturalEarth) can be
+found. If it is not found in this location
+the <tt class="docutils literal"><span class="pre">data_dir</span></tt> config item will be used.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">data_dir</span></tt> - the absolute path to a directory where standard data (such</dt>
+<dd><p class="first last">as that from NaturalEarth) can be found. If it is not found
+and the item is downloadable cartopy will download the
+appropriate file(s) to a subdirectory of this directory,
+therefore <tt class="docutils literal"><span class="pre">data_dir</span></tt> should be writable by the user.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">repo_data_dir</span></tt> - the absolute path to the directory where the data</dt>
+<dd><p class="first last">delivered with the cartopy repository is stored.
+Typically this will only be set by OS packagers and
+system administrators for site wide deployments.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><tt class="docutils literal"><span class="pre">downloaders</span></tt> - a dictionary mapping standard &#8220;specifications&#8221; to the</dt>
+<dd><p class="first last">appropriate <a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><tt class="xref py py-class docutils literal"><span class="pre">Downloader</span></tt></a>. For further
+documentation and an example see
+<a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader.from_config" title="cartopy.io.Downloader.from_config"><tt class="xref py py-func docutils literal"><span class="pre">cartopy.io.Downloader.from_config()</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>

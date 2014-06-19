@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Using the cartopy shapereader &mdash; cartopy 0.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.11.0 documentation" href="../index.html" />
+    <link rel="next" title="Using cartopy with matplotlib" href="../matplotlib/intro.html" />
+    <link rel="prev" title="Cartopy projection list" href="../crs/projections.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="../matplotlib/intro.html" title="Using cartopy with matplotlib"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../crs/projections.html" title="Cartopy projection list"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Using the cartopy shapereader</a><ul>
+<li><a class="reference internal" href="#helper-functions-for-shapefile-acquisition">Helper functions for shapefile acquisition</a></li>
+<li><a class="reference internal" href="#id1">Using the shapereader</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../crs/projections.html"
+                        title="previous chapter">Cartopy projection list</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../matplotlib/intro.html"
+                        title="next chapter">Using cartopy with matplotlib</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/tutorials/using_the_shapereader.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="using-the-cartopy-shapereader">
+<span id="using-the-shapereader"></span><h1>Using the cartopy shapereader<a class="headerlink" href="#using-the-cartopy-shapereader" title="Permalink to this headline">¶</a></h1>
+<p>Cartopy provides an object oriented shapefile reader based on top of the
+<a class="reference external" href="http://code.google.com/p/pyshp/">pyshp</a> module to provide easy, programmatic,
+access to standard vector datasets.</p>
+<dl class="class">
+<dt id="cartopy.io.shapereader.Reader">
+<em class="property">class </em><tt class="descclassname">cartopy.io.shapereader.</tt><tt class="descname">Reader</tt><big>(</big><em>filename</em><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Reader"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Reader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides an interface for accessing the contents of a shapefile.</p>
+<p>The primary methods used on a Reader instance are
+<a class="reference internal" href="#cartopy.io.shapereader.Reader.records" title="cartopy.io.shapereader.Reader.records"><tt class="xref py py-meth docutils literal"><span class="pre">records()</span></tt></a> and <a class="reference internal" href="#cartopy.io.shapereader.Reader.geometries" title="cartopy.io.shapereader.Reader.geometries"><tt class="xref py py-meth docutils literal"><span class="pre">geometries()</span></tt></a>.</p>
+<dl class="method">
+<dt id="cartopy.io.shapereader.Reader.geometries">
+<tt class="descname">geometries</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Reader.geometries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Reader.geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator of shapely geometries from the shapefile.</p>
+<p>This interface is useful for accessing the geometries of the
+shapefile where knowledge of the associated metadata is desired.
+In the case where further metadata is needed use the
+<a class="reference internal" href="#cartopy.io.shapereader.Reader.records" title="cartopy.io.shapereader.Reader.records"><tt class="xref py py-meth docutils literal"><span class="pre">records()</span></tt></a>
+interface instead, extracting the geometry from the record with the
+<a class="reference internal" href="#cartopy.io.shapereader.Record.geometry" title="cartopy.io.shapereader.Record.geometry"><tt class="xref py py-meth docutils literal"><span class="pre">geometry()</span></tt></a> method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.shapereader.Reader.records">
+<tt class="descname">records</tt><big>(</big><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Reader.records"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Reader.records" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an iterator of <a class="reference internal" href="#cartopy.io.shapereader.Record" title="cartopy.io.shapereader.Record"><tt class="xref py py-class docutils literal"><span class="pre">Record</span></tt></a> instances.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.shapereader.Record">
+<em class="property">class </em><tt class="descclassname">cartopy.io.shapereader.</tt><tt class="descname">Record</tt><big>(</big><em>shape</em>, <em>geometry_factory</em>, <em>attributes</em>, <em>fields</em><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Record"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Record" title="Permalink to this definition">¶</a></dt>
+<dd><p>A single logical entry from a shapefile, combining the attributes with
+their associated geometry.</p>
+<dl class="attribute">
+<dt id="cartopy.io.shapereader.Record.attributes">
+<tt class="descname">attributes</tt><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.shapereader.Record.attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary mapping attribute names to attribute values.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.shapereader.Record.bounds">
+<tt class="descname">bounds</tt><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Record.bounds"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Record.bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>The bounds of this Record&#8217;s
+<a class="reference internal" href="#cartopy.io.shapereader.Record.geometry" title="cartopy.io.shapereader.Record.geometry"><tt class="xref py py-meth docutils literal"><span class="pre">geometry()</span></tt></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.shapereader.Record.geometry">
+<tt class="descname">geometry</tt><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#Record.geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.Record.geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>A shapely.geometry instance for this Record.</p>
+<p>The geometry may be <tt class="docutils literal"><span class="pre">None</span></tt> if a null shape is defined in the
+shapefile.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="helper-functions-for-shapefile-acquisition">
+<h2>Helper functions for shapefile acquisition<a class="headerlink" href="#helper-functions-for-shapefile-acquisition" title="Permalink to this headline">¶</a></h2>
+<p>Cartopy provides an interface for access to frequently used data such as the
+<a class="reference external" href="http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html">GSHHS</a> dataset and from
+the <a class="reference external" href="http://www.naturalearthdata.com/">NaturalEarthData</a> website.
+These interfaces allow the user to define the data programmatically, and if the data does not exist
+on disk, it will be retrieved from the appropriate source (normally by
+downloading the data from the internet). Currently the interfaces available are:</p>
+<dl class="function">
+<dt id="cartopy.io.shapereader.natural_earth">
+<tt class="descclassname">cartopy.io.shapereader.</tt><tt class="descname">natural_earth</tt><big>(</big><em>resolution='110m'</em>, <em>category='physical'</em>, <em>name='coastline'</em><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#natural_earth"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.natural_earth" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the requested natural earth shapefile,
+downloading and unziping if necessary.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="cartopy.io.shapereader.gshhs">
+<tt class="descclassname">cartopy.io.shapereader.</tt><tt class="descname">gshhs</tt><big>(</big><em>scale='c'</em>, <em>level=1</em><big>)</big><a class="reference internal" href="../_modules/cartopy/io/shapereader.html#gshhs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.shapereader.gshhs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the path to the requested GSHHS shapefile,
+downloading and unziping if necessary.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="id1">
+<h2>Using the shapereader<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>We can acquire the countries dataset from Natural Earth found at
+<a class="reference external" href="http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/">http://www.naturalearthdata.com/downloads/110m-cultural-vectors/110m-admin-0-countries/</a>
+by using the <a class="reference internal" href="#cartopy.io.shapereader.natural_earth" title="cartopy.io.shapereader.natural_earth"><tt class="xref py py-func docutils literal"><span class="pre">natural_earth()</span></tt></a> function:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cartopy.io.shapereader</span> <span class="kn">as</span> <span class="nn">shpreader</span>
+
+<span class="n">shpfilename</span> <span class="o">=</span> <span class="n">shpreader</span><span class="o">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                                      <span class="n">category</span><span class="o">=</span><span class="s">&#39;cultural&#39;</span><span class="p">,</span>
+                                      <span class="n">name</span><span class="o">=</span><span class="s">&#39;admin_0_countries&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>From here, we can make use of the <a class="reference internal" href="#cartopy.io.shapereader.Reader" title="cartopy.io.shapereader.Reader"><tt class="xref py py-class docutils literal"><span class="pre">Reader</span></tt></a> to get the first country
+in the shapefile:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">reader</span> <span class="o">=</span> <span class="n">shpreader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shpfilename</span><span class="p">)</span>
+<span class="n">countries</span> <span class="o">=</span> <span class="n">reader</span><span class="o">.</span><span class="n">records</span><span class="p">()</span>
+<span class="n">country</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">countries</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can get the country&#8217;s attributes dictionary with the
+<a class="reference internal" href="#cartopy.io.shapereader.Record.attributes" title="cartopy.io.shapereader.Record.attributes"><tt class="xref py py-data docutils literal"><span class="pre">Record.attributes</span></tt></a> attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">type</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="go">&lt;type &#39;dict&#39;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">country</span><span class="o">.</span><span class="n">attributes</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;abbrev&#39;, ..., &#39;name_long&#39;, ... &#39;pop_est&#39;, ...]</span>
+</pre></div>
+</div>
+<p>We could now find the 5 least populated countries with:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">reader</span> <span class="o">=</span> <span class="n">shpreader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">shpfilename</span><span class="p">)</span>
+
+<span class="c"># define a function which returns the population given the country</span>
+<span class="n">population</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">country</span><span class="p">:</span> <span class="n">country</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;pop_est&#39;</span><span class="p">]</span>
+
+<span class="c"># sort the countries by population and get the first 5</span>
+<span class="n">countries_by_pop</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">reader</span><span class="o">.</span><span class="n">records</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="n">population</span><span class="p">)[:</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>Which we can print with</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="s">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">country</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;name_long&#39;</span><span class="p">]</span>
+<span class="gp">... </span>           <span class="k">for</span> <span class="n">country</span> <span class="ow">in</span> <span class="n">countries_by_pop</span><span class="p">])</span>
+<span class="go">&#39;Western Sahara, French Southern and Antarctic Lands, Falkland Islands, Antarctica, Greenland&#39;</span>
+</pre></div>
+</div>
+<p><strong>Exercises</strong>:</p>
+<blockquote>
+<div><ul>
+<li><p class="first"><strong>SHP.1</strong>: Repeat the last example to show the 4 most populated African countries in to the shapefile.</p>
+<p>Hint: Look at the possible attributes to find out which continent a country belongs.</p>
+<p>Answer:</p>
+<blockquote>
+<div><div class="highlight-none"><div class="highlight"><pre>Democratic Republic of the Congo, Egypt, Ethiopia, Nigeria
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+<li><p class="first"><strong>SHP.2</strong>: Using the countries shapefile, find the most populated country grouped
+by the first letter of the &#8220;name_long&#8221;.</p>
+<p>Hint: <a class="reference external" href="http://docs.python.org/2/library/itertools.html#itertools.groupby" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">itertools.groupby()</span></tt></a> can help with the grouping.</p>
+<p>Answer:</p>
+<div class="highlight-none"><div class="highlight"><pre>A Argentina
+B Brazil
+C China
+D Democratic Republic of the Congo
+E Ethiopia
+F France
+G Germany
+H Hungary
+I India
+J Japan
+K Kenya
+L Lao PDR
+M Mexico
+N Nigeria
+O Oman
+P Pakistan
+Q Qatar
+R Russian Federation
+S South Africa
+T Turkey
+U United States
+V Vietnam
+W Western Sahara
+Y Yemen
+Z Zimbabwe
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="../matplotlib/intro.html" title="Using cartopy with matplotlib"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../crs/projections.html" title="Cartopy projection list"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
