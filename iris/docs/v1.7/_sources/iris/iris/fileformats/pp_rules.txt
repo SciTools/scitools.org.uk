@@ -1,0 +1,20 @@
+.. _iris.fileformats.pp_rules:
+
+=========================
+iris.fileformats.pp_rules
+=========================
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.fileformats.pp_rules
+
+In this module:
+
+ * :py:obj:`convert`
+
+
+
+.. autofunction:: iris.fileformats.pp_rules.convert
+
