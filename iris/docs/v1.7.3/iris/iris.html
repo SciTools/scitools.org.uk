@@ -1,0 +1,705 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Iris reference documentation &mdash; Iris 1.7.3 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.7.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.7.3 documentation" href="../index.html" />
+    <link rel="next" title="iris.analysis" href="iris/analysis.html" />
+    <link rel="prev" title="10. End of the user guide" href="../userguide/end_of_userguide.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.7 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="iris/analysis.html" title="iris.analysis"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../userguide/end_of_userguide.html" title="10. End of the user guide"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../userguide/end_of_userguide.html"
+                        title="previous chapter">10. End of the user guide</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="iris/analysis.html"
+                        title="next chapter">iris.analysis</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/iris/iris.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-reference-documentation">
+<span id="iris"></span><h1>Iris reference documentation<a class="headerlink" href="#iris-reference-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="sidebar">
+<p class="first sidebar-title">Modules in this package</p>
+<div class="toctree-wrapper last compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="iris/analysis.html">iris.analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/aux_factory.html">iris.aux_factory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/config.html">iris.config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/coord_categorisation.html">iris.coord_categorisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/coord_systems.html">iris.coord_systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/coords.html">iris.coords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/cube.html">iris.cube</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/exceptions.html">iris.exceptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/experimental.html">iris.experimental</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/fileformats.html">iris.fileformats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/io.html">iris.io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/iterate.html">iris.iterate</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/palette.html">iris.palette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/pandas.html">iris.pandas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/plot.html">iris.plot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/proxy.html">iris.proxy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/quickplot.html">iris.quickplot</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/std_names.html">iris.std_names</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/symbols.html">iris.symbols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/time.html">iris.time</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/unit.html">iris.unit</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iris/util.html">iris.util</a></li>
+</ul>
+</div>
+</div>
+<span class="target" id="module-iris"></span><p>A package for handling multi-dimensional data and associated metadata.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The Iris documentation has further usage information, including
+a <a class="reference internal" href="../userguide/index.html#user-guide-index"><em>user guide</em></a> which should be the first port of
+call for new users.</p>
+</div>
+<p>The functions in this module provide the main way to load and/or save
+your data.</p>
+<p>The <a class="reference internal" href="#iris.load" title="iris.load"><tt class="xref py py-func docutils literal"><span class="pre">load()</span></tt></a> function provides a simple way to explore data from
+the interactive Python prompt. It will convert the source data into
+<a class="reference internal" href="iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">Cubes</span></tt></a>, and combine those cubes into
+higher-dimensional cubes where possible.</p>
+<p>The <a class="reference internal" href="#iris.load_cube" title="iris.load_cube"><tt class="xref py py-func docutils literal"><span class="pre">load_cube()</span></tt></a> and <a class="reference internal" href="#iris.load_cubes" title="iris.load_cubes"><tt class="xref py py-func docutils literal"><span class="pre">load_cubes()</span></tt></a> functions are similar to
+<a class="reference internal" href="#iris.load" title="iris.load"><tt class="xref py py-func docutils literal"><span class="pre">load()</span></tt></a>, but they raise an exception if the number of cubes is not
+what was expected. They are more useful in scripts, where they can
+provide an early sanity check on incoming data.</p>
+<p>The <a class="reference internal" href="#iris.load_raw" title="iris.load_raw"><tt class="xref py py-func docutils literal"><span class="pre">load_raw()</span></tt></a> function is provided for those occasions where the
+automatic combination of cubes into higher-dimensional cubes is
+undesirable. However, it is intended as a tool of last resort! If you
+experience a problem with the automatic combination process then please
+raise an issue with the Iris developers.</p>
+<p>To persist a cube to the file-system, use the <a class="reference internal" href="#iris.save" title="iris.save"><tt class="xref py py-func docutils literal"><span class="pre">save()</span></tt></a> function.</p>
+<p>All the load functions share very similar arguments:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>uris:</dt>
+<dd><p class="first">Either a single filename/URI expressed as a string, or an
+iterable of filenames/URIs.</p>
+<p class="last">Filenames can contain <cite>~</cite> or <cite>~user</cite> abbreviations, and/or
+Unix shell-style wildcards (e.g. <cite>*</cite> and <cite>?</cite>). See the
+standard library function <a class="reference external" href="http://docs.python.org/2.7/library/os.path.html#os.path.expanduser" title="(in Python v2.7)"><tt class="xref py py-func docutils literal"><span class="pre">os.path.expanduser()</span></tt></a> and
+module <a class="reference external" href="http://docs.python.org/2.7/library/fnmatch.html#module-fnmatch" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">fnmatch</span></tt></a> for more details.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>constraints:</dt>
+<dd><p class="first">Either a single constraint, or an iterable of constraints.
+Each constraint can be either a CF standard name, an instance of
+<a class="reference internal" href="#iris.Constraint" title="iris.Constraint"><tt class="xref py py-class docutils literal"><span class="pre">iris.Constraint</span></tt></a>, or an instance of
+<a class="reference internal" href="#iris.AttributeConstraint" title="iris.AttributeConstraint"><tt class="xref py py-class docutils literal"><span class="pre">iris.AttributeConstraint</span></tt></a>.</p>
+<p id="constraint-egs">For example:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="c"># Load air temperature data.</span>
+<span class="n">load_cube</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="s">&#39;air_temperature&#39;</span><span class="p">)</span>
+
+<span class="c"># Load data with a specific model level number.</span>
+<span class="n">load_cube</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">model_level_number</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c"># Load data with a specific STASH code.</span>
+<span class="n">load_cube</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">AttributeConstraint</span><span class="p">(</span><span class="n">STASH</span><span class="o">=</span><span class="s">&#39;m01s00i004&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>callback:</dt>
+<dd><p class="first">A function to add metadata from the originating field and/or URI which
+obeys the following rules:</p>
+<ol class="arabic simple">
+<li>Function signature must be: <tt class="docutils literal"><span class="pre">(cube,</span> <span class="pre">field,</span> <span class="pre">filename)</span></tt>.</li>
+<li>Modifies the given cube inplace, unless a new cube is
+returned by the function.</li>
+<li>If the cube is to be rejected the callback must raise
+an <a class="reference internal" href="iris/exceptions.html#iris.exceptions.IgnoreCubeException" title="iris.exceptions.IgnoreCubeException"><tt class="xref py py-class docutils literal"><span class="pre">iris.exceptions.IgnoreCubeException</span></tt></a>.</li>
+</ol>
+<p>For example:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+    <span class="c"># Extract ID from filenames given as: &lt;prefix&gt;__&lt;exp_id&gt;</span>
+    <span class="n">experiment_id</span> <span class="o">=</span> <span class="n">filename</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;__&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">experiment_coord</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span>
+        <span class="n">experiment_id</span><span class="p">,</span> <span class="n">long_name</span><span class="o">=</span><span class="s">&#39;experiment_id&#39;</span><span class="p">)</span>
+    <span class="n">cube</span><span class="o">.</span><span class="n">add_aux_coord</span><span class="p">(</span><span class="n">experiment_coord</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.load" title="iris.load"><tt class="xref py py-obj docutils literal"><span class="pre">load</span></tt></a></li>
+<li><a class="reference internal" href="#iris.load_cube" title="iris.load_cube"><tt class="xref py py-obj docutils literal"><span class="pre">load_cube</span></tt></a></li>
+<li><a class="reference internal" href="#iris.load_cubes" title="iris.load_cubes"><tt class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></tt></a></li>
+<li><a class="reference internal" href="#iris.load_raw" title="iris.load_raw"><tt class="xref py py-obj docutils literal"><span class="pre">load_raw</span></tt></a></li>
+<li><a class="reference internal" href="#iris.save" title="iris.save"><tt class="xref py py-obj docutils literal"><span class="pre">save</span></tt></a></li>
+<li><a class="reference internal" href="#iris.Constraint" title="iris.Constraint"><tt class="xref py py-obj docutils literal"><span class="pre">Constraint</span></tt></a></li>
+<li><a class="reference internal" href="#iris.AttributeConstraint" title="iris.AttributeConstraint"><tt class="xref py py-obj docutils literal"><span class="pre">AttributeConstraint</span></tt></a></li>
+<li><a class="reference internal" href="#iris.sample_data_path" title="iris.sample_data_path"><tt class="xref py py-obj docutils literal"><span class="pre">sample_data_path</span></tt></a></li>
+<li><a class="reference internal" href="#iris.site_configuration" title="iris.site_configuration"><tt class="xref py py-obj docutils literal"><span class="pre">site_configuration</span></tt></a></li>
+<li><a class="reference internal" href="#iris.Future" title="iris.Future"><tt class="xref py py-obj docutils literal"><span class="pre">Future</span></tt></a></li>
+<li><a class="reference internal" href="#iris.FUTURE" title="iris.FUTURE"><tt class="xref py py-obj docutils literal"><span class="pre">FUTURE</span></tt></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.load">
+<tt class="descclassname">iris.</tt><tt class="descname">load</tt><big>(</big><em>uris</em>, <em>constraints=None</em>, <em>callback=None</em><big>)</big><a class="headerlink" href="#iris.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads any number of Cubes for each constraint.</p>
+<p>For a full description of the arguments, please see the module
+documentation for <a class="reference internal" href="#module-iris" title="iris"><tt class="xref py py-mod docutils literal"><span class="pre">iris</span></tt></a>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>uris:</dt>
+<dd><p class="first last">One or more filenames/URIs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>constraints:</dt>
+<dd><p class="first last">One or more constraints.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>callback:</dt>
+<dd><p class="first last">A modifier/filter function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>An <a class="reference internal" href="iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a>.</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.load_cube">
+<tt class="descclassname">iris.</tt><tt class="descname">load_cube</tt><big>(</big><em>uris</em>, <em>constraint=None</em>, <em>callback=None</em><big>)</big><a class="headerlink" href="#iris.load_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads a single cube.</p>
+<p>For a full description of the arguments, please see the module
+documentation for <a class="reference internal" href="#module-iris" title="iris"><tt class="xref py py-mod docutils literal"><span class="pre">iris</span></tt></a>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>uris:</dt>
+<dd><p class="first last">One or more filenames/URIs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>constraints:</dt>
+<dd><p class="first last">A constraint.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>callback:</dt>
+<dd><p class="first last">A modifier/filter function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>An <a class="reference internal" href="iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>.</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.load_cubes">
+<tt class="descclassname">iris.</tt><tt class="descname">load_cubes</tt><big>(</big><em>uris</em>, <em>constraints=None</em>, <em>callback=None</em><big>)</big><a class="headerlink" href="#iris.load_cubes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads exactly one Cube for each constraint.</p>
+<p>For a full description of the arguments, please see the module
+documentation for <a class="reference internal" href="#module-iris" title="iris"><tt class="xref py py-mod docutils literal"><span class="pre">iris</span></tt></a>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>uris:</dt>
+<dd><p class="first last">One or more filenames/URIs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>constraints:</dt>
+<dd><p class="first last">One or more constraints.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>callback:</dt>
+<dd><p class="first last">A modifier/filter function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>An <a class="reference internal" href="iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a>.</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.load_raw">
+<tt class="descclassname">iris.</tt><tt class="descname">load_raw</tt><big>(</big><em>uris</em>, <em>constraints=None</em>, <em>callback=None</em><big>)</big><a class="headerlink" href="#iris.load_raw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads non-merged cubes.</p>
+<p>This function is provided for those occasions where the automatic
+combination of cubes into higher-dimensional cubes is undesirable.
+However, it is intended as a tool of last resort! If you experience
+a problem with the automatic combination process then please raise
+an issue with the Iris developers.</p>
+<p>For a full description of the arguments, please see the module
+documentation for <a class="reference internal" href="#module-iris" title="iris"><tt class="xref py py-mod docutils literal"><span class="pre">iris</span></tt></a>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>uris:</dt>
+<dd><p class="first last">One or more filenames/URIs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>constraints:</dt>
+<dd><p class="first last">One or more constraints.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>callback:</dt>
+<dd><p class="first last">A modifier/filter function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>An <a class="reference internal" href="iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a>.</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.save">
+<tt class="descclassname">iris.</tt><tt class="descname">save</tt><big>(</big><em>source</em>, <em>target</em>, <em>saver=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#iris.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save one or more Cubes to file (or other writable).</p>
+<p>Iris currently supports three file formats for saving, which it can
+recognise by filename extension:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>netCDF - the Unidata network Common Data Format:</dt>
+<dd><ul class="first last simple">
+<li>see <a class="reference internal" href="iris/fileformats/netcdf.html#iris.fileformats.netcdf.save" title="iris.fileformats.netcdf.save"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.netcdf.save()</span></tt></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>GRIB2  - the WMO GRIdded Binary data format;</dt>
+<dd><ul class="first last simple">
+<li>see <a class="reference internal" href="iris/fileformats/grib.html#iris.fileformats.grib.save_grib2" title="iris.fileformats.grib.save_grib2"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.grib.save_grib2()</span></tt></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>PP     - the Met Office UM Post Processing Format.</dt>
+<dd><ul class="first last simple">
+<li>see <a class="reference internal" href="iris/fileformats/pp.html#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.pp.save()</span></tt></a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>A custom saver can be provided to the function to write to a different
+file format.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>source    - A <a class="reference internal" href="iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>, <a class="reference internal" href="iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a> or</dt>
+<dd><p class="first last">sequence of cubes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>target    - A filename (or writable, depending on file format).</dt>
+<dd><p class="first last">When given a filename or file, Iris can determine the
+file format.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>saver     - Optional. Specifies the save function to use.</dt>
+<dd><p class="first">If omitted, Iris will attempt to determine the format.</p>
+<p class="last">This keyword can be used to implement a custom save
+format. Function form must be:
+<tt class="docutils literal"><span class="pre">my_saver(cube,</span> <span class="pre">target)</span></tt> plus any custom keywords. It
+is assumed that a saver will accept an <tt class="docutils literal"><span class="pre">append</span></tt> keyword
+if it&#8217;s file format can handle multiple cubes. See also
+<a class="reference internal" href="iris/io.html#iris.io.add_saver" title="iris.io.add_saver"><tt class="xref py py-func docutils literal"><span class="pre">iris.io.add_saver()</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>All other keywords are passed through to the saver function; see the
+relevant saver documentation for more information on keyword arguments.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Save a cube to PP</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s">&quot;myfile.pp&quot;</span><span class="p">)</span>
+
+<span class="c"># Save a cube list to a PP file, appending to the contents of the file</span>
+<span class="c"># if it already exists</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube_list</span><span class="p">,</span> <span class="s">&quot;myfile.pp&quot;</span><span class="p">,</span> <span class="n">append</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c"># Save a cube to netCDF, defaults to NETCDF4 file format</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s">&quot;myfile.nc&quot;</span><span class="p">)</span>
+
+<span class="c"># Save a cube list to netCDF, using the NETCDF4_CLASSIC storage option</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube_list</span><span class="p">,</span> <span class="s">&quot;myfile.nc&quot;</span><span class="p">,</span> <span class="n">netcdf_format</span><span class="o">=</span><span class="s">&quot;NETCDF3_CLASSIC&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Constraints are the mechanism by which cubes can be pattern matched and
+filtered according to specific criteria.</p>
+<p>Once a constraint has been defined, it can be applied to cubes using the
+<a class="reference internal" href="#iris.Constraint.extract" title="iris.Constraint.extract"><tt class="xref py py-meth docutils literal"><span class="pre">Constraint.extract()</span></tt></a> method.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.Constraint">
+<em class="property">class </em><tt class="descclassname">iris.</tt><tt class="descname">Constraint</tt><big>(</big><em>name=None</em>, <em>cube_func=None</em>, <em>coord_values=None</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#iris.Constraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Creates a new instance of a Constraint which can be used for filtering
+cube loading or cube list extraction.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>name:   string or None</dt>
+<dd><p class="first last">If a string, it is used as the name to match against Cube.name().</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>cube_func:   callable or None</dt>
+<dd><p class="first last">If a callable, it must accept a Cube as its first and only argument
+and return either True or False.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>coord_values:   dict or None</dt>
+<dd><p class="first last">If a dict, it must map coordinate name to the condition on the
+associated coordinate.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt><cite>**kwargs</cite>:</dt>
+<dd><p class="first">The remaining keyword arguments are converted to coordinate
+constraints. The name of the argument gives the name of a
+coordinate, and the value of the argument is the condition to meet
+on that coordinate:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">Constraint</span><span class="p">(</span><span class="n">model_level_number</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Coordinate level constraints can be of several types:</p>
+<ul class="last simple">
+<li><strong>string, int or float</strong> - the value of the coordinate to match.
+e.g. <tt class="docutils literal"><span class="pre">model_level_number=10</span></tt></li>
+<li><strong>list of values</strong> - the possible values that the coordinate may
+have to match. e.g. <tt class="docutils literal"><span class="pre">model_level_number=[10,</span> <span class="pre">12]</span></tt></li>
+<li><strong>callable</strong> - a function which accepts a
+<a class="reference internal" href="iris/coords.html#iris.coords.Cell" title="iris.coords.Cell"><tt class="xref py py-class docutils literal"><span class="pre">iris.coords.Cell</span></tt></a> instance as its first and only argument
+returning True or False if the value of the Cell is desired.
+e.g. <tt class="docutils literal"><span class="pre">model_level_number=lambda</span> <span class="pre">cell:</span> <span class="pre">5</span> <span class="pre">&lt;</span> <span class="pre">cell</span> <span class="pre">&lt;</span> <span class="pre">10</span></tt></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The <a class="reference internal" href="../userguide/loading_iris_cubes.html#loading-iris-cubes"><em>user guide</em></a> covers cube much of
+constraining in detail, however an example which uses all of the
+features of this class is given here for completeness:</p>
+<div class="highlight-python"><pre>Constraint(name='air_potential_temperature',
+           cube_func=lambda cube: cube.units == 'kelvin',
+           coord_values={'latitude':lambda cell: 0 &lt; cell &lt; 90},
+           model_level_number=[10, 12])
+           &amp; Constraint(ensemble_member=2)</pre>
+</div>
+<p>Constraint filtering is performed at the cell level.
+For further details on how cell comparisons are performed see
+<a class="reference internal" href="iris/coords.html#iris.coords.Cell" title="iris.coords.Cell"><tt class="xref py py-class docutils literal"><span class="pre">iris.coords.Cell</span></tt></a>.</p>
+<dl class="method">
+<dt id="iris.Constraint.extract">
+<tt class="descname">extract</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.Constraint.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the subset of the given cube which matches this constraint,
+else return None.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Provides a simple Cube-attribute based <a class="reference internal" href="#iris.Constraint" title="iris.Constraint"><tt class="xref py py-class docutils literal"><span class="pre">Constraint</span></tt></a>.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.AttributeConstraint">
+<em class="property">class </em><tt class="descclassname">iris.</tt><tt class="descname">AttributeConstraint</tt><big>(</big><em>**attributes</em><big>)</big><a class="headerlink" href="#iris.AttributeConstraint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">iris._constraints.Constraint</span></tt></p>
+<p>Example usage:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">iris</span><span class="o">.</span><span class="n">AttributeConstraint</span><span class="p">(</span><span class="n">STASH</span><span class="o">=</span><span class="s">&#39;m01s16i004&#39;</span><span class="p">)</span>
+
+<span class="n">iris</span><span class="o">.</span><span class="n">AttributeConstraint</span><span class="p">(</span>
+    <span class="n">STASH</span><span class="o">=</span><span class="k">lambda</span> <span class="n">stash</span><span class="p">:</span> <span class="n">stash</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39;i005&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Attribute constraint names are case sensitive.</p>
+</div>
+<dl class="method">
+<dt id="iris.AttributeConstraint.extract">
+<tt class="descname">extract</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.AttributeConstraint.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the subset of the given cube which matches this constraint,
+else return None.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.sample_data_path">
+<tt class="descclassname">iris.</tt><tt class="descname">sample_data_path</tt><big>(</big><em>*path_to_join</em><big>)</big><a class="headerlink" href="#iris.sample_data_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given the sample data resource, returns the full path to the file.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="data">
+<dt id="iris.site_configuration">
+<tt class="descclassname">iris.</tt><tt class="descname">site_configuration</tt><a class="headerlink" href="#iris.site_configuration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Iris site configuration dictionary.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Run-time configuration controller.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.Future">
+<em class="property">class </em><tt class="descclassname">iris.</tt><tt class="descname">Future</tt><big>(</big><em>cell_datetime_objects=False</em>, <em>netcdf_promote=False</em><big>)</big><a class="headerlink" href="#iris.Future" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">thread._local</span></tt></p>
+<p>A container for run-time options controls.</p>
+<p>To adjust the values simply update the relevant attribute from
+within your code. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">cell_datetime_objects</span> <span class="o">=</span> <span class="bp">True</span>
+</pre></div>
+</div>
+<p>If Iris code is executed with multiple threads, note the values of
+these options are thread-specific.</p>
+<p>The option <cite>cell_datetime_objects</cite> controls whether the
+<a class="reference internal" href="iris/coords.html#iris.coords.Coord.cell" title="iris.coords.Coord.cell"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.cell()</span></tt></a> method returns time coordinate
+values as simple numbers or as time objects with attributes for
+year, month, day, etc. In particular, this allows one to express
+certain time constraints using a simpler, more transparent
+syntax, such as:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># To select all data defined at midday.</span>
+<span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">hour</span> <span class="o">==</span> <span class="mi">12</span><span class="p">)</span>
+
+<span class="c"># To ignore the 29th of February.</span>
+<span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">day</span> <span class="o">!=</span> <span class="mi">29</span> <span class="ow">and</span>
+                             <span class="n">cell</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">month</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>For more details, see <a class="reference internal" href="../userguide/loading_iris_cubes.html#using-time-constraints"><em>Constraining on Time</em></a>.</p>
+<p>The option <cite>netcdf_promote</cite> controls whether the netCDF loader
+will expose variables which define reference surfaces for
+dimensionless vertical coordinates as independent Cubes.</p>
+<dl class="method">
+<dt id="iris.Future.context">
+<tt class="descname">context</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#iris.Future.context" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a context manager which allows temporary modification of
+the option values for the active thread.</p>
+<p>On entry to the <cite>with</cite> statement, all keyword arguments are
+applied to the Future object. On exit from the <cite>with</cite>
+statement, the previous state is restored.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">with</span> <span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">context</span><span class="p">():</span>
+    <span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">cell_datetime_objects</span> <span class="o">=</span> <span class="bp">True</span>
+    <span class="c"># ... code which expects time objects</span>
+</pre></div>
+</div>
+<p>Or more concisely:</p>
+<div class="highlight-python"><pre>with iris.FUTURE.context(cell_datetime_objects=True):
+    # ... code which expects time objects</pre>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="data">
+<dt id="iris.FUTURE">
+<tt class="descclassname">iris.</tt><tt class="descname">FUTURE</tt><a class="headerlink" href="#iris.FUTURE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object containing all the Iris run-time options.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="iris/analysis.html" title="iris.analysis"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../userguide/end_of_userguide.html" title="10. End of the user guide"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2013, Met Office
+    </div>
+
+
+  </body>
+</html>
