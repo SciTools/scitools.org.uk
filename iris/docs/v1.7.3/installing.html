@@ -71,14 +71,18 @@
   <h3><a href="contents.html">Table Of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Installing Iris</a><ul>
+<li><a class="reference internal" href="#installing-from-conda">Installing from conda</a></li>
+<li><a class="reference internal" href="#installing-from-source">Installing from Source</a><ul>
 <li><a class="reference internal" href="#in-place-build-an-alternative-for-developers">In-place build - an alternative for developers</a></li>
-<li><a class="reference internal" href="#build-and-runtime-requirements">Build and runtime requirements</a><ul>
-<li><a class="reference internal" href="#optional">Optional</a></li>
+<li><a class="reference internal" href="#build-and-runtime-requirements">Build and runtime requirements</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#optional">Optional</a><ul>
 <li><a class="reference internal" href="#packed-pp">Packed PP</a></li>
 <li><a class="reference internal" href="#custom-site-configuration">Custom site configuration</a></li>
 <li><a class="reference internal" href="#packaged-distributions">Packaged distributions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -117,8 +121,34 @@
             
   <div class="section" id="installing-iris">
 <h1>Installing Iris<a class="headerlink" href="#installing-iris" title="Permalink to this headline">¶</a></h1>
-<p>Installing Iris currently requires you to build it from source. The
-latest release is available from <a class="reference external" href="https://github.com/SciTools/iris">https://github.com/SciTools/iris</a>.</p>
+<p>You can either install Iris using the conda package manager or from source.</p>
+<div class="section" id="installing-from-conda">
+<h2>Installing from conda<a class="headerlink" href="#installing-from-conda" title="Permalink to this headline">¶</a></h2>
+<p>Iris can be installed using the <a class="reference external" href="http://conda.pydata.org/">http://conda.pydata.org/</a> package manager.</p>
+<dl class="docutils">
+<dt>Iris is available from conda for the following platforms:</dt>
+<dd><ul class="first last simple">
+<li>Linux 32-bit,</li>
+<li>Linux 64-bit,</li>
+<li>Mac OSX 64-bit, and</li>
+<li>Windows 32-bit and 64-bit.</li>
+</ul>
+</dd>
+</dl>
+<p>To install Iris from conda, you must first download and install conda,
+for example from
+<a class="reference external" href="http://conda.pydata.org/miniconda.html">http://conda.pydata.org/miniconda.html</a>.</p>
+<p>Once conda is installed, you can install Iris from conda on any platform with
+the following command:</p>
+<div class="highlight-python"><pre>conda install -c scitools iris</pre>
+</div>
+<p>Further documentation on using conda and the features it provides can be found
+at <a class="reference external" href="http://conda.pydata.org/docs/intro.html">http://conda.pydata.org/docs/intro.html</a>.</p>
+</div>
+<div class="section" id="installing-from-source">
+<h2>Installing from Source<a class="headerlink" href="#installing-from-source" title="Permalink to this headline">¶</a></h2>
+<p>The latest Iris source release is available from
+<a class="reference external" href="https://github.com/SciTools/iris">https://github.com/SciTools/iris</a>.</p>
 <p>Iris makes use of a range of other libraries and python modules. These
 dependencies must be in place before you can successfully install
 Iris. Once you have satisfied the requirements detailed below,
@@ -126,7 +156,7 @@ extract the iris source package, cd to the new directory, and enter:</p>
 <div class="highlight-python"><pre>python setup.py install</pre>
 </div>
 <div class="section" id="in-place-build-an-alternative-for-developers">
-<h2>In-place build - an alternative for developers<a class="headerlink" href="#in-place-build-an-alternative-for-developers" title="Permalink to this headline">¶</a></h2>
+<h3>In-place build - an alternative for developers<a class="headerlink" href="#in-place-build-an-alternative-for-developers" title="Permalink to this headline">¶</a></h3>
 <p>We strongly encourage people to contribute to Iris and for this type of
 development activity an in-place build can be useful. Once you&#8217;ve cloned
 the Iris git repository you can perform an in-place build by entering:</p>
@@ -141,7 +171,7 @@ python setup.py build_ext --inplace</pre>
 </div>
 </div>
 <div class="section" id="build-and-runtime-requirements">
-<h2>Build and runtime requirements<a class="headerlink" href="#build-and-runtime-requirements" title="Permalink to this headline">¶</a></h2>
+<h3>Build and runtime requirements<a class="headerlink" href="#build-and-runtime-requirements" title="Permalink to this headline">¶</a></h3>
 <p>These are external packages which you will need to have installed before
 installing and running Iris.</p>
 <p>Many of these packages are available in Linux package managers
@@ -154,9 +184,11 @@ you may need to install the development packages (look for a &#8220;-dev&#8221;
 postfix) in addition to the core packages.</p>
 <dl class="docutils">
 <dt>python 2.7 or later (<a class="reference external" href="http://www.python.org/">http://www.python.org/</a>)</dt>
-<dd>Iris requires Python 2.7 or later, but is not currently compatible with Python 3.</dd>
+<dd>Iris requires Python 2.7 or later, but is not currently compatible with
+Python 3.</dd>
 <dt>numpy 1.6 or later (<a class="reference external" href="http://numpy.scipy.org/">http://numpy.scipy.org/</a>)</dt>
-<dd>Python package for scientific computing including a powerful N-dimensional array object.</dd>
+<dd>Python package for scientific computing including a powerful N-dimensional
+array object.</dd>
 <dt>biggus 0.6 or later (<a class="reference external" href="https://github.com/SciTools/biggus">https://github.com/SciTools/biggus</a>)</dt>
 <dd>Virtual large arrays and lazy evaluation.</dd>
 <dt>scipy 0.10 or later (<a class="reference external" href="http://www.scipy.org/">http://www.scipy.org/</a>)</dt>
@@ -167,13 +199,16 @@ postfix) in addition to the core packages.</p>
 <dd>Python knowledge-based inference engine.</dd>
 <dt>netcdf4-python 0.9.9 or later (<a class="reference external" href="http://netcdf4-python.googlecode.com/">http://netcdf4-python.googlecode.com/</a>)</dt>
 <dd>Python interface to the netCDF version 4 C library.</dd>
-<dt>udunits2 2.1.24 or later (<a class="reference external" href="http://www.unidata.ucar.edu/downloads/udunits/index.jsp">http://www.unidata.ucar.edu/downloads/udunits/index.jsp</a>)</dt>
-<dd>C library for units of physical quantities.</dd>
+<dt>udunits2 2.1.24 or later</dt>
+<dd>(<a class="reference external" href="http://www.unidata.ucar.edu/downloads/udunits/index.jsp">http://www.unidata.ucar.edu/downloads/udunits/index.jsp</a>)
+C library for units of physical quantities.</dd>
 <dt>setuptools 0.6c11 or later (<a class="reference external" href="http://pypi.python.org/pypi/setuptools/">http://pypi.python.org/pypi/setuptools/</a>)</dt>
 <dd>Python package for installing/removing python packages.</dd>
 </dl>
+</div>
+</div>
 <div class="section" id="optional">
-<h3>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h3>
+<h2>Optional<a class="headerlink" href="#optional" title="Permalink to this headline">¶</a></h2>
 <p>These are optional packages which you may want to install to enable
 additonal Iris functionality such as plotting and
 loading/saving GRIB. These packages are required for the full Iris test
@@ -183,8 +218,9 @@ suite to run.</p>
 <dd>Python package for the Geospatial Data Abstraction Library (GDAL).</dd>
 <dt>graphviz 2.18 or later (<a class="reference external" href="http://www.graphviz.org/">http://www.graphviz.org/</a>)</dt>
 <dd>Graph visualisation software.</dd>
-<dt>grib-api 1.9.16 or later (<a class="reference external" href="https://software.ecmwf.int/wiki/display/GRIB/Releases">https://software.ecmwf.int/wiki/display/GRIB/Releases</a>)</dt>
-<dd>API for the encoding and decoding WMO FM-92 GRIB edition 1 and
+<dt>grib-api 1.9.16 or later</dt>
+<dd>(<a class="reference external" href="https://software.ecmwf.int/wiki/display/GRIB/Releases">https://software.ecmwf.int/wiki/display/GRIB/Releases</a>)
+API for the encoding and decoding WMO FM-92 GRIB edition 1 and
 edition 2 messages. A compression library such as Jasper is required
 to read JPEG2000 compressed GRIB2 files.</dd>
 <dt>matplotlib 1.2.0 (<a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a>)</dt>
@@ -202,15 +238,14 @@ data analysis tools.</dd>
 <dt>PythonImagingLibrary 1.1.7 or later (<a class="reference external" href="http://effbot.org/zone/pil-index.htm">http://effbot.org/zone/pil-index.htm</a>)</dt>
 <dd>Python package for image processing.</dd>
 <dt>shapely 1.2.14 (<a class="reference external" href="https://github.com/Toblerity/Shapely">https://github.com/Toblerity/Shapely</a>)</dt>
-<dd>Python package for the manipulation and analysis of planar geometric objects.</dd>
+<dd>Python package for the manipulation and analysis of planar geometric
+objects.</dd>
 </dl>
 <ul class="simple">
 <li>Those packages have been tested with a specific build.</li>
 </ul>
-</div>
-</div>
 <div class="section" id="packed-pp">
-<h2>Packed PP<a class="headerlink" href="#packed-pp" title="Permalink to this headline">¶</a></h2>
+<h3>Packed PP<a class="headerlink" href="#packed-pp" title="Permalink to this headline">¶</a></h3>
 <p>The libmo_unpack library can be used by Iris for decoding/unpacking
 PP files or Fields files that use an lbpack value of 1 or 4. This
 library is open source, licensed under the 2-clause BSD licence.
@@ -229,7 +264,7 @@ builds correctly:</p>
 </div>
 </div>
 <div class="section" id="custom-site-configuration">
-<h2>Custom site configuration<a class="headerlink" href="#custom-site-configuration" title="Permalink to this headline">¶</a></h2>
+<h3>Custom site configuration<a class="headerlink" href="#custom-site-configuration" title="Permalink to this headline">¶</a></h3>
 <p>The default site configuration values can be overridden by creating the file
 <tt class="docutils literal"><span class="pre">iris/etc/site.cfg</span></tt>. For example, the following snippet can be used to
 specify a non-standard location for your udunits library:</p>
@@ -240,10 +275,13 @@ udunits2_path = /path/to/libudunits2.so</pre>
 See <a class="reference internal" href="iris/iris/config.html#module-iris.config" title="iris.config"><tt class="xref py py-func docutils literal"><span class="pre">iris.config()</span></tt></a> for further configuration options.</p>
 </div>
 <div class="section" id="packaged-distributions">
-<h2>Packaged distributions<a class="headerlink" href="#packaged-distributions" title="Permalink to this headline">¶</a></h2>
-<p>The Enthought Python Distribution <a class="reference external" href="http://www.enthought.com/products/epd.php">(EPD)</a> for Windows, OS X or
-Redhat provides some of the dependencies for Iris as does <a class="reference external" href="http://www.pythonxy.com/">Python (x, y)</a> which tends to be updated a
+<h3>Packaged distributions<a class="headerlink" href="#packaged-distributions" title="Permalink to this headline">¶</a></h3>
+<p>The Enthought Python Distribution (EPD)
+<a class="reference external" href="http://www.enthought.com/products/epd.php">http://www.enthought.com/products/epd.php</a> for Windows, OS X or
+Redhat provides some of the dependencies for Iris as does <a href="#id1"><span class="problematic" id="id2">`</span></a>Python (x, y)
+<a class="reference external" href="http://www.pythonxy.com/">http://www.pythonxy.com/</a> which tends to be updated a
 bit more frequently.</p>
+</div>
 </div>
 </div>
 
