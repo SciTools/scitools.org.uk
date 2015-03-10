@@ -3,6 +3,7 @@
 import os
 import hashlib
 import subprocess
+import shutil
 
 
 def rationalise(root, common_directory, dry_run=False):
@@ -32,8 +33,13 @@ def rationalise(root, common_directory, dry_run=False):
                 print 'git mv {} {}'.format(fpath, common_path)
                 new_files.append(common_path)
             else:
-                subprocess.check_call(['git', 'mv', fpath, common_path],
-                                      cwd=directory)
+                tracked = subprocess.check_output(['git', 'ls-files', fpath])
+                is_tracked = bool(tracked.strip())
+                if is_tracked:
+                    subprocess.check_call(['git', 'mv', fpath, common_path],
+                                          cwd=directory)
+                else:
+                    shutil.move(fpath, common_path)
         else:
             if dry_run:
                 print 'rm {}'.format(fpath)

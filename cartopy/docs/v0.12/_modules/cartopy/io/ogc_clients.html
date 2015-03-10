@@ -1,0 +1,880 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartopy.io.ogc_clients &mdash; cartopy 0.12.0rc1 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '0.12.0rc1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="cartopy 0.12.0rc1 documentation" href="../../../index.html" />
+    <link rel="up" title="cartopy.io" href="../io.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        
+
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../io.html" accesskey="U">cartopy.io</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../../../index.html">
+<img src="../../../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cartopy.io.ogc_clients</h1><div class="highlight"><pre>
+<span class="c"># (C) British Crown Copyright 2014, Met Office</span>
+<span class="c">#</span>
+<span class="c"># This file is part of cartopy.</span>
+<span class="c">#</span>
+<span class="c"># cartopy is free software: you can redistribute it and/or modify it under</span>
+<span class="c"># the terms of the GNU Lesser General Public License as published by the</span>
+<span class="c"># Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># cartopy is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU Lesser General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c"># along with cartopy.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implements RasterSource classes which can retrieve imagery from web services</span>
+<span class="sd">such as WMS and WMTS.</span>
+
+<span class="sd">The matplotlib interface can make use of RasterSources via the</span>
+<span class="sd">:meth:`cartopy.mpl.geoaxes.GeoAxes.add_raster` method,</span>
+<span class="sd">with additional specific methods which make use of this for WMS and WMTS</span>
+<span class="sd">(:meth:`~cartopy.mpl.geoaxes.GeoAxes.add_wms` and</span>
+<span class="sd">:meth:`~cartopy.mpl.geoaxes.GeoAxes.add_wmts`). An example of using WMTS in</span>
+<span class="sd">this way can be found at :ref:`examples-wmts`.</span>
+
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+<span class="kn">from</span> <span class="nn">xml.etree</span> <span class="kn">import</span> <span class="n">ElementTree</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">owslib.wms</span> <span class="kn">import</span> <span class="n">WebMapService</span>
+    <span class="kn">from</span> <span class="nn">owslib.wfs</span> <span class="kn">import</span> <span class="n">WebFeatureService</span>
+    <span class="kn">import</span> <span class="nn">owslib.util</span>
+    <span class="kn">import</span> <span class="nn">owslib.wmts</span>
+    <span class="n">_OWSLIB_AVAILABLE</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="n">WebMapService</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">WebFeatureService</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="n">_OWSLIB_AVAILABLE</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">LocatedImage</span><span class="p">,</span> <span class="n">RasterSource</span>
+<span class="kn">from</span> <span class="nn">cartopy.img_transform</span> <span class="kn">import</span> <span class="n">warp_array</span>
+
+
+<span class="n">_OWSLIB_REQUIRED</span> <span class="o">=</span> <span class="s">&#39;OWSLib is required to use OGC web services.&#39;</span>
+
+<span class="c"># Hardcode some known EPSG codes for now.</span>
+<span class="c"># The order given here determines the preferred SRS for WMS retrievals.</span>
+<span class="n">_CRS_TO_OGC_SRS</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">OrderedDict</span><span class="p">(</span>
+    <span class="p">[(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="s">&#39;EPSG:4326&#39;</span><span class="p">),</span>
+     <span class="p">(</span><span class="n">ccrs</span><span class="o">.</span><span class="n">GOOGLE_MERCATOR</span><span class="p">,</span> <span class="s">&#39;EPSG:900913&#39;</span><span class="p">)])</span>
+
+<span class="c"># Standard pixel size of 0.28 mm as defined by WMTS.</span>
+<span class="n">METERS_PER_PIXEL</span> <span class="o">=</span> <span class="mf">0.28e-3</span>
+
+<span class="n">_WGS84_METERS_PER_UNIT</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">6378137</span> <span class="o">/</span> <span class="mi">360</span>
+
+<span class="n">METERS_PER_UNIT</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::27700&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::900913&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s">&#39;urn:ogc:def:crs:OGC:1.3:CRS84&#39;</span><span class="p">:</span> <span class="n">_WGS84_METERS_PER_UNIT</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="n">_URN_TO_CRS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::27700&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span><span class="p">(),</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::4326&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::900913&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">GOOGLE_MERCATOR</span><span class="p">,</span>
+    <span class="s">&#39;urn:ogc:def:crs:OGC:1.3:CRS84&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+    <span class="s">&#39;urn:ogc:def:crs:EPSG::3031&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Stereographic</span><span class="p">(</span><span class="n">central_latitude</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span>
+                                                     <span class="n">true_scale_latitude</span><span class="o">=-</span><span class="mi">71</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c"># XML namespace definitions</span>
+<span class="n">_MAP_SERVER_NS</span> <span class="o">=</span> <span class="s">&#39;{http://mapserver.gis.umn.edu/mapserver}&#39;</span>
+<span class="n">_GML_NS</span> <span class="o">=</span> <span class="s">&#39;{http://www.opengis.net/gml}&#39;</span>
+
+
+<div class="viewcode-block" id="WMSRasterSource"><a class="viewcode-back" href="../../../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMSRasterSource">[docs]</a><span class="k">class</span> <span class="nc">WMSRasterSource</span><span class="p">(</span><span class="n">RasterSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A WMS imagery retriever which can be added to a map.</span>
+
+<span class="sd">    .. note:: Requires owslib and Pillow to work.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        No caching of retrieved maps is done with this WMSRasterSource.</span>
+
+<span class="sd">        To reduce load on the WMS server it is encouraged to tile</span>
+<span class="sd">        map requests and subsequently stitch them together to recreate</span>
+<span class="sd">        a single raster, thus allowing for a more aggressive caching scheme,</span>
+<span class="sd">        but this WMSRasterSource does not currently implement WMS tile</span>
+<span class="sd">        fetching.</span>
+
+<span class="sd">        Whilst not the same service, there is also a WMTSRasterSource which</span>
+<span class="sd">        makes use of tiles and comes with built-in caching for fast repeated</span>
+<span class="sd">        map retrievals.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">layers</span><span class="p">,</span> <span class="n">getmap_extra_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        service : string or WebMapService instance</span>
+<span class="sd">            The WebMapService instance, or URL of a WMS service, from whence</span>
+<span class="sd">            to retrieve the image.</span>
+<span class="sd">        layers : string or list of strings</span>
+<span class="sd">            The name(s) of layers to use from the WMS service.</span>
+<span class="sd">        getmap_extra_kwargs : dict or None</span>
+<span class="sd">            Extra keywords to pass through to the service&#39;s getmap method.</span>
+<span class="sd">            If None, a dictionary with ``{&#39;transparent&#39;: True}`` will</span>
+<span class="sd">            be defined.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">WebMapService</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">_OWSLIB_REQUIRED</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="n">WebMapService</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">layers</span> <span class="o">=</span> <span class="p">[</span><span class="n">layers</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">getmap_extra_kwargs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">getmap_extra_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;transparent&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">layers</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;One or more layers must be defined.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="n">layers</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">layer</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;The {!r} layer does not exist in &#39;</span>
+                                 <span class="s">&#39;this service.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">layer</span><span class="p">))</span>
+
+        <span class="c">#: The OWSLib WebMapService instance.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">service</span>
+
+        <span class="c">#: The names of the layers to fetch.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">layers</span>
+
+        <span class="c">#: Extra kwargs passed through to the service&#39;s getmap request.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getmap_extra_kwargs</span> <span class="o">=</span> <span class="n">getmap_extra_kwargs</span>
+
+    <span class="k">def</span> <span class="nf">_native_srs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="c"># Return the SRS which corresponds to the given projection when</span>
+        <span class="c"># known, otherwise return None.</span>
+        <span class="k">return</span> <span class="n">_CRS_TO_OGC_SRS</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_fallback_proj_and_srs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a :class:`cartopy.crs.Projection` and corresponding</span>
+<span class="sd">        SRS string in which the WMS service can supply the requested</span>
+<span class="sd">        layers.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">contents</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">contents</span>
+        <span class="k">for</span> <span class="n">proj</span><span class="p">,</span> <span class="n">srs</span> <span class="ow">in</span> <span class="n">_CRS_TO_OGC_SRS</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+            <span class="n">missing</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">srs</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">contents</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">crsOptions</span> <span class="k">for</span>
+                          <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">missing</span><span class="p">:</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="n">missing</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;The requested layers are not available in a &#39;</span>
+                             <span class="s">&#39;known SRS.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">proj</span><span class="p">,</span> <span class="n">srs</span>
+
+    <span class="k">def</span> <span class="nf">validate_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_native_srs</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_fallback_proj_and_srs</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_image_and_extent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wms_proj</span><span class="p">,</span> <span class="n">wms_srs</span><span class="p">,</span> <span class="n">wms_extent</span><span class="p">,</span> <span class="n">output_proj</span><span class="p">,</span>
+                          <span class="n">output_extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">wms_extent</span>
+        <span class="n">wms_image</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">getmap</span><span class="p">(</span><span class="n">layers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">,</span>
+                                        <span class="n">srs</span><span class="o">=</span><span class="n">wms_srs</span><span class="p">,</span>
+                                        <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span><span class="p">),</span>
+                                        <span class="n">size</span><span class="o">=</span><span class="n">target_resolution</span><span class="p">,</span>
+                                        <span class="n">format</span><span class="o">=</span><span class="s">&#39;image/png&#39;</span><span class="p">,</span>
+                                        <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">getmap_extra_kwargs</span><span class="p">)</span>
+        <span class="n">wms_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">wms_image</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+
+        <span class="k">if</span> <span class="n">wms_proj</span> <span class="o">==</span> <span class="n">output_proj</span><span class="p">:</span>
+            <span class="n">extent</span> <span class="o">=</span> <span class="n">output_extent</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># Convert Image to numpy array (flipping so that origin</span>
+            <span class="c"># is &#39;lower&#39;).</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">warp_array</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">wms_image</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span>
+                                     <span class="n">source_proj</span><span class="o">=</span><span class="n">wms_proj</span><span class="p">,</span>
+                                     <span class="n">source_extent</span><span class="o">=</span><span class="n">wms_extent</span><span class="p">,</span>
+                                     <span class="n">target_proj</span><span class="o">=</span><span class="n">output_proj</span><span class="p">,</span>
+                                     <span class="n">target_res</span><span class="o">=</span><span class="n">target_resolution</span><span class="p">,</span>
+                                     <span class="n">target_extent</span><span class="o">=</span><span class="n">output_extent</span><span class="p">,</span>
+                                     <span class="n">mask_extrapolated</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+            <span class="c"># Convert arrays with masked RGB(A) values to non-masked RGBA</span>
+            <span class="c"># arrays, setting the alpha channel to zero for masked values.</span>
+            <span class="c"># This avoids unsightly grey boundaries appearing when the</span>
+            <span class="c"># extent is limited (i.e. not global).</span>
+            <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">ma</span><span class="o">.</span><span class="n">is_masked</span><span class="p">(</span><span class="n">img</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="mi">3</span><span class="p">,):</span>
+                    <span class="c"># RGB</span>
+                    <span class="n">old_img</span> <span class="o">=</span> <span class="n">img</span>
+                    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="p">(</span><span class="mi">4</span><span class="p">,),</span> <span class="n">dtype</span><span class="o">=</span><span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+                    <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_img</span>
+                    <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="o">~</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">old_img</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                    <span class="k">if</span> <span class="n">img</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">kind</span> <span class="o">==</span> <span class="s">&#39;u&#39;</span><span class="p">:</span>
+                        <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">*=</span> <span class="mi">255</span>
+                <span class="k">elif</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="mi">4</span><span class="p">,):</span>
+                    <span class="c"># RGBA</span>
+                    <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">mask</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span> <span class="mi">0</span><span class="p">,</span>
+                                            <span class="n">img</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">])</span>
+                    <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">data</span>
+
+            <span class="c"># Convert warped image array back to an Image, undoing the</span>
+            <span class="c"># earlier flip.</span>
+            <span class="n">wms_image</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">fromarray</span><span class="p">(</span><span class="n">img</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="n">LocatedImage</span><span class="p">(</span><span class="n">wms_image</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">extent</span>
+        <span class="n">target_resolution</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">val</span><span class="p">))</span> <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">target_resolution</span><span class="p">]</span>
+        <span class="n">wms_srs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_native_srs</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">wms_srs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">wms_proj</span> <span class="o">=</span> <span class="n">projection</span>
+            <span class="n">wms_extents</span> <span class="o">=</span> <span class="p">[</span><span class="n">extent</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># The SRS for the requested projection is not known, so</span>
+            <span class="c"># attempt to use the fallback and perform the necessary</span>
+            <span class="c"># transformations.</span>
+            <span class="n">wms_proj</span><span class="p">,</span> <span class="n">wms_srs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_fallback_proj_and_srs</span><span class="p">()</span>
+
+            <span class="c"># Calculate the bounding box(es) in WMS projection.</span>
+
+            <span class="c"># Start with the requested area.</span>
+            <span class="n">target_box</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span><span class="p">)</span>
+            <span class="c"># If the requested area (i.e. target_box) is bigger (or</span>
+            <span class="c"># nearly bigger) than the entire output projection domain</span>
+            <span class="c"># then we erode the request area to avoid re-projection</span>
+            <span class="c"># instabilities near the full-projection limit.</span>
+            <span class="n">buffered_target_box</span> <span class="o">=</span> <span class="n">target_box</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">threshold</span><span class="p">,</span>
+                                                    <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">fudge_mode</span> <span class="o">=</span> <span class="n">buffered_target_box</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">projection</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">fudge_mode</span><span class="p">:</span>
+                <span class="n">target_box</span> <span class="o">=</span> <span class="n">projection</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="o">-</span><span class="n">projection</span><span class="o">.</span><span class="n">threshold</span><span class="p">)</span>
+            <span class="c"># Convert the requested area to the WMS server&#39;s projection.</span>
+            <span class="n">wms_polys</span> <span class="o">=</span> <span class="n">wms_proj</span><span class="o">.</span><span class="n">project_geometry</span><span class="p">(</span><span class="n">target_box</span><span class="p">,</span> <span class="n">projection</span><span class="p">)</span>
+            <span class="n">wms_extents</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">wms_poly</span> <span class="ow">in</span> <span class="n">wms_polys</span><span class="p">:</span>
+                <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">wms_poly</span><span class="o">.</span><span class="n">bounds</span>
+                <span class="k">if</span> <span class="n">fudge_mode</span><span class="p">:</span>
+                    <span class="c"># If we shrunk the request area before, then here we</span>
+                    <span class="c"># need to re-inflate.</span>
+                    <span class="n">radius</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">)</span> <span class="o">/</span> <span class="mf">5.0</span>
+                    <span class="n">radius</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">wms_proj</span><span class="o">.</span><span class="n">threshold</span> <span class="o">*</span> <span class="mi">15</span><span class="p">)</span>
+                    <span class="n">wms_poly</span> <span class="o">=</span> <span class="n">wms_poly</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="n">radius</span><span class="p">,</span> <span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+                    <span class="c"># Prevent the expanded request going beyond the</span>
+                    <span class="c"># limits of the projection.</span>
+                    <span class="n">wms_poly</span> <span class="o">=</span> <span class="n">wms_proj</span><span class="o">.</span><span class="n">domain</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">wms_poly</span><span class="p">)</span>
+                    <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">wms_poly</span><span class="o">.</span><span class="n">bounds</span>
+                <span class="n">wms_extents</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">))</span>
+
+        <span class="n">located_images</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">wms_extent</span> <span class="ow">in</span> <span class="n">wms_extents</span><span class="p">:</span>
+            <span class="n">located_images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_image_and_extent</span><span class="p">(</span><span class="n">wms_proj</span><span class="p">,</span> <span class="n">wms_srs</span><span class="p">,</span>
+                                                         <span class="n">wms_extent</span><span class="p">,</span>
+                                                         <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span>
+                                                         <span class="n">target_resolution</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">located_images</span>
+
+</div>
+<div class="viewcode-block" id="WMTSRasterSource"><a class="viewcode-back" href="../../../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMTSRasterSource">[docs]</a><span class="k">class</span> <span class="nc">WMTSRasterSource</span><span class="p">(</span><span class="n">RasterSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A WMTS imagery retriever which can be added to a map.</span>
+
+<span class="sd">    Uses tile caching for fast repeated map retrievals.</span>
+
+<span class="sd">    .. note:: Requires owslib and Pillow to work.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_shared_image_cache</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A nested mapping from WMTS, layer name, tile matrix name, tile row</span>
+<span class="sd">    and tile column to the resulting PIL image::</span>
+
+<span class="sd">        {wmts: {(layer_name, tile_matrix_name): {(row, column): Image}}}</span>
+
+<span class="sd">    This provides a significant boost when producing multiple maps of the</span>
+<span class="sd">    same projection or with an interactive figure.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wmts</span><span class="p">,</span> <span class="n">layer_name</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+
+<span class="sd">            * wmts - The URL of the WMTS, or an</span>
+<span class="sd">                     owslib.wmts.WebMapTileService instance.</span>
+<span class="sd">            * layer_name - The name of the layer to use.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">WebMapService</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">_OWSLIB_REQUIRED</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">wmts</span><span class="p">,</span> <span class="s">&#39;tilematrixsets&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">wmts</span><span class="p">,</span> <span class="s">&#39;contents&#39;</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">wmts</span><span class="p">,</span> <span class="s">&#39;gettile&#39;</span><span class="p">)):</span>
+            <span class="n">wmts</span> <span class="o">=</span> <span class="n">owslib</span><span class="o">.</span><span class="n">wmts</span><span class="o">.</span><span class="n">WebMapTileService</span><span class="p">(</span><span class="n">wmts</span><span class="p">)</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">layer</span> <span class="o">=</span> <span class="n">wmts</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">layer_name</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Invalid layer name {!r} for WMTS at {!r}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                <span class="n">layer_name</span><span class="p">,</span> <span class="n">wmts</span><span class="o">.</span><span class="n">url</span><span class="p">))</span>
+
+        <span class="c">#: The OWSLib WebMapTileService instance.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">wmts</span> <span class="o">=</span> <span class="n">wmts</span>
+
+        <span class="c">#: The layer to fetch.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layer</span> <span class="o">=</span> <span class="n">layer</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_set_name_map</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span> <span class="nf">_matrix_set_name</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+        <span class="n">matrix_set_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_set_name_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">matrix_set_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">wmts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">wmts</span>
+            <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span> <span class="s">&#39;tilematrixsetlinks&#39;</span><span class="p">):</span>
+                <span class="n">matrix_set_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">tilematrixsetlinks</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">matrix_set_names</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="o">.</span><span class="n">tilematrixsets</span>
+            <span class="k">for</span> <span class="n">tile_matrix_set_name</span> <span class="ow">in</span> <span class="n">matrix_set_names</span><span class="p">:</span>
+                <span class="n">tile_matrix_set</span> <span class="o">=</span> <span class="n">wmts</span><span class="o">.</span><span class="n">tilematrixsets</span><span class="p">[</span><span class="n">tile_matrix_set_name</span><span class="p">]</span>
+                <span class="n">crs_urn</span> <span class="o">=</span> <span class="n">tile_matrix_set</span><span class="o">.</span><span class="n">crs</span>
+                <span class="k">if</span> <span class="n">crs_urn</span> <span class="ow">in</span> <span class="n">_URN_TO_CRS</span><span class="p">:</span>
+                    <span class="n">tms_crs</span> <span class="o">=</span> <span class="n">_URN_TO_CRS</span><span class="p">[</span><span class="n">crs_urn</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">tms_crs</span> <span class="o">==</span> <span class="n">projection</span><span class="p">:</span>
+                        <span class="n">matrix_set_name</span> <span class="o">=</span> <span class="n">tile_matrix_set_name</span>
+                        <span class="k">break</span>
+            <span class="k">if</span> <span class="n">matrix_set_name</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="n">available_urns</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span>
+                    <span class="n">wmts</span><span class="o">.</span><span class="n">tilematrixsets</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">crs</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span>
+                    <span class="n">matrix_set_names</span><span class="p">))</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Unable to find tile matrix for projection.&#39;</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">    Projection: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">    Available tile CRS URNs:&#39;</span>
+                <span class="n">msg</span> <span class="o">+=</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">        &#39;</span> <span class="o">+</span> <span class="s">&#39;</span><span class="se">\n</span><span class="s">        &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">available_urns</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_set_name_map</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix_set_name</span>
+        <span class="k">return</span> <span class="n">matrix_set_name</span>
+
+    <span class="k">def</span> <span class="nf">validate_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_set_name</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="n">matrix_set_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_matrix_set_name</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">extent</span>
+        <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">target_resolution</span>
+        <span class="n">max_pixel_span</span> <span class="o">=</span> <span class="nb">min</span><span class="p">((</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">min_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">width</span><span class="p">,</span>
+                             <span class="p">(</span><span class="n">max_y</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">height</span><span class="p">)</span>
+        <span class="n">image</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_wmts_images</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">wmts</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">layer</span><span class="p">,</span>
+                                          <span class="n">matrix_set_name</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span>
+                                          <span class="n">max_pixel_span</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">LocatedImage</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="n">extent</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">_choose_matrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile_matrices</span><span class="p">,</span> <span class="n">meters_per_unit</span><span class="p">,</span> <span class="n">max_pixel_span</span><span class="p">):</span>
+        <span class="c"># Get the tile matrices in order of increasing resolution.</span>
+        <span class="n">tile_matrices</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">tile_matrices</span><span class="p">,</span>
+                               <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">tm</span><span class="p">:</span> <span class="n">tm</span><span class="o">.</span><span class="n">scaledenominator</span><span class="p">,</span>
+                               <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+        <span class="c"># Find which tile matrix has the appropriate resolution.</span>
+        <span class="n">max_scale</span> <span class="o">=</span> <span class="n">max_pixel_span</span> <span class="o">*</span> <span class="n">meters_per_unit</span> <span class="o">/</span> <span class="n">METERS_PER_PIXEL</span>
+        <span class="n">ok_tile_matrices</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="k">lambda</span> <span class="n">tm</span><span class="p">:</span> <span class="n">tm</span><span class="o">.</span><span class="n">scaledenominator</span> <span class="o">&lt;=</span> <span class="n">max_scale</span><span class="p">,</span>
+                                  <span class="n">tile_matrices</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">ok_tile_matrices</span><span class="p">:</span>
+            <span class="n">tile_matrix</span> <span class="o">=</span> <span class="n">ok_tile_matrices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tile_matrix</span> <span class="o">=</span> <span class="n">tile_matrices</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">tile_matrix</span>
+
+    <span class="k">def</span> <span class="nf">_tile_span</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile_matrix</span><span class="p">,</span> <span class="n">meters_per_unit</span><span class="p">):</span>
+        <span class="n">pixel_span</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">scaledenominator</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">METERS_PER_PIXEL</span> <span class="o">/</span> <span class="n">meters_per_unit</span><span class="p">)</span>
+        <span class="n">tile_span_x</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">tilewidth</span> <span class="o">*</span> <span class="n">pixel_span</span>
+        <span class="n">tile_span_y</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">tileheight</span> <span class="o">*</span> <span class="n">pixel_span</span>
+        <span class="k">return</span> <span class="n">tile_span_x</span><span class="p">,</span> <span class="n">tile_span_y</span>
+
+    <span class="k">def</span> <span class="nf">_select_tiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile_matrix</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="p">,</span>
+                      <span class="n">tile_span_x</span><span class="p">,</span> <span class="n">tile_span_y</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="c"># Convert the requested extent from CRS coordinates to tile</span>
+        <span class="c"># indices. See annex H of the WMTS v1.0.0 spec.</span>
+        <span class="c"># NB. The epsilons get rid of any tiles which only just</span>
+        <span class="c"># (i.e. one part in a million) intrude into the requested</span>
+        <span class="c"># extent. Since these wouldn&#39;t be visible anyway there&#39;s nothing</span>
+        <span class="c"># to be gained by spending the time downloading them.</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">extent</span>
+        <span class="n">matrix_min_x</span><span class="p">,</span> <span class="n">matrix_max_y</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">topleftcorner</span>
+        <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">1e-6</span>
+        <span class="n">min_col</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">min_x</span> <span class="o">-</span> <span class="n">matrix_min_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">tile_span_x</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">max_col</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">max_x</span> <span class="o">-</span> <span class="n">matrix_min_x</span><span class="p">)</span> <span class="o">/</span> <span class="n">tile_span_x</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">min_row</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">matrix_max_y</span> <span class="o">-</span> <span class="n">max_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">tile_span_y</span> <span class="o">+</span> <span class="n">epsilon</span><span class="p">)</span>
+        <span class="n">max_row</span> <span class="o">=</span> <span class="nb">int</span><span class="p">((</span><span class="n">matrix_max_y</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">)</span> <span class="o">/</span> <span class="n">tile_span_y</span> <span class="o">-</span> <span class="n">epsilon</span><span class="p">)</span>
+        <span class="c"># Clamp to the limits of the tile matrix.</span>
+        <span class="n">min_col</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_col</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">max_col</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_col</span><span class="p">,</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">matrixwidth</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">min_row</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_row</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">max_row</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_row</span><span class="p">,</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">matrixheight</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c"># Clamp to any layer-specific limits on the tile matrix.</span>
+        <span class="k">if</span> <span class="n">tile_matrix_limits</span><span class="p">:</span>
+            <span class="n">min_col</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_col</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="o">.</span><span class="n">mintilecol</span><span class="p">)</span>
+            <span class="n">max_col</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_col</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="o">.</span><span class="n">maxtilecol</span><span class="p">)</span>
+            <span class="n">min_row</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">min_row</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="o">.</span><span class="n">mintilerow</span><span class="p">)</span>
+            <span class="n">max_row</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">max_row</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="o">.</span><span class="n">maxtilerow</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">min_col</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">min_row</span><span class="p">,</span> <span class="n">max_row</span>
+
+    <span class="k">def</span> <span class="nf">_wmts_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wmts</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">matrix_set_name</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span>
+                     <span class="n">max_pixel_span</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Add images from the specified WMTS layer and matrix set to cover</span>
+<span class="sd">        the specified extent at an appropriate resolution.</span>
+
+<span class="sd">        The zoom level (aka. tile matrix) is chosen to give the lowest</span>
+<span class="sd">        possible resolution which still provides the requested quality.</span>
+<span class="sd">        If insufficient resolution is available, the highest available</span>
+<span class="sd">        resolution is used.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">            * wmts - The owslib.wmts.WebMapTileService providing the tiles.</span>
+<span class="sd">            * layer - The owslib.wmts.ContentMetadata (aka. layer) to draw.</span>
+<span class="sd">            * matrix_set_name - The name of the matrix set to use.</span>
+<span class="sd">            * extent - Tuple of (left, right, bottom, top) in Axes coordinates.</span>
+<span class="sd">            * max_pixel_span - Preferred maximum pixel width or height</span>
+<span class="sd">                               in Axes coordinates.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c"># Find which tile matrix has the appropriate resolution.</span>
+        <span class="n">tile_matrix_set</span> <span class="o">=</span> <span class="n">wmts</span><span class="o">.</span><span class="n">tilematrixsets</span><span class="p">[</span><span class="n">matrix_set_name</span><span class="p">]</span>
+        <span class="n">tile_matrices</span> <span class="o">=</span> <span class="n">tile_matrix_set</span><span class="o">.</span><span class="n">tilematrix</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+        <span class="n">meters_per_unit</span> <span class="o">=</span> <span class="n">METERS_PER_UNIT</span><span class="p">[</span><span class="n">tile_matrix_set</span><span class="o">.</span><span class="n">crs</span><span class="p">]</span>
+        <span class="n">tile_matrix</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_choose_matrix</span><span class="p">(</span><span class="n">tile_matrices</span><span class="p">,</span> <span class="n">meters_per_unit</span><span class="p">,</span>
+                                          <span class="n">max_pixel_span</span><span class="p">)</span>
+
+        <span class="c"># Determine which tiles are required to cover the requested extent.</span>
+        <span class="n">tile_span_x</span><span class="p">,</span> <span class="n">tile_span_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tile_span</span><span class="p">(</span><span class="n">tile_matrix</span><span class="p">,</span>
+                                                   <span class="n">meters_per_unit</span><span class="p">)</span>
+        <span class="n">tile_matrix_set_links</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">layer</span><span class="p">,</span> <span class="s">&#39;tilematrixsetlinks&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">tile_matrix_set_links</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">tile_matrix_limits</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">tile_matrix_set_link</span> <span class="o">=</span> <span class="n">tile_matrix_set_links</span><span class="p">[</span><span class="n">matrix_set_name</span><span class="p">]</span>
+            <span class="n">tile_matrix_limits</span> <span class="o">=</span> <span class="n">tile_matrix_set_link</span><span class="o">.</span><span class="n">tilematrixlimits</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+                <span class="n">tile_matrix</span><span class="o">.</span><span class="n">identifier</span><span class="p">)</span>
+        <span class="n">min_col</span><span class="p">,</span> <span class="n">max_col</span><span class="p">,</span> <span class="n">min_row</span><span class="p">,</span> <span class="n">max_row</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_select_tiles</span><span class="p">(</span>
+            <span class="n">tile_matrix</span><span class="p">,</span> <span class="n">tile_matrix_limits</span><span class="p">,</span> <span class="n">tile_span_x</span><span class="p">,</span> <span class="n">tile_span_y</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+
+        <span class="c"># Find the relevant section of the image cache.</span>
+        <span class="n">tile_matrix_id</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">identifier</span>
+        <span class="n">cache_by_wmts</span> <span class="o">=</span> <span class="n">WMTSRasterSource</span><span class="o">.</span><span class="n">_shared_image_cache</span>
+        <span class="n">cache_by_layer_matrix</span> <span class="o">=</span> <span class="n">cache_by_wmts</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">wmts</span><span class="p">,</span> <span class="p">{})</span>
+        <span class="n">image_cache</span> <span class="o">=</span> <span class="n">cache_by_layer_matrix</span><span class="o">.</span><span class="n">setdefault</span><span class="p">((</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                                                        <span class="n">tile_matrix_id</span><span class="p">),</span> <span class="p">{})</span>
+
+        <span class="c"># To avoid nasty seams between the individual tiles, we</span>
+        <span class="c"># accumulate the tile images into a single image.</span>
+        <span class="n">big_img</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">n_rows</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max_row</span> <span class="o">-</span> <span class="n">min_row</span>
+        <span class="n">n_cols</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">max_col</span> <span class="o">-</span> <span class="n">min_col</span>
+        <span class="c"># Ignore out-of-range errors if the current version of OWSLib</span>
+        <span class="c"># doesn&#39;t provide the regional information.</span>
+        <span class="n">ignore_out_of_range</span> <span class="o">=</span> <span class="n">tile_matrix_set_links</span> <span class="ow">is</span> <span class="bp">None</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_row</span><span class="p">,</span> <span class="n">max_row</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">min_col</span><span class="p">,</span> <span class="n">max_col</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+                <span class="c"># Get the tile&#39;s Image from the cache if possible.</span>
+                <span class="n">img_key</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">col</span><span class="p">)</span>
+                <span class="n">img</span> <span class="o">=</span> <span class="n">image_cache</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">img_key</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">img</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="k">try</span><span class="p">:</span>
+                        <span class="n">tile</span> <span class="o">=</span> <span class="n">wmts</span><span class="o">.</span><span class="n">gettile</span><span class="p">(</span>
+                            <span class="n">layer</span><span class="o">=</span><span class="n">layer</span><span class="o">.</span><span class="n">id</span><span class="p">,</span>
+                            <span class="n">tilematrixset</span><span class="o">=</span><span class="n">matrix_set_name</span><span class="p">,</span>
+                            <span class="n">tilematrix</span><span class="o">=</span><span class="n">tile_matrix_id</span><span class="p">,</span>
+                            <span class="n">row</span><span class="o">=</span><span class="n">row</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">)</span>
+                    <span class="k">except</span> <span class="n">owslib</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">ServiceException</span> <span class="k">as</span> <span class="n">exception</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="p">(</span><span class="s">&#39;TileOutOfRange&#39;</span> <span class="ow">in</span> <span class="n">exception</span><span class="o">.</span><span class="n">message</span> <span class="ow">and</span>
+                                <span class="n">ignore_out_of_range</span><span class="p">):</span>
+                            <span class="k">continue</span>
+                        <span class="k">raise</span> <span class="n">exception</span>
+                    <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">tile</span><span class="o">.</span><span class="n">read</span><span class="p">()))</span>
+                    <span class="n">image_cache</span><span class="p">[</span><span class="n">img_key</span><span class="p">]</span> <span class="o">=</span> <span class="n">img</span>
+                <span class="k">if</span> <span class="n">big_img</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">size</span> <span class="o">=</span> <span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_cols</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">n_rows</span><span class="p">)</span>
+                    <span class="n">big_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s">&#39;RGBA&#39;</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+                <span class="n">top</span> <span class="o">=</span> <span class="p">(</span><span class="n">row</span> <span class="o">-</span> <span class="n">min_row</span><span class="p">)</span> <span class="o">*</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">tileheight</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="p">(</span><span class="n">col</span> <span class="o">-</span> <span class="n">min_col</span><span class="p">)</span> <span class="o">*</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">tilewidth</span>
+                <span class="n">big_img</span><span class="o">.</span><span class="n">paste</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">top</span><span class="p">))</span>
+
+        <span class="k">if</span> <span class="n">big_img</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">img_extent</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">matrix_min_x</span><span class="p">,</span> <span class="n">matrix_max_y</span> <span class="o">=</span> <span class="n">tile_matrix</span><span class="o">.</span><span class="n">topleftcorner</span>
+            <span class="n">min_img_x</span> <span class="o">=</span> <span class="n">matrix_min_x</span> <span class="o">+</span> <span class="n">tile_span_x</span> <span class="o">*</span> <span class="n">min_col</span>
+            <span class="n">max_img_y</span> <span class="o">=</span> <span class="n">matrix_max_y</span> <span class="o">-</span> <span class="n">tile_span_y</span> <span class="o">*</span> <span class="n">min_row</span>
+            <span class="n">img_extent</span> <span class="o">=</span> <span class="p">(</span><span class="n">min_img_x</span><span class="p">,</span> <span class="n">min_img_x</span> <span class="o">+</span> <span class="n">n_cols</span> <span class="o">*</span> <span class="n">tile_span_x</span><span class="p">,</span>
+                          <span class="n">max_img_y</span> <span class="o">-</span> <span class="n">n_rows</span> <span class="o">*</span> <span class="n">tile_span_y</span><span class="p">,</span> <span class="n">max_img_y</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">big_img</span><span class="p">,</span> <span class="n">img_extent</span>
+
+</div>
+<div class="viewcode-block" id="WFSGeometrySource"><a class="viewcode-back" href="../../../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WFSGeometrySource">[docs]</a><span class="k">class</span> <span class="nc">WFSGeometrySource</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Web Feature Service (WFS) retrieval for Cartopy.&quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">service</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="n">getfeature_extra_kwargs</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+
+<span class="sd">        * service:</span>
+<span class="sd">            The URL of a WFS, or an instance of</span>
+<span class="sd">            :class:`owslib.wfs.WebFeatureService`.</span>
+<span class="sd">        * features:</span>
+<span class="sd">            The typename(s) of the features from the WFS that</span>
+<span class="sd">            will be retrieved and made available as geometries.</span>
+
+<span class="sd">        Kwargs:</span>
+
+<span class="sd">        * getfeature_extra_kwargs:</span>
+<span class="sd">            Extra keyword args to pass to the service&#39;s `getfeature` call.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">WebFeatureService</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ImportError</span><span class="p">(</span><span class="n">_OWSLIB_REQUIRED</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">service</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">service</span> <span class="o">=</span> <span class="n">WebFeatureService</span><span class="p">(</span><span class="n">service</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="nb">basestring</span><span class="p">):</span>
+            <span class="n">features</span> <span class="o">=</span> <span class="p">[</span><span class="n">features</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">getfeature_extra_kwargs</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">getfeature_extra_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">features</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;One or more features must be specified.&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">feature</span> <span class="ow">in</span> <span class="n">features</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">feature</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">service</span><span class="o">.</span><span class="n">contents</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;The {!r} feature does not exist in this &#39;</span>
+                                 <span class="s">&#39;service.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">feature</span><span class="p">))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">service</span> <span class="o">=</span> <span class="n">service</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">getfeature_extra_kwargs</span> <span class="o">=</span> <span class="n">getfeature_extra_kwargs</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_default_urn</span> <span class="o">=</span> <span class="bp">None</span>
+
+<div class="viewcode-block" id="WFSGeometrySource.default_projection"><a class="viewcode-back" href="../../../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WFSGeometrySource.default_projection">[docs]</a>    <span class="k">def</span> <span class="nf">default_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a :class:`cartopy.crs.Projection` in which the WFS</span>
+<span class="sd">        service can supply the requested features.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Using first element in crsOptions (default).</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_default_urn</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">default_urn</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">contents</span><span class="p">[</span><span class="n">feature</span><span class="p">]</span><span class="o">.</span><span class="n">crsOptions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span>
+                              <span class="n">feature</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">)</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">default_urn</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Failed to find a single common default SRS &#39;</span>
+                           <span class="s">&#39;across all features (typenames).&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">default_urn</span> <span class="o">=</span> <span class="n">default_urn</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+                <span class="n">default_srs</span> <span class="o">=</span> <span class="n">default_urn</span><span class="o">.</span><span class="n">id</span>
+
+            <span class="k">if</span> <span class="nb">unicode</span><span class="p">(</span><span class="n">default_urn</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_URN_TO_CRS</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Unknown mapping from SRS/CRS_URN {!r} to &#39;</span>
+                                 <span class="s">&#39;cartopy projection.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">default_urn</span><span class="p">))</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">_default_urn</span> <span class="o">=</span> <span class="n">default_urn</span>
+
+        <span class="k">return</span> <span class="n">_URN_TO_CRS</span><span class="p">[</span><span class="nb">unicode</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_default_urn</span><span class="p">)]</span>
+</div>
+<div class="viewcode-block" id="WFSGeometrySource.fetch_geometries"><a class="viewcode-back" href="../../../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WFSGeometrySource.fetch_geometries">[docs]</a>    <span class="k">def</span> <span class="nf">fetch_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return any Point, Linestring or LinearRing geometries available</span>
+<span class="sd">        from the WFS that lie within the specified extent.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * projection: :class:`cartopy.crs.Projection`</span>
+<span class="sd">            The projection in which the extent is specified and in</span>
+<span class="sd">            which the geometries should be returned. Only the default</span>
+<span class="sd">            (native) projection is supported.</span>
+
+<span class="sd">        * extent: four element tuple</span>
+<span class="sd">            (min_x, max_x, min_y, max_y) tuple defining the geographic extent</span>
+<span class="sd">            of the geometries to obtain.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of Shapely geometries.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">default_projection</span><span class="p">()</span> <span class="o">!=</span> <span class="n">projection</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Geometries are only available in projection &#39;</span>
+                             <span class="s">&#39;{!r}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">default_projection</span><span class="p">()))</span>
+
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">extent</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">service</span><span class="o">.</span><span class="n">getfeature</span><span class="p">(</span><span class="n">typename</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">,</span>
+                                           <span class="n">bbox</span><span class="o">=</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span><span class="p">),</span>
+                                           <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">getfeature_extra_kwargs</span><span class="p">)</span>
+        <span class="n">geoms_by_srs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_to_shapely_geoms</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">geoms_by_srs</span><span class="p">:</span>
+            <span class="n">geoms</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">geoms_by_srs</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Unexpected response from the WFS server. The &#39;</span>
+                             <span class="s">&#39;geometries are in multiple SRSs, when only one &#39;</span>
+                             <span class="s">&#39;was expected.&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">srs</span><span class="p">,</span> <span class="n">geoms</span> <span class="o">=</span> <span class="n">geoms_by_srs</span><span class="o">.</span><span class="n">items</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="c"># Attempt to verify the SRS associated with the geometries (if any)</span>
+            <span class="c"># matches the specified projection.</span>
+            <span class="k">if</span> <span class="n">srs</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">srs</span> <span class="ow">in</span> <span class="n">_URN_TO_CRS</span><span class="p">:</span>
+                    <span class="n">geom_proj</span> <span class="o">=</span> <span class="n">_URN_TO_CRS</span><span class="p">[</span><span class="n">srs</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="n">geom_proj</span> <span class="o">!=</span> <span class="n">projection</span><span class="p">:</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;The geometries are not in expected &#39;</span>
+                                         <span class="s">&#39;projection. Expected {!r}, got &#39;</span>
+                                         <span class="s">&#39;{!r}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="n">geom_proj</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Unable to verify matching projections due &#39;</span> \
+                          <span class="s">&#39;to incomplete mappings from SRS identifiers &#39;</span> \
+                          <span class="s">&#39;to cartopy projections. The geometries have &#39;</span> \
+                          <span class="s">&#39;an SRS of {!r}.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">srs</span><span class="p">)</span>
+                    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">geoms</span>
+</div>
+    <span class="k">def</span> <span class="nf">_to_shapely_geoms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert polygon coordinate strings in WFS response XML to Shapely</span>
+<span class="sd">        geometries.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * response: (file-like object)</span>
+<span class="sd">            WFS response XML data.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A dictionary containing geometries, with key-value pairs of</span>
+<span class="sd">            the form {srsname: [geoms]}.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">linear_rings_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">linestrings_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">points_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">tree</span> <span class="o">=</span> <span class="n">ElementTree</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">tree</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s">&#39;.//{}msGeometry&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_MAP_SERVER_NS</span><span class="p">)):</span>
+            <span class="c"># Find LinearRing geometries in our msGeometry node.</span>
+            <span class="n">find_str</span> <span class="o">=</span> <span class="s">&#39;.//{gml}LinearRing&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gml</span><span class="o">=</span><span class="n">_GML_NS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_has_child</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_polygon_coords</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">)</span>
+                <span class="n">linear_rings_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c"># Find LineString geometries in our msGeometry node.</span>
+            <span class="n">find_str</span> <span class="o">=</span> <span class="s">&#39;.//{gml}LineString&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gml</span><span class="o">=</span><span class="n">_GML_NS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_has_child</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_polygon_coords</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">)</span>
+                <span class="n">linestrings_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+            <span class="c"># Find Point geometries in our msGeometry node.</span>
+            <span class="n">find_str</span> <span class="o">=</span> <span class="s">&#39;.//{gml}Point&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">gml</span><span class="o">=</span><span class="n">_GML_NS</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_has_child</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">):</span>
+                <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_polygon_coords</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">)</span>
+                <span class="n">points_data</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+        <span class="n">geoms_by_srs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">srs</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">linear_rings_data</span><span class="p">:</span>
+            <span class="n">geoms_by_srs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">srs</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">LinearRing</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">srs</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">linestrings_data</span><span class="p">:</span>
+            <span class="n">geoms_by_srs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">srs</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">LineString</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="k">for</span> <span class="n">srs</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">points_data</span><span class="p">:</span>
+            <span class="n">geoms_by_srs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">srs</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">geoms_by_srs</span>
+
+    <span class="k">def</span> <span class="nf">_find_polygon_coords</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the x, y coordinate values for all the geometries in</span>
+<span class="sd">        a given`node`.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * node: :class:`xml.etree.ElementTree.Element`</span>
+<span class="sd">            Node of the parsed XML response.</span>
+
+<span class="sd">        * find_str: string</span>
+<span class="sd">            A search string used to match subelements that contain</span>
+<span class="sd">            the coordinates of interest, for example:</span>
+<span class="sd">            &#39;.//{http://www.opengis.net/gml}LineString&#39;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            A list of (srsName, x_vals, y_vals) tuples.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">polygon</span> <span class="ow">in</span> <span class="n">node</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">find_str</span><span class="p">):</span>
+            <span class="n">feature_srs</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">attrib</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s">&#39;srsName&#39;</span><span class="p">)</span>
+            <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+
+            <span class="c"># We can have nodes called `coordinates` or `coord`.</span>
+            <span class="n">coordinates_find_str</span> <span class="o">=</span> <span class="s">&#39;{}coordinates&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_GML_NS</span><span class="p">)</span>
+            <span class="n">coords_find_str</span> <span class="o">=</span> <span class="s">&#39;{}coord&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_GML_NS</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_has_child</span><span class="p">(</span><span class="n">polygon</span><span class="p">,</span> <span class="n">coordinates_find_str</span><span class="p">):</span>
+                <span class="n">points</span> <span class="o">=</span> <span class="n">polygon</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="n">coordinates_find_str</span><span class="p">)</span>
+                <span class="n">coords</span> <span class="o">=</span> <span class="n">points</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39; &#39;</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">coords</span><span class="p">:</span>
+                    <span class="n">x_val</span><span class="p">,</span> <span class="n">y_val</span> <span class="o">=</span> <span class="n">coord</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;,&#39;</span><span class="p">)</span>
+                    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">x_val</span><span class="p">))</span>
+                    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">y_val</span><span class="p">))</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">_node_has_child</span><span class="p">(</span><span class="n">polygon</span><span class="p">,</span> <span class="n">coords_find_str</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">coord</span> <span class="ow">in</span> <span class="n">polygon</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="n">coords_find_str</span><span class="p">):</span>
+                    <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&#39;{}X&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_GML_NS</span><span class="p">))))</span>
+                    <span class="n">y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">coord</span><span class="o">.</span><span class="n">findtext</span><span class="p">(</span><span class="s">&#39;{}Y&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">_GML_NS</span><span class="p">))))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Unable to find or parse coordinate values &#39;</span>
+                                 <span class="s">&#39;from the XML.&#39;</span><span class="p">)</span>
+
+            <span class="n">data</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">feature_srs</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">data</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_node_has_child</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">find_str</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether `node` contains (at any sub-level), a node with name</span>
+<span class="sd">        equal to `find_str`.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">element</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">find_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">element</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        
+
+          <li><a href="../../index.html" >Module code</a> &raquo;</li>
+          <li><a href="../io.html" >cartopy.io</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2011 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
