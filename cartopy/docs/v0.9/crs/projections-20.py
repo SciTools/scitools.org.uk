@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(3.0, 3))
-ax = plt.axes(projection=ccrs.SouthPolarStereo())
-ax.coastlines(resolution='110m')
-ax.gridlines()
+../../../../shared_assets/6138fe698e120b461eb7705fa80e9cda2561e0dff5f2ab036867a434-projections-20.py

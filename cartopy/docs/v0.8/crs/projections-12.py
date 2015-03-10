@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6, 3))
-ax = plt.axes(projection=ccrs.RotatedPole(pole_longitude=177.5, pole_latitude=37.5))
-ax.coastlines(resolution='110m')
-ax.gridlines()
+../../../../shared_assets/c9e67e6076de531093b67f080fe3b9472b9301f8ab249622d4e61294-projections-13.py

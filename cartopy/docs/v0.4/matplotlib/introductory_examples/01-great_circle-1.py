@@ -1,13 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-ax = plt.axes(projection=ccrs.Robinson())
-
-ax.set_global()
-
-ax.coastlines()
-
-plt.plot([-0.08, 132], [51.53, 43.17], color='red',  transform=ccrs.Geodetic())
-plt.plot([-0.08, 132], [51.53, 43.17], color='blue', transform=ccrs.PlateCarree())
-
-plt.show()
+../../../../../shared_assets/d0273c09d6f35a0e56c5919c61fd065f0710d79e5cebad81397b8577-01-great_circle-1.py
