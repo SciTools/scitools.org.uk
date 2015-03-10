@@ -1,0 +1,1 @@
+../../../../shared_assets/a2d2bc60a6b231959bf36126edb3aa51533e1d95cd85863fd9dbe1f5-rotated_pole.py
