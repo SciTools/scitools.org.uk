@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6.92280629527, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.InterruptedGoodeHomolosine())
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/eb392fde128e2a1c343969666d1a1fa2dc2f3332c5a094679a395b2c-table-10.py

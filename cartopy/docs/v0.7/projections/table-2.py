@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(3, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.Mercator())
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/5b9b492c2c8151c3ad3cdb651606e392da764700a83feeabffc9c4a3-table-2.py

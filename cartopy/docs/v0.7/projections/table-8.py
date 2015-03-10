@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.PlateCarree(central_longitude=180))
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/417bd18bb2ed4d2bf595b0a0b492432f2e320d37bae710bcba1b971b-table-8.py

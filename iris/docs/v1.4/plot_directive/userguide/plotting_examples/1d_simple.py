@@ -1,14 +1,1 @@
-import matplotlib.pyplot as plt
-
-import iris
-import iris.plot as iplt
-
-
-fname = iris.sample_data_path('air_temp.pp')
-temperature = iris.load_cube(fname)
-
-# Take a 1d slice using array style indexing.
-temperature_1d = temperature[5, :]
-
-iplt.plot(temperature_1d)
-plt.show()
+../../../../../../shared_assets/925f7322f70db367ae87abfd3eb89f259ea33efc41655fed32ce6b29-1d_simple.py

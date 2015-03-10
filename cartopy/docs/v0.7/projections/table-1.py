@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.RotatedPole(pole_longitude=177.5, pole_latitude=37.5))
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/a84a4dad08b27f0aa3ccc6d595e827a9250bd89d8089b98a5f029fb0-table-1.py

@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6.0, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.Mollweide())
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/2922669f26667277deacc9f1fc14d3c7dece6dd23531a1c29adff08f-table-9.py

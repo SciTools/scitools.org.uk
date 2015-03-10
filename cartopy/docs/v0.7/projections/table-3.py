@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(9.42477796077, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.LambertCylindrical())
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/193cb8eb74d6caba3a4fd2792ce6e54d11d504b841752cc5adfc57c2-table-3.py

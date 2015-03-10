@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(6.0, 3))
-ax = plt.axes(projection=ccrs.Mollweide())
-ax.coastlines(resolution='110m')
-ax.gridlines()
+../../../../shared_assets/afbe8d336aa159622fd5007c5c92af8b7a76cdfaa99eaadb32350073-projections-7.py

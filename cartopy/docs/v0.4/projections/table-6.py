@@ -1,9 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(3.0, 3))
-delta = 0.125
-ax = plt.axes([0+delta, 0+delta, 1-delta, 1-delta], projection=ccrs.Gnomonic())
-#ax.set_global()
-ax.coastlines()
-ax.gridlines()
+../../../../shared_assets/f39af57bd1ae1bd36d08d016f07dddf3fde7abbc71e8f253b9c7ebd6-table-6.py
