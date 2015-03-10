@@ -1,0 +1,41 @@
+{% extends "layout.tmplt" %}
+
+{% block title %}About{% endblock %}
+
+{% block head %}
+   {{ super() }}
+   <script src="jquery.min.js"></script>
+{% endblock %}
+
+{% block content %}
+      <div id="bd">
+          <h1>About</h1>
+                    
+          <h2>Contributors</h2>
+            <p>Iris logo designed by richh98 (rich.hancock@ragtagdev.com)</p>
+			<div class="contributors" id="contributors"></div>
+
+			<script language="Javascript" type="text/javascript">
+				$(document).ready(function() {
+                    var fjson = "jsondata/contributors.json";
+                    var patharray = window.location.pathname.split('/');
+                    var path = "";
+                    for (i=0; i < patharray.length-1; i++){
+                        path += patharray[i] + '/';
+                    }
+                    var url = location.protocol + "//" + location.host + path + fjson
+ 
+					// get data
+					$.getJSON(url, function(data) {
+						for (var i=0; i<data.contributors.length; i++){
+							$('#contributors').append("<p>"+data.contributors[i].profile_name+"&nbsp&nbsp&nbsp"+data.contributors[i].organisation+"<\/p>")
+						 }
+						 $('#contributors').append("<h2>Alumni</h2>");
+						for (var i=0; i<data.alumni.length; i++){
+							$('#contributors').append("<p>"+data.alumni[i].profile_name+"<\/p>")
+						 }
+						});						
+				    });		
+			</script>            
+          </div>
+{% endblock %}
