@@ -1,26 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html dir="ltr" lang="en-gb">
-<!-- Generated automatically by github.com/scitools/scitools.org.uk -->
-<head>
-  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+{% extends "layout.tmplt" %}
 
-  
-  <meta content="AVD" name="author">
-  <meta content="SciTools - Python libraries for Weather and Climate Science."  name="description">
-  <meta content="PP, GRIB1, GRIB2, netcdf, HDF, visualisation, weather, climate, map, cartography, projection, map, analysis,
-  Iris, Cartopy"  name="keywords">
- 
-  
-  <link rel="stylesheet" type="text/css" href="styles/scitools.css">
-  
+{% block title %}Collaboration{% endblock %}
 
-  <title>Collaboration</title>
-  
-</head>
-
-<body>
-<div class="wrapper">
-    <div id="hd">
+{% block banner %}
       <a href="iris/index.html" style="text-decoration:none;color:black;">
           <img src="images/Iris7_1_trim_100.png" width="101" height="100" alt="Iris logo" />Iris
       </a>
@@ -36,23 +18,9 @@
       style="position: absolute; top: 0; right: 35%; border: 0;"
       src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
       alt="Fork Cartopy on GitHub"></a>
-</div>
+{% endblock %}
 
-    <div class="navigation">
-        <ul>
-        
-            <li><a href="index.html">Home</a></li>
-            <li><a href="governance.html">Governance</a></li>
-            <li><a href="iris/index.html">Iris</a></li>
-            <li><a href="cartopy/index.html">Cartopy</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="collaboration.html">Collaboration</a></li>
-            <li><a href="themes.html">Roadmap</a></li>
-        
-        </ul>
-    </div>
-
-    
+{% block content %}
       <h1>Collaboration</h1>
 <p>
 Iris and Cartopy are free and open source projects, published under the <a href="http://www.gnu.org/licenses/lgpl.html">LGPLv3</a> licence.  Both libraries work extensively with third party free and open source libraries.
@@ -119,12 +87,4 @@ In most cases discussions via Github issues and the developer communities (<a hr
 <p>  
 Providing publicly available code which can be developed collaboratively will enable more detailed and focussed discussions of the relevant issues facilitating code adoption.
 </p>
-
-    <div id="ft">
-          &copy; British Crown Copyright 2015, Met Office
-          <br>
-    </div>
-</div>
-
-</body>
-</html>
+{% endblock %}

@@ -4,27 +4,27 @@
 <head>
   <meta content="text/html; charset=UTF-8" http-equiv="content-type">
 
-  
+  {% block head %}
   <meta content="AVD" name="author">
   <meta content="SciTools - Python libraries for Weather and Climate Science."  name="description">
   <meta content="PP, GRIB1, GRIB2, netcdf, HDF, visualisation, weather, climate, map, cartography, projection, map, analysis,
   Iris, Cartopy"  name="keywords">
  
-  
+  {% block css %}
   <link rel="stylesheet" type="text/css" href="styles/scitools.css">
-  
+  {% endblock %}
 
-  <title>SciTools Homepage</title>
-  
+  <title>{% block title %}{% endblock %}</title>
+  {% endblock %}
 </head>
 
 <body>
 <div class="wrapper">
-    <div id="hd">SciTools</div>
+    <div id="hd">{% block banner %}SciTools{% endblock %}</div>
 
     <div class="navigation">
         <ul>
-        
+        {% block navigation %}
             <li><a href="index.html">Home</a></li>
             <li><a href="governance.html">Governance</a></li>
             <li><a href="iris/index.html">Iris</a></li>
@@ -32,12 +32,12 @@
             <li><a href="about.html">About</a></li>
             <li><a href="collaboration.html">Collaboration</a></li>
             <li><a href="themes.html">Roadmap</a></li>
-        
+        {% endblock %}
         </ul>
     </div>
 
-    
-      <div id="bd">
+    {% block content %}
+    <div id="bd">
           <p style="margin-top: 1.5em">Iris and Cartopy are open source Python libraries initially created by the Met Office to enable the visualisation of weather and climate data. Both libraries are actively developed in collaboration with the scientific community.</p>
           <div class="projects">
             <div class="project">
@@ -49,10 +49,11 @@
                 <div class="summary"><a href="cartopy/index.html">Cartopy</a> is a Python package for advanced map generation with a simple matplotlib interface.</div>
             </div>
           </div>
-      </div>
+    </div>
 
+    {% endblock %}
     <div id="ft">
-          &copy; British Crown Copyright 2015, Met Office
+          &copy; British Crown Copyright {% block copy_year %}2015{% endblock %}, Met Office
           <br>
     </div>
 </div>
