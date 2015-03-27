@@ -1,0 +1,21 @@
+.. _General-custom_aggregation:
+
+
+Calculating a custom statistic
+==============================
+
+This example shows how to define and use a custom
+:class:`iris.analysis.Aggregator`, that provides a new statistical operator for
+use with cube aggregation functions such as :meth:`~iris.cube.Cube.collapsed`,
+:meth:`~iris.cube.Cube.aggregated_by` or
+:meth:`~iris.cube.Cube.rolling_window`.
+
+In this case, we have a 240-year sequence of yearly average surface temperature
+over North America, and we want to calculate in how many years these exceed a
+certain temperature over a spell of 5 years or more.
+
+
+
+.. plot:: /net/home/h04/itmh/scitools/iris/docs/iris/example_code/General/custom_aggregation.py
+    :include-source:
+
