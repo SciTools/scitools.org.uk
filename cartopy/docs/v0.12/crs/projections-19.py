@@ -1,1 +1,7 @@
-../../../../shared_assets/818e061660f6710b57233adc4ebd6ffea9930e75384f2acb4a9c6a0e-projections-16.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(2.99893683337, 3))
+ax = plt.axes(projection=ccrs.Geostationary())
+ax.coastlines(resolution='110m')
+ax.gridlines()
