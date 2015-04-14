@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>cartopy.crs &mdash; cartopy 0.12.0rc1 documentation</title>
+    <title>cartopy.crs &mdash; cartopy 0.12.0 documentation</title>
     
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '0.12.0rc1',
+        VERSION:     '0.12.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../../copyright.html" />
-    <link rel="top" title="cartopy 0.12.0rc1 documentation" href="../../index.html" />
+    <link rel="top" title="cartopy 0.12.0 documentation" href="../../index.html" />
     <link rel="up" title="Module code" href="../index.html" />
  
 
@@ -1378,23 +1378,38 @@ border="0" alt="Cartopy" style="margin-left: -60px;"/>
         <span class="n">proj4_params</span> <span class="o">=</span> <span class="p">[(</span><span class="s">&#39;proj&#39;</span><span class="p">,</span> <span class="s">&#39;ortho&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;lon_0&#39;</span><span class="p">,</span> <span class="n">central_longitude</span><span class="p">),</span>
                         <span class="p">(</span><span class="s">&#39;lat_0&#39;</span><span class="p">,</span> <span class="n">central_latitude</span><span class="p">)]</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">Orthographic</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">proj4_params</span><span class="p">,</span> <span class="n">globe</span><span class="o">=</span><span class="n">globe</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_max</span> <span class="o">=</span> <span class="mf">6.4e6</span>
+
+        <span class="c"># TODO: Let the globe return the semimajor axis always.</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">globe</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="ow">or</span> <span class="mf">6378137.0</span><span class="p">)</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">float</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">globe</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="ow">or</span> <span class="n">a</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">b</span> <span class="o">!=</span> <span class="n">a</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s">&#39;The proj4 &quot;ortho&quot; projection does not appear to &#39;</span>
+                          <span class="s">&#39;handle elliptical globes.&#39;</span><span class="p">)</span>
+
+        <span class="c"># To stabilise the projection of geometries, we reduce the boundary by</span>
+        <span class="c"># a tiny fraction at the cost of the extreme edges.</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">_ellipse_boundary</span><span class="p">(</span><span class="n">a</span> <span class="o">*</span> <span class="mf">0.99999</span><span class="p">,</span> <span class="n">b</span> <span class="o">*</span> <span class="mf">0.99999</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">61</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_boundary</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">LinearRing</span><span class="p">(</span><span class="n">coords</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_xlim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boundary</span><span class="o">.</span><span class="n">bounds</span><span class="p">[::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ylim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boundary</span><span class="o">.</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_xlim</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mf">0.02</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">)</span><span class="o">.</span><span class="n">exterior</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_boundary</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">threshold</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="mf">1e5</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_threshold</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">x_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_xlim</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">y_limits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_ylim</span>
 
 </div>
 <span class="k">class</span> <span class="nc">_WarpedRectangularProjection</span><span class="p">(</span><span class="n">Projection</span><span class="p">):</span>

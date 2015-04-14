@@ -1,1 +1,7 @@
-../../../../shared_assets/070fbfa7fa3355fb49d6e7105a4f78cb9876795760363010e786e399-projections-11.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(6, 3))
+ax = plt.axes(projection=ccrs.TransverseMercator())
+ax.coastlines(resolution='110m')
+ax.gridlines()
