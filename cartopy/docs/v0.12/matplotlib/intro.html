@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Using cartopy with matplotlib &mdash; cartopy 0.12.0rc1 documentation</title>
+    <title>Using cartopy with matplotlib &mdash; cartopy 0.12.0 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '0.12.0rc1',
+        VERSION:     '0.12.0',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="cartopy 0.12.0rc1 documentation" href="../index.html" />
+    <link rel="top" title="cartopy 0.12.0 documentation" href="../index.html" />
     <link rel="next" title="More advanced mapping with cartopy and matplotlib" href="advanced_plotting.html" />
     <link rel="prev" title="Using the cartopy shapereader" href="../tutorials/using_the_shapereader.html" />
  
@@ -133,12 +133,12 @@ and then adding some coastlines to the axes:</p>
 <div class="figure">
 <img alt="../_images/intro-1.png" src="../_images/intro-1.png" />
 </div>
-<p>A list of the available projections to be used with matplotlib can be
+<p>A list of the available projections to be used with matplotlib can be 
 found on the <a class="reference internal" href="../crs/projections.html#cartopy-projections"><em>Cartopy projection list</em></a> page.</p>
-<p>The line <tt class="docutils literal"><span class="pre">plt.axes(projection=ccrs.PlateCarree())</span></tt> sets up a
+<p>The line <tt class="docutils literal"><span class="pre">plt.axes(projection=ccrs.PlateCarree())</span></tt> sets up a 
 <a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><tt class="xref py py-class docutils literal"><span class="pre">GeoAxes</span></tt></a> instance
-which exposes a variety of other map related methods, in the case of the
-previous example, we used the
+which exposes a variety of other map related methods, in the case of the 
+previous example, we used the 
 <a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.coastlines" title="cartopy.mpl.geoaxes.GeoAxes.coastlines"><tt class="xref py py-meth docutils literal"><span class="pre">coastlines()</span></tt></a> method
 to add coastlines to the map.</p>
 <p>Lets create another map in a different projection, and make use of the
@@ -162,9 +162,9 @@ with an image underlay with coastlines over the top.</p>
 <div class="section" id="adding-data-to-the-map">
 <h2>Adding data to the map<a class="headerlink" href="#adding-data-to-the-map" title="Permalink to this headline">¶</a></h2>
 <p>Once you have the map just the way you want it, data can be added to it in exactly the same way as
-with normal matplotlib axes. By default, the coordinate system of any data added to a GeoAxes is
-the same as the coordinate system of the GeoAxes itself, to control which coordinate system
-that the given data is in, you can add the <tt class="docutils literal"><span class="pre">transform</span></tt> keyword with an appropriate
+with normal matplotlib axes. By default, the coordinate system of any data added to a GeoAxes is 
+the same as the coordinate system of the GeoAxes itself, to control which coordinate system 
+that the given data is in, you can add the <tt class="docutils literal"><span class="pre">transform</span></tt> keyword with an appropriate 
 <a class="reference internal" href="../crs/index.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><tt class="xref py py-class docutils literal"><span class="pre">cartopy.crs.CRS</span></tt></a> instance:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>

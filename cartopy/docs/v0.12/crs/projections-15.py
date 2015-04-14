@@ -1,1 +1,7 @@
-../../../../shared_assets/cfb1787d2c409121f3626ee1c3ca6c46c7f7efc4d5e6b3c5a7a03a92-projections-12.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(6.92280629527, 3))
+ax = plt.axes(projection=ccrs.InterruptedGoodeHomolosine())
+ax.coastlines(resolution='110m')
+ax.gridlines()

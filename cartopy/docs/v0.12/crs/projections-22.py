@@ -1,1 +1,7 @@
-../../../../shared_assets/fd2b5047d07b004a8f945c4346dfb51999efb78cc5574e01e2914bba-projections-19.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(2.43233741378, 3))
+ax = plt.axes(projection=ccrs.OSNI())
+ax.coastlines(resolution='10m')
+ax.gridlines()
