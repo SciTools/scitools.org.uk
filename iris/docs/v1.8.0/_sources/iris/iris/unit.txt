@@ -1,0 +1,133 @@
+.. _iris.unit:
+
+=========
+iris.unit
+=========
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.unit
+
+In this module:
+
+ * :py:obj:`Unit`
+ * :py:obj:`date2num`
+ * :py:obj:`decode_time`
+ * :py:obj:`encode_clock`
+ * :py:obj:`encode_date`
+ * :py:obj:`encode_time`
+ * :py:obj:`num2date`
+
+
+
+A class to represent S.I. units and support common operations to
+manipulate such units in a consistent manner as per UDUNITS-2.
+
+These operations include scaling the unit, offsetting the unit by a
+constant or time, inverting the unit, raising the unit by a power,
+taking a root of the unit, taking a log of the unit, multiplying the
+unit by a constant or another unit, dividing the unit by a constant
+or another unit, comparing units, copying units and converting unit
+data to single precision or double precision floating point numbers.
+
+This class also supports time and calendar defintion and manipulation.
+
+..
+
+    .. autoclass:: iris.unit.Unit
+        :members:
+        :undoc-members:
+        :inherited-members:
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.date2num
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.decode_time
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.encode_clock
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.encode_date
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.encode_time
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.unit.num2date
+
