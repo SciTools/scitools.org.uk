@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>What’s new in Iris 1.8 &mdash; Iris 1.8.0-rc.1 documentation</title>
+    <title>What’s new in Iris 1.8 &mdash; Iris 1.8.1rc1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.8.0-rc.1',
+        VERSION:     '1.8.1rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.8.0-rc.1 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.8.1rc1 documentation" href="../index.html" />
     <link rel="up" title="What’s new in Iris" href="index.html" />
     <link rel="next" title="What’s new in Iris 1.7" href="1.7.html" />
     <link rel="prev" title="What’s new in Iris" href="index.html" />
@@ -72,7 +72,11 @@
   <ul>
 <li><a class="reference internal" href="#">What&#8217;s new in Iris 1.8</a><ul>
 <li><a class="reference internal" href="#iris-1-8-features">Iris 1.8 features</a></li>
-<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a><ul>
+<li><a class="reference internal" href="#id1">1.8.0</a></li>
+<li><a class="reference internal" href="#id2">1.8.1</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deprecations">Deprecations</a></li>
 <li><a class="reference internal" href="#documentation-changes">Documentation Changes</a></li>
 </ul>
@@ -117,9 +121,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.8.0</td>
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.8.1rc1</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">???</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">21st May 2015</td>
 </tr>
 </tbody>
 </table>
@@ -237,10 +241,15 @@ to a different coordinate system.</li>
 <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.apply_ufunc" title="iris.analysis.maths.apply_ufunc"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.maths.apply_ufunc()</span></tt></a>.</li>
 <li>Generic functions can be applied to <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">Cube</span></tt></a> instances using 
 <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.IFunc" title="iris.analysis.maths.IFunc"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.maths.IFunc</span></tt></a>.</li>
+<li>The <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.Linear</span></tt></a> scheme now supports regridding as well as interpolation.
+This enables <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></tt></a> to perform bilinear regridding, which now
+replaces the experimental routine &#8220;iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid&#8221;.</li>
 </ul>
 </div>
 <div class="section" id="bugs-fixed">
 <h2>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>1.8.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix in netCDF loader to correctly determine whether the longitude coordinate
 (including scalar coordinates) is circular.</li>
@@ -259,11 +268,32 @@ convertible to radians.</li>
 <li>NetCDF loader now loads units that are empty strings as dimensionless.</li>
 </ul>
 </div>
+<div class="section" id="id2">
+<h3>1.8.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The PP loader now carefully handles floating point errors in date time conversions to hours.</li>
+<li>The handling fill values for lazy data loaded from NetCDF files is altered, such that the 
+_FillValue set in the file is preserved through lazy operations.</li>
+<li>The risk that cube intersections could return incorrect results due to floating point
+tolerances is reduced.</li>
+<li>The new GRIB2 loading code is altered to enable the loading of various data representation
+templates; the data value unpacking is handled by the GRIB API.</li>
+<li>Saving cube collections to NetCDF, where multiple similar aux-factories exist within the cubes, 
+is now carefully handled such that extra file variables are created where required in some cases.</li>
+</ul>
+</div>
+</div>
 <div class="section" id="deprecations">
 <h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>The original GRIB loader has been deprecated and replaced with a new
 template-based GRIB loader.</li>
+<li>Deprecated default NetCDF save behaviour of assigning the outermost
+dimension to be unlimited.  Switch to the new behaviour with no auto
+assignment by setting <tt class="xref py py-data docutils literal"><span class="pre">iris.FUTURE.netcdf_no_unlimited</span></tt> to True.</li>
+<li>The former experimental method
+&#8220;iris.experimental.regrid.regrid_bilinear_rectilinear_src_and_grid&#8221; has been removed, as
+<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.Linear</span></tt></a> now includes this functionality.</li>
 </ul>
 </div>
 <div class="section" id="documentation-changes">

@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>iris.fileformats.grib &mdash; Iris 1.8.0-rc.1 documentation</title>
+    <title>iris.fileformats.grib &mdash; Iris 1.8.1rc1 documentation</title>
     
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../../',
-        VERSION:     '1.8.0-rc.1',
+        VERSION:     '1.8.1rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../../../copyright.html" />
-    <link rel="top" title="Iris 1.8.0-rc.1 documentation" href="../../../index.html" />
+    <link rel="top" title="Iris 1.8.1rc1 documentation" href="../../../index.html" />
     <link rel="up" title="iris.fileformats" href="../fileformats.html" />
     <link rel="next" title="iris.fileformats.grib.grib_phenom_translation" href="grib/grib_phenom_translation.html" />
     <link rel="prev" title="iris.fileformats.ff" href="ff.html" />
@@ -183,8 +183,10 @@ reduced grid to an equivalent regular grid.</p>
 <dd><p class="first">If <em>True</em>, any cube defined on a reduced grid will be interpolated
 to an equivalent regular grid. If <em>False</em>, any cube defined on a
 reduced grid will be loaded on the raw reduced grid with no shape
-information. The default behaviour is to interpolate cubes on a
-reduced grid to an equivalent regular grid.</p>
+information. If <cite>iris.FUTURE.strict_grib_load</cite> is <cite>True</cite> then this
+keyword has no effect, raw grids are always used. If the older GRIB
+loader is in use then the default behaviour is to interpolate cubes
+on a reduced grid to an equivalent regular grid.</p>
 <div class="last deprecated">
 <p><span class="versionmodified">Deprecated since version 1.8.: </span>Please use strict_grib_load and regrid instead.</p>
 </div>
