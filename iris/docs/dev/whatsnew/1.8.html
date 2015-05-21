@@ -72,7 +72,11 @@
   <ul>
 <li><a class="reference internal" href="#">What&#8217;s new in Iris 1.8</a><ul>
 <li><a class="reference internal" href="#iris-1-8-features">Iris 1.8 features</a></li>
-<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a><ul>
+<li><a class="reference internal" href="#id1">1.8.0</a></li>
+<li><a class="reference internal" href="#id2">1.8.1</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#deprecations">Deprecations</a></li>
 <li><a class="reference internal" href="#documentation-changes">Documentation Changes</a></li>
 </ul>
@@ -117,9 +121,9 @@
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.8.0</td>
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.8.1rc1</td>
 </tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">14th April 2015</td>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">21st May 2015</td>
 </tr>
 </tbody>
 </table>
@@ -244,6 +248,8 @@ replaces the experimental routine &#8220;iris.experimental.regrid.regrid_bilinea
 </div>
 <div class="section" id="bugs-fixed">
 <h2>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id1">
+<h3>1.8.0<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Fix in netCDF loader to correctly determine whether the longitude coordinate
 (including scalar coordinates) is circular.</li>
@@ -261,6 +267,21 @@ convertible to radians.</li>
 <li>GRIB1 loader now creates a time coordinate for a time range indicator of 2.</li>
 <li>NetCDF loader now loads units that are empty strings as dimensionless.</li>
 </ul>
+</div>
+<div class="section" id="id2">
+<h3>1.8.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The PP loader now carefully handles floating point errors in date time conversions to hours.</li>
+<li>The handling fill values for lazy data loaded from NetCDF files is altered, such that the 
+_FillValue set in the file is preserved through lazy operations.</li>
+<li>The risk that cube intersections could return incorrect results due to floating point
+tolerances is reduced.</li>
+<li>The new GRIB2 loading code is altered to enable the loading of various data representation
+templates; the data value unpacking is handled by the GRIB API.</li>
+<li>Saving cube collections to NetCDF, where multiple similar aux-factories exist within the cubes, 
+is now carefully handled such that extra file variables are created where required in some cases.</li>
+</ul>
+</div>
 </div>
 <div class="section" id="deprecations">
 <h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
