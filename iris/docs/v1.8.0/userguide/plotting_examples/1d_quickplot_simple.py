@@ -1,17 +1,1 @@
-
-from __future__ import (absolute_import, division, print_function)
-
-import matplotlib.pyplot as plt
-
-import iris
-import iris.quickplot as qplt
-
-
-fname = iris.sample_data_path('air_temp.pp')
-temperature = iris.load_cube(fname)
-
-# Take a 1d slice using array style indexing.
-temperature_1d = temperature[5, :]
-
-qplt.plot(temperature_1d)
-plt.show()
+../../../../../shared_assets/cb52e6487b4799d62cd58c1993ecebcc7fcdf2abbada2fd4ee01922a-1d_quickplot_simple.py

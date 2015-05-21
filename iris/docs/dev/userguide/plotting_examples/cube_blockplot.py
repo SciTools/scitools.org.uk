@@ -1,18 +1,1 @@
-
-from __future__ import (absolute_import, division, print_function)
-
-import matplotlib.pyplot as plt
-
-import iris
-import iris.quickplot as qplt
-
-
-# Load the data for a single value of model level number.
-fname = iris.sample_data_path('hybrid_height.nc')
-temperature_cube = iris.load_cube(
-    fname, iris.Constraint(model_level_number=1))
-
-# Draw the block plot.
-qplt.pcolormesh(temperature_cube)
-
-plt.show()
+../../../../../shared_assets/48b1096907bc317d86086f5f913351ef72d90cf25b3eb01f155dc43a-cube_blockplot.py

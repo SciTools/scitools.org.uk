@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Iris reference documentation &mdash; Iris 1.8.0-rc.1 documentation</title>
+    <title>Iris reference documentation &mdash; Iris 1.8.1rc1 documentation</title>
     
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '1.8.0-rc.1',
+        VERSION:     '1.8.1rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
     <link rel="copyright" title="Copyright" href="../copyright.html" />
-    <link rel="top" title="Iris 1.8.0-rc.1 documentation" href="../index.html" />
+    <link rel="top" title="Iris 1.8.1rc1 documentation" href="../index.html" />
     <link rel="next" title="iris.analysis" href="iris/analysis.html" />
     <link rel="prev" title="11. End of the user guide" href="../userguide/end_of_userguide.html" />
  
@@ -607,7 +607,7 @@ else return None.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.Future">
-<em class="property">class </em><tt class="descclassname">iris.</tt><tt class="descname">Future</tt><big>(</big><em>cell_datetime_objects=False</em>, <em>netcdf_promote=False</em>, <em>strict_grib_load=False</em><big>)</big><a class="headerlink" href="#iris.Future" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><tt class="descclassname">iris.</tt><tt class="descname">Future</tt><big>(</big><em>cell_datetime_objects=False</em>, <em>netcdf_promote=False</em>, <em>strict_grib_load=False</em>, <em>netcdf_no_unlimited=False</em><big>)</big><a class="headerlink" href="#iris.Future" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <tt class="xref py py-class docutils literal"><span class="pre">thread._local</span></tt></p>
 <p>A container for run-time options controls.</p>
 <p>To adjust the values simply update the relevant attribute from
@@ -640,6 +640,10 @@ loaded as Cubes using a new template-based conversion process.
 This new conversion process will raise an exception when it
 encounters a GRIB message which uses a template not supported
 by the conversion.</p>
+<p>The option <cite>netcdf_no_unlimited</cite>, when True, changes the
+behaviour of the netCDF saver, such that no dimensions are set to
+unlimited.  The current default is that the leading dimension is
+unlimited unless otherwise specified.</p>
 <dl class="method">
 <dt id="iris.Future.context">
 <tt class="descname">context</tt><big>(</big><em>*args</em>, <em>**kwds</em><big>)</big><a class="headerlink" href="#iris.Future.context" title="Permalink to this definition">¶</a></dt>
