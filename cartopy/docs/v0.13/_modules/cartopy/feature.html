@@ -1,0 +1,490 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cartopy.feature &mdash; cartopy 0.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '0.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="cartopy 0.13.0 documentation" href="../../index.html" />
+    <link rel="up" title="Module code" href="../index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        
+
+          <li><a href="../index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cartopy.feature</h1><div class="highlight"><pre>
+<span class="c"># (C) British Crown Copyright 2011 - 2014, Met Office</span>
+<span class="c">#</span>
+<span class="c"># This file is part of cartopy.</span>
+<span class="c">#</span>
+<span class="c"># cartopy is free software: you can redistribute it and/or modify it under</span>
+<span class="c"># the terms of the GNU Lesser General Public License as published by the</span>
+<span class="c"># Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># cartopy is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU Lesser General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c"># along with cartopy.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module defines :class:`Feature` instances, for use with</span>
+<span class="sd">ax.add_feature().</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span>
+<span class="kn">import</span> <span class="nn">six</span>
+
+<span class="kn">from</span> <span class="nn">cartopy.io.ogc_clients</span> <span class="kn">import</span> <span class="n">WFSGeometrySource</span>
+<span class="kn">import</span> <span class="nn">cartopy.io.shapereader</span> <span class="kn">as</span> <span class="nn">shapereader</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span>
+
+
+<span class="n">COLORS</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;land&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">240</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">220</span><span class="p">))</span> <span class="o">/</span> <span class="mf">256.</span><span class="p">,</span>
+          <span class="s">&#39;land_alt1&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">220</span><span class="p">))</span> <span class="o">/</span> <span class="mf">256.</span><span class="p">,</span>
+          <span class="s">&#39;water&#39;</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="mi">152</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">226</span><span class="p">))</span> <span class="o">/</span> <span class="mf">256.</span><span class="p">}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">A dictionary of colors useful for drawing Features.</span>
+
+<span class="sd">The named keys in this dictionary represent the &quot;type&quot; of</span>
+<span class="sd">feature being plotted.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="n">_NATURAL_EARTH_GEOM_CACHE</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Caches a mapping between (name, category, scale) and a tuple of the</span>
+<span class="sd">resulting geometries.</span>
+
+<span class="sd">Provides a significant performance benefit (when combined with object id</span>
+<span class="sd">caching in GeoAxes.add_geometries) when producing multiple maps of the</span>
+<span class="sd">same projection.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<div class="viewcode-block" id="Feature"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.Feature">[docs]</a><span class="k">class</span> <span class="nc">Feature</span><span class="p">(</span><span class="n">six</span><span class="o">.</span><span class="n">with_metaclass</span><span class="p">(</span><span class="n">ABCMeta</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a collection of points, lines and polygons with convenience</span>
+<span class="sd">    methods for common drawing and filtering operations.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">        * crs - the coordinate reference system of this Feature</span>
+
+<span class="sd">    Kwargs:</span>
+<span class="sd">        Keyword arguments to be used when drawing this feature.</span>
+
+<span class="sd">    .. seealso::</span>
+
+<span class="sd">        To add features to the current matplotlib axes, see</span>
+<span class="sd">        :func:`GeoAxes &lt;cartopy.mpl.geoaxes.GeoAxes.add_feature&gt;`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span> <span class="o">=</span> <span class="n">crs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Feature.crs"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.Feature.crs">[docs]</a>    <span class="k">def</span> <span class="nf">crs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;The cartopy CRS for the geometries in this feature.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_crs</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Feature.kwargs"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.Feature.kwargs">[docs]</a>    <span class="k">def</span> <span class="nf">kwargs</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The read-only dictionary of keyword arguments that are used when</span>
+<span class="sd">        creating the matplotlib artists for this feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">)</span>
+</div>
+    <span class="nd">@abstractmethod</span>
+<div class="viewcode-block" id="Feature.geometries"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.Feature.geometries">[docs]</a>    <span class="k">def</span> <span class="nf">geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an iterator of (shapely) geometries for this feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+</div>
+<div class="viewcode-block" id="Feature.intersecting_geometries"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.Feature.intersecting_geometries">[docs]</a>    <span class="k">def</span> <span class="nf">intersecting_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns an iterator of shapely geometries that intersect with</span>
+<span class="sd">        the given extent. The extent is assumed to be in the CRS of</span>
+<span class="sd">        the feature. If extent is None, the method returns all</span>
+<span class="sd">        geometries for this dataset.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">extent_geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                               <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">geom</span> <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">()</span> <span class="k">if</span>
+                    <span class="n">extent_geom</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geometries</span><span class="p">()</span>
+
+</div></div>
+<div class="viewcode-block" id="ShapelyFeature"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.ShapelyFeature">[docs]</a><span class="k">class</span> <span class="nc">ShapelyFeature</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class capable of drawing a collection of</span>
+<span class="sd">    shapely geometries.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geometries</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+
+<span class="sd">        * geometries:</span>
+<span class="sd">            A collection of shapely geometries.</span>
+<span class="sd">        * crs:</span>
+<span class="sd">            The cartopy CRS in which the provided geometries are defined.</span>
+
+<span class="sd">        Kwargs:</span>
+<span class="sd">            Keyword arguments to be used when drawing this feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">ShapelyFeature</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_geoms</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">geometries</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_geoms</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="NaturalEarthFeature"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.NaturalEarthFeature">[docs]</a><span class="k">class</span> <span class="nc">NaturalEarthFeature</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A simple interface to Natural Earth shapefiles.</span>
+
+<span class="sd">    See http://www.naturalearthdata.com/</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">category</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">scale</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+
+<span class="sd">        * category:</span>
+<span class="sd">            The category of the dataset, i.e. either &#39;cultural&#39; or &#39;physical&#39;.</span>
+<span class="sd">        * name:</span>
+<span class="sd">            The name of the dataset, e.g. &#39;admin_0_boundary_lines_land&#39;.</span>
+<span class="sd">        * scale:</span>
+<span class="sd">            The dataset scale, i.e. one of &#39;10m&#39;, &#39;50m&#39;, or &#39;110m&#39;.</span>
+<span class="sd">            Corresponding to 1:10,000,000, 1:50,000,000, and 1:110,000,000</span>
+<span class="sd">            respectively.</span>
+
+<span class="sd">        Kwargs:</span>
+<span class="sd">            Keyword arguments to be used when drawing this feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">NaturalEarthFeature</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span>
+                                                  <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="n">category</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">scale</span> <span class="o">=</span> <span class="n">scale</span>
+
+    <span class="k">def</span> <span class="nf">geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_NATURAL_EARTH_GEOM_CACHE</span><span class="p">:</span>
+            <span class="n">path</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">natural_earth</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">scale</span><span class="p">,</span>
+                                             <span class="n">category</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">category</span><span class="p">,</span>
+                                             <span class="n">name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">geometries</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">geometries</span><span class="p">())</span>
+            <span class="n">_NATURAL_EARTH_GEOM_CACHE</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">geometries</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">geometries</span> <span class="o">=</span> <span class="n">_NATURAL_EARTH_GEOM_CACHE</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">geometries</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="GSHHSFeature"><a class="viewcode-back" href="../../matplotlib/feature_interface.html#cartopy.feature.GSHHSFeature">[docs]</a><span class="k">class</span> <span class="nc">GSHHSFeature</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An interface to the GSHHS dataset.</span>
+
+<span class="sd">    See http://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * scale:</span>
+<span class="sd">        The dataset scale. One of &#39;auto&#39;, &#39;coarse&#39;, &#39;low&#39;, &#39;intermediate&#39;,</span>
+<span class="sd">        &#39;high, or &#39;full&#39; (default is &#39;auto&#39;).</span>
+<span class="sd">    * levels:</span>
+<span class="sd">        A list of integers 1-4 corresponding to the desired GSHHS feature</span>
+<span class="sd">        levels to draw (default is [1] which corresponds to coastlines).</span>
+
+<span class="sd">    Kwargs:</span>
+<span class="sd">        Keyword arguments to be used when drawing the feature. Defaults</span>
+<span class="sd">        are edgecolor=&#39;black&#39; and facecolor=&#39;none&#39;.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_geometries_cache</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A mapping from scale and level to GSHHS shapely geometry::</span>
+
+<span class="sd">        {(scale, level): geom}</span>
+
+<span class="sd">    This provides a perfomance boost when plotting in interactive mode or</span>
+<span class="sd">    instantiating multiple GSHHS artists, by reducing repeated file IO.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="n">levels</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">GSHHSFeature</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">scale</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">(</span><span class="s">&#39;auto&#39;</span><span class="p">,</span> <span class="s">&#39;a&#39;</span><span class="p">,</span> <span class="s">&#39;coarse&#39;</span><span class="p">,</span> <span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="s">&#39;low&#39;</span><span class="p">,</span> <span class="s">&#39;l&#39;</span><span class="p">,</span>
+                         <span class="s">&#39;intermediate&#39;</span><span class="p">,</span> <span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="s">&#39;high&#39;</span><span class="p">,</span> <span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="s">&#39;full&#39;</span><span class="p">,</span> <span class="s">&#39;f&#39;</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Unknown GSHHS scale &#39;{}&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">scale</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">=</span> <span class="n">scale</span>
+
+        <span class="k">if</span> <span class="n">levels</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">levels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">levels</span><span class="p">)</span>
+        <span class="n">unknown_levels</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="o">.</span><span class="n">difference</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">unknown_levels</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Unknown GSHHS levels &quot;</span>
+                             <span class="s">&quot;&#39;{}&#39;.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">unknown_levels</span><span class="p">))</span>
+
+        <span class="c"># Default kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;edgecolor&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;facecolor&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_scale_from_extent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the appropriate scale (e.g. &#39;i&#39;) for the given extent</span>
+<span class="sd">        expressed in PlateCarree CRS.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c"># Default to coarse scale</span>
+        <span class="n">scale</span> <span class="o">=</span> <span class="s">&#39;c&#39;</span>
+
+        <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># Upper limit on extent in degrees.</span>
+            <span class="n">scale_limits</span> <span class="o">=</span> <span class="p">((</span><span class="s">&#39;c&#39;</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s">&#39;h&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">),</span>
+                            <span class="p">(</span><span class="s">&#39;f&#39;</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">))</span>
+
+            <span class="n">width</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">height</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+            <span class="n">min_extent</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">min_extent</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">scale</span><span class="p">,</span> <span class="n">limit</span> <span class="ow">in</span> <span class="n">scale_limits</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="n">min_extent</span> <span class="o">&gt;</span> <span class="n">limit</span><span class="p">:</span>
+                        <span class="k">break</span>
+
+        <span class="k">return</span> <span class="n">scale</span>
+
+    <span class="k">def</span> <span class="nf">geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">intersecting_geometries</span><span class="p">(</span><span class="n">extent</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">intersecting_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span> <span class="o">==</span> <span class="s">&#39;auto&#39;</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale_from_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">scale</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_scale</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">extent_geom</span> <span class="o">=</span> <span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+                                               <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">level</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_levels</span><span class="p">:</span>
+            <span class="n">geoms</span> <span class="o">=</span> <span class="n">GSHHSFeature</span><span class="o">.</span><span class="n">_geometries_cache</span><span class="o">.</span><span class="n">get</span><span class="p">((</span><span class="n">scale</span><span class="p">,</span> <span class="n">level</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">geoms</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="c"># Load GSHHS geometries from appropriate shape file.</span>
+                <span class="c"># TODO selective load based on bbox of each geom in file.</span>
+                <span class="n">path</span> <span class="o">=</span> <span class="n">shapereader</span><span class="o">.</span><span class="n">gshhs</span><span class="p">(</span><span class="n">scale</span><span class="p">,</span> <span class="n">level</span><span class="p">)</span>
+                <span class="n">geoms</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">shapereader</span><span class="o">.</span><span class="n">Reader</span><span class="p">(</span><span class="n">path</span><span class="p">)</span><span class="o">.</span><span class="n">geometries</span><span class="p">())</span>
+                <span class="n">GSHHSFeature</span><span class="o">.</span><span class="n">_geometries_cache</span><span class="p">[(</span><span class="n">scale</span><span class="p">,</span> <span class="n">level</span><span class="p">)]</span> <span class="o">=</span> <span class="n">geoms</span>
+            <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">extent</span> <span class="ow">is</span> <span class="bp">None</span> <span class="ow">or</span> <span class="n">extent_geom</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">geom</span><span class="p">):</span>
+                    <span class="k">yield</span> <span class="n">geom</span>
+
+</div>
+<span class="k">class</span> <span class="nc">WFSFeature</span><span class="p">(</span><span class="n">Feature</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class capable of drawing a collection of geometries</span>
+<span class="sd">    obtained from an OGC Web Feature Service (WFS).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">wfs</span><span class="p">,</span> <span class="n">features</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Args:</span>
+
+<span class="sd">        * wfs: string or :class:`owslib.wfs.WebFeatureService` instance</span>
+<span class="sd">            The WebFeatureService instance, or URL of a WFS service, from which</span>
+<span class="sd">            to retrieve the geometries.</span>
+
+<span class="sd">        * features: string or list of strings</span>
+<span class="sd">            The typename(s) of features available from the web service that</span>
+<span class="sd">            will be retrieved. Somewhat analogous to layers in WMS/WMTS.</span>
+
+<span class="sd">        Kwargs:</span>
+<span class="sd">            Keyword arguments to be used when drawing this feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">source</span> <span class="o">=</span> <span class="n">WFSGeometrySource</span><span class="p">(</span><span class="n">wfs</span><span class="p">,</span> <span class="n">features</span><span class="p">)</span>
+        <span class="n">crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">default_projection</span><span class="p">()</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">WFSFeature</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">crs</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c"># Default kwargs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;edgecolor&#39;</span><span class="p">,</span> <span class="s">&#39;black&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s">&#39;facecolor&#39;</span><span class="p">,</span> <span class="s">&#39;none&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">boundary</span><span class="o">.</span><span class="n">bounds</span>
+        <span class="n">geoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">fetch_geometries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span>
+                                             <span class="n">extent</span><span class="o">=</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span>
+                                                     <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">geoms</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">intersecting_geometries</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">extent</span><span class="p">):</span>
+        <span class="n">geoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">source</span><span class="o">.</span><span class="n">fetch_geometries</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">extent</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">geoms</span><span class="p">)</span>
+
+
+<span class="n">BORDERS</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;cultural&#39;</span><span class="p">,</span> <span class="s">&#39;admin_0_boundary_lines_land&#39;</span><span class="p">,</span>
+                              <span class="s">&#39;110m&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) country boundaries.&quot;&quot;&quot;</span>
+
+
+<span class="n">COASTLINE</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;coastline&#39;</span><span class="p">,</span> <span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                                <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) coastline, including major islands.&quot;&quot;&quot;</span>
+
+
+<span class="n">LAKES</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;lakes&#39;</span><span class="p">,</span> <span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                            <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;face&#39;</span><span class="p">,</span>
+                            <span class="n">facecolor</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="s">&#39;water&#39;</span><span class="p">])</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) natural and artificial lakes.&quot;&quot;&quot;</span>
+
+
+<span class="n">LAND</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;land&#39;</span><span class="p">,</span> <span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                           <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;face&#39;</span><span class="p">,</span>
+                           <span class="n">facecolor</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="s">&#39;land&#39;</span><span class="p">])</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) land polygons, including major islands.&quot;&quot;&quot;</span>
+
+
+<span class="n">OCEAN</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;ocean&#39;</span><span class="p">,</span> <span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                            <span class="n">edgecolor</span><span class="o">=</span><span class="s">&#39;face&#39;</span><span class="p">,</span>
+                            <span class="n">facecolor</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="s">&#39;water&#39;</span><span class="p">])</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) ocean polygons.&quot;&quot;&quot;</span>
+
+
+<span class="n">RIVERS</span> <span class="o">=</span> <span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;rivers_lake_centerlines&#39;</span><span class="p">,</span> <span class="s">&#39;110m&#39;</span><span class="p">,</span>
+                             <span class="n">edgecolor</span><span class="o">=</span><span class="n">COLORS</span><span class="p">[</span><span class="s">&#39;water&#39;</span><span class="p">],</span>
+                             <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+<span class="sd">&quot;&quot;&quot;Small scale (1:110m) single-line drainages, including lake centerlines.&quot;&quot;&quot;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        
+
+          <li><a href="../index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

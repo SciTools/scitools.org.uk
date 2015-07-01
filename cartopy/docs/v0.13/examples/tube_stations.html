@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>tube_stations example &mdash; cartopy 0.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.13.0 documentation" href="../index.html" />
+    <link rel="next" title="un_flag example" href="un_flag.html" />
+    <link rel="prev" title="tick_labels example" href="tick_labels.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+     <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+     <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="un_flag.html" title="un_flag example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="tick_labels.html" title="tick_labels example"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="tick_labels.html"
+                        title="previous chapter">tick_labels example</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="un_flag.html"
+                        title="next chapter">un_flag example</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/examples/tube_stations.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tube-stations-example">
+<span id="examples-tube-stations"></span><h1>tube_stations example<a class="headerlink" href="#tube-stations-example" title="Permalink to this headline">¶</a></h1>
+<p>(<a class="reference external" href="../examples/tube_stations.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/tube_stations_01_00.png" src="../_images/tube_stations_01_00.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Produces a map showing London Underground station locations with high</span>
+<span class="sd">resolution background imagery provided by MapQuest.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">MapQuestOSM</span>
+
+
+<span class="k">def</span> <span class="nf">tube_locations</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns an (n, 2) array of selected London Tube locations in Ordnance</span>
+<span class="sd">    Survey GB coordinates.</span>
+
+<span class="sd">    Source: http://www.doogal.co.uk/london_stations.php</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">531738.</span><span class="p">,</span> <span class="mf">180890.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532379.</span><span class="p">,</span> <span class="mf">179734.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531096.</span><span class="p">,</span> <span class="mf">181642.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530234.</span><span class="p">,</span> <span class="mf">180492.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531688.</span><span class="p">,</span> <span class="mf">181150.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530242.</span><span class="p">,</span> <span class="mf">180982.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531940.</span><span class="p">,</span> <span class="mf">179144.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530406.</span><span class="p">,</span> <span class="mf">180380.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529012.</span><span class="p">,</span> <span class="mf">180283.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530553.</span><span class="p">,</span> <span class="mf">181488.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531165.</span><span class="p">,</span> <span class="mf">179489.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529987.</span><span class="p">,</span> <span class="mf">180812.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">532347.</span><span class="p">,</span> <span class="mf">180962.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529102.</span><span class="p">,</span> <span class="mf">181227.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529612.</span><span class="p">,</span> <span class="mf">180625.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531566.</span><span class="p">,</span> <span class="mf">180025.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529629.</span><span class="p">,</span> <span class="mf">179503.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532105.</span><span class="p">,</span> <span class="mf">181261.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530995.</span><span class="p">,</span> <span class="mf">180810.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529774.</span><span class="p">,</span> <span class="mf">181354.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">528941.</span><span class="p">,</span> <span class="mf">179131.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531050.</span><span class="p">,</span> <span class="mf">179933.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530240.</span><span class="p">,</span> <span class="mf">179718.</span><span class="p">]])</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">imagery</span> <span class="o">=</span> <span class="n">MapQuestOSM</span><span class="p">()</span>
+
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">imagery</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">((</span><span class="o">-</span><span class="mf">0.14</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">51.495</span><span class="p">,</span> <span class="mf">51.515</span><span class="p">))</span>
+
+    <span class="c"># Construct concentric circles and a rectangle,</span>
+    <span class="c"># suitable for a London Underground logo.</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">circle_verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">concentric_circle</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">make_compound_path</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">circle_verts</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                                                <span class="n">Path</span><span class="p">(</span><span class="n">circle_verts</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">))</span>
+
+    <span class="n">rectangle</span> <span class="o">=</span> <span class="n">Path</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+
+    <span class="c"># Add the imagery to the map.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">imagery</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+    <span class="c"># Plot the locations twice, first with the red concentric circles,</span>
+    <span class="c"># then with the blue rectangle.</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">tube_locations</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span><span class="p">(),</span>
+             <span class="n">marker</span><span class="o">=</span><span class="n">concentric_circle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+             <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span><span class="p">(),</span>
+             <span class="n">marker</span><span class="o">=</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span>
+             <span class="n">linestyle</span><span class="o">=</span><span class="s">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;London underground locations&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="un_flag.html" title="un_flag example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="tick_labels.html" title="tick_labels example"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,1 @@
+../../../../shared_assets/761c7416028813ab75a3eda721333b9275cc9e029f2d294d556be5c2-geostationary.py
