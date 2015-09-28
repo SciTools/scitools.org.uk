@@ -140,7 +140,7 @@ plot.</p>
     <span class="c"># Matplotlib v1.3.x it is simply the colorbar.</span>
     <span class="k">try</span><span class="p">:</span>
         <span class="n">colorbar</span> <span class="o">=</span> <span class="n">contour_object</span><span class="o">.</span><span class="n">colorbar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
         <span class="n">colorbar</span> <span class="o">=</span> <span class="n">contour_object</span><span class="o">.</span><span class="n">colorbar</span>
 
     <span class="n">colorbar</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
@@ -206,7 +206,7 @@ plot.</p>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../example_code/Meteorology/deriving_phenomena.py">Source code</a>, <a class="reference external" href="../../../example_code/Meteorology/deriving_phenomena.png">png</a>)</p>
+<p>(<a class="reference external" href="../../examples/Meteorology/deriving_phenomena.py">Source code</a>, <a class="reference external" href="../../examples/Meteorology/deriving_phenomena.png">png</a>)</p>
 <div class="figure" id="deriving-phenomena">
 <img alt="../../_images/deriving_phenomena.png" src="../../_images/deriving_phenomena.png" />
 </div>
