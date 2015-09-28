@@ -197,7 +197,7 @@ allow a coordinate to be easily demoted or promoted within a cube.</li>
 any associated squeeze dimension <a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><tt class="xref py py-class docutils literal"><span class="pre">DimCoord</span></tt></a> to be a scalar coordinate.</li>
 <li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.slices_over" title="iris.cube.Cube.slices_over"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.slices_over()</span></tt></a>, which returns an iterator of all sub-cubes along a given
 coordinate or dimension index.</li>
-<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></tt></a> now accepts datetime.datetime and 
+<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></tt></a> now accepts datetime.datetime and
 netcdftime.datetime instances for date or time coordinates.</li>
 <li>Many new and updated translations between CF spec and STASH codes or GRIB2 parameter
 codes.</li>
@@ -239,7 +239,7 @@ Any bounds on intersected coordinates are ignored but retained.</li>
 to a different coordinate system.</li>
 <li>NumPy universal functions can now be applied to cubes using
 <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.apply_ufunc" title="iris.analysis.maths.apply_ufunc"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.maths.apply_ufunc()</span></tt></a>.</li>
-<li>Generic functions can be applied to <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">Cube</span></tt></a> instances using 
+<li>Generic functions can be applied to <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">Cube</span></tt></a> instances using
 <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.IFunc" title="iris.analysis.maths.IFunc"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.maths.IFunc</span></tt></a>.</li>
 <li>The <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.Linear</span></tt></a> scheme now supports regridding as well as interpolation.
 This enables <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></tt></a> to perform bilinear regridding, which now
@@ -272,13 +272,13 @@ convertible to radians.</li>
 <h3>1.8.1<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>The PP loader now carefully handles floating point errors in date time conversions to hours.</li>
-<li>The handling fill values for lazy data loaded from NetCDF files is altered, such that the 
+<li>The handling fill values for lazy data loaded from NetCDF files is altered, such that the
 _FillValue set in the file is preserved through lazy operations.</li>
 <li>The risk that cube intersections could return incorrect results due to floating point
 tolerances is reduced.</li>
 <li>The new GRIB2 loading code is altered to enable the loading of various data representation
 templates; the data value unpacking is handled by the GRIB API.</li>
-<li>Saving cube collections to NetCDF, where multiple similar aux-factories exist within the cubes, 
+<li>Saving cube collections to NetCDF, where multiple similar aux-factories exist within the cubes,
 is now carefully handled such that extra file variables are created where required in some cases.</li>
 </ul>
 </div>

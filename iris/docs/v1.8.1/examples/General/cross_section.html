@@ -129,13 +129,15 @@ a hybrid height vertical coordinate system.</p>
     <span class="c"># extract a specific slice, or even to loop over *all* cross section slices.</span>
     <span class="n">cross_section</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">theta</span><span class="o">.</span><span class="n">slices</span><span class="p">([</span><span class="s">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s">&#39;model_level_number&#39;</span><span class="p">]))</span>
 
-    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">cross_section</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s">&#39;altitude&#39;</span><span class="p">])</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">cross_section</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s">&#39;altitude&#39;</span><span class="p">],</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;RdBu_r&#39;</span><span class="p">)</span>
     <span class="n">iplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
     <span class="c"># Now do the equivalent plot, only against model level</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 
-    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">cross_section</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s">&#39;model_level_number&#39;</span><span class="p">])</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">cross_section</span><span class="p">,</span> <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="s">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s">&#39;model_level_number&#39;</span><span class="p">],</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;RdBu_r&#39;</span><span class="p">)</span>
     <span class="n">iplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 
 
@@ -143,14 +145,14 @@ a hybrid height vertical coordinate system.</p>
     <span class="n">main</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>(<a class="reference external" href="../../../example_code/General/cross_section.py">Source code</a>)</p>
+<p>(<a class="reference external" href="../../examples/General/cross_section.py">Source code</a>)</p>
 <div class="figure" id="cross-section-00">
 <img alt="../../_images/cross_section_00.png" src="../../_images/cross_section_00.png" />
-<p class="caption">(<a class="reference external" href="../../../example_code/General/cross_section_00.png">png</a>)</p>
+<p class="caption">(<a class="reference external" href="../../examples/General/cross_section_00.png">png</a>)</p>
 </div>
 <div class="figure" id="cross-section-01">
 <img alt="../../_images/cross_section_01.png" src="../../_images/cross_section_01.png" />
-<p class="caption">(<a class="reference external" href="../../../example_code/General/cross_section_01.png">png</a>)</p>
+<p class="caption">(<a class="reference external" href="../../examples/General/cross_section_01.png">png</a>)</p>
 </div>
 </div>
 

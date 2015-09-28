@@ -248,13 +248,13 @@ with a pole defined by BPLAT, BPLON.</li>
 <span class="gp">... </span><span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;air_temp.pp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fields_iter</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">field</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">fields_iter</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Show grid details and first 5 longitude values.</span>
 <span class="gp">... </span><span class="k">print</span> <span class="n">field</span><span class="o">.</span><span class="n">lbcode</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">lbnpt</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">bzx</span><span class="p">,</span> <span class="n">field</span><span class="o">.</span><span class="n">bdx</span>
 <span class="go">1 96 -3.75 3.75</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">field</span><span class="o">.</span><span class="n">bzx</span> <span class="o">+</span> <span class="n">field</span><span class="o">.</span><span class="n">bdx</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
 <span class="go">[  0.     3.75   7.5   11.25  15.  ]</span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Show Iris equivalent information.</span>
 <span class="gp">... </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">[:</span><span class="mi">5</span><span class="p">]</span>
@@ -301,8 +301,8 @@ identified (for example, to load only certain stashcodes with a constraint
 <dd><div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="c"># Show PPfield phenomenon details.</span>
 <span class="gp">... </span><span class="k">print</span> <span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span>
 <span class="go">16203 1</span>
-<span class="gp">&gt;&gt;&gt; </span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Show Iris equivalents.</span>
 <span class="gp">... </span><span class="k">print</span> <span class="n">cube</span><span class="o">.</span><span class="n">standard_name</span><span class="p">,</span> <span class="n">cube</span><span class="o">.</span><span class="n">units</span><span class="p">,</span> <span class="n">cube</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;STASH&#39;</span><span class="p">]</span>
 <span class="go">air_temperature K m01s16i203</span>
@@ -522,7 +522,7 @@ this many hours.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">eg_field</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">eg_field</span><span class="o">.</span><span class="n">lbtim</span><span class="p">,</span> <span class="n">eg_field</span><span class="o">.</span><span class="n">lbproc</span>
 <span class="go">622 128</span>
-<span class="gp">&gt;&gt;&gt; </span>
+<span class="go">&gt;&gt;&gt;</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c"># Print out the Iris equivalent information.</span>
 <span class="gp">... </span><span class="k">print</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span><span class="o">.</span><span class="n">cell_methods</span>
 <span class="go">(CellMethod(method=&#39;mean&#39;, coord_names=(&#39;time&#39;,), intervals=(&#39;6 hour&#39;,), comments=()),)</span>

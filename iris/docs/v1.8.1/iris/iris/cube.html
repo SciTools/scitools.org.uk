@@ -989,7 +989,7 @@ new array of values.</p>
 Similarly, calling methods on, or indexing, the returned Array
 will not cause the Cube to have loaded data.</p>
 <p>If the data have already been loaded for the Cube, the returned
-Array will be a <a class="reference external" href="http://biggus.readthedocs.org/en/latest/creation.html#biggus.NumpyArrayAdapter" title="(in Biggus v0.10.0)"><tt class="xref py py-class docutils literal"><span class="pre">biggus.NumpyArrayAdapter</span></tt></a> which wraps
+Array will be a <a class="reference external" href="http://biggus.readthedocs.org/en/latest/creation.html#biggus.NumpyArrayAdapter" title="(in Biggus v0.12.0)"><tt class="xref py py-class docutils literal"><span class="pre">biggus.NumpyArrayAdapter</span></tt></a> which wraps
 the numpy array from <cite>self.data</cite>.</p>
 <p>Kwargs:</p>
 <ul>
@@ -1524,6 +1524,10 @@ dimension from values of an auxiliary scalar coordinate.</p>
 the cubes will not be able to be concatenated. If this occurs, use
 <a class="reference internal" href="util.html#iris.util.unify_time_units" title="iris.util.unify_time_units"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.unify_time_units()</span></tt></a> to normalise the epochs of the
 time coordinates so that the cubes can be concatenated.</p>
+</div>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">This routine will load your data payload!</p>
 </div>
 </dd></dl>
 
