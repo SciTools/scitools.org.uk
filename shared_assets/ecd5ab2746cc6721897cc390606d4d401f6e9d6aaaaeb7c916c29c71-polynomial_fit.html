@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Fitting a polynomial &mdash; Iris 1.9.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.9.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.9.1 documentation" href="../../index.html" />
+    <link rel="up" title="General visualisation examples" href="index.html" />
+    <link rel="next" title="Plotting in different projections" href="projections_and_annotations.html" />
+    <link rel="prev" title="Example of a polar stereographic plot" href="polar_stereo.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.9 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="projections_and_annotations.html" title="Plotting in different projections"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="polar_stereo.html" title="Example of a polar stereographic plot"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="polar_stereo.html"
+                        title="previous chapter">Example of a polar stereographic plot</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="projections_and_annotations.html"
+                        title="next chapter">Plotting in different projections</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/examples/General/polynomial_fit.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="fitting-a-polynomial">
+<span id="general-polynomial-fit"></span><h1>Fitting a polynomial<a class="headerlink" href="#fitting-a-polynomial" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates computing a polynomial fit to 1D data from an Iris
+cube, adding the fit to the cube&#8217;s metadata, and plotting both the 1D data and
+the fit.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Fitting a polynomial</span>
+<span class="sd">====================</span>
+
+<span class="sd">This example demonstrates computing a polynomial fit to 1D data from an Iris</span>
+<span class="sd">cube, adding the fit to the cube&#39;s metadata, and plotting both the 1D data and</span>
+<span class="sd">the fit.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="kn">as</span> <span class="nn">qplt</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;A1B_north_america.nc&#39;</span><span class="p">)</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="c"># Extract a single time series at a latitude and longitude point.</span>
+    <span class="n">location</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">slices</span><span class="p">([</span><span class="s">&#39;time&#39;</span><span class="p">]))</span>
+
+    <span class="c"># Calculate a polynomial fit to the data at this time series.</span>
+    <span class="n">x_points</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span>
+    <span class="n">y_points</span> <span class="o">=</span> <span class="n">location</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">degree</span> <span class="o">=</span> <span class="mi">2</span>
+
+    <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyfit</span><span class="p">(</span><span class="n">x_points</span><span class="p">,</span> <span class="n">y_points</span><span class="p">,</span> <span class="n">degree</span><span class="p">)</span>
+    <span class="n">y_fitted</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polyval</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">x_points</span><span class="p">)</span>
+
+    <span class="c"># Add the polynomial fit values to the time series to take</span>
+    <span class="c"># full advantage of Iris plotting functionality.</span>
+    <span class="n">long_name</span> <span class="o">=</span> <span class="s">&#39;degree_{}_polynomial_fit_of_{}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">degree</span><span class="p">,</span> <span class="n">cube</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="n">y_fitted</span><span class="p">,</span> <span class="n">long_name</span><span class="o">=</span><span class="n">long_name</span><span class="p">,</span>
+                               <span class="n">units</span><span class="o">=</span><span class="n">location</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+    <span class="n">location</span><span class="o">.</span><span class="n">add_aux_coord</span><span class="p">(</span><span class="n">fit</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">qplt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">),</span> <span class="n">location</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;data&#39;</span><span class="p">)</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">location</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">),</span>
+              <span class="n">location</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="n">long_name</span><span class="p">),</span>
+              <span class="s">&#39;g-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s">&#39;polynomial fit&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s">&#39;best&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Trend of US air temperature over time&#39;</span><span class="p">)</span>
+
+    <span class="n">qplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../../example_code/General/polynomial_fit.py">Source code</a>, <a class="reference external" href="../../../example_code/General/polynomial_fit.png">png</a>)</p>
+<div class="figure" id="polynomial-fit">
+<img alt="../../_images/polynomial_fit.png" src="../../_images/polynomial_fit.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="projections_and_annotations.html" title="Plotting in different projections"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="polar_stereo.html" title="Example of a polar stereographic plot"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" >General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s new in Iris 1.3 &mdash; Iris 1.9.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.9.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.9.1 documentation" href="../index.html" />
+    <link rel="up" title="What’s new in Iris" href="index.html" />
+    <link rel="next" title="What’s new in Iris 1.2" href="1.2.html" />
+    <link rel="prev" title="What’s new in Iris 1.4" href="1.4.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.9 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="1.2.html" title="What’s new in Iris 1.2"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="1.4.html" title="What’s new in Iris 1.4"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" accesskey="U">What&#8217;s new in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s new in Iris 1.3</a><ul>
+<li><a class="reference internal" href="#iris-1-3-features">Iris 1.3 features</a><ul>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#loading-abf-abl-files">Loading ABF/ABL files</a></li>
+<li><a class="reference internal" href="#customised-cf-profiles">Customised CF profiles</a></li>
+<li><a class="reference internal" href="#cube-concatenation">Cube concatenation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="1.4.html"
+                        title="previous chapter">What&#8217;s new in Iris 1.4</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="1.2.html"
+                        title="next chapter">What&#8217;s new in Iris 1.2</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/whatsnew/1.3.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-s-new-in-iris-1-3">
+<h1>What&#8217;s new in Iris 1.3<a class="headerlink" href="#what-s-new-in-iris-1-3" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.3.0</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">27 March 2013</td>
+</tr>
+</tbody>
+</table>
+<p>This document explains the new/changed features of Iris in version 1.3.
+(<a class="reference internal" href="index.html"><em>View all changes</em></a>.)</p>
+<div class="section" id="iris-1-3-features">
+<h2>Iris 1.3 features<a class="headerlink" href="#iris-1-3-features" title="Permalink to this headline">¶</a></h2>
+<p>A summary of the main features added with version 1.3:</p>
+<ul class="simple">
+<li>Experimental support for
+<a class="reference internal" href="#whats-new-abf"><em>loading ABF/ABL files</em></a>.</li>
+<li>Support in <a class="reference internal" href="../iris/iris/analysis/interpolate.html#iris.analysis.interpolate.linear" title="iris.analysis.interpolate.linear"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.interpolate.linear()</span></tt></a> for longitude ranges
+other than [-180, 180].</li>
+<li>Support for <a class="reference internal" href="#whats-new-cf-profile"><em>customised CF profiles</em></a> on
+export to netCDF.</li>
+<li>The documentation now includes guidance on
+<a class="reference internal" href="../userguide/citation.html#citing-iris"><em>how to cite Iris</em></a>.</li>
+<li>The ability to calculate the exponential of a Cube, via
+<a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.exp" title="iris.analysis.maths.exp"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.maths.exp()</span></tt></a>.</li>
+<li>Experimental support for <a class="reference internal" href="#whats-new-concat"><em>concatenating Cubes</em></a>
+along existing dimensions via
+<a class="reference internal" href="../iris/iris/experimental/concatenate.html#iris.experimental.concatenate.concatenate" title="iris.experimental.concatenate.concatenate"><tt class="xref py py-func docutils literal"><span class="pre">iris.experimental.concatenate.concatenate()</span></tt></a>.</li>
+</ul>
+<div class="section" id="bugs-fixed">
+<h3>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Printing a Cube now supports Unicode attribute values.</li>
+<li>PP export now sets LBMIN correctly.</li>
+<li>Converting between reference times now works correctly for
+units with non-Gregorian calendars.</li>
+<li>Slicing a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a> now returns a
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">CubeList</span></tt></a> instead of a normal list.</li>
+</ul>
+</div>
+<div class="section" id="incompatible-changes">
+<h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>N/A</li>
+</ul>
+</div>
+<div class="section" id="deprecations">
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p class="first">The boolean methods/properties on the <a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-class docutils literal"><span class="pre">Unit</span></tt></a> class
+have been updated to <cite>is_...()</cite> methods, in line with the project&#8217;s
+naming conventions.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Deprecated property/method</p>
+</th>
+<th class="head"><p class="first last">New method</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-meth docutils literal"><span class="pre">convertible()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_convertible" title="iris.unit.Unit.is_convertible"><tt class="xref py py-meth docutils literal"><span class="pre">is_convertible()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">dimensionless</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_dimensionless" title="iris.unit.Unit.is_dimensionless"><tt class="xref py py-meth docutils literal"><span class="pre">is_dimensionless()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">no_unit</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_no_unit" title="iris.unit.Unit.is_no_unit"><tt class="xref py py-meth docutils literal"><span class="pre">is_no_unit()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">time_reference</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_time_reference" title="iris.unit.Unit.is_time_reference"><tt class="xref py py-meth docutils literal"><span class="pre">is_time_reference()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">unknown</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_unknown" title="iris.unit.Unit.is_unknown"><tt class="xref py py-meth docutils literal"><span class="pre">is_unknown()</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="loading-abf-abl-files">
+<span id="whats-new-abf"></span><h2>Loading ABF/ABL files<a class="headerlink" href="#loading-abf-abl-files" title="Permalink to this headline">¶</a></h2>
+<p>Support for the ABF and ABL file formats (as
+<a class="reference external" href="http://cliveg.bu.edu/modismisr/lai3g-fpar3g.html">defined</a> by the
+climate and vegetation research group of Boston University), is
+currently provided under the &#8220;experimental&#8221; system. As such, ABF/ABL
+file detection is not automatically enabled.</p>
+<p>To enable ABF/ABL file detection, simply import the
+<tt class="xref py py-mod docutils literal"><span class="pre">iris.experimental.fileformats.abf</span></tt> module before attempting to
+load an ABF/ABL file.</p>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris.experimental.fileformats.abf</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="s">&#39;/path/to/my/data.abf&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="customised-cf-profiles">
+<span id="whats-new-cf-profile"></span><h2>Customised CF profiles<a class="headerlink" href="#customised-cf-profiles" title="Permalink to this headline">¶</a></h2>
+<p>Iris now provides hooks in the CF-netCDF export process to allow
+user-defined routines to check and/or modify the representation in the
+netCDF file.</p>
+<p>The following keys within the <tt class="docutils literal"><span class="pre">iris.site_configuration</span></tt> dictionary have
+been <strong>reserved</strong> as hooks to <em>external</em> user-defined CF profile functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><tt class="docutils literal"><span class="pre">cf_profile</span></tt> injests a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> for analysis and returns a profile result</li>
+<li><tt class="docutils literal"><span class="pre">cf_patch</span></tt> modifies the CF-netCDF file associated with export of the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a></li>
+</ul>
+</div></blockquote>
+<p>The <tt class="docutils literal"><span class="pre">iris.site_configuration</span></tt> dictionary should be configured via the <tt class="docutils literal"><span class="pre">iris/site_config.py</span></tt> file.</p>
+<p>For further implementation details see <tt class="docutils literal"><span class="pre">iris/fileformats/netcdf.py</span></tt>.</p>
+</div>
+<div class="section" id="cube-concatenation">
+<span id="whats-new-concat"></span><h2>Cube concatenation<a class="headerlink" href="#cube-concatenation" title="Permalink to this headline">¶</a></h2>
+<p>Iris now provides initial support for concatenating Cubes along one or
+more existing dimensions. Currently this will force the data to be
+loaded for all the source Cubes, but future work will remove this
+restriction.</p>
+<p>For example, if one began with a collection of Cubes, each containing
+data for a different range of times:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<span class="go">0: air_temperature                     (time: 30; latitude: 145; longitude: 192)</span>
+<span class="go">1: air_temperature                     (time: 30; latitude: 145; longitude: 192)</span>
+<span class="go">2: air_temperature                     (time: 30; latitude: 145; longitude: 192)</span>
+</pre></div>
+</div>
+<p>One could use <a class="reference internal" href="../iris/iris/experimental/concatenate.html#iris.experimental.concatenate.concatenate" title="iris.experimental.concatenate.concatenate"><tt class="xref py py-func docutils literal"><span class="pre">iris.experimental.concatenate.concatenate()</span></tt></a> to
+combine these into a single Cube as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">new_cubes</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">experimental</span><span class="o">.</span><span class="n">concatenate</span><span class="o">.</span><span class="n">concatenate</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">new_cubes</span><span class="p">)</span>
+<span class="go">0: air_temperature                     (time: 90; latitude: 145; longitude: 192)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">As this is an experimental feature, your feedback is especially welcome.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="1.2.html" title="What’s new in Iris 1.2"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="1.4.html" title="What’s new in Iris 1.4"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" >What&#8217;s new in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
