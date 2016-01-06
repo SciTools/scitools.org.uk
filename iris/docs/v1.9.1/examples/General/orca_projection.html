@@ -1,0 +1,225 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Tri-Polar Grid Projected Plotting &mdash; Iris 1.9.1 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.9.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.9.1 documentation" href="../../index.html" />
+    <link rel="up" title="General visualisation examples" href="index.html" />
+    <link rel="next" title="Example of a polar stereographic plot" href="polar_stereo.html" />
+    <link rel="prev" title="Multi-line temperature profile plot" href="lineplot_with_legend.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.9 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="polar_stereo.html" title="Example of a polar stereographic plot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lineplot_with_legend.html" title="Multi-line temperature profile plot"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lineplot_with_legend.html"
+                        title="previous chapter">Multi-line temperature profile plot</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="polar_stereo.html"
+                        title="next chapter">Example of a polar stereographic plot</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/examples/General/orca_projection.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="tri-polar-grid-projected-plotting">
+<span id="general-orca-projection"></span><h1>Tri-Polar Grid Projected Plotting<a class="headerlink" href="#tri-polar-grid-projected-plotting" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates cell plots of data on the semi-structured ORCA2 model
+grid.</p>
+<p>First, the data is projected into the PlateCarree coordinate reference system.</p>
+<p>Second four pcolormesh plots are created from this projected dataset,
+using different projections for the output image.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Tri-Polar Grid Projected Plotting</span>
+<span class="sd">=================================</span>
+
+<span class="sd">This example demonstrates cell plots of data on the semi-structured ORCA2 model</span>
+<span class="sd">grid.</span>
+
+<span class="sd">First, the data is projected into the PlateCarree coordinate reference system.</span>
+
+<span class="sd">Second four pcolormesh plots are created from this projected dataset,</span>
+<span class="sd">using different projections for the output image.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.analysis.cartography</span>
+<span class="kn">import</span> <span class="nn">iris.plot</span> <span class="kn">as</span> <span class="nn">iplt</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="kn">as</span> <span class="nn">qplt</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># Load data</span>
+    <span class="n">filepath</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;orca2_votemper.nc&#39;</span><span class="p">)</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">filepath</span><span class="p">)</span>
+
+    <span class="c"># Choose plot projections</span>
+    <span class="n">projections</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">projections</span><span class="p">[</span><span class="s">&#39;Mollweide&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">()</span>
+    <span class="n">projections</span><span class="p">[</span><span class="s">&#39;PlateCarree&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+    <span class="n">projections</span><span class="p">[</span><span class="s">&#39;NorthPolarStereo&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">NorthPolarStereo</span><span class="p">()</span>
+    <span class="n">projections</span><span class="p">[</span><span class="s">&#39;Orthographic&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=-</span><span class="mi">90</span><span class="p">,</span>
+                                                    <span class="n">central_latitude</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+
+    <span class="n">pcarree</span> <span class="o">=</span> <span class="n">projections</span><span class="p">[</span><span class="s">&#39;PlateCarree&#39;</span><span class="p">]</span>
+    <span class="c"># Transform cube to target projection</span>
+    <span class="n">new_cube</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">cartography</span><span class="o">.</span><span class="n">project</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">pcarree</span><span class="p">,</span>
+                                                         <span class="n">nx</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">ny</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
+
+    <span class="c"># Plot data in each projection</span>
+    <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">projections</span><span class="p">):</span>
+        <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span><span class="s">&#39;ORCA2 Data Projected to {}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">))</span>
+        <span class="c"># Set up axes and title</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">projections</span><span class="p">[</span><span class="n">name</span><span class="p">])</span>
+        <span class="c"># Set limits</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+        <span class="c"># plot with Iris quickplot pcolormesh</span>
+        <span class="n">qplt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">new_cube</span><span class="p">)</span>
+        <span class="c"># Draw coastlines</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+        <span class="n">iplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../examples/General/orca_projection.py">Source code</a>)</p>
+<div class="figure" id="orca-projection-00">
+<img alt="../../_images/orca_projection_00.png" src="../../_images/orca_projection_00.png" />
+<p class="caption">(<a class="reference external" href="../../examples/General/orca_projection_00.png">png</a>)</p>
+</div>
+<div class="figure" id="orca-projection-01">
+<img alt="../../_images/orca_projection_01.png" src="../../_images/orca_projection_01.png" />
+<p class="caption">(<a class="reference external" href="../../examples/General/orca_projection_01.png">png</a>)</p>
+</div>
+<div class="figure" id="orca-projection-02">
+<img alt="../../_images/orca_projection_02.png" src="../../_images/orca_projection_02.png" />
+<p class="caption">(<a class="reference external" href="../../examples/General/orca_projection_02.png">png</a>)</p>
+</div>
+<div class="figure" id="orca-projection-03">
+<img alt="../../_images/orca_projection_03.png" src="../../_images/orca_projection_03.png" />
+<p class="caption">(<a class="reference external" href="../../examples/General/orca_projection_03.png">png</a>)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="polar_stereo.html" title="Example of a polar stereographic plot"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lineplot_with_legend.html" title="Multi-line temperature profile plot"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" >General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
