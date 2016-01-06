@@ -1,1 +1,0 @@
-../../../../../../shared_assets/6d001401df4894e37568867afa06ca67692d62d096ba9ae19528b65c-1d_simple.py
