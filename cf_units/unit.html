@@ -1,0 +1,705 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The Unit Class &mdash; cf_units 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="cf_units 1.1 documentation" href="index.html" />
+    <link rel="next" title="Date and Time Utility Functions" href="utilities.html" />
+    <link rel="prev" title="The cf_units documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Date and Time Utility Functions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="The cf_units documentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">cf_units 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-unit-class">
+<h1>The Unit Class<a class="headerlink" href="#the-unit-class" title="Permalink to this headline">¶</a></h1>
+<p>The primary functionality of <tt class="docutils literal"><span class="pre">cf_units</span></tt> is supplied by the <a class="reference internal" href="#cf_units.Unit" title="cf_units.Unit"><tt class="xref py py-class docutils literal"><span class="pre">Unit</span></tt></a> class:</p>
+<dl class="class">
+<dt id="cf_units.Unit">
+<em class="property">class </em><tt class="descclassname">cf_units.</tt><tt class="descname">Unit</tt><big>(</big><em>unit</em>, <em>calendar=None</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class to represent S.I. units and support common operations to
+manipulate such units in a consistent manner as per UDUNITS-2.</p>
+<p>These operations include scaling the unit, offsetting the unit by a
+constant or time, inverting the unit, raising the unit by a power,
+taking a root of the unit, taking a log of the unit, multiplying the
+unit by a constant or another unit, dividing the unit by a constant
+or another unit, comparing units, copying units and converting unit
+data to single precision or double precision floating point numbers.</p>
+<p>This class also supports time and calendar defintion and manipulation.</p>
+<dl class="attribute">
+<dt id="cf_units.Unit.calendar">
+<tt class="descname">calendar</tt><em class="property"> = None</em><a class="headerlink" href="#cf_units.Unit.calendar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents the unit calendar name, see cf_units.CALENDARS</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.category">
+<tt class="descname">category</tt><em class="property"> = None</em><a class="headerlink" href="#cf_units.Unit.category" title="Permalink to this definition">¶</a></dt>
+<dd><p>Is this an unknown unit, a no-unit, or a UDUNITS-2 unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.convert">
+<tt class="descname">convert</tt><big>(</big><em>value</em>, <em>other</em>, <em>ctype=&lt;class 'ctypes.c_double'&gt;</em>, <em>inplace=False</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.convert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a single value or NumPy array of values from the current unit
+to the other target unit.</p>
+<p>If the units are not convertible, then no conversion will take place.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>value (int/float/numpy.ndarray):</dt>
+<dd><p class="first last">Value/s to be converted.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>other (string/Unit):</dt>
+<dd><p class="first last">Target unit to convert to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>ctype (ctypes.c_float/ctypes.c_double):</dt>
+<dd><p class="first last">Floating point 32-bit single-precision (cf_units.FLOAT32) or
+64-bit double-precision (cf_units.FLOAT64) used for conversion
+when <cite>value</cite> is not a NumPy array or is a NumPy array composed of
+NumPy integers. The default is 64-bit double-precision conversion.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>inplace (bool):</dt>
+<dd><p class="first last">If <tt class="docutils literal"><span class="pre">False</span></tt>, return a deep copy of the value array. If <tt class="docutils literal"><span class="pre">True</span></tt>,
+convert the values in-place. A new array will be created if
+<tt class="docutils literal"><span class="pre">value</span></tt> is an integer NumPy array.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>float or numpy.ndarray of appropriate float type.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;deg_c&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;deg_f&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="go">31.999999999999886</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">FLOAT32</span><span class="p">)</span>
+<span class="go">32.0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a64</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">a64</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="go">array([ 32. ,  33.8,  35.6])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a32</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">a32</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+<span class="go">array([ 32.        ,  33.79999924,  35.59999847], dtype=float32)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Conversion between unit calendars is not permitted.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.date2num">
+<tt class="descname">date2num</tt><big>(</big><em>date</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.date2num"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.date2num" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the numeric time value calculated from the datetime
+object using the current calendar and unit time reference.</p>
+<p>The current unit time reference must be of the form:
+&#8216;&lt;time-unit&gt; since &lt;time-origin&gt;&#8217;
+i.e. &#8216;hours since 1970-01-01 00:00:00&#8217;</p>
+<p>Works for scalars, sequences and numpy arrays. Returns a scalar
+if input is a scalar, else returns a numpy array.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>date (datetime):</dt>
+<dd><p class="first last">A datetime object or a sequence of datetime objects.
+The datetime objects should not include a time-zone offset.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>float or numpy.ndarray of float.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours since 1970-01-01 00:00:00&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">calendar</span><span class="o">=</span><span class="n">cf_units</span><span class="o">.</span><span class="n">CALENDAR_STANDARD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="go">5.00000000372529</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">date2num</span><span class="p">([</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">)])</span>
+<span class="go">array([ 5.,  6.])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.definition">
+<tt class="descname">definition</tt><a class="reference internal" href="_modules/cf_units.html#Unit.definition"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.definition" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>(read-only)</em> The symbolic decomposition of the unit.</p>
+<p>Formats the binary unit into a string representation using
+method <a class="reference internal" href="#cf_units.Unit.format" title="cf_units.Unit.format"><tt class="xref py py-func docutils literal"><span class="pre">cf_units.Unit.format()</span></tt></a> with keyword argument
+option=cf_units.UT_DEFINITION.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;watts&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">definition</span>
+<span class="go">&#39;m2.kg.s-3&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.format">
+<tt class="descname">format</tt><big>(</big><em>option=None</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.format" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a formatted string representation of the binary unit.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>option (cf_units.UT_FORMATS):</dt>
+<dd><p class="first">Set the encoding option of the formatted string representation.
+Valid encoding options may be one of the following enumerations:</p>
+<ul class="simple">
+<li>Unit.UT_ASCII</li>
+<li>Unit.UT_ISO_8859_1</li>
+<li>Unit.UT_LATIN1</li>
+<li>Unit.UT_UTF8</li>
+<li>Unit.UT_NAMES</li>
+<li>Unit.UT_DEFINITION</li>
+</ul>
+<p class="last">Multiple options may be combined within a list. The default
+option is cf_units.UT_ASCII.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
+<span class="go">&#39;m&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cf_units</span><span class="o">.</span><span class="n">UT_NAMES</span><span class="p">)</span>
+<span class="go">&#39;meter&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cf_units</span><span class="o">.</span><span class="n">UT_DEFINITION</span><span class="p">)</span>
+<span class="go">&#39;m&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.invert">
+<tt class="descname">invert</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.invert"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.invert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Invert the unit i.e. find the reciprocal of the unit, and return
+the Unit result.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Unit.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">invert</span><span class="p">()</span>
+<span class="go">Unit(&#39;meter^-1&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_convertible">
+<tt class="descname">is_convertible</tt><big>(</big><em>other</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_convertible"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_convertible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether two units are convertible.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>other (Unit): Unit to be compared.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;kilometers&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_dimensionless">
+<tt class="descname">is_dimensionless</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_dimensionless"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_dimensionless" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the unit is dimensionless.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_dimensionless</span><span class="p">()</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_dimensionless</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_no_unit">
+<tt class="descname">is_no_unit</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_no_unit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_no_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the unit is defined to be a <em>no_unit</em> unit.</p>
+<p>Typically, a quantity such as a string, will have no associated
+unit to describe it. Such a class of quantity may be defined
+using the <em>no_unit</em> unit.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;no unit&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_time">
+<tt class="descname">is_time</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether this unit is a related SI Unit of time.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_time</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meter&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">is_time</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_time_reference">
+<tt class="descname">is_time_reference</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_time_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_time_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the unit is a time reference unit of the form
+&#8216;&lt;time-unit&gt; since &lt;time-origin&gt;&#8217;
+i.e. unit=&#8217;days since 1970-01-01 00:00:00&#8217;</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;days since epoch&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_time_reference</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_udunits">
+<tt class="descname">is_udunits</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_udunits"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_udunits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the unit is a vaild unit of UDUNITS.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_unknown">
+<tt class="descname">is_unknown</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_unknown"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_unknown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the unit is defined to be an <em>unknown</em> unit.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;unknown&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.is_vertical">
+<tt class="descname">is_vertical</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.is_vertical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.is_vertical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether the unit is a related SI Unit of pressure or
+distance.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Boolean.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;millibar&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">()</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;km&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">()</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.log">
+<tt class="descname">log</tt><big>(</big><em>base</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the logorithmic unit corresponding to the given
+logorithmic base.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>base (int/float): Value of the logorithmic base.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Unit(&#39;lb(re 1 meter)&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.modulus">
+<tt class="descname">modulus</tt><a class="reference internal" href="_modules/cf_units.html#Unit.modulus"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.modulus" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>(read-only)</em> Return the modulus value of the unit.</p>
+<dl class="docutils">
+<dt>Convenience method that returns the unit modulus value as follows,</dt>
+<dd><ul class="first last simple">
+<li>&#8216;radians&#8217; - pi*2</li>
+<li>&#8216;degrees&#8217; - 360.0</li>
+<li>Otherwise None.</li>
+</ul>
+</dd>
+<dt>Returns:</dt>
+<dd>float.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;degrees&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">modulus</span>
+<span class="go">360.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.name">
+<tt class="descname">name</tt><a class="reference internal" href="_modules/cf_units.html#Unit.name"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.name" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>(read-only)</em> The full name of the unit.</p>
+<p>Formats the binary unit into a string representation using
+method <a class="reference internal" href="#cf_units.Unit.format" title="cf_units.Unit.format"><tt class="xref py py-func docutils literal"><span class="pre">cf_units.Unit.format()</span></tt></a> with keyword argument
+option=cf_units.UT_NAMES.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;watts&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">name</span>
+<span class="go">&#39;watt&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.num2date">
+<tt class="descname">num2date</tt><big>(</big><em>time_value</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.num2date"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.num2date" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a datetime-like object calculated from the numeric time
+value using the current calendar and the unit time reference.</p>
+<p>The current unit time reference must be of the form:
+&#8216;&lt;time-unit&gt; since &lt;time-origin&gt;&#8217;
+i.e. &#8216;hours since 1970-01-01 00:00:00&#8217;</p>
+<p>The datetime objects returned are &#8216;real&#8217; Python datetime objects
+if the date falls in the Gregorian calendar (i.e. the calendar
+is &#8216;standard&#8217;, &#8216;gregorian&#8217;, or &#8216;proleptic_gregorian&#8217; and the
+date is after 1582-10-15). Otherwise a &#8216;phoney&#8217; datetime-like
+object (netcdftime.datetime) is returned which can handle dates
+that don&#8217;t exist in the Proleptic Gregorian calendar.</p>
+<p>Works for scalars, sequences and numpy arrays. Returns a scalar
+if input is a scalar, else returns a numpy array.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>time_value (float): Numeric time value/s. Maximum resolution
+is 1 second.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>datetime, or numpy.ndarray of datetime object.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours since 1970-01-01 00:00:00&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">calendar</span><span class="o">=</span><span class="n">cf_units</span><span class="o">.</span><span class="n">CALENDAR_STANDARD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="go">datetime.datetime(1970, 1, 1, 6, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">num2date</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="go">array([datetime.datetime(1970, 1, 1, 6, 0),</span>
+<span class="go">       datetime.datetime(1970, 1, 1, 7, 0)], dtype=object)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.offset_by_time">
+<tt class="descname">offset_by_time</tt><big>(</big><em>origin</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.offset_by_time"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.offset_by_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the time unit offset with respect to the time origin.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>origin (float): Time origin as returned by the
+<a class="reference internal" href="utilities.html#cf_units.encode_time" title="cf_units.encode_time"><tt class="xref py py-func docutils literal"><span class="pre">cf_units.encode_time()</span></tt></a> method.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">offset_by_time</span><span class="p">(</span><span class="n">cf_units</span><span class="o">.</span><span class="n">encode_time</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="go">Unit(&#39;hour since 1970-01-01 00:00:00.0000000 UTC&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.origin">
+<tt class="descname">origin</tt><em class="property"> = None</em><a class="headerlink" href="#cf_units.Unit.origin" title="Permalink to this definition">¶</a></dt>
+<dd><p>The original string used to create this unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.root">
+<tt class="descname">root</tt><big>(</big><em>root</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.root"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.root" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the given root of the unit.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>root (int): Value by which the unit root is taken.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>None.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;meters^2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">Unit(&#39;meter&#39;)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Taking a fractional root of a unit is not supported.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.symbol">
+<tt class="descname">symbol</tt><a class="reference internal" href="_modules/cf_units.html#Unit.symbol"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.symbol" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>(read-only)</em> The symbolic representation of the unit.</p>
+<p>Formats the binary unit into a string representation using
+method <a class="reference internal" href="#cf_units.Unit.format" title="cf_units.Unit.format"><tt class="xref py py-func docutils literal"><span class="pre">cf_units.Unit.format()</span></tt></a>.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;watts&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">symbol</span>
+<span class="go">&#39;W&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.title">
+<tt class="descname">title</tt><big>(</big><em>value</em><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.title"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.title" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the unit value as a title string.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>value (float): Unit value to be incorporated into title string.</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours since epoch&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">calendar</span><span class="o">=</span><span class="n">cf_units</span><span class="o">.</span><span class="n">CALENDAR_STANDARD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="go">&#39;1970-01-01 10:00:00&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cf_units.Unit.ut_unit">
+<tt class="descname">ut_unit</tt><em class="property"> = None</em><a class="headerlink" href="#cf_units.Unit.ut_unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference to the ctypes quantity defining the UDUNITS-2 unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cf_units.Unit.utime">
+<tt class="descname">utime</tt><big>(</big><big>)</big><a class="reference internal" href="_modules/cf_units.html#Unit.utime"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cf_units.Unit.utime" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a netcdftime.utime object which performs conversions of
+numeric time values to/from datetime objects given the current
+calendar and unit time reference.</p>
+<p>The current unit time reference must be of the form:
+&#8216;&lt;time-unit&gt; since &lt;time-origin&gt;&#8217;
+i.e. &#8216;hours since 1970-01-01 00:00:00&#8217;</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>netcdftime.utime.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cf_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">cf_units</span><span class="o">.</span><span class="n">Unit</span><span class="p">(</span><span class="s">&#39;hours since 1970-01-01 00:00:00&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                  <span class="n">calendar</span><span class="o">=</span><span class="n">cf_units</span><span class="o">.</span><span class="n">CALENDAR_STANDARD</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ut</span> <span class="o">=</span> <span class="n">u</span><span class="o">.</span><span class="n">utime</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ut</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">datetime.datetime(1970, 1, 1, 2, 0)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">The cf_units documentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="utilities.html"
+                        title="next chapter">Date and Time Utility Functions</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/unit.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="utilities.html" title="Date and Time Utility Functions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="The cf_units documentation"
+             >previous</a> |</li>
+        <li><a href="index.html">cf_units 1.1 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright British Crown Copyright 2015 - 2016, Met Office.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>

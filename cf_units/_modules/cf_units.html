@@ -1,0 +1,2167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>cf_units &mdash; cf_units 1.1 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="cf_units 1.1 documentation" href="../index.html" />
+    <link rel="up" title="Module code" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">cf_units 1.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Module code</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <h1>Source code for cf_units</h1><div class="highlight"><pre>
+<span class="c"># (C) British Crown Copyright 2015 - 2016, Met Office</span>
+<span class="c">#</span>
+<span class="c"># This file is part of cf_units.</span>
+<span class="c">#</span>
+<span class="c"># cf_units is free software: you can redistribute it and/or modify it under</span>
+<span class="c"># the terms of the GNU Lesser General Public License as published by the</span>
+<span class="c"># Free Software Foundation, either version 3 of the License, or</span>
+<span class="c"># (at your option) any later version.</span>
+<span class="c">#</span>
+<span class="c"># cf_units is distributed in the hope that it will be useful,</span>
+<span class="c"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c"># GNU Lesser General Public License for more details.</span>
+<span class="c">#</span>
+<span class="c"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c"># along with cf_units.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Units of measure.</span>
+
+<span class="sd">Provision of a wrapper class to support Unidata/UCAR UDUNITS-2, and the</span>
+<span class="sd">netcdftime calendar functionality.</span>
+
+<span class="sd">See also: `UDUNITS-2</span>
+<span class="sd">&lt;http://www.unidata.ucar.edu/software/udunits/udunits-2/udunits2.html&gt;`_.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+<span class="kn">from</span> <span class="nn">six.moves</span> <span class="kn">import</span> <span class="p">(</span><span class="nb">filter</span><span class="p">,</span> <span class="nb">input</span><span class="p">,</span> <span class="nb">map</span><span class="p">,</span> <span class="nb">range</span><span class="p">,</span> <span class="nb">zip</span><span class="p">)</span>  <span class="c"># noqa</span>
+
+<span class="kn">import</span> <span class="nn">six</span>
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">import</span> <span class="nn">copy</span>
+<span class="kn">import</span> <span class="nn">ctypes</span>
+<span class="kn">import</span> <span class="nn">ctypes.util</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">netcdftime</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">from</span> <span class="nn">.util</span> <span class="kn">import</span> <span class="n">_OrderedHashable</span><span class="p">,</span> <span class="n">approx_equal</span>
+
+<span class="c"># Define __version__ based on versioneer&#39;s interpretation.</span>
+<span class="kn">from</span> <span class="nn">._version</span> <span class="kn">import</span> <span class="n">get_versions</span>
+<span class="n">__version__</span> <span class="o">=</span> <span class="n">get_versions</span><span class="p">()[</span><span class="s">&#39;version&#39;</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">get_versions</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;CALENDAR_STANDARD&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_GREGORIAN&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_PROLEPTIC_GREGORIAN&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_NO_LEAP&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_JULIAN&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_ALL_LEAP&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_365_DAY&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_366_DAY&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDAR_360_DAY&#39;</span><span class="p">,</span>
+           <span class="s">&#39;CALENDARS&#39;</span><span class="p">,</span>
+           <span class="s">&#39;UT_NAMES&#39;</span><span class="p">,</span>
+           <span class="s">&#39;UT_DEFINITION&#39;</span><span class="p">,</span>
+           <span class="s">&#39;UT_ASCII&#39;</span><span class="p">,</span>
+           <span class="s">&#39;FLOAT32&#39;</span><span class="p">,</span>
+           <span class="s">&#39;FLOAT64&#39;</span><span class="p">,</span>
+           <span class="s">&#39;julian_day2date&#39;</span><span class="p">,</span>
+           <span class="s">&#39;date2julian_day&#39;</span><span class="p">,</span>
+           <span class="s">&#39;is_time&#39;</span><span class="p">,</span>
+           <span class="s">&#39;is_vertical&#39;</span><span class="p">,</span>
+           <span class="s">&#39;Unit&#39;</span><span class="p">,</span>
+           <span class="s">&#39;date2num&#39;</span><span class="p">,</span>
+           <span class="s">&#39;decode_time&#39;</span><span class="p">,</span>
+           <span class="s">&#39;encode_clock&#39;</span><span class="p">,</span>
+           <span class="s">&#39;encode_date&#39;</span><span class="p">,</span>
+           <span class="s">&#39;encode_time&#39;</span><span class="p">,</span>
+           <span class="s">&#39;num2date&#39;</span><span class="p">,</span>
+           <span class="s">&#39;suppress_errors&#39;</span><span class="p">]</span>
+
+
+<span class="c">########################################################################</span>
+<span class="c">#</span>
+<span class="c"># module level constants</span>
+<span class="c">#</span>
+<span class="c">########################################################################</span>
+
+<span class="c">#</span>
+<span class="c"># default constants</span>
+<span class="c">#</span>
+<span class="n">EPOCH</span> <span class="o">=</span> <span class="s">&#39;1970-01-01 00:00:00&#39;</span>
+<span class="n">_STRING_BUFFER_DEPTH</span> <span class="o">=</span> <span class="mi">128</span>
+<span class="n">_UNKNOWN_UNIT_STRING</span> <span class="o">=</span> <span class="s">&#39;unknown&#39;</span>
+<span class="n">_UNKNOWN_UNIT_SYMBOL</span> <span class="o">=</span> <span class="s">&#39;?&#39;</span>
+<span class="n">_UNKNOWN_UNIT</span> <span class="o">=</span> <span class="p">[</span><span class="n">_UNKNOWN_UNIT_STRING</span><span class="p">,</span> <span class="n">_UNKNOWN_UNIT_SYMBOL</span><span class="p">,</span> <span class="s">&#39;???&#39;</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">]</span>
+<span class="n">_NO_UNIT_STRING</span> <span class="o">=</span> <span class="s">&#39;no_unit&#39;</span>
+<span class="n">_NO_UNIT_SYMBOL</span> <span class="o">=</span> <span class="s">&#39;-&#39;</span>
+<span class="n">_NO_UNIT</span> <span class="o">=</span> <span class="p">[</span><span class="n">_NO_UNIT_STRING</span><span class="p">,</span> <span class="n">_NO_UNIT_SYMBOL</span><span class="p">,</span> <span class="s">&#39;no unit&#39;</span><span class="p">,</span> <span class="s">&#39;no-unit&#39;</span><span class="p">,</span> <span class="s">&#39;nounit&#39;</span><span class="p">]</span>
+<span class="n">_UNIT_DIMENSIONLESS</span> <span class="o">=</span> <span class="s">&#39;1&#39;</span>
+<span class="n">_OP_SINCE</span> <span class="o">=</span> <span class="s">&#39; since &#39;</span>
+<span class="n">_CATEGORY_UNKNOWN</span><span class="p">,</span> <span class="n">_CATEGORY_NO_UNIT</span><span class="p">,</span> <span class="n">_CATEGORY_UDUNIT</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+
+
+<span class="c">#</span>
+<span class="c"># libudunits2 constants</span>
+<span class="c">#</span>
+<span class="c"># ut_status enumerations</span>
+<span class="n">_UT_STATUS</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;UT_SUCCESS&#39;</span><span class="p">,</span> <span class="s">&#39;UT_BAD_ARG&#39;</span><span class="p">,</span> <span class="s">&#39;UT_EXISTS&#39;</span><span class="p">,</span> <span class="s">&#39;UT_NO_UNIT&#39;</span><span class="p">,</span>
+              <span class="s">&#39;UT_OS&#39;</span><span class="p">,</span> <span class="s">&#39;UT_NOT_SAME_NAME&#39;</span><span class="p">,</span> <span class="s">&#39;UT_MEANINGLESS&#39;</span><span class="p">,</span> <span class="s">&#39;UT_NO_SECOND&#39;</span><span class="p">,</span>
+              <span class="s">&#39;UT_VISIT_ERROR&#39;</span><span class="p">,</span> <span class="s">&#39;UT_CANT_FORMAT&#39;</span><span class="p">,</span> <span class="s">&#39;UT_SYNTAX&#39;</span><span class="p">,</span> <span class="s">&#39;UT_UNKNOWN&#39;</span><span class="p">,</span>
+              <span class="s">&#39;UT_OPEN_ARG&#39;</span><span class="p">,</span> <span class="s">&#39;UT_OPEN_ENV&#39;</span><span class="p">,</span> <span class="s">&#39;UT_OPEN_DEFAULT&#39;</span><span class="p">,</span> <span class="s">&#39;UT_PARSE&#39;</span><span class="p">]</span>
+
+<span class="c"># explicit function names</span>
+<span class="n">_UT_HANDLER</span> <span class="o">=</span> <span class="s">&#39;ut_set_error_message_handler&#39;</span>
+<span class="n">_UT_IGNORE</span> <span class="o">=</span> <span class="s">&#39;ut_ignore&#39;</span>
+
+<span class="c"># ut_encoding enumerations</span>
+<span class="n">UT_ASCII</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">UT_ISO_8859_1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">UT_LATIN1</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">UT_UTF8</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">UT_NAMES</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">UT_DEFINITION</span> <span class="o">=</span> <span class="mi">8</span>
+
+<span class="n">UT_FORMATS</span> <span class="o">=</span> <span class="p">[</span><span class="n">UT_ASCII</span><span class="p">,</span> <span class="n">UT_ISO_8859_1</span><span class="p">,</span> <span class="n">UT_LATIN1</span><span class="p">,</span> <span class="n">UT_UTF8</span><span class="p">,</span> <span class="n">UT_NAMES</span><span class="p">,</span>
+              <span class="n">UT_DEFINITION</span><span class="p">]</span>
+
+<span class="c">#</span>
+<span class="c"># netcdftime constants</span>
+<span class="c">#</span>
+<span class="n">CALENDAR_STANDARD</span> <span class="o">=</span> <span class="s">&#39;standard&#39;</span>
+<span class="n">CALENDAR_GREGORIAN</span> <span class="o">=</span> <span class="s">&#39;gregorian&#39;</span>
+<span class="n">CALENDAR_PROLEPTIC_GREGORIAN</span> <span class="o">=</span> <span class="s">&#39;proleptic_gregorian&#39;</span>
+<span class="n">CALENDAR_NO_LEAP</span> <span class="o">=</span> <span class="s">&#39;noleap&#39;</span>
+<span class="n">CALENDAR_JULIAN</span> <span class="o">=</span> <span class="s">&#39;julian&#39;</span>
+<span class="n">CALENDAR_ALL_LEAP</span> <span class="o">=</span> <span class="s">&#39;all_leap&#39;</span>
+<span class="n">CALENDAR_365_DAY</span> <span class="o">=</span> <span class="s">&#39;365_day&#39;</span>
+<span class="n">CALENDAR_366_DAY</span> <span class="o">=</span> <span class="s">&#39;366_day&#39;</span>
+<span class="n">CALENDAR_360_DAY</span> <span class="o">=</span> <span class="s">&#39;360_day&#39;</span>
+
+<span class="n">CALENDARS</span> <span class="o">=</span> <span class="p">[</span><span class="n">CALENDAR_STANDARD</span><span class="p">,</span> <span class="n">CALENDAR_GREGORIAN</span><span class="p">,</span>
+             <span class="n">CALENDAR_PROLEPTIC_GREGORIAN</span><span class="p">,</span> <span class="n">CALENDAR_NO_LEAP</span><span class="p">,</span> <span class="n">CALENDAR_JULIAN</span><span class="p">,</span>
+             <span class="n">CALENDAR_ALL_LEAP</span><span class="p">,</span> <span class="n">CALENDAR_365_DAY</span><span class="p">,</span> <span class="n">CALENDAR_366_DAY</span><span class="p">,</span>
+             <span class="n">CALENDAR_360_DAY</span><span class="p">]</span>
+
+<span class="c">#</span>
+<span class="c"># ctypes types</span>
+<span class="c">#</span>
+<span class="n">FLOAT32</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span>
+<span class="n">FLOAT64</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span>
+
+<span class="c">########################################################################</span>
+<span class="c">#</span>
+<span class="c"># module level variables</span>
+<span class="c">#</span>
+<span class="c">########################################################################</span>
+
+<span class="c"># cache for ctypes foreign shared library handles</span>
+<span class="n">_lib_c</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_lib_ud</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ud_system</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c"># cache for libc shared library functions</span>
+<span class="n">_strerror</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c"># class cache for libudunits2 shared library functions</span>
+<span class="n">_cv_convert_float</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_cv_convert_floats</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_cv_convert_double</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_cv_convert_doubles</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_cv_free</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_are_convertible</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_clone</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_compare</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_decode_time</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_divide</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_encode_clock</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_encode_date</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_encode_time</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_format</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_free</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_get_converter</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_get_status</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_get_unit_by_name</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_ignore</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_invert</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_is_dimensionless</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_log</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_multiply</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_offset</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_offset_by_time</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_parse</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_raise</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_read_xml</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_root</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_scale</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="n">_ut_set_error_message_handler</span> <span class="o">=</span> <span class="bp">None</span>
+
+<span class="c">########################################################################</span>
+<span class="c">#</span>
+<span class="c"># module level statements</span>
+<span class="c">#</span>
+<span class="c">########################################################################</span>
+
+<span class="c">#</span>
+<span class="c"># load the libc shared library</span>
+<span class="c">#</span>
+<span class="k">if</span> <span class="n">_lib_c</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">sys</span><span class="o">.</span><span class="n">platform</span> <span class="o">==</span> <span class="s">&#39;win32&#39;</span><span class="p">:</span>
+        <span class="n">_lib_c</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">cdll</span><span class="o">.</span><span class="n">msvcrt</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_lib_c</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&#39;libc&#39;</span><span class="p">))</span>
+
+    <span class="c">#</span>
+    <span class="c"># cache common shared library functions</span>
+    <span class="c">#</span>
+    <span class="n">_strerror</span> <span class="o">=</span> <span class="n">_lib_c</span><span class="o">.</span><span class="n">strerror</span>
+    <span class="n">_strerror</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span>
+
+<span class="c">#</span>
+<span class="c"># load the libudunits2 shared library</span>
+<span class="c">#</span>
+<span class="k">if</span> <span class="n">_lib_ud</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+    <span class="n">_lib_ud</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_option</span><span class="p">(</span>
+        <span class="s">&#39;System&#39;</span><span class="p">,</span> <span class="s">&#39;udunits2_path&#39;</span><span class="p">,</span>
+        <span class="n">default</span><span class="o">=</span><span class="n">ctypes</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_library</span><span class="p">(</span><span class="s">&#39;udunits2&#39;</span><span class="p">))</span>
+    <span class="n">_lib_ud</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CDLL</span><span class="p">(</span><span class="n">_lib_ud</span><span class="p">,</span> <span class="n">use_errno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+    <span class="c">#</span>
+    <span class="c"># cache common shared library functions</span>
+    <span class="c">#</span>
+    <span class="n">_cv_convert_float</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">cv_convert_float</span>
+    <span class="n">_cv_convert_float</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span><span class="p">]</span>
+    <span class="n">_cv_convert_float</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_float</span>
+
+    <span class="n">_cv_convert_floats</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">cv_convert_floats</span>
+    <span class="n">_cv_convert_floats</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span>
+                                   <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ulong</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_cv_convert_floats</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_cv_convert_double</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">cv_convert_double</span>
+    <span class="n">_cv_convert_double</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">]</span>
+    <span class="n">_cv_convert_double</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span>
+
+    <span class="n">_cv_convert_doubles</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">cv_convert_doubles</span>
+    <span class="n">_cv_convert_doubles</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span>
+                                    <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ulong</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_cv_convert_doubles</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_cv_free</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">cv_free</span>
+    <span class="n">_cv_free</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+
+    <span class="n">_ut_are_convertible</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_are_convertible</span>
+    <span class="n">_ut_are_convertible</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+
+    <span class="n">_ut_clone</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_clone</span>
+    <span class="n">_ut_clone</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_clone</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_compare</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_compare</span>
+    <span class="n">_ut_compare</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_compare</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span>
+
+    <span class="n">_ut_decode_time</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_decode_time</span>
+    <span class="n">_ut_decode_time</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">_ut_divide</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_divide</span>
+    <span class="n">_ut_divide</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_divide</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_encode_clock</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_encode_clock</span>
+    <span class="n">_ut_encode_clock</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span>
+
+    <span class="n">_ut_encode_date</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_encode_date</span>
+    <span class="n">_ut_encode_date</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span>
+
+    <span class="n">_ut_encode_time</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_encode_time</span>
+    <span class="n">_ut_encode_time</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span>
+
+    <span class="n">_ut_format</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_format</span>
+    <span class="n">_ut_format</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span>
+                           <span class="n">ctypes</span><span class="o">.</span><span class="n">c_ulong</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_uint</span><span class="p">]</span>
+
+    <span class="n">_ut_free</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_free</span>
+    <span class="n">_ut_free</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_free</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="bp">None</span>
+
+    <span class="n">_ut_get_converter</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_get_converter</span>
+    <span class="n">_ut_get_converter</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_get_converter</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_get_status</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_get_status</span>
+
+    <span class="n">_ut_get_unit_by_name</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_get_unit_by_name</span>
+    <span class="n">_ut_get_unit_by_name</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">_ut_get_unit_by_name</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_invert</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_invert</span>
+    <span class="n">_ut_invert</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_invert</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_is_dimensionless</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_is_dimensionless</span>
+    <span class="n">_ut_is_dimensionless</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+
+    <span class="n">_ut_log</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_log</span>
+    <span class="n">_ut_log</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_log</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_multiply</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_multiply</span>
+    <span class="n">_ut_multiply</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_multiply</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_offset</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_offset</span>
+    <span class="n">_ut_offset</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">]</span>
+    <span class="n">_ut_offset</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_offset_by_time</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_offset_by_time</span>
+    <span class="n">_ut_offset_by_time</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">]</span>
+    <span class="n">_ut_offset_by_time</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_parse</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_parse</span>
+    <span class="n">_ut_parse</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">]</span>
+    <span class="n">_ut_parse</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_raise</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_raise</span>
+    <span class="n">_ut_raise</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">]</span>
+    <span class="n">_ut_raise</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_read_xml</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_read_xml</span>
+    <span class="n">_ut_read_xml</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">]</span>
+    <span class="n">_ut_read_xml</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_root</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_root</span>
+    <span class="n">_ut_root</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">]</span>
+    <span class="n">_ut_root</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="n">_ut_scale</span> <span class="o">=</span> <span class="n">_lib_ud</span><span class="o">.</span><span class="n">ut_scale</span>
+    <span class="n">_ut_scale</span><span class="o">.</span><span class="n">argtypes</span> <span class="o">=</span> <span class="p">[</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span><span class="p">]</span>
+    <span class="n">_ut_scale</span><span class="o">.</span><span class="n">restype</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_void_p</span>
+
+    <span class="c"># Convenience dictionary for the Unit convert method.</span>
+    <span class="n">_cv_convert_scalar</span> <span class="o">=</span> <span class="p">{</span><span class="n">FLOAT32</span><span class="p">:</span> <span class="n">_cv_convert_float</span><span class="p">,</span>
+                          <span class="n">FLOAT64</span><span class="p">:</span> <span class="n">_cv_convert_double</span><span class="p">}</span>
+    <span class="n">_cv_convert_array</span> <span class="o">=</span> <span class="p">{</span><span class="n">FLOAT32</span><span class="p">:</span> <span class="n">_cv_convert_floats</span><span class="p">,</span>
+                         <span class="n">FLOAT64</span><span class="p">:</span> <span class="n">_cv_convert_doubles</span><span class="p">}</span>
+    <span class="n">_numpy2ctypes</span> <span class="o">=</span> <span class="p">{</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">:</span> <span class="n">FLOAT32</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">:</span> <span class="n">FLOAT64</span><span class="p">}</span>
+    <span class="n">_ctypes2numpy</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span><span class="p">:</span> <span class="n">k</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">_numpy2ctypes</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">suppress_errors</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Suppresses all error messages from UDUNITS-2.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_func_type</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CFUNCTYPE</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_char_p</span><span class="p">,</span>
+                                  <span class="n">use_errno</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">_set_handler_type</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">CFUNCTYPE</span><span class="p">(</span><span class="n">_func_type</span><span class="p">,</span> <span class="n">_func_type</span><span class="p">)</span>
+    <span class="n">_ut_set_error_message_handler</span> <span class="o">=</span> <span class="n">_set_handler_type</span><span class="p">((</span><span class="n">_UT_HANDLER</span><span class="p">,</span> <span class="n">_lib_ud</span><span class="p">))</span>
+    <span class="n">_ut_ignore</span> <span class="o">=</span> <span class="n">_func_type</span><span class="p">((</span><span class="n">_UT_IGNORE</span><span class="p">,</span> <span class="n">_lib_ud</span><span class="p">))</span>
+    <span class="n">_default_handler</span> <span class="o">=</span> <span class="n">_ut_set_error_message_handler</span><span class="p">(</span><span class="n">_ut_ignore</span><span class="p">)</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">yield</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">_ut_set_error_message_handler</span><span class="p">(</span><span class="n">_default_handler</span><span class="p">)</span>
+
+
+<span class="c">#</span>
+<span class="c"># load the UDUNITS-2 xml-formatted unit-database</span>
+<span class="c">#</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">_ud_system</span><span class="p">:</span>
+    <span class="c"># Ignore standard noisy UDUNITS-2 start-up.</span>
+    <span class="k">with</span> <span class="n">suppress_errors</span><span class="p">():</span>
+        <span class="c"># Load the unit-database from the default location (modified via</span>
+        <span class="c"># the UDUNITS2_XML_PATH environment variable) and if that fails look</span>
+        <span class="c"># relative to sys.prefix to support environments such as conda.</span>
+        <span class="n">_ud_system</span> <span class="o">=</span> <span class="n">_ut_read_xml</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_ud_system</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">_alt_xml_path</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">prefix</span><span class="p">,</span> <span class="s">&#39;share&#39;</span><span class="p">,</span>
+                                         <span class="s">&#39;udunits&#39;</span><span class="p">,</span> <span class="s">&#39;udunits2.xml&#39;</span><span class="p">)</span>
+            <span class="n">_ud_system</span> <span class="o">=</span> <span class="n">_ut_read_xml</span><span class="p">(</span><span class="n">_alt_xml_path</span><span class="o">.</span><span class="n">encode</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">_ud_system</span><span class="p">:</span>
+        <span class="n">_status_msg</span> <span class="o">=</span> <span class="s">&#39;UNKNOWN&#39;</span>
+        <span class="n">_error_msg</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="n">_status</span> <span class="o">=</span> <span class="n">_ut_get_status</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_status_msg</span> <span class="o">=</span> <span class="n">_UT_STATUS</span><span class="p">[</span><span class="n">_status</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="n">_errno</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">get_errno</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">_errno</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">_error_msg</span> <span class="o">=</span> <span class="s">&#39;: &quot;</span><span class="si">%s</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">_strerror</span><span class="p">(</span><span class="n">_errno</span><span class="p">)</span>
+            <span class="n">ctypes</span><span class="o">.</span><span class="n">set_errno</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">OSError</span><span class="p">(</span><span class="s">&#39;[</span><span class="si">%s</span><span class="s">] Failed to open UDUNITS-2 XML unit database </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">_status_msg</span><span class="p">,</span> <span class="n">_error_msg</span><span class="p">))</span>
+
+
+<span class="c">########################################################################</span>
+<span class="c">#</span>
+<span class="c"># module level function definitions</span>
+<span class="c">#</span>
+<span class="c">########################################################################</span>
+
+<div class="viewcode-block" id="encode_time"><a class="viewcode-back" href="../utilities.html#cf_units.encode_time">[docs]</a><span class="k">def</span> <span class="nf">encode_time</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">,</span> <span class="n">hour</span><span class="p">,</span> <span class="n">minute</span><span class="p">,</span> <span class="n">second</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return date/clock time encoded as a double precision value.</span>
+
+<span class="sd">    Encoding performed using UDUNITS-2 hybrid Gregorian/Julian calendar.</span>
+<span class="sd">    Dates on or after 1582-10-15 are assumed to be Gregorian dates;</span>
+<span class="sd">    dates before that are assumed to be Julian dates. In particular, the</span>
+<span class="sd">    year 1 BCE is immediately followed by the year 1 CE.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * year (int):</span>
+<span class="sd">        Year value to be encoded.</span>
+<span class="sd">    * month (int):</span>
+<span class="sd">        Month value to be encoded.</span>
+<span class="sd">    * day (int):</span>
+<span class="sd">        Day value to be encoded.</span>
+<span class="sd">    * hour (int):</span>
+<span class="sd">        Hour value to be encoded.</span>
+<span class="sd">    * minute (int):</span>
+<span class="sd">        Minute value to be encoded.</span>
+<span class="sd">    * second (int):</span>
+<span class="sd">        Second value to be encoded.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.encode_time(1970, 1, 1, 0, 0, 0)</span>
+<span class="sd">        -978307200.0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">_ut_encode_time</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">month</span><span class="p">),</span>
+                           <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">day</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">hour</span><span class="p">),</span>
+                           <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">minute</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="encode_date"><a class="viewcode-back" href="../utilities.html#cf_units.encode_date">[docs]</a><span class="k">def</span> <span class="nf">encode_date</span><span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return date encoded as a double precision value.</span>
+
+<span class="sd">    Encoding performed using UDUNITS-2 hybrid Gergorian/Julian calendar.</span>
+<span class="sd">    Dates on or after 1582-10-15 are assumed to be Gregorian dates;</span>
+<span class="sd">    dates before that are assumed to be Julian dates. In particular, the</span>
+<span class="sd">    year 1 BCE is immediately followed by the year 1 CE.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * year (int):</span>
+<span class="sd">        Year value to be encoded.</span>
+<span class="sd">    * month (int):</span>
+<span class="sd">        Month value to be encoded.</span>
+<span class="sd">    * day (int):</span>
+<span class="sd">        Day value to be encoded.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.encode_date(1970, 1, 1)</span>
+<span class="sd">        -978307200.0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">_ut_encode_date</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">year</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">month</span><span class="p">),</span>
+                           <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">day</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="encode_clock"><a class="viewcode-back" href="../utilities.html#cf_units.encode_clock">[docs]</a><span class="k">def</span> <span class="nf">encode_clock</span><span class="p">(</span><span class="n">hour</span><span class="p">,</span> <span class="n">minute</span><span class="p">,</span> <span class="n">second</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return clock time encoded as a double precision value.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * hour (int):</span>
+<span class="sd">        Hour value to be encoded.</span>
+<span class="sd">    * minute (int):</span>
+<span class="sd">        Minute value to be encoded.</span>
+<span class="sd">    * second (int):</span>
+<span class="sd">        Second value to be encoded.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.encode_clock(0, 0, 0)</span>
+<span class="sd">        0.0</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">_ut_encode_clock</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">hour</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">minute</span><span class="p">),</span>
+                            <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">second</span><span class="p">))</span>
+
+</div>
+<div class="viewcode-block" id="decode_time"><a class="viewcode-back" href="../utilities.html#cf_units.decode_time">[docs]</a><span class="k">def</span> <span class="nf">decode_time</span><span class="p">(</span><span class="n">time</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Decode a double precision date/clock time value into its component</span>
+<span class="sd">    parts and return as tuple.</span>
+
+<span class="sd">    Decode time into it&#39;s year, month, day, hour, minute, second, and</span>
+<span class="sd">    resolution component parts. Where resolution is the uncertainty of</span>
+<span class="sd">    the time in seconds.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * time (float): Date/clock time encoded as a double precision value.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        tuple of (year, month, day, hour, minute, second, resolution).</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.decode_time(cf_units.encode_time(1970, 1, 1, 0, 0, 0))</span>
+<span class="sd">        (1970, 1, 1, 0, 0, 0.0, 1.086139178596568e-07)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">year</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+    <span class="n">minute</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">()</span>
+    <span class="n">second</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">()</span>
+    <span class="n">resolution</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">()</span>
+    <span class="n">_ut_decode_time</span><span class="p">(</span><span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">time</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">year</span><span class="p">),</span>
+                    <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">month</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">day</span><span class="p">),</span>
+                    <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">hour</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">minute</span><span class="p">),</span>
+                    <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">second</span><span class="p">),</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">pointer</span><span class="p">(</span><span class="n">resolution</span><span class="p">))</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">year</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">month</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">day</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">hour</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">minute</span><span class="o">.</span><span class="n">value</span><span class="p">,</span>
+            <span class="n">second</span><span class="o">.</span><span class="n">value</span><span class="p">,</span> <span class="n">resolution</span><span class="o">.</span><span class="n">value</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="julian_day2date"><a class="viewcode-back" href="../utilities.html#cf_units.julian_day2date">[docs]</a><span class="k">def</span> <span class="nf">julian_day2date</span><span class="p">(</span><span class="n">julian_day</span><span class="p">,</span> <span class="n">calendar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a netcdftime datetime-like object representing the Julian day.</span>
+
+<span class="sd">    If calendar is &#39;standard&#39; or &#39;gregorian&#39;, Julian day follows</span>
+<span class="sd">    Julian calendar on and before 1582-10-5, Gregorian calendar after</span>
+<span class="sd">    1582-10-15.</span>
+<span class="sd">    If calendar is &#39;proleptic_gregorian&#39;, Julian Day follows Gregorian</span>
+<span class="sd">    calendar.</span>
+<span class="sd">    If calendar is &#39;julian&#39;, Julian Day follows Julian calendar.</span>
+
+<span class="sd">    The datetime object is a &#39;real&#39; datetime object if the date falls in</span>
+<span class="sd">    the Gregorian calendar (i.e. calendar is &#39;proleptic_gregorian&#39;, or</span>
+<span class="sd">    calendar is &#39;standard&#39;/&#39;gregorian&#39; and the date is after 1582-10-15).</span>
+<span class="sd">    Otherwise, it&#39;s a &#39;phony&#39; datetime object which is actually an instance</span>
+<span class="sd">    of netcdftime.datetime.</span>
+
+<span class="sd">    Algorithm:</span>
+<span class="sd">        Meeus, Jean (1998) Astronomical Algorithms (2nd Edition).</span>
+<span class="sd">        Willmann-Bell, Virginia. p. 63.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * julian_day (float):</span>
+<span class="sd">        Julian day with a resolution of 1 second.</span>
+<span class="sd">    * calendar (string):</span>
+<span class="sd">        Name of the calendar, see cf_units.CALENDARS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        datetime or netcdftime.datetime.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.julian_day2date(</span>
+<span class="sd">        ...    cf_units.date2julian_day(datetime.datetime(1970, 1, 1, 0, 0, 0),</span>
+<span class="sd">        ...                             cf_units.CALENDAR_STANDARD),</span>
+<span class="sd">        ...     cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        datetime.datetime(1970, 1, 1, 0, 0)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">netcdftime</span><span class="o">.</span><span class="n">DateFromJulianDay</span><span class="p">(</span><span class="n">julian_day</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="date2julian_day"><a class="viewcode-back" href="../utilities.html#cf_units.date2julian_day">[docs]</a><span class="k">def</span> <span class="nf">date2julian_day</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">calendar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the Julian day (resolution of 1 second) from a netcdftime</span>
+<span class="sd">    datetime-like object.</span>
+
+<span class="sd">    If calendar is &#39;standard&#39; or &#39;gregorian&#39;, Julian day follows Julian</span>
+<span class="sd">    calendar on and before 1582-10-5, Gregorian calendar after 1582-10-15.</span>
+<span class="sd">    If calendar is &#39;proleptic_gregorian&#39;, Julian day follows Gregorian</span>
+<span class="sd">    calendar.</span>
+<span class="sd">    If calendar is &#39;julian&#39;, Julian day follows Julian calendar.</span>
+
+<span class="sd">    Algorithm:</span>
+<span class="sd">        Meeus, Jean (1998) Astronomical Algorithms (2nd Edition).</span>
+<span class="sd">        Willmann-Bell, Virginia. p. 63.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * date (netcdftime.date):</span>
+<span class="sd">        Date and time representation.</span>
+<span class="sd">    * calendar (string):</span>
+<span class="sd">        Name of the calendar, see cf_units.CALENDARS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.date2julian_day(datetime.datetime(1970, 1, 1, 0, 0, 0),</span>
+<span class="sd">        ...                          cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        2440587.5</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="n">netcdftime</span><span class="o">.</span><span class="n">JulianDayFromDate</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="date2num"><a class="viewcode-back" href="../utilities.html#cf_units.date2num">[docs]</a><span class="k">def</span> <span class="nf">date2num</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return numeric time value (resolution of 1 second) encoding of</span>
+<span class="sd">    datetime object.</span>
+
+<span class="sd">    The units of the numeric time values are described by the unit and</span>
+<span class="sd">    calendar arguments. The datetime objects must be in UTC with no</span>
+<span class="sd">    time-zone offset. If there is a time-zone offset in unit, it will be</span>
+<span class="sd">    applied to the returned numeric values.</span>
+
+<span class="sd">    Like the :func:`matplotlib.dates.date2num` function, except that it allows</span>
+<span class="sd">    for different units and calendars.  Behaves the same as if</span>
+<span class="sd">    unit = &#39;days since 0001-01-01 00:00:00&#39; and</span>
+<span class="sd">    calendar = &#39;proleptic_gregorian&#39;.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * date (datetime):</span>
+<span class="sd">        A datetime object or a sequence of datetime objects.</span>
+<span class="sd">        The datetime objects should not include a time-zone offset.</span>
+<span class="sd">    * unit (string):</span>
+<span class="sd">        A string of the form &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39; describing</span>
+<span class="sd">        the time units. The &lt;time-unit&gt; can be days, hours, minutes or seconds.</span>
+<span class="sd">        The &lt;time-origin&gt; is a date/time reference point. A valid choice</span>
+<span class="sd">        would be unit=&#39;hours since 1800-01-01 00:00:00 -6:00&#39;.</span>
+<span class="sd">    * calendar (string):</span>
+<span class="sd">        Name of the calendar, see cf_units.CALENDARS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        float, or numpy.ndarray of float.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; dt1 = datetime.datetime(1970, 1, 1, 6, 0, 0)</span>
+<span class="sd">        &gt;&gt;&gt; dt2 = datetime.datetime(1970, 1, 1, 7, 0, 0)</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.date2num(dt1, &#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">        ...               cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        6.0</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.date2num([dt1, dt2], &#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">        ...               cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        array([ 6.,  7.])</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c">#</span>
+    <span class="c"># ensure to strip out any &#39;UTC&#39; postfix which is generated by</span>
+    <span class="c"># UDUNITS-2 formatted output and causes the netcdftime parser</span>
+    <span class="c"># to choke</span>
+    <span class="c">#</span>
+    <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot; UTC&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot; since epoch&quot;</span><span class="p">):</span>
+        <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;epoch&quot;</span><span class="p">,</span> <span class="n">EPOCH</span><span class="p">)</span>
+    <span class="n">cdftime</span> <span class="o">=</span> <span class="n">netcdftime</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="n">unit_string</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">calendar</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cdftime</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+
+</div>
+<div class="viewcode-block" id="num2date"><a class="viewcode-back" href="../utilities.html#cf_units.num2date">[docs]</a><span class="k">def</span> <span class="nf">num2date</span><span class="p">(</span><span class="n">time_value</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return datetime encoding of numeric time value (resolution of 1 second).</span>
+
+<span class="sd">    The units of the numeric time value are described by the unit and</span>
+<span class="sd">    calendar arguments. The returned datetime object represent UTC with</span>
+<span class="sd">    no time-zone offset, even if the specified unit contain a time-zone</span>
+<span class="sd">    offset.</span>
+
+<span class="sd">    Like the :func:`matplotlib.dates.num2date` function, except that it allows</span>
+<span class="sd">    for different units and calendars.  Behaves the same if</span>
+<span class="sd">    unit = &#39;days since 001-01-01 00:00:00&#39;}</span>
+<span class="sd">    calendar = &#39;proleptic_gregorian&#39;.</span>
+
+<span class="sd">    The datetime instances returned are &#39;real&#39; python datetime</span>
+<span class="sd">    objects if the date falls in the Gregorian calendar (i.e.</span>
+<span class="sd">    calendar=&#39;proleptic_gregorian&#39;, or calendar = &#39;standard&#39; or &#39;gregorian&#39;</span>
+<span class="sd">    and the date is after 1582-10-15). Otherwise, they are &#39;phony&#39; datetime</span>
+<span class="sd">    objects which support some but not all the methods of &#39;real&#39; python</span>
+<span class="sd">    datetime objects.  This is because the python datetime module cannot</span>
+<span class="sd">    use the &#39;proleptic_gregorian&#39; calendar, even before the switch</span>
+<span class="sd">    occured from the Julian calendar in 1582. The datetime instances</span>
+<span class="sd">    do not contain a time-zone offset, even if the specified unit</span>
+<span class="sd">    contains one.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * time_value (float):</span>
+<span class="sd">        Numeric time value/s. Maximum resolution is 1 second.</span>
+<span class="sd">    * unit (sting):</span>
+<span class="sd">        A string of the form &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        describing the time units. The &lt;time-unit&gt; can be days, hours,</span>
+<span class="sd">        minutes or seconds. The &lt;time-origin&gt; is the date/time reference</span>
+<span class="sd">        point. A valid choice would be</span>
+<span class="sd">        unit=&#39;hours since 1800-01-01 00:00:00 -6:00&#39;.</span>
+<span class="sd">    * calendar (string):</span>
+<span class="sd">        Name of the calendar, see cf_units.CALENDARS.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        datetime, or numpy.ndarray of datetime object.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; import datetime</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.num2date(6, &#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">        ...                   cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        datetime.datetime(1970, 1, 1, 6, 0)</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.num2date([6, 7], &#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">        ...                   cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">        array([datetime.datetime(1970, 1, 1, 6, 0),</span>
+<span class="sd">               datetime.datetime(1970, 1, 1, 7, 0)], dtype=object)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c">#</span>
+    <span class="c"># ensure to strip out any &#39;UTC&#39; postfix which is generated by</span>
+    <span class="c"># UDUNITS-2 formatted output and causes the netcdftime parser</span>
+    <span class="c"># to choke</span>
+    <span class="c">#</span>
+    <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot; UTC&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot; since epoch&quot;</span><span class="p">):</span>
+        <span class="n">unit_string</span> <span class="o">=</span> <span class="n">unit_string</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;epoch&quot;</span><span class="p">,</span> <span class="n">EPOCH</span><span class="p">)</span>
+    <span class="n">cdftime</span> <span class="o">=</span> <span class="n">netcdftime</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="n">unit_string</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="n">calendar</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">cdftime</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span>
+
+
+<span class="c">########################################################################</span>
+<span class="c">#</span>
+<span class="c"># unit wrapper class for unidata/ucar UDUNITS-2</span>
+<span class="c">#</span>
+<span class="c">########################################################################</span>
+</div>
+<span class="k">def</span> <span class="nf">_Unit</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+    <span class="n">unit</span> <span class="o">=</span> <span class="n">_OrderedHashable</span><span class="o">.</span><span class="n">__new__</span><span class="p">(</span><span class="n">Unit</span><span class="p">)</span>
+    <span class="n">unit</span><span class="o">.</span><span class="n">_init</span><span class="p">(</span><span class="n">category</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">,</span> <span class="n">origin</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unit</span>
+
+
+<span class="n">_CACHE</span> <span class="o">=</span> <span class="p">{}</span>
+
+
+<span class="k">def</span> <span class="nf">as_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns a Unit corresponding to the given unit.</span>
+
+<span class="sd">    .. note::</span>
+
+<span class="sd">        If the given unit is already a Unit it will be returned unchanged.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">Unit</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">unit</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">use_cache</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">)</span> <span class="ow">or</span> <span class="n">unit</span> <span class="ow">is</span> <span class="bp">None</span>
+        <span class="k">if</span> <span class="n">use_cache</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_CACHE</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="c"># Typically unit is a string, however we cater for other types of</span>
+            <span class="c"># &#39;unit&#39; (e.g. iris.unit.Unit).</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">Unit</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="nb">getattr</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span> <span class="s">&#39;calendar&#39;</span><span class="p">,</span> <span class="bp">None</span><span class="p">))</span>
+            <span class="k">if</span> <span class="n">use_cache</span><span class="p">:</span>
+                <span class="n">_CACHE</span><span class="p">[</span><span class="n">unit</span><span class="p">]</span> <span class="o">=</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+
+<span class="k">def</span> <span class="nf">is_time</span><span class="p">(</span><span class="n">unit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine whether the unit is a related SI Unit of time.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * unit (string/Unit): Unit to be compared.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.is_time(&#39;hours&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.is_time(&#39;meters&#39;)</span>
+<span class="sd">        False</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">is_time</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">is_vertical</span><span class="p">(</span><span class="n">unit</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine whether the unit is a related SI Unit of pressure or distance.</span>
+
+<span class="sd">    Args:</span>
+
+<span class="sd">    * unit (string/Unit): Unit to be compared.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        Boolean.</span>
+
+<span class="sd">    For example:</span>
+
+<span class="sd">        &gt;&gt;&gt; import cf_units</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.is_vertical(&#39;millibar&#39;)</span>
+<span class="sd">        True</span>
+<span class="sd">        &gt;&gt;&gt; cf_units.is_vertical(&#39;km&#39;)</span>
+<span class="sd">        True</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">is_vertical</span><span class="p">()</span>
+
+
+<div class="viewcode-block" id="Unit"><a class="viewcode-back" href="../unit.html#cf_units.Unit">[docs]</a><span class="k">class</span> <span class="nc">Unit</span><span class="p">(</span><span class="n">_OrderedHashable</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class to represent S.I. units and support common operations to</span>
+<span class="sd">    manipulate such units in a consistent manner as per UDUNITS-2.</span>
+
+<span class="sd">    These operations include scaling the unit, offsetting the unit by a</span>
+<span class="sd">    constant or time, inverting the unit, raising the unit by a power,</span>
+<span class="sd">    taking a root of the unit, taking a log of the unit, multiplying the</span>
+<span class="sd">    unit by a constant or another unit, dividing the unit by a constant</span>
+<span class="sd">    or another unit, comparing units, copying units and converting unit</span>
+<span class="sd">    data to single precision or double precision floating point numbers.</span>
+
+<span class="sd">    This class also supports time and calendar defintion and manipulation.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_init_from_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">,</span> <span class="n">values</span><span class="p">):</span>
+            <span class="nb">object</span><span class="o">.</span><span class="n">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_as_tuple</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_names</span><span class="p">)</span>
+
+    <span class="c"># Provide hash semantics</span>
+
+    <span class="k">def</span> <span class="nf">_identity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_as_tuple</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_identity</span><span class="p">())</span>
+
+    <span class="c"># Provide default ordering semantics</span>
+
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_identity</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">_identity</span><span class="p">()</span>
+
+    <span class="c"># Prevent attribute updates</span>
+
+    <span class="k">def</span> <span class="nf">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&#39;Instances of </span><span class="si">%s</span><span class="s"> are immutable&#39;</span> <span class="o">%</span>
+                             <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__delattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s">&#39;Instances of </span><span class="si">%s</span><span class="s"> are immutable&#39;</span> <span class="o">%</span>
+                             <span class="nb">type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">__name__</span><span class="p">)</span>
+
+    <span class="c"># Declare the attribute names relevant to the ordered and hashable</span>
+    <span class="c">#  behaviour.</span>
+    <span class="n">_names</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;category&#39;</span><span class="p">,</span> <span class="s">&#39;ut_unit&#39;</span><span class="p">,</span> <span class="s">&#39;calendar&#39;</span><span class="p">,</span> <span class="s">&#39;origin&#39;</span><span class="p">)</span>
+
+    <span class="n">category</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="s">&#39;Is this an unknown unit, a no-unit, or a UDUNITS-2 unit.&#39;</span>
+
+    <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="s">&#39;Reference to the ctypes quantity defining the UDUNITS-2 unit.&#39;</span>
+
+    <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="s">&#39;Represents the unit calendar name, see cf_units.CALENDARS&#39;</span>
+
+    <span class="n">origin</span> <span class="o">=</span> <span class="bp">None</span>
+    <span class="s">&#39;The original string used to create this unit.&#39;</span>
+
+    <span class="n">__slots__</span> <span class="o">=</span> <span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">calendar</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a wrapper instance for UDUNITS-2.</span>
+
+<span class="sd">        An optional calendar may be provided for a unit which defines a</span>
+<span class="sd">        time reference of the form &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        i.e. unit=&#39;days since 1970-01-01 00:00:00&#39;. For a unit that is a</span>
+<span class="sd">        time reference, the default calendar is &#39;standard&#39;.</span>
+
+<span class="sd">        Accepted calendars are as follows,</span>
+
+<span class="sd">        * &#39;standard&#39; or &#39;gregorian&#39; - Mixed Gregorian/Julian calendar as</span>
+<span class="sd">          defined by udunits.</span>
+<span class="sd">        * &#39;proleptic_gregorian&#39; - A Gregorian calendar extended to dates</span>
+<span class="sd">          before 1582-10-15. A year is a leap year if either,</span>
+
+<span class="sd">            1. It is divisible by 4 but not by 100, or</span>
+<span class="sd">            2. It is divisible by 400.</span>
+
+<span class="sd">        * &#39;noleap&#39; or &#39;365_day&#39; - A Gregorian calendar without leap</span>
+<span class="sd">          years i.e. all years are 365 days long.</span>
+<span class="sd">        * &#39;all_leap&#39; or &#39;366_day&#39; - A Gregorian calendar with every year</span>
+<span class="sd">          being a leap year i.e. all years are 366 days long.</span>
+<span class="sd">        * &#39;360_day&#39; - All years are 360 days divided into 30 day months.</span>
+<span class="sd">        * &#39;julian&#39; - Proleptic Julian calendar, extended to dates after</span>
+<span class="sd">          1582-10-5. A year is a leap year if it is divisible by 4.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * unit:</span>
+<span class="sd">            Specify the unit as defined by UDUNITS-2.</span>
+<span class="sd">        * calendar (string):</span>
+<span class="sd">            Describes the calendar used in time calculations. The</span>
+<span class="sd">            default is &#39;standard&#39; or &#39;gregorian&#39; for a time reference</span>
+<span class="sd">            unit.</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            Unit object.</span>
+
+<span class="sd">        Units should be set to &quot;no_unit&quot; for values which are strings.</span>
+<span class="sd">        Units can also be set to &quot;unknown&quot; (or None).</span>
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; from cf_units import Unit</span>
+<span class="sd">            &gt;&gt;&gt; volts = Unit(&#39;volts&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; no_unit = Unit(&#39;no_unit&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; unknown = Unit(&#39;unknown&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; unknown = Unit(None)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ut_unit</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">calendar_</span> <span class="o">=</span> <span class="bp">None</span>
+
+        <span class="k">if</span> <span class="n">unit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">unit</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&#39; utc&#39;</span><span class="p">):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="p">[:</span><span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span><span class="o">.</span><span class="n">rfind</span><span class="p">(</span><span class="s">&#39; utc&#39;</span><span class="p">)]</span>
+
+        <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s">&quot; since epoch&quot;</span><span class="p">):</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">unit</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s">&quot;epoch&quot;</span><span class="p">,</span> <span class="n">EPOCH</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_UNKNOWN_UNIT</span><span class="p">:</span>
+            <span class="c"># TODO - removing the option of an unknown unit. Currently</span>
+            <span class="c"># the auto generated MOSIG rules are missing units on a</span>
+            <span class="c"># number of phenomena which would lead to errors.</span>
+            <span class="c"># Will be addressed by work on metadata translation.</span>
+            <span class="n">category</span> <span class="o">=</span> <span class="n">_CATEGORY_UNKNOWN</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">_UNKNOWN_UNIT_STRING</span>
+        <span class="k">elif</span> <span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">_NO_UNIT</span><span class="p">:</span>
+            <span class="n">category</span> <span class="o">=</span> <span class="n">_CATEGORY_NO_UNIT</span>
+            <span class="n">unit</span> <span class="o">=</span> <span class="n">_NO_UNIT_STRING</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">category</span> <span class="o">=</span> <span class="n">_CATEGORY_UDUNIT</span>
+            <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_parse</span><span class="p">(</span><span class="n">_ud_system</span><span class="p">,</span> <span class="n">unit</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s">&#39;ascii&#39;</span><span class="p">),</span> <span class="n">UT_ASCII</span><span class="p">)</span>
+            <span class="c"># _ut_parse returns 0 on failure</span>
+            <span class="k">if</span> <span class="n">ut_unit</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to parse unit &quot;</span><span class="si">%s</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">unit</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">_OP_SINCE</span> <span class="ow">in</span> <span class="n">unit</span><span class="o">.</span><span class="n">lower</span><span class="p">():</span>
+                <span class="k">if</span> <span class="n">calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+                    <span class="n">calendar_</span> <span class="o">=</span> <span class="n">CALENDAR_GREGORIAN</span>
+                <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">calendar</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">):</span>
+                    <span class="k">if</span> <span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">CALENDARS</span><span class="p">:</span>
+                        <span class="n">calendar_</span> <span class="o">=</span> <span class="n">calendar</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;{!r} is an unsupported calendar.&#39;</span>
+                        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">calendar</span><span class="p">))</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Expected string-like calendar argument, got {!r}.&#39;</span>
+                    <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="n">msg</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">calendar</span><span class="p">)))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_init_from_tuple</span><span class="p">((</span><span class="n">category</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar_</span><span class="p">,</span> <span class="n">unit</span><span class="p">,))</span>
+
+    <span class="k">def</span> <span class="nf">_raise_error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the UDUNITS-2 ut_status, the implementation-defined string</span>
+<span class="sd">        corresponding to UDUNITS-2 errno and raise generic exception.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">status_msg</span> <span class="o">=</span> <span class="s">&#39;UNKNOWN&#39;</span>
+        <span class="n">error_msg</span> <span class="o">=</span> <span class="s">&#39;&#39;</span>
+        <span class="k">if</span> <span class="n">_lib_ud</span><span class="p">:</span>
+            <span class="n">status</span> <span class="o">=</span> <span class="n">_ut_get_status</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">status_msg</span> <span class="o">=</span> <span class="n">_UT_STATUS</span><span class="p">[</span><span class="n">status</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="n">errno</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">get_errno</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">errno</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">error_msg</span> <span class="o">=</span> <span class="s">&#39;: &quot;</span><span class="si">%s</span><span class="s">&quot;&#39;</span> <span class="o">%</span> <span class="n">_strerror</span><span class="p">(</span><span class="n">errno</span><span class="p">)</span>
+                <span class="n">ctypes</span><span class="o">.</span><span class="n">set_errno</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;[</span><span class="si">%s</span><span class="s">] </span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">status_msg</span><span class="p">,</span> <span class="n">msg</span><span class="p">,</span> <span class="n">error_msg</span><span class="p">))</span>
+
+    <span class="c"># NOTE:</span>
+    <span class="c"># &quot;__getstate__&quot; and &quot;__setstate__&quot; functions are defined here to</span>
+    <span class="c"># provide a custom interface for Pickle</span>
+    <span class="c">#  : Pickle &quot;normal&quot; behaviour is just to save/reinstate the object</span>
+    <span class="c">#    dictionary</span>
+    <span class="c">#  : that won&#39;t work here, because the &quot;ut_unit&quot; attribute is an</span>
+    <span class="c">#    object handle</span>
+    <span class="c">#    - the corresponding udunits object only exists in the original</span>
+    <span class="c">#      invocation</span>
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># state capture method for Pickle.dump()</span>
+        <span class="c">#  - return the instance data needed to reconstruct a Unit value</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s">&#39;unit_text&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin</span><span class="p">,</span> <span class="s">&#39;calendar&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__setstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state</span><span class="p">):</span>
+        <span class="c"># object reconstruction method for Pickle.load()</span>
+        <span class="c"># intercept the Pickle.load() operation and call own __init__ again</span>
+        <span class="c">#  - this is to ensure a valid ut_unit attribute (as these</span>
+        <span class="c">#    handles aren&#39;t persistent)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__init__</span><span class="p">(</span><span class="n">state</span><span class="p">[</span><span class="s">&#39;unit_text&#39;</span><span class="p">],</span> <span class="n">calendar</span><span class="o">=</span><span class="n">state</span><span class="p">[</span><span class="s">&#39;calendar&#39;</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">__del__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># NB. If Python is terminating then the module global &quot;_ut_free&quot;</span>
+        <span class="c"># may have already been deleted ... so we check before using it.</span>
+        <span class="k">if</span> <span class="n">_ut_free</span><span class="p">:</span>
+            <span class="n">_ut_free</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+    <span class="k">def</span> <span class="nf">__deepcopy__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">memo</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span>
+
+<div class="viewcode-block" id="Unit.is_time"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_time">[docs]</a>    <span class="k">def</span> <span class="nf">is_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine whether this unit is a related SI Unit of time.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_time()</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;meter&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v.is_time()</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">day</span> <span class="o">=</span> <span class="n">_ut_get_unit_by_name</span><span class="p">(</span><span class="n">_ud_system</span><span class="p">,</span> <span class="n">b</span><span class="s">&#39;day&#39;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.is_vertical"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_vertical">[docs]</a>    <span class="k">def</span> <span class="nf">is_vertical</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine whether the unit is a related SI Unit of pressure or</span>
+<span class="sd">        distance.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;millibar&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_vertical()</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;km&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v.is_vertical()</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bar</span> <span class="o">=</span> <span class="n">_ut_get_unit_by_name</span><span class="p">(</span><span class="n">_ud_system</span><span class="p">,</span> <span class="n">b</span><span class="s">&#39;bar&#39;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">bar</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">result</span><span class="p">:</span>
+                <span class="n">meter</span> <span class="o">=</span> <span class="n">_ut_get_unit_by_name</span><span class="p">(</span><span class="n">_ud_system</span><span class="p">,</span> <span class="n">b</span><span class="s">&#39;meter&#39;</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">meter</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.is_udunits"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_udunits">[docs]</a>    <span class="k">def</span> <span class="nf">is_udunits</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return whether the unit is a vaild unit of UDUNITS.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Unit.is_time_reference"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_time_reference">[docs]</a>    <span class="k">def</span> <span class="nf">is_time_reference</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the unit is a time reference unit of the form</span>
+<span class="sd">        &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        i.e. unit=&#39;days since 1970-01-01 00:00:00&#39;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;days since epoch&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_time_reference()</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span>
+</div>
+<div class="viewcode-block" id="Unit.title"><a class="viewcode-back" href="../unit.html#cf_units.Unit.title">[docs]</a>    <span class="k">def</span> <span class="nf">title</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the unit value as a title string.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * value (float): Unit value to be incorporated into title string.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours since epoch&#39;,</span>
+<span class="sd">            ...                   calendar=cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">            &gt;&gt;&gt; u.title(10)</span>
+<span class="sd">            &#39;1970-01-01 10:00:00&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_time_reference</span><span class="p">():</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">dt</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s">&#39;%Y-%m-</span><span class="si">%d</span><span class="s"> %H:%M:%S&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s">&#39;</span><span class="si">%s</span><span class="s"> </span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Unit.modulus"><a class="viewcode-back" href="../unit.html#cf_units.Unit.modulus">[docs]</a>    <span class="k">def</span> <span class="nf">modulus</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *(read-only)* Return the modulus value of the unit.</span>
+
+<span class="sd">        Convenience method that returns the unit modulus value as follows,</span>
+<span class="sd">            * &#39;radians&#39; - pi*2</span>
+<span class="sd">            * &#39;degrees&#39; - 360.0</span>
+<span class="sd">            * Otherwise None.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;degrees&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.modulus</span>
+<span class="sd">            360.0</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="s">&#39;radians&#39;</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="o">==</span> <span class="s">&#39;degrees&#39;</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="mf">360.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.is_convertible"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_convertible">[docs]</a>    <span class="k">def</span> <span class="nf">is_convertible</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether two units are convertible.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (Unit): Unit to be compared.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;kilometers&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_convertible(v)</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">other</span> <span class="o">=</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span> <span class="ow">or</span> \
+           <span class="n">other</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">False</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">calendar</span> <span class="ow">and</span>
+                      <span class="n">_ut_are_convertible</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.is_dimensionless"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_dimensionless">[docs]</a>    <span class="k">def</span> <span class="nf">is_dimensionless</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the unit is dimensionless.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_dimensionless()</span>
+<span class="sd">            False</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;1&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_dimensionless()</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">_CATEGORY_UDUNIT</span> <span class="ow">and</span>
+                <span class="nb">bool</span><span class="p">(</span><span class="n">_ut_is_dimensionless</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)))</span>
+</div>
+<div class="viewcode-block" id="Unit.is_unknown"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_unknown">[docs]</a>    <span class="k">def</span> <span class="nf">is_unknown</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the unit is defined to be an *unknown* unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;unknown&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_unknown()</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_unknown()</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">_CATEGORY_UNKNOWN</span>
+</div>
+<div class="viewcode-block" id="Unit.is_no_unit"><a class="viewcode-back" href="../unit.html#cf_units.Unit.is_no_unit">[docs]</a>    <span class="k">def</span> <span class="nf">is_no_unit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the unit is defined to be a *no_unit* unit.</span>
+
+<span class="sd">        Typically, a quantity such as a string, will have no associated</span>
+<span class="sd">        unit to describe it. Such a class of quantity may be defined</span>
+<span class="sd">        using the *no_unit* unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;no unit&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_no_unit()</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.is_no_unit()</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">_CATEGORY_NO_UNIT</span>
+</div>
+<div class="viewcode-block" id="Unit.format"><a class="viewcode-back" href="../unit.html#cf_units.Unit.format">[docs]</a>    <span class="k">def</span> <span class="nf">format</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a formatted string representation of the binary unit.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * option (cf_units.UT_FORMATS):</span>
+<span class="sd">            Set the encoding option of the formatted string representation.</span>
+<span class="sd">            Valid encoding options may be one of the following enumerations:</span>
+
+<span class="sd">            * Unit.UT_ASCII</span>
+<span class="sd">            * Unit.UT_ISO_8859_1</span>
+<span class="sd">            * Unit.UT_LATIN1</span>
+<span class="sd">            * Unit.UT_UTF8</span>
+<span class="sd">            * Unit.UT_NAMES</span>
+<span class="sd">            * Unit.UT_DEFINITION</span>
+
+<span class="sd">            Multiple options may be combined within a list. The default</span>
+<span class="sd">            option is cf_units.UT_ASCII.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.format()</span>
+<span class="sd">            &#39;m&#39;</span>
+<span class="sd">            &gt;&gt;&gt; u.format(cf_units.UT_NAMES)</span>
+<span class="sd">            &#39;meter&#39;</span>
+<span class="sd">            &gt;&gt;&gt; u.format(cf_units.UT_DEFINITION)</span>
+<span class="sd">            &#39;m&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">_UNKNOWN_UNIT_STRING</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">return</span> <span class="n">_NO_UNIT_STRING</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bitmask</span> <span class="o">=</span> <span class="n">UT_ASCII</span>
+            <span class="k">if</span> <span class="n">option</span> <span class="ow">is</span> <span class="ow">not</span> <span class="bp">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">option</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                    <span class="n">option</span> <span class="o">=</span> <span class="p">[</span><span class="n">option</span><span class="p">]</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">option</span><span class="p">:</span>
+                    <span class="n">bitmask</span> <span class="o">|=</span> <span class="n">i</span>
+            <span class="n">string_buffer</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">create_string_buffer</span><span class="p">(</span><span class="n">_STRING_BUFFER_DEPTH</span><span class="p">)</span>
+            <span class="n">depth</span> <span class="o">=</span> <span class="n">_ut_format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">string_buffer</span><span class="p">,</span>
+                               <span class="n">ctypes</span><span class="o">.</span><span class="n">sizeof</span><span class="p">(</span><span class="n">string_buffer</span><span class="p">),</span> <span class="n">bitmask</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">depth</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to format </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">string_buffer</span><span class="o">.</span><span class="n">value</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s">&#39;ascii&#39;</span><span class="p">))</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Unit.name"><a class="viewcode-back" href="../unit.html#cf_units.Unit.name">[docs]</a>    <span class="k">def</span> <span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *(read-only)* The full name of the unit.</span>
+
+<span class="sd">        Formats the binary unit into a string representation using</span>
+<span class="sd">        method :func:`cf_units.Unit.format` with keyword argument</span>
+<span class="sd">        option=cf_units.UT_NAMES.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;watts&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.name</span>
+<span class="sd">            &#39;watt&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UT_NAMES</span><span class="p">)</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Unit.symbol"><a class="viewcode-back" href="../unit.html#cf_units.Unit.symbol">[docs]</a>    <span class="k">def</span> <span class="nf">symbol</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *(read-only)* The symbolic representation of the unit.</span>
+
+<span class="sd">        Formats the binary unit into a string representation using</span>
+<span class="sd">        method :func:`cf_units.Unit.format`.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;watts&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.symbol</span>
+<span class="sd">            &#39;W&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_UNKNOWN_UNIT_SYMBOL</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_NO_UNIT_SYMBOL</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+    <span class="nd">@property</span>
+<div class="viewcode-block" id="Unit.definition"><a class="viewcode-back" href="../unit.html#cf_units.Unit.definition">[docs]</a>    <span class="k">def</span> <span class="nf">definition</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        *(read-only)* The symbolic decomposition of the unit.</span>
+
+<span class="sd">        Formats the binary unit into a string representation using</span>
+<span class="sd">        method :func:`cf_units.Unit.format` with keyword argument</span>
+<span class="sd">        option=cf_units.UT_DEFINITION.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;watts&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.definition</span>
+<span class="sd">            &#39;m2.kg.s-3&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_UNKNOWN_UNIT_SYMBOL</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_NO_UNIT_SYMBOL</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">UT_DEFINITION</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.offset_by_time"><a class="viewcode-back" href="../unit.html#cf_units.Unit.offset_by_time">[docs]</a>    <span class="k">def</span> <span class="nf">offset_by_time</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">origin</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the time unit offset with respect to the time origin.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * origin (float): Time origin as returned by the</span>
+<span class="sd">          :func:`cf_units.encode_time` method.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.offset_by_time(cf_units.encode_time(1970, 1, 1, 0, 0, 0))</span>
+<span class="sd">            Unit(&#39;hour since 1970-01-01 00:00:00.0000000 UTC&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">origin</span><span class="p">,</span> <span class="p">(</span><span class="nb">float</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">integer_types</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;a numeric type for the origin argument is&#39;</span>
+                            <span class="s">&#39; required&#39;</span><span class="p">)</span>
+        <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_offset_by_time</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">origin</span><span class="p">))</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to offset </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="k">return</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Unit.invert"><a class="viewcode-back" href="../unit.html#cf_units.Unit.invert">[docs]</a>    <span class="k">def</span> <span class="nf">invert</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Invert the unit i.e. find the reciprocal of the unit, and return</span>
+<span class="sd">        the Unit result.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Unit.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.invert()</span>
+<span class="sd">            Unit(&#39;meter^-1&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot invert a &#39;no-unit&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_invert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to invert </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+            <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.root"><a class="viewcode-back" href="../unit.html#cf_units.Unit.root">[docs]</a>    <span class="k">def</span> <span class="nf">root</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">root</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the given root of the unit.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * root (int): Value by which the unit root is taken.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters^2&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.root(2)</span>
+<span class="sd">            Unit(&#39;meter&#39;)</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            Taking a fractional root of a unit is not supported.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">root</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;An int type for the root argument&#39;</span>
+                            <span class="s">&#39; is required&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot take the logarithm of a &#39;no-unit&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># only update the unit if it is not scalar</span>
+            <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">Unit</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">):</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_root</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">root</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to take the root of </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+                <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.log"><a class="viewcode-back" href="../unit.html#cf_units.Unit.log">[docs]</a>    <span class="k">def</span> <span class="nf">log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the logorithmic unit corresponding to the given</span>
+<span class="sd">        logorithmic base.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * base (int/float): Value of the logorithmic base.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            None.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u.log(2)</span>
+<span class="sd">            Unit(&#39;lb(re 1 meter)&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">base</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">base</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;A numeric type for the base argument is required&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot take the logarithm of a &#39;no-unit&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_log</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Failed to calculate logorithmic base of </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+    <span class="k">def</span> <span class="nf">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a simple string representation of the unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; str(u)</span>
+<span class="sd">            &#39;meters&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">origin</span> <span class="ow">or</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">def</span> <span class="nf">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a string representation of the unit object.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            string.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; repr(u)</span>
+<span class="sd">            &quot;Unit(&#39;meters&#39;)&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">(&#39;</span><span class="si">%s</span><span class="s">&#39;)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="s">&quot;</span><span class="si">%s</span><span class="s">(&#39;</span><span class="si">%s</span><span class="s">&#39;, calendar=&#39;</span><span class="si">%s</span><span class="s">&#39;)&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__class__</span><span class="o">.</span><span class="n">__name__</span><span class="p">,</span>
+                                                  <span class="bp">self</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_offset_common</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">offset</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">offset</span> <span class="o">=</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_double</span><span class="p">(</span><span class="n">offset</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">NotImplemented</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+            <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot offset a &#39;no-unit&#39;.&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_offset</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">offset</span><span class="p">)</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to offset </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+                <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__add__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_common</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__sub__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">other</span> <span class="o">=</span> <span class="o">-</span><span class="n">other</span>
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">NotImplemented</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_offset_common</span><span class="p">(</span><span class="o">-</span><span class="n">other</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_op_common</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">op_func</span><span class="p">):</span>
+        <span class="c"># Convienience method to create a new unit from an operation between</span>
+        <span class="c"># the units &#39;self&#39; and &#39;other&#39;.</span>
+
+        <span class="n">op_label</span> <span class="o">=</span> <span class="n">op_func</span><span class="o">.</span><span class="n">__name__</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="n">other</span> <span class="o">=</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot </span><span class="si">%s</span><span class="s"> a &#39;no-unit&#39;.&quot;</span> <span class="o">%</span> <span class="n">op_label</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">()</span> <span class="ow">or</span> <span class="n">other</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UNKNOWN</span><span class="p">,</span> <span class="bp">None</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">op_func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Failed to </span><span class="si">%s</span><span class="s"> </span><span class="si">%r</span><span class="s"> by </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">op_label</span><span class="p">,</span> <span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+            <span class="n">calendar</span> <span class="o">=</span> <span class="bp">None</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">,</span> <span class="n">calendar</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__rmul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="c"># NB. Because we&#39;ve subclassed a tuple, we need to define this to</span>
+        <span class="c"># prevent the default tuple-repetition behaviour.</span>
+        <span class="c"># ie. 2 * (&#39;a&#39;, &#39;b&#39;) -&gt; (&#39;a&#39;, &#39;b&#39;, &#39;a&#39;, &#39;b&#39;)</span>
+        <span class="k">return</span> <span class="bp">self</span> <span class="o">*</span> <span class="n">other</span>
+
+    <span class="k">def</span> <span class="nf">__mul__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Multiply the self unit by the other scale factor or unit and</span>
+<span class="sd">        return the Unit result.</span>
+
+<span class="sd">        Note that, multiplication involving an &#39;unknown&#39; unit will always</span>
+<span class="sd">        result in an &#39;unknown&#39; unit.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (int/float/string/Unit): Multiplication scale</span>
+<span class="sd">          factor or unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Unit.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;hertz&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u*v</span>
+<span class="sd">            Unit(&#39;meter-second^-1&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_common</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_ut_multiply</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__div__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Divide the self unit by the other scale factor or unit and</span>
+<span class="sd">        return the Unit result.</span>
+
+<span class="sd">        Note that, division involving an &#39;unknown&#39; unit will always</span>
+<span class="sd">        result in an &#39;unknown&#39; unit.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (int/float/string/Unit): Division scale factor or unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Unit.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;m.s-1&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;hertz&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u/v</span>
+<span class="sd">            Unit(&#39;meter&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_op_common</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="n">_ut_divide</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__truediv__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Divide the self unit by the other scale factor or unit and</span>
+<span class="sd">        return the Unit result.</span>
+
+<span class="sd">        Note that, division involving an &#39;unknown&#39; unit will always</span>
+<span class="sd">        result in an &#39;unknown&#39; unit.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (int/float/string/Unit): Division scale factor or unit.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Unit.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;m.s-1&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; v = cf_units.Unit(&#39;hertz&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u/v</span>
+<span class="sd">            Unit(&#39;meter&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__div__</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__pow__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">power</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Raise the unit by the given power and return the Unit result.</span>
+
+<span class="sd">        Note that, UDUNITS-2 does not support raising a</span>
+<span class="sd">        non-dimensionless unit by a fractional power.</span>
+<span class="sd">        Approximate floating point power behaviour has been implemented</span>
+<span class="sd">        specifically for cf_units.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * power (int/float): Value by which the unit power is raised.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Unit.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;meters&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; u**2</span>
+<span class="sd">            Unit(&#39;meter^2&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">power</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s">&#39;A numeric value is required for the power&#39;</span>
+                            <span class="s">&#39; argument.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_unknown</span><span class="p">():</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_no_unit</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Cannot raise the power of a &#39;no-unit&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">Unit</span><span class="p">(</span><span class="s">&#39;1&#39;</span><span class="p">):</span>
+            <span class="c"># 1 ** N -&gt; 1</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c"># UDUNITS-2 does not support floating point raise/root.</span>
+            <span class="c"># But if the power is of the form 1/N, where N is an integer</span>
+            <span class="c"># (within a certain acceptable accuracy) then we can find the Nth</span>
+            <span class="c"># root.</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">approx_equal</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">abs</span><span class="p">(</span><span class="n">power</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">approx_equal</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">power</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">power</span><span class="p">)):</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Cannot raise a unit by a decimal.&#39;</span><span class="p">)</span>
+                <span class="n">root</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">power</span><span class="p">))</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">root</span><span class="p">(</span><span class="n">root</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c"># Failing that, check for powers which are (very nearly) simple</span>
+                <span class="c"># integer values.</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">approx_equal</span><span class="p">(</span><span class="n">power</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">power</span><span class="p">)):</span>
+                    <span class="n">msg</span> <span class="o">=</span> <span class="s">&#39;Cannot raise a unit by a decimal (got </span><span class="si">%s</span><span class="s">).&#39;</span> <span class="o">%</span> <span class="n">power</span>
+                    <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+                <span class="n">power</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">power</span><span class="p">))</span>
+
+                <span class="n">ut_unit</span> <span class="o">=</span> <span class="n">_ut_raise</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">ctypes</span><span class="o">.</span><span class="n">c_int</span><span class="p">(</span><span class="n">power</span><span class="p">))</span>
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">ut_unit</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to raise the power of </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span> <span class="bp">self</span><span class="p">)</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">_Unit</span><span class="p">(</span><span class="n">_CATEGORY_UDUNIT</span><span class="p">,</span> <span class="n">ut_unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">_identity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c"># Redefine the comparison/hash/ordering identity as used by</span>
+        <span class="c"># _OrderedHashable.</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compare the two units for equality and return the boolean result.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (string/Unit): Unit to be compared.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; from cf_units import Unit</span>
+<span class="sd">            &gt;&gt;&gt; Unit(&#39;meters&#39;) == Unit(&#39;millimeters&#39;)</span>
+<span class="sd">            False</span>
+<span class="sd">            &gt;&gt;&gt; Unit(&#39;meters&#39;) == &#39;m&#39;</span>
+<span class="sd">            True</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">other</span> <span class="o">=</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+        <span class="c"># Compare category (i.e. unknown, no_unit, etc.).</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">category</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">category</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="c"># Compare calendar as UDUNITS cannot handle calendars.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="o">!=</span> <span class="n">other</span><span class="o">.</span><span class="n">calendar</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">False</span>
+
+        <span class="c"># Compare UDUNITS.</span>
+        <span class="n">res</span> <span class="o">=</span> <span class="n">_ut_compare</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">res</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Compare the two units for inequality and return the boolean result.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * other (string/Unit): Unit to be compared.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Boolean.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; from cf_units import Unit</span>
+<span class="sd">            &gt;&gt;&gt; Unit(&#39;meters&#39;) != Unit(&#39;millimeters&#39;)</span>
+<span class="sd">            True</span>
+<span class="sd">            &gt;&gt;&gt; Unit(&#39;meters&#39;) != &#39;m&#39;</span>
+<span class="sd">            False</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span>
+
+<div class="viewcode-block" id="Unit.convert"><a class="viewcode-back" href="../unit.html#cf_units.Unit.convert">[docs]</a>    <span class="k">def</span> <span class="nf">convert</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">other</span><span class="p">,</span> <span class="n">ctype</span><span class="o">=</span><span class="n">FLOAT64</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Converts a single value or NumPy array of values from the current unit</span>
+<span class="sd">        to the other target unit.</span>
+
+<span class="sd">        If the units are not convertible, then no conversion will take place.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * value (int/float/numpy.ndarray):</span>
+<span class="sd">            Value/s to be converted.</span>
+<span class="sd">        * other (string/Unit):</span>
+<span class="sd">            Target unit to convert to.</span>
+<span class="sd">        * ctype (ctypes.c_float/ctypes.c_double):</span>
+<span class="sd">            Floating point 32-bit single-precision (cf_units.FLOAT32) or</span>
+<span class="sd">            64-bit double-precision (cf_units.FLOAT64) used for conversion</span>
+<span class="sd">            when `value` is not a NumPy array or is a NumPy array composed of</span>
+<span class="sd">            NumPy integers. The default is 64-bit double-precision conversion.</span>
+<span class="sd">        * inplace (bool):</span>
+<span class="sd">            If ``False``, return a deep copy of the value array. If ``True``,</span>
+<span class="sd">            convert the values in-place. A new array will be created if</span>
+<span class="sd">            ``value`` is an integer NumPy array.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float or numpy.ndarray of appropriate float type.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">            &gt;&gt;&gt; c = cf_units.Unit(&#39;deg_c&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; f = cf_units.Unit(&#39;deg_f&#39;)</span>
+<span class="sd">            &gt;&gt;&gt; c.convert(0, f)</span>
+<span class="sd">            31.999999999999886</span>
+<span class="sd">            &gt;&gt;&gt; c.convert(0, f, cf_units.FLOAT32)</span>
+<span class="sd">            32.0</span>
+<span class="sd">            &gt;&gt;&gt; a64 = np.arange(3, dtype=np.float64)</span>
+<span class="sd">            &gt;&gt;&gt; c.convert(a64, f)</span>
+<span class="sd">            array([ 32. ,  33.8,  35.6])</span>
+<span class="sd">            &gt;&gt;&gt; a32 = np.arange(3, dtype=np.float32)</span>
+<span class="sd">            &gt;&gt;&gt; c.convert(a32, f)</span>
+<span class="sd">            array([ 32.        ,  33.79999924,  35.59999847], dtype=float32)</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">           Conversion between unit calendars is not permitted.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">other</span> <span class="o">=</span> <span class="n">as_unit</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span> <span class="o">==</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">value</span>
+
+        <span class="k">if</span> <span class="n">inplace</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">deepcopy</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_convertible</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+            <span class="c"># Use utime for converting reference times that are not using a</span>
+            <span class="c"># gregorian calendar as it handles these and udunits does not.</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">is_time_reference</span><span class="p">()</span> \
+                    <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="o">!=</span> <span class="n">CALENDAR_GREGORIAN</span><span class="p">:</span>
+                <span class="n">ut1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">utime</span><span class="p">()</span>
+                <span class="n">ut2</span> <span class="o">=</span> <span class="n">other</span><span class="o">.</span><span class="n">utime</span><span class="p">()</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">ut2</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">ut1</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+                <span class="c"># Preserve the datatype of the input array if it was float32.</span>
+                <span class="k">if</span> <span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)</span> <span class="ow">and</span>
+                   <span class="n">value</span><span class="o">.</span><span class="n">dtype</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">):</span>
+                    <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ut_converter</span> <span class="o">=</span> <span class="n">_ut_get_converter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">ut_unit</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">ut_converter</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+                        <span class="c"># Can only handle array of np.float32 or np.float64 so</span>
+                        <span class="c"># cast array of ints to array of floats of requested</span>
+                        <span class="c"># precision.</span>
+                        <span class="k">if</span> <span class="nb">issubclass</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">integer</span><span class="p">):</span>
+                            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+                                <span class="n">_ctypes2numpy</span><span class="p">[</span><span class="n">ctype</span><span class="p">])</span>
+                        <span class="c"># Convert arrays with explicit endianness to native</span>
+                        <span class="c"># endianness: udunits seems to be tripped up by arrays</span>
+                        <span class="c"># with endianness other than native.</span>
+                        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">byteorder</span> <span class="o">!=</span> <span class="s">&#39;=&#39;</span><span class="p">:</span>
+                            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span>
+                                <span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">)</span>
+                        <span class="c"># Strict type check of numpy array.</span>
+                        <span class="k">if</span> <span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_numpy2ctypes</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+                                <span class="s">&quot;Expect a numpy array of &#39;</span><span class="si">%s</span><span class="s">&#39; or &#39;</span><span class="si">%s</span><span class="s">&#39;&quot;</span> <span class="o">%</span>
+                                <span class="nb">tuple</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">_numpy2ctypes</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+                        <span class="n">ctype</span> <span class="o">=</span> <span class="n">_numpy2ctypes</span><span class="p">[</span><span class="n">result</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">type</span><span class="p">]</span>
+                        <span class="n">pointer</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">ctypes</span><span class="o">.</span><span class="n">data_as</span><span class="p">(</span>
+                            <span class="n">ctypes</span><span class="o">.</span><span class="n">POINTER</span><span class="p">(</span><span class="n">ctype</span><span class="p">))</span>
+                        <span class="c"># Utilise global convenience dictionary</span>
+                        <span class="c"># _cv_convert_array</span>
+                        <span class="n">_cv_convert_array</span><span class="p">[</span><span class="n">ctype</span><span class="p">](</span><span class="n">ut_converter</span><span class="p">,</span> <span class="n">pointer</span><span class="p">,</span>
+                                                 <span class="n">result</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">pointer</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="n">ctype</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">_cv_convert_scalar</span><span class="p">:</span>
+                            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Invalid target type. Can only &#39;</span>
+                                             <span class="s">&#39;convert to float or double.&#39;</span><span class="p">)</span>
+                        <span class="c"># Utilise global convenience dictionary</span>
+                        <span class="c"># _cv_convert_scalar</span>
+                        <span class="n">result</span> <span class="o">=</span> <span class="n">_cv_convert_scalar</span><span class="p">[</span><span class="n">ctype</span><span class="p">](</span><span class="n">ut_converter</span><span class="p">,</span>
+                                                           <span class="n">ctype</span><span class="p">(</span><span class="n">result</span><span class="p">))</span>
+                    <span class="n">_cv_free</span><span class="p">(</span><span class="n">ut_converter</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">_raise_error</span><span class="p">(</span><span class="s">&#39;Failed to convert </span><span class="si">%r</span><span class="s"> to </span><span class="si">%r</span><span class="s">&#39;</span> <span class="o">%</span>
+                                      <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&quot;Unable to convert from &#39;</span><span class="si">%r</span><span class="s">&#39; to &#39;</span><span class="si">%r</span><span class="s">&#39;.&quot;</span> <span class="o">%</span>
+                             <span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">result</span>
+</div>
+<div class="viewcode-block" id="Unit.utime"><a class="viewcode-back" href="../unit.html#cf_units.Unit.utime">[docs]</a>    <span class="k">def</span> <span class="nf">utime</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a netcdftime.utime object which performs conversions of</span>
+<span class="sd">        numeric time values to/from datetime objects given the current</span>
+<span class="sd">        calendar and unit time reference.</span>
+
+<span class="sd">        The current unit time reference must be of the form:</span>
+<span class="sd">        &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        i.e. &#39;hours since 1970-01-01 00:00:00&#39;</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            netcdftime.utime.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">            ...                   calendar=cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">            &gt;&gt;&gt; ut = u.utime()</span>
+<span class="sd">            &gt;&gt;&gt; ut.num2date(2)</span>
+<span class="sd">            datetime.datetime(1970, 1, 1, 2, 0)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="c">#</span>
+        <span class="c"># ensure to strip out non-parsable &#39;UTC&#39; postfix which</span>
+        <span class="c"># is generated by UDUNITS-2 formatted output</span>
+        <span class="c">#</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Unit has undefined calendar&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">netcdftime</span><span class="o">.</span><span class="n">utime</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">(</span><span class="s">&quot; UTC&quot;</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">calendar</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Unit.date2num"><a class="viewcode-back" href="../unit.html#cf_units.Unit.date2num">[docs]</a>    <span class="k">def</span> <span class="nf">date2num</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the numeric time value calculated from the datetime</span>
+<span class="sd">        object using the current calendar and unit time reference.</span>
+
+<span class="sd">        The current unit time reference must be of the form:</span>
+<span class="sd">        &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        i.e. &#39;hours since 1970-01-01 00:00:00&#39;</span>
+
+<span class="sd">        Works for scalars, sequences and numpy arrays. Returns a scalar</span>
+<span class="sd">        if input is a scalar, else returns a numpy array.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * date (datetime):</span>
+<span class="sd">            A datetime object or a sequence of datetime objects.</span>
+<span class="sd">            The datetime objects should not include a time-zone offset.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            float or numpy.ndarray of float.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; import datetime</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">            ...                   calendar=cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">            &gt;&gt;&gt; u.date2num(datetime.datetime(1970, 1, 1, 5))</span>
+<span class="sd">            5.00000000372529</span>
+<span class="sd">            &gt;&gt;&gt; u.date2num([datetime.datetime(1970, 1, 1, 5),</span>
+<span class="sd">            ...             datetime.datetime(1970, 1, 1, 6)])</span>
+<span class="sd">            array([ 5.,  6.])</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">cdf_utime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">utime</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">cdf_utime</span><span class="o">.</span><span class="n">date2num</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+</div>
+<div class="viewcode-block" id="Unit.num2date"><a class="viewcode-back" href="../unit.html#cf_units.Unit.num2date">[docs]</a>    <span class="k">def</span> <span class="nf">num2date</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">time_value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a datetime-like object calculated from the numeric time</span>
+<span class="sd">        value using the current calendar and the unit time reference.</span>
+
+<span class="sd">        The current unit time reference must be of the form:</span>
+<span class="sd">        &#39;&lt;time-unit&gt; since &lt;time-origin&gt;&#39;</span>
+<span class="sd">        i.e. &#39;hours since 1970-01-01 00:00:00&#39;</span>
+
+<span class="sd">        The datetime objects returned are &#39;real&#39; Python datetime objects</span>
+<span class="sd">        if the date falls in the Gregorian calendar (i.e. the calendar</span>
+<span class="sd">        is &#39;standard&#39;, &#39;gregorian&#39;, or &#39;proleptic_gregorian&#39; and the</span>
+<span class="sd">        date is after 1582-10-15). Otherwise a &#39;phoney&#39; datetime-like</span>
+<span class="sd">        object (netcdftime.datetime) is returned which can handle dates</span>
+<span class="sd">        that don&#39;t exist in the Proleptic Gregorian calendar.</span>
+
+<span class="sd">        Works for scalars, sequences and numpy arrays. Returns a scalar</span>
+<span class="sd">        if input is a scalar, else returns a numpy array.</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        * time_value (float): Numeric time value/s. Maximum resolution</span>
+<span class="sd">          is 1 second.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            datetime, or numpy.ndarray of datetime object.</span>
+
+<span class="sd">        For example:</span>
+
+<span class="sd">            &gt;&gt;&gt; import cf_units</span>
+<span class="sd">            &gt;&gt;&gt; u = cf_units.Unit(&#39;hours since 1970-01-01 00:00:00&#39;,</span>
+<span class="sd">            ...                   calendar=cf_units.CALENDAR_STANDARD)</span>
+<span class="sd">            &gt;&gt;&gt; u.num2date(6)</span>
+<span class="sd">            datetime.datetime(1970, 1, 1, 6, 0)</span>
+<span class="sd">            &gt;&gt;&gt; u.num2date([6, 7])</span>
+<span class="sd">            array([datetime.datetime(1970, 1, 1, 6, 0),</span>
+<span class="sd">                   datetime.datetime(1970, 1, 1, 7, 0)], dtype=object)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">cdf_utime</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">utime</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">cdf_utime</span><span class="o">.</span><span class="n">num2date</span><span class="p">(</span><span class="n">time_value</span><span class="p">)</span></div></div>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li><a href="../index.html">cf_units 1.1 documentation</a> &raquo;</li>
+          <li><a href="index.html" >Module code</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright British Crown Copyright 2015 - 2016, Met Office.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.2.
+    </div>
+  </body>
+</html>
