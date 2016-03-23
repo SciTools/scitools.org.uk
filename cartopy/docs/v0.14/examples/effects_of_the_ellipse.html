@@ -1,0 +1,277 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The effect of badly referencing an ellipse &mdash; cartopy 0.14.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.14.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.14.dev0 documentation" href="../index.html" />
+    <link rel="next" title="Map tile acquisition" href="eyja_volcano.html" />
+    <link rel="prev" title="Displaying data on an eccentric ellipse" href="eccentric_ellipse.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="eyja_volcano.html" title="Map tile acquisition"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="eccentric_ellipse.html" title="Displaying data on an eccentric ellipse"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="eccentric_ellipse.html"
+                        title="previous chapter">Displaying data on an eccentric ellipse</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="eyja_volcano.html"
+                        title="next chapter">Map tile acquisition</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/effects_of_the_ellipse.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-effect-of-badly-referencing-an-ellipse">
+<span id="examples-effects-of-the-ellipse"></span><h1>The effect of badly referencing an ellipse<a class="headerlink" href="#the-effect-of-badly-referencing-an-ellipse" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates the effect of referencing your data to an incorrect
+ellipse.</p>
+<p>First we define two coordinate systems - one using the World Geodetic System
+established in 1984 and the other using a spherical globe. Next we extract
+data from the Natural Earth land dataset and convert the Geodetic
+coordinates (referenced in WGS84) into the respective coordinate systems
+that we have defined. Finally, we plot these datasets onto a map assuming
+that they are both referenced to the WGS84 ellipse and compare how the
+coastlines are shifted as a result of referencing the incorrect ellipse.</p>
+<p>(<a class="reference external" href="../examples/effects_of_the_ellipse.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/effects_of_the_ellipse_00_00.png" src="../_images/effects_of_the_ellipse_00_00.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The effect of badly referencing an ellipse</span>
+<span class="sd">------------------------------------------</span>
+
+<span class="sd">This example demonstrates the effect of referencing your data to an incorrect</span>
+<span class="sd">ellipse.</span>
+
+<span class="sd">First we define two coordinate systems - one using the World Geodetic System</span>
+<span class="sd">established in 1984 and the other using a spherical globe. Next we extract</span>
+<span class="sd">data from the Natural Earth land dataset and convert the Geodetic</span>
+<span class="sd">coordinates (referenced in WGS84) into the respective coordinate systems</span>
+<span class="sd">that we have defined. Finally, we plot these datasets onto a map assuming</span>
+<span class="sd">that they are both referenced to the WGS84 ellipse and compare how the</span>
+<span class="sd">coastlines are shifted as a result of referencing the incorrect ellipse.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">MapQuestOpenAerial</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.lines</span> <span class="kn">import</span> <span class="n">Line2D</span> <span class="k">as</span> <span class="n">Line</span>
+<span class="kn">from</span> <span class="nn">matplotlib.patheffects</span> <span class="kn">import</span> <span class="n">Stroke</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="kn">as</span> <span class="nn">sgeom</span>
+<span class="kn">from</span> <span class="nn">shapely.ops</span> <span class="kn">import</span> <span class="n">transform</span> <span class="k">as</span> <span class="n">geom_transform</span>
+
+
+<span class="k">def</span> <span class="nf">transform_fn_factory</span><span class="p">(</span><span class="n">target_crs</span><span class="p">,</span> <span class="n">source_crs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a function which can be used by ``shapely.op.transform``</span>
+<span class="sd">    to transform the coordinate points of a geometry.</span>
+
+<span class="sd">    The function explicitly *does not* do any interpolation or clever</span>
+<span class="sd">    transformation of the coordinate points, so there is no guarantee</span>
+<span class="sd">    that the resulting geometry would make any sense.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">transform_fn</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="n">new_coords</span> <span class="o">=</span> <span class="n">target_crs</span><span class="o">.</span><span class="n">transform_points</span><span class="p">(</span><span class="n">source_crs</span><span class="p">,</span>
+                                                 <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">x</span><span class="p">),</span>
+                                                 <span class="n">np</span><span class="o">.</span><span class="n">asanyarray</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">new_coords</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">new_coords</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">new_coords</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">transform_fn</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Define the two coordinate systems with different ellipses.</span>
+    <span class="n">wgs84</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">globe</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Globe</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">,</span>
+                                              <span class="n">ellipse</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">))</span>
+    <span class="n">sphere</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(</span><span class="n">globe</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Globe</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">,</span>
+                                               <span class="n">ellipse</span><span class="o">=</span><span class="s1">&#39;sphere&#39;</span><span class="p">))</span>
+
+    <span class="c1"># Define the coordinate system of the data we have from Natural Earth and</span>
+    <span class="c1"># acquire the 1:10m physical coastline shapefile.</span>
+    <span class="n">geodetic</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">(</span><span class="n">globe</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Globe</span><span class="p">(</span><span class="n">datum</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">))</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="n">category</span><span class="o">=</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span>
+                                                  <span class="n">name</span><span class="o">=</span><span class="s1">&#39;coastline&#39;</span><span class="p">,</span>
+                                                  <span class="n">scale</span><span class="o">=</span><span class="s1">&#39;10m&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create a MapQuest map tiler instance, and use its CRS for the GeoAxes.</span>
+    <span class="n">tiler</span> <span class="o">=</span> <span class="n">MapQuestOpenAerial</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">tiler</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;The effect of incorrectly referencing the Solomon Islands&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Pick the area of interest. In our case, roughly the Solomon Islands, and</span>
+    <span class="c1"># get hold of the coastlines for that area.</span>
+    <span class="n">extent</span> <span class="o">=</span> <span class="p">(</span><span class="mi">155</span><span class="p">,</span> <span class="mi">163</span><span class="p">,</span> <span class="o">-</span><span class="mf">11.5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">(</span><span class="n">extent</span><span class="p">,</span> <span class="n">geodetic</span><span class="p">)</span>
+    <span class="n">geoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">intersecting_geometries</span><span class="p">(</span><span class="n">extent</span><span class="p">))</span>
+
+    <span class="c1"># Add the MapQuest aerial imagery at zoom level 7.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">tiler</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+
+    <span class="c1"># Transform the geodetic coordinates of the coastlines into the two</span>
+    <span class="c1"># projections of differing ellipses.</span>
+    <span class="n">wgs84_geoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">geom_transform</span><span class="p">(</span><span class="n">transform_fn_factory</span><span class="p">(</span><span class="n">wgs84</span><span class="p">,</span> <span class="n">geodetic</span><span class="p">),</span>
+                                  <span class="n">geom</span><span class="p">)</span> <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">]</span>
+    <span class="n">sphere_geoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">geom_transform</span><span class="p">(</span><span class="n">transform_fn_factory</span><span class="p">(</span><span class="n">sphere</span><span class="p">,</span> <span class="n">geodetic</span><span class="p">),</span>
+                                   <span class="n">geom</span><span class="p">)</span> <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">]</span>
+
+    <span class="c1"># Using these differently referenced geometries, assume that they are</span>
+    <span class="c1"># both referenced to WGS84.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span><span class="n">wgs84_geoms</span><span class="p">,</span> <span class="n">wgs84</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">(</span><span class="n">sphere_geoms</span><span class="p">,</span> <span class="n">wgs84</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create a legend for the coastlines.</span>
+    <span class="n">legend_artists</span> <span class="o">=</span> <span class="p">[</span><span class="n">Line</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+                      <span class="k">for</span> <span class="n">color</span> <span class="ow">in</span> <span class="p">(</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;gray&#39;</span><span class="p">)]</span>
+    <span class="n">legend_texts</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Correct ellipse</span><span class="se">\n</span><span class="s1">(WGS84)&#39;</span><span class="p">,</span> <span class="s1">&#39;Incorrect ellipse</span><span class="se">\n</span><span class="s1">(sphere)&#39;</span><span class="p">]</span>
+    <span class="n">legend</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">legend_artists</span><span class="p">,</span> <span class="n">legend_texts</span><span class="p">,</span> <span class="n">fancybox</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span>
+                        <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower left&#39;</span><span class="p">,</span> <span class="n">framealpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+    <span class="n">legend</span><span class="o">.</span><span class="n">legendPatch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;wheat&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Create an inset GeoAxes showing the location of the Solomon Islands.</span>
+    <span class="n">sub_ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">([</span><span class="mf">0.7</span><span class="p">,</span> <span class="mf">0.625</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">sub_ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mi">110</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">geodetic</span><span class="p">)</span>
+
+    <span class="c1"># Make a nice border around the inset axes.</span>
+    <span class="n">effect</span> <span class="o">=</span> <span class="n">Stroke</span><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">sub_ax</span><span class="o">.</span><span class="n">outline_patch</span><span class="o">.</span><span class="n">set_path_effects</span><span class="p">([</span><span class="n">effect</span><span class="p">])</span>
+
+    <span class="c1"># Add the land, coastlines and the extent of the Solomon Islands.</span>
+    <span class="n">sub_ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">LAND</span><span class="p">)</span>
+    <span class="n">sub_ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+    <span class="n">extent_box</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
+    <span class="n">sub_ax</span><span class="o">.</span><span class="n">add_geometries</span><span class="p">([</span><span class="n">extent_box</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                          <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="eyja_volcano.html" title="Map tile acquisition"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="eccentric_ellipse.html" title="Displaying data on an eccentric ellipse"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2016, Met Office
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
