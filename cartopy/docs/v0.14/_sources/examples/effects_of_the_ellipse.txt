@@ -1,0 +1,22 @@
+.. _examples-effects_of_the_ellipse:
+
+
+The effect of badly referencing an ellipse
+------------------------------------------
+
+This example demonstrates the effect of referencing your data to an incorrect
+ellipse.
+
+First we define two coordinate systems - one using the World Geodetic System
+established in 1984 and the other using a spherical globe. Next we extract
+data from the Natural Earth land dataset and convert the Geodetic
+coordinates (referenced in WGS84) into the respective coordinate systems
+that we have defined. Finally, we plot these datasets onto a map assuming
+that they are both referenced to the WGS84 ellipse and compare how the
+coastlines are shifted as a result of referencing the incorrect ellipse.
+
+
+
+.. plot:: examples/effects_of_the_ellipse.py
+
+.. literalinclude:: effects_of_the_ellipse.py

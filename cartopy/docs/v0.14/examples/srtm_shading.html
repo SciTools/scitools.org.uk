@@ -1,0 +1,214 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>srtm_shading example &mdash; cartopy 0.14.dev0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.14.dev0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.14.dev0 documentation" href="../index.html" />
+    <link rel="next" title="Modifying the boundary/neatline of a map in cartopy" href="star_shaped_boundary.html" />
+    <link rel="prev" title="Rotated pole boxes" href="rotated_pole.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="star_shaped_boundary.html" title="Modifying the boundary/neatline of a map in cartopy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rotated_pole.html" title="Rotated pole boxes"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rotated_pole.html"
+                        title="previous chapter">Rotated pole boxes</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="star_shaped_boundary.html"
+                        title="next chapter">Modifying the boundary/neatline of a map in cartopy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/srtm_shading.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="srtm-shading-example">
+<span id="examples-srtm-shading"></span><h1>srtm_shading example<a class="headerlink" href="#srtm-shading-example" title="Permalink to this headline">¶</a></h1>
+<p>(<a class="reference external" href="../examples/srtm_shading.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/srtm_shading_00_00.png" src="../_images/srtm_shading_00_00.png" />
+</div>
+<div class="figure">
+<img alt="../_images/srtm_shading_00_01.png" src="../_images/srtm_shading_00_01.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This example illustrates the automatic download of STRM data, and adding of</span>
+<span class="sd">shading to create a so-called &quot;Shaded Relief SRTM&quot;.</span>
+
+<span class="sd">Originally contributed by Thomas Lecocq (http://geophysique.be).</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">srtm</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">PostprocessedRasterSource</span><span class="p">,</span> <span class="n">LocatedImage</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.srtm</span> <span class="kn">import</span> <span class="n">SRTM3Source</span><span class="p">,</span> <span class="n">SRTM1Source</span>
+
+
+<span class="k">def</span> <span class="nf">shade</span><span class="p">(</span><span class="n">located_elevations</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Given an array of elevations in a LocatedImage, add a relief (shadows) to</span>
+<span class="sd">    give a realistic 3d appearance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">new_img</span> <span class="o">=</span> <span class="n">srtm</span><span class="o">.</span><span class="n">add_shading</span><span class="p">(</span><span class="n">located_elevations</span><span class="o">.</span><span class="n">image</span><span class="p">,</span>
+                               <span class="n">azimuth</span><span class="o">=</span><span class="mi">135</span><span class="p">,</span> <span class="n">altitude</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">LocatedImage</span><span class="p">(</span><span class="n">new_img</span><span class="p">,</span> <span class="n">located_elevations</span><span class="o">.</span><span class="n">extent</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">plot</span><span class="p">(</span><span class="n">Source</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+    <span class="c1"># Define a raster source which uses the SRTM data and applies the</span>
+    <span class="c1"># shade function when the data is retrieved.</span>
+    <span class="n">shaded_srtm</span> <span class="o">=</span> <span class="n">PostprocessedRasterSource</span><span class="p">(</span><span class="n">Source</span><span class="p">(),</span> <span class="n">shade</span><span class="p">)</span>
+
+    <span class="c1"># Add the shaded SRTM source to our map with a grayscale colormap.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_raster</span><span class="p">(</span><span class="n">shaded_srtm</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys&#39;</span><span class="p">)</span>
+
+    <span class="c1"># This data is high resolution, so pick a small area which has some</span>
+    <span class="c1"># interesting orography.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="mi">12</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">47</span><span class="p">,</span> <span class="mi">48</span><span class="p">])</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; Shaded Relief Map&quot;</span><span class="p">)</span>
+
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlabels_top</span> <span class="o">=</span> <span class="bp">False</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylabels_left</span> <span class="o">=</span> <span class="bp">False</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">SRTM3Source</span><span class="p">,</span> <span class="s1">&#39;SRTM3&#39;</span><span class="p">)</span>
+    <span class="n">plot</span><span class="p">(</span><span class="n">SRTM1Source</span><span class="p">,</span> <span class="s1">&#39;SRTM1&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="star_shaped_boundary.html" title="Modifying the boundary/neatline of a map in cartopy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rotated_pole.html" title="Rotated pole boxes"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2016, Met Office
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
