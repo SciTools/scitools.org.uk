@@ -1,0 +1,56 @@
+.. _iris.fileformats.grib.message:
+
+=============================
+iris.fileformats.grib.message
+=============================
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.fileformats.grib.message
+
+In this module:
+
+ * :py:obj:`GribMessage`
+ * :py:obj:`Section`
+
+
+
+An in-memory representation of a GribMessage, providing
+access to the :meth:`~GribMessage.data` payload and the metadata
+elements by section via the :meth:`~GribMessage.sections` property.
+
+..
+
+    .. autoclass:: iris.fileformats.grib.message.GribMessage
+        :members:
+        :undoc-members:
+        :inherited-members:
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+A Section of a GRIB message, supporting dictionary like access to
+attributes using gribapi key strings.
+
+Values for keys may be changed using assignment but this does not
+write to the file.
+
+..
+
+    .. autoclass:: iris.fileformats.grib.message.Section
+        :members:
+        :undoc-members:
+        :inherited-members:
+

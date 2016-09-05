@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(3, 3))
-ax = plt.axes(projection=ccrs.AzimuthalEquidistant(central_latitude=90))
-ax.coastlines(resolution='110m')
-ax.gridlines()
+../../../../shared_assets/7be1e37a9be9f4acdcbf1f8c29eb26e66c12d1303ef1fb970866cb4d-projections-4.py

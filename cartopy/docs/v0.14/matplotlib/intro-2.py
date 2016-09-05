@@ -1,6 +1,1 @@
-import cartopy.crs as ccrs
-import matplotlib.pyplot as plt
-
-ax = plt.axes(projection=ccrs.Mollweide())
-ax.stock_img()
-plt.show()
+../../../../shared_assets/f7ecf6aa76e93c9d203ec611b88f249c8e3c22e606551ee1d2006fb5-intro-2.py

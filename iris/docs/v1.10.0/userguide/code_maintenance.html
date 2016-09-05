@@ -1,0 +1,189 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>12. Code Maintenance &mdash; Iris 1.10.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.10.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.10.0 documentation" href="../index.html" />
+    <link rel="up" title="Iris user guide" href="index.html" />
+    <link rel="next" title="13. End of the user guide" href="end_of_userguide.html" />
+    <link rel="prev" title="11. Citing Iris" href="citation.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.10 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="end_of_userguide.html" title="13. End of the user guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="citation.html" title="11. Citing Iris"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" accesskey="U">Iris user guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">12. Code Maintenance</a><ul>
+<li><a class="reference internal" href="#stability-and-change">12.1. Stability and Change</a></li>
+<li><a class="reference internal" href="#goals-of-change-management">12.2. Goals of Change Management</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="citation.html"
+                        title="previous chapter">11. Citing Iris</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="end_of_userguide.html"
+                        title="next chapter">13. End of the user guide</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userguide/code_maintenance.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="code-maintenance">
+<h1>12. Code Maintenance<a class="headerlink" href="#code-maintenance" title="Permalink to this headline">¶</a></h1>
+<p>From a user point of view &#8220;code maintenance&#8221; means ensuring that your existing
+working code stays working, in the face of changes to Iris.</p>
+<div class="section" id="stability-and-change">
+<h2>12.1. Stability and Change<a class="headerlink" href="#stability-and-change" title="Permalink to this headline">¶</a></h2>
+<p>In practice, as Iris develops, most users will want to periodically upgrade
+their installed version to access new features or at least bugfixes.</p>
+<p>This is obvious if you are still developing other code that uses Iris, or using
+code from other sources.  
+However, even if you have only legacy code that remains untouched, some code
+maintenance effort is probably still necessary :</p>
+<blockquote>
+<div><ul>
+<li><p class="first">On the one hand, <em>in principle</em>, working code will go on working, as long
+as you don&#8217;t change anything else.</p>
+</li>
+<li><p class="first">However, such &#8220;version statis&#8221; can easily become a growing burden, if you
+are simply waiting until an update becomes unavoidable :</p>
+<p>Often, that will eventually occur when you need to update some other
+software component, for a completely unconnected reason.</p>
+</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="goals-of-change-management">
+<h2>12.2. Goals of Change Management<a class="headerlink" href="#goals-of-change-management" title="Permalink to this headline">¶</a></h2>
+<p>When you do upgrade Iris to a new version, you could potentially find
+that you need to rewrite your legacy code, simply to keep it working.</p>
+<p>To reduce code maintenance problems to an absolute minimum, Iris applies
+defined change management procedures to ensure that :</p>
+<blockquote>
+<div><ul class="simple">
+<li>you can be confident that your code will still work with a future release</li>
+<li>you will be aware of future incompatibility problems in advance</li>
+<li>you can defer making code compatibility changes for some time, until it suits you</li>
+</ul>
+</div></blockquote>
+<p>To take advantage of this, you should read the basic change management
+recommendations laid out in <a class="reference internal" href="../whitepapers/change_management.html#change-management"><em>Change Management in Iris from the User&#8217;s perspective</em></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="end_of_userguide.html" title="13. End of the user guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="citation.html" title="11. Citing Iris"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" >Iris user guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
