@@ -1,12 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-rpole = ccrs.RotatedPole(pole_longitude=171.77,
-                         pole_latitude=49.55,
-                         central_rotated_longitude=180)
-ax = plt.axes(projection=rpole)
-ax.set_global()
-ax.gridlines()
-ax.stock_img()
-ax.coastlines()
-plt.show()
+../../../shared_assets/3341dec02962f437c6f03e3bf7f6f1057bba0ca0d1f67b249a3cbd21-whats_new-1.py

@@ -1,7 +1,1 @@
-import cartopy.crs as ccrs
-import matplotlib.pyplot as plt
-
-ax = plt.axes(projection=ccrs.PlateCarree())
-ax.coastlines()
-
-plt.show()
+../../../../shared_assets/bda751e008a74ec2394bd238e33364bf3a4f05015e09b8f2fdfa3e54-intro-1.py
