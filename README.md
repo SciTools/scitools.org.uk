@@ -37,5 +37,5 @@ sphinx). Once the content is in place, consider running
 common assets into the common_assets folder, thus reducing the overall
 repository size.
 
-(C) British Crown Copyright 2010 - 2015, Met Office
+(C) British Crown Copyright 2010 - 2016, Met Office
 
