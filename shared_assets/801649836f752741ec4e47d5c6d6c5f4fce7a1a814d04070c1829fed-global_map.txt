@@ -1,0 +1,14 @@
+.. _General-global_map:
+
+
+Quickplot of a 2d cube on a map
+===============================
+
+This example demonstrates a contour plot of global air temperature. The plot
+title and the labels for the axes are automatically derived from the metadata.
+
+
+
+.. plot:: examples/General/global_map.py
+    :include-source:
+

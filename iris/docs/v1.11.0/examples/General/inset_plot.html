@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Test Data Showing Inset Plots &mdash; Iris 1.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.11.0 documentation" href="../../index.html" />
+    <link rel="up" title="General visualisation examples" href="index.html" />
+    <link rel="next" title="Multi-line temperature profile plot" href="lineplot_with_legend.html" />
+    <link rel="prev" title="Quickplot of a 2d cube on a map" href="global_map.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.11 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lineplot_with_legend.html" title="Multi-line temperature profile plot"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="global_map.html" title="Quickplot of a 2d cube on a map"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="global_map.html"
+                        title="previous chapter">Quickplot of a 2d cube on a map</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="lineplot_with_legend.html"
+                        title="next chapter">Multi-line temperature profile plot</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/examples/General/inset_plot.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="test-data-showing-inset-plots">
+<span id="general-inset-plot"></span><h1>Test Data Showing Inset Plots<a class="headerlink" href="#test-data-showing-inset-plots" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates the use of a single 3D data cube with time, latitude
+and longitude dimensions to plot a temperature series for a single latitude
+coordinate, with an inset plot of the data region.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Test Data Showing Inset Plots</span>
+<span class="sd">=============================</span>
+
+<span class="sd">This example demonstrates the use of a single 3D data cube with time, latitude</span>
+<span class="sd">and longitude dimensions to plot a temperature series for a single latitude</span>
+<span class="sd">coordinate, with an inset plot of the data region.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="kn">as</span> <span class="nn">qplt</span>
+<span class="kn">import</span> <span class="nn">iris.plot</span> <span class="kn">as</span> <span class="nn">iplt</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># Load the data</span>
+    <span class="k">with</span> <span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">netcdf_promote</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+        <span class="n">cube1</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;ostia_monthly.nc&#39;</span><span class="p">))</span>
+    <span class="c"># Slice into cube to retrieve data for the inset map showing the</span>
+    <span class="c"># data region</span>
+    <span class="n">region</span> <span class="o">=</span> <span class="n">cube1</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="c"># Average over latitude to reduce cube to 1 dimension</span>
+    <span class="n">plot_line</span> <span class="o">=</span> <span class="n">region</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s">&#39;latitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+
+    <span class="c"># Open a window for plotting</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="c"># Add a single subplot (axes). Could also use &quot;ax_main = plt.subplot()&quot;</span>
+    <span class="n">ax_main</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="c"># Produce a quick plot of the 1D cube</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">plot_line</span><span class="p">)</span>
+
+    <span class="c"># Set x limits to match the data</span>
+    <span class="n">ax_main</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">plot_line</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="o">.</span><span class="n">max</span><span class="p">())</span>
+    <span class="c"># Adjust the y limits so that the inset map won&#39;t clash with main plot</span>
+    <span class="n">ax_main</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mi">294</span><span class="p">,</span> <span class="mi">310</span><span class="p">)</span>
+    <span class="n">ax_main</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Meridional Mean Temperature&#39;</span><span class="p">)</span>
+    <span class="c"># Add grid lines</span>
+    <span class="n">ax_main</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+    <span class="c"># Add a second set of axes specifying the fractional coordinates within</span>
+    <span class="c"># the figure with bottom left corner at x=0.55, y=0.58 with width</span>
+    <span class="c"># 0.3 and height 0.25.</span>
+    <span class="c"># Also specify the projection</span>
+    <span class="n">ax_sub</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.58</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span>
+                          <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Mollweide</span><span class="p">(</span><span class="n">central_longitude</span><span class="o">=</span><span class="mi">180</span><span class="p">))</span>
+
+    <span class="c"># Use iris.plot (iplt) here so colour bar properties can be specified</span>
+    <span class="c"># Also use a sequential colour scheme to reduce confusion for those with</span>
+    <span class="c"># colour-blindness</span>
+    <span class="n">iplt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">region</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s">&#39;Blues&#39;</span><span class="p">)</span>
+    <span class="c"># Manually set the orientation and tick marks on your colour bar</span>
+    <span class="n">ticklist</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">region</span><span class="o">.</span><span class="n">data</span><span class="p">),</span> <span class="mi">4</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">orientation</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">ticks</span><span class="o">=</span><span class="n">ticklist</span><span class="p">)</span>
+    <span class="n">ax_sub</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s">&#39;Data Region&#39;</span><span class="p">)</span>
+    <span class="c"># Add coastlines</span>
+    <span class="n">ax_sub</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+    <span class="c"># request to show entire map, using the colour mesh on the data region only</span>
+    <span class="n">ax_sub</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+
+    <span class="n">qplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../examples/General/inset_plot.py">Source code</a>, <a class="reference external" href="../../examples/General/inset_plot.png">png</a>)</p>
+<div class="figure" id="inset-plot">
+<img alt="../../_images/inset_plot.png" src="../../_images/inset_plot.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="lineplot_with_legend.html" title="Multi-line temperature profile plot"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="global_map.html" title="Quickplot of a 2d cube on a map"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" >General visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

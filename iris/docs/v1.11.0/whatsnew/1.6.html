@@ -1,0 +1,523 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>What’s new in Iris 1.6 &mdash; Iris 1.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.11.0 documentation" href="../index.html" />
+    <link rel="up" title="What’s new in Iris" href="index.html" />
+    <link rel="next" title="What’s new in Iris 1.5" href="1.5.html" />
+    <link rel="prev" title="What’s new in Iris 1.7" href="1.7.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.11 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="1.5.html" title="What’s new in Iris 1.5"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="1.7.html" title="What’s new in Iris 1.7"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" accesskey="U">What&#8217;s new in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What&#8217;s new in Iris 1.6</a><ul>
+<li><a class="reference internal" href="#iris-1-6-features">Iris 1.6 features</a></li>
+<li><a class="reference internal" href="#bugs-fixed">Bugs fixed</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible changes</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+<li><a class="reference internal" href="#new-contributors">New Contributors</a><ul>
+<li><a class="reference internal" href="#a-new-utility-function-to-assist-with-caching">A new utility function to assist with caching</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-rms-aggregator-supports-weights">The RMS aggregator supports weights</a></li>
+<li><a class="reference internal" href="#equalise-cube-attributes">Equalise cube attributes</a></li>
+<li><a class="reference internal" href="#masking-a-collapsed-result-by-missing-data-tolerance">Masking a collapsed result by missing-data tolerance</a></li>
+<li><a class="reference internal" href="#promote-a-scalar-coordinate">Promote a scalar coordinate</a></li>
+<li><a class="reference internal" href="#a-new-peak-aggregator-providing-spline-interpolation">A new PEAK aggregator providing spline interpolation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="1.7.html"
+                        title="previous chapter">What&#8217;s new in Iris 1.7</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="1.5.html"
+                        title="next chapter">What&#8217;s new in Iris 1.5</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/whatsnew/1.6.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="what-s-new-in-iris-1-6">
+<h1>What&#8217;s new in Iris 1.6<a class="headerlink" href="#what-s-new-in-iris-1-6" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.6.1</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">18th February 2014</td>
+</tr>
+</tbody>
+</table>
+<p>This document explains the new/changed features of Iris in version 1.6.
+(<a class="reference internal" href="index.html"><em>View all changes</em></a>.)</p>
+<div class="section" id="iris-1-6-features">
+<h2>Iris 1.6 features<a class="headerlink" href="#iris-1-6-features" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-showcase-feature-back-to-the-future admonition" id="showcase">
+<p class="first admonition-title">Showcase Feature - Back to the future ...</p>
+<p>The new <a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><tt class="xref py py-data docutils literal"><span class="pre">iris.FUTURE</span></tt></a> global variable is a <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><tt class="xref py py-class docutils literal"><span class="pre">iris.Future</span></tt></a>
+instance that controls the run-time behaviour of Iris.</p>
+<p>By setting <tt class="xref py py-data docutils literal"><span class="pre">iris.FUTURE.cell_datetime_objects</span></tt> to <em>True</em>, a <em>time</em>
+reference coordinate will return <em>datetime-like</em> objects when invoked
+with <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.cell" title="iris.coords.Coord.cell"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.cell()</span></tt></a> or <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.cells" title="iris.coords.Coord.cells"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.cells()</span></tt></a>.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.coords</span> <span class="kn">import</span> <span class="n">DimCoord</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">cell_datetime_objects</span> <span class="o">=</span> <span class="bp">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">coord</span> <span class="o">=</span> <span class="n">DimCoord</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="s">&#39;time&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s">&#39;hours since epoch&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">([</span><span class="nb">str</span><span class="p">(</span><span class="n">cell</span><span class="p">)</span> <span class="k">for</span> <span class="n">cell</span> <span class="ow">in</span> <span class="n">coord</span><span class="o">.</span><span class="n">cells</span><span class="p">()])</span>
+<span class="go">[&#39;1970-01-01 01:00:00&#39;, &#39;1970-01-01 02:00:00&#39;, &#39;1970-01-01 03:00:00&#39;]</span>
+</pre></div>
+</div>
+<p>Note that, either a <a class="reference external" href="http://docs.python.org/2.7/library/datetime.html#datetime.datetime" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">datetime.datetime</span></tt></a> or <tt class="xref py py-class docutils literal"><span class="pre">netcdftime.datetime</span></tt>
+object instance will be returned, depending on the calendar of the time
+reference coordinate.</p>
+<p>This capability permits the ability to express time constraints more
+naturally when the cell represents a <em>datetime-like</em> object.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Ignore the 1st of January.</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">month</span> <span class="o">!=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">cell</span><span class="o">.</span><span class="n">point</span><span class="o">.</span><span class="n">day</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Note that, <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><tt class="xref py py-class docutils literal"><span class="pre">iris.Future</span></tt></a> also supports a <a class="reference external" href="http://docs.python.org/2/reference/datamodel.html#context-managers">context manager</a>
+which allows multiple sections of code to execute with different run-time behaviour.</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="p">)</span>
+<span class="go">Future(cell_datetime_objects=False)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="o">.</span><span class="n">context</span><span class="p">(</span><span class="n">cell_datetime_objects</span><span class="o">=</span><span class="bp">True</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="c"># Code that expects to deal with datetime-like objects.</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="go">Future(cell_datetime_objects=True)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">FUTURE</span><span class="p">)</span>
+<span class="go">Future(cell_datetime_objects=False)</span>
+</pre></div>
+</div>
+</div>
+<div class="admonition-showcase-feature-partial-date-time admonition">
+<p class="first admonition-title">Showcase Feature - Partial date/time ...</p>
+<p>The <a class="reference internal" href="../iris/iris/time.html#iris.time.PartialDateTime" title="iris.time.PartialDateTime"><tt class="xref py py-class docutils literal"><span class="pre">iris.time.PartialDateTime</span></tt></a> class provides the ability to perform
+comparisons with other <em>datetime-like</em> objects such as
+<a class="reference external" href="http://docs.python.org/2.7/library/datetime.html#datetime.datetime" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">datetime.datetime</span></tt></a> or <tt class="xref py py-class docutils literal"><span class="pre">netcdftime.datetime</span></tt>.</p>
+<p>The <em>year, month, day, hour, minute, second</em> and <em>microsecond</em> attributes of
+a <a class="reference internal" href="../iris/iris/time.html#iris.time.PartialDateTime" title="iris.time.PartialDateTime"><tt class="xref py py-class docutils literal"><span class="pre">iris.time.PartialDateTime</span></tt></a> object may be fully or partially specified
+for any given comparison.</p>
+<p>This is particularly useful for time based constraints, whilst enabling the
+<tt class="xref py py-data docutils literal"><span class="pre">iris.FUTURE.cell_datetime_objects</span></tt>, see <a class="reference internal" href="1.8.html#showcase"><em>here</em></a> for further
+details on this new release feature.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">iris.time</span> <span class="kn">import</span> <span class="n">PartialDateTime</span>
+
+<span class="c"># Ignore the 1st of January.</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span> <span class="o">!=</span> <span class="n">PartialDateTime</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c"># Constrain by a specific year.</span>
+<span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="n">PartialDateTime</span><span class="p">(</span><span class="n">year</span><span class="o">=</span><span class="mi">2013</span><span class="p">))</span>
+</pre></div>
+</div>
+<p class="last">Also see the User Guide <a class="reference internal" href="../userguide/loading_iris_cubes.html#using-time-constraints"><em>Constraining on Time</em></a>
+section for further commentary.</p>
+</div>
+<ul class="simple">
+<li>GRIB loading supports latitude/longitude or Gaussian reduced grids for
+version 1 and version 2.</li>
+<li><a class="reference internal" href="#caching"><em>A new utility function to assist with caching</em></a>.</li>
+<li><a class="reference internal" href="#rms"><em>The RMS aggregator supports weights</em></a>.</li>
+<li><a class="reference internal" href="#equalise"><em>A new experimental function to equalise cube attributes</em></a>.</li>
+<li><a class="reference internal" href="#tolerance"><em>Collapsing a cube provides a tolerance level for missing-data</em></a>.</li>
+<li>NAME loading supports vertical coordinates.</li>
+<li>UM land/sea mask de-compression for Fieldsfiles and PP files.</li>
+<li>Lateral boundary condition Fieldsfile support.</li>
+<li>Staggered grid support for Fieldsfiles extended to type 6 (Arakawa C grid
+with v at poles).</li>
+<li>Extend support for Fieldsfiles with grid codes 11, 26, 27, 28 and 29.</li>
+<li><a class="reference internal" href="#promote"><em>Promoting a scalar coordinate to new leading cube dimension</em></a>.</li>
+<li>Interpreting cell methods from NAME.</li>
+<li>GRIB2 export without forecast_period, enabling NAME to GRIB2.</li>
+<li>Loading height levels from GRIB2.</li>
+<li><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_categorised_coord" title="iris.coord_categorisation.add_categorised_coord"><tt class="xref py py-func docutils literal"><span class="pre">iris.coord_categorisation.add_categorised_coord()</span></tt></a> now supports
+multi-dimensional coordinate categorisation.</li>
+<li>Fieldsfiles and PP support for loading and saving of air potential temperature.</li>
+<li><a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.regrid_weighted_curvilinear_to_rectilinear" title="iris.experimental.regrid.regrid_weighted_curvilinear_to_rectilinear"><tt class="xref py py-func docutils literal"><span class="pre">iris.experimental.regrid.regrid_weighted_curvilinear_to_rectilinear()</span></tt></a>
+regrids curvilinear point data to a target rectilinear grid using associated
+area weights.</li>
+<li>Extended capability of the NetCDF saver <a class="reference internal" href="../iris/iris/fileformats/netcdf.html#iris.fileformats.netcdf.Saver.write" title="iris.fileformats.netcdf.Saver.write"><tt class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.netcdf.Saver.write()</span></tt></a>
+for fine-tune control of a <tt class="xref py py-mod docutils literal"><span class="pre">netCDF4.Variable</span></tt>. Also allows multiple dimensions
+to be nominated as <em>unlimited</em>.</li>
+<li><a class="reference internal" href="#peak"><em>A new PEAK aggregator providing spline interpolation</em></a>.</li>
+<li>A new utility function <a class="reference internal" href="../iris/iris/util.html#iris.util.broadcast_to_shape" title="iris.util.broadcast_to_shape"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.broadcast_to_shape()</span></tt></a>.</li>
+<li>A new utility function <a class="reference internal" href="../iris/iris/util.html#iris.util.as_compatible_shape" title="iris.util.as_compatible_shape"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.as_compatible_shape()</span></tt></a>.</li>
+<li>Iris tests can now be run on systems where directory write permissions
+previously did not allow it.  This is achieved by writing to the current working
+directory in such cases.</li>
+<li>Support for 365 day calendar PP fields.</li>
+<li>Added phenomenon translation between cf and grib2 for wind (from) direction.</li>
+<li>PP files now retain lbfc value on save, derived from the stash attribute.</li>
+</ul>
+</div>
+<div class="section" id="bugs-fixed">
+<h2>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.rolling_window" title="iris.cube.Cube.rolling_window"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.rolling_window()</span></tt></a> has been extended to support masked arrays.</li>
+<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.collapsed()</span></tt></a> now handles string coordinates.</li>
+<li>Default LBUSER(2) to -99 for Fieldsfile and PP saving.</li>
+<li><a class="reference internal" href="../iris/iris/util.html#iris.util.monotonic" title="iris.util.monotonic"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.monotonic()</span></tt></a> returns the correct direction.</li>
+<li>File loaders correctly parse filenames containing colons.</li>
+<li>ABF loader now correctly loads the ABF data payload once.</li>
+<li>Support for 1D array <tt class="xref py py-data docutils literal"><span class="pre">iris.cube.cube.attributes</span></tt>.</li>
+<li>GRIB bounded level saving fix.</li>
+<li><a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.project" title="iris.analysis.cartography.project"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.project()</span></tt></a> now associates a coordinate system
+with the resulting target cube, where applicable.</li>
+<li><a class="reference internal" href="../iris/iris/util.html#iris.util.array_equal" title="iris.util.array_equal"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.array_equal()</span></tt></a> now correctly ignores any mask if present,
+matching the behaviour of <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/generated/numpy.array_equal.html#numpy.array_equal" title="(in NumPy v1.11)"><tt class="xref py py-func docutils literal"><span class="pre">numpy.array_equal()</span></tt></a> except with string array
+support.</li>
+<li><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.interpolate.linear()</span></tt> now retains a mask in the resulting
+cube.</li>
+<li><a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord.from_regular" title="iris.coords.DimCoord.from_regular"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.DimCoord.from_regular()</span></tt></a> now correctly returns a coordinate
+which will always be regular as indicated by <a class="reference internal" href="../iris/iris/util.html#iris.util.is_regular" title="iris.util.is_regular"><tt class="xref py py-func docutils literal"><span class="pre">is_regular()</span></tt></a>.</li>
+<li><a class="reference internal" href="../iris/iris/util.html#iris.util.rolling_window" title="iris.util.rolling_window"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.rolling_window()</span></tt></a> handling of masked arrays (degenerate
+masks) fixed.</li>
+<li>Exception no longer raised for any ellipsoid definition in nimrod loading.</li>
+</ul>
+</div>
+<div class="section" id="incompatible-changes">
+<h2>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The experimental &#8216;concatenate&#8217; function is now a method of a
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a>, see <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList.concatenate" title="iris.cube.CubeList.concatenate"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.CubeList.concatenate()</span></tt></a>. The
+functionality is unchanged.</p>
+</li>
+<li><p class="first"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.extract_by_trajectory()</span></tt> has been removed.
+Instead, use <a class="reference internal" href="../iris/iris/analysis/trajectory.html#iris.analysis.trajectory.interpolate" title="iris.analysis.trajectory.interpolate"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.trajectory.interpolate()</span></tt></a>.</p>
+</li>
+<li><p class="first"><tt class="xref py py-func docutils literal"><span class="pre">iris.load_strict()</span></tt> has been removed.
+Instead, use <a class="reference internal" href="../iris/iris.html#iris.load_cube" title="iris.load_cube"><tt class="xref py py-func docutils literal"><span class="pre">iris.load_cube()</span></tt></a> and <a class="reference internal" href="../iris/iris.html#iris.load_cubes" title="iris.load_cubes"><tt class="xref py py-func docutils literal"><span class="pre">iris.load_cubes()</span></tt></a>.</p>
+</li>
+<li><p class="first"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.cos()</span></tt> and <tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.sin()</span></tt>
+have been removed.</p>
+</li>
+<li><p class="first"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.unit_converted()</span></tt> has been removed.
+Instead, make a copy of the coordinate using
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.copy" title="iris.coords.Coord.copy"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.copy()</span></tt></a> and then call the
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.convert_units" title="iris.coords.Coord.convert_units"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.convert_units()</span></tt></a> method of the new
+coordinate.</p>
+</li>
+<li><p class="first">Iteration over a <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">Cube</span></tt></a> has been removed. Instead,
+use <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.slices()</span></tt></a>.</p>
+</li>
+<li><p class="first">The following <a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit" title="iris.unit.Unit"><tt class="xref py py-class docutils literal"><span class="pre">Unit</span></tt></a> deprecated methods/properties have been removed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Removed property/method</p>
+</th>
+<th class="head"><p class="first last">New method</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-meth docutils literal"><span class="pre">convertible()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_convertible" title="iris.unit.Unit.is_convertible"><tt class="xref py py-meth docutils literal"><span class="pre">is_convertible()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">dimensionless</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_dimensionless" title="iris.unit.Unit.is_dimensionless"><tt class="xref py py-meth docutils literal"><span class="pre">is_dimensionless()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">no_unit</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_no_unit" title="iris.unit.Unit.is_no_unit"><tt class="xref py py-meth docutils literal"><span class="pre">is_no_unit()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">time_reference</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_time_reference" title="iris.unit.Unit.is_time_reference"><tt class="xref py py-meth docutils literal"><span class="pre">is_time_reference()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-attr docutils literal"><span class="pre">unknown</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/unit.html#iris.unit.Unit.is_unknown" title="iris.unit.Unit.is_unknown"><tt class="xref py py-meth docutils literal"><span class="pre">is_unknown()</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">As a result of deprecating <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.add_history" title="iris.cube.Cube.add_history"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.add_history()</span></tt></a> and removing the
+automatic appending of history by operations such as cube arithmetic,
+collapsing, and aggregating, the signatures of a number of functions within
+<a class="reference internal" href="../iris/iris/analysis/maths.html#module-iris.analysis.maths" title="iris.analysis.maths"><tt class="xref py py-mod docutils literal"><span class="pre">iris.analysis.maths</span></tt></a> have been modified along with that of
+<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.Aggregator</span></tt></a> and <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.WeightedAggregator" title="iris.analysis.WeightedAggregator"><tt class="xref py py-class docutils literal"><span class="pre">iris.analysis.WeightedAggregator</span></tt></a>.</p>
+</li>
+<li><p class="first">The experimental ABF and ABL functionality has now been promoted to 
+core functionality in <a class="reference internal" href="../iris/iris/fileformats/abf.html#module-iris.fileformats.abf" title="iris.fileformats.abf"><tt class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.abf</span></tt></a>.</p>
+</li>
+<li><p class="first">The following <a class="reference internal" href="../iris/iris/coord_categorisation.html#module-iris.coord_categorisation" title="iris.coord_categorisation"><tt class="xref py py-mod docutils literal"><span class="pre">iris.coord_categorisation</span></tt></a> deprecated functions have been
+removed.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="53%" />
+<col width="47%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><p class="first last">Removed function</p>
+</th>
+<th class="head"><p class="first last">New function</p>
+</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_custom_season()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season" title="iris.coord_categorisation.add_season"><tt class="xref py py-func docutils literal"><span class="pre">add_season()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_custom_season_number()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season_number" title="iris.coord_categorisation.add_season_number"><tt class="xref py py-func docutils literal"><span class="pre">add_season_number()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_custom_season_year()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season_year" title="iris.coord_categorisation.add_season_year"><tt class="xref py py-func docutils literal"><span class="pre">add_season_year()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_custom_season_membership()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season_membership" title="iris.coord_categorisation.add_season_membership"><tt class="xref py py-func docutils literal"><span class="pre">add_season_membership()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_month_shortname()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_month" title="iris.coord_categorisation.add_month"><tt class="xref py py-func docutils literal"><span class="pre">add_month()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-odd"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_weekday_shortname()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_weekday" title="iris.coord_categorisation.add_weekday"><tt class="xref py py-func docutils literal"><span class="pre">add_weekday()</span></tt></a></p>
+</td>
+</tr>
+<tr class="row-even"><td><p class="first last"><tt class="xref py py-func docutils literal"><span class="pre">add_season_month_initials()</span></tt></p>
+</td>
+<td><p class="first last"><a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_season" title="iris.coord_categorisation.add_season"><tt class="xref py py-func docutils literal"><span class="pre">add_season()</span></tt></a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p class="first">When a cube is loaded from PP or GRIB and it has both time and forecast period
+coordinates, and the time coordinate has bounds, the forecast period coordinate
+will now also have bounds. These bounds will be aligned with the bounds of the
+time coordinate taking into account the forecast reference time. Also,
+the forecast period point will now be aligned with the time point.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.add_history" title="iris.cube.Cube.add_history"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.add_history()</span></tt></a> has been deprecated in favour
+of users modifying/creating the history metadata directly. This is
+because the automatic behaviour did not deliver a sufficiently complete,
+auditable history and often prevented the merging of cubes.</li>
+<li><a class="reference internal" href="../iris/iris/util.html#iris.util.broadcast_weights" title="iris.util.broadcast_weights"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.broadcast_weights()</span></tt></a> has been deprecated and replaced
+by the new utility function <a class="reference internal" href="../iris/iris/util.html#iris.util.broadcast_to_shape" title="iris.util.broadcast_to_shape"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.broadcast_to_shape()</span></tt></a>.</li>
+<li>Callback mechanism <cite>iris.run_callback</cite> has had its deprecation of return
+values revoked.  The callback can now return cube instances as well as
+inplace changes to the cube.</li>
+</ul>
+</div>
+<div class="section" id="new-contributors">
+<h2>New Contributors<a class="headerlink" href="#new-contributors" title="Permalink to this headline">¶</a></h2>
+<p>Congratulations and thank you to <a class="reference external" href="https://github.com/felicityguest">felicityguest</a>, <a class="reference external" href="https://github.com/jkettleb">jkettleb</a>,
+<a class="reference external" href="https://github.com/kwilliams-mo">kwilliams-mo</a> and <a class="reference external" href="https://github.com/shoyer">shoyer</a> who all made their first contribution
+to Iris!</p>
+<hr class="docutils" />
+<div class="section" id="a-new-utility-function-to-assist-with-caching">
+<span id="caching"></span><h3>A new utility function to assist with caching<a class="headerlink" href="#a-new-utility-function-to-assist-with-caching" title="Permalink to this headline">¶</a></h3>
+<p>To assist with management of caching results to file, the new utility
+function <a class="reference internal" href="../iris/iris/util.html#iris.util.file_is_newer_than" title="iris.util.file_is_newer_than"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.file_is_newer_than()</span></tt></a> may be used to easily determine whether
+the modification time of a specified cache file is newer than one or more other files.</p>
+<p>Typically, the use of caching is a means to circumvent the cost of repeating time
+consuming processing, or to reap the benefit of fast-loading a pickled cube.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Determine whether to load from the cache or source.</span>
+<span class="k">if</span> <span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">file_is_newer</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="n">source_file</span><span class="p">):</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s">&#39;rb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">cube</span> <span class="o">=</span> <span class="n">cPickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">source_file</span><span class="p">)</span>
+    
+    <span class="c"># Perhaps perform some intensive processing ...</span>
+
+    <span class="c"># Create the cube cache.</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">cache_file</span><span class="p">,</span> <span class="s">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+        <span class="n">cPickle</span><span class="o">.</span><span class="n">dump</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">fh</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="the-rms-aggregator-supports-weights">
+<span id="rms"></span><h2>The RMS aggregator supports weights<a class="headerlink" href="#the-rms-aggregator-supports-weights" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.RMS" title="iris.analysis.RMS"><tt class="xref py py-data docutils literal"><span class="pre">iris.analysis.RMS</span></tt></a> aggregator has been extended to allow the use of
+weights using the new keyword argument <tt class="xref py py-data docutils literal"><span class="pre">weights</span></tt>.</p>
+<p>For example, an RMS weighted cube collapse is performed as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">iris.analysis</span> <span class="kn">import</span> <span class="n">RMS</span>
+<span class="n">collapsed_cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s">&#39;height&#39;</span><span class="p">,</span> <span class="n">RMS</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="equalise-cube-attributes">
+<span id="equalise"></span><h2>Equalise cube attributes<a class="headerlink" href="#equalise-cube-attributes" title="Permalink to this headline">¶</a></h2>
+<p>To assist with <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> merging, the new experimental in-place
+function <a class="reference internal" href="../iris/iris/experimental/equalise_cubes.html#iris.experimental.equalise_cubes.equalise_attributes" title="iris.experimental.equalise_cubes.equalise_attributes"><tt class="xref py py-func docutils literal"><span class="pre">iris.experimental.equalise_cubes.equalise_attributes()</span></tt></a> ensures
+that a sequence of cubes contains a common set of <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.attributes" title="iris.cube.Cube.attributes"><tt class="xref py py-data docutils literal"><span class="pre">iris.cube.Cube.attributes</span></tt></a>.</p>
+<p>This attempts to smooth the merging process by ensuring that all candidate cubes
+have the same attributes.</p>
+</div>
+<div class="section" id="masking-a-collapsed-result-by-missing-data-tolerance">
+<span id="tolerance"></span><h2>Masking a collapsed result by missing-data tolerance<a class="headerlink" href="#masking-a-collapsed-result-by-missing-data-tolerance" title="Permalink to this headline">¶</a></h2>
+<p>The result from collapsing masked cube data may now be completely
+masked by providing a <tt class="xref py py-data docutils literal"><span class="pre">mdtol</span></tt> missing-data tolerance keyword
+to <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.collapsed()</span></tt></a>.</p>
+<p>This tolerance provides a threshold that will <strong>completely</strong> mask the
+collapsed result whenever the fraction of data to missing-data is 
+less than or equal to the provided tolerance.</p>
+</div>
+<div class="section" id="promote-a-scalar-coordinate">
+<span id="promote"></span><h2>Promote a scalar coordinate<a class="headerlink" href="#promote-a-scalar-coordinate" title="Permalink to this headline">¶</a></h2>
+<p>The new utility function <a class="reference internal" href="../iris/iris/util.html#iris.util.new_axis" title="iris.util.new_axis"><tt class="xref py py-func docutils literal"><span class="pre">iris.util.new_axis()</span></tt></a> creates a new cube with
+a new leading dimension of size unity. If a scalar coordinate is provided, then
+the scalar coordinate is promoted to be the dimension coordinate for the new
+leading dimension.</p>
+<p>Note that, this function will load the data payload of the cube.</p>
+</div>
+<div class="section" id="a-new-peak-aggregator-providing-spline-interpolation">
+<span id="peak"></span><h2>A new PEAK aggregator providing spline interpolation<a class="headerlink" href="#a-new-peak-aggregator-providing-spline-interpolation" title="Permalink to this headline">¶</a></h2>
+<p>The new <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.PEAK" title="iris.analysis.PEAK"><tt class="xref py py-data docutils literal"><span class="pre">iris.analysis.PEAK</span></tt></a> aggregator calculates the global peak
+value from a spline interpolation of the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a> data payload
+along a nominated coordinate axis.</p>
+<p>For example, to calculate the peak time:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">iris.analysis</span> <span class="kn">import</span> <span class="n">PEAK</span>
+<span class="n">collapsed_cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">,</span> <span class="n">PEAK</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="1.5.html" title="What’s new in Iris 1.5"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="1.7.html" title="What’s new in Iris 1.7"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" >What&#8217;s new in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

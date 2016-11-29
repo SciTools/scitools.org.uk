@@ -1,0 +1,244 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plotting wind direction using quiver &mdash; Iris 1.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.11.0 documentation" href="../../index.html" />
+    <link rel="up" title="Meteorology visualisation examples" href="index.html" />
+    <link rel="next" title="Oceanography visualisation examples" href="../Oceanography/index.html" />
+    <link rel="prev" title="Seasonal ensemble model plots" href="lagged_ensemble.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.11 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../Oceanography/index.html" title="Oceanography visualisation examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="lagged_ensemble.html" title="Seasonal ensemble model plots"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Meteorology visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="lagged_ensemble.html"
+                        title="previous chapter">Seasonal ensemble model plots</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../Oceanography/index.html"
+                        title="next chapter">Oceanography visualisation examples</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/examples/Meteorology/wind_speed.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="plotting-wind-direction-using-quiver">
+<span id="meteorology-wind-speed"></span><h1>Plotting wind direction using quiver<a class="headerlink" href="#plotting-wind-direction-using-quiver" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates using quiver to plot wind speed contours and wind
+direction arrows from wind vector component input data. The vector components
+are co-located in space in this case.</p>
+<p>For the second plot, the data used for the arrows is normalised to produce
+arrows with a uniform size on the plot.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plotting wind direction using quiver</span>
+<span class="sd">===========================================================</span>
+
+<span class="sd">This example demonstrates using quiver to plot wind speed contours and wind</span>
+<span class="sd">direction arrows from wind vector component input data. The vector components</span>
+<span class="sd">are co-located in space in this case.</span>
+
+<span class="sd">For the second plot, the data used for the arrows is normalised to produce</span>
+<span class="sd">arrows with a uniform size on the plot.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.coord_categorisation</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="kn">as</span> <span class="nn">qplt</span>
+
+<span class="kn">import</span> <span class="nn">cartopy</span>
+<span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="kn">as</span> <span class="nn">cfeat</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c"># Load the u and v components of wind from a pp file</span>
+    <span class="n">infile</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;wind_speed_lake_victoria.pp&#39;</span><span class="p">)</span>
+
+    <span class="n">uwind</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="s">&#39;x_wind&#39;</span><span class="p">)</span>
+    <span class="n">vwind</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="s">&#39;y_wind&#39;</span><span class="p">)</span>
+
+    <span class="n">ulon</span> <span class="o">=</span> <span class="n">uwind</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;longitude&#39;</span><span class="p">)</span>
+    <span class="n">vlon</span> <span class="o">=</span> <span class="n">vwind</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;longitude&#39;</span><span class="p">)</span>
+
+    <span class="c"># The longitude points go from 180 to 540, so subtract 360 from them</span>
+    <span class="n">ulon</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">ulon</span><span class="o">.</span><span class="n">points</span> <span class="o">-</span> <span class="mf">360.0</span>
+    <span class="n">vlon</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="n">vlon</span><span class="o">.</span><span class="n">points</span> <span class="o">-</span> <span class="mf">360.0</span>
+
+    <span class="c"># Create a cube containing the wind speed</span>
+    <span class="n">windspeed</span> <span class="o">=</span> <span class="p">(</span><span class="n">uwind</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">vwind</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="n">windspeed</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s">&#39;windspeed&#39;</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ulon</span><span class="o">.</span><span class="n">points</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">uwind</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span>
+    <span class="n">u</span> <span class="o">=</span> <span class="n">uwind</span><span class="o">.</span><span class="n">data</span>
+    <span class="n">v</span> <span class="o">=</span> <span class="n">vwind</span><span class="o">.</span><span class="n">data</span>
+
+    <span class="c"># Set up axes to show the lake</span>
+    <span class="n">lakes</span> <span class="o">=</span> <span class="n">cfeat</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s">&#39;physical&#39;</span><span class="p">,</span> <span class="s">&#39;lakes&#39;</span><span class="p">,</span> <span class="s">&#39;50m&#39;</span><span class="p">,</span>
+                                      <span class="n">facecolor</span><span class="o">=</span><span class="s">&#39;none&#39;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">lakes</span><span class="p">)</span>
+
+    <span class="c"># Get the coordinate reference system used by the data</span>
+    <span class="n">transform</span> <span class="o">=</span> <span class="n">ulon</span><span class="o">.</span><span class="n">coord_system</span><span class="o">.</span><span class="n">as_cartopy_projection</span><span class="p">()</span>
+
+    <span class="c"># Plot the wind speed as a contour plot</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">windspeed</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="c"># Add arrows to show the wind vectors</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">pivot</span><span class="o">=</span><span class="s">&#39;middle&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Wind speed over Lake Victoria&quot;</span><span class="p">)</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c"># Normalise the data for uniform arrow size</span>
+    <span class="n">u_norm</span> <span class="o">=</span> <span class="n">u</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="n">v</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span>
+    <span class="n">v_norm</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span> <span class="o">**</span> <span class="mf">2.0</span> <span class="o">+</span> <span class="n">v</span> <span class="o">**</span> <span class="mf">2.0</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span><span class="n">lakes</span><span class="p">)</span>
+
+    <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">windspeed</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">u_norm</span><span class="p">,</span> <span class="n">v_norm</span><span class="p">,</span> <span class="n">pivot</span><span class="o">=</span><span class="s">&#39;middle&#39;</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;Wind speed over Lake Victoria&quot;</span><span class="p">)</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../examples/Meteorology/wind_speed.py">Source code</a>)</p>
+<div class="figure" id="wind-speed-00">
+<img alt="../../_images/wind_speed_00.png" src="../../_images/wind_speed_00.png" />
+<p class="caption">(<a class="reference external" href="../../examples/Meteorology/wind_speed_00.png">png</a>)</p>
+</div>
+<div class="figure" id="wind-speed-01">
+<img alt="../../_images/wind_speed_01.png" src="../../_images/wind_speed_01.png" />
+<p class="caption">(<a class="reference external" href="../../examples/Meteorology/wind_speed_01.png">png</a>)</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../Oceanography/index.html" title="Oceanography visualisation examples"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="lagged_ensemble.html" title="Seasonal ensemble model plots"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris examples</a> &raquo;</li>
+          <li><a href="index.html" >Meteorology visualisation examples</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
