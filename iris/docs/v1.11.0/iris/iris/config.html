@@ -1,0 +1,224 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.config &mdash; Iris 1.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.11.0 documentation" href="../../index.html" />
+    <link rel="up" title="Iris reference documentation" href="../iris.html" />
+    <link rel="next" title="iris.coord_categorisation" href="coord_categorisation.html" />
+    <link rel="prev" title="iris.aux_factory" href="aux_factory.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.11 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="coord_categorisation.html" title="iris.coord_categorisation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="aux_factory.html" title="iris.aux_factory"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../iris.html" accesskey="U">Iris reference documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="aux_factory.html"
+                        title="previous chapter">iris.aux_factory</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="coord_categorisation.html"
+                        title="next chapter">iris.coord_categorisation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/iris/iris/config.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-config">
+<span id="id1"></span><h1>iris.config<a class="headerlink" href="#iris-config" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.config"></span><p>Provides access to Iris-specific configuration values.</p>
+<p>The default configuration values can be overridden by creating the file
+<tt class="docutils literal"><span class="pre">iris/etc/site.cfg</span></tt>. If it exists, this file must conform to the format
+defined by <a class="reference external" href="http://docs.python.org/2.7/library/configparser.html#module-ConfigParser" title="(in Python v2.7)"><tt class="xref py py-mod docutils literal"><span class="pre">ConfigParser</span></tt></a>.</p>
+<hr class="docutils" />
+<dl class="data">
+<dt id="iris.config.iris.config.SAMPLE_DATA_DIR">
+<tt class="descclassname">iris.config.</tt><tt class="descname">SAMPLE_DATA_DIR</tt><a class="headerlink" href="#iris.config.iris.config.SAMPLE_DATA_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Local directory where sample data exists. Defaults to &#8220;sample_data&#8221;
+sub-directory of the Iris package install directory. The sample data
+directory supports the Iris gallery. Directory contents accessed via
+<a class="reference internal" href="../iris.html#iris.sample_data_path" title="iris.sample_data_path"><tt class="xref py py-func docutils literal"><span class="pre">iris.sample_data_path()</span></tt></a>.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="iris.config.iris.config.TEST_DATA_DIR">
+<tt class="descclassname">iris.config.</tt><tt class="descname">TEST_DATA_DIR</tt><a class="headerlink" href="#iris.config.iris.config.TEST_DATA_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Local directory where test data exists.  Defaults to &#8220;test_data&#8221;
+sub-directory of the Iris package install directory. The test data
+directory supports the subset of Iris unit tests that require data.
+Directory contents accessed via <tt class="xref py py-func docutils literal"><span class="pre">iris.tests.get_data_path()</span></tt>.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="iris.config.iris.config.PALETTE_PATH">
+<tt class="descclassname">iris.config.</tt><tt class="descname">PALETTE_PATH</tt><a class="headerlink" href="#iris.config.iris.config.PALETTE_PATH" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full path to the Iris palette configuration directory</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="iris.config.iris.config.IMPORT_LOGGER">
+<tt class="descclassname">iris.config.</tt><tt class="descname">IMPORT_LOGGER</tt><a class="headerlink" href="#iris.config.iris.config.IMPORT_LOGGER" title="Permalink to this definition">¶</a></dt>
+<dd><p>The [optional] name of the logger to notify when first imported.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="iris.config.iris.config.RULE_LOG_DIR">
+<tt class="descclassname">iris.config.</tt><tt class="descname">RULE_LOG_DIR</tt><a class="headerlink" href="#iris.config.iris.config.RULE_LOG_DIR" title="Permalink to this definition">¶</a></dt>
+<dd><p>The [optional] full path to the rule logging directory used by
+<a class="reference internal" href="fileformats/pp.html#iris.fileformats.pp.load" title="iris.fileformats.pp.load"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.pp.load()</span></tt></a> and
+<a class="reference internal" href="fileformats/pp.html#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.pp.save()</span></tt></a>.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+</dd></dl>
+
+<dl class="data">
+<dt id="iris.config.iris.config.RULE_LOG_IGNORE">
+<tt class="descclassname">iris.config.</tt><tt class="descname">RULE_LOG_IGNORE</tt><a class="headerlink" href="#iris.config.iris.config.RULE_LOG_IGNORE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The [optional] list of users to ignore when logging rules.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.config.get_dir_option" title="iris.config.get_dir_option"><tt class="xref py py-obj docutils literal"><span class="pre">get_dir_option</span></tt></a></li>
+<li><a class="reference internal" href="#iris.config.get_option" title="iris.config.get_option"><tt class="xref py py-obj docutils literal"><span class="pre">get_option</span></tt></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.config.get_dir_option">
+<tt class="descclassname">iris.config.</tt><tt class="descname">get_dir_option</tt><big>(</big><em>section</em>, <em>option</em>, <em>default=None</em><big>)</big><a class="headerlink" href="#iris.config.get_dir_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the directory path from the given option and section, or
+returns the given default value if the section/option is not present
+or does not represent a valid directory.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.config.get_option">
+<tt class="descclassname">iris.config.</tt><tt class="descname">get_option</tt><big>(</big><em>section</em>, <em>option</em>, <em>default=None</em><big>)</big><a class="headerlink" href="#iris.config.get_option" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the option value for the given section, or the default value
+if the section/option is not present.</p>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="coord_categorisation.html" title="iris.coord_categorisation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="aux_factory.html" title="iris.aux_factory"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../iris.html" >Iris reference documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

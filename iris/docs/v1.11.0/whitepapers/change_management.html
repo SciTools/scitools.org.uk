@@ -1,0 +1,628 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. Change Management in Iris from the User’s perspective &mdash; Iris 1.11.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.11.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.11.0 documentation" href="../index.html" />
+    <link rel="up" title="Iris technical ‘Whitepapers’" href="index.html" />
+    <link rel="next" title="Iris copyright, licensing and contributors" href="../copyright.html" />
+    <link rel="prev" title="1. Iris handling of PP and Fieldsfiles" href="um_files_loading.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.11 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../copyright.html" title="Iris copyright, licensing and contributors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="um_files_loading.html" title="1. Iris handling of PP and Fieldsfiles"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" accesskey="U">Iris technical &#8216;Whitepapers&#8217;</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. Change Management in Iris from the User&#8217;s perspective</a><ul>
+<li><a class="reference internal" href="#key-principles-you-can-rely-on">2.1. Key principles you can rely on</a></li>
+<li><a class="reference internal" href="#user-actions-how-you-should-respond-to-changes-and-releases">2.2. User Actions : How you should respond to changes and releases</a></li>
+<li><a class="reference internal" href="#details">2.3. Details</a><ul>
+<li><a class="reference internal" href="#backwards-compatibility">2.3.1. Backwards compatibility</a><ul>
+<li><a class="reference internal" href="#terminology-api-features-usages-and-behaviours">2.3.1.1. Terminology : API, features, usages and behaviours</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#releases-and-versions">2.3.2. Releases and Versions</a><ul>
+<li><a class="reference internal" href="#major-and-minor-releases">2.3.2.1. Major and Minor Releases</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#deprecations">2.3.3. Deprecations</a><ul>
+<li><a class="reference internal" href="#deprecated-features-support-through-the-release-cycle">2.3.3.1. Deprecated features support through the Release cycle</a></li>
+<li><a class="reference internal" href="#future-options-iris-future">2.3.3.2. Future options, <cite>iris.FUTURE</cite></a></li>
+<li><a class="reference internal" href="#versions-of-installed-dependencies">2.3.3.3. Versions of Installed Dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="um_files_loading.html"
+                        title="previous chapter">1. Iris handling of PP and Fieldsfiles</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../copyright.html"
+                        title="next chapter">Iris copyright, licensing and contributors</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/whitepapers/change_management.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="change-management-in-iris-from-the-user-s-perspective">
+<span id="change-management"></span><h1>2. Change Management in Iris from the User&#8217;s perspective<a class="headerlink" href="#change-management-in-iris-from-the-user-s-perspective" title="Permalink to this headline">¶</a></h1>
+<p>As Iris changes, user code will need revising from time to time to keep it
+working, or to maintain best practice.  At the very least, you are advised to
+review existing code to ensure it functions correctly with new releases.</p>
+<p>Here, we define ways to make this as easy as possible.</p>
+<p>To reduce code maintenance problems to an absolute minimum, Iris applies
+defined change management procedures to ensure that :</p>
+<blockquote>
+<div><ul class="simple">
+<li>you can be confident that your code will still work with a future release</li>
+<li>you will be aware of future incompatibility problems in advance</li>
+<li>you can defer making code compatibility changes for some time, until it suits you</li>
+</ul>
+</div></blockquote>
+<div class="section" id="key-principles-you-can-rely-on">
+<h2>2.1. Key principles you can rely on<a class="headerlink" href="#key-principles-you-can-rely-on" title="Permalink to this headline">¶</a></h2>
+<p>Iris code editions are published as defined version releases, with a given
+major and minor version number in the version name, &#8220;major.minor.xxx&#8221;,
+as explained in the <a class="reference internal" href="#iris-change-releases"><em>releases section</em></a> below.</p>
+<blockquote>
+<div><ul class="simple">
+<li>Code that currently works should <strong>still work</strong>, and have the same
+results and effects, in any subsequent sub-release with the same major
+release number.</li>
+<li>The only time we will make changes that can break existing code is at
+a <strong>major release</strong>.</li>
+<li>At a major release, code that works <strong>and emits no deprecation warnings</strong>
+in the latest previous (minor) release should still work, and have the
+same results and effects.</li>
+</ul>
+</div></blockquote>
+<p><strong>What can possibly go wrong ?</strong></p>
+<p>If your code produces <a class="reference internal" href="#iris-deprecations"><em>deprecation warnings</em></a>, then it
+<em>could</em> behave differently, or fail, at the next major release.</p>
+</div>
+<div class="section" id="user-actions-how-you-should-respond-to-changes-and-releases">
+<h2>2.2. User Actions : How you should respond to changes and releases<a class="headerlink" href="#user-actions-how-you-should-respond-to-changes-and-releases" title="Permalink to this headline">¶</a></h2>
+<p>Checklist :</p>
+<ul>
+<li><dl class="first docutils">
+<dt>when a new <strong>testing or candidate version</strong> is announced</dt>
+<dd><p class="first last">if convenient, test your working legacy code against it and report any problems.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">when a new <strong>minor version is released</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>review the &#8216;Whats New&#8217; documentation to see if it introduces any
+deprecations that may affect you.</li>
+<li>run your working legacy code and check for any deprecation warnings,
+indicating that modifications may be necessary at some point</li>
+<li>when convenient :<ul>
+<li>review existing code for use of deprecated features</li>
+<li>rewrite code to replace deprecated features</li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="first docutils">
+<dt>when a new major version is <strong>announced</strong></dt>
+<dd><p class="first last">ensure your code runs, without producing deprecation warnings, in the
+previous minor release</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>when a new major version is <strong>released</strong></dt>
+<dd><p class="first last">check for new deprecation warnings, as for a minor release</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="details">
+<h2>2.3. Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>The Iris change process aims to minimise the negative effects of change, by
+providing :</p>
+<blockquote>
+<div><ul class="simple">
+<li>defined processes for release and change management</li>
+<li>release versioning</li>
+<li>backwards code compatibility through minor version releases</li>
+<li>a way to ensure compatibility with a new major version release</li>
+<li>deprecation notices and warnings to highlight all impending changes</li>
+</ul>
+</div></blockquote>
+<p>Our practices are intended be compatible with the principles defined in the
+<a class="reference external" href="http://semver.org/">SemVer project</a> .</p>
+<dl class="docutils">
+<dt>Key concepts covered here:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference internal" href="#iris-change-releases"><em>Release versions</em></a></li>
+<li><a class="reference internal" href="#iris-backward-compatibility"><em>Backwards compatibility</em></a></li>
+<li><a class="reference internal" href="#iris-deprecations"><em>Deprecation</em></a></li>
+</ul>
+</dd>
+</dl>
+<div class="section" id="backwards-compatibility">
+<span id="iris-backward-compatibility"></span><h3>2.3.1. Backwards compatibility<a class="headerlink" href="#backwards-compatibility" title="Permalink to this headline">¶</a></h3>
+<p>&#8220;Backwards-compatible&#8221; changes are those that leave any existing valid API
+usages unchanged (see <a class="reference internal" href="#iris-api"><em>terminology</em></a> below).
+Only such changes may be included in minor releases.</p>
+<p>The following are examples of backward-compatible changes :</p>
+<blockquote>
+<div><ul class="simple">
+<li>changes to documentation</li>
+<li>adding to a module : new submodules, functions, classes or properties</li>
+<li>adding to a class : new methods or properties</li>
+<li>adding to a function or method : new <strong>optional</strong> arguments or keywords</li>
+</ul>
+</div></blockquote>
+<p>The following are examples of <strong>non-</strong> backward-compatible changes :</p>
+<blockquote>
+<div><ul>
+<li><p class="first">removing (which includes <em>renaming</em>) any public module or submodule</p>
+</li>
+<li><dl class="first docutils">
+<dt>removing any public component <span class="classifier-delimiter">:</span> <span class="classifier">a module, class, method, function or</span></dt>
+<dd><p class="first last">data object property of a public API component</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">removing any property of a public object</p>
+</li>
+<li><p class="first">removing an argument or keyword from a method or function</p>
+</li>
+<li><p class="first">adding a required argument to a method or function</p>
+</li>
+<li><p class="first">removing a keyword (even one that has no effect)</p>
+</li>
+<li><p class="first">changing the effect of <em>any</em> particular combination of arguments and/or
+keywords</p>
+</li>
+</ul>
+</div></blockquote>
+<p>Note that it is also possible to modify the behaviour of an existing usage by
+making it depend on a newly-defined external control variable.  This is
+effectively a change to the &#8216;default behaviour&#8217; of a specific usage.  Although
+this seems similar to adding a keyword, the cases where the new behaviour
+operates and where it does not are not distinguishable by a different code
+usage, which makes this somewhat dangerous.  We do use this type of change,
+but any behaviour &#8216;mode&#8217; controls of this sort are usually added as part of the
+<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><tt class="xref py py-class docutils literal"><span class="pre">iris.Future</span></tt></a> definition.
+See <a class="reference internal" href="#iris-future-usage"><em>Usage of iris.FUTURE</em></a>, below.</p>
+<div class="section" id="terminology-api-features-usages-and-behaviours">
+<span id="iris-api"></span><h4>2.3.1.1. Terminology : API, features, usages and behaviours<a class="headerlink" href="#terminology-api-features-usages-and-behaviours" title="Permalink to this headline">¶</a></h4>
+<p>The API is the components of the iris module and its submodules which are
+&#8220;public&#8221; :  In Python, by convention, this normally means everything whose name
+does not have a single leading underscore &#8220;_&#8221;.
+This applies to all public modules and their properties : submodules, contained
+public classes, data and properties, functions and methods.
+An exception is when a module or class defines an &#8216;__all__&#8217; property :  In
+that case, the public aspects are just the ones listed there.</p>
+<p>Note: these are standard Python conventions, not specific to Iris.
+See: <a class="reference external" href="https://www.python.org/dev/peps/pep-0008/">PEP8</a>.</p>
+<p>The Iris project considers all public API features as &#8220;supported&#8221;, which means
+that we will not change or remove them without deprecation, and will undertake
+to fix any bugs discovered.
+We do however make an important exception for the content of the &#8216;experimental&#8217;
+module :  APIs in <a class="reference internal" href="../iris/iris/experimental.html#module-iris.experimental" title="iris.experimental"><tt class="xref py py-mod docutils literal"><span class="pre">iris.experimental</span></tt></a> module are published for initial
+evaluation and feedback, and can  be revised or removed without warning at a
+subsequent release.</p>
+<p>A &#8220;feature&#8221; of the API includes public objects as above, but may also be used
+more loosely to indicate a class or mode of behaviour, for example when a
+keyword has a specific value, like &#8220;interpolate(mode=&#8217;linear&#8217;)&#8221;.</p>
+<p>A &#8220;usage&#8221; is any code referring to public API elements, for example :</p>
+<blockquote>
+<div><ul class="simple">
+<li><cite>print(iris.thing)</cite></li>
+<li><cite>iris.submodule.call(arg1)</cite></li>
+<li><cite>iris.module.call(arg1, arg2, *more_args)</cite></li>
+<li><cite>iris.module.call(arg1, arg2, control=3)</cite></li>
+<li><cite>x = iris.module.class(arg, key=4)</cite></li>
+</ul>
+</div></blockquote>
+<p>A &#8220;behaviour&#8221; is whatever Iris does when you invoke a particular API usage,
+encompassing both returned values and any side effects such as code state
+changes or data written to files.</p>
+<p>As the above code examples are all public feature usages, they should
+therefore continue to work, with the same behaviours, at least until the next
+<strong>major</strong> version release.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>What is the &#8220;same&#8221; behaviour, for backwards-compatibility purposes ?</p>
+<p>Unfortunately, the guarantee to preserve &#8220;what Iris does&#8221; within a major
+version cannot ensure <em>totally</em> identical and repeatable behaviour for any
+possible usage, because this can also depend on the exact installed
+versions of all dependencies (i.e. the other Python modules and system
+libraries that Iris uses).</p>
+<p>See <a class="reference internal" href="#iris-dependency-versions"><em>Versions of Installed Dependencies</em></a>.</p>
+<p>Minor-release code changes are backwards-compatible, meaning that they must
+result in &#8220;the same&#8221; actions from Iris.
+Ultimately, however, this is only a statement of intent, as we need freedom
+to modify code with &#8220;no change&#8221; effects, yet <em>any</em> change to Iris code or
+dependencies could alter total behaviour in some respects :
+For instance, it could take more or less time or memory, produce results in
+a different sequence, or perform a calculation slightly differently (with
+possible small differences in floating point results).</p>
+<p class="last">As behaviour can only be tested in specific ways on a specific
+installation, so any given user installation may experience changes in
+behaviour, though hopefully always slight, with a minor release change.
+This applies to changes in the Iris minor release version, or a different
+version of some dependency; or other changes to the operating system
+environment.</p>
+</div>
+</div>
+</div>
+<div class="section" id="releases-and-versions">
+<span id="iris-change-releases"></span><h3>2.3.2. Releases and Versions<a class="headerlink" href="#releases-and-versions" title="Permalink to this headline">¶</a></h3>
+<p>Iris releases have a unique identifying version string, in the form
+&#8220;&lt;major&gt;.&lt;minor&gt;.&lt;micro&gt;&lt;extension&gt;&#8221;, available to code as
+<tt class="xref py py-data docutils literal"><span class="pre">iris.__version__</span></tt> .</p>
+<p>This contains major and minor release numbers.  The numbering and meaning of
+these are defined, following the <a class="reference external" href="http://semver.org/">SemVer project</a>.</p>
+<p>The essential aspects of the &#8220;&lt;major&gt;.&lt;minor&gt;.&lt;micro&gt;&lt;extension&gt;&#8221; arrangement
+are :</p>
+<blockquote>
+<div><ul class="simple">
+<li>&#8220;&lt;major&gt;&#8221;, &#8220;&lt;minor&gt;&#8221; and &#8220;&lt;micro&gt;&#8221; are all integers, thus version
+2.12 is later than 2.2 (i.e. it is &#8220;two point twelve&#8221;, not &#8220;two point one
+two&#8221;).</li>
+<li>&#8220;&lt;major&gt;.&lt;minor&gt;&#8221; denote the software release version.</li>
+<li>A non-zero &#8220;&lt;micro&gt;&#8221; denotes a bugfix version, thus a release &#8220;X.Y.0&#8221; may
+be followed by &#8220;X.Y.1&#8221;, &#8220;X.Y.2&#8221; etc, which <em>only</em> differ by containing
+bugfixes.  Any bugfix release supercedes its predecessors, and does not
+change any (valid) APIs or behaviour :  hence, it is always advised to
+replace a given version with its latest bugfix successor, and there
+should be no reason not to.</li>
+<li>&#8220;&lt;extension&gt;&#8221; is blank for formal releases.  It used to indicate
+provisional software for testing :  The version string in a development
+code branch is always labelled &#8220;-DEV&#8221;, and release candidates for testing
+during the release process are labelled &#8220;-rc1&#8221;, &#8220;-rc2&#8221; etc.
+For development code, the version number is that of the <em>next</em> release,
+which this code version is progressing towards, e.g. &#8220;1.2-DEV&#8221; for all
+code branches since the 1.1 release and intended for release in &#8220;1.2&#8221;.</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Our use of &#8220;-&lt;extension&gt;&#8221; is typical, but does not follow strict SemVer
+principles.</p>
+</div>
+<p>The code for a specific release is identified by a git tag which is the version
+string : see
+<a class="reference internal" href="../developers_guide/release.html#iris-development-releases"><em>Developer&#8217;s Guide section on releases</em></a>.</p>
+<div class="section" id="major-and-minor-releases">
+<h4>2.3.2.1. Major and Minor Releases<a class="headerlink" href="#major-and-minor-releases" title="Permalink to this headline">¶</a></h4>
+<p>The term &#8220;release&#8221; refers both to a specific state of the Iris code, which we
+have assigned a given version string, <em>and</em> the act of defining it
+(i.e. we &#8220;release a release&#8221;).</p>
+<p>According to <a class="reference external" href="http://semver.org/">SemVer</a> principles, changes that alter the
+behaviour of existing code can only be made at a <strong>major</strong> release, i.e. when
+&#8220;X.0&#8221; is released following the last previous &#8220;(X-1).Y.Z&#8221;.</p>
+<p><em>Minor</em> releases, by contrast, consist of bugfixes, new features, and
+deprecations :  Any valid exisiting code should be unaffected by these, so it
+will still run with the same results.</p>
+<p>At a major release, only <strong>deprecated</strong> behaviours and APIs can be changed or
+removed.</p>
+</div>
+</div>
+<div class="section" id="deprecations">
+<span id="iris-deprecations"></span><h3>2.3.3. Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<p>A deprecation is issued when we decide that an <em>existing</em> feature needs to be
+removed or modified :  We add notices to the documentation, and issue a runtime
+&#8220;Deprecation Warning&#8221; whenever the feature is used.</p>
+<p>For a wider perspective, see : <a class="reference external" href="https://en.wikipedia.org/wiki/Deprecation">https://en.wikipedia.org/wiki/Deprecation</a>.  
+For the developer view of this, see
+<a class="reference internal" href="../developers_guide/deprecations.html#iris-development-deprecations"><em>Developer&#8217;s Guide section on deprecations</em></a>.</p>
+<p>Deprecation manages incompatible changes in a strictly controlled way.
+This allows APIs to evolve to the most effective form, even when that means
+that existing code could behave differently or fail :  This is important
+because the freedom to remove features helps prevent the API becoming
+progressively cluttered, and modifying existing behaviours allows us to use
+the most natural code syntax for the most used features.</p>
+<p>We can only remove features or change behaviours at a major release.  Thus, we
+first deprecate the feature in a minor release, to provide adequate warning
+that existing code may need to be modified.</p>
+<p>When we make a release that introduces a deprecation :</p>
+<blockquote>
+<div><ul class="simple">
+<li>a deprecation notice appears in the
+<a class="reference internal" href="../whatsnew/index.html#iris-whatsnew"><em>What&#8217;s New section</em></a></li>
+<li>deprecation notes are included in all relevant parts of the <a class="reference internal" href="../iris/iris.html#iris"><em>reference
+documentation</em></a></li>
+<li>a runtime warning is produced when the old feature is used or triggered</li>
+</ul>
+</div></blockquote>
+<p>In most cases, we also provide detailed advice in the documentation and/or
+warning messages on how to replace existing usage with a &#8216;new&#8217; way of doing
+things.
+In all cases, we must provide a transitional period where both old and new
+features are available :</p>
+<blockquote>
+<div><ul class="simple">
+<li>the &#8216;old&#8217; style works as it did before</li>
+<li>any usage of the &#8216;old&#8217; features will emit a
+<tt class="xref py py-class docutils literal"><span class="pre">warnings.WarningMessage</span></tt> message, noting that the feature is
+deprecated and what to use instead</li>
+<li>the &#8216;new&#8217; style can be adopted as soon as convenient</li>
+</ul>
+</div></blockquote>
+<p>This is to warn users :</p>
+<blockquote>
+<div><ul class="simple">
+<li>not to use the deprecated features in any new code, <em>and</em></li>
+<li>eventually to rewrite old code to use the newer or better alternatives</li>
+</ul>
+</div></blockquote>
+<div class="section" id="deprecated-features-support-through-the-release-cycle">
+<h4>2.3.3.1. Deprecated features support through the Release cycle<a class="headerlink" href="#deprecated-features-support-through-the-release-cycle" title="Permalink to this headline">¶</a></h4>
+<p>The whole point of a deprecation is that the feature continues to work, but
+with a warning, for some time before an unavoidable change occurs.
+When a version that introduces a deprecation is released, the effects are as
+follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li>code that may be affected by the proposed change will result in
+deprecation warnings</li>
+<li>code that currently works will, however, continue to work unchanged, at
+least until the next major release</li>
+<li>you can avoid all deprecation warnings by suitable changes to your code</li>
+<li>code which uses no deprecated features, and thus produces no deprecation
+warnings, will continue to work unchanged even at a <strong>major</strong> release</li>
+<li>code that generates deprecation warnings may cease to work at the next
+<strong>major</strong> release.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="future-options-iris-future">
+<span id="iris-future-usage"></span><h4>2.3.3.2. Future options, <cite>iris.FUTURE</cite><a class="headerlink" href="#future-options-iris-future" title="Permalink to this headline">¶</a></h4>
+<p>A special approach is needed where the replacement behaviour is not controlled
+by a distinct API usage.</p>
+<p>When we extend an API, or add a new feature, we usually add a new method or
+keyword. In those cases, code using the new feature is clearly distinct from
+any previous (valid) usage, so this is relatively simple to manage.
+However, sometimes we really need to change the <em>way</em> an API works, without
+modifying or extending (i.e. complicating) the existing user interface.
+In that case, existing user code might sometimes have <em>different</em> behaviour
+with the new release, which we obviously need to avoid.</p>
+<p><strong>For example :</strong></p>
+<blockquote>
+<div><p>We might decide there is a more useful way of loading cubes from files of a
+particular input data format.</p>
+<blockquote>
+<div><ul class="simple">
+<li>the user code usage is simply by calls to &#8220;iris.load&#8221;</li>
+<li>the change is not a bugfix, as the old way isn&#8217;t actually &#8220;wrong&#8221;</li>
+<li>we don&#8217;t want to add an extra keyword into all the relevant calls</li>
+<li>we don&#8217;t see a longterm future for the existing behaviour :  we
+expect everyone to adopt the new interpretation, eventually</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<p>For changes of this sort, the release will define a new boolean property of the
+<a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><tt class="xref py py-data docutils literal"><span class="pre">iris.FUTURE</span></tt></a> object, as a control to select between the &#8216;old&#8217; and &#8216;new&#8217;
+behaviours, with values False=&#8217;old&#8217; and True=&#8217;new&#8217;.
+See <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><tt class="xref py py-data docutils literal"><span class="pre">iris.Future</span></tt></a> for examples.</p>
+<p>In these cases, as any &#8220;deprecated usage&#8221; is not clearly distinguishable in the
+form of the user code, it is <strong>especially</strong> important to take note of any
+deprecation messages appearing when legacy code runs.</p>
+<p><strong>Sequence of changes to `iris.FUTURE`</strong></p>
+<p>To allow user code to avoid unexpected any behavioural changes, the
+<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><tt class="xref py py-data docutils literal"><span class="pre">iris.Future</span></tt></a> controls follow a special management cycle, as follows
+(see also the relevant <a class="reference internal" href="../developers_guide/deprecations.html#iris-developer-future"><em>Developer Guide section</em></a>):</p>
+<dl class="docutils">
+<dt>At (minor) release &#8220;&lt;X&gt;.&lt;Y&gt;..&#8221;:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Changes to API:</dt>
+<dd><ul class="first last simple">
+<li>the new behaviour is made available, alongside the old one</li>
+<li>a new future option <cite>iris.FUTURE.&lt;new_enable&gt;</cite> is provided to switch
+between them.</li>
+<li>the new option defaults to <cite>iris.FUTURE.&lt;new_enable&gt;=False</cite>, meaning
+the &#8216;old&#8217; behaviour is the default.</li>
+<li>when any relevant API call is made that invokes the old behaviour, a
+deprecation warning is emitted.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">User actions:</p>
+<blockquote>
+<div><ul class="simple">
+<li>If your code encounters the new deprecation warning, you should try
+enabling the new control option, and make any necessary rewrites to
+make it work.  This will stop the deprecation warning appearing.</li>
+<li>If you encounter problems making your code work with the new
+behaviour, and don&#8217;t have time to fix them, you should make your
+code explicitly turn <em>off</em> the option for now, i.e. ::
+<cite>iris.FUTURE.&lt;new_enable&gt; = False</cite>.
+This locks you into the old behaviour, but your code  will continue
+to work, even beyond the next major release when the default
+behaviour will change (see on).</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>At (major) release &#8220;&lt;X+1&gt;.0...&#8221;:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Changes to API:</dt>
+<dd><ul class="first last simple">
+<li>the control default is changed to <cite>iris.FUTURE.&lt;new_enable&gt;=True</cite></li>
+<li>the control property is <em>itself</em> deprecated, so that assigning to it
+now results in a deprecation warning.</li>
+<li>when any affected API call is made, a deprecation warning is (still)
+emitted, if the old behaviour is in force.  The &#8220;old&#8221; behaviour is,
+however, still available and functional.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">User actions:</p>
+<blockquote>
+<div><ul class="simple">
+<li>If your code is already using the &#8220;new&#8221; behaviour, it will now work
+without needing to set the Future option.  <em>You should remove</em> the
+code which enables the option, as this will now emit a deprecation
+message.  In the <em>next</em> major release, this would cause an error.</li>
+<li>If your code is explicitly turning the option off, it will continue
+to work in the same way at this point, but obviously time is
+runnning out.</li>
+<li>If your code is still using the old behaviour and <em>not</em> setting the
+control option at all, its behaviour might now have changed
+unexpectedly and you should review this.</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+<dt>At (major) release &#8220;&lt;X+2&gt;...&#8221;:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Changes to API:</dt>
+<dd><ul class="first last simple">
+<li>the control property is removed</li>
+<li>the &#8220;old&#8221; behaviour is removed</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="versions-of-installed-dependencies">
+<span id="iris-dependency-versions"></span><h4>2.3.3.3. Versions of Installed Dependencies<a class="headerlink" href="#versions-of-installed-dependencies" title="Permalink to this headline">¶</a></h4>
+<p>The dependencies of Iris (required and optional) are defined in
+<a class="reference internal" href="../installing.html#installing-iris"><em>Installing Iris</em></a>.</p>
+<p>Iris does not specify exact required versions for its dependencies, but it may
+specify a minimum acceptable version number.  Iris is normally expected to be
+compatible with <em>any</em> version up to the latest current release.</p>
+<p>When a new release of a dependency is found to cause problems, Iris may define
+the supported version more precisely, but this would be a temporary fix which
+should be removed in a later release.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../copyright.html" title="Iris copyright, licensing and contributors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="um_files_loading.html" title="1. Iris handling of PP and Fieldsfiles"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" >Iris technical &#8216;Whitepapers&#8217;</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
