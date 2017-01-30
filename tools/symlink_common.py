@@ -103,8 +103,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser('Share assets as symlinks.')
     parser.add_argument("root", help="The root directory to look for sharable content. (default: %(default)s)",
                         default=os.path.dirname(__file__))
-    parser.add_argument("--shared-directory", help="The subdirectory name to use for common assets",
-                        default="shared_assets")
+    parser.add_argument("--shared-directory", help="The subdirectory name to use for common assets. "
+                        "(default: %(default)s)", default="shared_assets")
     parser.add_argument("--dry-run", help="Enable dry-run mode, which will print all of the commands it would do.",
                         action="store_true")
     args = parser.parse_args()
