@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>10. Basic cube mathematics &mdash; Iris 1.12.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1.12.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="Iris 1.12.0 documentation" href="../index.html" />
+    <link rel="up" title="Iris user guide" href="index.html" />
+    <link rel="next" title="11. Citing Iris" href="citation.html" />
+    <link rel="prev" title="9. Cube statistics" href="cube_statistics.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.12 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="citation.html" title="11. Citing Iris"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="cube_statistics.html" title="9. Cube statistics"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" accesskey="U">Iris user guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">10. Basic cube mathematics</a><ul>
+<li><a class="reference internal" href="#calculating-the-difference-between-two-cubes">10.1. Calculating the difference between two cubes</a></li>
+<li><a class="reference internal" href="#calculating-a-cube-anomaly">10.2. Calculating a cube anomaly</a></li>
+<li><a class="reference internal" href="#combining-multiple-phenomena-to-form-a-new-one">10.3. Combining multiple phenomena to form a new one</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="cube_statistics.html"
+                        title="previous chapter">9. Cube statistics</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="citation.html"
+                        title="next chapter">11. Citing Iris</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/userguide/cube_maths.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="basic-cube-mathematics">
+<h1>10. Basic cube mathematics<a class="headerlink" href="#basic-cube-mathematics" title="Permalink to this headline">¶</a></h1>
+<p>The section <a class="reference internal" href="navigating_a_cube.html"><em>Navigating a cube</em></a> highlighted that 
+every cube has a data attribute; 
+this attribute can then be manipulated directly:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cube</span><span class="o">.</span><span class="n">data</span> <span class="o">-=</span> <span class="mf">273.15</span>
+</pre></div>
+</div>
+<p>The problem with manipulating the data directly is that other metadata may
+become inconsistent; in this case the units of the cube are no longer what was
+intended. This example could be rectified by changing the units attribute:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">cube</span><span class="o">.</span><span class="n">units</span> <span class="o">=</span> <span class="s">&#39;celsius&#39;</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.convert_units" title="iris.cube.Cube.convert_units"><tt class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.convert_units()</span></tt></a> can be used to automatically convert a
+cube&#8217;s data and update its units attribute.
+So, the two steps above can be achieved by:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">cube</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="s">&#39;celsius&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>In order to reduce the amount of metadata which becomes inconsistent,
+fundamental arithmetic operations such as addition, subtraction, division
+and multiplication can be applied directly to any cube.</p>
+<div class="section" id="calculating-the-difference-between-two-cubes">
+<h2>10.1. Calculating the difference between two cubes<a class="headerlink" href="#calculating-the-difference-between-two-cubes" title="Permalink to this headline">¶</a></h2>
+<p>Let&#8217;s load some air temperature which runs from 1860 to 2100:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;E1_north_america.nc&#39;</span><span class="p">)</span>
+<span class="n">air_temp</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s">&#39;air_temperature&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can now get the first and last time slices using indexing 
+(see <a class="reference internal" href="subsetting_a_cube.html#subsetting-a-cube"><em>Subsetting a Cube</em></a> for a reminder):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">t_first</span> <span class="o">=</span> <span class="n">air_temp</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+<span class="n">t_last</span> <span class="o">=</span> <span class="n">air_temp</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:]</span>
+</pre></div>
+</div>
+<p>And finally we can subtract the two. 
+The result is a cube of the same size as the original two time slices, 
+but with the data representing their difference:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">t_last</span> <span class="o">-</span> <span class="n">t_first</span><span class="p">)</span>
+<span class="go">unknown / (K)                       (latitude: 37; longitude: 49)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          latitude                           x              -</span>
+<span class="go">          longitude                          -              x</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_reference_time: 1859-09-01 06:00:00</span>
+<span class="go">          height: 1.5 m</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Notice that the coordinates &#8220;time&#8221; and &#8220;forecast_period&#8221; have been removed 
+from the resultant cube; 
+this is because these coordinates differed between the two input cubes. 
+For more control on whether or not coordinates should be automatically 
+ignored <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.subtract" title="iris.analysis.maths.subtract"><tt class="xref py py-func docutils literal"><span class="pre">iris.analysis.maths.subtract()</span></tt></a> can be used instead.</p>
+</div>
+</div>
+<div class="section" id="calculating-a-cube-anomaly">
+<span id="cube-maths-anomaly"></span><h2>10.2. Calculating a cube anomaly<a class="headerlink" href="#calculating-a-cube-anomaly" title="Permalink to this headline">¶</a></h2>
+<p>In section <a class="reference internal" href="cube_statistics.html"><em>Cube statistics</em></a> we discussed how the dimensionality of a cube
+can be reduced using the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.collapsed</span></tt></a> method
+to calculate a statistic over a dimension.</p>
+<p>Let&#8217;s use that method to calculate a mean of our air temperature time-series,
+which we&#8217;ll then use to calculate a time mean anomaly and highlight the powerful
+benefits of cube broadcasting.</p>
+<p>First, let&#8217;s remind ourselves of the shape of our air temperature time-series
+cube:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">air_temp</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">air_temperature / (K)               (time: 240; latitude: 37; longitude: 49)</span>
+</pre></div>
+</div>
+<p>Now, we&#8217;ll calculate the time-series mean using the
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><tt class="xref py py-meth docutils literal"><span class="pre">Cube.collapsed</span></tt></a> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">air_temp_mean</span> <span class="o">=</span> <span class="n">air_temp</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">air_temp_mean</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">air_temperature / (K)               (latitude: 37; longitude: 49)</span>
+</pre></div>
+</div>
+<p>As expected the <em>time</em> dimension has been collapsed, reducing the
+dimensionality of the resultant <em>air_temp_mean</em> cube. This time-series mean can
+now be used to calculate the time mean anomaly against the original
+time-series:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">anomaly</span> <span class="o">=</span> <span class="n">air_temp</span> <span class="o">-</span> <span class="n">air_temp_mean</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">anomaly</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">unknown / (K)                       (time: 240; latitude: 37; longitude: 49)</span>
+</pre></div>
+</div>
+<p>Notice that the calculation of the <em>anomaly</em> involves subtracting a
+<em>2d</em> cube from a <em>3d</em> cube to yield a <em>3d</em> result. This is only possible
+because cube broadcasting is performed during cube arithmetic operations.</p>
+<p>Cube broadcasting follows similar broadcasting rules as
+<a class="reference external" href="http://docs.scipy.org/doc/numpy/user/basics.broadcasting.html">NumPy</a>, but
+the additional richness of Iris coordinate meta-data provides an enhanced
+capability beyond the basic broadcasting behaviour of NumPy.</p>
+<p>As the coordinate meta-data of a cube uniquely describes each dimension, it is
+possible to leverage this knowledge to identify the similar dimensions involved
+in a cube arithmetic operation. This essentially means that we are no longer
+restricted to performing arithmetic on cubes with identical shapes.</p>
+<p>This extended broadcasting behaviour is highlighted in the following
+examples. The first of these shows that it is possible to involve the
+transpose of the air temperature time-series in an arithmetic operation with
+itself.</p>
+<p>Let&#8217;s first create the transpose of the air temperature time-series:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">air_temp_T</span> <span class="o">=</span> <span class="n">air_temp</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">air_temp_T</span><span class="o">.</span><span class="n">transpose</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">air_temp_T</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">air_temperature / (K)               (longitude: 49; latitude: 37; time: 240)</span>
+</pre></div>
+</div>
+<p>Now add the transpose to the original time-series:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">air_temp</span> <span class="o">+</span> <span class="n">air_temp_T</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">unknown / (K)                       (time: 240; latitude: 37; longitude: 49)</span>
+</pre></div>
+</div>
+<p>Notice that the <em>result</em> is the same dimensionality and shape as <em>air_temp</em>.
+Let&#8217;s check that the arithmetic operation has calculated a result that
+we would intuitively expect:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">==</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">air_temp</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+<p>Let&#8217;s extend this example slightly, by taking a slice from the middle
+<em>latitude</em> dimension of the transpose cube:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">air_temp_T_slice</span> <span class="o">=</span> <span class="n">air_temp_T</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">,</span> <span class="p">:]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">air_temp_T_slice</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">air_temperature / (K)               (longitude: 49; time: 240)</span>
+</pre></div>
+</div>
+<p>Compared to our original time-series, the <em>air_temp_T_slice</em> cube has one
+less dimension <em>and</em> it&#8217;s shape if different. However, this doesn&#8217;t prevent
+us from performing cube arithmetic with it, thanks to the extended cube
+broadcasting behaviour:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">air_temp</span> <span class="o">-</span> <span class="n">air_temp_T_slice</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="bp">True</span><span class="p">))</span>
+<span class="go">unknown / (K)                       (time: 240; latitude: 37; longitude: 49)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="combining-multiple-phenomena-to-form-a-new-one">
+<h2>10.3. Combining multiple phenomena to form a new one<a class="headerlink" href="#combining-multiple-phenomena-to-form-a-new-one" title="Permalink to this headline">¶</a></h2>
+<p>Combining cubes of potential-temperature and pressure we can calculate 
+the associated temperature using the equation:</p>
+<img src="../_images/mathmpl/math-d56229f700.png" class="center" /><p>Where <img src="../_images/mathmpl/math-fb97a8c47a.png" style="position: relative; bottom: -7px"/> is pressure, <img src="../_images/mathmpl/math-5dc8912759.png" style="position: relative; bottom: -3px"/> is potential temperature, 
+<img src="../_images/mathmpl/math-e76b349545.png" style="position: relative; bottom: -7px"/> is the potential temperature reference pressure 
+and <img src="../_images/mathmpl/math-fa4ff731d3.png" style="position: relative; bottom: -3px"/> is temperature.</p>
+<p>First, let&#8217;s load pressure and potential temperature cubes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;colpex.pp&#39;</span><span class="p">)</span>
+<span class="n">phenomenon_names</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;air_potential_temperature&#39;</span><span class="p">,</span> <span class="s">&#39;air_pressure&#39;</span><span class="p">]</span>
+<span class="n">pot_temperature</span><span class="p">,</span> <span class="n">pressure</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cubes</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="n">phenomenon_names</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In order to calculate <img src="../_images/mathmpl/math-179dee9bcd.png" style="position: relative; bottom: -10px"/> we can define a coordinate which 
+represents the standard reference pressure of 1000 hPa:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">iris.coords</span>
+<span class="n">p0</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="mf">1000.0</span><span class="p">,</span>
+                          <span class="n">long_name</span><span class="o">=</span><span class="s">&#39;reference_pressure&#39;</span><span class="p">,</span>
+                          <span class="n">units</span><span class="o">=</span><span class="s">&#39;hPa&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We must ensure that the units of <tt class="docutils literal"><span class="pre">pressure</span></tt> and <tt class="docutils literal"><span class="pre">p0</span></tt> are the same,
+so convert the newly created coordinate using
+the <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.convert_units" title="iris.coords.Coord.convert_units"><tt class="xref py py-meth docutils literal"><span class="pre">iris.coords.Coord.convert_units()</span></tt></a> method:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">p0</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="n">pressure</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now we can combine all of this information to calculate the air temperature 
+using the equation above:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">temperature</span> <span class="o">=</span> <span class="n">pot_temperature</span> <span class="o">*</span> <span class="p">(</span> <span class="p">(</span><span class="n">pressure</span> <span class="o">/</span> <span class="n">p0</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">287.05</span> <span class="o">/</span> <span class="mi">1005</span><span class="p">)</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>Finally, the cube we have created needs to be given a suitable name:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">temperature</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s">&#39;air_temperature&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The result could now be plotted using the guidance provided in the 
+<a class="reference internal" href="plotting_a_cube.html"><em>Plotting a cube</em></a> section.</p>
+A very similar example to this can be found in 
+<a class="reference internal" href="../examples/Meteorology/deriving_phenomena.html"><em>Deriving Exner Pressure and Air Temperature</em></a>.</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="citation.html" title="11. Citing Iris"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="cube_statistics.html" title="9. Cube statistics"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="index.html" >Iris user guide</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
