@@ -1,0 +1,487 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.fileformats.grib &mdash; Iris 1.12.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.12.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.12.0 documentation" href="../../../index.html" />
+    <link rel="up" title="iris.fileformats" href="../fileformats.html" />
+    <link rel="next" title="iris.fileformats.grib.grib_phenom_translation" href="grib/grib_phenom_translation.html" />
+    <link rel="prev" title="iris.fileformats.ff" href="ff.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.12 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="grib/grib_phenom_translation.html" title="iris.fileformats.grib.grib_phenom_translation"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ff.html" title="iris.fileformats.ff"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../fileformats.html" accesskey="U">iris.fileformats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ff.html"
+                        title="previous chapter">iris.fileformats.ff</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grib/grib_phenom_translation.html"
+                        title="next chapter">iris.fileformats.grib.grib_phenom_translation</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../_sources/iris/iris/fileformats/grib.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-fileformats-grib">
+<span id="id1"></span><h1>iris.fileformats.grib<a class="headerlink" href="#iris-fileformats-grib" title="Permalink to this headline">¶</a></h1>
+<div class="sidebar">
+<p class="first sidebar-title">Modules in this package</p>
+<div class="toctree-wrapper last compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="grib/grib_phenom_translation.html">iris.fileformats.grib.grib_phenom_translation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grib/grib_save_rules.html">iris.fileformats.grib.grib_save_rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grib/load_rules.html">iris.fileformats.grib.load_rules</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grib/message.html">iris.fileformats.grib.message</a></li>
+</ul>
+</div>
+</div>
+<span class="target" id="module-iris.fileformats.grib"></span><p>Conversion of cubes to/from GRIB.</p>
+<p>See also: <a class="reference external" href="https://software.ecmwf.int/wiki/display/GRIB/Home">ECMWF GRIB API</a>.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>This module is now deprecated.  For GRIB file support in iris, please use
+the separate package
+<a class="reference external" href="https://github.com/SciTools/iris-grib">iris_grib</a> instead.</p>
+</div>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.fileformats.grib.load_cubes" title="iris.fileformats.grib.load_cubes"><tt class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.save_grib2" title="iris.fileformats.grib.save_grib2"><tt class="xref py py-obj docutils literal"><span class="pre">save_grib2</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.load_pairs_from_fields" title="iris.fileformats.grib.load_pairs_from_fields"><tt class="xref py py-obj docutils literal"><span class="pre">load_pairs_from_fields</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.save_pairs_from_cube" title="iris.fileformats.grib.save_pairs_from_cube"><tt class="xref py py-obj docutils literal"><span class="pre">save_pairs_from_cube</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.save_messages" title="iris.fileformats.grib.save_messages"><tt class="xref py py-obj docutils literal"><span class="pre">save_messages</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.GribWrapper" title="iris.fileformats.grib.GribWrapper"><tt class="xref py py-obj docutils literal"><span class="pre">GribWrapper</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.as_messages" title="iris.fileformats.grib.as_messages"><tt class="xref py py-obj docutils literal"><span class="pre">as_messages</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.as_pairs" title="iris.fileformats.grib.as_pairs"><tt class="xref py py-obj docutils literal"><span class="pre">as_pairs</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.grib_generator" title="iris.fileformats.grib.grib_generator"><tt class="xref py py-obj docutils literal"><span class="pre">grib_generator</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.reset_load_rules" title="iris.fileformats.grib.reset_load_rules"><tt class="xref py py-obj docutils literal"><span class="pre">reset_load_rules</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.hindcast_workaround" title="iris.fileformats.grib.hindcast_workaround"><tt class="xref py py-obj docutils literal"><span class="pre">hindcast_workaround</span></tt></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.fileformats.grib.load_cubes">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">load_cubes</tt><big>(</big><em>filenames</em>, <em>callback=None</em>, <em>auto_regularise=True</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.load_cubes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a generator of cubes from the given list of filenames.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filenames (string/list):</dt>
+<dd><p class="first last">One or more GRIB filenames to load from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>callback (callable function):</dt>
+<dd><p class="first last">Function which can be passed on to <a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><tt class="xref py py-func docutils literal"><span class="pre">iris.io.run_callback()</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>auto_regularise (<em>True</em> | <em>False</em>):</dt>
+<dd><p class="first">If <em>True</em>, any cube defined on a reduced grid will be interpolated
+to an equivalent regular grid. If <em>False</em>, any cube defined on a
+reduced grid will be loaded on the raw reduced grid with no shape
+information. If <cite>iris.FUTURE.strict_grib_load</cite> is <cite>True</cite> then this
+keyword has no effect, raw grids are always used. If the older GRIB
+loader is in use then the default behaviour is to interpolate cubes
+on a reduced grid to an equivalent regular grid.</p>
+<div class="last deprecated">
+<p><span class="versionmodified">Deprecated since version 1.8.: </span>Please use strict_grib_load and regrid instead.</p>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.save_grib2">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">save_grib2</tt><big>(</big><em>cube</em>, <em>target</em>, <em>append=False</em>, <em>**kwargs</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.save_grib2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save a cube or iterable of cubes to a GRIB2 file.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>cube      - A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>, <a class="reference internal" href="../cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a> or</dt>
+<dd><p class="first last">list of cubes.</p>
+</dd>
+</dl>
+</li>
+<li><p class="first">target    - A filename or open file handle.</p>
+</li>
+</ul>
+</div></blockquote>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>append    - Whether to start a new file afresh or add the cube(s) to</dt>
+<dd><p class="first last">the end of the file.
+Only applicable when target is a filename, not a file
+handle. Default is False.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<p>See also <a class="reference internal" href="../io.html#iris.io.save" title="iris.io.save"><tt class="xref py py-func docutils literal"><span class="pre">iris.io.save()</span></tt></a>.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.load_pairs_from_fields">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">load_pairs_from_fields</tt><big>(</big><em>grib_messages</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.load_pairs_from_fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an iterable of GRIB messages into an iterable of
+(Cube, Grib message) tuples.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>grib_messages:</dt>
+<dd><p class="first last">An iterable of <a class="reference internal" href="grib/message.html#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.grib.message.GribMessage</span></tt></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>An iterable of tuples of (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>,
+<a class="reference internal" href="grib/message.html#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.grib.message.GribMessage</span></tt></a>).</dd>
+</dl>
+<p>This capability can be used to filter out fields before they are passed to
+the load pipeline, and amend the cubes once they are created, using
+GRIB metadata conditions.  Where the filtering
+removes a significant number of fields, the speed up to load can be
+significant:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.grib</span> <span class="kn">import</span> <span class="n">load_pairs_from_fields</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.grib.message</span> <span class="kn">import</span> <span class="n">GribMessage</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s">&#39;polar_stereo.grib2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filtered_messages</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">GribMessage</span><span class="o">.</span><span class="n">messages_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">sections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">filtered_messages</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes_messages</span> <span class="o">=</span> <span class="n">load_pairs_from_fields</span><span class="p">(</span><span class="n">filtered_messages</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">cube</span><span class="p">,</span> <span class="n">msg</span> <span class="ow">in</span> <span class="n">cubes_messages</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="n">prod_stat</span> <span class="o">=</span> <span class="n">msg</span><span class="o">.</span><span class="n">sections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="n">cube</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">prod_stat</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">])</span>
+<span class="go">0</span>
+</pre></div>
+</div>
+<p>This capability can also be used to alter fields before they are passed to
+the load pipeline.  Fields with out of specification header elements can
+be cleaned up this way and cubes created:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.grib</span> <span class="kn">import</span> <span class="n">load_pairs_from_fields</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cleaned_messages</span> <span class="o">=</span> <span class="n">GribMessage</span><span class="o">.</span><span class="n">messages_from_filename</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">message</span> <span class="ow">in</span> <span class="n">cleaned_messages</span><span class="p">:</span>
+<span class="gp">... </span>    <span class="k">if</span> <span class="n">message</span><span class="o">.</span><span class="n">sections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">... </span>        <span class="n">message</span><span class="o">.</span><span class="n">sections</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s">&#39;productionStatusOfProcessedData&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cubes</span> <span class="o">=</span> <span class="n">load_pairs_from_fields</span><span class="p">(</span><span class="n">cleaned_messages</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.save_pairs_from_cube">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">save_pairs_from_cube</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.save_pairs_from_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert one or more cubes to (2D cube, GRIB message) pairs.
+Returns an iterable of tuples each consisting of one 2D cube and
+one GRIB message ID, the result of the 2D cube being processed by the GRIB
+save rules.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first simple">
+<li>cube      - A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>, <a class="reference internal" href="../cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a> or</li>
+</ul>
+<p class="last">list of cubes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.save_messages">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">save_messages</tt><big>(</big><em>messages</em>, <em>target</em>, <em>append=False</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.save_messages" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save messages to a GRIB2 file.
+The messages will be released as part of the save.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li>messages  - An iterable of grib_api message IDs.</li>
+<li>target    - A filename or open file handle.</li>
+</ul>
+</div></blockquote>
+<p>Kwargs:</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>append    - Whether to start a new file afresh or add the cube(s) to</dt>
+<dd><p class="first last">the end of the file.
+Only applicable when target is a filename, not a file
+handle. Default is False.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Contains a pygrib object plus some extra keys of our own.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<p>The class <a class="reference internal" href="grib/message.html#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.grib.message.GribMessage</span></tt></a>
+provides alternative means of working with GRIB message instances.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.grib.GribWrapper">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">GribWrapper</tt><big>(</big><em>grib_message</em>, <em>grib_fh=None</em>, <em>auto_regularise=True</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.GribWrapper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>Contains a pygrib object plus some extra keys of our own.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<p>The class <a class="reference internal" href="grib/message.html#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-class docutils literal"><span class="pre">iris.fileformats.grib.message.GribMessage</span></tt></a>
+provides alternative means of working with GRIB message instances.</p>
+<dl class="method">
+<dt id="iris.fileformats.grib.GribWrapper.phenomenon_bounds">
+<tt class="descname">phenomenon_bounds</tt><big>(</big><em>time_unit</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.GribWrapper.phenomenon_bounds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the phenomenon time bound offsets from the epoch time reference
+measured in the appropriate time units.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.GribWrapper.phenomenon_points">
+<tt class="descname">phenomenon_points</tt><big>(</big><em>time_unit</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.GribWrapper.phenomenon_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the phenomenon time point offset from the epoch time reference
+measured in the appropriate time units.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.as_messages">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">as_messages</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.as_messages" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<p>Please use <a class="reference internal" href="#iris.fileformats.grib.save_pairs_from_cube" title="iris.fileformats.grib.save_pairs_from_cube"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.grib.save_pairs_from_cube()</span></tt></a> instead.</p>
+<p>Convert one or more cubes to GRIB messages.
+Returns an iterable of grib_api GRIB messages.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>cube      - A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></tt></a>, <a class="reference internal" href="../cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><tt class="xref py py-class docutils literal"><span class="pre">iris.cube.CubeList</span></tt></a> or</dt>
+<dd><p class="first last">list of cubes.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.as_pairs">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">as_pairs</tt><big>(</big><em>cube</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.as_pairs" title="Permalink to this definition">¶</a></dt>
+<dd><div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<p>Please use <a class="reference internal" href="#iris.fileformats.grib.save_pairs_from_cube" title="iris.fileformats.grib.save_pairs_from_cube"><tt class="xref py py-func docutils literal"><span class="pre">iris.fileformats.grib.save_pairs_from_cube()</span></tt></a>
+for the same functionality.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.grib_generator">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">grib_generator</tt><big>(</big><em>filename</em>, <em>auto_regularise=True</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.grib_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a generator of <a class="reference internal" href="#iris.fileformats.grib.GribWrapper" title="iris.fileformats.grib.GribWrapper"><tt class="xref py py-class docutils literal"><span class="pre">GribWrapper</span></tt></a>
+fields from the given filename.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<p>The function:
+<a class="reference internal" href="grib/message.html#iris.fileformats.grib.message.GribMessage.messages_from_filename" title="iris.fileformats.grib.message.GribMessage.messages_from_filename"><tt class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.grib.message.GribMessage.messages_from_filename()</span></tt></a>
+provides alternative means of obtainig GRIB messages from a file.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filename (string):</dt>
+<dd><p class="first last">Name of the file to generate fields from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>auto_regularise (<em>True</em> | <em>False</em>):</dt>
+<dd><p class="first last">If <em>True</em>, any field defined on a reduced grid will be interpolated
+to an equivalent regular grid. If <em>False</em>, any field defined on a
+reduced grid will be loaded on the raw reduced grid with no shape
+information. The default behaviour is to interpolate fields on a
+reduced grid to an equivalent regular grid.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.reset_load_rules">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">reset_load_rules</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.fileformats.grib.reset_load_rules" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the GRIB load process to use only the standard conversion rules.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.7.</span></p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="data">
+<dt id="iris.fileformats.grib.hindcast_workaround">
+<tt class="descclassname">iris.fileformats.grib.</tt><tt class="descname">hindcast_workaround</tt><a class="headerlink" href="#iris.fileformats.grib.hindcast_workaround" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set this flag to True to enable support of negative forecast periods
+when loading and saving GRIB files.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="grib/grib_phenom_translation.html" title="iris.fileformats.grib.grib_phenom_translation"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ff.html" title="iris.fileformats.ff"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../fileformats.html" >iris.fileformats</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2017, Met Office
+    </div>
+
+
+  </body>
+</html>
