@@ -1,0 +1,243 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.fileformats.grib.message &mdash; Iris 1.12.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.12.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="top" title="Iris 1.12.0 documentation" href="../../../../index.html" />
+    <link rel="up" title="iris.fileformats.grib" href="../grib.html" />
+    <link rel="next" title="iris.fileformats.name" href="../name.html" />
+    <link rel="prev" title="iris.fileformats.grib.load_rules" href="load_rules.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../../index.html"><img src="../../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.12 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../name.html" title="iris.fileformats.name"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="load_rules.html" title="iris.fileformats.grib.load_rules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../../fileformats.html" >iris.fileformats</a> &raquo;</li>
+          <li><a href="../grib.html" accesskey="U">iris.fileformats.grib</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="load_rules.html"
+                        title="previous chapter">iris.fileformats.grib.load_rules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../name.html"
+                        title="next chapter">iris.fileformats.name</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../../../_sources/iris/iris/fileformats/grib/message.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="iris-fileformats-grib-message">
+<span id="id1"></span><h1>iris.fileformats.grib.message<a class="headerlink" href="#iris-fileformats-grib-message" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.fileformats.grib.message"></span><p>Defines a lightweight wrapper class to wrap a single GRIB message.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-obj docutils literal"><span class="pre">GribMessage</span></tt></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.message.Section" title="iris.fileformats.grib.message.Section"><tt class="xref py py-obj docutils literal"><span class="pre">Section</span></tt></a></li>
+</ul>
+</div></blockquote>
+<p>An in-memory representation of a GribMessage, providing
+access to the <a class="reference internal" href="#iris.fileformats.grib.message.GribMessage.data" title="iris.fileformats.grib.message.GribMessage.data"><tt class="xref py py-meth docutils literal"><span class="pre">data()</span></tt></a> payload and the metadata
+elements by section via the <a class="reference internal" href="#iris.fileformats.grib.message.GribMessage.sections" title="iris.fileformats.grib.message.GribMessage.sections"><tt class="xref py py-meth docutils literal"><span class="pre">sections()</span></tt></a> property.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.grib.message.GribMessage">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.grib.message.</tt><tt class="descname">GribMessage</tt><big>(</big><em>raw_message</em>, <em>recreate_raw</em>, <em>file_ref=None</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.message.GribMessage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>It is recommended to obtain GribMessage instance from the static method
+<a class="reference internal" href="#iris.fileformats.grib.message.GribMessage.messages_from_filename" title="iris.fileformats.grib.message.GribMessage.messages_from_filename"><tt class="xref py py-meth docutils literal"><span class="pre">messages_from_filename()</span></tt></a>, rather than creating
+them directly.</p>
+<dl class="staticmethod">
+<dt id="iris.fileformats.grib.message.GribMessage.messages_from_filename">
+<em class="property">static </em><tt class="descname">messages_from_filename</tt><big>(</big><em>filename</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.message.GribMessage.messages_from_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a generator of <a class="reference internal" href="#iris.fileformats.grib.message.GribMessage" title="iris.fileformats.grib.message.GribMessage"><tt class="xref py py-class docutils literal"><span class="pre">GribMessage</span></tt></a> instances; one for
+each message in the supplied GRIB file.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filename (string):</dt>
+<dd><p class="first last">Name of the file to generate fields from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.grib.message.GribMessage.data">
+<tt class="descname">data</tt><a class="headerlink" href="#iris.fileformats.grib.message.GribMessage.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The data array from the GRIB message as a biggus Array.</p>
+<p>The shape of the array will match the logical shape of the
+message&#8217;s grid. For example, a simple global grid would be
+available as a 2-dimensional array with shape (Nj, Ni).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.grib.message.GribMessage.sections">
+<tt class="descname">sections</tt><a class="headerlink" href="#iris.fileformats.grib.message.GribMessage.sections" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the key-value pairs of the message keys, grouped by containing
+section.</p>
+<p>Sections in a message are indexed by GRIB section-number,
+and values in a section are indexed by key strings.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>A Section of a GRIB message, supporting dictionary like access to
+attributes using gribapi key strings.</p>
+<p>Values for keys may be changed using assignment but this does not
+write to the file.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.grib.message.Section">
+<em class="property">class </em><tt class="descclassname">iris.fileformats.grib.message.</tt><tt class="descname">Section</tt><big>(</big><em>message_id</em>, <em>number</em>, <em>keys</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.message.Section" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="http://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><tt class="xref py py-class docutils literal"><span class="pre">object</span></tt></a></p>
+<p>A Section of a GRIB message, supporting dictionary like access to
+attributes using gribapi key strings.</p>
+<p>Values for keys may be changed using assignment but this does not
+write to the file.</p>
+<dl class="method">
+<dt id="iris.fileformats.grib.message.Section.get_computed_key">
+<tt class="descname">get_computed_key</tt><big>(</big><em>key</em><big>)</big><a class="headerlink" href="#iris.fileformats.grib.message.Section.get_computed_key" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the computed value associated with the given key in the GRIB
+message.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>key:</dt>
+<dd><p class="first last">The GRIB key to retrieve the value of.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns the value associated with the requested key in the GRIB
+message.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.message.Section.keys">
+<tt class="descname">keys</tt><big>(</big><big>)</big><a class="headerlink" href="#iris.fileformats.grib.message.Section.keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return coded keys available in this Section.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../name.html" title="iris.fileformats.name"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="load_rules.html" title="iris.fileformats.grib.load_rules"
+             >previous</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../../../iris.html" >Iris reference documentation</a> &raquo;</li>
+          <li><a href="../../fileformats.html" >iris.fileformats</a> &raquo;</li>
+          <li><a href="../grib.html" >iris.fileformats.grib</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../../copyright.html">British Crown Copyright</a> 2010 - 2017, Met Office
+    </div>
+
+
+  </body>
+</html>

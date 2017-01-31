@@ -1,0 +1,272 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Contributing a “What’s New” entry &mdash; Iris 1.12.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '1.12.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="top" title="Iris 1.12.0 documentation" href="../../index.html" />
+    <link rel="up" title="Documentation in Iris" href="index.html" />
+    <link rel="next" title="Working with iris source code" href="../gitwash/index.html" />
+    <link rel="prev" title="reST quickstart" href="rest_guide.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.12 </span>
+</p>
+
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../gitwash/index.html" title="Working with iris source code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rest_guide.html" title="reST quickstart"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris developer guide</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Documentation in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contributing a &#8220;What&#8217;s New&#8221; entry</a><ul>
+<li><a class="reference internal" href="#writing-a-contribution">Writing a Contribution</a></li>
+<li><a class="reference internal" href="#adding-contribution-files">Adding Contribution Files</a><ul>
+<li><a class="reference internal" href="#category">Category</a></li>
+<li><a class="reference internal" href="#date">Date</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#complete-examples">Complete Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compiling-a-draft">Compiling a Draft</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_guide.html"
+                        title="previous chapter">reST quickstart</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../gitwash/index.html"
+                        title="next chapter">Working with <em>iris</em> source code</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../../_sources/developers_guide/documenting/whats_new_contributions.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="contributing-a-what-s-new-entry">
+<span id="whats-new-contributions"></span><h1>Contributing a &#8220;What&#8217;s New&#8221; entry<a class="headerlink" href="#contributing-a-what-s-new-entry" title="Permalink to this headline">¶</a></h1>
+<p>Iris has an aggregator for building a draft what&#8217;s new document for each
+release. The draft what&#8217;s new document is built from contributions by code authors.
+This means contributions to the what&#8217;s new document are written by the
+developer most familiar with the change made.</p>
+<p>A contribution provides an entry in the what&#8217;s new document, which describes a
+change that improved Iris in some way. This change may be a new feature in Iris
+or the fix for a bug introduced in a previous release. The contribution should
+be included as part of the Iris Pull Request that introduces the change.</p>
+<p>When a new release is prepared, the what&#8217;s new contributions are combined into
+a draft what&#8217;s new document for the release.</p>
+<div class="section" id="writing-a-contribution">
+<h2>Writing a Contribution<a class="headerlink" href="#writing-a-contribution" title="Permalink to this headline">¶</a></h2>
+<p>As introduced above, a contribution is the description of a change to Iris
+which improved Iris in some way. As such, a single Iris Pull Request may
+contain multiple changes that are worth highlighting as contributions to the
+what&#8217;s new document.</p>
+<p>Each contribution will ideally be written as a single concise bullet point.
+The content of the bullet point should highlight the change that has been made
+to Iris, targeting an Iris user as the audience.</p>
+<p>A contribution is a feature summary by the code author, which avoids the
+release developer having to personally review the change in detail :
+It is not in itself the final documentation content,
+so it does not have to be perfect or complete in every respect.</p>
+</div>
+<div class="section" id="adding-contribution-files">
+<h2>Adding Contribution Files<a class="headerlink" href="#adding-contribution-files" title="Permalink to this headline">¶</a></h2>
+<p>Each release must have a directory called <tt class="docutils literal"><span class="pre">contributions_&lt;release</span> <span class="pre">number&gt;</span></tt>,
+which should be created following the release of the current version of Iris. Each
+release directory must be placed in <tt class="docutils literal"><span class="pre">docs/iris/src/whatsnew/</span></tt>.
+Contributions to the what&#8217;s new must be written in markdown and placed into this
+directory in text files. The filename for each item should be structured as follows:</p>
+<p><tt class="docutils literal"><span class="pre">&lt;category&gt;_&lt;date&gt;_&lt;summary&gt;.txt</span></tt></p>
+<div class="section" id="category">
+<h3>Category<a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h3>
+<p>The category must be one of the following:</p>
+<dl class="docutils">
+<dt><em>newfeature</em></dt>
+<dd>Features that are new or changed to add functionality.</dd>
+<dt><em>bugfix</em></dt>
+<dd>A bugfix.</dd>
+<dt><em>incompatiblechange</em></dt>
+<dd>A change that causes an incompatibility with prior versions of Iris.</dd>
+<dt><em>deprecate</em></dt>
+<dd>Deprecations of functionality.</dd>
+<dt><em>docchange</em></dt>
+<dd>Changes to documentation.</dd>
+</dl>
+</div>
+<div class="section" id="date">
+<h3>Date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h3>
+<p>The date must be a hyphen-separated date in the format of:</p>
+<blockquote>
+<div><ul class="simple">
+<li>a four digit year,</li>
+<li>a three character month name, and</li>
+<li>a two digit day.</li>
+</ul>
+</div></blockquote>
+<p>For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li>2012-Jan-30</li>
+<li>2014-May-03</li>
+<li>2015-Feb-19</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>The summary can be any remaining filename characters, and simply provides a
+short identifying description of the change.</p>
+<p>For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li>whats-new-aggregator</li>
+<li>using_mo_pack</li>
+<li>correction-to-bilinear-regrid</li>
+<li>GRIB2_pdt11</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="complete-examples">
+<h3>Complete Examples<a class="headerlink" href="#complete-examples" title="Permalink to this headline">¶</a></h3>
+<p>Some sample what&#8217;s new contribution filenames:</p>
+<blockquote>
+<div><ul class="simple">
+<li>bugfix_2015-Aug-18_partial_pp_constraints.txt</li>
+<li>deprecate_2015-Nov-01_unit-module.txt</li>
+<li>incompatiblechange_2015-Oct-12_GRIB_optional_Python3_unavailable.txt</li>
+<li>newfeature_2015-Jul-03_pearsonr_rewrite.txt</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">A test in the standard test suite ensures that all the contents of the
+latest contributions directory conform to this naming scheme.</p>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-a-draft">
+<h2>Compiling a Draft<a class="headerlink" href="#compiling-a-draft" title="Permalink to this headline">¶</a></h2>
+<p>Compiling a draft from the supplied contributions should be done when preparing
+a release. Running <tt class="docutils literal"><span class="pre">docs/iris/src/whatsnew/aggregate_directory.py</span></tt> with the
+release number as the argument will create a draft what&#8217;s new with the name
+<tt class="docutils literal"><span class="pre">&lt;release&gt;.rst</span></tt> file for the specified release, by aggregating the individual
+contributions from the relevant folder.
+Omitting the release number will build the latest version for which a
+contributions folder is present.
+This command fails if a file with the relevant name already exists.</p>
+<p>The resulting draft document is only a starting point, which the release
+developer will then edit to produce the final &#8216;What&#8217;s new in Iris x.x&#8217;
+documentation.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../gitwash/index.html" title="Working with iris source code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rest_guide.html" title="reST quickstart"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li><a href="../index.html" >Iris developer guide</a> &raquo;</li>
+          <li><a href="index.html" >Documentation in Iris</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2017, Met Office
+    </div>
+
+
+  </body>
+</html>
