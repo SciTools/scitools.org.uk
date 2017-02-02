@@ -1,0 +1,352 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection &#8212; cartopy 0.15.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.15.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.15.0 documentation" href="../index.html" />
+    <link rel="next" title="axes_grid_basic example" href="axes_grid_basic.html" />
+    <link rel="prev" title="arrows example" href="arrows.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="axes_grid_basic.html" title="axes_grid_basic example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="arrows.html" title="arrows example"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="arrows.html"
+                        title="previous chapter">arrows example</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="axes_grid_basic.html"
+                        title="next chapter">axes_grid_basic example</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/aurora_forecast.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="plotting-the-aurora-forecast-from-noaa-on-orthographic-polar-projection">
+<span id="examples-aurora-forecast"></span><h1>Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection<a class="headerlink" href="#plotting-the-aurora-forecast-from-noaa-on-orthographic-polar-projection" title="Permalink to this headline">¶</a></h1>
+<p>The National Oceanic and Atmospheric Administration (NOAA) monitors the
+solar wind conditions using the ACE spacecraft orbiting close to the L1
+Lagrangian point of the Sun-Earth system. This data is fed into the
+OVATION-Prime model to forecast the probability of visible aurora at
+various locations on Earth. Every five minutes a new forecast is
+published for the coming 30 minutes. The data is provided as a
+1024 by 512 grid of probabilities in percent of visible aurora. The
+data spaced equally in degrees from -180 to 180 and -90 to 90.</p>
+<p>(<a class="reference external" href="../examples/aurora_forecast.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/aurora_forecast_00_00.png" src="../_images/aurora_forecast_00_00.png" />
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</span>
+<span class="sd">-----------------------------------------------------------------------</span>
+
+<span class="sd">The National Oceanic and Atmospheric Administration (NOAA) monitors the</span>
+<span class="sd">solar wind conditions using the ACE spacecraft orbiting close to the L1</span>
+<span class="sd">Lagrangian point of the Sun-Earth system. This data is fed into the</span>
+<span class="sd">OVATION-Prime model to forecast the probability of visible aurora at</span>
+<span class="sd">various locations on Earth. Every five minutes a new forecast is</span>
+<span class="sd">published for the coming 30 minutes. The data is provided as a</span>
+<span class="sd">1024 by 512 grid of probabilities in percent of visible aurora. The</span>
+<span class="sd">data spaced equally in degrees from -180 to 180 and -90 to 90.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib2</span> <span class="k">import</span> <span class="n">urlopen</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlopen</span>
+
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">StringIO</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">datetime</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.colors</span> <span class="k">import</span> <span class="n">LinearSegmentedColormap</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+
+
+<span class="k">def</span> <span class="nf">aurora_forecast</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Gets the latest Aurora Forecast from http://swpc.noaa.gov.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    img : numpy array</span>
+<span class="sd">        The pixels of the image in a numpy array.</span>
+<span class="sd">    img_proj : cartopy CRS</span>
+<span class="sd">        The rectangular coordinate system of the image.</span>
+<span class="sd">    img_extent : tuple of floats</span>
+<span class="sd">        The extent of the image ``(x0, y0, x1, y1)`` referenced in</span>
+<span class="sd">        the ``img_proj`` coordinate system.</span>
+<span class="sd">    origin : str</span>
+<span class="sd">        The origin of the image to be passed through to matplotlib&#39;s imshow.</span>
+<span class="sd">    dt : datetime</span>
+<span class="sd">        Time of forecast validity.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># GitHub gist to download the example data from</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://gist.githubusercontent.com/belteshassar/&#39;</span>
+           <span class="s1">&#39;c7ea9e02a3e3934a9ddc/raw/aurora-nowcast-map.txt&#39;</span><span class="p">)</span>
+    <span class="c1"># To plot the current forecast instead, uncomment the following line</span>
+    <span class="c1"># url = &#39;http://services.swpc.noaa.gov/text/aurora-nowcast-map.txt&#39;</span>
+
+    <span class="n">response_text</span> <span class="o">=</span> <span class="n">StringIO</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">response_text</span><span class="p">)</span>
+    <span class="c1"># Read forecast date and time</span>
+    <span class="n">response_text</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">response_text</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Product Valid At:&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="o">-</span><span class="mi">17</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="s1">&#39;%Y-%m-</span><span class="si">%d</span><span class="s1"> %H:%M&#39;</span><span class="p">)</span>
+
+    <span class="n">img_proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+    <span class="n">img_extent</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">img_proj</span><span class="p">,</span> <span class="n">img_extent</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">dt</span>
+
+
+<span class="k">def</span> <span class="nf">aurora_cmap</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;Return a colormap with aurora like colors&quot;&quot;&quot;</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;red&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.1725</span><span class="p">,</span> <span class="mf">0.1725</span><span class="p">),</span>
+                     <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.1725</span><span class="p">,</span> <span class="mf">0.1725</span><span class="p">),</span>
+                     <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.8353</span><span class="p">,</span> <span class="mf">0.8353</span><span class="p">)],</span>
+
+             <span class="s1">&#39;green&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.9294</span><span class="p">,</span> <span class="mf">0.9294</span><span class="p">),</span>
+                       <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.9294</span><span class="p">,</span> <span class="mf">0.9294</span><span class="p">),</span>
+                       <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.8235</span><span class="p">,</span> <span class="mf">0.8235</span><span class="p">)],</span>
+
+             <span class="s1">&#39;blue&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.3843</span><span class="p">,</span> <span class="mf">0.3843</span><span class="p">),</span>
+                      <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">0.3843</span><span class="p">,</span> <span class="mf">0.3843</span><span class="p">),</span>
+                      <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">0.6549</span><span class="p">,</span> <span class="mf">0.6549</span><span class="p">)],</span>
+
+             <span class="s1">&#39;alpha&#39;</span><span class="p">:</span> <span class="p">[(</span><span class="mf">0.00</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">),</span>
+                       <span class="p">(</span><span class="mf">0.50</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+                       <span class="p">(</span><span class="mf">1.00</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]}</span>
+
+    <span class="k">return</span> <span class="n">LinearSegmentedColormap</span><span class="p">(</span><span class="s1">&#39;aurora&#39;</span><span class="p">,</span> <span class="n">stops</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">sun_pos</span><span class="p">(</span><span class="n">dt</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function computes a rough estimate of the coordinates for</span>
+<span class="sd">    the point on the surface of the Earth where the Sun is directly</span>
+<span class="sd">    overhead at the time dt. Precision is down to a few degrees. This</span>
+<span class="sd">    means that the equinoxes (when the sign of the latitude changes)</span>
+<span class="sd">    will be off by a few days.</span>
+
+<span class="sd">    The function is intended only for visualization. For more precise</span>
+<span class="sd">    calculations consider for example the PyEphem package.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        dt: datetime</span>
+<span class="sd">            Defaults to datetime.utcnow()</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">        lat, lng: tuple of floats</span>
+<span class="sd">            Approximate coordinates of the point where the sun is</span>
+<span class="sd">            in zenith at the time dt.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">dt</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">dt</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+    <span class="n">axial_tilt</span> <span class="o">=</span> <span class="mf">23.4</span>
+    <span class="n">ref_solstice</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">2016</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">22</span><span class="p">)</span>
+    <span class="n">days_per_year</span> <span class="o">=</span> <span class="mf">365.2425</span>
+    <span class="n">seconds_per_day</span> <span class="o">=</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mf">60.0</span>
+
+    <span class="n">days_since_ref</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span> <span class="o">-</span> <span class="n">ref_solstice</span><span class="p">)</span><span class="o">.</span><span class="n">total_seconds</span><span class="p">()</span><span class="o">/</span><span class="n">seconds_per_day</span>
+    <span class="n">lat</span> <span class="o">=</span> <span class="n">axial_tilt</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">days_since_ref</span><span class="o">/</span><span class="n">days_per_year</span><span class="p">)</span>
+    <span class="n">sec_since_midnight</span> <span class="o">=</span> <span class="p">(</span><span class="n">dt</span> <span class="o">-</span> <span class="n">datetime</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">year</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">dt</span><span class="o">.</span><span class="n">day</span><span class="p">))</span><span class="o">.</span><span class="n">seconds</span>
+    <span class="n">lng</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">sec_since_midnight</span><span class="o">/</span><span class="n">seconds_per_day</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">*</span><span class="mi">360</span>
+    <span class="k">return</span> <span class="n">lat</span><span class="p">,</span> <span class="n">lng</span>
+
+
+<span class="k">def</span> <span class="nf">fill_dark_side</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot a fill on the dark side of the planet (without refraction).</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">        ax : matplotlib axes</span>
+<span class="sd">            The axes to plot on.</span>
+<span class="sd">        time : datetime</span>
+<span class="sd">            The time to calculate terminator for. Defaults to datetime.utcnow()</span>
+<span class="sd">        **kwargs :</span>
+<span class="sd">            Passed on to Matplotlib&#39;s ax.fill()</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">lat</span><span class="p">,</span> <span class="n">lng</span> <span class="o">=</span> <span class="n">sun_pos</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+    <span class="n">pole_lng</span> <span class="o">=</span> <span class="n">lng</span>
+    <span class="k">if</span> <span class="n">lat</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">pole_lat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+        <span class="n">central_rot_lng</span> <span class="o">=</span> <span class="mi">180</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">pole_lat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+        <span class="n">central_rot_lng</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">rotated_pole</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">RotatedPole</span><span class="p">(</span><span class="n">pole_latitude</span><span class="o">=</span><span class="n">pole_lat</span><span class="p">,</span>
+                                    <span class="n">pole_longitude</span><span class="o">=</span><span class="n">pole_lng</span><span class="p">,</span>
+                                    <span class="n">central_rotated_longitude</span><span class="o">=</span><span class="n">central_rot_lng</span><span class="p">)</span>
+
+    <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">360</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[:</span><span class="mi">180</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span>
+    <span class="n">y</span><span class="p">[:</span><span class="mi">180</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mf">90.</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">[</span><span class="mi">180</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">90</span>
+    <span class="n">y</span><span class="p">[</span><span class="mi">180</span><span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mf">90.</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">rotated_pole</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+
+    <span class="c1"># We choose to plot in an Orthographic projection as it looks natural</span>
+    <span class="c1"># and the distortion is relatively small around the poles where</span>
+    <span class="c1"># the aurora is most likely.</span>
+
+    <span class="c1"># ax1 for Northern Hemisphere</span>
+    <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">))</span>
+
+    <span class="c1"># ax2 for Southern Hemisphere</span>
+    <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Orthographic</span><span class="p">(</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">))</span>
+
+    <span class="n">img</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span><span class="p">,</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">aurora_forecast</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="p">[</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">]:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">zorder</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">stock_img</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">()</span>
+        <span class="n">fill_dark_side</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span> <span class="n">time</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.75</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span>
+                  <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">zorder</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                  <span class="n">cmap</span><span class="o">=</span><span class="n">aurora_cmap</span><span class="p">())</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="axes_grid_basic.html" title="axes_grid_basic example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="arrows.html" title="arrows example"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2017, Met Office
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

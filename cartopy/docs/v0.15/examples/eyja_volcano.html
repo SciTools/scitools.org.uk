@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Map tile acquisition &#8212; cartopy 0.15.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.15.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.15.0 documentation" href="../index.html" />
+    <link rel="next" title="favicon example" href="favicon.html" />
+    <link rel="prev" title="The effect of badly referencing an ellipse" href="effects_of_the_ellipse.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="favicon.html" title="favicon example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="effects_of_the_ellipse.html" title="The effect of badly referencing an ellipse"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="effects_of_the_ellipse.html"
+                        title="previous chapter">The effect of badly referencing an ellipse</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="favicon.html"
+                        title="next chapter">favicon example</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/eyja_volcano.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="map-tile-acquisition">
+<span id="examples-eyja-volcano"></span><h1>Map tile acquisition<a class="headerlink" href="#map-tile-acquisition" title="Permalink to this headline">¶</a></h1>
+<p>Demonstrates cartopy&#8217;s ability to draw map tiles which are downloaded on
+demand from the Stamen tile server. Internally these tiles are then combined
+into a single image and displayed in the cartopy GeoAxes.</p>
+<p>(<a class="reference external" href="../examples/eyja_volcano.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/eyja_volcano_00_00.png" src="../_images/eyja_volcano_00_00.png" />
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Map tile acquisition</span>
+<span class="sd">--------------------</span>
+
+<span class="sd">Demonstrates cartopy&#39;s ability to draw map tiles which are downloaded on</span>
+<span class="sd">demand from the Stamen tile server. Internally these tiles are then combined</span>
+<span class="sd">into a single image and displayed in the cartopy GeoAxes.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.transforms</span> <span class="k">import</span> <span class="n">offset_copy</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">cartopy.io.img_tiles</span> <span class="k">as</span> <span class="nn">cimgt</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Create a Stamen Terrain instance.</span>
+    <span class="n">stamen_terrain</span> <span class="o">=</span> <span class="n">cimgt</span><span class="o">.</span><span class="n">StamenTerrain</span><span class="p">()</span>
+
+    <span class="c1"># Create a GeoAxes in the tile&#39;s projection.</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">stamen_terrain</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+
+    <span class="c1"># Limit the extent of the map to a small longitude/latitude range.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">22</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">63</span><span class="p">,</span> <span class="mi">65</span><span class="p">])</span>
+
+    <span class="c1"># Add the Stamen data at zoom level 8.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">stamen_terrain</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+
+    <span class="c1"># Add a marker for the Eyjafjallajökull volcano.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="o">-</span><span class="mf">19.613333</span><span class="p">,</span> <span class="mf">63.62</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;o&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+             <span class="n">alpha</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">())</span>
+
+    <span class="c1"># Use the cartopy interface to create a matplotlib transform object</span>
+    <span class="c1"># for the Geodetic coordinate system. We will use this along with</span>
+    <span class="c1"># matplotlib&#39;s offset_copy function to define a coordinate system which</span>
+    <span class="c1"># translates the text by 25 pixels to the left.</span>
+    <span class="n">geodetic_transform</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span><span class="p">()</span><span class="o">.</span><span class="n">_as_mpl_transform</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+    <span class="n">text_transform</span> <span class="o">=</span> <span class="n">offset_copy</span><span class="p">(</span><span class="n">geodetic_transform</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;dots&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=-</span><span class="mi">25</span><span class="p">)</span>
+
+    <span class="c1"># Add text 25 pixels to the left of the volcano.</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mf">19.613333</span><span class="p">,</span> <span class="mf">63.62</span><span class="p">,</span> <span class="s1">u&#39;Eyjafjallajökull&#39;</span><span class="p">,</span>
+             <span class="n">verticalalignment</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span>
+             <span class="n">transform</span><span class="o">=</span><span class="n">text_transform</span><span class="p">,</span>
+             <span class="n">bbox</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;sandybrown&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">boxstyle</span><span class="o">=</span><span class="s1">&#39;round&#39;</span><span class="p">))</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="favicon.html" title="favicon example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="effects_of_the_ellipse.html" title="The effect of badly referencing an ellipse"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2017, Met Office
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

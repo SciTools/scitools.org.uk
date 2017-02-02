@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Reprojecting images from a Geostationary projection &#8212; cartopy 0.15.0 documentation</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.15.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="top" title="cartopy 0.15.0 documentation" href="../index.html" />
+    <link rel="next" title="global_map example" href="global_map.html" />
+    <link rel="prev" title="features example" href="features.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head>
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="global_map.html" title="global_map example"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="features example"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png" 
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="features.html"
+                        title="previous chapter">features example</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="global_map.html"
+                        title="next chapter">global_map example</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/examples/geostationary.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="reprojecting-images-from-a-geostationary-projection">
+<span id="examples-geostationary"></span><h1>Reprojecting images from a Geostationary projection<a class="headerlink" href="#reprojecting-images-from-a-geostationary-projection" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates Cartopy&#8217;s ability to project images into the desired
+projection on-the-fly. The image itself is retrieved from a URL and is loaded
+directly into memory without storing it intermediately into a file. It
+represents pre-processed data from the Spinning Enhanced Visible and Infrared
+Imager onboard Meteosat Second Generation, which has been put into an image in
+the data&#8217;s native Geostationary coordinate system - it is then projected by
+cartopy into a global Miller map.</p>
+<p>(<a class="reference external" href="../examples/geostationary.py">Source code</a>)</p>
+<div class="figure">
+<img alt="../_images/geostationary_00_00.png" src="../_images/geostationary_00_00.png" />
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Reprojecting images from a Geostationary projection</span>
+<span class="sd">---------------------------------------------------</span>
+
+<span class="sd">This example demonstrates Cartopy&#39;s ability to project images into the desired</span>
+<span class="sd">projection on-the-fly. The image itself is retrieved from a URL and is loaded</span>
+<span class="sd">directly into memory without storing it intermediately into a file. It</span>
+<span class="sd">represents pre-processed data from the Spinning Enhanced Visible and Infrared</span>
+<span class="sd">Imager onboard Meteosat Second Generation, which has been put into an image in</span>
+<span class="sd">the data&#39;s native Geostationary coordinate system - it is then projected by</span>
+<span class="sd">cartopy into a global Miller map.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib2</span> <span class="k">import</span> <span class="n">urlopen</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlopen</span>
+<span class="kn">from</span> <span class="nn">io</span> <span class="k">import</span> <span class="n">BytesIO</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">geos_image</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a specific SEVIRI image by retrieving it from a github gist URL.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    img : numpy array</span>
+<span class="sd">        The pixels of the image in a numpy array.</span>
+<span class="sd">    img_proj : cartopy CRS</span>
+<span class="sd">        The rectangular coordinate system of the image.</span>
+<span class="sd">    img_extent : tuple of floats</span>
+<span class="sd">        The extent of the image ``(x0, y0, x1, y1)`` referenced in</span>
+<span class="sd">        the ``img_proj`` coordinate system.</span>
+<span class="sd">    origin : str</span>
+<span class="sd">        The origin of the image to be passed through to matplotlib&#39;s imshow.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://gist.github.com/pelson/5871263/raw/&#39;</span>
+           <span class="s1">&#39;EIDA50_201211061300_clip2.png&#39;</span><span class="p">)</span>
+    <span class="n">img_handle</span> <span class="o">=</span> <span class="n">BytesIO</span><span class="p">(</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="n">img_handle</span><span class="p">)</span>
+    <span class="n">img_proj</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Geostationary</span><span class="p">(</span><span class="n">satellite_height</span><span class="o">=</span><span class="mi">35786000</span><span class="p">)</span>
+    <span class="n">img_extent</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mi">5500000</span><span class="p">,</span> <span class="mi">5500000</span><span class="p">,</span> <span class="o">-</span><span class="mi">5500000</span><span class="p">,</span> <span class="mi">5500000</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">img_proj</span><span class="p">,</span> <span class="n">img_extent</span><span class="p">,</span> <span class="s1">&#39;upper&#39;</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Miller</span><span class="p">())</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_global</span><span class="p">()</span>
+    <span class="n">img</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="n">geos_image</span><span class="p">()</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">crs</span><span class="p">,</span> <span class="n">extent</span><span class="o">=</span><span class="n">extent</span><span class="p">,</span> <span class="n">origin</span><span class="o">=</span><span class="n">origin</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="global_map.html" title="global_map example"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="features.html" title="features example"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2017, Met Office
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
