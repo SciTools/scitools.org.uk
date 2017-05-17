@@ -33,7 +33,7 @@ repository size.
 To update scitools.org.uk so that it includes the Iris documentation for the
 Iris 1.12.0 release the following steps need to be followed.
 
-1. Build the Iris documentation using sphinx.
+1. Build the Iris documentation using sphinx and add it to the scitools.org.uk repo.
 ```
 $ cd <path_to_iris_repo>/docs/iris
 $ make html
@@ -42,8 +42,10 @@ $ cp -a build/html/ <path_to_scitools.org.uk_repo>/iris/docs/v1.12.0
 
 2. Update the `latest` symlink.
 ```
-$ cd <path_to_scitools.org.uk_repo>
-$ ln -s iris/docs/v1.12.0 iris/docs/latest
+$ cd <path_to_scitools.org.uk_repo>/iris/docs
+$ rm latest
+$ ln -s v1.12.0 latest
+$ cd -
 ```
 
 3. Update "Latest" and "Previous releases" in `source/iris/documentation.html`.
