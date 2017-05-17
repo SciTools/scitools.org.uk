@@ -1,0 +1,218 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.analysis.stats &#8212; Iris 1.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.13.0 documentation" href="../../../contents.html" />
+    <link rel="up" title="iris.analysis" href="../analysis.html" />
+    <link rel="next" title="iris.analysis.trajectory" href="trajectory.html" />
+    <link rel="prev" title="iris.analysis.maths" href="maths.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.13 </span>
+</p>
+
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="trajectory.html" title="iris.analysis.trajectory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="maths.html" title="iris.analysis.maths"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" accesskey="U">iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="maths.html"
+                        title="previous chapter">iris.analysis.maths</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="trajectory.html"
+                        title="next chapter">iris.analysis.trajectory</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/analysis/stats.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-analysis-stats">
+<span id="id1"></span><h1>iris.analysis.stats<a class="headerlink" href="#iris-analysis-stats" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.analysis.stats"></span><p>Statistical operations between cubes.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.analysis.stats.pearsonr" title="iris.analysis.stats.pearsonr"><code class="xref py py-obj docutils literal"><span class="pre">pearsonr</span></code></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.analysis.stats.pearsonr">
+<code class="descclassname">iris.analysis.stats.</code><code class="descname">pearsonr</code><span class="sig-paren">(</span><em>cube_a</em>, <em>cube_b</em>, <em>corr_coords=None</em>, <em>weights=None</em>, <em>mdtol=1.0</em>, <em>common_mask=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.stats.pearsonr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the Pearson&#8217;s r correlation coefficient over specified
+dimensions.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>cube_a, cube_b (cubes):</dt>
+<dd><p class="first last">Cubes between which the correlation will be calculated.  The cubes
+should either be the same shape and have the same dimension coordinates
+or one cube should be broadcastable to the other.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>corr_coords (str or list of str):</dt>
+<dd><p class="first last">The cube coordinate name(s) over which to calculate correlations. If no
+names are provided then correlation will be calculated over all common
+cube dimensions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>weights (numpy.ndarray, optional):</dt>
+<dd><p class="first last">Weights array of same shape as (the smaller of) cube_a and cube_b. Note
+that latitude/longitude area weights can be calculated using
+<a class="reference internal" href="cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>mdtol (float, optional):</dt>
+<dd><p class="first last">Tolerance of missing data. The missing data fraction is calculated
+based on the number of grid cells masked in both cube_a and cube_b. If
+this fraction exceed mdtol, the returned value in the corresponding
+cell is masked. mdtol=0 means no missing data is tolerated while
+mdtol=1 means the resulting element will be masked if and only if all
+contributing elements are masked in cube_a or cube_b. Defaults to 1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>common_mask (bool):</dt>
+<dd><p class="first last">If True, applies a common mask to cube_a and cube_b so only cells which
+are unmasked in both cubes contribute to the calculation. If False, the
+variance for each cube is calculated from all available cells. Defaults
+to False.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd><p class="first">A cube of the correlation between the two input cubes along the
+specified dimensions, at each point in the remaining dimensions of the
+cubes.</p>
+<p class="last">For example providing two time/altitude/latitude/longitude cubes and
+corr_coords of &#8216;latitude&#8217; and &#8216;longitude&#8217; will result in a
+time/altitude cube describing the latitude/longitude (i.e. pattern)
+correlation at each time/altitude point.</p>
+</dd>
+<dt>Reference:</dt>
+<dd><a class="reference external" href="http://www.statsoft.com/textbook/glosp.html#Pearson%20Correlation">http://www.statsoft.com/textbook/glosp.html#Pearson%20Correlation</a></dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="trajectory.html" title="iris.analysis.trajectory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="maths.html" title="iris.analysis.maths"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" >iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

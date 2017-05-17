@@ -1,0 +1,328 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.fileformats.grib.grib_phenom_translation &#8212; Iris 1.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../../',
+        VERSION:     '1.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../../copyright.html" />
+    <link rel="top" title="Iris 1.13.0 documentation" href="../../../../contents.html" />
+    <link rel="up" title="iris.fileformats.grib" href="../grib.html" />
+    <link rel="next" title="iris.fileformats.grib.grib_save_rules" href="grib_save_rules.html" />
+    <link rel="prev" title="iris.fileformats.grib" href="../grib.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../../index.html"><img src="../../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.13 </span>
+</p>
+
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="grib_save_rules.html" title="iris.fileformats.grib.grib_save_rules"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../grib.html" title="iris.fileformats.grib"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../fileformats.html" >iris.fileformats</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../grib.html" accesskey="U">iris.fileformats.grib</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../grib.html"
+                        title="previous chapter">iris.fileformats.grib</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grib_save_rules.html"
+                        title="next chapter">iris.fileformats.grib.grib_save_rules</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../../_sources/iris/iris/fileformats/grib/grib_phenom_translation.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-fileformats-grib-grib-phenom-translation">
+<span id="id1"></span><h1>iris.fileformats.grib.grib_phenom_translation<a class="headerlink" href="#iris-fileformats-grib-grib-phenom-translation" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.fileformats.grib.grib_phenom_translation"></span><p>Provide grib 1 and 2 phenomenon translations to + from CF terms.</p>
+<p>This is done by wrapping &#8216;_grib_cf_map.py&#8217;,
+which is in a format provided by the metadata translation project.</p>
+<p>Currently supports only these ones:</p>
+<ul class="simple">
+<li>grib1 &#8211;&gt; cf</li>
+<li>grib2 &#8211;&gt; cf</li>
+<li>cf &#8211;&gt; grib2</li>
+</ul>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.fileformats.grib.grib_phenom_translation.cf_phenom_to_grib2_info" title="iris.fileformats.grib.grib_phenom_translation.cf_phenom_to_grib2_info"><code class="xref py py-obj docutils literal"><span class="pre">cf_phenom_to_grib2_info</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.grib_phenom_translation.grib1_phenom_to_cf_info" title="iris.fileformats.grib.grib_phenom_translation.grib1_phenom_to_cf_info"><code class="xref py py-obj docutils literal"><span class="pre">grib1_phenom_to_cf_info</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.grib_phenom_translation.grib2_phenom_to_cf_info" title="iris.fileformats.grib.grib_phenom_translation.grib2_phenom_to_cf_info"><code class="xref py py-obj docutils literal"><span class="pre">grib2_phenom_to_cf_info</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable" title="iris.fileformats.grib.grib_phenom_translation.LookupTable"><code class="xref py py-obj docutils literal"><span class="pre">LookupTable</span></code></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.fileformats.grib.grib_phenom_translation.cf_phenom_to_grib2_info">
+<code class="descclassname">iris.fileformats.grib.grib_phenom_translation.</code><code class="descname">cf_phenom_to_grib2_info</code><span class="sig-paren">(</span><em>standard_name</em>, <em>long_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.cf_phenom_to_grib2_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup CF names &#8211;&gt; grib2_data or None.</p>
+<p>Returned grib2_data has attributes:</p>
+<ul>
+<li><p class="first">discipline</p>
+</li>
+<li><p class="first">category</p>
+</li>
+<li><p class="first">number</p>
+</li>
+<li><dl class="first docutils">
+<dt>units</dt>
+ <span class="classifier-delimiter">:</span> <span class="classifier">a <code class="xref py py-class docutils literal"><span class="pre">cf_units.Unit</span></code></span><dd><p class="first last">The unit represents the defined reference units for the message data.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.grib_phenom_translation.grib1_phenom_to_cf_info">
+<code class="descclassname">iris.fileformats.grib.grib_phenom_translation.</code><code class="descname">grib1_phenom_to_cf_info</code><span class="sig-paren">(</span><em>table2_version</em>, <em>centre_number</em>, <em>param_number</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.grib1_phenom_to_cf_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup grib-1 parameter &#8211;&gt; cf_data or None.</p>
+<p>Returned cf_data has attributes:</p>
+<ul class="simple">
+<li>standard_name</li>
+<li>long_name</li>
+<li>units : a <code class="xref py py-class docutils literal"><span class="pre">cf_units.Unit</span></code></li>
+<li>set_height :  a scalar &#8216;height&#8217; value , or None</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.grib.grib_phenom_translation.grib2_phenom_to_cf_info">
+<code class="descclassname">iris.fileformats.grib.grib_phenom_translation.</code><code class="descname">grib2_phenom_to_cf_info</code><span class="sig-paren">(</span><em>param_discipline</em>, <em>param_category</em>, <em>param_number</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.grib2_phenom_to_cf_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Lookup grib-2 parameter &#8211;&gt; cf_data or None.</p>
+<p>Returned cf_data has attributes:</p>
+<ul class="simple">
+<li>standard_name</li>
+<li>long_name</li>
+<li>units : a <code class="xref py py-class docutils literal"><span class="pre">cf_units.Unit</span></code></li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Specialised dictionary object for making lookup tables.</p>
+<p>Returns None for unknown keys (instead of raising exception).
+Raises exception for any attempt to change an existing entry,
+(but it is still possible to remove keys)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable">
+<em class="property">class </em><code class="descclassname">iris.fileformats.grib.grib_phenom_translation.</code><code class="descname">LookupTable</code><span class="sig-paren">(</span><em>*args</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/stdtypes.html#dict" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">dict</span></code></a></p>
+<p>Specialised dictionary object for making lookup tables.</p>
+<p>Returns None for unknown keys (instead of raising exception).
+Raises exception for any attempt to change an existing entry,
+(but it is still possible to remove keys)</p>
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.clear">
+<code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; None.  Remove all items from D.<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.clear" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.copy">
+<code class="descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; a shallow copy of D<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.copy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.fromkeys">
+<code class="descname">fromkeys</code><span class="sig-paren">(</span><em>S</em><span class="optional">[</span>, <em>v</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; New dict with keys from S and values equal to v.<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.fromkeys" title="Permalink to this definition">¶</a></dt>
+<dd><p>v defaults to None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.get">
+<code class="descname">get</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; D[k] if k in D, else d.  d defaults to None.<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.get" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.has_key">
+<code class="descname">has_key</code><span class="sig-paren">(</span><em>k</em><span class="sig-paren">)</span> &rarr; True if D has a key k, else False<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.has_key" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.items">
+<code class="descname">items</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; list of D's (key, value) pairs, as 2-tuples<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.items" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.iteritems">
+<code class="descname">iteritems</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; an iterator over the (key, value) items of D<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.iteritems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.iterkeys">
+<code class="descname">iterkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; an iterator over the keys of D<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.iterkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.itervalues">
+<code class="descname">itervalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; an iterator over the values of D<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.itervalues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.keys">
+<code class="descname">keys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; list of D's keys<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.keys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.pop">
+<code class="descname">pop</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; v, remove specified key and return the corresponding value.<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>If key is not found, d is returned if given, otherwise KeyError is raised</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.popitem">
+<code class="descname">popitem</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; (k, v), remove and return some (key, value) pair as a<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.popitem" title="Permalink to this definition">¶</a></dt>
+<dd><p>2-tuple; but raise KeyError if D is empty.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.setdefault">
+<code class="descname">setdefault</code><span class="sig-paren">(</span><em>k</em><span class="optional">[</span>, <em>d</em><span class="optional">]</span><span class="sig-paren">)</span> &rarr; D.get(k,d), also set D[k]=d if k not in D<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.setdefault" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.update">
+<code class="descname">update</code><span class="sig-paren">(</span><span class="optional">[</span><em>E</em>, <span class="optional">]</span><em>**F</em><span class="sig-paren">)</span> &rarr; None.  Update D from dict/iterable E and F.<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>If E present and has a .keys() method, does:     for k in E: D[k] = E[k]
+If E present and lacks .keys() method, does:     for (k, v) in E: D[k] = v
+In either case, this is followed by: for k in F: D[k] = F[k]</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.values">
+<code class="descname">values</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; list of D's values<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.viewitems">
+<code class="descname">viewitems</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; a set-like object providing a view on D's items<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.viewitems" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.viewkeys">
+<code class="descname">viewkeys</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; a set-like object providing a view on D's keys<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.viewkeys" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.grib.grib_phenom_translation.LookupTable.viewvalues">
+<code class="descname">viewvalues</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &rarr; an object providing a view on D's values<a class="headerlink" href="#iris.fileformats.grib.grib_phenom_translation.LookupTable.viewvalues" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="grib_save_rules.html" title="iris.fileformats.grib.grib_save_rules"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../grib.html" title="iris.fileformats.grib"
+             >previous</a> |</li>
+        <li><a href="../../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../../fileformats.html" >iris.fileformats</a> &#187;</li>
+          <li class="nav-item nav-item-3"><a href="../grib.html" >iris.fileformats.grib</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
