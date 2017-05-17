@@ -1,0 +1,729 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.fileformats.ff &#8212; Iris 1.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.13.0 documentation" href="../../../contents.html" />
+    <link rel="up" title="iris.fileformats" href="../fileformats.html" />
+    <link rel="next" title="iris.fileformats.grib" href="grib.html" />
+    <link rel="prev" title="iris.fileformats.dot" href="dot.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.13 </span>
+</p>
+
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="grib.html" title="iris.fileformats.grib"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="dot.html" title="iris.fileformats.dot"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../fileformats.html" accesskey="U">iris.fileformats</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="dot.html"
+                        title="previous chapter">iris.fileformats.dot</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="grib.html"
+                        title="next chapter">iris.fileformats.grib</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/fileformats/ff.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-fileformats-ff">
+<span id="id1"></span><h1>iris.fileformats.ff<a class="headerlink" href="#iris-fileformats-ff" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.fileformats.ff"></span><p>Provides UK Met Office Fields File (FF) format specific capabilities.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>This module has now been <em>deprecated</em>.
+Please use <a class="reference internal" href="um.html#module-iris.fileformats.um" title="iris.fileformats.um"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.um</span></code></a> instead :
+That contains equivalents for the key features of this module.</p>
+<p>The following replacements may be used.</p>
+<ul class="simple">
+<li>for <a class="reference internal" href="#iris.fileformats.ff.FF2PP" title="iris.fileformats.ff.FF2PP"><code class="xref py py-class docutils literal"><span class="pre">FF2PP</span></code></a>, use <a class="reference internal" href="um.html#iris.fileformats.um.um_to_pp" title="iris.fileformats.um.um_to_pp"><code class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.um.um_to_pp()</span></code></a></li>
+<li>for <a class="reference internal" href="#iris.fileformats.ff.load_cubes" title="iris.fileformats.ff.load_cubes"><code class="xref py py-meth docutils literal"><span class="pre">load_cubes()</span></code></a>, use <a class="reference internal" href="um.html#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.um.load_cubes()</span></code></a></li>
+<li>for <a class="reference internal" href="#iris.fileformats.ff.load_cubes_32bit_ieee" title="iris.fileformats.ff.load_cubes_32bit_ieee"><code class="xref py py-meth docutils literal"><span class="pre">load_cubes_32bit_ieee()</span></code></a>, use
+<a class="reference internal" href="um.html#iris.fileformats.um.load_cubes_32bit_ieee" title="iris.fileformats.um.load_cubes_32bit_ieee"><code class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.um.load_cubes_32bit_ieee()</span></code></a>.</li>
+</ul>
+</div>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.fileformats.ff.load_cubes" title="iris.fileformats.ff.load_cubes"><code class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.load_cubes_32bit_ieee" title="iris.fileformats.ff.load_cubes_32bit_ieee"><code class="xref py py-obj docutils literal"><span class="pre">load_cubes_32bit_ieee</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.FF2PP" title="iris.fileformats.ff.FF2PP"><code class="xref py py-obj docutils literal"><span class="pre">FF2PP</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.Grid" title="iris.fileformats.ff.Grid"><code class="xref py py-obj docutils literal"><span class="pre">Grid</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.ArakawaC" title="iris.fileformats.ff.ArakawaC"><code class="xref py py-obj docutils literal"><span class="pre">ArakawaC</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.NewDynamics" title="iris.fileformats.ff.NewDynamics"><code class="xref py py-obj docutils literal"><span class="pre">NewDynamics</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.ENDGame" title="iris.fileformats.ff.ENDGame"><code class="xref py py-obj docutils literal"><span class="pre">ENDGame</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.ff.FFHeader" title="iris.fileformats.ff.FFHeader"><code class="xref py py-obj docutils literal"><span class="pre">FFHeader</span></code></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.fileformats.ff.load_cubes">
+<code class="descclassname">iris.fileformats.ff.</code><code class="descname">load_cubes</code><span class="sig-paren">(</span><em>filenames</em>, <em>callback</em>, <em>constraints=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.load_cubes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads cubes from a list of fields files filenames.</p>
+<p>Args:</p>
+<ul class="simple">
+<li>filenames - list of fields files filenames to load</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>callback - a function which can be passed on to</dt>
+<dd><p class="first last"><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal"><span class="pre">iris.io.run_callback()</span></code></a></p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The resultant cubes may not be in the order that they are in the
+file (order is not preserved when there is a field with
+orography references).</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.
+Please use <a class="reference internal" href="um.html#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-func docutils literal"><span class="pre">iris.fileformats.um.load_cubes()</span></code></a> in place of
+<a class="reference internal" href="#iris.fileformats.ff.load_cubes" title="iris.fileformats.ff.load_cubes"><code class="xref py py-func docutils literal"><span class="pre">iris.fileformats.ff.load_cubes()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.ff.load_cubes_32bit_ieee">
+<code class="descclassname">iris.fileformats.ff.</code><code class="descname">load_cubes_32bit_ieee</code><span class="sig-paren">(</span><em>filenames</em>, <em>callback</em>, <em>constraints=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.load_cubes_32bit_ieee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads cubes from a list of 32bit ieee converted fieldsfiles filenames.</p>
+<div class="admonition seealso">
+<p class="first admonition-title">See also</p>
+<p class="last"><a class="reference internal" href="#iris.fileformats.ff.load_cubes" title="iris.fileformats.ff.load_cubes"><code class="xref py py-func docutils literal"><span class="pre">load_cubes()</span></code></a> for keyword details</p>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.
+Please use <a class="reference internal" href="um.html#iris.fileformats.um.load_cubes_32bit_ieee" title="iris.fileformats.um.load_cubes_32bit_ieee"><code class="xref py py-func docutils literal"><span class="pre">iris.fileformats.um.load_cubes_32bit_ieee()</span></code></a>
+in place of <a class="reference internal" href="#iris.fileformats.ff.load_cubes_32bit_ieee" title="iris.fileformats.ff.load_cubes_32bit_ieee"><code class="xref py py-func docutils literal"><span class="pre">iris.fileformats.ff.load_cubes_32bit_ieee()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>A class to extract the individual PPFields from within a FieldsFile.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.FF2PP">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">FF2PP</code><span class="sig-paren">(</span><em>filename</em>, <em>read_data=False</em>, <em>word_depth=8</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.FF2PP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Create a FieldsFile to Post Process instance that returns a generator
+of PPFields contained within the FieldsFile.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filename (string):</dt>
+<dd><p class="first last">Specify the name of the FieldsFile.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>read_data (boolean):</dt>
+<dd><p class="first last">Specify whether to read the associated PPField data within
+the FieldsFile.  Default value is False.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>PPField generator.</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">ff</span><span class="o">.</span><span class="n">FF2PP</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.
+Please use <a class="reference internal" href="um.html#iris.fileformats.um.um_to_pp" title="iris.fileformats.um.um_to_pp"><code class="xref py py-func docutils literal"><span class="pre">iris.fileformats.um.um_to_pp()</span></code></a> in place of
+<a class="reference internal" href="#iris.fileformats.ff.FF2PP" title="iris.fileformats.ff.FF2PP"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.ff.FF2PP</span></code></a>.</p>
+</div>
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>An abstract class representing the default/file-level grid
+definition for a FieldsFile.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.Grid">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">Grid</code><span class="sig-paren">(</span><em>column_dependent_constants</em>, <em>row_dependent_constants</em>, <em>real_constants</em>, <em>horiz_grid_type</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.Grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Create a Grid from the relevant sections of the FFHeader.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>column_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>column_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>row_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>row_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>real_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>horiz_grid_type (integer):</dt>
+<dd><p class="first last"><cite>horiz_grid_type</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<dl class="method">
+<dt id="iris.fileformats.ff.Grid.regular_x">
+<code class="descname">regular_x</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.Grid.regular_x" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.Grid.regular_y">
+<code class="descname">regular_y</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.Grid.regular_y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.Grid.vectors">
+<code class="descname">vectors</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.Grid.vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the X and Y coordinate vectors for the given sub-grid of
+this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of X-vector, Y-vector.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>An abstract class representing an Arakawa C-grid.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.ArakawaC">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">ArakawaC</code><span class="sig-paren">(</span><em>column_dependent_constants</em>, <em>row_dependent_constants</em>, <em>real_constants</em>, <em>horiz_grid_type</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ArakawaC" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">iris.fileformats._ff.Grid</span></code></p>
+<p>Create a Grid from the relevant sections of the FFHeader.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>column_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>column_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>row_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>row_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>real_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>horiz_grid_type (integer):</dt>
+<dd><p class="first last"><cite>horiz_grid_type</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<dl class="method">
+<dt id="iris.fileformats.ff.ArakawaC.regular_x">
+<code class="descname">regular_x</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ArakawaC.regular_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the X coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZX, BDX.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.ArakawaC.regular_y">
+<code class="descname">regular_y</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ArakawaC.regular_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the Y coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZY, BDY.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.ArakawaC.vectors">
+<code class="descname">vectors</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ArakawaC.vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the X and Y coordinate vectors for the given sub-grid of
+this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of X-vector, Y-vector.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>An Arakawa C-grid as used by UM New Dynamics.</p>
+<p>The theta and u points are at the poles.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.NewDynamics">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">NewDynamics</code><span class="sig-paren">(</span><em>column_dependent_constants</em>, <em>row_dependent_constants</em>, <em>real_constants</em>, <em>horiz_grid_type</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.NewDynamics" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">iris.fileformats._ff.ArakawaC</span></code></p>
+<p>Create a Grid from the relevant sections of the FFHeader.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>column_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>column_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>row_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>row_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>real_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>horiz_grid_type (integer):</dt>
+<dd><p class="first last"><cite>horiz_grid_type</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<dl class="method">
+<dt id="iris.fileformats.ff.NewDynamics.regular_x">
+<code class="descname">regular_x</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.NewDynamics.regular_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the X coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZX, BDX.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.NewDynamics.regular_y">
+<code class="descname">regular_y</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.NewDynamics.regular_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the Y coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZY, BDY.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.NewDynamics.vectors">
+<code class="descname">vectors</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.NewDynamics.vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the X and Y coordinate vectors for the given sub-grid of
+this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of X-vector, Y-vector.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>An Arakawa C-grid as used by UM ENDGame.</p>
+<p>The v points are at the poles.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.ENDGame">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">ENDGame</code><span class="sig-paren">(</span><em>column_dependent_constants</em>, <em>row_dependent_constants</em>, <em>real_constants</em>, <em>horiz_grid_type</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ENDGame" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">iris.fileformats._ff.ArakawaC</span></code></p>
+<p>Create a Grid from the relevant sections of the FFHeader.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>column_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>column_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>row_dependent_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>row_dependent_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_constants (numpy.ndarray):</dt>
+<dd><p class="first last">The <cite>real_constants</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>horiz_grid_type (integer):</dt>
+<dd><p class="first last"><cite>horiz_grid_type</cite> from a FFHeader.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<dl class="method">
+<dt id="iris.fileformats.ff.ENDGame.regular_x">
+<code class="descname">regular_x</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ENDGame.regular_x" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the X coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZX, BDX.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.ENDGame.regular_y">
+<code class="descname">regular_y</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ENDGame.regular_y" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the &#8220;zeroth&#8221; value and step for the Y coordinate on the
+given sub-grid of this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of BZY, BDY.</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.ENDGame.vectors">
+<code class="descname">vectors</code><span class="sig-paren">(</span><em>subgrid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.ENDGame.vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the X and Y coordinate vectors for the given sub-grid of
+this grid.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>subgrid (integer):</dt>
+<dd><p class="first last">A &#8220;grid type code&#8221; as described in UM documentation paper C4.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A 2-tuple of X-vector, Y-vector.</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>A class to represent the FIXED_LENGTH_HEADER section of a FieldsFile.</p>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10: </span>The module <a class="reference internal" href="#module-iris.fileformats.ff" title="iris.fileformats.ff"><code class="xref py py-mod docutils literal"><span class="pre">iris.fileformats.ff</span></code></a> is deprecated.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.ff.FFHeader">
+<em class="property">class </em><code class="descclassname">iris.fileformats.ff.</code><code class="descname">FFHeader</code><span class="sig-paren">(</span><em>filename</em>, <em>word_depth=8</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.FFHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Create a FieldsFile header instance by reading the
+FIXED_LENGTH_HEADER section of the FieldsFile, making the names
+defined in FF_HEADER available as attributes of a FFHeader instance.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filename (string):</dt>
+<dd><p class="first last">Specify the name of the FieldsFile.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>FFHeader object.</dd>
+</dl>
+<div class="deprecated">
+<p><span class="versionmodified">Deprecated since version 1.10.</span></p>
+</div>
+<dl class="method">
+<dt id="iris.fileformats.ff.FFHeader.grid">
+<code class="descname">grid</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.FFHeader.grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the Grid definition for the FieldsFile.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.ff.FFHeader.shape">
+<code class="descname">shape</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.ff.FFHeader.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the dimension shape of the FieldsFile FIXED_LENGTH_HEADER
+pointer attribute.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>name (string):</dt>
+<dd><p class="first last">Specify the name of the FIXED_LENGTH_HEADER attribute.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Dimension tuple.</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.ff.FFHeader.GRID_STAGGERING_CLASS">
+<code class="descname">GRID_STAGGERING_CLASS</code><em class="property"> = {3: &lt;class 'iris.fileformats._ff.NewDynamics'&gt;, 6: &lt;class 'iris.fileformats._ff.ENDGame'&gt;}</em><a class="headerlink" href="#iris.fileformats.ff.FFHeader.GRID_STAGGERING_CLASS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.fileformats.ff.FFHeader.ff_filename">
+<code class="descname">ff_filename</code><em class="property"> = None</em><a class="headerlink" href="#iris.fileformats.ff.FFHeader.ff_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>File name of the FieldsFile.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="grib.html" title="iris.fileformats.grib"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="dot.html" title="iris.fileformats.dot"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../fileformats.html" >iris.fileformats</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>

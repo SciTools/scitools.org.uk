@@ -1,0 +1,1442 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>iris.experimental.um &#8212; Iris 1.13.0 documentation</title>
+    
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '1.13.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="top" title="Iris 1.13.0 documentation" href="../../../contents.html" />
+    <link rel="up" title="iris.experimental" href="../experimental.html" />
+    <link rel="next" title="iris.fileformats" href="../fileformats.html" />
+    <link rel="prev" title="iris.experimental.ugrid" href="ugrid.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
+
+  </head>
+  <body role="document">
+<div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
+<p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
+<a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
+<span style="font-size: 400%; vertical-align:middle"> Iris 1.13 </span>
+</p>
+
+</div>
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../fileformats.html" title="iris.fileformats"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ugrid.html" title="iris.experimental.ugrid"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../experimental.html" accesskey="U">iris.experimental</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="ugrid.html"
+                        title="previous chapter">iris.experimental.ugrid</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../fileformats.html"
+                        title="next chapter">iris.fileformats</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/experimental/um.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../../../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-experimental-um">
+<span id="id1"></span><h1>iris.experimental.um<a class="headerlink" href="#iris-experimental-um" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.experimental.um"></span><p>Low level support for UM FieldsFile variants.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.experimental.um.Field" title="iris.experimental.um.Field"><code class="xref py py-obj docutils literal"><span class="pre">Field</span></code></a></li>
+<li><a class="reference internal" href="#iris.experimental.um.Field2" title="iris.experimental.um.Field2"><code class="xref py py-obj docutils literal"><span class="pre">Field2</span></code></a></li>
+<li><a class="reference internal" href="#iris.experimental.um.Field3" title="iris.experimental.um.Field3"><code class="xref py py-obj docutils literal"><span class="pre">Field3</span></code></a></li>
+<li><a class="reference internal" href="#iris.experimental.um.FieldsFileVariant" title="iris.experimental.um.FieldsFileVariant"><code class="xref py py-obj docutils literal"><span class="pre">FieldsFileVariant</span></code></a></li>
+<li><a class="reference internal" href="#iris.experimental.um.FixedLengthHeader" title="iris.experimental.um.FixedLengthHeader"><code class="xref py py-obj docutils literal"><span class="pre">FixedLengthHeader</span></code></a></li>
+</ul>
+</div></blockquote>
+<p>Represents a single entry in the LOOKUP component and its
+corresponding section of the DATA component.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.experimental.um.Field">
+<em class="property">class </em><code class="descclassname">iris.experimental.um.</code><code class="descname">Field</code><span class="sig-paren">(</span><em>int_headers</em>, <em>real_headers</em>, <em>data_provider</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Create a Field from the integer headers, the floating-point
+headers, and an object which provides access to the
+corresponding data.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>int_headers:</dt>
+<dd><p class="first last">A sequence of integer header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_headers:</dt>
+<dd><p class="first last">A sequence of floating-point header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>data_provider:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.experimental.um.Field.get_data">
+<code class="descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a NumPy array containing the data for this field.</p>
+<p>Data packed with the WGDOS archive method will be unpacked and
+returned as int/float data as appropriate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field.num_values">
+<code class="descname">num_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field.num_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of values defined by this header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field.set_data">
+<code class="descname">set_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field.set_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the data payload for this field.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>data:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.LBEGIN_OFFSET">
+<code class="descname">LBEGIN_OFFSET</code><em class="property"> = 28</em><a class="headerlink" href="#iris.experimental.um.Field.LBEGIN_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero-based index for lbegin.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.LBLREC_OFFSET">
+<code class="descname">LBLREC_OFFSET</code><em class="property"> = 14</em><a class="headerlink" href="#iris.experimental.um.Field.LBLREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero-based index for lblrec.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.LBNREC_OFFSET">
+<code class="descname">LBNREC_OFFSET</code><em class="property"> = 29</em><a class="headerlink" href="#iris.experimental.um.Field.LBNREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero-based index for lbnrec.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.LBREL_OFFSET">
+<code class="descname">LBREL_OFFSET</code><em class="property"> = 21</em><a class="headerlink" href="#iris.experimental.um.Field.LBREL_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd><p>Zero-based index for lbrel.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.int_headers">
+<code class="descname">int_headers</code><em class="property"> = None</em><a class="headerlink" href="#iris.experimental.um.Field.int_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A NumPy array of integer header values.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field.real_headers">
+<code class="descname">real_headers</code><em class="property"> = None</em><a class="headerlink" href="#iris.experimental.um.Field.real_headers" title="Permalink to this definition">¶</a></dt>
+<dd><p>A NumPy array of floating-point header values.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Represents an entry from the LOOKUP component with a header release
+number of 2.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.experimental.um.Field2">
+<em class="property">class </em><code class="descclassname">iris.experimental.um.</code><code class="descname">Field2</code><span class="sig-paren">(</span><em>int_headers</em>, <em>real_headers</em>, <em>data_provider</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.experimental.um.Field" title="iris.experimental.um.Field"><code class="xref py py-class docutils literal"><span class="pre">iris.experimental.um.Field</span></code></a></p>
+<p>Create a Field from the integer headers, the floating-point
+headers, and an object which provides access to the
+corresponding data.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>int_headers:</dt>
+<dd><p class="first last">A sequence of integer header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_headers:</dt>
+<dd><p class="first last">A sequence of floating-point header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>data_provider:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.experimental.um.Field2.get_data">
+<code class="descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field2.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a NumPy array containing the data for this field.</p>
+<p>Data packed with the WGDOS archive method will be unpacked and
+returned as int/float data as appropriate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field2.num_values">
+<code class="descname">num_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field2.num_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of values defined by this header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field2.set_data">
+<code class="descname">set_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field2.set_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the data payload for this field.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>data:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.LBEGIN_OFFSET">
+<code class="descname">LBEGIN_OFFSET</code><em class="property"> = 28</em><a class="headerlink" href="#iris.experimental.um.Field2.LBEGIN_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.LBLREC_OFFSET">
+<code class="descname">LBLREC_OFFSET</code><em class="property"> = 14</em><a class="headerlink" href="#iris.experimental.um.Field2.LBLREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.LBNREC_OFFSET">
+<code class="descname">LBNREC_OFFSET</code><em class="property"> = 29</em><a class="headerlink" href="#iris.experimental.um.Field2.LBNREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.LBREL_OFFSET">
+<code class="descname">LBREL_OFFSET</code><em class="property"> = 21</em><a class="headerlink" href="#iris.experimental.um.Field2.LBREL_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bacc">
+<code class="descname">bacc</code><a class="headerlink" href="#iris.experimental.um.Field2.bacc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bdatum">
+<code class="descname">bdatum</code><a class="headerlink" href="#iris.experimental.um.Field2.bdatum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bdx">
+<code class="descname">bdx</code><a class="headerlink" href="#iris.experimental.um.Field2.bdx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bdy">
+<code class="descname">bdy</code><a class="headerlink" href="#iris.experimental.um.Field2.bdy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bgor">
+<code class="descname">bgor</code><a class="headerlink" href="#iris.experimental.um.Field2.bgor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bhlev">
+<code class="descname">bhlev</code><a class="headerlink" href="#iris.experimental.um.Field2.bhlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bhrlev">
+<code class="descname">bhrlev</code><a class="headerlink" href="#iris.experimental.um.Field2.bhrlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.blev">
+<code class="descname">blev</code><a class="headerlink" href="#iris.experimental.um.Field2.blev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bmdi">
+<code class="descname">bmdi</code><a class="headerlink" href="#iris.experimental.um.Field2.bmdi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bmks">
+<code class="descname">bmks</code><a class="headerlink" href="#iris.experimental.um.Field2.bmks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bplat">
+<code class="descname">bplat</code><a class="headerlink" href="#iris.experimental.um.Field2.bplat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bplon">
+<code class="descname">bplon</code><a class="headerlink" href="#iris.experimental.um.Field2.bplon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.brlev">
+<code class="descname">brlev</code><a class="headerlink" href="#iris.experimental.um.Field2.brlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.brsvd1">
+<code class="descname">brsvd1</code><a class="headerlink" href="#iris.experimental.um.Field2.brsvd1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.brsvd2">
+<code class="descname">brsvd2</code><a class="headerlink" href="#iris.experimental.um.Field2.brsvd2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.brsvd3">
+<code class="descname">brsvd3</code><a class="headerlink" href="#iris.experimental.um.Field2.brsvd3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.brsvd4">
+<code class="descname">brsvd4</code><a class="headerlink" href="#iris.experimental.um.Field2.brsvd4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bzx">
+<code class="descname">bzx</code><a class="headerlink" href="#iris.experimental.um.Field2.bzx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.bzy">
+<code class="descname">bzy</code><a class="headerlink" href="#iris.experimental.um.Field2.bzy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbcfc">
+<code class="descname">lbcfc</code><a class="headerlink" href="#iris.experimental.um.Field2.lbcfc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbcode">
+<code class="descname">lbcode</code><a class="headerlink" href="#iris.experimental.um.Field2.lbcode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbdat">
+<code class="descname">lbdat</code><a class="headerlink" href="#iris.experimental.um.Field2.lbdat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbdatd">
+<code class="descname">lbdatd</code><a class="headerlink" href="#iris.experimental.um.Field2.lbdatd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbday">
+<code class="descname">lbday</code><a class="headerlink" href="#iris.experimental.um.Field2.lbday" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbdayd">
+<code class="descname">lbdayd</code><a class="headerlink" href="#iris.experimental.um.Field2.lbdayd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbegin">
+<code class="descname">lbegin</code><a class="headerlink" href="#iris.experimental.um.Field2.lbegin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbexp">
+<code class="descname">lbexp</code><a class="headerlink" href="#iris.experimental.um.Field2.lbexp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbext">
+<code class="descname">lbext</code><a class="headerlink" href="#iris.experimental.um.Field2.lbext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbfc">
+<code class="descname">lbfc</code><a class="headerlink" href="#iris.experimental.um.Field2.lbfc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbft">
+<code class="descname">lbft</code><a class="headerlink" href="#iris.experimental.um.Field2.lbft" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbhem">
+<code class="descname">lbhem</code><a class="headerlink" href="#iris.experimental.um.Field2.lbhem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbhr">
+<code class="descname">lbhr</code><a class="headerlink" href="#iris.experimental.um.Field2.lbhr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbhrd">
+<code class="descname">lbhrd</code><a class="headerlink" href="#iris.experimental.um.Field2.lbhrd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lblev">
+<code class="descname">lblev</code><a class="headerlink" href="#iris.experimental.um.Field2.lblev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lblrec">
+<code class="descname">lblrec</code><a class="headerlink" href="#iris.experimental.um.Field2.lblrec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbmin">
+<code class="descname">lbmin</code><a class="headerlink" href="#iris.experimental.um.Field2.lbmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbmind">
+<code class="descname">lbmind</code><a class="headerlink" href="#iris.experimental.um.Field2.lbmind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbmon">
+<code class="descname">lbmon</code><a class="headerlink" href="#iris.experimental.um.Field2.lbmon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbmond">
+<code class="descname">lbmond</code><a class="headerlink" href="#iris.experimental.um.Field2.lbmond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbnpt">
+<code class="descname">lbnpt</code><a class="headerlink" href="#iris.experimental.um.Field2.lbnpt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbnrec">
+<code class="descname">lbnrec</code><a class="headerlink" href="#iris.experimental.um.Field2.lbnrec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbpack">
+<code class="descname">lbpack</code><a class="headerlink" href="#iris.experimental.um.Field2.lbpack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbproc">
+<code class="descname">lbproc</code><a class="headerlink" href="#iris.experimental.um.Field2.lbproc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbproj">
+<code class="descname">lbproj</code><a class="headerlink" href="#iris.experimental.um.Field2.lbproj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrel">
+<code class="descname">lbrel</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrow">
+<code class="descname">lbrow</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrsvd1">
+<code class="descname">lbrsvd1</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrsvd1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrsvd2">
+<code class="descname">lbrsvd2</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrsvd2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrsvd3">
+<code class="descname">lbrsvd3</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrsvd3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrsvd4">
+<code class="descname">lbrsvd4</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrsvd4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbrvc">
+<code class="descname">lbrvc</code><a class="headerlink" href="#iris.experimental.um.Field2.lbrvc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbsrce">
+<code class="descname">lbsrce</code><a class="headerlink" href="#iris.experimental.um.Field2.lbsrce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbtim">
+<code class="descname">lbtim</code><a class="headerlink" href="#iris.experimental.um.Field2.lbtim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbtyp">
+<code class="descname">lbtyp</code><a class="headerlink" href="#iris.experimental.um.Field2.lbtyp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser1">
+<code class="descname">lbuser1</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser2">
+<code class="descname">lbuser2</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser3">
+<code class="descname">lbuser3</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser4">
+<code class="descname">lbuser4</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser5">
+<code class="descname">lbuser5</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser6">
+<code class="descname">lbuser6</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbuser7">
+<code class="descname">lbuser7</code><a class="headerlink" href="#iris.experimental.um.Field2.lbuser7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbvc">
+<code class="descname">lbvc</code><a class="headerlink" href="#iris.experimental.um.Field2.lbvc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbyr">
+<code class="descname">lbyr</code><a class="headerlink" href="#iris.experimental.um.Field2.lbyr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field2.lbyrd">
+<code class="descname">lbyrd</code><a class="headerlink" href="#iris.experimental.um.Field2.lbyrd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Represents an entry from the LOOKUP component with a header release
+number of 3.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.experimental.um.Field3">
+<em class="property">class </em><code class="descclassname">iris.experimental.um.</code><code class="descname">Field3</code><span class="sig-paren">(</span><em>int_headers</em>, <em>real_headers</em>, <em>data_provider</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field3" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.experimental.um.Field" title="iris.experimental.um.Field"><code class="xref py py-class docutils literal"><span class="pre">iris.experimental.um.Field</span></code></a></p>
+<p>Create a Field from the integer headers, the floating-point
+headers, and an object which provides access to the
+corresponding data.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>int_headers:</dt>
+<dd><p class="first last">A sequence of integer header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>real_headers:</dt>
+<dd><p class="first last">A sequence of floating-point header values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>data_provider:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.experimental.um.Field3.get_data">
+<code class="descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field3.get_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a NumPy array containing the data for this field.</p>
+<p>Data packed with the WGDOS archive method will be unpacked and
+returned as int/float data as appropriate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field3.num_values">
+<code class="descname">num_values</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field3.num_values" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the number of values defined by this header.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.experimental.um.Field3.set_data">
+<code class="descname">set_data</code><span class="sig-paren">(</span><em>data</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.Field3.set_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the data payload for this field.</p>
+<ul>
+<li><dl class="first docutils">
+<dt>data:</dt>
+<dd><p class="first last">Either, an object with a <cite>read_data()</cite> method which will
+provide the corresponding values from the DATA component,
+or a NumPy array, or None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.LBEGIN_OFFSET">
+<code class="descname">LBEGIN_OFFSET</code><em class="property"> = 28</em><a class="headerlink" href="#iris.experimental.um.Field3.LBEGIN_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.LBLREC_OFFSET">
+<code class="descname">LBLREC_OFFSET</code><em class="property"> = 14</em><a class="headerlink" href="#iris.experimental.um.Field3.LBLREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.LBNREC_OFFSET">
+<code class="descname">LBNREC_OFFSET</code><em class="property"> = 29</em><a class="headerlink" href="#iris.experimental.um.Field3.LBNREC_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.LBREL_OFFSET">
+<code class="descname">LBREL_OFFSET</code><em class="property"> = 21</em><a class="headerlink" href="#iris.experimental.um.Field3.LBREL_OFFSET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bacc">
+<code class="descname">bacc</code><a class="headerlink" href="#iris.experimental.um.Field3.bacc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bdatum">
+<code class="descname">bdatum</code><a class="headerlink" href="#iris.experimental.um.Field3.bdatum" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bdx">
+<code class="descname">bdx</code><a class="headerlink" href="#iris.experimental.um.Field3.bdx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bdy">
+<code class="descname">bdy</code><a class="headerlink" href="#iris.experimental.um.Field3.bdy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bgor">
+<code class="descname">bgor</code><a class="headerlink" href="#iris.experimental.um.Field3.bgor" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bhlev">
+<code class="descname">bhlev</code><a class="headerlink" href="#iris.experimental.um.Field3.bhlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bhrlev">
+<code class="descname">bhrlev</code><a class="headerlink" href="#iris.experimental.um.Field3.bhrlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.blev">
+<code class="descname">blev</code><a class="headerlink" href="#iris.experimental.um.Field3.blev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bmdi">
+<code class="descname">bmdi</code><a class="headerlink" href="#iris.experimental.um.Field3.bmdi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bmks">
+<code class="descname">bmks</code><a class="headerlink" href="#iris.experimental.um.Field3.bmks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bplat">
+<code class="descname">bplat</code><a class="headerlink" href="#iris.experimental.um.Field3.bplat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bplon">
+<code class="descname">bplon</code><a class="headerlink" href="#iris.experimental.um.Field3.bplon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.brlev">
+<code class="descname">brlev</code><a class="headerlink" href="#iris.experimental.um.Field3.brlev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.brsvd1">
+<code class="descname">brsvd1</code><a class="headerlink" href="#iris.experimental.um.Field3.brsvd1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.brsvd2">
+<code class="descname">brsvd2</code><a class="headerlink" href="#iris.experimental.um.Field3.brsvd2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.brsvd3">
+<code class="descname">brsvd3</code><a class="headerlink" href="#iris.experimental.um.Field3.brsvd3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.brsvd4">
+<code class="descname">brsvd4</code><a class="headerlink" href="#iris.experimental.um.Field3.brsvd4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bzx">
+<code class="descname">bzx</code><a class="headerlink" href="#iris.experimental.um.Field3.bzx" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.bzy">
+<code class="descname">bzy</code><a class="headerlink" href="#iris.experimental.um.Field3.bzy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbcfc">
+<code class="descname">lbcfc</code><a class="headerlink" href="#iris.experimental.um.Field3.lbcfc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbcode">
+<code class="descname">lbcode</code><a class="headerlink" href="#iris.experimental.um.Field3.lbcode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbdat">
+<code class="descname">lbdat</code><a class="headerlink" href="#iris.experimental.um.Field3.lbdat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbdatd">
+<code class="descname">lbdatd</code><a class="headerlink" href="#iris.experimental.um.Field3.lbdatd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbegin">
+<code class="descname">lbegin</code><a class="headerlink" href="#iris.experimental.um.Field3.lbegin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbexp">
+<code class="descname">lbexp</code><a class="headerlink" href="#iris.experimental.um.Field3.lbexp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbext">
+<code class="descname">lbext</code><a class="headerlink" href="#iris.experimental.um.Field3.lbext" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbfc">
+<code class="descname">lbfc</code><a class="headerlink" href="#iris.experimental.um.Field3.lbfc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbft">
+<code class="descname">lbft</code><a class="headerlink" href="#iris.experimental.um.Field3.lbft" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbhem">
+<code class="descname">lbhem</code><a class="headerlink" href="#iris.experimental.um.Field3.lbhem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbhr">
+<code class="descname">lbhr</code><a class="headerlink" href="#iris.experimental.um.Field3.lbhr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbhrd">
+<code class="descname">lbhrd</code><a class="headerlink" href="#iris.experimental.um.Field3.lbhrd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lblev">
+<code class="descname">lblev</code><a class="headerlink" href="#iris.experimental.um.Field3.lblev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lblrec">
+<code class="descname">lblrec</code><a class="headerlink" href="#iris.experimental.um.Field3.lblrec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbmin">
+<code class="descname">lbmin</code><a class="headerlink" href="#iris.experimental.um.Field3.lbmin" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbmind">
+<code class="descname">lbmind</code><a class="headerlink" href="#iris.experimental.um.Field3.lbmind" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbmon">
+<code class="descname">lbmon</code><a class="headerlink" href="#iris.experimental.um.Field3.lbmon" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbmond">
+<code class="descname">lbmond</code><a class="headerlink" href="#iris.experimental.um.Field3.lbmond" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbnpt">
+<code class="descname">lbnpt</code><a class="headerlink" href="#iris.experimental.um.Field3.lbnpt" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbnrec">
+<code class="descname">lbnrec</code><a class="headerlink" href="#iris.experimental.um.Field3.lbnrec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbpack">
+<code class="descname">lbpack</code><a class="headerlink" href="#iris.experimental.um.Field3.lbpack" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbproc">
+<code class="descname">lbproc</code><a class="headerlink" href="#iris.experimental.um.Field3.lbproc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbproj">
+<code class="descname">lbproj</code><a class="headerlink" href="#iris.experimental.um.Field3.lbproj" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrel">
+<code class="descname">lbrel</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrow">
+<code class="descname">lbrow</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrow" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrsvd1">
+<code class="descname">lbrsvd1</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrsvd1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrsvd2">
+<code class="descname">lbrsvd2</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrsvd2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrsvd3">
+<code class="descname">lbrsvd3</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrsvd3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrsvd4">
+<code class="descname">lbrsvd4</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrsvd4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbrvc">
+<code class="descname">lbrvc</code><a class="headerlink" href="#iris.experimental.um.Field3.lbrvc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbsec">
+<code class="descname">lbsec</code><a class="headerlink" href="#iris.experimental.um.Field3.lbsec" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbsecd">
+<code class="descname">lbsecd</code><a class="headerlink" href="#iris.experimental.um.Field3.lbsecd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbsrce">
+<code class="descname">lbsrce</code><a class="headerlink" href="#iris.experimental.um.Field3.lbsrce" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbtim">
+<code class="descname">lbtim</code><a class="headerlink" href="#iris.experimental.um.Field3.lbtim" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbtyp">
+<code class="descname">lbtyp</code><a class="headerlink" href="#iris.experimental.um.Field3.lbtyp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser1">
+<code class="descname">lbuser1</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser2">
+<code class="descname">lbuser2</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser3">
+<code class="descname">lbuser3</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser4">
+<code class="descname">lbuser4</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser5">
+<code class="descname">lbuser5</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser6">
+<code class="descname">lbuser6</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbuser7">
+<code class="descname">lbuser7</code><a class="headerlink" href="#iris.experimental.um.Field3.lbuser7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbvc">
+<code class="descname">lbvc</code><a class="headerlink" href="#iris.experimental.um.Field3.lbvc" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbyr">
+<code class="descname">lbyr</code><a class="headerlink" href="#iris.experimental.um.Field3.lbyr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.Field3.lbyrd">
+<code class="descname">lbyrd</code><a class="headerlink" href="#iris.experimental.um.Field3.lbyrd" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Represents a single a file containing UM FieldsFile variant data.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.experimental.um.FieldsFileVariant">
+<em class="property">class </em><code class="descclassname">iris.experimental.um.</code><code class="descname">FieldsFileVariant</code><span class="sig-paren">(</span><em>filename</em>, <em>mode=READ_MODE</em>, <em>word_size=8</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Opens the given filename as a UM FieldsFile variant.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>filename:</dt>
+<dd><p class="first last">The name of the file containing the UM FieldsFile variant.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>mode:</dt>
+<dd><p class="first last">The file access mode: <cite>READ_MODE</cite> for read-only;
+<cite>UPDATE_MODE</cite> for amending; <cite>CREATE_MODE</cite> for creating a new
+file.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>word_size:</dt>
+<dd><p class="first last">The number of byte in each word.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.experimental.um.FieldsFileVariant.close">
+<code class="descname">close</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write out any pending changes, and close the underlying file.</p>
+<p>If the file was opened for update or creation then the current
+state of the fixed length header, the constant components (e.g.
+integer_constants, level_dependent_constants), and the list of
+fields are written to the file before closing. The process of
+writing to the file also updates the values in the fixed length
+header and fields which relate to layout within the file. For
+example, <cite>integer_constants_start</cite> and <cite>integer_constants_shape</cite>
+within the fixed length header, and the <cite>lbegin</cite> and <cite>lbnrec</cite>
+elements within the fields.</p>
+<p>If the file was opened in read mode then no changes will be
+made.</p>
+<p>After calling <cite>close()</cite> any subsequent modifications to any of
+the attributes will have no effect on the underlying file.</p>
+<p>Calling <cite>close()</cite> more than once is allowed, but only the first
+call will have any effect.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">On output, each field&#8217;s data is encoded according to the LBPACK
+and BACC words in the field.  A field data array defined using
+<a class="reference internal" href="#iris.experimental.um.Field.set_data" title="iris.experimental.um.Field.set_data"><code class="xref py py-meth docutils literal"><span class="pre">Field.set_data()</span></code></a> can <em>only</em> be written in an &#8220;unpacked&#8221;
+form, corresponding to LBACK=0 (or the equivalent 2000 / 3000).
+However, data from the input file can be saved in its original
+packed form, as long as the data, LBPACK and BACC remain unchanged.</p>
+</div>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FieldsFileVariant.CREATE_MODE">
+<code class="descname">CREATE_MODE</code><em class="property"> = CREATE_MODE</em><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.CREATE_MODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file will be created, overwriting the file if it already
+exists.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FieldsFileVariant.READ_MODE">
+<code class="descname">READ_MODE</code><em class="property"> = READ_MODE</em><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.READ_MODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file will be opened for read-only access.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FieldsFileVariant.UPDATE_MODE">
+<code class="descname">UPDATE_MODE</code><em class="property"> = UPDATE_MODE</em><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.UPDATE_MODE" title="Permalink to this definition">¶</a></dt>
+<dd><p>The file will be opened for update.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FieldsFileVariant.filename">
+<code class="descname">filename</code><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.filename" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FieldsFileVariant.mode">
+<code class="descname">mode</code><a class="headerlink" href="#iris.experimental.um.FieldsFileVariant.mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Represents the FIXED_LENGTH_HEADER component of a UM FieldsFile
+variant.</p>
+<p>Access to simple header items is provided via named attributes,
+e.g. fixed_length_header.sub_model. Other header items can be
+accessed via the <code class="xref py py-attr docutils literal"><span class="pre">raw</span></code> attribute which provides a simple array
+view of the header.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.experimental.um.FixedLengthHeader">
+<em class="property">class </em><code class="descclassname">iris.experimental.um.</code><code class="descname">FixedLengthHeader</code><span class="sig-paren">(</span><em>integers</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<p>Create a FixedLengthHeader from the given sequence of integer
+values.</p>
+<dl class="classmethod">
+<dt id="iris.experimental.um.FixedLengthHeader.empty">
+<em class="property">classmethod </em><code class="descname">empty</code><span class="sig-paren">(</span><em>word_size=8</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.empty" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="classmethod">
+<dt id="iris.experimental.um.FixedLengthHeader.from_file">
+<em class="property">classmethod </em><code class="descname">from_file</code><span class="sig-paren">(</span><em>source</em>, <em>word_size=8</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.from_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a FixedLengthHeader from a file-like object.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>source:</dt>
+<dd><p class="first last">The file-like object to read from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul>
+<li><dl class="first docutils">
+<dt>word_size:</dt>
+<dd><p class="first last">The number of bytes in each word of the header.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.IMDI">
+<code class="descname">IMDI</code><em class="property"> = -32768</em><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.IMDI" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.NUM_WORDS">
+<code class="descname">NUM_WORDS</code><em class="property"> = 256</em><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.NUM_WORDS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.calendar">
+<code class="descname">calendar</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.calendar" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.column_dependent_constants_shape">
+<code class="descname">column_dependent_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.column_dependent_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.column_dependent_constants_start">
+<code class="descname">column_dependent_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.column_dependent_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index1_shape">
+<code class="descname">compressed_field_index1_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index1_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index1_start">
+<code class="descname">compressed_field_index1_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index1_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index2_shape">
+<code class="descname">compressed_field_index2_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index2_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index2_start">
+<code class="descname">compressed_field_index2_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index2_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index3_shape">
+<code class="descname">compressed_field_index3_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index3_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.compressed_field_index3_start">
+<code class="descname">compressed_field_index3_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.compressed_field_index3_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.data_set_format_version">
+<code class="descname">data_set_format_version</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.data_set_format_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.data_shape">
+<code class="descname">data_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.data_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.data_start">
+<code class="descname">data_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.data_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.dataset_type">
+<code class="descname">dataset_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.dataset_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.experiment_number">
+<code class="descname">experiment_number</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.experiment_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.extra_constants_shape">
+<code class="descname">extra_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.extra_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.extra_constants_start">
+<code class="descname">extra_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.extra_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.fields_of_constants_shape">
+<code class="descname">fields_of_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.fields_of_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.fields_of_constants_start">
+<code class="descname">fields_of_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.fields_of_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.grid_staggering">
+<code class="descname">grid_staggering</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.grid_staggering" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.horiz_grid_type">
+<code class="descname">horiz_grid_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.horiz_grid_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.integer_constants_shape">
+<code class="descname">integer_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.integer_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.integer_constants_start">
+<code class="descname">integer_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.integer_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.last_fieldop_type">
+<code class="descname">last_fieldop_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.last_fieldop_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.level_dependent_constants_shape">
+<code class="descname">level_dependent_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.level_dependent_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.level_dependent_constants_start">
+<code class="descname">level_dependent_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.level_dependent_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.lookup_shape">
+<code class="descname">lookup_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.lookup_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.lookup_start">
+<code class="descname">lookup_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.lookup_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.max_length">
+<code class="descname">max_length</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.max_length" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.model_version">
+<code class="descname">model_version</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.model_version" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.obs_file_type">
+<code class="descname">obs_file_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.obs_file_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.projection_number">
+<code class="descname">projection_number</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.projection_number" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.raw">
+<code class="descname">raw</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.raw" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.real_constants_shape">
+<code class="descname">real_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.real_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.real_constants_start">
+<code class="descname">real_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.real_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.row_dependent_constants_shape">
+<code class="descname">row_dependent_constants_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.row_dependent_constants_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.row_dependent_constants_start">
+<code class="descname">row_dependent_constants_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.row_dependent_constants_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.run_identifier">
+<code class="descname">run_identifier</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.run_identifier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.sub_model">
+<code class="descname">sub_model</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.sub_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.temp_historyfile_shape">
+<code class="descname">temp_historyfile_shape</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.temp_historyfile_shape" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.temp_historyfile_start">
+<code class="descname">temp_historyfile_start</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.temp_historyfile_start" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.time_type">
+<code class="descname">time_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.time_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.total_prognostic_fields">
+<code class="descname">total_prognostic_fields</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.total_prognostic_fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="iris.experimental.um.FixedLengthHeader.vert_coord_type">
+<code class="descname">vert_coord_type</code><a class="headerlink" href="#iris.experimental.um.FixedLengthHeader.vert_coord_type" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../fileformats.html" title="iris.fileformats"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="ugrid.html" title="iris.experimental.ugrid"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../experimental.html" >iris.experimental</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2014, Met Office
+    </div>
+
+
+  </body>
+</html>
