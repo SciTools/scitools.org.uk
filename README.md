@@ -28,7 +28,8 @@ common assets into the shared_assets folder, thus reducing the overall
 repository size.
 
 
-###Example workflow
+Example workflow
+----------------
 
 To update scitools.org.uk so that it includes the Iris documentation for the
 Iris 1.12.0 release the following steps need to be followed.
