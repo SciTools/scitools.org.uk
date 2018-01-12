@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.analysis &#8212; Iris 2.0a0 documentation</title>
+    <title>iris.analysis &#8212; Iris 2.0.0rc1 documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../../',
-        VERSION:     '2.0a0',
+        VERSION:     '2.0.0rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -38,7 +38,7 @@
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
-<span style="font-size: 400%; vertical-align:middle"> Iris 2.0a0 </span>
+<span style="font-size: 400%; vertical-align:middle"> Iris 2.0 </span>
 </p>
 
 </div>
@@ -243,7 +243,7 @@ than zero.</p>
 <code class="descclassname">iris.analysis.</code><code class="descname">MAX</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MAX" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
 the maximum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.max.html#numpy.ma.max" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.max()</span></code></a>.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.max.html#numpy.ma.max" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.max()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal maximums over the <em>longitude</em> axis of a cube:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MAX</span><span class="p">)</span>
@@ -259,7 +259,7 @@ the maximum over a <a class="reference internal" href="cube.html#iris.cube.Cube"
 <code class="descclassname">iris.analysis.</code><code class="descname">MEAN</code> &#x2192; WeightedAggregator instance.<a class="headerlink" href="#iris.analysis.MEAN" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
 the mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.average.html#numpy.ma.average" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.average()</span></code></a>.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.average.html#numpy.ma.average" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.average()</span></code></a>.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -314,7 +314,7 @@ returned along with the collapsed data. Defaults to False.</dd>
 <code class="descclassname">iris.analysis.</code><code class="descname">MEDIAN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MEDIAN" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
 the median over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.median.html#numpy.ma.median" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.median()</span></code></a>.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.median.html#numpy.ma.median" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.median()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal medians over the <em>longitude</em> axis of a cube:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEDIAN</span><span class="p">)</span>
@@ -330,7 +330,7 @@ the median over a <a class="reference internal" href="cube.html#iris.cube.Cube" 
 <code class="descclassname">iris.analysis.</code><code class="descname">MIN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MIN" title="Permalink to this definition">¶</a></dt>
 <dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
 the minimum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.min.html#numpy.ma.min" title="(in NumPy v1.13)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.min()</span></code></a>.</p>
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.min.html#numpy.ma.min" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.min()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal minimums over the <em>longitude</em> axis of a cube:</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MIN</span><span class="p">)</span>
@@ -1601,7 +1601,7 @@ that is to be regridded to the <cite>target_grid</cite>.</p>
 
     <div class="footer">
     <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
-        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2017, Met Office
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2018, Met Office
     </div>
 
 

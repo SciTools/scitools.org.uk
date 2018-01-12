@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. Loading Iris cubes &#8212; Iris 2.0a0 documentation</title>
+    <title>2. Loading Iris cubes &#8212; Iris 2.0.0rc1 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    '../',
-        VERSION:     '2.0a0',
+        VERSION:     '2.0.0rc1',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true,
@@ -38,7 +38,7 @@
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
-<span style="font-size: 400%; vertical-align:middle"> Iris 2.0a0 </span>
+<span style="font-size: 400%; vertical-align:middle"> Iris 2.0 </span>
 </p>
 
 </div>
@@ -75,7 +75,8 @@
 <li><a class="reference internal" href="#loading-multiple-files">2.1. Loading multiple files</a></li>
 <li><a class="reference internal" href="#lazy-loading">2.2. Lazy loading</a></li>
 <li><a class="reference internal" href="#constrained-loading">2.3. Constrained loading</a><ul>
-<li><a class="reference internal" href="#constraining-on-time">2.3.1. Constraining on Time</a></li>
+<li><a class="reference internal" href="#constraining-a-circular-coordinate-across-its-boundary">2.3.1. Constraining a circular coordinate across its boundary</a></li>
+<li><a class="reference internal" href="#constraining-on-time">2.3.2. Constraining on Time</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#strict-loading">2.4. Strict loading</a></li>
@@ -335,8 +336,18 @@ then specific STASH codes can be filtered:</p>
 <p class="last">For advanced usage there are further examples in the
 <a class="reference internal" href="../iris/iris.html#iris.Constraint" title="iris.Constraint"><code class="xref py py-class docutils literal"><span class="pre">iris.Constraint</span></code></a> reference documentation.</p>
 </div>
+<div class="section" id="constraining-a-circular-coordinate-across-its-boundary">
+<h3>2.3.1. Constraining a circular coordinate across its boundary<a class="headerlink" href="#constraining-a-circular-coordinate-across-its-boundary" title="Permalink to this headline">¶</a></h3>
+<p>Occasionally you may need to constrain your cube with a region that crosses the
+boundary of a circular coordinate (this is often the meridian or the dateline /
+antimeridian). An example use-case of this is to extract the entire Pacific Ocean
+from a cube whose longitudes are bounded by the dateline.</p>
+<p>This functionality cannot be provided reliably using contraints. Instead you should use the
+functionality provided by <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.intersection" title="iris.cube.Cube.intersection"><code class="xref py py-meth docutils literal"><span class="pre">cube.intersection</span></code></a>
+to extract this region.</p>
+</div>
 <div class="section" id="constraining-on-time">
-<span id="using-time-constraints"></span><h3>2.3.1. Constraining on Time<a class="headerlink" href="#constraining-on-time" title="Permalink to this headline">¶</a></h3>
+<span id="using-time-constraints"></span><h3>2.3.2. Constraining on Time<a class="headerlink" href="#constraining-on-time" title="Permalink to this headline">¶</a></h3>
 <p>Iris follows NetCDF-CF rules in representing time coordinate values as normalised,
 purely numeric, values which are normalised by the calendar specified in the coordinate’s
 units (e.g. “days since 1970-01-01”).
@@ -523,7 +534,7 @@ using <em>multiple assignment</em>:</p>
 
     <div class="footer">
     <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
-        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2017, Met Office
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2018, Met Office
     </div>
 
 
