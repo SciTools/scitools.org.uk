@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.fileformats.pp &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>iris.fileformats.pp &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -85,12 +76,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -107,16 +100,16 @@
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.fileformats.pp.load" title="iris.fileformats.pp.load"><code class="xref py py-obj docutils literal"><span class="pre">load</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><code class="xref py py-obj docutils literal"><span class="pre">save</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.load_cubes" title="iris.fileformats.pp.load_cubes"><code class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-obj docutils literal"><span class="pre">PPField</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.as_fields" title="iris.fileformats.pp.as_fields"><code class="xref py py-obj docutils literal"><span class="pre">as_fields</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.load_pairs_from_fields" title="iris.fileformats.pp.load_pairs_from_fields"><code class="xref py py-obj docutils literal"><span class="pre">load_pairs_from_fields</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.save_pairs_from_cube" title="iris.fileformats.pp.save_pairs_from_cube"><code class="xref py py-obj docutils literal"><span class="pre">save_pairs_from_cube</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.save_fields" title="iris.fileformats.pp.save_fields"><code class="xref py py-obj docutils literal"><span class="pre">save_fields</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.STASH" title="iris.fileformats.pp.STASH"><code class="xref py py-obj docutils literal"><span class="pre">STASH</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.pp.EARTH_RADIUS" title="iris.fileformats.pp.EARTH_RADIUS"><code class="xref py py-obj docutils literal"><span class="pre">EARTH_RADIUS</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.load" title="iris.fileformats.pp.load"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.load_cubes" title="iris.fileformats.pp.load_cubes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_cubes</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PPField</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.as_fields" title="iris.fileformats.pp.as_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_fields</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.load_pairs_from_fields" title="iris.fileformats.pp.load_pairs_from_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_pairs_from_fields</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.save_pairs_from_cube" title="iris.fileformats.pp.save_pairs_from_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_pairs_from_cube</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.save_fields" title="iris.fileformats.pp.save_fields"><code class="xref py py-obj docutils literal notranslate"><span class="pre">save_fields</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.STASH" title="iris.fileformats.pp.STASH"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STASH</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.pp.EARTH_RADIUS" title="iris.fileformats.pp.EARTH_RADIUS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">EARTH_RADIUS</span></code></a></li>
 </ul>
 </div></blockquote>
 <dl class="function">
@@ -143,7 +136,7 @@ on demand. Default False.</dd>
 </li>
 </ul>
 <p>To iterate through all of the fields in a pp file:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -158,7 +151,7 @@ on demand. Default False.</dd>
 <p>Args:</p>
 <blockquote>
 <div><ul class="simple">
-<li>cube         - A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a></li>
+<li>cube         - A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a></li>
 <li>target       - A filename or open file handle.</li>
 </ul>
 </div></blockquote>
@@ -184,7 +177,7 @@ for slicing.</dd>
 </li>
 </ul>
 </div></blockquote>
-<p>See also <a class="reference internal" href="../io.html#iris.io.save" title="iris.io.save"><code class="xref py py-func docutils literal"><span class="pre">iris.io.save()</span></code></a>.</p>
+<p>See also <a class="reference internal" href="../io.html#iris.io.save" title="iris.io.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.save()</span></code></a>.</p>
 </dd></dl>
 
 <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
@@ -202,7 +195,7 @@ for slicing.</dd>
 <li>constraints - a list of Iris constraints</li>
 <li><dl class="first docutils">
 <dt>callback - a function which can be passed on to</dt>
-<dd><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal"><span class="pre">iris.io.run_callback()</span></code></a></dd>
+<dd><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.run_callback()</span></code></a></dd>
 </dl>
 </li>
 </ul>
@@ -220,7 +213,7 @@ references)</p>
 header release number.</p>
 <p>A PPField instance can easily access the PP header “words” as attributes
 with some added useful capabilities:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbyr</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -233,12 +226,12 @@ with some added useful capabilities:</p>
 <div><dl class="class">
 <dt id="iris.fileformats.pp.PPField">
 <em class="property">class </em><code class="descclassname">iris.fileformats.pp.</code><code class="descname">PPField</code><span class="sig-paren">(</span><em>header=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.pp.PPField" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>A generic class for PP fields - not specific to a particular
 header release number.</p>
 <p>A PPField instance can easily access the PP header “words” as attributes
 with some added useful capabilities:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbyr</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">)</span>
     <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="o">.</span><span class="n">lbuser</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
@@ -253,8 +246,8 @@ with some added useful capabilities:</p>
 <dd><p>Return a CoordSystem for this PPField.</p>
 <dl class="docutils">
 <dt>Returns:</dt>
-<dd>Currently, a <a class="reference internal" href="../coord_systems.html#iris.coord_systems.GeogCS" title="iris.coord_systems.GeogCS"><code class="xref py py-class docutils literal"><span class="pre">GeogCS</span></code></a> or
-<a class="reference internal" href="../coord_systems.html#iris.coord_systems.RotatedGeogCS" title="iris.coord_systems.RotatedGeogCS"><code class="xref py py-class docutils literal"><span class="pre">RotatedGeogCS</span></code></a>.</dd>
+<dd>Currently, a <a class="reference internal" href="../coord_systems.html#iris.coord_systems.GeogCS" title="iris.coord_systems.GeogCS"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeogCS</span></code></a> or
+<a class="reference internal" href="../coord_systems.html#iris.coord_systems.RotatedGeogCS" title="iris.coord_systems.RotatedGeogCS"><code class="xref py py-class docutils literal notranslate"><span class="pre">RotatedGeogCS</span></code></a>.</dd>
 </dl>
 </dd></dl>
 
@@ -264,7 +257,7 @@ with some added useful capabilities:</p>
 <dd><p>Returns a deep copy of this PPField.</p>
 <dl class="docutils">
 <dt>Returns:</dt>
-<dd>A copy instance of the <a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal"><span class="pre">PPField</span></code></a>.</dd>
+<dd>A copy instance of the <a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">PPField</span></code></a>.</dd>
 </dl>
 </dd></dl>
 
@@ -277,8 +270,8 @@ with some added useful capabilities:</p>
 <dt id="iris.fileformats.pp.PPField.save">
 <code class="descname">save</code><span class="sig-paren">(</span><em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.pp.PPField.save" title="Permalink to this definition">¶</a></dt>
 <dd><p>Save the PPField to the given file object
-(typically created with <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#open" title="(in Python v2.7)"><code class="xref py py-func docutils literal"><span class="pre">open()</span></code></a>).</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># to append the field to a file</span>
+(typically created with <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#open" title="(in Python v2.7)"><code class="xref py py-func docutils literal notranslate"><span class="pre">open()</span></code></a>).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># to append the field to a file</span>
 <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;ab&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
     <span class="n">a_pp_field</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">fh</span><span class="p">)</span>
 
@@ -309,7 +302,7 @@ populated, these are: ‘lbegin’, ‘lbnrec’, ‘lbuser[1]’.</p>
 <dl class="attribute">
 <dt id="iris.fileformats.pp.PPField.data">
 <code class="descname">data</code><a class="headerlink" href="#iris.fileformats.pp.PPField.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>The <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.14)"><code class="xref py py-class docutils literal"><span class="pre">numpy.ndarray</span></code></a> representing the multidimensional data
+<dd><p>The <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.14)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> representing the multidimensional data
 of the pp file</p>
 </dd></dl>
 
@@ -374,7 +367,7 @@ an iterable of PP fields.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>cube:</dt>
-<dd>A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a></dd>
+<dd>A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a></dd>
 </dl>
 </li>
 </ul>
@@ -407,7 +400,7 @@ If None, the final two  dimensions are chosen for slicing.</dd>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>pp_fields:</dt>
-<dd>An iterable of <a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.pp.PPField</span></code></a>.</dd>
+<dd>An iterable of <a class="reference internal" href="#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -420,7 +413,7 @@ the load pipeline, and amend the cubes once they are created, using
 PP metadata conditions.  Where this filtering
 removes a significant number of fields, the speed up to load can be
 significant:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.pp</span> <span class="kn">import</span> <span class="n">load_pairs_from_fields</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;E1.2098.pp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filtered_fields</span> <span class="o">=</span> <span class="p">[]</span>
@@ -437,7 +430,7 @@ significant:</p>
 <p>This capability can also be used to alter fields before they are passed to
 the load pipeline.  Fields with out of specification header elements can
 be cleaned up this way and cubes created:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;E1.2098.pp&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;E1.2098.pp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">cleaned_fields</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">cleaned_fields</span><span class="p">:</span>
 <span class="gp">... </span>    <span class="k">if</span> <span class="n">field</span><span class="o">.</span><span class="n">lbrel</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
@@ -458,7 +451,7 @@ iterable of cubes to an iterable of (2D cube, PP field) pairs.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>cube:</dt>
-<dd>A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a></dd>
+<dd>A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a></dd>
 </dl>
 </li>
 </ul>
@@ -515,7 +508,7 @@ Default is False.</dd>
 </dl>
 </li>
 </ul>
-<p>See also <a class="reference internal" href="../io.html#iris.io.save" title="iris.io.save"><code class="xref py py-func docutils literal"><span class="pre">iris.io.save()</span></code></a>.</p>
+<p>See also <a class="reference internal" href="../io.html#iris.io.save" title="iris.io.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.save()</span></code></a>.</p>
 </dd></dl>
 
 <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
@@ -523,7 +516,7 @@ Default is False.</dd>
 --><p>A class to hold a single STASH code.</p>
 <dl class="docutils">
 <dt>Create instances using:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="mi">1</span>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">model</span> <span class="o">=</span> <span class="mi">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">section</span> <span class="o">=</span> <span class="mi">2</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">item</span> <span class="o">=</span> <span class="mi">3</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_stash</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">STASH</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">item</span><span class="p">)</span>
@@ -531,7 +524,7 @@ Default is False.</dd>
 </div>
 </dd>
 <dt>Access the sub-components via:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_stash</span><span class="o">.</span><span class="n">model</span>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">my_stash</span><span class="o">.</span><span class="n">model</span>
 <span class="go">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">my_stash</span><span class="o">.</span><span class="n">section</span>
 <span class="go">2</span>
@@ -541,7 +534,7 @@ Default is False.</dd>
 </div>
 </dd>
 <dt>String conversion results in the MSI format:</dt>
-<dd><div class="first last highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">STASH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">203</span><span class="p">))</span>
+<dd><div class="first last highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">fileformats</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">STASH</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">203</span><span class="p">))</span>
 <span class="go">m01s16i203</span>
 </pre></div>
 </div>
@@ -551,7 +544,7 @@ Default is False.</dd>
 <div><dl class="class">
 <dt id="iris.fileformats.pp.STASH">
 <em class="property">class </em><code class="descclassname">iris.fileformats.pp.</code><code class="descname">STASH</code><span class="sig-paren">(</span><em>model</em>, <em>section</em>, <em>item</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.pp.STASH" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#iris.fileformats.pp.STASH" title="iris.fileformats.pp.STASH"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.pp.STASH</span></code></a></p>
+<dd><p>Bases: <a class="reference internal" href="#iris.fileformats.pp.STASH" title="iris.fileformats.pp.STASH"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.STASH</span></code></a></p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -577,7 +570,7 @@ Default is False.</dd>
 
 <dl class="staticmethod">
 <dt id="iris.fileformats.pp.STASH.from_msi">
-<em class="property">static </em><code class="descname">from_msi</code><span class="sig-paren">(</span><em>msi</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.pp.STASH.from_msi" title="Permalink to this definition">¶</a></dt>
+<em class="property">static </em><code class="descname">from_msi</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.pp.STASH.from_msi" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert a STASH code MSI string to a STASH instance.</p>
 </dd></dl>
 

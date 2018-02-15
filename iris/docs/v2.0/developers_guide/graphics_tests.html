@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Graphics tests &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>Graphics tests &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -31,8 +23,7 @@
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -80,12 +71,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -148,7 +141,7 @@ This consists of :</p>
 test results.</li>
 <li>storing the hashes of ‘known accepted results’ for each test in a
 database in the repo (which is actually stored in
-<code class="docutils literal"><span class="pre">lib/iris/tests/results/imagerepo.json</span></code>).</li>
+<code class="docutils literal notranslate"><span class="pre">lib/iris/tests/results/imagerepo.json</span></code>).</li>
 <li>storing associated reference images for each hash value in a separate public
 repository, currently in <a class="reference external" href="https://github.com/SciTools/test-images-scitools">https://github.com/SciTools/test-images-scitools</a> ,
 allowing human-eye judgement of ‘valid equivalent’ results.</li>
@@ -176,18 +169,18 @@ you now need to follow:</dd>
 <p>#1. Create a directory in iris/lib/iris/tests called ‘result_image_comparison’.
 #2. From your Iris root directory, run the tests by using the command:</p>
 <blockquote>
-<div><code class="docutils literal"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code>.</div></blockquote>
+<div><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code>.</div></blockquote>
 <dl class="docutils">
-<dt>#3. Navigate to iris/lib/iris/tests and run the command: <code class="docutils literal"><span class="pre">python</span> <span class="pre">idiff.py</span></code>.</dt>
+<dt>#3. Navigate to iris/lib/iris/tests and run the command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">idiff.py</span></code>.</dt>
 <dd>This will open a window for you to visually inspect the changes to the
 graphic and then either accept or reject the new result.</dd>
 <dt>#4. Upon acceptance of a change or a new image, a copy of the output PNG file</dt>
 <dd>is added to the reference image repository in
 <a class="reference external" href="https://github.com/SciTools/test-images-scitools">https://github.com/SciTools/test-images-scitools</a>.  The file is named
-according to the image hash value, as <code class="docutils literal"><span class="pre">&lt;hash&gt;.png</span></code>.</dd>
+according to the image hash value, as <code class="docutils literal notranslate"><span class="pre">&lt;hash&gt;.png</span></code>.</dd>
 <dt>#5. The hash value of the new result is added into the relevant set of ‘valid</dt>
 <dd>result hashes’ in the image result database file,
-<code class="docutils literal"><span class="pre">tests/results/imagerepo.json</span></code>.</dd>
+<code class="docutils literal notranslate"><span class="pre">tests/results/imagerepo.json</span></code>.</dd>
 <dt>#6. The tests must now be re-run, and the ‘new’ result should be accepted.</dt>
 <dd>Occasionally there are several graphics checks in a single test, only the
 first of which will be run should it fail.  If this is the case, then you
@@ -199,7 +192,7 @@ contain all the newly-generated png files copied into the folder named
 ‘image_files’.</dd>
 <dt>#8. The second pull request should be created in the Iris repository, and should</dt>
 <dd>only include the change to the image results database
-(<code class="docutils literal"><span class="pre">tests/results/imagerepo.json</span></code>) :
+(<code class="docutils literal notranslate"><span class="pre">tests/results/imagerepo.json</span></code>) :
 This pull request must contain a reference to the matching one in
 test-images-scitools.</dd>
 </dl>

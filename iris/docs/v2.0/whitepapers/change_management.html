@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Change Management in Iris from the User’s perspective &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>Change Management in Iris from the User’s perspective &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -31,8 +23,7 @@
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -95,12 +86,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -249,7 +242,7 @@ this seems similar to adding a keyword, the cases where the new behaviour
 operates and where it does not are not distinguishable by a different code
 usage, which makes this somewhat dangerous.  We do use this type of change,
 but any behaviour ‘mode’ controls of this sort are usually added as part of the
-<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-class docutils literal"><span class="pre">iris.Future</span></code></a> definition.
+<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.Future</span></code></a> definition.
 See <a class="reference internal" href="#iris-future-usage"><span class="std std-ref">Usage of iris.FUTURE</span></a>, below.</p>
 <div class="section" id="terminology-api-features-usages-and-behaviours">
 <span id="iris-api"></span><h4>Terminology : API, features, usages and behaviours<a class="headerlink" href="#terminology-api-features-usages-and-behaviours" title="Permalink to this headline">¶</a></h4>
@@ -266,7 +259,7 @@ See: <a class="reference external" href="https://www.python.org/dev/peps/pep-000
 that we will not change or remove them without deprecation, and will undertake
 to fix any bugs discovered.
 We do however make an important exception for the content of the ‘experimental’
-module :  APIs in <a class="reference internal" href="../iris/iris/experimental.html#module-iris.experimental" title="iris.experimental"><code class="xref py py-mod docutils literal"><span class="pre">iris.experimental</span></code></a> module are published for initial
+module :  APIs in <a class="reference internal" href="../iris/iris/experimental.html#module-iris.experimental" title="iris.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.experimental</span></code></a> module are published for initial
 evaluation and feedback, and can  be revised or removed without warning at a
 subsequent release.</p>
 <p>A “feature” of the API includes public objects as above, but may also be used
@@ -318,7 +311,7 @@ environment.</p>
 <span id="iris-change-releases"></span><h3>Releases and Versions<a class="headerlink" href="#releases-and-versions" title="Permalink to this headline">¶</a></h3>
 <p>Iris releases have a unique identifying version string, in the form
 “&lt;major&gt;.&lt;minor&gt;.&lt;micro&gt;&lt;extension&gt;”, available to code as
-<code class="xref py py-data docutils literal"><span class="pre">iris.__version__</span></code> .</p>
+<code class="xref py py-data docutils literal notranslate"><span class="pre">iris.__version__</span></code> .</p>
 <p>This contains major and minor release numbers.  The numbering and meaning of
 these are defined, following the <a class="reference external" href="http://semver.org/">SemVer project</a>.</p>
 <p>The essential aspects of the “&lt;major&gt;.&lt;minor&gt;.&lt;micro&gt;&lt;extension&gt;” arrangement
@@ -403,7 +396,7 @@ features are available :</p>
 <div><ul class="simple">
 <li>the ‘old’ style works as it did before</li>
 <li>any usage of the ‘old’ features will emit a
-<code class="xref py py-class docutils literal"><span class="pre">warnings.WarningMessage</span></code> message, noting that the feature is
+<code class="xref py py-class docutils literal notranslate"><span class="pre">warnings.WarningMessage</span></code> message, noting that the feature is
 deprecated and what to use instead</li>
 <li>the ‘new’ style can be adopted as soon as convenient</li>
 </ul>
@@ -461,15 +454,15 @@ expect everyone to adopt the new interpretation, eventually</li>
 </div></blockquote>
 </div></blockquote>
 <p>For changes of this sort, the release will define a new boolean property of the
-<a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><code class="xref py py-data docutils literal"><span class="pre">iris.FUTURE</span></code></a> object, as a control to select between the ‘old’ and ‘new’
+<a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.FUTURE</span></code></a> object, as a control to select between the ‘old’ and ‘new’
 behaviours, with values False=’old’ and True=’new’.
-See <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-data docutils literal"><span class="pre">iris.Future</span></code></a> for examples.</p>
+See <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.Future</span></code></a> for examples.</p>
 <p>In these cases, as any “deprecated usage” is not clearly distinguishable in the
 form of the user code, it is <strong>especially</strong> important to take note of any
 deprecation messages appearing when legacy code runs.</p>
 <p><strong>Sequence of changes to `iris.FUTURE`</strong></p>
 <p>To allow user code to avoid unexpected any behavioural changes, the
-<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-data docutils literal"><span class="pre">iris.Future</span></code></a> controls follow a special management cycle, as follows
+<a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.Future</span></code></a> controls follow a special management cycle, as follows
 (see also the relevant <a class="reference internal" href="../developers_guide/deprecations.html#iris-developer-future"><span class="std std-ref">Developer Guide section</span></a>):</p>
 <dl class="docutils">
 <dt>At (minor) release “&lt;X&gt;.&lt;Y&gt;..”:</dt>

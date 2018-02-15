@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What’s New in Iris 1.12 &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>What’s New in Iris 1.12 &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -94,12 +85,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -128,7 +121,7 @@
 <h2>Iris 1.12 Features<a class="headerlink" href="#iris-1-12-features" title="Permalink to this headline">¶</a></h2>
 <div class="admonition-showcase-feature-new-regridding-schemes admonition" id="showcase">
 <p class="first admonition-title">Showcase Feature: New regridding schemes</p>
-<p>A new regridding scheme, <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-class docutils literal"><span class="pre">iris.analysis.UnstructuredNearest</span></code></a>,
+<p>A new regridding scheme, <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.UnstructuredNearest</span></code></a>,
 performs nearest-neighbour regridding from “unstructured” onto “structured”
 grids. Here, “unstructured” means that the data has X and Y coordinate values
 defined at each horizontal location, instead of the independent X and Y
@@ -137,9 +130,9 @@ For example, data sampled on a trajectory or a tripolar ocean grid would be
 unstructured.</p>
 <p class="last">In addition, added experimental ProjectedUnstructured regridders which use
 scipy.interpolate.griddata to regrid unstructured data
-(see <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredLinear" title="iris.experimental.regrid.ProjectedUnstructuredLinear"><code class="xref py py-class docutils literal"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredLinear</span></code></a> and
-<a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredNearest" title="iris.experimental.regrid.ProjectedUnstructuredNearest"><code class="xref py py-class docutils literal"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredNearest</span></code></a>). The
-essential purpose is the same as <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-class docutils literal"><span class="pre">iris.analysis.UnstructuredNearest</span></code></a>.
+(see <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredLinear" title="iris.experimental.regrid.ProjectedUnstructuredLinear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredLinear</span></code></a> and
+<a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredNearest" title="iris.experimental.regrid.ProjectedUnstructuredNearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredNearest</span></code></a>). The
+essential purpose is the same as <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.UnstructuredNearest</span></code></a>.
 This scheme, by comparison, is generally faster, but less accurate.</p>
 </div>
 <div class="admonition-showcase-feature-fast-um-file-loading admonition">
@@ -147,10 +140,10 @@ This scheme, by comparison, is generally faster, but less accurate.</p>
 <p>Support has been added for accelerated loading of UM files (PP and
 Fieldsfile), when these have a suitable regular “structured” form.</p>
 <p>A context manager is used to enable fast um loading in all the regular Iris
-load functions, such as <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-meth docutils literal"><span class="pre">iris.load()</span></code></a> and <a class="reference internal" href="../iris/iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-meth docutils literal"><span class="pre">iris.load_cube()</span></code></a>,
+load functions, such as <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.load()</span></code></a> and <a class="reference internal" href="../iris/iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.load_cube()</span></code></a>,
 when loading data from UM file types.
 For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filepath</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;uk_hires.pp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.um</span> <span class="kn">import</span> <span class="n">structured_um_loading</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">structured_um_loading</span><span class="p">():</span>
@@ -196,7 +189,7 @@ containing them is passed to the callback ‘field’ argument.
 An example showing callbacks suitable for both normal and structured
 loading can be seen <a class="reference external" href="https://github.com/pp-mo/iris/blob/9042b4217ab6dd78dcfccfec19584170a5a6250a/lib/iris/tests/integration/fast_load/test_fast_load.py#L409">here</a>.</li>
 </ul>
-<p class="last">For full details, see : <a class="reference internal" href="../iris/iris/fileformats/um.html#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.um.structured_um_loading()</span></code></a>.</p>
+<p class="last">For full details, see : <a class="reference internal" href="../iris/iris/fileformats/um.html#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.um.structured_um_loading()</span></code></a>.</p>
 </div>
 <ul class="simple">
 <li>A skip pattern is introduced to the fields file loader, such that fields
@@ -212,7 +205,7 @@ loaded and returned.
 Previously, this simply resulted in an unrecoverable error.</li>
 <li>The transpose method of a Cube now results in a lazy transposed view of the
 original rather than realising the data then transposing it.</li>
-<li>The <a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a> function is now more
+<li>The <a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a> function is now more
 accurate for single precision input bounds.</li>
 <li>Iris is now able to read seconds in datetimes provided in NAME trajectory
 files.</li>
@@ -224,15 +217,15 @@ speed improvement.</li>
 <div class="section" id="deprecations">
 <h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>The module <code class="xref py py-mod docutils literal"><span class="pre">iris.experimental.fieldsfile</span></code> has been deprecated, in favour
+<li>The module <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.experimental.fieldsfile</span></code> has been deprecated, in favour
 of the new fast-loading mechanism provided by
-<a class="reference internal" href="../iris/iris/fileformats/um.html#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-meth docutils literal"><span class="pre">iris.fileformats.um.structured_um_loading()</span></code></a>.</li>
+<a class="reference internal" href="../iris/iris/fileformats/um.html#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.um.structured_um_loading()</span></code></a>.</li>
 </ul>
 </div>
 <div class="section" id="documentation-changes">
 <h2>Documentation Changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Corrected documentation of <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal"><span class="pre">iris.analysis.AreaWeighted</span></code></a> scheme to make
+<li>Corrected documentation of <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.AreaWeighted</span></code></a> scheme to make
 the usage scope clearer.</li>
 </ul>
 </div>

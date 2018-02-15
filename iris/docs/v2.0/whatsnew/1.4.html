@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What’s new in Iris 1.4 &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>What’s new in Iris 1.4 &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -112,12 +103,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -158,7 +151,7 @@
 <li>NIMROD files with multiple fields and period of interest can now be loaded.</li>
 <li>Missing values are now handled when loading GRIB messages.</li>
 <li>PP export rule to calculate forecast period.</li>
-<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-func docutils literal"><span class="pre">aggregated_by()</span></code></a> now maintains array masking.</li>
+<li><a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-func docutils literal notranslate"><span class="pre">aggregated_by()</span></code></a> now maintains array masking.</li>
 <li>IEEE 32bit fieldsfiles can now be loaded.</li>
 <li>NetCDF transverse mercator and climatology data can now be loaded.</li>
 <li>Polar stereographic GRIB data can now be loaded.</li>
@@ -176,53 +169,53 @@
 <h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>As part of simplifying the mechanism for accessing test data,
-<code class="xref py py-func docutils literal"><span class="pre">iris.io.select_data_path()</span></code>, <code class="xref py py-data docutils literal"><span class="pre">iris.config.DATA_REPOSITORY</span></code>,
-<code class="xref py py-data docutils literal"><span class="pre">iris.config.MASTER_DATA_REPOSITORY</span></code> and
-<code class="xref py py-data docutils literal"><span class="pre">iris.config.RESOURCE_DIR</span></code> have been removed.</li>
+<code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.select_data_path()</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.DATA_REPOSITORY</span></code>,
+<code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.MASTER_DATA_REPOSITORY</span></code> and
+<code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.RESOURCE_DIR</span></code> have been removed.</li>
 </ul>
 </div>
 <div class="section" id="deprecations">
 <h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>The <em>add_custom_season_*</em> functions from <a class="reference internal" href="../iris/iris/coord_categorisation.html#module-iris.coord_categorisation" title="iris.coord_categorisation"><code class="xref py py-mod docutils literal"><span class="pre">coord_categorisation</span></code></a> have been deprecated in favour of adding their functionality to the <em>add_season_*</em> functions</li>
+<li>The <em>add_custom_season_*</em> functions from <a class="reference internal" href="../iris/iris/coord_categorisation.html#module-iris.coord_categorisation" title="iris.coord_categorisation"><code class="xref py py-mod docutils literal notranslate"><span class="pre">coord_categorisation</span></code></a> have been deprecated in favour of adding their functionality to the <em>add_season_*</em> functions</li>
 </ul>
 </div>
 </div>
 <div class="section" id="experimental-regridding-enhancements">
 <span id="exp-regrid"></span><h2>Experimental regridding enhancements<a class="headerlink" href="#experimental-regridding-enhancements" title="Permalink to this headline">¶</a></h2>
 <p>Bilinear, area-weighted and area-conservative regridding functions are now available in
-<a class="reference internal" href="../iris/iris/experimental.html#module-iris.experimental" title="iris.experimental"><code class="xref py py-mod docutils literal"><span class="pre">iris.experimental</span></code></a>. These functions support masked data and handle
+<a class="reference internal" href="../iris/iris/experimental.html#module-iris.experimental" title="iris.experimental"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.experimental</span></code></a>. These functions support masked data and handle
 derived coordinates such as hybrid height. The final API is still in development.
 In the meantime:</p>
 <div class="section" id="bilinear-rectilinear-regridding">
 <h3>Bilinear rectilinear regridding<a class="headerlink" href="#bilinear-rectilinear-regridding" title="Permalink to this headline">¶</a></h3>
-<p><code class="xref py py-func docutils literal"><span class="pre">regrid_bilinear_rectilinear_src_and_grid()</span></code>
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">regrid_bilinear_rectilinear_src_and_grid()</span></code>
 can be used to regrid a cube onto a horizontal grid defined in a different coordinate system.
 The data values are calculated using bilinear interpolation.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid</span> <span class="kn">import</span> <span class="n">regrid_bilinear_rectilinear_src_and_grid</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid</span> <span class="kn">import</span> <span class="n">regrid_bilinear_rectilinear_src_and_grid</span>
 <span class="n">regridded_cube</span> <span class="o">=</span> <span class="n">regrid_bilinear_rectilinear_src_and_grid</span><span class="p">(</span><span class="n">source_cube</span><span class="p">,</span> <span class="n">target_grid_cube</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="area-weighted-regridding">
 <h3>Area-weighted regridding<a class="headerlink" href="#area-weighted-regridding" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid"><code class="xref py py-func docutils literal"><span class="pre">regrid_area_weighted_rectilinear_src_and_grid()</span></code></a> can be used to regrid a cube
+<p><a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">regrid_area_weighted_rectilinear_src_and_grid()</span></code></a> can be used to regrid a cube
 such that the data values of the resulting cube are calculated using the
 area-weighted mean.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid</span> <span class="kn">import</span> <span class="n">regrid_area_weighted_rectilinear_src_and_grid</span> <span class="k">as</span> <span class="n">regrid_area_weighted</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid</span> <span class="kn">import</span> <span class="n">regrid_area_weighted_rectilinear_src_and_grid</span> <span class="k">as</span> <span class="n">regrid_area_weighted</span>
 <span class="n">regridded_cube</span> <span class="o">=</span> <span class="n">regrid_area_weighted</span><span class="p">(</span><span class="n">source_cube</span><span class="p">,</span> <span class="n">target_grid_cube</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="area-conservative-regridding">
 <h3>Area-conservative regridding<a class="headerlink" href="#area-conservative-regridding" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference internal" href="../iris/iris/experimental/regrid_conservative.html#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="iris.experimental.regrid_conservative.regrid_conservative_via_esmpy"><code class="xref py py-func docutils literal"><span class="pre">regrid_conservative_via_esmpy()</span></code></a>
+<p><a class="reference internal" href="../iris/iris/experimental/regrid_conservative.html#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="iris.experimental.regrid_conservative.regrid_conservative_via_esmpy"><code class="xref py py-func docutils literal notranslate"><span class="pre">regrid_conservative_via_esmpy()</span></code></a>
 can be used for area-conservative regridding between geographical coordinate systems.
 This uses the ESMF library functions, via the ESMPy interface.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid_conservative</span> <span class="kn">import</span> <span class="n">regrid_conservative_via_esmpy</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.regrid_conservative</span> <span class="kn">import</span> <span class="n">regrid_conservative_via_esmpy</span>
 <span class="n">regridded_cube</span> <span class="o">=</span> <span class="n">regrid_conservative_via_esmpy</span><span class="p">(</span><span class="n">source_cube</span><span class="p">,</span> <span class="n">target_grid_cube</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -231,13 +224,13 @@ This uses the ESMF library functions, via the ESMPy interface.</p>
 <div class="section" id="iris-pandas-interoperablilty">
 <span id="iris-pandas"></span><h2>Iris-Pandas interoperablilty<a class="headerlink" href="#iris-pandas-interoperablilty" title="Permalink to this headline">¶</a></h2>
 <p>Conversion to and from Pandas <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/api.html#series">Series</a> and <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/api.html#dataframe">DataFrames</a> is now available.
-See <a class="reference internal" href="../iris/iris/pandas.html#module-iris.pandas" title="iris.pandas"><code class="xref py py-mod docutils literal"><span class="pre">iris.pandas</span></code></a> for more details.</p>
+See <a class="reference internal" href="../iris/iris/pandas.html#module-iris.pandas" title="iris.pandas"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.pandas</span></code></a> for more details.</p>
 </div>
 <div class="section" id="load-cubes-from-the-internet-via-opendap">
 <span id="load-opendap"></span><h2>Load cubes from the internet via OPeNDAP<a class="headerlink" href="#load-cubes-from-the-internet-via-opendap" title="Permalink to this headline">¶</a></h2>
 <p>Cubes can now be loaded directly from the internet, via <a class="reference external" href="http://www.opendap.org/about">OPeNDAP</a>.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cubes</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;http://geoport.whoi.edu/thredds/dodsC/bathy/gom15&quot;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cubes</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;http://geoport.whoi.edu/thredds/dodsC/bathy/gom15&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -245,7 +238,7 @@ See <a class="reference internal" href="../iris/iris/pandas.html#module-iris.pan
 <span id="id1"></span><h2>GeoTiff export<a class="headerlink" href="#geotiff-export" title="Permalink to this headline">¶</a></h2>
 <p>With this experimental feature, two dimensional cubes can now be exported to GeoTiff files.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.raster</span> <span class="kn">import</span> <span class="n">export_geotiff</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.experimental.raster</span> <span class="kn">import</span> <span class="n">export_geotiff</span>
 <span class="n">export_geotiff</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -257,15 +250,15 @@ See <a class="reference internal" href="../iris/iris/pandas.html#module-iris.pan
 <div class="section" id="cube-merge-update">
 <span id="id2"></span><h2>Cube merge update<a class="headerlink" href="#cube-merge-update" title="Permalink to this headline">¶</a></h2>
 <p>Cube merging now favours numerical coordinates over string coordinates
-to describe a dimension, and <a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal"><span class="pre">DimCoord</span></code></a> over
-<a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal"><span class="pre">AuxCoord</span></code></a>. These modifications prevent the error:
+to describe a dimension, and <a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimCoord</span></code></a> over
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a>. These modifications prevent the error:
 <em>“No functional relationship between separable and inseparable candidate dimensions”</em>.</p>
 </div>
 <div class="section" id="unambiguous-season-year-naming">
 <span id="season-year-name"></span><h2>Unambiguous season year naming<a class="headerlink" href="#unambiguous-season-year-naming" title="Permalink to this headline">¶</a></h2>
 <p>The default names of categorisation coordinates are now less ambiguous.
-For example, <a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_month_number" title="iris.coord_categorisation.add_month_number"><code class="xref py py-func docutils literal"><span class="pre">add_month_number()</span></code></a> and
-<a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_month_fullname" title="iris.coord_categorisation.add_month_fullname"><code class="xref py py-func docutils literal"><span class="pre">add_month_fullname()</span></code></a> now create
+For example, <a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_month_number" title="iris.coord_categorisation.add_month_number"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_month_number()</span></code></a> and
+<a class="reference internal" href="../iris/iris/coord_categorisation.html#iris.coord_categorisation.add_month_fullname" title="iris.coord_categorisation.add_month_fullname"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_month_fullname()</span></code></a> now create
 “month_number” and “month_fullname” coordinates.</p>
 </div>
 <div class="section" id="cubes-with-no-vertical-coord-can-now-be-exported-to-grib">
@@ -275,13 +268,13 @@ The solution is still under discussion: See <a class="reference external" href="
 </div>
 <div class="section" id="simplified-resource-configuration">
 <span id="simple-cfg"></span><h2>Simplified resource configuration<a class="headerlink" href="#simplified-resource-configuration" title="Permalink to this headline">¶</a></h2>
-<p>A new configuration variable called <code class="xref py py-data docutils literal"><span class="pre">iris.config.TEST_DATA_DIR</span></code>
+<p>A new configuration variable called <code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.TEST_DATA_DIR</span></code>
 has been added, replacing the previous combination of
-<code class="xref py py-data docutils literal"><span class="pre">iris.config.MASTER_DATA_REPOSITORY</span></code> and
-<code class="xref py py-data docutils literal"><span class="pre">iris.config.DATA_REPOSITORY</span></code>. This constant should be the path
+<code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.MASTER_DATA_REPOSITORY</span></code> and
+<code class="xref py py-data docutils literal notranslate"><span class="pre">iris.config.DATA_REPOSITORY</span></code>. This constant should be the path
 to a directory containing the test data required by the unit tests. It can
-be set by adding a <code class="docutils literal"><span class="pre">test_data_dir</span></code> entry to the <code class="docutils literal"><span class="pre">Resources</span></code> section of
-<code class="docutils literal"><span class="pre">site.cfg</span></code>. See <a class="reference internal" href="../iris/iris/config.html#module-iris.config" title="iris.config"><code class="xref py py-mod docutils literal"><span class="pre">iris.config</span></code></a> for more details.</p>
+be set by adding a <code class="docutils literal notranslate"><span class="pre">test_data_dir</span></code> entry to the <code class="docutils literal notranslate"><span class="pre">Resources</span></code> section of
+<code class="docutils literal notranslate"><span class="pre">site.cfg</span></code>. See <a class="reference internal" href="../iris/iris/config.html#module-iris.config" title="iris.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.config</span></code></a> for more details.</p>
 </div>
 <div class="section" id="extended-grib-parameter-translation">
 <span id="grib-params"></span><h2>Extended GRIB parameter translation<a class="headerlink" href="#extended-grib-parameter-translation" title="Permalink to this headline">¶</a></h2>
@@ -295,13 +288,13 @@ be set by adding a <code class="docutils literal"><span class="pre">test_data_di
 </div>
 <div class="section" id="one-dimensional-linear-interpolation-fix">
 <span id="one-d-linear"></span><h2>One dimensional linear interpolation fix<a class="headerlink" href="#one-dimensional-linear-interpolation-fix" title="Permalink to this headline">¶</a></h2>
-<p><code class="xref py py-func docutils literal"><span class="pre">linear()</span></code> can now extrapolate from a single point
+<p><code class="xref py py-func docutils literal notranslate"><span class="pre">linear()</span></code> can now extrapolate from a single point
 assuming a gradient of zero. This prevents an issue when loading cross sections
 with a hybrid height coordinate, on a staggered grid and only a single orography field.</p>
 </div>
 <div class="section" id="fix-for-iris-analysis-calculus-differentiate">
 <span id="calc-diff-fix"></span><h2>Fix for iris.analysis.calculus.differentiate<a class="headerlink" href="#fix-for-iris-analysis-calculus-differentiate" title="Permalink to this headline">¶</a></h2>
-<p>A bug in <a class="reference internal" href="../iris/iris/analysis/calculus.html#iris.analysis.calculus.differentiate" title="iris.analysis.calculus.differentiate"><code class="xref py py-func docutils literal"><span class="pre">differentiate()</span></code></a> that had the potential to cause
+<p>A bug in <a class="reference internal" href="../iris/iris/analysis/calculus.html#iris.analysis.calculus.differentiate" title="iris.analysis.calculus.differentiate"><code class="xref py py-func docutils literal notranslate"><span class="pre">differentiate()</span></code></a> that had the potential to cause
 the loss of coordinate metadata when calculating the curl or the derivative of a cube has been fixed.</p>
 </div>
 </div>

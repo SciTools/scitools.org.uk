@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Missing Data Handling in Iris &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>Missing Data Handling in Iris &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
     <script type="text/javascript" src="../_static/underscore.js"></script>
     <script type="text/javascript" src="../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../index.html"><img src="../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -98,12 +89,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -128,8 +121,8 @@ missing data value.</p>
 <div class="section" id="loading">
 <h2>Loading<a class="headerlink" href="#loading" title="Permalink to this headline">¶</a></h2>
 <p>On load, any fill-value or missing data value defined in the loaded dataset
-should be used as the <code class="docutils literal"><span class="pre">fill_value</span></code> of the NumPy masked array data attribute of the
-<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>. This will only appear when the cube’s data is realised.</p>
+should be used as the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> of the NumPy masked array data attribute of the
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>. This will only appear when the cube’s data is realised.</p>
 </div>
 <div class="section" id="saving">
 <h2>Saving<a class="headerlink" href="#saving" title="Permalink to this headline">¶</a></h2>
@@ -137,12 +130,12 @@ should be used as the <code class="docutils literal"><span class="pre">fill_valu
 Instead, Iris always uses the default fill-value for the fileformat, <em>except</em>
 when a fill-value is specified by the user via a fileformat-specific saver.</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s1">&#39;my_file.nc&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">99999</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s1">&#39;my_file.nc&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">99999</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Not all savers accept the <code class="docutils literal"><span class="pre">fill_value</span></code> keyword argument.</p>
+<p class="last">Not all savers accept the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> keyword argument.</p>
 </div>
 <p>Iris will check for and issue warnings of fill-value ‘collisions’.
 This basically means that whenever there are unmasked values that would read back
@@ -160,12 +153,12 @@ owing to the use of default fill values. The default fill-value used depends on 
 of the variable data.</p>
 <p>The exceptions to this are:</p>
 <ul class="simple">
-<li>One-byte values are not masked unless the variable has an explicit <code class="docutils literal"><span class="pre">_FillValue</span></code> attribute.
-That is, there is no default fill-value for <code class="docutils literal"><span class="pre">byte</span></code> types in NetCDF.</li>
-<li>Data may be tagged with a <code class="docutils literal"><span class="pre">_NoFill</span></code> attribute. This is not currently officially
+<li>One-byte values are not masked unless the variable has an explicit <code class="docutils literal notranslate"><span class="pre">_FillValue</span></code> attribute.
+That is, there is no default fill-value for <code class="docutils literal notranslate"><span class="pre">byte</span></code> types in NetCDF.</li>
+<li>Data may be tagged with a <code class="docutils literal notranslate"><span class="pre">_NoFill</span></code> attribute. This is not currently officially
 documented or widely implemented.</li>
 <li>Small integers create problems by <em>not</em> having the exemption applied to byte data.
-Thus, in principle, <code class="docutils literal"><span class="pre">int32</span></code> data cannot use the full range of 2**16 valid values.</li>
+Thus, in principle, <code class="docutils literal notranslate"><span class="pre">int32</span></code> data cannot use the full range of 2**16 valid values.</li>
 </ul>
 </div>
 </div>
@@ -177,7 +170,7 @@ default fill-value will be used instead.</p>
 </div>
 <div class="section" id="other-operations">
 <h2>Other operations<a class="headerlink" href="#other-operations" title="Permalink to this headline">¶</a></h2>
-<p>Other operations, such as <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> arithmetic operations,
+<p>Other operations, such as <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> arithmetic operations,
 generally produce output with a default (NumPy) fill-value. That is, these operations
 ignore the fill-values of the input(s) to the operation.</p>
 </div>

@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.fileformats.um &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>iris.fileformats.um &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../../../index.html"><img src="../../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -85,12 +76,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -114,11 +107,11 @@ Other types of UM file may fail to load correctly (or at all).</p>
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.fileformats.um.um_to_pp" title="iris.fileformats.um.um_to_pp"><code class="xref py py-obj docutils literal"><span class="pre">um_to_pp</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-obj docutils literal"><span class="pre">load_cubes</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.um.load_cubes_32bit_ieee" title="iris.fileformats.um.load_cubes_32bit_ieee"><code class="xref py py-obj docutils literal"><span class="pre">load_cubes_32bit_ieee</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-obj docutils literal"><span class="pre">structured_um_loading</span></code></a></li>
-<li><a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-obj docutils literal"><span class="pre">FieldCollation</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.um.um_to_pp" title="iris.fileformats.um.um_to_pp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">um_to_pp</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_cubes</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.um.load_cubes_32bit_ieee" title="iris.fileformats.um.load_cubes_32bit_ieee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_cubes_32bit_ieee</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">structured_um_loading</span></code></a></li>
+<li><a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FieldCollation</span></code></a></li>
 </ul>
 </div></blockquote>
 <dl class="function">
@@ -126,7 +119,7 @@ Other types of UM file may fail to load correctly (or at all).</p>
 <code class="descclassname">iris.fileformats.um.</code><code class="descname">um_to_pp</code><span class="sig-paren">(</span><em>filename</em>, <em>read_data=False</em>, <em>word_depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.um_to_pp" title="Permalink to this definition">¶</a></dt>
 <dd><p>Extract individual PPFields from within a UM Fieldsfile-like file.</p>
 <p>Returns an iterator over the fields contained within the FieldsFile,
-returned as <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.pp.PPField</span></code></a> instances.</p>
+returned as <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a> instances.</p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -146,10 +139,10 @@ the FieldsFile.  Default value is False.</dd>
 </ul>
 <dl class="docutils">
 <dt>Returns:</dt>
-<dd>Iteration of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.pp.PPField</span></code></a>s.</dd>
+<dd>Iteration of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a>s.</dd>
 </dl>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">um</span><span class="o">.</span><span class="n">um_to_pp</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">um</span><span class="o">.</span><span class="n">um_to_pp</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
 <span class="gp">... </span>    <span class="k">print</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -169,7 +162,7 @@ the FieldsFile.  Default value is False.</dd>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>callback - a function which can be passed on to</dt>
-<dd><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal"><span class="pre">iris.io.run_callback()</span></code></a></dd>
+<dd><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.run_callback()</span></code></a></dd>
 </dl>
 </li>
 </ul>
@@ -190,7 +183,7 @@ orography references).</p>
 files.</p>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last"><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-func docutils literal"><span class="pre">load_cubes()</span></code></a> for keyword details</p>
+<p class="last"><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cubes()</span></code></a> for keyword details</p>
 </div>
 </dd></dl>
 
@@ -206,11 +199,11 @@ the same vertical levels and times (see full details below).</p>
 <p>This method is a context manager which enables an alternative loading
 mechanism for ‘structured’ UM files, providing much faster load times.
 Within the scope of the context manager, this affects all standard Iris
-load functions (<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal"><span class="pre">load()</span></code></a>, <a class="reference internal" href="../../iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-func docutils literal"><span class="pre">load_cube()</span></code></a>,
-<a class="reference internal" href="../../iris.html#iris.load_cubes" title="iris.load_cubes"><code class="xref py py-func docutils literal"><span class="pre">load_cubes()</span></code></a> and <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-func docutils literal"><span class="pre">load_raw()</span></code></a>), when loading from UM
+load functions (<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">load()</span></code></a>, <a class="reference internal" href="../../iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cube()</span></code></a>,
+<a class="reference internal" href="../../iris.html#iris.load_cubes" title="iris.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cubes()</span></code></a> and <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_raw()</span></code></a>), when loading from UM
 format files (PP or fieldsfiles).</p>
 <p>For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">filepath</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;uk_hires.pp&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.um</span> <span class="kn">import</span> <span class="n">structured_um_loading</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">structured_um_loading</span><span class="p">():</span>
@@ -221,9 +214,9 @@ format files (PP or fieldsfiles).</p>
 </pre></div>
 </div>
 <p>The results from this are normally equivalent to those generated by
-<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal"><span class="pre">iris.load()</span></code></a>, but the operation is substantially faster for input
+<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a>, but the operation is substantially faster for input
 which is structured.</p>
-<p>For calls other than <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal"><span class="pre">load_raw()</span></code></a>, the resulting cubes are
+<p>For calls other than <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_raw()</span></code></a>, the resulting cubes are
 concatenated over all the input files, so there is normally just one
 output cube per phenomenon.</p>
 <p>However, actual loaded results are somewhat different from non-structured
@@ -236,7 +229,7 @@ called in a somewhat different way than in a ‘normal’ load :
 The callback is called once for each basic <em>structured</em> cube loaded,
 which is normally the whole of one phenomenon from a single input file.
 In particular, the callback’s “field” argument is a
-<a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-class docutils literal"><span class="pre">FieldCollation</span></code></a>, from which “field.fields”
+<a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-class docutils literal notranslate"><span class="pre">FieldCollation</span></code></a>, from which “field.fields”
 gives a <em>list</em> of PPFields from which that cube was built.
 The code required is therefore different from a ‘normal’ callback.
 For an example of this, see <a class="reference external" href="https://github.com/SciTools/iris/blob/ddb46f78e54b6ef4110357dfe9cfcffa7d186d90/lib/iris/tests/integration/fast_load/test_fast_load.py#L409">this example in the Iris test code</a>.</div></blockquote>
@@ -288,7 +281,7 @@ cube over all input files :  Instead, the single- and multiple-valued
 sets will typically produce two separate cubes with overlapping
 coordinates.<ul>
 <li>this can be worked around by loading files individually, or with
-<a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal"><span class="pre">load_raw()</span></code></a>, and merging/concatenating explicitly.</li>
+<a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_raw()</span></code></a>, and merging/concatenating explicitly.</li>
 </ul>
 </li>
 </ul>
@@ -351,11 +344,11 @@ either scalar or full-length 1-D vectors.</p>
 <div><dl class="class">
 <dt id="iris.fileformats.um.FieldCollation">
 <em class="property">class </em><code class="descclassname">iris.fileformats.um.</code><code class="descname">FieldCollation</code><span class="sig-paren">(</span><em>fields</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.FieldCollation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt>fields (iterable of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal"><span class="pre">iris.fileformats.pp.PPField</span></code></a>):</dt>
+<dt>fields (iterable of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a>):</dt>
 <dd>The fields in the collation.</dd>
 </dl>
 </li>

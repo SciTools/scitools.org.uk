@@ -4,20 +4,12 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.analysis &#8212; Iris 2.0.0rc1 documentation</title>
+    <title>iris.analysis &#8212; Iris 2.0.0 documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    '../../',
-        VERSION:     '2.0.0rc1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true,
-        SOURCELINK_SUFFIX: '.txt'
-      };
-    </script>
+    <script type="text/javascript" src="../../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../../_static/jquery.js"></script>
     <script type="text/javascript" src="../../_static/underscore.js"></script>
     <script type="text/javascript" src="../../_static/doctools.js"></script>
@@ -33,8 +25,7 @@
     <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
     <script type="text/javascript" src="http://docs.python.org/2/_static/copybutton.js"></script>
 
-  </head>
-  <body>
+  </head><body>
 <div style="background-color: white; text-align: left; padding: 1px 10px 1px 15px">
 <p style="margin-left: 15px; font-weight:bolder; letter-spacing:0.1ex;">
 <a href="../../index.html"><img src="../../_static/Iris7_1_trim_100.png" width=101 height=100 border="0" style="vertical-align:middle" alt="Logo"/></a>
@@ -84,12 +75,14 @@
    </div>
 <div id="searchbox" style="display: none" role="search">
   <h3>Quick search</h3>
+    <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <div><input type="text" name="q" /></div>
-      <div><input type="submit" value="Go" /></div>
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
       <input type="hidden" name="check_keywords" value="yes" />
       <input type="hidden" name="area" value="default" />
     </form>
+    </div>
 </div>
 <script type="text/javascript">$('#searchbox').show(0);</script>
         </div>
@@ -115,24 +108,24 @@
 </ul>
 </div>
 </div>
-<span class="target" id="module-iris.analysis"></span><p>A package providing <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a> analysis support.</p>
-<p>This module defines a suite of <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instances,
+<span class="target" id="module-iris.analysis"></span><p>A package providing <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> analysis support.</p>
+<p>This module defines a suite of <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instances,
 which are used to specify the statistical measure to calculate over a
-<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, using methods such as
-<a class="reference internal" href="cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-meth docutils literal"><span class="pre">aggregated_by()</span></code></a> and <a class="reference internal" href="cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><code class="xref py py-meth docutils literal"><span class="pre">collapsed()</span></code></a>.</p>
-<p>The <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> is a convenience class that allows
+<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, using methods such as
+<a class="reference internal" href="cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-meth docutils literal notranslate"><span class="pre">aggregated_by()</span></code></a> and <a class="reference internal" href="cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">collapsed()</span></code></a>.</p>
+<p>The <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> is a convenience class that allows
 specific statistical aggregation operators to be defined and instantiated.
 These operators can then be used to collapse, or partially collapse, one or
-more dimensions of a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as discussed in
+more dimensions of a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as discussed in
 <a class="reference internal" href="../../userguide/cube_statistics.html#cube-statistics"><span class="std std-ref">Cube statistics</span></a>.</p>
 <p>In particular, <a class="reference internal" href="../../userguide/cube_statistics.html#cube-statistics-collapsing"><span class="std std-ref">Collapsing entire data dimensions</span></a> discusses how to use
-<a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-const docutils literal"><span class="pre">MEAN</span></code></a> to average over one dimension of a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>,
+<a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-const docutils literal notranslate"><span class="pre">MEAN</span></code></a> to average over one dimension of a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>,
 and also how to perform weighted <a class="reference internal" href="../../userguide/cube_statistics.html#cube-statistics-collapsing-average"><span class="std std-ref">Area averaging</span></a>.
 While <a class="reference internal" href="../../userguide/cube_statistics.html#cube-statistics-aggregated-by"><span class="std std-ref">Partially reducing data dimensions</span></a> shows how to aggregate similar
 groups of data points along a single dimension, to result in fewer points
 in that dimension.</p>
 <p>The gallery contains several interesting worked examples of how an
-<a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> may be used, including:</p>
+<a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> may be used, including:</p>
 <blockquote>
 <div><ul class="simple">
 <li><a class="reference internal" href="../../examples/Meteorology/COP_1d_plot.html#meteorology-cop-1d-plot"><span class="std std-ref">Global average annual temperature plot</span></a></li>
@@ -145,36 +138,36 @@ in that dimension.</p>
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.analysis.COUNT" title="iris.analysis.COUNT"><code class="xref py py-obj docutils literal"><span class="pre">COUNT</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.GMEAN" title="iris.analysis.GMEAN"><code class="xref py py-obj docutils literal"><span class="pre">GMEAN</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.HMEAN" title="iris.analysis.HMEAN"><code class="xref py py-obj docutils literal"><span class="pre">HMEAN</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.MAX" title="iris.analysis.MAX"><code class="xref py py-obj docutils literal"><span class="pre">MAX</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-obj docutils literal"><span class="pre">MEAN</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.MEDIAN" title="iris.analysis.MEDIAN"><code class="xref py py-obj docutils literal"><span class="pre">MEDIAN</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.MIN" title="iris.analysis.MIN"><code class="xref py py-obj docutils literal"><span class="pre">MIN</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.PEAK" title="iris.analysis.PEAK"><code class="xref py py-obj docutils literal"><span class="pre">PEAK</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.PERCENTILE" title="iris.analysis.PERCENTILE"><code class="xref py py-obj docutils literal"><span class="pre">PERCENTILE</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.PROPORTION" title="iris.analysis.PROPORTION"><code class="xref py py-obj docutils literal"><span class="pre">PROPORTION</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.RMS" title="iris.analysis.RMS"><code class="xref py py-obj docutils literal"><span class="pre">RMS</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.STD_DEV" title="iris.analysis.STD_DEV"><code class="xref py py-obj docutils literal"><span class="pre">STD_DEV</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.SUM" title="iris.analysis.SUM"><code class="xref py py-obj docutils literal"><span class="pre">SUM</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.VARIANCE" title="iris.analysis.VARIANCE"><code class="xref py py-obj docutils literal"><span class="pre">VARIANCE</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.WPERCENTILE" title="iris.analysis.WPERCENTILE"><code class="xref py py-obj docutils literal"><span class="pre">WPERCENTILE</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.coord_comparison" title="iris.analysis.coord_comparison"><code class="xref py py-obj docutils literal"><span class="pre">coord_comparison</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-obj docutils literal"><span class="pre">Aggregator</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.WeightedAggregator" title="iris.analysis.WeightedAggregator"><code class="xref py py-obj docutils literal"><span class="pre">WeightedAggregator</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.clear_phenomenon_identity" title="iris.analysis.clear_phenomenon_identity"><code class="xref py py-obj docutils literal"><span class="pre">clear_phenomenon_identity</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-obj docutils literal"><span class="pre">Linear</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-obj docutils literal"><span class="pre">AreaWeighted</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-obj docutils literal"><span class="pre">Nearest</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-obj docutils literal"><span class="pre">UnstructuredNearest</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.COUNT" title="iris.analysis.COUNT"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COUNT</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.GMEAN" title="iris.analysis.GMEAN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GMEAN</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.HMEAN" title="iris.analysis.HMEAN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">HMEAN</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.MAX" title="iris.analysis.MAX"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MAX</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MEAN</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.MEDIAN" title="iris.analysis.MEDIAN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MEDIAN</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.MIN" title="iris.analysis.MIN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MIN</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.PEAK" title="iris.analysis.PEAK"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PEAK</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.PERCENTILE" title="iris.analysis.PERCENTILE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PERCENTILE</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.PROPORTION" title="iris.analysis.PROPORTION"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PROPORTION</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.RMS" title="iris.analysis.RMS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RMS</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.STD_DEV" title="iris.analysis.STD_DEV"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STD_DEV</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.SUM" title="iris.analysis.SUM"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SUM</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.VARIANCE" title="iris.analysis.VARIANCE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VARIANCE</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.WPERCENTILE" title="iris.analysis.WPERCENTILE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WPERCENTILE</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.coord_comparison" title="iris.analysis.coord_comparison"><code class="xref py py-obj docutils literal notranslate"><span class="pre">coord_comparison</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aggregator</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.WeightedAggregator" title="iris.analysis.WeightedAggregator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WeightedAggregator</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.clear_phenomenon_identity" title="iris.analysis.clear_phenomenon_identity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clear_phenomenon_identity</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Linear</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AreaWeighted</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Nearest</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnstructuredNearest</span></code></a></li>
 </ul>
 </div></blockquote>
 <dl class="data">
 <dt id="iris.analysis.COUNT">
 <code class="descclassname">iris.analysis.</code><code class="descname">COUNT</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.COUNT" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that counts the number
-of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> data occurrences that satisfy a particular
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that counts the number
+of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> data occurrences that satisfy a particular
 criterion, as defined by a user supplied <em>function</em>.</p>
 <p><strong>Required</strong> kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
@@ -188,13 +181,13 @@ array of True/False values.</dd>
 <p><strong>For example</strong>:</p>
 <p>To compute the number of <em>ensemble members</em> with precipitation exceeding 10
 (in cube data units) could be calculated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;ensemble_member&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">COUNT</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;ensemble_member&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">COUNT</span><span class="p">,</span>
                                <span class="n">function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">values</span><span class="p">:</span> <span class="n">values</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">The <a class="reference internal" href="#iris.analysis.PROPORTION" title="iris.analysis.PROPORTION"><code class="xref py py-func docutils literal"><span class="pre">PROPORTION()</span></code></a> aggregator.</p>
+<p class="last">The <a class="reference internal" href="#iris.analysis.PROPORTION" title="iris.analysis.PROPORTION"><code class="xref py py-func docutils literal notranslate"><span class="pre">PROPORTION()</span></code></a> aggregator.</p>
 </div>
 <p>This aggregator handles masked data.</p>
 </dd></dl>
@@ -204,12 +197,12 @@ array of True/False values.</dd>
 --><dl class="data">
 <dt id="iris.analysis.GMEAN">
 <code class="descclassname">iris.analysis.</code><code class="descname">GMEAN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.GMEAN" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates the
-geometric mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.gmean.html#scipy.stats.mstats.gmean" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.stats.mstats.gmean()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates the
+geometric mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.gmean.html#scipy.stats.mstats.gmean" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.stats.mstats.gmean()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal geometric means over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">GMEAN</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">GMEAN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -220,12 +213,12 @@ geometric mean over a <a class="reference internal" href="cube.html#iris.cube.Cu
 --><dl class="data">
 <dt id="iris.analysis.HMEAN">
 <code class="descclassname">iris.analysis.</code><code class="descname">HMEAN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.HMEAN" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates the
-harmonic mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.hmean.html#scipy.stats.mstats.hmean" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.stats.mstats.hmean()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates the
+harmonic mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.hmean.html#scipy.stats.mstats.hmean" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.stats.mstats.hmean()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal harmonic mean over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">HMEAN</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">HMEAN</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -241,12 +234,12 @@ than zero.</p>
 --><dl class="data">
 <dt id="iris.analysis.MAX">
 <code class="descclassname">iris.analysis.</code><code class="descname">MAX</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MAX" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the maximum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.max.html#numpy.ma.max" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.max()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the maximum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.max.html#numpy.ma.max" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.max()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal maximums over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MAX</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MAX</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -257,9 +250,9 @@ the maximum over a <a class="reference internal" href="cube.html#iris.cube.Cube"
 --><dl class="data">
 <dt id="iris.analysis.MEAN">
 <code class="descclassname">iris.analysis.</code><code class="descname">MEAN</code> &#x2192; WeightedAggregator instance.<a class="headerlink" href="#iris.analysis.MEAN" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.average.html#numpy.ma.average" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.average()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the mean over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.average.html#numpy.ma.average" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.average()</span></code></a>.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -277,7 +270,7 @@ all the contributing elements are masked. Defaults to 1.</dd>
 <dd>Weights matching the shape of the cube or the length of the window
 for rolling window operations. Note that, latitude/longitude area
 weights can be calculated using
-<a class="reference internal" href="analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</dd>
+<a class="reference internal" href="analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -289,11 +282,11 @@ returned along with the collapsed data. Defaults to False.</dd>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal means over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To compute a weighted area average:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">coords</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">)</span>
 <span class="n">collapsed_cube</span><span class="p">,</span> <span class="n">collapsed_weights</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span>
                                                    <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">,</span>
                                                    <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">,</span>
@@ -302,7 +295,7 @@ returned along with the collapsed data. Defaults to False.</dd>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal"><span class="pre">dask.array.nanmean()</span></code>.</p>
+<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.nanmean()</span></code>.</p>
 </div>
 <p>This aggregator handles masked data.</p>
 </dd></dl>
@@ -312,12 +305,12 @@ returned along with the collapsed data. Defaults to False.</dd>
 --><dl class="data">
 <dt id="iris.analysis.MEDIAN">
 <code class="descclassname">iris.analysis.</code><code class="descname">MEDIAN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MEDIAN" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the median over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.median.html#numpy.ma.median" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.median()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the median over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.median.html#numpy.ma.median" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.median()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal medians over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEDIAN</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEDIAN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -328,12 +321,12 @@ the median over a <a class="reference internal" href="cube.html#iris.cube.Cube" 
 --><dl class="data">
 <dt id="iris.analysis.MIN">
 <code class="descclassname">iris.analysis.</code><code class="descname">MIN</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.MIN" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the minimum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.min.html#numpy.ma.min" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal"><span class="pre">numpy.ma.min()</span></code></a>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the minimum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ma.min.html#numpy.ma.min" title="(in NumPy v1.14)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.min()</span></code></a>.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal minimums over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MIN</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MIN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -344,9 +337,9 @@ the minimum over a <a class="reference internal" href="cube.html#iris.cube.Cube"
 --><dl class="data">
 <dt id="iris.analysis.PEAK">
 <code class="descclassname">iris.analysis.</code><code class="descname">PEAK</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.PEAK" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
 the peak value derived from a spline interpolation over a
-<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>.</p>
+<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
 <p>The peak calculation takes into account nan values. Therefore, if the number
 of non-nan values is zero the result itself will be an array of nan values.</p>
 <p>The peak calculation also takes into account masked values. Therefore, if the
@@ -355,7 +348,7 @@ number of non-masked values is zero the result itself will be a masked array.</p
 performed individually, in sequence, for each coordinate specified.</p>
 <p><strong>For example</strong>:</p>
 <p>To compute the peak over the <em>time</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PEAK</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PEAK</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -366,9 +359,9 @@ performed individually, in sequence, for each coordinate specified.</p>
 --><dl class="data">
 <dt id="iris.analysis.PERCENTILE">
 <code class="descclassname">iris.analysis.</code><code class="descname">PERCENTILE</code><a class="headerlink" href="#iris.analysis.PERCENTILE" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <code class="xref py py-class docutils literal"><span class="pre">PercentileAggregator</span></code> instance that calculates the
-percentile over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.</p>
+<dd><p>An <code class="xref py py-class docutils literal notranslate"><span class="pre">PercentileAggregator</span></code> instance that calculates the
+percentile over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.</p>
 <p><strong>Required</strong> kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -381,20 +374,20 @@ percentile over a <a class="reference internal" href="cube.html#iris.cube.Cube" 
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>alphap (float):</dt>
-<dd>Plotting positions parameter, see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.
+<dd>Plotting positions parameter, see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.
 Defaults to 1.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>betap (float):</dt>
-<dd>Plotting positions parameter, see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.
+<dd>Plotting positions parameter, see <a class="reference external" href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.mstats.mquantiles.html#scipy.stats.mstats.mquantiles" title="(in SciPy v1.0.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.stats.mstats.mquantiles()</span></code></a>.
 Defaults to 1.</dd>
 </dl>
 </li>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute the 10th and 90th percentile over <em>time</em>:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PERCENTILE</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PERCENTILE</span><span class="p">,</span> <span class="n">percent</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -405,8 +398,8 @@ Defaults to 1.</dd>
 --><dl class="data">
 <dt id="iris.analysis.PROPORTION">
 <code class="descclassname">iris.analysis.</code><code class="descname">PROPORTION</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.PROPORTION" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates the
-proportion, as a fraction, of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> data occurrences
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates the
+proportion, as a fraction, of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> data occurrences
 that satisfy a particular criterion, as defined by a user supplied
 <em>function</em>.</p>
 <p><strong>Required</strong> kwargs associated with the use of this aggregator:</p>
@@ -421,19 +414,19 @@ array of True/False values.</dd>
 <p><strong>For example</strong>:</p>
 <p>To compute the probability of precipitation exceeding 10
 (in cube data units) across <em>ensemble members</em> could be calculated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;ensemble_member&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PROPORTION</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;ensemble_member&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PROPORTION</span><span class="p">,</span>
                                <span class="n">function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">values</span><span class="p">:</span> <span class="n">values</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Similarly, the proportion of <em>time</em> precipitation exceeded 10
 (in cube data units) could be calculated with:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PROPORTION</span><span class="p">,</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">precip_cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">PROPORTION</span><span class="p">,</span>
                                <span class="n">function</span><span class="o">=</span><span class="k">lambda</span> <span class="n">values</span><span class="p">:</span> <span class="n">values</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="first admonition-title">See also</p>
-<p class="last">The <a class="reference internal" href="#iris.analysis.COUNT" title="iris.analysis.COUNT"><code class="xref py py-func docutils literal"><span class="pre">COUNT()</span></code></a> aggregator.</p>
+<p class="last">The <a class="reference internal" href="#iris.analysis.COUNT" title="iris.analysis.COUNT"><code class="xref py py-func docutils literal notranslate"><span class="pre">COUNT()</span></code></a> aggregator.</p>
 </div>
 <p>This aggregator handles masked data.</p>
 </dd></dl>
@@ -443,8 +436,8 @@ array of True/False values.</dd>
 --><dl class="data">
 <dt id="iris.analysis.RMS">
 <code class="descclassname">iris.analysis.</code><code class="descname">RMS</code> &#x2192; WeightedAggregator instance.<a class="headerlink" href="#iris.analysis.RMS" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the root mean square over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the root mean square over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
 ((x0**2 + x1**2 + … + xN-1**2) / N) ** 0.5.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
@@ -458,7 +451,7 @@ taking the mean.</dd>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute the zonal root mean square over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">RMS</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">RMS</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This aggregator handles masked data.</p>
@@ -469,9 +462,9 @@ taking the mean.</dd>
 --><dl class="data">
 <dt id="iris.analysis.STD_DEV">
 <code class="descclassname">iris.analysis.</code><code class="descname">STD_DEV</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.STD_DEV" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the standard deviation over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as
-computed by <code class="xref py py-func docutils literal"><span class="pre">numpy.ma.std()</span></code>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the standard deviation over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as
+computed by <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.std()</span></code>.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -483,16 +476,16 @@ where N represents the number of elements. Defaults to 1.</dd>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal standard deviations over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To obtain the biased standard deviation:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal"><span class="pre">dask.array.nanstd()</span></code>.</p>
+<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.nanstd()</span></code>.</p>
 </div>
 <p>This aggregator handles masked data.</p>
 </dd></dl>
@@ -502,8 +495,8 @@ where N represents the number of elements. Defaults to 1.</dd>
 --><dl class="data">
 <dt id="iris.analysis.SUM">
 <code class="descclassname">iris.analysis.</code><code class="descname">SUM</code> &#x2192; WeightedAggregator instance.<a class="headerlink" href="#iris.analysis.SUM" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the sum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by <code class="xref py py-func docutils literal"><span class="pre">numpy.ma.sum()</span></code>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the sum over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by <code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.sum()</span></code>.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -523,11 +516,11 @@ along with the collapsed data. Defaults to False.</dd>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute an accumulation over the <em>time</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">SUM</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To compute a weighted rolling sum e.g. to apply a digital filter:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="o">.</span><span class="mi">4</span><span class="p">,</span> <span class="o">.</span><span class="mi">2</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">])</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">SUM</span><span class="p">,</span>
                              <span class="nb">len</span><span class="p">(</span><span class="n">weights</span><span class="p">),</span> <span class="n">weights</span><span class="o">=</span><span class="n">weights</span><span class="p">)</span>
 </pre></div>
@@ -540,9 +533,9 @@ along with the collapsed data. Defaults to False.</dd>
 --><dl class="data">
 <dt id="iris.analysis.VARIANCE">
 <code class="descclassname">iris.analysis.</code><code class="descname">VARIANCE</code> &#x2192; Aggregator instance.<a class="headerlink" href="#iris.analysis.VARIANCE" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> instance that calculates
-the variance over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>, as computed by
-<code class="xref py py-func docutils literal"><span class="pre">numpy.ma.var()</span></code>.</p>
+<dd><p>An <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> instance that calculates
+the variance over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, as computed by
+<code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.ma.var()</span></code>.</p>
 <p>Additional kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -554,16 +547,16 @@ where N represents the number of elements. Defaults to 1.</dd>
 </ul>
 <p><strong>For example</strong>:</p>
 <p>To compute zonal variance over the <em>longitude</em> axis of a cube:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>To obtain the biased variance:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
-<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal"><span class="pre">dask.array.nanvar()</span></code>.</p>
+<p class="last">Lazy operation is supported, via <code class="xref py py-func docutils literal notranslate"><span class="pre">dask.array.nanvar()</span></code>.</p>
 </div>
 <p>This aggregator handles masked data.</p>
 </dd></dl>
@@ -573,8 +566,8 @@ where N represents the number of elements. Defaults to 1.</dd>
 --><dl class="data">
 <dt id="iris.analysis.WPERCENTILE">
 <code class="descclassname">iris.analysis.</code><code class="descname">WPERCENTILE</code><a class="headerlink" href="#iris.analysis.WPERCENTILE" title="Permalink to this definition">¶</a></dt>
-<dd><p>An <code class="xref py py-class docutils literal"><span class="pre">WeightedPercentileAggregator</span></code> instance that
-calculates the weighted percentile over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a>.</p>
+<dd><p>An <code class="xref py py-class docutils literal notranslate"><span class="pre">WeightedPercentileAggregator</span></code> instance that
+calculates the weighted percentile over a <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
 <p><strong>Required</strong> kwargs associated with the use of this aggregator:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -587,7 +580,7 @@ calculates the weighted percentile over a <a class="reference internal" href="cu
 <dd>Weights matching the shape of the cube or the length of the window
 for rolling window operations. Note that, latitude/longitude area
 weights can be calculated using
-<a class="reference internal" href="analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</dd>
+<a class="reference internal" href="analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</dd>
 </dl>
 </li>
 </ul>
@@ -602,7 +595,7 @@ returned along with the collapsed data. Defaults to False.</dd>
 <li><dl class="first docutils">
 <dt>kind (string or int):</dt>
 <dd>Specifies the kind of interpolation used, see
-<code class="xref py py-func docutils literal"><span class="pre">scipy.interpolate.interp1d()</span></code> Defaults to “linear”, which is
+<code class="xref py py-func docutils literal notranslate"><span class="pre">scipy.interpolate.interp1d()</span></code> Defaults to “linear”, which is
 equivalent to alphap=0.5, betap=0.5 in <cite>iris.analysis.PERCENTILE</cite></dd>
 </dl>
 </li>
@@ -701,7 +694,7 @@ their respective cubes</dd>
 </li>
 </ul>
 <p>Example usage:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">coord_comparison</span><span class="p">(</span><span class="n">cube1</span><span class="p">,</span> <span class="n">cube2</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">coord_comparison</span><span class="p">(</span><span class="n">cube1</span><span class="p">,</span> <span class="n">cube2</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;All equal coordinates: &#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;equal&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -709,13 +702,13 @@ their respective cubes</dd>
 
 <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
 <!--<hr class="docutils" />
---><p>The <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">Aggregator</span></code></a> class provides common aggregation functionality.</p>
+--><p>The <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Aggregator</span></code></a> class provides common aggregation functionality.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.analysis.Aggregator">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">Aggregator</code><span class="sig-paren">(</span><em>cell_method</em>, <em>call_func</em>, <em>units_func=None</em>, <em>lazy_func=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Aggregator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal"><span class="pre">iris.analysis._Aggregator</span></code></p>
-<p>Create an aggregator for the given <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code>.</p>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis._Aggregator</span></code></p>
+<p>Create an aggregator for the given <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code>.</p>
 <p>Args:</p>
 <ul>
 <li><dl class="first docutils">
@@ -746,14 +739,14 @@ the ‘data’ argument.</p>
 <div class="line"><em>Call signature</em>: (units)</div>
 </div>
 <p class="last">If provided, called to convert a cube’s units.
-Returns an <code class="xref py py-class docutils literal"><span class="pre">cf_units.Unit</span></code>, or a
+Returns an <code class="xref py py-class docutils literal notranslate"><span class="pre">cf_units.Unit</span></code>, or a
 value that can be made into one.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>lazy_func (callable or None):</dt>
-<dd><p class="first last">An alternative to <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code> implementing a lazy
+<dd><p class="first last">An alternative to <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code> implementing a lazy
 aggregation. Note that, it need not support all features of the
 main operation, but should raise an error in unhandled cases.</p>
 </dd>
@@ -762,16 +755,16 @@ main operation, but should raise an error in unhandled cases.</p>
 </ul>
 <dl class="docutils">
 <dt>Additional kwargs::</dt>
-<dd>Passed through to <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code> and <code class="xref py py-data docutils literal"><span class="pre">lazy_func</span></code>.</dd>
+<dd>Passed through to <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">lazy_func</span></code>.</dd>
 </dl>
 <p>Aggregators are used by cube aggregation methods such as
-<a class="reference internal" href="cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><code class="xref py py-meth docutils literal"><span class="pre">collapsed()</span></code></a> and
-<a class="reference internal" href="cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-meth docutils literal"><span class="pre">aggregated_by()</span></code></a>.  For example:</p>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<a class="reference internal" href="cube.html#iris.cube.Cube.collapsed" title="iris.cube.Cube.collapsed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">collapsed()</span></code></a> and
+<a class="reference internal" href="cube.html#iris.cube.Cube.aggregated_by" title="iris.cube.Cube.aggregated_by"><code class="xref py py-meth docutils literal notranslate"><span class="pre">aggregated_by()</span></code></a>.  For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A variety of ready-made aggregators are provided in this module, such
-as <a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-data docutils literal"><span class="pre">MEAN</span></code></a> and <a class="reference internal" href="#iris.analysis.MAX" title="iris.analysis.MAX"><code class="xref py py-data docutils literal"><span class="pre">MAX</span></code></a>.  Custom
+as <a class="reference internal" href="#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-data docutils literal notranslate"><span class="pre">MEAN</span></code></a> and <a class="reference internal" href="#iris.analysis.MAX" title="iris.analysis.MAX"><code class="xref py py-data docutils literal notranslate"><span class="pre">MAX</span></code></a>.  Custom
 aggregators can also be created for special purposes, see
 <a class="reference internal" href="../../examples/General/custom_aggregation.html#general-custom-aggregation"><span class="std std-ref">Calculating a custom statistic</span></a> for a worked example.</p>
 <dl class="method">
@@ -847,7 +840,7 @@ which should be passed the same keyword arguments.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>data (array):</dt>
-<dd>A lazy array (<code class="xref py py-class docutils literal"><span class="pre">dask.array.Array</span></code>).</dd>
+<dd>A lazy array (<code class="xref py py-class docutils literal notranslate"><span class="pre">dask.array.Array</span></code>).</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -870,7 +863,7 @@ function.</dd>
 <dl class="docutils">
 <dt>Returns:</dt>
 <dd>A lazy array representing the aggregation operation
-(<code class="xref py py-class docutils literal"><span class="pre">dask.array.Array</span></code>).</dd>
+(<code class="xref py py-class docutils literal notranslate"><span class="pre">dask.array.Array</span></code>).</dd>
 </dl>
 </dd></dl>
 
@@ -883,17 +876,17 @@ function.</dd>
 <dl class="method">
 <dt id="iris.analysis.Aggregator.post_process">
 <code class="descname">post_process</code><span class="sig-paren">(</span><em>collapsed_cube</em>, <em>data_result</em>, <em>coords</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Aggregator.post_process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Process the result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
+<dd><p>Process the result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>collapsed_cube:</dt>
-<dd>A <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a>.</dd>
+<dd>A <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>data_result:</dt>
-<dd>Result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a></dd>
+<dd>Result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a></dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -921,12 +914,12 @@ keyword from a standard deviation aggregator).</li>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt>cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
+<dt>cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
 <dd>Source cube that requires metadata update.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>coords (<a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal"><span class="pre">iris.coords.Coord</span></code></a>):</dt>
+<dt>coords (<a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a>):</dt>
 <dd>The one or more coordinates that were aggregated.</dd>
 </dl>
 </li>
@@ -949,8 +942,8 @@ keyword for a standard deviation aggregator).</li>
 <div><dl class="class">
 <dt id="iris.analysis.WeightedAggregator">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">WeightedAggregator</code><span class="sig-paren">(</span><em>cell_method</em>, <em>call_func</em>, <em>units_func=None</em>, <em>lazy_func=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.WeightedAggregator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal"><span class="pre">iris.analysis.Aggregator</span></code></a></p>
-<p>Create a weighted aggregator for the given <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code>.</p>
+<dd><p>Bases: <a class="reference internal" href="#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Aggregator</span></code></a></p>
+<p>Create a weighted aggregator for the given <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code>.</p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
@@ -973,7 +966,7 @@ keyword for a standard deviation aggregator).</li>
 </li>
 <li><dl class="first docutils">
 <dt>lazy_func (callable or None):</dt>
-<dd>An alternative to <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code> implementing a lazy
+<dd>An alternative to <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code> implementing a lazy
 aggregation. Note that, it need not support all features of the
 main operation, but should raise an error in unhandled cases.</dd>
 </dl>
@@ -981,7 +974,7 @@ main operation, but should raise an error in unhandled cases.</dd>
 </ul>
 <dl class="docutils">
 <dt>Additional kwargs:</dt>
-<dd>Passed through to <code class="xref py py-data docutils literal"><span class="pre">call_func</span></code> and <code class="xref py py-data docutils literal"><span class="pre">lazy_func</span></code>.</dd>
+<dd>Passed through to <code class="xref py py-data docutils literal notranslate"><span class="pre">call_func</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">lazy_func</span></code>.</dd>
 </dl>
 <dl class="method">
 <dt id="iris.analysis.WeightedAggregator.aggregate">
@@ -1056,7 +1049,7 @@ which should be passed the same keyword arguments.</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>data (array):</dt>
-<dd>A lazy array (<code class="xref py py-class docutils literal"><span class="pre">dask.array.Array</span></code>).</dd>
+<dd>A lazy array (<code class="xref py py-class docutils literal notranslate"><span class="pre">dask.array.Array</span></code>).</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -1079,7 +1072,7 @@ function.</dd>
 <dl class="docutils">
 <dt>Returns:</dt>
 <dd>A lazy array representing the aggregation operation
-(<code class="xref py py-class docutils literal"><span class="pre">dask.array.Array</span></code>).</dd>
+(<code class="xref py py-class docutils literal notranslate"><span class="pre">dask.array.Array</span></code>).</dd>
 </dl>
 </dd></dl>
 
@@ -1092,19 +1085,19 @@ function.</dd>
 <dl class="method">
 <dt id="iris.analysis.WeightedAggregator.post_process">
 <code class="descname">post_process</code><span class="sig-paren">(</span><em>collapsed_cube</em>, <em>data_result</em>, <em>coords</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.WeightedAggregator.post_process" title="Permalink to this definition">¶</a></dt>
-<dd><p>Process the result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
+<dd><p>Process the result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
 <p>Returns a tuple(cube, weights) if a tuple(data, weights) was returned
-from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
+from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a>.</p>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>collapsed_cube:</dt>
-<dd>A <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a>.</dd>
+<dd>A <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>data_result:</dt>
-<dd>Result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a></dd>
+<dd>Result from <a class="reference internal" href="#iris.analysis.Aggregator.aggregate" title="iris.analysis.Aggregator.aggregate"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.Aggregator.aggregate()</span></code></a></dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -1134,12 +1127,12 @@ and True.</dd>
 <p>Args:</p>
 <ul class="simple">
 <li><dl class="first docutils">
-<dt>cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
+<dt>cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
 <dd>Source cube that requires metadata update.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
-<dt>coords (<a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal"><span class="pre">iris.coords.Coord</span></code></a>):</dt>
+<dt>coords (<a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a>):</dt>
 <dd>The one or more coordinates that were aggregated.</dd>
 </dl>
 </li>
@@ -1186,13 +1179,13 @@ cell_methods of a cube.</p>
 <!--<hr class="docutils" />
 --><p>This class describes the linear interpolation and regridding scheme for
 interpolating or regridding over one or more orthogonal coordinates,
-typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> or
-<a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
+typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> or
+<a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.analysis.Linear">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">Linear</code><span class="sig-paren">(</span><em>extrapolation_mode='linear'</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Linear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Linear interpolation and regridding scheme suitable for interpolating
 or regridding over one or more orthogonal coordinates.</p>
 <p>Kwargs:</p>
@@ -1224,9 +1217,9 @@ set to NaN.</li>
 <dt id="iris.analysis.Linear.interpolator">
 <code class="descname">interpolator</code><span class="sig-paren">(</span><em>cube</em>, <em>coords</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Linear.interpolator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a linear interpolator to perform interpolation over the
-given <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> specified by the dimensions of
+given <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> specified by the dimensions of
 the given coordinates.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> for
 interpolating a cube. There are, however, some situations when
 constructing your own interpolator is preferable. These are detailed
 in the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-an-interpolator"><span class="std std-ref">user guide</span></a>.</p>
@@ -1234,7 +1227,7 @@ in the <a class="reference internal" href="../../userguide/interpolation_and_reg
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>cube:</dt>
-<dd>The source <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a> to be interpolated.</dd>
+<dd>The source <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> to be interpolated.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -1270,7 +1263,7 @@ sample_points must have the form
 <code class="descname">regridder</code><span class="sig-paren">(</span><em>src_grid</em>, <em>target_grid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Linear.regridder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a linear regridder to perform regridding from the source
 grid to the target grid.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
 regridding a cube. There are, however, some situations when
 constructing your own regridder is preferable. These are detailed in
 the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-a-regridder"><span class="std std-ref">user guide</span></a>.</p>
@@ -1278,12 +1271,12 @@ the <a class="reference internal" href="../../userguide/interpolation_and_regrid
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>src_grid:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>target_grid:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
 </dl>
 </li>
 </ul>
@@ -1311,12 +1304,12 @@ that is to be regridded to the <cite>target_grid</cite>.</p>
 --><p>This class describes an area-weighted regridding scheme for regridding
 between ‘ordinary’ horizontal grids with separated X and Y coordinates in a
 common coordinate system.
-Typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
+Typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.analysis.AreaWeighted">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">AreaWeighted</code><span class="sig-paren">(</span><em>mdtol=1</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.AreaWeighted" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Area-weighted regridding scheme suitable for regridding between
 different orthogonal XY grids in the same coordinate system.</p>
 <p>Kwargs:</p>
@@ -1338,7 +1331,7 @@ source grid are masked. Defaults to 1.</dd>
 <code class="descname">regridder</code><span class="sig-paren">(</span><em>src_grid_cube</em>, <em>target_grid_cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.AreaWeighted.regridder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates an area-weighted regridder to perform regridding from the
 source grid to the target grid.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
 regridding a cube. There are, however, some situations when
 constructing your own regridder is preferable. These are detailed in
 the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-a-regridder"><span class="std std-ref">user guide</span></a>.</p>
@@ -1346,12 +1339,12 @@ the <a class="reference internal" href="../../userguide/interpolation_and_regrid
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>src_grid_cube:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>target_grid_cube:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
 </dl>
 </li>
 </ul>
@@ -1373,13 +1366,13 @@ that is to be regridded to the grid of <cite>target_grid_cube</cite>.</p>
 <!--<hr class="docutils" />
 --><p>This class describes the nearest-neighbour interpolation and regridding
 scheme for interpolating or regridding over one or more orthogonal
-coordinates, typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></code></a>
-or <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
+coordinates, typically for use with <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.interpolate()</span></code></a>
+or <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a>.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.analysis.Nearest">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">Nearest</code><span class="sig-paren">(</span><em>extrapolation_mode='extrapolate'</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Nearest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Nearest-neighbour interpolation and regridding scheme suitable for
 interpolating or regridding over one or more orthogonal coordinates.</p>
 <p>Kwargs:</p>
@@ -1410,9 +1403,9 @@ set to NaN.</li>
 <dt id="iris.analysis.Nearest.interpolator">
 <code class="descname">interpolator</code><span class="sig-paren">(</span><em>cube</em>, <em>coords</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Nearest.interpolator" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a nearest-neighbour interpolator to perform
-interpolation over the given <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> specified
+interpolation over the given <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> specified
 by the dimensions of the specified coordinates.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.interpolate" title="iris.cube.Cube.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.interpolate()</span></code></a> for
 interpolating a cube. There are, however, some situations when
 constructing your own interpolator is preferable. These are detailed
 in the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-an-interpolator"><span class="std std-ref">user guide</span></a>.</p>
@@ -1420,7 +1413,7 @@ in the <a class="reference internal" href="../../userguide/interpolation_and_reg
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>cube:</dt>
-<dd>The source <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">iris.cube.Cube</span></code></a> to be interpolated.</dd>
+<dd>The source <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> to be interpolated.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
@@ -1456,7 +1449,7 @@ sample_points must have the form
 <code class="descname">regridder</code><span class="sig-paren">(</span><em>src_grid</em>, <em>target_grid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.Nearest.regridder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a nearest-neighbour regridder to perform regridding from the
 source grid to the target grid.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
 regridding a cube. There are, however, some situations when
 constructing your own regridder is preferable. These are detailed in
 the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-a-regridder"><span class="std std-ref">user guide</span></a>.</p>
@@ -1464,12 +1457,12 @@ the <a class="reference internal" href="../../userguide/interpolation_and_regrid
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>src_grid:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the source grid.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>target_grid:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the target grid.</dd>
 </dl>
 </li>
 </ul>
@@ -1509,7 +1502,7 @@ same units in the source and grid cubes.</p>
 <div class="admonition note">
 <p class="first admonition-title">Note</p>
 <p class="last">This scheme performs essentially the same job as
-<a class="reference internal" href="experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredNearest" title="iris.experimental.regrid.ProjectedUnstructuredNearest"><code class="xref py py-class docutils literal"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredNearest</span></code></a>.
+<a class="reference internal" href="experimental/regrid.html#iris.experimental.regrid.ProjectedUnstructuredNearest" title="iris.experimental.regrid.ProjectedUnstructuredNearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.regrid.ProjectedUnstructuredNearest</span></code></a>.
 That scheme is faster, but only works well on data in a limited
 region of the globe, covered by a specified projection.
 This approach is more rigorously correct and can be applied to global
@@ -1519,7 +1512,7 @@ datasets.</p>
 <div><dl class="class">
 <dt id="iris.analysis.UnstructuredNearest">
 <em class="property">class </em><code class="descclassname">iris.analysis.</code><code class="descname">UnstructuredNearest</code><a class="headerlink" href="#iris.analysis.UnstructuredNearest" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal"><span class="pre">object</span></code></a></p>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Nearest-neighbour interpolation and regridding scheme suitable for
 interpolating or regridding from un-gridded data such as trajectories
 or other data where the X and Y coordinates share the same dimensions.</p>
@@ -1527,11 +1520,11 @@ or other data where the X and Y coordinates share the same dimensions.</p>
 <dt id="iris.analysis.UnstructuredNearest.regridder">
 <code class="descname">regridder</code><span class="sig-paren">(</span><em>src_cube</em>, <em>target_grid</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.UnstructuredNearest.regridder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a nearest-neighbour regridder, of the
-<a class="reference internal" href="analysis/trajectory.html#iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder" title="iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder"><code class="xref py py-class docutils literal"><span class="pre">UnstructuredNearestNeigbourRegridder</span></code></a>
+<a class="reference internal" href="analysis/trajectory.html#iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder" title="iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnstructuredNearestNeigbourRegridder</span></code></a>
 type, to perform regridding from the source grid to the target grid.</p>
 <p>This can then be applied to any source data with the same structure as
 the original ‘src_cube’.</p>
-<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
+<p>Typically you should use <a class="reference internal" href="cube.html#iris.cube.Cube.regrid" title="iris.cube.Cube.regrid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.regrid()</span></code></a> for
 regridding a cube. There are, however, some situations when
 constructing your own regridder is preferable. These are detailed in
 the <a class="reference internal" href="../../userguide/interpolation_and_regridding.html#caching-a-regridder"><span class="std std-ref">user guide</span></a>.</p>
@@ -1539,14 +1532,14 @@ the <a class="reference internal" href="../../userguide/interpolation_and_regrid
 <ul class="simple">
 <li><dl class="first docutils">
 <dt>src_cube:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the source grid.
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the source grid.
 The X and Y coordinates can have any shape, but must be mapped over
 the same cube dimensions.</dd>
 </dl>
 </li>
 <li><dl class="first docutils">
 <dt>target_grid:</dt>
-<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal"><span class="pre">Cube</span></code></a> defining the target grid.
+<dd>The <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the target grid.
 The X and Y coordinates must be one-dimensional dimension
 coordinates, mapped to different dimensions.
 All other cube components are ignored.</dd>
