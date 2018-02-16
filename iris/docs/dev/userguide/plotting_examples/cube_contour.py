@@ -1,1 +1,0 @@
-../../../../../shared_assets/fb99f2d8798e45643fbe9cbcd062d364082d14115bb6fe0a7682bd2c-cube_contour.py

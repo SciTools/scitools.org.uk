@@ -1,1 +1,0 @@
-../../../../../shared_assets/cb52e6487b4799d62cd58c1993ecebcc7fcdf2abbada2fd4ee01922a-1d_quickplot_simple.py
