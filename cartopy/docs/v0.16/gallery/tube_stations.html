@@ -1,0 +1,217 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Tube Stations &#8212; cartopy 0.16.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+    <script type="text/javascript" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="UN Flag" href="un_flag.html" />
+    <link rel="prev" title="Using Cartopy and AxesGrid toolkit" href="axes_grid_basic.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="un_flag.html" title="UN Flag"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="axes_grid_basic.html" title="Using Cartopy and AxesGrid toolkit"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Cartopy Gallery</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="axes_grid_basic.html"
+                        title="previous chapter">Using Cartopy and AxesGrid toolkit</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="un_flag.html"
+                        title="next chapter">UN Flag</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/gallery/tube_stations.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="tube-stations">
+<span id="sphx-glr-gallery-tube-stations-py"></span><h1>Tube Stations<a class="headerlink" href="#tube-stations" title="Permalink to this headline">¶</a></h1>
+<p>Produces a map showing London Underground station locations with high
+resolution background imagery provided by OpenStreetMap.</p>
+<img alt="../_images/sphx_glr_tube_stations_001.png" class="align-center" src="../_images/sphx_glr_tube_stations_001.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <a href="../cartopy/io/img_tiles.html#cartopy.io.img_tiles.OSM" title="View documentation for cartopy.io.img_tiles.OSM"><span class="n">OSM</span></a>
+
+
+<span class="k">def</span> <span class="nf">tube_locations</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an (n, 2) array of selected London Tube locations in Ordnance</span>
+<span class="sd">    Survey GB coordinates.</span>
+
+<span class="sd">    Source: http://www.doogal.co.uk/london_stations.php</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mf">531738.</span><span class="p">,</span> <span class="mf">180890.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532379.</span><span class="p">,</span> <span class="mf">179734.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531096.</span><span class="p">,</span> <span class="mf">181642.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530234.</span><span class="p">,</span> <span class="mf">180492.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531688.</span><span class="p">,</span> <span class="mf">181150.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530242.</span><span class="p">,</span> <span class="mf">180982.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531940.</span><span class="p">,</span> <span class="mf">179144.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530406.</span><span class="p">,</span> <span class="mf">180380.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529012.</span><span class="p">,</span> <span class="mf">180283.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530553.</span><span class="p">,</span> <span class="mf">181488.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531165.</span><span class="p">,</span> <span class="mf">179489.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529987.</span><span class="p">,</span> <span class="mf">180812.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">532347.</span><span class="p">,</span> <span class="mf">180962.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529102.</span><span class="p">,</span> <span class="mf">181227.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529612.</span><span class="p">,</span> <span class="mf">180625.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531566.</span><span class="p">,</span> <span class="mf">180025.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529629.</span><span class="p">,</span> <span class="mf">179503.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532105.</span><span class="p">,</span> <span class="mf">181261.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530995.</span><span class="p">,</span> <span class="mf">180810.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529774.</span><span class="p">,</span> <span class="mf">181354.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">528941.</span><span class="p">,</span> <span class="mf">179131.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531050.</span><span class="p">,</span> <span class="mf">179933.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530240.</span><span class="p">,</span> <span class="mf">179718.</span><span class="p">]])</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">imagery</span> <span class="o">=</span> <a href="../cartopy/io/img_tiles.html#cartopy.io.img_tiles.OSM" title="View documentation for cartopy.io.img_tiles.OSM"><span class="n">OSM</span></a><span class="p">()</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">imagery</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mf">0.14</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">51.495</span><span class="p">,</span> <span class="mf">51.515</span><span class="p">],</span> <a href="../crs/projections.html#cartopy.crs.PlateCarree" title="View documentation for cartopy.crs.PlateCarree"><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span></a><span class="p">())</span>
+
+    <span class="c1"># Construct concentric circles and a rectangle,</span>
+    <span class="c1"># suitable for a London Underground logo.</span>
+    <span class="n">theta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">circle_verts</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">concentric_circle</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">make_compound_path</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">circle_verts</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                                                <span class="n">Path</span><span class="p">(</span><span class="n">circle_verts</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">))</span>
+
+    <span class="n">rectangle</span> <span class="o">=</span> <span class="n">Path</span><span class="p">([[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+
+    <span class="c1"># Add the imagery to the map.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">imagery</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+    <span class="c1"># Plot the locations twice, first with the red concentric circles,</span>
+    <span class="c1"># then with the blue rectangle.</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">tube_locations</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><a href="../crs/projections.html#cartopy.crs.OSGB" title="View documentation for cartopy.crs.OSGB"><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span></a><span class="p">(),</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">concentric_circle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><a href="../crs/projections.html#cartopy.crs.OSGB" title="View documentation for cartopy.crs.OSGB"><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span></a><span class="p">(),</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;London underground locations&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  0.063 seconds)</p>
+<div class="sphx-glr-footer docutils container">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../_downloads/tube_stations.py" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tube_stations.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" href="../_downloads/tube_stations.ipynb" download=""><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tube_stations.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Generated by Sphinx-Gallery</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="un_flag.html" title="UN Flag"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="axes_grid_basic.html" title="Using Cartopy and AxesGrid toolkit"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Cartopy Gallery</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.7.0.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
