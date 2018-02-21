@@ -1,0 +1,573 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cartopy.io.img_tiles &#8212; cartopy 0.16.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" accesskey="U">cartopy.io</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../../index.html">
+<img src="../../../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cartopy.io.img_tiles</h1><div class="highlight"><pre>
+<span></span><span class="c1"># (C) British Crown Copyright 2011 - 2018, Met Office</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cartopy.</span>
+<span class="c1">#</span>
+<span class="c1"># cartopy is free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU Lesser General Public License as published by the</span>
+<span class="c1"># Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cartopy is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with cartopy.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Implements image tile identification and fetching from various sources.</span>
+
+
+<span class="sd">The Matplotlib interface can make use of tile objects (defined below) via the</span>
+<span class="sd">:meth:`cartopy.mpl.geoaxes.GeoAxes.add_image` method. For example, to add a</span>
+<span class="sd">:class:`MapQuest Open Aerial tileset &lt;MapQuestOpenAerial&gt;` to an existing axes</span>
+<span class="sd">at zoom level 2, do ``ax.add_image(MapQuestOpenAerial(), 2)``. An example of</span>
+<span class="sd">using tiles in this way can be found at :ref:`examples-eyja_volcano`.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="k">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="k">as</span> <span class="nn">sgeom</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">six</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+
+<div class="viewcode-block" id="GoogleTiles"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.GoogleTiles">[docs]</a><span class="k">class</span> <span class="nc">GoogleTiles</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implement web tile retrieval using the Google WTS coordinate system.</span>
+
+<span class="sd">    A &quot;tile&quot; in this class refers to the coordinates (x, y, z).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">desired_tile_form</span><span class="o">=</span><span class="s1">&#39;RGB&#39;</span><span class="p">,</span> <span class="n">style</span><span class="o">=</span><span class="s2">&quot;street&quot;</span><span class="p">,</span>
+                 <span class="n">url</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;https://mts0.google.com/vt/lyrs=</span><span class="si">{style}</span><span class="s1">&#39;</span>
+                      <span class="s1">&#39;@177000000&amp;hl=en&amp;src=api&amp;x=</span><span class="si">{x}</span><span class="s1">&amp;y=</span><span class="si">{y}</span><span class="s1">&amp;z=</span><span class="si">{z}</span><span class="s1">&amp;s=G&#39;</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        desired_tile_form: optional</span>
+<span class="sd">            Defaults to &#39;RGB&#39;.</span>
+<span class="sd">        style: optional</span>
+<span class="sd">            The style for the Google Maps tiles.  One of &#39;street&#39;,</span>
+<span class="sd">            &#39;satellite&#39;, &#39;terrain&#39;, and &#39;only_streets&#39;.  Defaults to &#39;street&#39;.</span>
+<span class="sd">        url: optional</span>
+<span class="sd">            URL pointing to a tile source and containing {x}, {y}, and {z}.</span>
+<span class="sd">            Such as: (&#39;https://server.arcgisonline.com/ArcGIS/rest/services/&#39;</span>
+<span class="sd">            &#39;World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}.jpg&#39;)</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Only streets are partly transparent tiles that can be overlayed over</span>
+        <span class="c1"># the satellite map to create the known hybrid style from google.</span>
+        <span class="n">styles</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;street&quot;</span><span class="p">,</span> <span class="s2">&quot;satellite&quot;</span><span class="p">,</span> <span class="s2">&quot;terrain&quot;</span><span class="p">,</span> <span class="s2">&quot;only_streets&quot;</span><span class="p">]</span>
+        <span class="n">style</span> <span class="o">=</span> <span class="n">style</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url</span> <span class="o">=</span> <span class="n">url</span>
+        <span class="k">if</span> <span class="n">style</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">styles</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;Invalid style &#39;</span><span class="si">%s</span><span class="s2">&#39;. Valid styles: </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> \
+                <span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">styles</span><span class="p">))</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="o">=</span> <span class="n">style</span>
+
+        <span class="c1"># The &#39;satellite&#39; and &#39;terrain&#39; styles require pillow with a jpeg</span>
+        <span class="c1"># decoder.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;satellite&quot;</span><span class="p">,</span> <span class="s2">&quot;terrain&quot;</span><span class="p">]</span> <span class="ow">and</span> \
+                <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">core</span><span class="p">,</span> <span class="s2">&quot;jpeg_decoder&quot;</span><span class="p">)</span> <span class="ow">or</span> \
+                <span class="ow">not</span> <span class="n">Image</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">jpeg_decoder</span><span class="p">:</span>
+            <span class="n">msg</span> <span class="o">=</span> <span class="s2">&quot;The &#39;</span><span class="si">%s</span><span class="s2">&#39; style requires pillow with jpeg decoding support.&quot;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">msg</span> <span class="o">%</span> <span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">imgs</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">Mercator</span><span class="o">.</span><span class="n">GOOGLE</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">desired_tile_form</span> <span class="o">=</span> <span class="n">desired_tile_form</span>
+
+    <span class="k">def</span> <span class="nf">image_for_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">):</span>
+        <span class="n">tiles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_images</span><span class="p">(</span><span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">IOError</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+            <span class="n">tiles</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">img</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">origin</span><span class="p">])</span>
+
+        <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="n">_merge_tiles</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span>
+
+    <span class="k">def</span> <span class="nf">_find_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">,</span> <span class="n">start_tile</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)):</span>
+        <span class="sd">&quot;&quot;&quot;Target domain is a shapely polygon in native coordinates.&quot;&quot;&quot;</span>
+
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target_z</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span> <span class="ow">and</span> <span class="n">target_z</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;target_z must &#39;</span>
+                                                             <span class="s1">&#39;be an integer &#39;</span>
+                                                             <span class="s1">&#39;&gt;=0.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Recursively drill down to the images at the target zoom.</span>
+        <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_tileextent</span><span class="p">(</span><span class="n">start_tile</span><span class="p">)</span>
+        <span class="n">domain</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">domain</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">target_domain</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">start_tile</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">==</span> <span class="n">target_z</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">start_tile</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_subtiles</span><span class="p">(</span><span class="n">start_tile</span><span class="p">):</span>
+                    <span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_find_images</span><span class="p">(</span><span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">,</span>
+                                                    <span class="n">start_tile</span><span class="o">=</span><span class="n">tile</span><span class="p">):</span>
+                        <span class="k">yield</span> <span class="n">result</span>
+
+    <span class="n">find_images</span> <span class="o">=</span> <span class="n">_find_images</span>
+
+    <span class="k">def</span> <span class="nf">subtiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_y_z</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x_y_z</span>
+        <span class="c1"># Google tile specific (i.e. up-&gt;down).</span>
+        <span class="k">for</span> <span class="n">xi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">yi</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+                <span class="k">yield</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">xi</span><span class="p">,</span> <span class="n">y</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">yi</span><span class="p">,</span> <span class="n">z</span> <span class="o">+</span> <span class="mi">1</span>
+
+    <span class="n">_subtiles</span> <span class="o">=</span> <span class="n">subtiles</span>
+
+<div class="viewcode-block" id="GoogleTiles.tile_bbox"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.GoogleTiles.tile_bbox">[docs]</a>    <span class="k">def</span> <span class="nf">tile_bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">y0_at_north_pole</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the ``(x0, x1), (y0, y1)`` bounding box for the given x, y, z</span>
+<span class="sd">        tile position.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        x</span>
+<span class="sd">            The x tile coordinate in the Google tile numbering system.</span>
+<span class="sd">        y</span>
+<span class="sd">            The y tile coordinate in the Google tile numbering system.</span>
+<span class="sd">        z</span>
+<span class="sd">            The z tile coordinate in the Google tile numbering system.</span>
+
+<span class="sd">        y0_at_north_pole: optional</span>
+<span class="sd">            Boolean representing whether the numbering of the y coordinate</span>
+<span class="sd">            starts at the north pole (as is the convention for Google tiles)</span>
+<span class="sd">            or not (in which case it will start at the south pole, as is the</span>
+<span class="sd">            convention for TMS). Defaults to True.</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="n">z</span>
+        <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Tile&#39;s x index is out of range. Upper &quot;</span>
+                                   <span class="s2">&quot;limit </span><span class="si">%s</span><span class="s2">. Got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+        <span class="k">assert</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">y</span> <span class="o">&lt;=</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;Tile&#39;s y index is out of range. Upper &quot;</span>
+                                   <span class="s2">&quot;limit </span><span class="si">%s</span><span class="s2">. Got </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
+
+        <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">x_limits</span>
+        <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">y_limits</span>
+
+        <span class="c1"># Compute the box height and width in native coordinates</span>
+        <span class="c1"># for this zoom level.</span>
+        <span class="n">box_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+        <span class="n">box_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="n">n</span>
+
+        <span class="c1"># Compute the native x &amp; y extents of the tile.</span>
+        <span class="n">n_xs</span> <span class="o">=</span> <span class="n">x0</span> <span class="o">+</span> <span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span> <span class="o">*</span> <span class="n">box_w</span>
+        <span class="n">n_ys</span> <span class="o">=</span> <span class="n">y0</span> <span class="o">+</span> <span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">))</span> <span class="o">*</span> <span class="n">box_h</span>
+
+        <span class="k">if</span> <span class="n">y0_at_north_pole</span><span class="p">:</span>
+            <span class="n">n_ys</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">n_ys</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</div>
+        <span class="k">return</span> <span class="n">n_xs</span><span class="p">,</span> <span class="n">n_ys</span>
+
+<div class="viewcode-block" id="GoogleTiles.tileextent"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.GoogleTiles.tileextent">[docs]</a>    <span class="k">def</span> <span class="nf">tileextent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_y_z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Return extent tuple ``(x0,x1,y0,y1)`` in Mercator coordinates.&quot;&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">x_y_z</span>
+        <span class="n">x_lim</span><span class="p">,</span> <span class="n">y_lim</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tile_bbox</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">y0_at_north_pole</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x_lim</span><span class="p">)</span> <span class="o">+</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">y_lim</span><span class="p">)</span>
+
+    <span class="n">_tileextent</span> <span class="o">=</span> <span class="n">tileextent</span>
+
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">style_dict</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;street&quot;</span><span class="p">:</span> <span class="s2">&quot;m&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;satellite&quot;</span><span class="p">:</span> <span class="s2">&quot;s&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;terrain&quot;</span><span class="p">:</span> <span class="s2">&quot;t&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;only_streets&quot;</span><span class="p">:</span> <span class="s2">&quot;h&quot;</span><span class="p">}</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+            <span class="n">style</span><span class="o">=</span><span class="n">style_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">style</span><span class="p">],</span>
+            <span class="n">x</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+            <span class="n">y</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">Y</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+            <span class="n">z</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">Z</span><span class="o">=</span><span class="n">tile</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">url</span>
+
+    <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">six</span><span class="o">.</span><span class="n">PY3</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="k">import</span> <span class="n">urlopen</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">urllib2</span> <span class="k">import</span> <span class="n">urlopen</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_image_url</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+
+        <span class="n">fh</span> <span class="o">=</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">im_data</span> <span class="o">=</span> <span class="n">six</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">fh</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">fh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">im_data</span><span class="p">)</span>
+
+        <span class="n">img</span> <span class="o">=</span> <span class="n">img</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_tile_form</span><span class="p">)</span>
+</div>
+        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tileextent</span><span class="p">(</span><span class="n">tile</span><span class="p">),</span> <span class="s1">&#39;lower&#39;</span>
+
+
+<div class="viewcode-block" id="MapQuestOSM"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.MapQuestOSM">[docs]</a><span class="k">class</span> <span class="nc">MapQuestOSM</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="c1"># http://developer.mapquest.com/web/products/open/map for terms of use</span>
+    <span class="c1"># http://devblog.mapquest.com/2016/06/15/</span>
+    <span class="c1"># modernization-of-mapquest-results-in-changes-to-open-tile-access/</span>
+    <span class="c1"># this now requires a sign up to a plan</span>
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tile</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://otile1.mqcdn.com/tiles/1.0.0/osm/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.jpg&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+        <span class="n">mqdevurl</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://devblog.mapquest.com/2016/06/15/&#39;</span>
+                    <span class="s1">&#39;modernization-of-mapquest-results-in-changes&#39;</span>
+                    <span class="s1">&#39;-to-open-tile-access/&#39;</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> will require a log in and and will likely&#39;</span>
+                      <span class="s1">&#39; fail. see </span><span class="si">{}</span><span class="s1"> for more details.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">mqdevurl</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<div class="viewcode-block" id="MapQuestOpenAerial"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.MapQuestOpenAerial">[docs]</a><span class="k">class</span> <span class="nc">MapQuestOpenAerial</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="c1"># http://developer.mapquest.com/web/products/open/map for terms of use</span>
+    <span class="c1"># The following attribution should be included in the resulting image:</span>
+    <span class="c1"># &quot;Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture,</span>
+    <span class="c1">#  Farm Service Agency&quot;</span>
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tile</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://oatile1.mqcdn.com/tiles/1.0.0/sat/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.jpg&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<div class="viewcode-block" id="OSM"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.OSM">[docs]</a><span class="k">class</span> <span class="nc">OSM</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="c1"># http://developer.mapquest.com/web/products/open/map for terms of use</span>
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tile</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;https://a.tile.openstreetmap.org/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<div class="viewcode-block" id="StamenTerrain"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.StamenTerrain">[docs]</a><span class="k">class</span> <span class="nc">StamenTerrain</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Terrain tiles defined for the continental United States, and include land</span>
+<span class="sd">    color and shaded hills. The land colors are a custom palette developed by</span>
+<span class="sd">    Gem Spear for the National Atlas 1km land cover data set, which defines</span>
+<span class="sd">    twenty-four land classifications including five kinds of forest,</span>
+<span class="sd">    combinations of shrubs, grasses and crops, and a few tundras and wetlands.</span>
+<span class="sd">    The colors are at their highest contrast when fully zoomed-out to the</span>
+<span class="sd">    whole U.S., and they slowly fade out to pale off-white as you zoom in to</span>
+<span class="sd">    leave room for foreground data and break up the weirdness of large areas</span>
+<span class="sd">    of flat, dark green.</span>
+
+<span class="sd">    Additional info:</span>
+<span class="sd">    http://mike.teczno.com/notes/osm-us-terrain-layer/background.html</span>
+<span class="sd">    http://maps.stamen.com/</span>
+<span class="sd">    https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services</span>
+<span class="sd">    https://github.com/migurski/DEM-Tools</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tile</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://tile.stamen.com/terrain-background/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">/</span><span class="si">%s</span><span class="s1">.png&#39;</span> <span class="o">%</span> <span class="p">(</span>
+            <span class="n">z</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<div class="viewcode-block" id="MapboxTiles"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.MapboxTiles">[docs]</a><span class="k">class</span> <span class="nc">MapboxTiles</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implement web tile retrieval from Mapbox.</span>
+
+<span class="sd">    For terms of service, see https://www.mapbox.com/tos/.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">access_token</span><span class="p">,</span> <span class="n">map_id</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set up a new Mapbox tiles instance.</span>
+
+<span class="sd">        Access to Mapbox web services requires an access token and a map ID.</span>
+<span class="sd">        See https://www.mapbox.com/api-documentation/ for details.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        access_token</span>
+<span class="sd">            A valid Mapbox API access token.</span>
+<span class="sd">        map_id</span>
+<span class="sd">            A map ID for a publically accessible map. This is the</span>
+<span class="sd">            map whose tiles will be retrieved through this process.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">access_token</span> <span class="o">=</span> <span class="n">access_token</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">map_id</span> <span class="o">=</span> <span class="n">map_id</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">MapboxTiles</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tile</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://api.tiles.mapbox.com/v4/</span><span class="si">{mapid}</span><span class="s1">/</span><span class="si">{z}</span><span class="s1">/</span><span class="si">{x}</span><span class="s1">/</span><span class="si">{y}</span><span class="s1">.png?&#39;</span>
+               <span class="s1">&#39;access_token=</span><span class="si">{token}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="n">x</span><span class="p">,</span>
+                                             <span class="n">mapid</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">map_id</span><span class="p">,</span>
+                                             <span class="n">token</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">access_token</span><span class="p">))</span></div>
+        <span class="k">return</span> <span class="n">url</span>
+
+
+<div class="viewcode-block" id="QuadtreeTiles"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.QuadtreeTiles">[docs]</a><span class="k">class</span> <span class="nc">QuadtreeTiles</span><span class="p">(</span><span class="n">GoogleTiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Implement web tile retrieval using the Microsoft WTS quadkey coordinate</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    A &quot;tile&quot; in this class refers to a quadkey such as &quot;1&quot;, &quot;14&quot; or &quot;141&quot;</span>
+<span class="sd">    where the length of the quatree is the zoom level in Google Tile terms.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">_image_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tile</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;http://ecn.dynamic.t1.tiles.virtualearth.net/comp/&#39;</span>
+               <span class="s1">&#39;CompositionHandler/</span><span class="si">{tile}</span><span class="s1">?mkt=en-&#39;</span>
+               <span class="s1">&#39;gb&amp;it=A,G,L&amp;shading=hill&amp;n=z&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">tile</span><span class="o">=</span><span class="n">tile</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">url</span>
+
+    <span class="k">def</span> <span class="nf">tms_to_quadkey</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">tms</span><span class="p">,</span> <span class="n">google</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="n">quadKey</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="n">tms</span>
+        <span class="c1"># this algorithm works with google tiles, rather than tms, so convert</span>
+        <span class="c1"># to those first.</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">google</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">digit</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">digit</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">digit</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="n">quadKey</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">digit</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">quadKey</span>
+
+    <span class="k">def</span> <span class="nf">quadkey_to_tms</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quadkey</span><span class="p">,</span> <span class="n">google</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+        <span class="c1"># algorithm ported from</span>
+        <span class="c1"># https://msdn.microsoft.com/en-us/library/bb259689.aspx</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">quadkey</span><span class="p">,</span> <span class="n">six</span><span class="o">.</span><span class="n">string_types</span><span class="p">),</span> \
+            <span class="s1">&#39;quadkey must be a string&#39;</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="n">y</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">quadkey</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">quadkey</span><span class="p">[</span><span class="n">z</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;0&#39;</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">elif</span> <span class="n">quadkey</span><span class="p">[</span><span class="n">z</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;1&#39;</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">|=</span> <span class="n">mask</span>
+            <span class="k">elif</span> <span class="n">quadkey</span><span class="p">[</span><span class="n">z</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;2&#39;</span><span class="p">:</span>
+                <span class="n">y</span> <span class="o">|=</span> <span class="n">mask</span>
+            <span class="k">elif</span> <span class="n">quadkey</span><span class="p">[</span><span class="n">z</span> <span class="o">-</span> <span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;3&#39;</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">|=</span> <span class="n">mask</span>
+                <span class="n">y</span> <span class="o">|=</span> <span class="n">mask</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Invalid QuadKey digit &#39;</span>
+                                 <span class="s1">&#39;sequence.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">quadkey</span><span class="p">))</span>
+        <span class="c1"># the algorithm works to google tiles, so convert to tms</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">google</span><span class="p">:</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">**</span> <span class="n">z</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">subtiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quadkey</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">quadkey</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QuadtreeTiles.tileextent"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.QuadtreeTiles.tileextent">[docs]</a>    <span class="k">def</span> <span class="nf">tileextent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">quadkey</span><span class="p">):</span>
+        <span class="n">x_y_z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quadkey_to_tms</span><span class="p">(</span><span class="n">quadkey</span><span class="p">,</span> <span class="n">google</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></div>
+        <span class="k">return</span> <span class="n">GoogleTiles</span><span class="o">.</span><span class="n">tileextent</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x_y_z</span><span class="p">)</span>
+
+<div class="viewcode-block" id="QuadtreeTiles.find_images"><a class="viewcode-back" href="../../../cartopy/io/img_tiles.html#cartopy.io.img_tiles.QuadtreeTiles.find_images">[docs]</a>    <span class="k">def</span> <span class="nf">find_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">,</span> <span class="n">start_tile</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find all the quadtrees at the given target zoom, in the given</span>
+<span class="sd">        target domain.</span>
+
+<span class="sd">        target_z must be a value &gt;= 1.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">target_z</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The empty quadtree cannot be returned.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">start_tile</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">start_tiles</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">start_tiles</span> <span class="o">=</span> <span class="p">[</span><span class="n">start_tile</span><span class="p">]</span>
+
+        <span class="k">for</span> <span class="n">start_tile</span> <span class="ow">in</span> <span class="n">start_tiles</span><span class="p">:</span>
+            <span class="n">start_tile</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">quadkey_to_tms</span><span class="p">(</span><span class="n">start_tile</span><span class="p">,</span> <span class="n">google</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="n">GoogleTiles</span><span class="o">.</span><span class="n">find_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">,</span>
+                                                <span class="n">start_tile</span><span class="o">=</span><span class="n">start_tile</span><span class="p">):</span></div></div>
+                <span class="k">yield</span> <span class="bp">self</span><span class="o">.</span><span class="n">tms_to_quadkey</span><span class="p">(</span><span class="n">tile</span><span class="p">,</span> <span class="n">google</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_merge_tiles</span><span class="p">(</span><span class="n">tiles</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Return a single image, merging the given images.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">tiles</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;A non-empty list of tiles should &#39;</span>
+                         <span class="s1">&#39;be provided to merge.&#39;</span><span class="p">)</span>
+    <span class="n">xset</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">]</span>
+    <span class="n">yset</span> <span class="o">=</span> <span class="p">[</span><span class="nb">set</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">]</span>
+
+    <span class="n">xs</span> <span class="o">=</span> <span class="n">xset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">xs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="n">xset</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="n">yset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">ys</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="o">*</span><span class="n">yset</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="n">xs</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">xs</span><span class="p">)</span>
+    <span class="n">ys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">ys</span><span class="p">)</span>
+
+    <span class="n">other_len</span> <span class="o">=</span> <span class="n">tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span>
+    <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">ys</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span> <span class="o">+</span> <span class="n">other_len</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">uint8</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span>
+
+    <span class="k">for</span> <span class="n">tile_img</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">origin</span> <span class="ow">in</span> <span class="n">tiles</span><span class="p">:</span>
+        <span class="n">y_first</span><span class="p">,</span> <span class="n">y_last</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">yi0</span><span class="p">,</span> <span class="n">yi1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">y_first</span> <span class="o">==</span> <span class="n">ys</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">y_last</span> <span class="o">==</span> <span class="n">ys</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="s1">&#39;upper&#39;</span><span class="p">:</span>
+            <span class="n">yi0</span> <span class="o">=</span> <span class="n">tile_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">yi0</span> <span class="o">-</span> <span class="mi">1</span>
+            <span class="n">yi1</span> <span class="o">=</span> <span class="n">tile_img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">yi1</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">yi0</span><span class="p">,</span> <span class="n">yi1</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">yi0</span> <span class="o">&lt;</span> <span class="n">yi1</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">stop</span> <span class="o">==</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">stop</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">+=</span> <span class="n">step</span>
+        <span class="n">y_slice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+        <span class="n">xi0</span><span class="p">,</span> <span class="n">xi1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">((</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">xs</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">xs</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">xi0</span><span class="p">,</span> <span class="n">xi1</span><span class="p">,</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">xi0</span> <span class="o">&lt;</span> <span class="n">xi1</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+
+        <span class="k">if</span> <span class="n">step</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">stop</span> <span class="o">==</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">elif</span> <span class="n">step</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">stop</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">stop</span> <span class="o">+=</span> <span class="n">step</span>
+
+        <span class="n">x_slice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+
+        <span class="n">img_slice</span> <span class="o">=</span> <span class="p">(</span><span class="n">y_slice</span><span class="p">,</span> <span class="n">x_slice</span><span class="p">,</span> <span class="bp">Ellipsis</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">origin</span> <span class="o">==</span> <span class="s1">&#39;lower&#39;</span><span class="p">:</span>
+            <span class="n">tile_img</span> <span class="o">=</span> <span class="n">tile_img</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">::]</span>
+
+        <span class="n">img</span><span class="p">[</span><span class="n">img_slice</span><span class="p">]</span> <span class="o">=</span> <span class="n">tile_img</span>
+
+    <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="p">[</span><span class="nb">min</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">xs</span><span class="p">),</span> <span class="nb">min</span><span class="p">(</span><span class="n">ys</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">ys</span><span class="p">)],</span> <span class="s1">&#39;lower&#39;</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../io.html" >cartopy.io</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.7.0.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

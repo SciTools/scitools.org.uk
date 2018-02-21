@@ -1,0 +1,363 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>cartopy.mpl.patch &#8212; cartopy 0.16.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/gallery.css" type="text/css" />
+    <script type="text/javascript" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../../index.html">
+<img src="../../../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cartopy.mpl.patch</h1><div class="highlight"><pre>
+<span></span><span class="c1"># (C) British Crown Copyright 2011 - 2018, Met Office</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of cartopy.</span>
+<span class="c1">#</span>
+<span class="c1"># cartopy is free software: you can redistribute it and/or modify it under</span>
+<span class="c1"># the terms of the GNU Lesser General Public License as published by the</span>
+<span class="c1"># Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># cartopy is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU Lesser General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU Lesser General Public License</span>
+<span class="c1"># along with cartopy.  If not, see &lt;https://www.gnu.org/licenses/&gt;.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provide shapely geometry &lt;-&gt; matplotlib path support.</span>
+
+
+<span class="sd">See also `Shapely Geometric Objects &lt;see_also_shapely&gt;`_</span>
+<span class="sd">and `Matplotlib Path API &lt;http://matplotlib.org/api/path_api.html&gt;`_.</span>
+
+<span class="sd">.. see_also_shapely:</span>
+<span class="sd">   http://toblerity.org/shapely/manual.html#geometric-objects</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="p">(</span><span class="n">absolute_import</span><span class="p">,</span> <span class="n">division</span><span class="p">,</span> <span class="n">print_function</span><span class="p">)</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.path</span>
+<span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="k">import</span> <span class="n">Path</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="k">as</span> <span class="nn">sgeom</span>
+
+
+<div class="viewcode-block" id="geos_to_path"><a class="viewcode-back" href="../../../matplotlib/geoaxes.html#cartopy.mpl.patch.geos_to_path">[docs]</a><span class="k">def</span> <span class="nf">geos_to_path</span><span class="p">(</span><span class="n">shape</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a list of :class:`matplotlib.path.Path` objects that describe</span>
+<span class="sd">    a shape.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    shape</span>
+<span class="sd">        A list, tuple or single instance of any of the following</span>
+<span class="sd">        types: :class:`shapely.geometry.point.Point`,</span>
+<span class="sd">        :class:`shapely.geometry.linestring.LineString`,</span>
+<span class="sd">        :class:`shapely.geometry.polygon.Polygon`,</span>
+<span class="sd">        :class:`shapely.geometry.multipoint.MultiPoint`,</span>
+<span class="sd">        :class:`shapely.geometry.multipolygon.MultiPolygon`,</span>
+<span class="sd">        :class:`shapely.geometry.multilinestring.MultiLineString`,</span>
+<span class="sd">        :class:`shapely.geometry.collection.GeometryCollection`,</span>
+<span class="sd">        or any type with a _as_mpl_path() method.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    paths</span>
+<span class="sd">        A list of :class:`matplotlib.path.Path` objects.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">)):</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">shp</span> <span class="ow">in</span> <span class="n">shape</span><span class="p">:</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">geos_to_path</span><span class="p">(</span><span class="n">shp</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">paths</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="n">sgeom</span><span class="o">.</span><span class="n">LineString</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Point</span><span class="p">)):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">xy</span><span class="p">))]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">poly_codes</span><span class="p">(</span><span class="n">poly</span><span class="p">):</span>
+            <span class="n">codes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">poly</span><span class="o">.</span><span class="n">xy</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span> <span class="o">*</span> <span class="n">Path</span><span class="o">.</span><span class="n">LINETO</span>
+            <span class="n">codes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span>
+            <span class="k">return</span> <span class="n">codes</span>
+        <span class="k">if</span> <span class="n">shape</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="n">vertices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">xy</span><span class="p">)]</span> <span class="o">+</span>
+                                  <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ring</span><span class="o">.</span><span class="n">xy</span><span class="p">)</span> <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span>
+                                   <span class="n">shape</span><span class="o">.</span><span class="n">interiors</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">codes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">concatenate</span><span class="p">([</span><span class="n">poly_codes</span><span class="p">(</span><span class="n">shape</span><span class="o">.</span><span class="n">exterior</span><span class="p">)]</span> <span class="o">+</span>
+                               <span class="p">[</span><span class="n">poly_codes</span><span class="p">(</span><span class="n">ring</span><span class="p">)</span> <span class="k">for</span> <span class="n">ring</span> <span class="ow">in</span> <span class="n">shape</span><span class="o">.</span><span class="n">interiors</span><span class="p">])</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">codes</span><span class="p">)]</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="p">(</span><span class="n">sgeom</span><span class="o">.</span><span class="n">MultiPolygon</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">GeometryCollection</span><span class="p">,</span>
+                            <span class="n">sgeom</span><span class="o">.</span><span class="n">MultiLineString</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">MultiPoint</span><span class="p">)):</span>
+        <span class="n">paths</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">shape</span><span class="o">.</span><span class="n">geoms</span><span class="p">:</span>
+            <span class="n">paths</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">geos_to_path</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">paths</span>
+    <span class="k">elif</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span> <span class="s1">&#39;_as_mpl_path&#39;</span><span class="p">):</span>
+        <span class="n">vertices</span><span class="p">,</span> <span class="n">codes</span> <span class="o">=</span> <span class="n">shape</span><span class="o">.</span><span class="n">_as_mpl_path</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">[</span><span class="n">Path</span><span class="p">(</span><span class="n">vertices</span><span class="p">,</span> <span class="n">codes</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span></div>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Unsupported shape type </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">shape</span><span class="p">)))</span>
+
+
+<span class="k">def</span> <span class="nf">path_segments</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">remove_nans</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">clip</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                  <span class="n">quantize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">simplify</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">curves</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                  <span class="n">stroke_width</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">snap</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create an array of vertices and a corresponding array of codes from a</span>
+<span class="sd">    :class:`matplotlib.path.Path`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        A :class:`matplotlib.path.Path` instance.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    kwargs</span>
+<span class="sd">        See :func:`matplotlib.path.iter_segments` for details of the keyword</span>
+<span class="sd">        arguments.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    vertices, codes</span>
+<span class="sd">        A (vertices, codes) tuple, where vertices is a numpy array of</span>
+<span class="sd">        coordinates, and codes is a numpy array of matplotlib path codes.</span>
+<span class="sd">        See :class:`matplotlib.path.Path` for information on the types of</span>
+<span class="sd">        codes and their meanings.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># XXX assigned to avoid a ValueError inside the mpl C code...</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">(</span><span class="n">transform</span><span class="p">,</span>  <span class="c1"># noqa: F841  (flake8 = assigned + unused : see above)</span>
+         <span class="n">remove_nans</span><span class="p">,</span> <span class="n">clip</span><span class="p">,</span> <span class="n">quantize</span><span class="p">,</span> <span class="n">simplify</span><span class="p">,</span> <span class="n">curves</span><span class="p">)</span>
+
+    <span class="c1"># Series of cleanups and conversions to the path e.g. it</span>
+    <span class="c1"># can convert curved segments to line segments.</span>
+    <span class="n">vertices</span><span class="p">,</span> <span class="n">codes</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">cleanup_path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">transform</span><span class="p">,</span>
+                                                   <span class="n">remove_nans</span><span class="p">,</span> <span class="n">clip</span><span class="p">,</span>
+                                                   <span class="n">snap</span><span class="p">,</span> <span class="n">stroke_width</span><span class="p">,</span>
+                                                   <span class="n">simplify</span><span class="p">,</span> <span class="n">curves</span><span class="p">)</span>
+
+    <span class="c1"># Remove the final vertex (with code 0)</span>
+    <span class="k">return</span> <span class="n">vertices</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">codes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+
+<span class="c1"># Matplotlib v1.3+ deprecates the use of matplotlib.path.cleanup_path. Instead</span>
+<span class="c1"># there is a method on a Path instance to simplify this.</span>
+<span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="p">,</span> <span class="s1">&#39;cleaned&#39;</span><span class="p">):</span>
+    <span class="n">_path_segments_doc</span> <span class="o">=</span> <span class="n">path_segments</span><span class="o">.</span><span class="vm">__doc__</span>
+
+    <span class="k">def</span> <span class="nf">path_segments</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">pth</span> <span class="o">=</span> <span class="n">path</span><span class="o">.</span><span class="n">cleaned</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">pth</span><span class="o">.</span><span class="n">vertices</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:],</span> <span class="n">pth</span><span class="o">.</span><span class="n">codes</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="n">path_segments</span><span class="o">.</span><span class="vm">__doc__</span> <span class="o">=</span> <span class="n">_path_segments_doc</span>
+
+
+<div class="viewcode-block" id="path_to_geos"><a class="viewcode-back" href="../../../matplotlib/geoaxes.html#cartopy.mpl.patch.path_to_geos">[docs]</a><span class="k">def</span> <span class="nf">path_to_geos</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">force_ccw</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Create a list of Shapely geometric objects from a</span>
+<span class="sd">    :class:`matplotlib.path.Path`.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    path</span>
+<span class="sd">        A :class:`matplotlib.path.Path` instance.</span>
+
+<span class="sd">    Other Parameters</span>
+<span class="sd">    ----------------</span>
+<span class="sd">    force_ccw</span>
+<span class="sd">        Boolean flag determining whether the path can be inverted to enforce</span>
+<span class="sd">        ccw. Defaults to False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    A list of instances of the following type(s):</span>
+<span class="sd">        :class:`shapely.geometry.polygon.Polygon`,</span>
+<span class="sd">        :class:`shapely.geometry.linestring.LineString` and/or</span>
+<span class="sd">        :class:`shapely.geometry.multilinestring.MultiLineString`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Convert path into numpy array of vertices (and associated codes)</span>
+    <span class="n">path_verts</span><span class="p">,</span> <span class="n">path_codes</span> <span class="o">=</span> <span class="n">path_segments</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">curves</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># Split into subarrays such that each subarray consists of connected</span>
+    <span class="c1"># line segments based on the start of each one being marked by a</span>
+    <span class="c1"># matplotlib MOVETO code.</span>
+    <span class="n">verts_split_inds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">path_codes</span> <span class="o">==</span> <span class="n">Path</span><span class="o">.</span><span class="n">MOVETO</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">verts_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path_verts</span><span class="p">,</span> <span class="n">verts_split_inds</span><span class="p">)</span>
+    <span class="n">codes_split</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">path_codes</span><span class="p">,</span> <span class="n">verts_split_inds</span><span class="p">)</span>
+
+    <span class="c1"># Iterate through the vertices generating a list of</span>
+    <span class="c1"># (external_geom, [internal_polygons]) tuples.</span>
+    <span class="n">other_result_geoms</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">collection</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">path_verts</span><span class="p">,</span> <span class="n">path_codes</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">verts_split</span><span class="p">,</span> <span class="n">codes_split</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path_verts</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">continue</span>
+
+        <span class="c1"># XXX A path can be given which does not end with close poly, in that</span>
+        <span class="c1"># situation, we have to guess?</span>
+        <span class="n">verts_same_as_first</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">all</span><span class="p">(</span><span class="n">path_verts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:]</span> <span class="o">==</span> <span class="n">path_verts</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:],</span>
+                                     <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">all</span><span class="p">(</span><span class="n">verts_same_as_first</span><span class="p">):</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Point</span><span class="p">(</span><span class="n">path_verts</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="k">elif</span> <span class="n">path_verts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">4</span> <span class="ow">and</span> <span class="n">path_codes</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">Path</span><span class="o">.</span><span class="n">CLOSEPOLY</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">path_verts</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
+        <span class="k">elif</span> <span class="n">path_verts</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">3</span> <span class="ow">and</span> <span class="n">verts_same_as_first</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">path_verts</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">LineString</span><span class="p">(</span><span class="n">path_verts</span><span class="p">)</span>
+
+        <span class="c1"># If geom is a Polygon and is contained within the last geom in</span>
+        <span class="c1"># collection, add it to its list of internal polygons, otherwise</span>
+        <span class="c1"># simply append it as a new external geom.</span>
+        <span class="k">if</span> <span class="n">geom</span><span class="o">.</span><span class="n">is_empty</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">collection</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="n">collection</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">contains</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">exterior</span><span class="p">)):</span>
+            <span class="n">collection</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geom</span><span class="o">.</span><span class="n">exterior</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Point</span><span class="p">):</span>
+            <span class="n">other_result_geoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">collection</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">geom</span><span class="p">,</span> <span class="p">[]))</span>
+
+    <span class="c1"># Convert each (external_geom, [internal_polygons]) pair into a</span>
+    <span class="c1"># a shapely Polygon that encapsulates the internal polygons, if the</span>
+    <span class="c1"># external geom is a LineString leave it alone.</span>
+    <span class="n">geom_collection</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">external_geom</span><span class="p">,</span> <span class="n">internal_polys</span> <span class="ow">in</span> <span class="n">collection</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">internal_polys</span><span class="p">:</span>
+            <span class="c1"># XXX worry about islands within lakes</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">external_geom</span><span class="o">.</span><span class="n">exterior</span><span class="p">,</span> <span class="n">internal_polys</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">geom</span> <span class="o">=</span> <span class="n">external_geom</span>
+
+        <span class="c1"># Correctly orientate the polygon (ccw)</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">force_ccw</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">geom</span><span class="o">.</span><span class="n">exterior</span><span class="o">.</span><span class="n">is_ccw</span><span class="p">:</span>
+                <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">polygon</span><span class="o">.</span><span class="n">orient</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+
+        <span class="n">geom_collection</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+
+    <span class="c1"># If the geom_collection only contains LineStrings combine them</span>
+    <span class="c1"># into a single MultiLinestring.</span>
+    <span class="k">if</span> <span class="n">geom_collection</span> <span class="ow">and</span> <span class="nb">all</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">LineString</span><span class="p">)</span> <span class="k">for</span>
+                               <span class="n">geom</span> <span class="ow">in</span> <span class="n">geom_collection</span><span class="p">):</span>
+        <span class="n">geom_collection</span> <span class="o">=</span> <span class="p">[</span><span class="n">sgeom</span><span class="o">.</span><span class="n">MultiLineString</span><span class="p">(</span><span class="n">geom_collection</span><span class="p">)]</span>
+
+    <span class="c1"># Remove any zero area Polygons</span>
+    <span class="k">def</span> <span class="nf">not_zero_poly</span><span class="p">(</span><span class="n">geom</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">((</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">geom</span><span class="o">.</span><span class="n">_is_empty</span> <span class="ow">and</span>
+                 <span class="n">geom</span><span class="o">.</span><span class="n">area</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span> <span class="ow">or</span>
+                <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">))</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">not_zero_poly</span><span class="p">,</span> <span class="n">geom_collection</span><span class="p">))</span>
+</div>
+    <span class="k">return</span> <span class="n">result</span> <span class="o">+</span> <span class="n">other_result_geoms</span>
+</pre></div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../../index.html" >Module code</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.7.0.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
