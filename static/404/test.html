@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>404 handler tests</title>
+ 
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.6.1.css">
+  <script src="https://code.jquery.com/qunit/qunit-2.6.1.js"></script>
+  <script src="handler.js"></script>
+ 
+  <script>
+  QUnit.test("cf_units_redirect", function( assert ) {
+    assert.equal(cf_units_redirect("file://foo/bar/"), null);
+    assert.equal(cf_units_redirect("http://foo/bar/"), null);
+    assert.equal(cf_units_redirect("https://foo/bar/"), null);
+    assert.equal(cf_units_redirect("https://cf_units/cf_units/cf_units/docs/latest/"), null);
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/nope.html"),
+        "https://scitools.org.uk/cf_units/docs/latest/nope.html");
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/docs/nope.html"),
+        "https://scitools.org.uk/cf_units/docs/latest/nope.html");
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/cf_units/docs/nope.html"),
+        "https://scitools.org.uk/cf_units/cf_units/docs/latest/nope.html");
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/docs/latest/nope.html"),
+        null);
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/docs/latest/cf_units/blah.png"),
+        null);
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cf_units/some_other_place/nope.html"),
+        "https://scitools.org.uk/cf_units/docs/latest/some_other_place/nope.html");
+    assert.equal(cf_units_redirect(
+        "https://scitools.org.uk/cartopy/docs/latest/nope.html"),
+        null);
+  });
+
+  </script>
+</head>
+<body>
+ 
+<div id="qunit"></div>
+ 
+</body>
+</html>
