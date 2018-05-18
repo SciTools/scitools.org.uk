@@ -1,0 +1,76 @@
+.. _iris.config:
+
+===========
+iris.config
+===========
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.config
+
+In this module:
+
+ * :py:obj:`netcdf`
+ * :py:obj:`get_dir_option`
+ * :py:obj:`get_option`
+ * :py:obj:`NetCDF`
+
+
+
+
+.. autodata:: iris.config.netcdf
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.config.get_dir_option
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+.. autofunction:: iris.config.get_option
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+Control Iris NetCDF options.
+
+..
+
+    .. autoclass:: iris.config.NetCDF
+        :members:
+        :undoc-members:
+        :inherited-members:
+
