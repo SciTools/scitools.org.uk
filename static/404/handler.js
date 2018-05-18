@@ -10,8 +10,8 @@ function cf_units_redirect(path) {
       if (path_split[i] == 'cf_units') {
           redirect = false;
 
-          // If cf_units is the last path item, insert the "docs" path.
-          if (i > path_split.length - 1 | path_split[i+1] != 'docs') {
+          // If docs doesn't immediately follow cf_units, insert it into the path.
+          if (path_split[i+1] != 'docs') {
               path_split.splice(i+1, 0, 'docs');
               redirect = true;
           }
