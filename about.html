@@ -1,89 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html dir="ltr" lang="en-gb">
-<!-- Generated automatically by github.com/scitools/scitools.org.uk -->
 <head>
-  <meta content="text/html; charset=UTF-8" http-equiv="content-type">
-
-  
-   
-  <meta content="AVD" name="author">
-  <meta content="SciTools - Python libraries for Weather and Climate Science."  name="description">
-  <meta content="PP, GRIB1, GRIB2, netcdf, HDF, visualisation, weather, climate, map, cartography, projection, map, analysis,
-  Iris, Cartopy"  name="keywords">
- 
-  
-  <link rel="stylesheet" type="text/css" href="styles/scitools.css">
-  
-
-  <title>About</title>
-  
-   <script src="jquery.min.js"></script>
-
+<meta http-equiv="refresh" content="0; url=https://scitools.org.uk/organisation.html" />
 </head>
-
 <body>
-<div class="wrapper">
-    <div id="hd">SciTools</div>
-
-    <div class="navigation">
-        <ul>
-        
-            <li><a href="index.html">Home</a></li>
-            <li><a href="governance.html">Governance</a></li>
-            <li><a href="iris/index.html">Iris</a></li>
-            <li><a href="cartopy/index.html">Cartopy</a></li>
-            <li><a href="tools.html">Other tools</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="collaboration.html">Collaboration</a></li>
-        
-        </ul>
-    </div>
-
-    
-    <div id="bd">
-        <h1>About</h1>
-        <h2>Contributors</h2>
-        <p>Iris logo designed by richh98 (rich.hancock@ragtagdev.com)</p>
-        <div class="contributors" id="contributors"></div>
-            <script language="Javascript" type="text/javascript">
-                $(document).ready(function() {
-                    var fjson = "contributors.json";
-                    var patharray = window.location.pathname.split('/');
-                    var path = "";
-                    for (i=0; i < patharray.length-1; i++){
-                        path += patharray[i] + '/';
-                    }
-                    var url = location.protocol + "//" + location.host + path + fjson
-                    // get data
-                    function github_url(profile_name) {
-                        return '<a href="https://github.com/' + profile_name + '">@' + profile_name + '<\/a>';
-                    }
-                    function contributor_str(contrib) {
-                        var contrib_str = github_url(contrib.profile_name);
-                        if (contrib.organisation) {
-                            contrib_str += ":&nbsp;" + contrib.organisation;
-                        }
-                        return contrib_str;
-                    }
-                    $.getJSON(url, function(data) {
-                        for (var i=0; i<data.contributors.length; i++){
-                            $('#contributors').append("<p>"+contributor_str(data.contributors[i])+"<\/p>");
-                        }
-                        $('#contributors').append("<h2>Alumni</h2>");
-                        for (var i=0; i<data.alumni.length; i++){
-                            $('#contributors').append("<p>"+contributor_str(data.alumni[i])+"<\/p>")
-                        }
-                    });
-                });
-            </script>
-        </div>
-    </div>
-
-    <div id="ft">
-          &copy; British Crown Copyright 2017, Met Office
-          <br>
-    </div>
-</div>
-
+<p><a href="https://scitools.org.uk/organisation.html">Page has moved</a></p>
 </body>
 </html>
