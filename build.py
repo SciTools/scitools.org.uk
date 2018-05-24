@@ -5,7 +5,7 @@ import os
 import re
 
 
-START_PATTERN = re.compile(r'\s*<!-- START ([A-Z]+) -->')
+START_PATTERN = re.compile(r'(\s*)<!-- START ([A-Z]+) -->')
 
 
 def main():
@@ -16,11 +16,13 @@ def main():
     blocks = {}
     with open(os.path.join(here, master), 'r') as fh:
         for line in fh:
-            if START_PATTERN.match(line):
-                block_name = START_PATTERN.match(line).group(1)
+            match = START_PATTERN.match(line)
+            if match:
+                indent = match.group(1)
+                block_name = START_PATTERN.match(line).group(2)
                 next_line = line
                 lines = [line,
-                         "  <!-- DO NOT MODIFY THIS BLOCK DIRECTLY. CHANGE {} THEN RE-BUILD -->\n".format(master)]
+                         "{}<!-- DO NOT MODIFY THIS BLOCK DIRECTLY. CHANGE {} THEN RE-BUILD -->\n".format(indent, master)]
                 while not next_line.strip().startswith('<!-- END {} -->'.format(block_name)):
                      next_line = next(fh)
                      lines.append(next_line)
@@ -37,8 +39,9 @@ def insert_block(slave, blocks):
     new_lines = []
 
     for line in lines_iter:
-        if START_PATTERN.match(line):
-            block_name = START_PATTERN.match(line).group(1)
+        match = START_PATTERN.match(line)
+        if match:
+            block_name = match.group(2)
             if block_name not in blocks:
                  raise ValueError(
                       "Looking for a {} block, but it doesn't "
