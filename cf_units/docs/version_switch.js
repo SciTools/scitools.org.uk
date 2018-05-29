@@ -74,8 +74,16 @@
 
     // Insert the version switcher into the right-hand-side of the top pane.
     var index_li = $('li.right:contains("index")');
-    index_li.append('|&nbsp;'); 
-    index_li.before('<li class="version_switcher right">' + select + '</li>');
+    console.log(index_li);
+    if (index_li.length > 0) {
+      index_li.append('|&nbsp;'); 
+      index_li.before('<li class="version_switcher right">' + select + '</li>');
+    } else {
+        sidebar = $('div.sphinxsidebarwrapper');
+        var version_section = $('<div role="note" class="version_switcher"><h3>Version</h3></div>');
+        version_section.append(select);
+        sidebar.append(version_section);
+    }
     $('.version_switcher select').bind('change', on_switch);
   });
 })();
