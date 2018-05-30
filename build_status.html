@@ -166,36 +166,15 @@
   </section>
   <!-- END HEADER -->
 
-  <section class="header1 index-clouds mbr-parallax-background">
-    <div class="mbr-overlay"
-         style="opacity: 0.4; background-color: rgb(15, 118, 153);"></div>
-    <div class="container">
-      <div class="row justify-content-md-center">
-        <div class="mbr-white col-md-10">
-          <h1 class="mbr-section-title align-center mbr-bold pb-3 mbr-fonts-style display-1">
-            <a class="anchor" name="status-top" id="status-top"></a>
-            SciTools Build Status
-          </h1>
-          <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-2">
-            &#160;Below are the status of all of our packages and whether they build or not.
-          </h3>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
- 
-
-  <section class="mbr-section content4 title-banner">
+  <section class="mbr-section content4 status-title">
     <div class="container">
       <div class="media-container-row">
         <div class="title col-12 col-md-8">
           <h2 class="align-center pb-3 mbr-fonts-style display-2">
-            Status Table
+            SciTools Build Status
           </h2>
           <h3 class= "mbr-section-subtitle align-center mbr-light mbr-fonts-style display-5">
-            Below are the Build Statuses          
+            One-stop-spot for a quick summary of SciTools' health.           
           </h3>
         </div>
       </div>
@@ -205,7 +184,7 @@
   <section class="section-table iris-cartopy-box">
     <div class="container container-table">
       <h3 class="mbr-section-subtitle mbr-fonts-style align-lef pb-5 mbr-light display-5">
-        The table below shows the build status of all the major packages contained in SciTools. If available it also shows the test coverage of the package.
+        The table below shows the build status of all the major packages contained in SciTools and SciTools-incubator. If available it also shows the test coverage of the package.
       </h3>
       <div class="table-wrapper">
         <div class="container scroll">
@@ -224,28 +203,13 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">Iris</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/iris'>
-                    <img src="https://travis-ci.org/SciTools/iris.svg?branch=master" alt="iris-build-status" title="iris-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/iris?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/iris/badge.svg?branch=master' alt='Iris Coverage Status' />
-                  </a>
-                </td>
-              </tr>
+
             </tbody>
           </table>
         </div>
       </div>
     </div>
   </section>
-
-
-
 
   <!-- START FOOTER -->
   <!-- DO NOT MODIFY THIS BLOCK DIRECTLY. CHANGE index.html THEN RE-BUILD -->
@@ -348,66 +312,41 @@
   </script>
   <!-- END POST-INCLUDES -->
 
-<!--
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">Iris</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/iris'>
-                    <img src="https://travis-ci.org/SciTools/iris.svg?branch=master" alt="iris-build-status" title="iris-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/iris?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/iris/badge.svg?branch=master' alt='Iris Coverage Status' />
-                  </a>
-                </td>
-              </tr>
--->
-
-<!--
-return $('<tr><td>' + repo.org + "/" + repo.name + '</td></tr>')
-              return $('<tr> \
-                          <td class="body-item mbr-fonts-style display-7">Iris</td> \
-                          <td class="body-item mbr-fonts-style display-7"><a href='https://travis-ci.org/SciTools/iris'>Iris</a></td> \
-                        </tr>')
-            }
--->
-
             <script>
-            repos = [{org: 'SciTools', name: 'iris'},
-                     {org: 'SciTools', name: 'cartopy'},
-                     {org: 'SciTools', name: 'cf_units'},
-                     {org: 'SciTools', name: 'iris-grib'},
-                     {org: 'SciTools', name: 'nc-time-axis'},
-                     {org: 'SciTools-incubator', name: 'python-stratify'},
-                     {org: 'Dick', name: 'Van Dyke'}
-                    ];
+              repos = [{org: 'SciTools', name: 'iris'},
+                       {org: 'SciTools', name: 'cartopy'},
+                       {org: 'SciTools', name: 'cf_units'},
+                       {org: 'SciTools', name: 'iris-grib'},
+                       {org: 'SciTools', name: 'nc-time-axis'},
+                       {org: 'SciTools', name: 'courses'},
+                       {org: 'SciTools-incubator', name: 'python-stratify'},
+                       {org: 'SciTools-incubator', name: 'iris-agg-regrid'},
+                      ];
 
-            table = $('#status-table');
-            body = $('tbody')
+              table = $('#status-table');
+              body = $('tbody')
 
-            function build_row(repo) {
-                   return $('<tr>'
-                          + ' <td class="body-item mbr-fonts-style display-7">' + repo.name + '</td>'
-                          + ' <td class="body-item mbr-fonts-style display-7">'
-                          + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
-                          + '    <img src="https://travis-ci.org/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="iris-build-status" title="iris-build-status">' 
-                          + '   </a>'
-                          + ' </td>'
-                          + ' <td class="body-item mbr-fonts-style display-7">'
-                          + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
-                          + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
-                          + '   </a>'
-                          + ' </td>'
-                          + '</tr>')
-            }
+              function build_row(repo) {
+                     return $('<tr>'
+                            + ' <td class="body-item mbr-fonts-style display-7">' + repo.name + '</td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                            + '    <img src="https://travis-ci.org/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="iris-build-status" title="iris-build-status">' 
+                            + '   </a>'
+                            + ' </td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                            + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
+                            + '   </a>'
+                            + ' </td>'
+                            + '</tr>')
+              }
 
-            $.each(repos, function( index ) {
-              repo = this;
-              body.append(build_row(repo));
-              console.log( index + ": " + repo.org + "/" + repo.name );
-            });
-
+              $.each(repos, function( index ) {
+                repo = this;
+                body.append(build_row(repo));
+                console.log( index + ": " + repo.org + "/" + repo.name );
+              });
             </script>
 
 </body>
