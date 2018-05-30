@@ -209,7 +209,7 @@
       </h3>
       <div class="table-wrapper">
         <div class="container scroll">
-          <table class="table" cellspacing="0">
+          <table class="table" cellspacing="0" id="status-table">
             <thead>
               <tr class="table-heads">
                 <th class="head-item mbr-fonts-style display-7">
@@ -234,58 +234,6 @@
                 <td class="body-item mbr-fonts-style display-7">
                   <a href='https://coveralls.io/github/SciTools/iris?branch=master'>
                     <img src='https://coveralls.io/repos/github/SciTools/iris/badge.svg?branch=master' alt='Iris Coverage Status' />
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">Cartopy</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/cartopy'>
-                    <img src="https://travis-ci.org/SciTools/cartopy.svg?branch=master" alt="cartopy-build-status" title="cartopy-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/cartopy?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/cartopy/badge.svg?branch=master' alt='Cartopy Coverage Status' />
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">cf_units</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/cf_units'>
-                    <img src="https://travis-ci.org/SciTools/cf_units.svg?branch=master" alt="cf_units-build-status" title="cf_units-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/cf_units?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/cf_units/badge.svg?branch=master' alt='cf_units Coverage Status' />
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">iris-grib</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/iris-grib'>
-                    <img src="https://travis-ci.org/SciTools/iris-grib.svg?branch=master" alt="iris-grib-build-status" title="iris-grib-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/iris-grib?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/iris-grib/badge.svg?branch=master' alt='iris-grib Coverage Status' />
-                  </a>
-                </td>
-              </tr>
-              <tr>
-                <td class="body-item mbr-fonts-style display-7">iris-grib</td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://travis-ci.org/SciTools/iris-grib'>
-                    <img src="https://travis-ci.org/SciTools/iris-grib.svg?branch=master" alt="iris-grib-build-status" title="iris-grib-build-status">
-                  </a>
-                </td>
-                <td class="body-item mbr-fonts-style display-7">
-                  <a href='https://coveralls.io/github/SciTools/iris-grib?branch=master'>
-                    <img src='https://coveralls.io/repos/github/SciTools/iris-grib/badge.svg?branch=master' alt='iris-grib Coverage Status' />
                   </a>
                 </td>
               </tr>
@@ -398,17 +346,26 @@
   </script>
 
 
-  <script src="assets/web/assets/jquery/jquery.min.js"></script>
-  <script src="assets/popper/popper.min.js"></script>
-  <script src="assets/tether/tether.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/smoothscroll/smooth-scroll.js"></script>
-  <script src="assets/dropdown/js/script.min.js"></script>
-  <script src="assets/parallax/jarallax.min.js"></script>
-  <script src="assets/datatables/jquery.data-tables.min.js"></script>
-  <script src="assets/datatables/data-tables.bootstrap4.min.js"></script>
-  <script src="assets/sociallikes/social-likes.js"></script>
-  <script src="assets/touchswipe/jquery.touch-swipe.min.js"></script>
-  <script src="assets/theme/js/script.js"></script>
+            <script>
+            repos = [{org: 'SciTools', name: 'iris'},
+                     {org: 'SciTools', name: 'cartopy'},
+                     {org: 'SciTools-incubator', name: 'python-stratify'}
+                    ];
+
+            table = $('#status-table');
+            body = $('tbody')
+
+            function build_row(repo) {
+              return $('<tr><td>' + repo.org + "/" + repo.name + '</td></tr>')
+            }
+
+            $.each(repos, function( index ) {
+              repo = this;
+              body.append(build_row(repo));
+              console.log( index + ": " + repo.org + "/" + repo.name );
+            });
+
+            </script>
+
 </body>
 </html>
