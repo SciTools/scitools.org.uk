@@ -348,18 +348,58 @@
   </script>
   <!-- END POST-INCLUDES -->
 
+<!--
+              <tr>
+                <td class="body-item mbr-fonts-style display-7">Iris</td>
+                <td class="body-item mbr-fonts-style display-7">
+                  <a href='https://travis-ci.org/SciTools/iris'>
+                    <img src="https://travis-ci.org/SciTools/iris.svg?branch=master" alt="iris-build-status" title="iris-build-status">
+                  </a>
+                </td>
+                <td class="body-item mbr-fonts-style display-7">
+                  <a href='https://coveralls.io/github/SciTools/iris?branch=master'>
+                    <img src='https://coveralls.io/repos/github/SciTools/iris/badge.svg?branch=master' alt='Iris Coverage Status' />
+                  </a>
+                </td>
+              </tr>
+-->
+
+<!--
+return $('<tr><td>' + repo.org + "/" + repo.name + '</td></tr>')
+              return $('<tr> \
+                          <td class="body-item mbr-fonts-style display-7">Iris</td> \
+                          <td class="body-item mbr-fonts-style display-7"><a href='https://travis-ci.org/SciTools/iris'>Iris</a></td> \
+                        </tr>')
+            }
+-->
 
             <script>
             repos = [{org: 'SciTools', name: 'iris'},
                      {org: 'SciTools', name: 'cartopy'},
-                     {org: 'SciTools-incubator', name: 'python-stratify'}
+                     {org: 'SciTools', name: 'cf_units'},
+                     {org: 'SciTools', name: 'iris-grib'},
+                     {org: 'SciTools', name: 'nc-time-axis'},
+                     {org: 'SciTools-incubator', name: 'python-stratify'},
+                     {org: 'Dick', name: 'Van Dyke'}
                     ];
 
             table = $('#status-table');
             body = $('tbody')
 
             function build_row(repo) {
-              return $('<tr><td>' + repo.org + "/" + repo.name + '</td></tr>')
+                   return $('<tr>'
+                          + ' <td class="body-item mbr-fonts-style display-7">' + repo.name + '</td>'
+                          + ' <td class="body-item mbr-fonts-style display-7">'
+                          + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                          + '    <img src="https://travis-ci.org/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="iris-build-status" title="iris-build-status">' 
+                          + '   </a>'
+                          + ' </td>'
+                          + ' <td class="body-item mbr-fonts-style display-7">'
+                          + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                          + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
+                          + '   </a>'
+                          + ' </td>'
+                          + '</tr>')
             }
 
             $.each(repos, function( index ) {
