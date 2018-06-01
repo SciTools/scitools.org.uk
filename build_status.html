@@ -195,7 +195,20 @@
                   Package Name
                 </th>
                 <th class="head-item mbr-fonts-style display-7">
+                  Tag
+                </th>
+                <th class="head-item mbr-fonts-style display-7">
                   Build Status
+                </th>
+                <th class="head-item mbr-fonts-style display-7">
+                  Commits Since <br/>
+                  Last Tag
+                </th>
+                <th class="head-item mbr-fonts-style display-7">
+                  Contributors
+                </th>
+                <th class="head-item mbr-fonts-style display-7">
+                  Downloads
                 </th>
                 <th class="head-item mbr-fonts-style display-7">
                   Test Coverage
@@ -203,7 +216,7 @@
               </tr>
             </thead>
             <tbody>
-
+              <!-- The content is populated by a script at the end of the page. -->
             </tbody>
           </table>
         </div>
@@ -330,12 +343,32 @@
                      return $('<tr>'
                             + ' <td class="body-item mbr-fonts-style display-7">' + repo.name + '</td>'
                             + ' <td class="body-item mbr-fonts-style display-7">'
-                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                            + '   <a href="https://github.com/' + repo.org + '/' + repo.name + '/releases">'
+                            + '    <img src="https://img.shields.io/github/tag/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="iris-build-status" title="iris-build-status">' 
+                            + '   </a>'
+                            + ' </td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://travis-ci.org/' + repo.org + '/' + repo.name + '">'
                             + '    <img src="https://travis-ci.org/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="iris-build-status" title="iris-build-status">' 
                             + '   </a>'
                             + ' </td>'
                             + ' <td class="body-item mbr-fonts-style display-7">'
-                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '?branch=master">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '">'
+                            + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
+                            + '   </a>'
+                            + ' </td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '">'
+                            + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
+                            + '   </a>'
+                            + ' </td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '">'
+                            + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
+                            + '   </a>'
+                            + ' </td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://coveralls.io/github/' + repo.org + '/' + repo.name + '">'
                             + '     <img src="https://coveralls.io/repos/github/' + repo.org + '/' + repo.name + '/badge.svg?branch=master" alt="Iris Coverage Status" />'
                             + '   </a>'
                             + ' </td>'
