@@ -4,7 +4,7 @@
 (function() {
   'use strict';
 
-  var url_re = /\/cf_units\/docs\/(latest|(v\d+\.\d+\.?\d?))\//;
+  var url_re = /\/cf-units\/docs\/(latest|(v\d+\.\d+\.?\d?))\//;
 
   var all_versions = {
     'latest': 'latest (2.0)',
@@ -42,7 +42,7 @@
     function replacer(match, part1, offset, string) {
         return match[0].replace(part1, new_version);
     }
-    var new_url = url.replace(url_re, '/cf_units/docs/' + new_version + '/');
+    var new_url = url.replace(url_re, '/cf-units/docs/' + new_version + '/');
     return new_url;
   }
 
@@ -60,7 +60,7 @@
            window.location.href = new_url;
         },
         error: function() {
-           window.location.href = '/cf_units/docs/' + selected;
+           window.location.href = '/cf-units/docs/' + selected;
         }
       });
     }
