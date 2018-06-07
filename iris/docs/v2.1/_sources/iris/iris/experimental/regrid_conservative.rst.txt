@@ -1,0 +1,20 @@
+.. _iris.experimental.regrid_conservative:
+
+=====================================
+iris.experimental.regrid_conservative
+=====================================
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.experimental.regrid_conservative
+
+In this module:
+
+ * :py:obj:`regrid_conservative_via_esmpy`
+
+
+
+.. autofunction:: iris.experimental.regrid_conservative.regrid_conservative_via_esmpy
+

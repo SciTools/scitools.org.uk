@@ -1,0 +1,21 @@
+
+General visualisation examples
+==============================
+
+.. toctree::
+    :maxdepth: 1
+
+    SOI_filtering.rst
+    anomaly_log_colouring.rst
+    coriolis_plot.rst
+    cross_section.rst
+    custom_aggregation.rst
+    custom_file_loading.rst
+    global_map.rst
+    inset_plot.rst
+    lineplot_with_legend.rst
+    orca_projection.rst
+    polar_stereo.rst
+    polynomial_fit.rst
+    projections_and_annotations.rst
+    rotated_pole_mapping.rst
