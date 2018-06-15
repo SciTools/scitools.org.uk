@@ -11,7 +11,7 @@ START_PATTERN = re.compile(r'(\s*)<!-- START ([A-Z\-]+) -->')
 def main():
     here = os.path.dirname(__file__)
     master = 'index.html'
-    slaves = [os.path.join(here, page) for page in ['404.html', 'organisation.html', 'privacy.html', 'build_status.html']]
+    slaves = [os.path.join(here, page) for page in ['404.html', 'organisation.html', 'privacy.html', 'build_status.html', 'signed_cla.html']]
 
     blocks = {}
     with open(os.path.join(here, master), 'r') as fh:
