@@ -59,13 +59,13 @@ Adding contributors
 -------------------
 
 ``contributors.json`` contains a JSON dictionary of all contributors who have
-signed the scitools CLA. It is the definitive source (as rendered in
-scitools.org.uk/about.html) of such contributors, and is where core developers
-will look when considering whether a PR is ready for merging.
-It is also where the [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker)
-looks.
+signed the scitools CLA. It is the definitive source of such contributors.
+It is where the [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker)
+looks to determine if a CLA is required.
 If you've signed the CLA and aren't yet on this list, please consider submitting a PR
 to speed the process up. 
+A [rendered view](https://scitools.org.uk/signed_cla.html) of the list is also
+available.
 
 
 (C) British Crown Copyright 2010 - 2018, Met Office
