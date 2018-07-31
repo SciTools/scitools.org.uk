@@ -11,11 +11,19 @@ license.
 ## Copyright
 
 All SciTools projects operate a shared ownership model as specified
-in the SciTools CLA. The copyright statement is:
+in the [SciTools CLA](https://scitools.org.uk/cla/v4).
+The copyright statement is:
 
 ```
-Copyright <start year> (- <end year>) <project> developers
+Copyright (C) <start year>(-<end year>) <project> contributors
 ```
+
+For example:
+
+```
+Copyright (C) 2010-2018 Iris contributors
+```
+
 
 ## Source preamble
 
@@ -23,9 +31,9 @@ All non-trivial source files in a SciTools repository must reference the
 license of the repository. The wording of the preamble should be:
 
 ```
-# Copyright <project> developers
-
-# This file is part of <project> and is released under a BSD 3-clause license.
+# Copyright (C) <project> contributors
+#
+# This file is part of <project> and is released under the <OSI license> license.
 # See LICENSE in the root of the repository for full licensing details.
 ```
 
@@ -40,7 +48,10 @@ The full text of a BSD 3-clause LICENSE file should be:
 ```
 BSD 3-Clause License
 
-Copyright 2010 - 20?? <project> developers
+Copyright (C) <YEAR_START>-<YEAR_END> <project> contributors
+
+See "Credits, copyright and license" in README.<ext> for full credits
+<(if appropriate) and any exceptions to the following terms>.
 
 Redistribution and use in source and binary forms, with or without
 modification, are permitted provided that the following conditions are met:
@@ -68,10 +79,46 @@ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 ```
 
-The license must be unmodified except in the situation where
-vendored / third-party tools have been packaged into the repository.
-As always, due care with licensing *MUST* be taken when vendoring in this way.
-Supplimentary license details should be documented at the end of the LICENSE
-file. An example of doing so can be seen in the numpy codebase.
 
+In the situation where vendored / third-party tools have been packaged
+into the repository, full terms should be documented in the License section of
+the README.
+As always, due care with licensing *MUST* be taken when vendoring in this way.
+
+
+## Readme credits and license section
+
+All repositories should include a "Credits, copyright and License"
+section in the README.[md|rst|txt].
+
+The Credits section should be used to document significant institutional
+development of the project and to provide a link
+pointing to the GitHub contributors list.
+
+The Copyright and License section should re-iterate the copyright found
+in the LICENSE file.
+
+For example, Iris's README.md may include the following:
+
+```
+
+## Credits, copyright and license
+
+Iris is developed collaboratively under the SciTools umberella.
+
+A full list of code contributors ("Iris contributors") can be found at
+https://github.com/SciTools/iris/graphs/contributors.
+
+Code is just one of many ways of positively contributing to Iris, please see
+our [contributing guide](.github/CONTRIBUTING.md) for more details on how
+you can get involved.
+
+Iris is released under a LGPL license with a shared copyright model.
+See [LICENSE](LICENSE) for full terms.
+
+The Met Office has made a significant contribution to the
+development, maintenance and support of this library.
+All Met Office contributions are copyright on behalf of the British Crown.
+
+```
 
