@@ -1,0 +1,220 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>13. Code Maintenance &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="14. End of the user guide" href="end_of_userguide.html" />
+    <link rel="prev" title="12. Citing Iris" href="citation.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.2</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="end_of_userguide.html" title="14. End of the user guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="citation.html" title="12. Citing Iris"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Iris user guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">13. Code Maintenance</a><ul>
+<li><a class="reference internal" href="#stability-and-change">13.1. Stability and Change</a></li>
+<li><a class="reference internal" href="#principles-of-change-management">13.2. Principles of Change Management</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="citation.html"
+                        title="previous chapter">12. Citing Iris</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="end_of_userguide.html"
+                        title="next chapter">14. End of the user guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/userguide/code_maintenance.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="code-maintenance">
+<h1>13. Code Maintenance<a class="headerlink" href="#code-maintenance" title="Permalink to this headline">¶</a></h1>
+<p>From a user point of view “code maintenance” means ensuring that your existing
+working code stays working, in the face of changes to Iris.</p>
+<div class="section" id="stability-and-change">
+<h2>13.1. Stability and Change<a class="headerlink" href="#stability-and-change" title="Permalink to this headline">¶</a></h2>
+<p>In practice, as Iris develops, most users will want to periodically upgrade
+their installed version to access new features or at least bugfixes.</p>
+<p>This is obvious if you are still developing other code that uses Iris, or using
+code from other sources.
+However, even if you have only legacy code that remains untouched, some code
+maintenance effort is probably still necessary :</p>
+<blockquote>
+<div><ul class="simple">
+<li>On the one hand, <em>in principle</em>, working code will go on working, as long
+as you don’t change anything else.</li>
+<li>However, such “version statis” can easily become a growing burden, if you
+are simply waiting until an update becomes unavoidable :  Often, that will
+eventually occur when you need to update some other software component,
+for some completely unconnected reason.</li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="principles-of-change-management">
+<h2>13.2. Principles of Change Management<a class="headerlink" href="#principles-of-change-management" title="Permalink to this headline">¶</a></h2>
+<p>When you upgrade software to a new version, you often find that you need to
+rewrite your legacy code, simply to keep it working.</p>
+<p>In Iris, however, we aim to reduce code maintenance problems to an absolute
+minimum by following defined change management rules.
+These ensure that, <em>within a major release number</em> :</p>
+<blockquote>
+<div><ul class="simple">
+<li>you can be confident that your code will still work with subsequent minor
+releases</li>
+<li>you will be aware of future incompatibility problems in advance</li>
+<li>you can defer making code compatibility changes for some time, until it
+suits you</li>
+</ul>
+</div></blockquote>
+<p>The above applies to minor version upgrades : e.g. code that works with version
+“1.4.2” should still work with a subsequent minor release such as “1.5.0” or
+“1.7.2”.</p>
+<p>A <em>major</em> release however, e.g. “v2.0.0” or “v3.0.0”, can include more
+significant changes, including so-called “breaking” changes:  This means that
+existing code may need to be modified to make it work with the new version.</p>
+<p>Since breaking change can only occur at major releases, these are the <em>only</em>
+times we can alter or remove existing behaviours (even deprecated
+ones).  This is what a major release is for : it enables the removal and
+replacement of old features.</p>
+<p>Of course, even at a major release, we do still aim to keep breaking changes to
+a minimum.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="end_of_userguide.html" title="14. End of the user guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="citation.html" title="12. Citing Iris"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Iris user guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2018, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+.. _iris.iterate:
+
+============
+iris.iterate
+============
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.iterate
+
+In this module:
+
+ * :py:obj:`izip`
+
+
+
+.. autofunction:: iris.iterate.izip
+
