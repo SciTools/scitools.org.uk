@@ -1,0 +1,20 @@
+.. _iris.experimental.equalise_cubes:
+
+================================
+iris.experimental.equalise_cubes
+================================
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.experimental.equalise_cubes
+
+In this module:
+
+ * :py:obj:`equalise_attributes`
+
+
+
+.. autofunction:: iris.experimental.equalise_cubes.equalise_attributes
+
