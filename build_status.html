@@ -331,7 +331,6 @@
                        {org: 'SciTools', name: 'cf_units'},
                        {org: 'SciTools', name: 'iris-grib'},
                        {org: 'SciTools', name: 'nc-time-axis'},
-                       {org: 'SciTools', name: 'courses'},
                        {org: 'SciTools-incubator', name: 'python-stratify'},
                        {org: 'SciTools-incubator', name: 'iris-agg-regrid'},
                       ];
@@ -341,7 +340,11 @@
 
               function build_row(repo) {
                      return $('<tr>'
-                            + ' <td class="body-item mbr-fonts-style display-7">' + repo.name + '</td>'
+                            + ' <td class="body-item mbr-fonts-style display-7">'
+                            + '   <a href="https://github.com/' + repo.org + '/' + repo.name + '">'
+                            +       repo.name
+                            + '   </a>'
+                            + ' </td>'
                             + ' <td class="body-item mbr-fonts-style display-7">'
                             + '   <a href="https://github.com/' + repo.org + '/' + repo.name + '/releases">'
                             + '    <img src="https://img.shields.io/github/tag/' + repo.org + '/' + repo.name + '.svg?branch=master" alt="' + repo.name + '-tag" title="' + repo.name + '-tag">' 
