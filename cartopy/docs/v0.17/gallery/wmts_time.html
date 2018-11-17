@@ -1,0 +1,204 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Web Map Tile Service time dimension demonstration &#8212; cartopy 0.17.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Web tile imagery" href="image_tiles.html" />
+    <link rel="prev" title="Interactive WMTS (Web Map Tile Service)" href="wmts.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="image_tiles.html" title="Web tile imagery"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="wmts.html" title="Interactive WMTS (Web Map Tile Service)"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Cartopy Gallery</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="wmts.html"
+                        title="previous chapter">Interactive WMTS (Web Map Tile Service)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="image_tiles.html"
+                        title="next chapter">Web tile imagery</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/gallery/wmts_time.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Click <a class="reference internal" href="#sphx-glr-download-gallery-wmts-time-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="web-map-tile-service-time-dimension-demonstration">
+<span id="sphx-glr-gallery-wmts-time-py"></span><h1>Web Map Tile Service time dimension demonstration<a class="headerlink" href="#web-map-tile-service-time-dimension-demonstration" title="Permalink to this headline">¶</a></h1>
+<p>This example further demonstrates WMTS support within cartopy. Optional
+keyword arguments can be supplied to the OGC WMTS ‘gettile’ method. This
+allows for the specification of the ‘time’ dimension for a WMTS layer
+which supports it.</p>
+<p>The example shows satellite imagery retrieved from NASA’s Global Imagery
+Browse Services for 5th Feb 2016. A true color MODIS image is shown on
+the left, with the MODIS false color ‘snow RGB’ shown on the right.</p>
+<img alt="../_images/sphx_glr_wmts_time_001.png" class="sphx-glr-single-img" src="../_images/sphx_glr_wmts_time_001.png" />
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.patheffects</span> <span class="kn">as</span> <span class="nn">PathEffects</span>
+<span class="kn">from</span> <span class="nn">owslib.wmts</span> <span class="kn">import</span> <span class="n">WebMapTileService</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="kn">as</span> <span class="nn">ccrs</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># URL of NASA GIBS</span>
+    <span class="n">URL</span> <span class="o">=</span> <span class="s1">&#39;http://gibs.earthdata.nasa.gov/wmts/epsg4326/best/wmts.cgi&#39;</span>
+    <span class="n">wmts</span> <span class="o">=</span> <span class="n">WebMapTileService</span><span class="p">(</span><span class="n">URL</span><span class="p">)</span>
+
+    <span class="c1"># Layers for MODIS true color and snow RGB</span>
+    <span class="n">layers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;MODIS_Terra_SurfaceReflectance_Bands143&#39;</span><span class="p">,</span>
+              <span class="s1">&#39;MODIS_Terra_CorrectedReflectance_Bands367&#39;</span><span class="p">]</span>
+
+    <span class="n">date_str</span> <span class="o">=</span> <span class="s1">&#39;2016-02-05&#39;</span>
+
+    <span class="c1"># Plot setup</span>
+    <span class="n">plot_CRS</span> <span class="o">=</span> <a href="../crs/projections.html#cartopy.crs.Mercator" title="View documentation for cartopy.crs.Mercator"><span class="n">ccrs</span><span class="o">.</span><span class="n">Mercator</span></a><span class="p">()</span>
+    <span class="n">geodetic_CRS</span> <span class="o">=</span> <a href="../crs/index.html#cartopy.crs.Geodetic" title="View documentation for cartopy.crs.Geodetic"><span class="n">ccrs</span><span class="o">.</span><span class="n">Geodetic</span></a><span class="p">()</span>
+    <span class="n">x0</span><span class="p">,</span> <span class="n">y0</span> <span class="o">=</span> <span class="n">plot_CRS</span><span class="o">.</span><span class="n">transform_point</span><span class="p">(</span><span class="mf">4.6</span><span class="p">,</span> <span class="mf">43.1</span><span class="p">,</span> <span class="n">geodetic_CRS</span><span class="p">)</span>
+    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">plot_CRS</span><span class="o">.</span><span class="n">transform_point</span><span class="p">(</span><span class="mf">11.0</span><span class="p">,</span> <span class="mf">47.4</span><span class="p">,</span> <span class="n">geodetic_CRS</span><span class="p">)</span>
+    <span class="n">ysize</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="n">xsize</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">ysize</span> <span class="o">*</span> <span class="p">(</span><span class="n">x1</span> <span class="o">-</span> <span class="n">x0</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">y1</span> <span class="o">-</span> <span class="n">y0</span><span class="p">)</span>
+    <span class="n">fig</span> <span class="o">=</span> <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="View documentation for matplotlib.pyplot.figure"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="n">xsize</span><span class="p">,</span> <span class="n">ysize</span><span class="p">),</span> <span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">layer</span><span class="p">,</span> <span class="n">offset</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]):</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="n">offset</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">plot_CRS</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">((</span><span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">((</span><span class="n">y0</span><span class="p">,</span> <span class="n">y1</span><span class="p">))</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_wmts</span><span class="p">(</span><span class="n">wmts</span><span class="p">,</span> <span class="n">layer</span><span class="p">,</span> <span class="n">wmts_kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;time&#39;</span><span class="p">:</span> <span class="n">date_str</span><span class="p">})</span>
+        <span class="n">txt</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="mf">4.7</span><span class="p">,</span> <span class="mf">43.2</span><span class="p">,</span> <span class="n">wmts</span><span class="p">[</span><span class="n">layer</span><span class="p">]</span><span class="o">.</span><span class="n">title</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;wheat&#39;</span><span class="p">,</span>
+                      <span class="n">transform</span><span class="o">=</span><span class="n">geodetic_CRS</span><span class="p">)</span>
+        <span class="n">txt</span><span class="o">.</span><span class="n">set_path_effects</span><span class="p">([</span><a href="https://matplotlib.org/api/patheffects_api.html#matplotlib.patheffects.withStroke" title="View documentation for matplotlib.patheffects.withStroke"><span class="n">PathEffects</span><span class="o">.</span><span class="n">withStroke</span></a><span class="p">(</span><span class="n">linewidth</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
+                                                     <span class="n">foreground</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)])</span>
+    <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="View documentation for matplotlib.pyplot.show"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>Total running time of the script:</strong> ( 0 minutes  1.999 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-wmts-time-py">
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/4942a35dfe458ccdb880599ba2e4523b/wmts_time.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">wmts_time.py</span></code></a></div>
+<div class="sphx-glr-download docutils container">
+<a class="reference download internal" download="" href="../_downloads/8207b14adc8d08bdbe9b34367ca0b768/wmts_time.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">wmts_time.ipynb</span></code></a></div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.readthedocs.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="image_tiles.html" title="Web tile imagery"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="wmts.html" title="Interactive WMTS (Web Map Tile Service)"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Cartopy Gallery</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.2.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

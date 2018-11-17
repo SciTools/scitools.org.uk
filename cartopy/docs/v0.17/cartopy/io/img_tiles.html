@@ -1,0 +1,339 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Image tile identification and fetching &#8212; cartopy 0.17.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="RasterSources and accessing WMS and WMTS" href="ogc_clients.html" />
+    <link rel="prev" title="Geodesic calculations" href="../geodesic.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="ogc_clients.html" title="RasterSources and accessing WMS and WMTS"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../geodesic.html" title="Geodesic calculations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../geodesic.html"
+                        title="previous chapter">Geodesic calculations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ogc_clients.html"
+                        title="next chapter">RasterSources and accessing WMS and WMTS</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cartopy/io/img_tiles.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartopy.io.img_tiles">
+<span id="image-tile-identification-and-fetching"></span><h1>Image tile identification and fetching<a class="headerlink" href="#module-cartopy.io.img_tiles" title="Permalink to this headline">¶</a></h1>
+<p>Implements image tile identification and fetching from various sources.</p>
+<p>The Matplotlib interface can make use of tile objects (defined below) via the
+<a class="reference internal" href="../../matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_image" title="cartopy.mpl.geoaxes.GeoAxes.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.add_image()</span></code></a> method. For example, to add a
+<a class="reference internal" href="#cartopy.io.img_tiles.MapQuestOpenAerial" title="cartopy.io.img_tiles.MapQuestOpenAerial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapQuest</span> <span class="pre">Open</span> <span class="pre">Aerial</span> <span class="pre">tileset</span></code></a> to an existing axes
+at zoom level 2, do <code class="docutils literal notranslate"><span class="pre">ax.add_image(MapQuestOpenAerial(),</span> <span class="pre">2)</span></code>. An example of
+using tiles in this way can be found at the
+<a class="reference internal" href="../../gallery/eyja_volcano.html#sphx-glr-gallery-eyja-volcano-py"><span class="std std-ref">Map tile acquisition</span></a> example.</p>
+<dl class="class">
+<dt id="cartopy.io.img_tiles.GoogleTiles">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">GoogleTiles</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em>, <em>style='street'</em>, <em>url='https://mts0.google.com/vt/lyrs={style}&#64;177000000&amp;hl=en&amp;src=api&amp;x={x}&amp;y={y}&amp;z={z}&amp;s=G'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleTiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleTiles" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>desired_tile_form</strong> (<em>optional</em>) – Defaults to ‘RGB’.</li>
+<li><strong>style</strong> (<em>optional</em>) – The style for the Google Maps tiles.  One of ‘street’,
+‘satellite’, ‘terrain’, and ‘only_streets’.  Defaults to ‘street’.</li>
+<li><strong>url</strong> (<em>optional</em>) – URL pointing to a tile source and containing {x}, {y}, and {z}.
+Such as: <code class="docutils literal notranslate"><span class="pre">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}.jpg'</span></code></li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.GoogleWTS">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">GoogleWTS</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval using the Google WTS coordinate system.</p>
+<p>A “tile” in this class refers to the coordinates (x, y, z).</p>
+<dl class="method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.find_images">
+<code class="descname">find_images</code><span class="sig-paren">(</span><em>target_domain</em>, <em>target_z</em>, <em>start_tile=(0</em>, <em>0</em>, <em>0)</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.find_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Target domain is a shapely polygon in native coordinates.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.tile_bbox">
+<code class="descname">tile_bbox</code><span class="sig-paren">(</span><em>x</em>, <em>y</em>, <em>z</em>, <em>y0_at_north_pole=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS.tile_bbox"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.tile_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <code class="docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">x1),</span> <span class="pre">(y0,</span> <span class="pre">y1)</span></code> bounding box for the given x, y, z
+tile position.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>x</strong> – The x tile coordinate in the Google tile numbering system.</li>
+<li><strong>y</strong> – The y tile coordinate in the Google tile numbering system.</li>
+<li><strong>z</strong> – The z tile coordinate in the Google tile numbering system.</li>
+<li><strong>y0_at_north_pole</strong> (<em>optional</em>) – Boolean representing whether the numbering of the y coordinate
+starts at the north pole (as is the convention for Google tiles)
+or not (in which case it will start at the south pole, as is the
+convention for TMS). Defaults to True.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.tileextent">
+<code class="descname">tileextent</code><span class="sig-paren">(</span><em>x_y_z</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS.tileextent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.tileextent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return extent tuple <code class="docutils literal notranslate"><span class="pre">(x0,x1,y0,y1)</span></code> in Mercator coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.MapQuestOSM">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">MapQuestOSM</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapQuestOSM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapQuestOSM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.MapQuestOpenAerial">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">MapQuestOpenAerial</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapQuestOpenAerial"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapQuestOpenAerial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.MapboxStyleTiles">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">MapboxStyleTiles</code><span class="sig-paren">(</span><em>access_token</em>, <em>username</em>, <em>map_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapboxStyleTiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapboxStyleTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval from a user-defined Mapbox style. For more
+details on Mapbox styles, see
+<a class="reference external" href="https://www.mapbox.com/studio-manual/overview/map-styling/">https://www.mapbox.com/studio-manual/overview/map-styling/</a>.</p>
+<p>For terms of service, see <a class="reference external" href="https://www.mapbox.com/tos/">https://www.mapbox.com/tos/</a>.</p>
+<p>Set up a new instance to retrieve tiles from a Mapbox style.</p>
+<p>Access to Mapbox web services requires an access token and a map ID.
+See <a class="reference external" href="https://www.mapbox.com/api-documentation/">https://www.mapbox.com/api-documentation/</a> for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> – A valid Mapbox API access token.</li>
+<li><strong>username</strong> – The username for the Mapbox user who defined the Mapbox style.</li>
+<li><strong>map_id</strong> – A map ID for a map defined by a Mapbox style. This is the map whose
+tiles will be retrieved through this process. Note that this style
+may be private and if your access token does not have permissions
+to view this style, then map tile retrieval will fail.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.MapboxTiles">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">MapboxTiles</code><span class="sig-paren">(</span><em>access_token</em>, <em>map_id</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapboxTiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapboxTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval from Mapbox.</p>
+<p>For terms of service, see <a class="reference external" href="https://www.mapbox.com/tos/">https://www.mapbox.com/tos/</a>.</p>
+<p>Set up a new Mapbox tiles instance.</p>
+<p>Access to Mapbox web services requires an access token and a map ID.
+See <a class="reference external" href="https://www.mapbox.com/api-documentation/">https://www.mapbox.com/api-documentation/</a> for details.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>access_token</strong> – A valid Mapbox API access token.</li>
+<li><strong>map_id</strong> – An ID for a publicly accessible map (provided by Mapbox).
+This is the map whose tiles will be retrieved through this process.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.OSM">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">OSM</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#OSM"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.OSM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">QuadtreeTiles</code><span class="sig-paren">(</span><em>desired_tile_form='RGB'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval using the Microsoft WTS quadkey coordinate
+system.</p>
+<p>A “tile” in this class refers to a quadkey such as “1”, “14” or “141”
+where the length of the quatree is the zoom level in Google Tile terms.</p>
+<dl class="method">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles.find_images">
+<code class="descname">find_images</code><span class="sig-paren">(</span><em>target_domain</em>, <em>target_z</em>, <em>start_tile=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles.find_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles.find_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find all the quadtrees at the given target zoom, in the given
+target domain.</p>
+<p>target_z must be a value &gt;= 1.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles.tileextent">
+<code class="descname">tileextent</code><span class="sig-paren">(</span><em>quadkey</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles.tileextent"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles.tileextent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return extent tuple <code class="docutils literal notranslate"><span class="pre">(x0,x1,y0,y1)</span></code> in Mercator coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.Stamen">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">Stamen</code><span class="sig-paren">(</span><em>style='toner'</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#Stamen"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.Stamen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves tiles from maps.stamen.com. Styles include
+<code class="docutils literal notranslate"><span class="pre">terrain-background</span></code>, <code class="docutils literal notranslate"><span class="pre">terrain</span></code>, <code class="docutils literal notranslate"><span class="pre">toner</span></code> and <code class="docutils literal notranslate"><span class="pre">watercolor</span></code>.</p>
+<p>For a full reference on the styles available please see
+<a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a>. Of particular note are the sub-styles
+that are made available (e.g. <code class="docutils literal notranslate"><span class="pre">terrain</span></code> and <code class="docutils literal notranslate"><span class="pre">terrain-background</span></code>).
+To determine the name of the particular [sub-]style you want,
+follow the link on <a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a> to your desired style and
+observe the style name in the URL. Your style name will be in the
+form of: <code class="docutils literal notranslate"><span class="pre">http://maps.stamen.com/{STYLE_NAME}/#9/37/-122</span></code>.</p>
+<p>Except otherwise noted, the Stamen map tile sets are copyright Stamen
+Design, under a Creative Commons Attribution (CC BY 3.0) license.</p>
+<p>Please see the attribution notice at <a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a> on how to
+attribute this imagery.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.img_tiles.StamenTerrain">
+<em class="property">class </em><code class="descclassname">cartopy.io.img_tiles.</code><code class="descname">StamenTerrain</code><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#StamenTerrain"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.img_tiles.StamenTerrain" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>DEPRECATED:</strong> This class is deprecated. Please use
+<code class="docutils literal notranslate"><span class="pre">Stamen('terrain-background')</span></code> instead.</p>
+<p>Terrain tiles defined for the continental United States, and include land
+color and shaded hills. The land colors are a custom palette developed by
+Gem Spear for the National Atlas 1km land cover data set, which defines
+twenty-four land classifications including five kinds of forest,
+combinations of shrubs, grasses and crops, and a few tundras and wetlands.
+The colors are at their highest contrast when fully zoomed-out to the
+whole U.S., and they slowly fade out to pale off-white as you zoom in to
+leave room for foreground data and break up the weirdness of large areas
+of flat, dark green.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><a class="reference external" href="http://mike.teczno.com/notes/osm-us-terrain-layer/background.html">http://mike.teczno.com/notes/osm-us-terrain-layer/background.html</a></li>
+<li><a class="reference external" href="http://maps.stamen.com/">http://maps.stamen.com/</a></li>
+<li><a class="reference external" href="https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services">https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services</a></li>
+<li><a class="reference external" href="https://github.com/migurski/DEM-Tools">https://github.com/migurski/DEM-Tools</a></li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="ogc_clients.html" title="RasterSources and accessing WMS and WMTS"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../geodesic.html" title="Geodesic calculations"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.2.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
