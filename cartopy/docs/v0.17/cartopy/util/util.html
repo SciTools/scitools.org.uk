@@ -1,0 +1,199 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Miscellaneous cartopy utilities &#8212; cartopy 0.17.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Cartopy Gallery" href="../../gallery/index.html" />
+    <link rel="prev" title="LinearRing/LineString projection" href="../trace.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="../../gallery/index.html" title="Cartopy Gallery"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../trace.html" title="LinearRing/LineString projection"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png"
+border="0" alt="Cartopy" style="margin-left: -60px;"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../trace.html"
+                        title="previous chapter">LinearRing/LineString projection</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../gallery/index.html"
+                        title="next chapter">Cartopy Gallery</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cartopy/util/util.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartopy.util">
+<span id="miscellaneous-cartopy-utilities"></span><h1>Miscellaneous cartopy utilities<a class="headerlink" href="#module-cartopy.util" title="Permalink to this headline">¶</a></h1>
+<p>This module contains utilities that are useful in conjunction with
+cartopy.</p>
+<dl class="function">
+<dt id="cartopy.util.add_cyclic_point">
+<code class="descclassname">cartopy.util.</code><code class="descname">add_cyclic_point</code><span class="sig-paren">(</span><em>data</em>, <em>coord=None</em>, <em>axis=-1</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/util.html#add_cyclic_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.util.add_cyclic_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a cyclic point to an array and optionally a corresponding
+coordinate.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>data</strong> – An n-dimensional array of data to add a cyclic point to.</li>
+<li><strong>coord</strong> (<em>optional</em>) – A 1-dimensional array which specifies the coordinate values for
+the dimension the cyclic point is to be added to. The coordinate
+values must be regularly spaced. Defaults to None.</li>
+<li><strong>axis</strong> (<em>optional</em>) – Specifies the axis of the data array to add the cyclic point to.
+Defaults to the right-most axis.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"><ul class="simple">
+<li><em>cyclic_data</em> – The data array with a cyclic point added.</li>
+<li><em>cyclic_coord</em> – The coordinate with a cyclic point, only returned if the coord
+keyword was supplied.</li>
+</ul>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Examples</p>
+<p>Adding a cyclic point to a data array, where the cyclic dimension is
+the right-most dimension</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">([</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">])</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cyclic_data</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cyclic_data</span><span class="p">)</span>  <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
+<span class="go">[[ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]]</span>
+</pre></div>
+</div>
+<p>Adding a cyclic point to a data array and an associated coordinate</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">60</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cyclic_data</span><span class="p">,</span> <span class="n">cyclic_lons</span> <span class="o">=</span> <span class="n">add_cyclic_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="n">lons</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cyclic_data</span><span class="p">)</span>  <span class="c1"># doctest: +NORMALIZE_WHITESPACE</span>
+<span class="go">[[ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="go"> [ 0. 1. 2. 3. 4. 5. 0.]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cyclic_lons</span><span class="p">)</span>
+<span class="go">[  0  60 120 180 240 300 360]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="../../gallery/index.html" title="Cartopy Gallery"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../trace.html" title="LinearRing/LineString projection"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.8.2.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="http://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
