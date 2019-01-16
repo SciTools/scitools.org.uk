@@ -15,13 +15,13 @@ in the [SciTools CLA](https://scitools.org.uk/cla/v4).
 The copyright statement is:
 
 ```
-Copyright (C) <start year>(-<end year>) <project> contributors
+Copyright © <start year>(-<end year>) <project> contributors
 ```
 
 For example:
 
 ```
-Copyright (C) 2010-2018 Iris contributors
+Copyright © 2010-2018 Iris contributors
 ```
 
 
@@ -31,7 +31,7 @@ All non-trivial source files in a SciTools repository must reference the
 license of the repository. The wording of the preamble should be:
 
 ```
-# Copyright (C) <project> contributors
+# Copyright © <project> contributors
 #
 # This file is part of <project> and is released under the <OSI license> license.
 # See LICENSE in the root of the repository for full licensing details.
@@ -48,7 +48,7 @@ The full text of a BSD 3-clause LICENSE file should be:
 ```
 BSD 3-Clause License
 
-Copyright (C) <YEAR_START>-<YEAR_END> <project> contributors
+Copyright © <YEAR_START>-<YEAR_END> <project> contributors
 
 See "Credits, copyright and license" in README.<ext> for full credits
 <(if appropriate) and any exceptions to the following terms>.
