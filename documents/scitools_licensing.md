@@ -15,7 +15,7 @@ in the [SciTools CLA](https://scitools.org.uk/cla/v4).
 The copyright statement is:
 
 ```
-Copyright © <start year>(-<end year>) <project> contributors
+Copyright <start year>(-<end year>) <project> contributors
 ```
 
 For example:
