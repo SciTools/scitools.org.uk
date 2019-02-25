@@ -21,7 +21,7 @@ Copyright <start year>(-<end year>) <project> contributors
 For example:
 
 ```
-Copyright 2010-2018 Iris contributors
+Copyright 2010-2019 Iris contributors
 ```
 
 
