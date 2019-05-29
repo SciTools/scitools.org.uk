@@ -1,1 +1,12 @@
-../../../../shared_assets/ec6d2d77ddd988366dfbb79b09760cf2b89d6ad2a8c8b3429f8bcd12-understanding_transform-3.py
+# The data are defined in lat/lon coordinate system, so PlateCarree()
+# is the appropriate choice:
+data_crs = ccrs.PlateCarree()
+
+# The projection keyword determines how the plot will look
+plt.figure(figsize=(6, 3))
+ax = plt.axes(projection=ccrs.PlateCarree())
+ax.set_global()
+ax.coastlines()
+
+ax.contourf(lon, lat, data, transform=data_crs)
+plt.show()

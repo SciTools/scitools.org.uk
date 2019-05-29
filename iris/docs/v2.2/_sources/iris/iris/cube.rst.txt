@@ -1,1 +1,100 @@
-../../../../../../shared_assets/60c19cf4148d49ff07009f69dac9b567c6774d3dc565648d6fd30655-cube.txt
+.. _iris.cube:
+
+=========
+iris.cube
+=========
+
+
+
+.. currentmodule:: iris
+
+.. automodule:: iris.cube
+
+In this module:
+
+ * :py:obj:`Cube`
+ * :py:obj:`CubeList`
+ * :py:obj:`CubeMetadata`
+
+
+
+A single Iris cube of data and metadata.
+
+Typically obtained from :func:`iris.load`, :func:`iris.load_cube`,
+:func:`iris.load_cubes`, or from the manipulation of existing cubes.
+
+For example:
+
+    >>> cube = iris.load_cube(iris.sample_data_path('air_temp.pp'))
+    >>> print(cube)
+    air_temperature / (K)               (latitude: 73; longitude: 96)
+         Dimension coordinates:
+              latitude                           x              -
+              longitude                          -              x
+         Scalar coordinates:
+              forecast_period: 6477 hours, bound=(-28083.0, 6477.0) hours
+              forecast_reference_time: 1998-03-01 03:00:00
+              pressure: 1000.0 hPa
+              time: 1998-12-01 00:00:00, bound=(1994-12-01 00:00:00, 1998-12-01 00:00:00)
+         Attributes:
+              STASH: m01s16i203
+              source: Data from Met Office Unified Model
+         Cell methods:
+              mean within years: time
+              mean over years: time
+
+
+See the :doc:`user guide</userguide/index>` for more information.
+
+..
+
+    .. autoclass:: iris.cube.Cube
+        :members:
+        :undoc-members:
+        :inherited-members:
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+All the functionality of a standard :class:`list` with added "Cube"
+context.
+
+..
+
+    .. autoclass:: iris.cube.CubeList
+        :members:
+        :undoc-members:
+        :inherited-members:
+
+
+.. raw:: html
+
+    <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+    <!--
+
+-----------
+
+.. raw:: html
+
+    -->
+
+
+Represents the phenomenon metadata for a single :class:`Cube`.
+
+..
+
+    .. autoclass:: iris.cube.CubeMetadata
+        :members:
+        :undoc-members:
+        :inherited-members:
+

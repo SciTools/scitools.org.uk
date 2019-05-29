@@ -1,1 +1,7 @@
-../../../../shared_assets/f0f0fc90e0f2781548f32b42af797b8bd55e6ba3f2dba01cd914d1e3-projections-18.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(3, 3))
+ax = plt.axes(projection=ccrs.NorthPolarStereo())
+ax.coastlines(resolution='110m')
+ax.gridlines()

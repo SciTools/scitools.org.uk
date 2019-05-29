@@ -1,1 +1,7 @@
-../../../../shared_assets/e270624f01dace2edf7924230ad38d5d02399eaa210a3c082b04e4d9-projections-23.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(3.0066, 3))
+ax = plt.axes(projection=ccrs.LambertAzimuthalEqualArea())
+ax.coastlines(resolution='110m')
+ax.gridlines()

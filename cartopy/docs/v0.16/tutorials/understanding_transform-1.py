@@ -1,1 +1,8 @@
-../../../../shared_assets/8913185768e1efe40c8fee072bc08de8a0580a149bae73b39e78aff4-understanding_transform-1.py
+import numpy as np
+
+
+lon = np.linspace(-80, 80, 25)
+lat = np.linspace(30, 70, 25)
+lon2d, lat2d = np.meshgrid(lon, lat)
+
+data = np.cos(np.deg2rad(lat2d) * 4) + np.sin(np.deg2rad(lon2d) * 4)
