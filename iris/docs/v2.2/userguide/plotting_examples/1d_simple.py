@@ -1,18 +1,1 @@
-
-from __future__ import (absolute_import, division, print_function)
-from six.moves import (filter, input, map, range, zip)  # noqa
-
-import matplotlib.pyplot as plt
-
-import iris
-import iris.plot as iplt
-
-
-fname = iris.sample_data_path('air_temp.pp')
-temperature = iris.load_cube(fname)
-
-# Take a 1d slice using array style indexing.
-temperature_1d = temperature[5, :]
-
-iplt.plot(temperature_1d)
-plt.show()
+../../../../../shared_assets/6d001401df4894e37568867afa06ca67692d62d096ba9ae19528b65c-1d_simple.py

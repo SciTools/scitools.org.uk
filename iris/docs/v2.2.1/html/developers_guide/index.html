@@ -1,0 +1,243 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Iris developer guide &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Documentation in Iris" href="documenting/index.html" />
+    <link rel="prev" title="Oceanographic profiles and T-S diagrams" href="../examples/Oceanography/atlantic_profiles.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.2</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="documenting/index.html" title="Documentation in Iris"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../examples/Oceanography/atlantic_profiles.html" title="Oceanographic profiles and T-S diagrams"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../examples/Oceanography/atlantic_profiles.html"
+                        title="previous chapter">Oceanographic profiles and T-S diagrams</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="documenting/index.html"
+                        title="next chapter">Documentation in Iris</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/developers_guide/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <span class="target" id="userguide-index"></span><div class="section" id="iris-developer-guide">
+<h1>Iris developer guide<a class="headerlink" href="#iris-developer-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="documenting/index.html">Documentation in Iris</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="documenting/docstrings.html">Docstrings</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documenting/docstrings.html#single-line-docstrings">Single-line docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documenting/docstrings.html#multi-line-docstrings">Multi-line docstrings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documenting/docstrings.html#documenting-classes">Documenting classes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documenting/rest_guide.html">reST quickstart</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documenting/rest_guide.html#creating-links">Creating links</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="documenting/whats_new_contributions.html">Contributing a “What’s New” entry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="documenting/whats_new_contributions.html#writing-a-contribution">Writing a Contribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documenting/whats_new_contributions.html#adding-contribution-files">Adding Contribution Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="documenting/whats_new_contributions.html#compiling-a-draft">Compiling a Draft</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="gitwash/index.html">Working with <em>iris</em> source code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="gitwash/git_intro.html">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gitwash/git_install.html">Install git</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/git_install.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/git_install.html#in-detail">In detail</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gitwash/git_development.html">Git for development</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/forking_hell.html">Making your own copy (fork) of iris</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/set_up_fork.html">Set up your fork</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/configure_git.html">Configure git</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/development_workflow.html">Development workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/maintainer_workflow.html">Maintainer workflow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="gitwash/git_resources.html">git resources</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/git_resources.html#tutorials-and-summaries">Tutorials and summaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/git_resources.html#advanced-git-workflow">Advanced git workflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gitwash/git_resources.html#manual-pages-online">Manual pages online</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="pulls.html">Pull Request Check List</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="pulls.html#the-iris-check-list">The Iris Check List</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tests.html">Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#unit-tests">Unit tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#classes">Classes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tests.html#functions">Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#integration-tests">Integration tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#graphics-tests">Graphics tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deprecations.html">Deprecations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deprecations.html#adding-a-deprecation">Adding a deprecation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deprecations.html#removing-a-public-api">Removing a public API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deprecations.html#changing-a-default">Changing a default</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deprecations.html#removing-a-deprecation">Removing a deprecation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="deprecations.html#id3">Removing a public API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="deprecations.html#iris-developer-future">Changing a default</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="release.html">Releases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="release.html#release-branch">Release Branch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#release-candidate">Release Candidate</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#documentation">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#testing-the-conda-recipe">Testing the Conda Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#the-release">The Release</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#conda-recipe">Conda Recipe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#merge-back">Merge Back</a></li>
+<li class="toctree-l2"><a class="reference internal" href="release.html#point-releases">Point Releases</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="documenting/index.html" title="Documentation in Iris"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../examples/Oceanography/atlantic_profiles.html" title="Oceanographic profiles and T-S diagrams"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

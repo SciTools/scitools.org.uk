@@ -1,10 +1,1 @@
-# A rotated pole projection again...
-projection = ccrs.RotatedPole(pole_longitude=-177.5, pole_latitude=37.5)
-plt.figure(figsize=(6, 3))
-ax = plt.axes(projection=projection)
-ax.set_global()
-ax.coastlines()
-
-# ...but now using the transform argument
-ax.contourf(lon, lat, data, transform=data_crs)
-plt.show()
+../../../../shared_assets/d65cdf3764d5a4ad9cd5b886c08582c5bf8c93bcae35ca3ebf1e1536-understanding_transform-5.py

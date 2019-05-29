@@ -1,0 +1,341 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>iris.analysis.trajectory &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="iris.aux_factory" href="../aux_factory.html" />
+    <link rel="prev" title="iris.analysis.stats" href="stats.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../../index.html">
+        <img src="../../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.2</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../aux_factory.html" title="iris.aux_factory"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="stats.html" title="iris.analysis.stats"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" accesskey="U">iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="stats.html"
+                        title="previous chapter">iris.analysis.stats</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../aux_factory.html"
+                        title="next chapter">iris.aux_factory</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/analysis/trajectory.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-analysis-trajectory">
+<span id="id1"></span><h1>iris.analysis.trajectory<a class="headerlink" href="#iris-analysis-trajectory" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.analysis.trajectory"></span><p>Defines a Trajectory class, and a routine to extract a sub-cube along a
+trajectory.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference internal" href="#iris.analysis.trajectory.interpolate" title="iris.analysis.trajectory.interpolate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">interpolate</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.trajectory.Trajectory" title="iris.analysis.trajectory.Trajectory"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Trajectory</span></code></a></li>
+<li><a class="reference internal" href="#iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder" title="iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnstructuredNearestNeigbourRegridder</span></code></a></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.analysis.trajectory.interpolate">
+<code class="descclassname">iris.analysis.trajectory.</code><code class="descname">interpolate</code><span class="sig-paren">(</span><em>cube</em>, <em>sample_points</em>, <em>method=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.trajectory.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract a sub-cube at the given n-dimensional points.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>cube</dt>
+<dd>The source Cube.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>sample_points</dt>
+<dd>A sequence of coordinate (name) - values pairs.</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>method</dt>
+<dd>Request “linear” interpolation (default) or “nearest” neighbour.
+Only nearest neighbour is available when specifying multi-dimensional
+coordinates.</dd>
+</dl>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sample_points</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="p">[</span><span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">45</span><span class="p">]),</span>
+<span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="p">[</span><span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">,</span> <span class="o">-</span><span class="mi">40</span><span class="p">])]</span>
+<span class="n">interpolated_cube</span> <span class="o">=</span> <span class="n">interpolate</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">sample_points</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>A series of given waypoints with pre-calculated sample points.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.analysis.trajectory.Trajectory">
+<em class="property">class </em><code class="descclassname">iris.analysis.trajectory.</code><code class="descname">Trajectory</code><span class="sig-paren">(</span><em>waypoints</em>, <em>sample_count=10</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.trajectory.Trajectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>Defines a trajectory using a sequence of waypoints.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">waypoints</span> <span class="o">=</span> <span class="p">[{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="o">-</span><span class="mi">60</span><span class="p">},</span>
+             <span class="p">{</span><span class="s1">&#39;latitude&#39;</span><span class="p">:</span> <span class="mi">45</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">:</span> <span class="mi">0</span><span class="p">}]</span>
+<span class="n">Trajectory</span><span class="p">(</span><span class="n">waypoints</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">All the waypoint dictionaries must contain the same
+coordinate names.</p>
+</div>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>waypoints</dt>
+<dd>A sequence of dictionaries, mapping coordinate names to values.</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>sample_count</dt>
+<dd>The number of sample positions to use along the trajectory.</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.analysis.trajectory.Trajectory.interpolate">
+<code class="descname">interpolate</code><span class="sig-paren">(</span><em>cube</em>, <em>method=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.trajectory.Trajectory.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <a class="reference internal" href="#iris.analysis.trajectory.interpolate" title="iris.analysis.trajectory.interpolate"><code class="xref py py-func docutils literal notranslate"><span class="pre">interpolate()</span></code></a> to interpolate
+<code class="docutils literal notranslate"><span class="pre">cube</span></code> on the defined trajectory.</p>
+<p>Assumes that the coordinate names supplied in the waypoints
+dictionaries match to coordinate names in <cite>cube</cite>, and that points are
+supplied in the same coord_system as in <cite>cube</cite>, where appropriate (i.e.
+for horizontal coordinate points).</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>cube</dt>
+<dd>The source Cube to interpolate.</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>method:</dt>
+<dd>The interpolation method to use; “linear” (default) or “nearest”.
+Only nearest is available when specifying multi-dimensional
+coordinates.</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.analysis.trajectory.Trajectory.sampled_points">
+<code class="descname">sampled_points</code><em class="property"> = None</em><a class="headerlink" href="#iris.analysis.trajectory.Trajectory.sampled_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>The trajectory points, as dictionaries of {coord_name: value}.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Encapsulate the operation of <a class="reference internal" href="#iris.analysis.trajectory.interpolate" title="iris.analysis.trajectory.interpolate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.analysis.trajectory.interpolate()</span></code></a>
+with given source and target grids.</p>
+<p>This is the type used by the <a class="reference internal" href="../analysis.html#iris.analysis.UnstructuredNearest" title="iris.analysis.UnstructuredNearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">UnstructuredNearest</span></code></a>
+regridding scheme.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder">
+<em class="property">class </em><code class="descclassname">iris.analysis.trajectory.</code><code class="descname">UnstructuredNearestNeigbourRegridder</code><span class="sig-paren">(</span><em>src_cube</em>, <em>target_grid_cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.trajectory.UnstructuredNearestNeigbourRegridder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<p>A nearest-neighbour regridder to perform regridding from the source
+grid to the target grid.</p>
+<p>This can then be applied to any source data with the same structure as
+the original ‘src_cube’.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="first docutils">
+<dt>src_cube:</dt>
+<dd>The <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> defining the source grid.
+The X and Y coordinates can have any shape, but must be mapped over
+the same cube dimensions.</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>target_grid_cube:</dt>
+<dd>A <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>, whose X and Y coordinates specify a
+desired target grid.
+The X and Y coordinates must be one-dimensional dimension
+coordinates, mapped to different dimensions.
+All other cube components are ignored.</dd>
+</dl>
+</li>
+</ul>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd><p class="first">regridder : (object)</p>
+<dl class="docutils">
+<dt>A callable object with the interface:</dt>
+<dd><cite>result_cube = regridder(data)</cite></dd>
+</dl>
+<p class="last">where <cite>data</cite> is a cube with the same grid as the original
+<cite>src_cube</cite>, that is to be regridded to the <cite>target_grid_cube</cite>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>For latitude-longitude coordinates, the nearest-neighbour distances
+are computed on the sphere, otherwise flat Euclidean distances are
+used.</p>
+<p class="last">The source and target X and Y coordinates must all have the same
+coordinate system, which may also be None.
+If any X and Y coordinates are latitudes or longitudes, they <em>all</em>
+must be.  Otherwise, the corresponding X and Y coordinates must
+have the same units in the source and grid cubes.</p>
+</div>
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../aux_factory.html" title="iris.aux_factory"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="stats.html" title="iris.analysis.stats"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" >iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
