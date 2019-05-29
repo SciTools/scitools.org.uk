@@ -1,1 +1,7 @@
-../../../../shared_assets/65999012ea4cb6b8518dfa898c67b1b375da879a706ae5193862f0a5-projections-3.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(5.1299, 3))
+ax = plt.axes(projection=ccrs.AlbersEqualArea())
+ax.coastlines(resolution='110m')
+ax.gridlines()

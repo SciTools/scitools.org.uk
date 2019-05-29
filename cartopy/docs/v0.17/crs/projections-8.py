@@ -1,1 +1,7 @@
-../../../../shared_assets/fd49229b45335b9b8ebdeaf293e69d56e6a6c22eca23cc15405ab24d-projections-8.py
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+
+plt.figure(figsize=(4.0915, 3))
+ax = plt.axes(projection=ccrs.Miller())
+ax.coastlines(resolution='110m')
+ax.gridlines()
