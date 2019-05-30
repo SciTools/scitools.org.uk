@@ -36,21 +36,21 @@ Iris 1.12 release the following steps need to be followed.
 ```
 $ cd <path_to_iris_repo>/docs/iris
 $ make html
-$ cp -a build/html/ <path_to_scitools.org.uk_repo>/iris/docs/v1.12
+$ cp -a build/html <path_to_scitools.org.uk_repo>/iris/docs/v1.12
 ```
 
 2. Update the `latest` symlink.
 ```
 $ cd <path_to_scitools.org.uk_repo>/iris/docs
-$ rm latest
+$ unlink latest
 $ ln -s v1.12 latest
-$ cd -
 ```
 
 3. Update available versions in `iris/docs/version_switch.js`.
 
 4. Generate the shared_assets.
 ```
+$ cd <path_to_scitools.org.uk_repo>
 $ python tools/symlink_common.py .
 ```
 
