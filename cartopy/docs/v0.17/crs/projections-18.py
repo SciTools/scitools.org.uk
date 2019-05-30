@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(1.6154, 3))
-ax = plt.axes(projection=ccrs.OSGB())
-ax.coastlines(resolution='50m')
-ax.gridlines()
+../../../../shared_assets/b1bb81a0cbe5b20eb77e3d2ed2631ab35139f6200bc750a3b49f2c0b-projections-18.py

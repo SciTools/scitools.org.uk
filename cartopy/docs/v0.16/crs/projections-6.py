@@ -1,7 +1,1 @@
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-
-plt.figure(figsize=(9.4248, 3))
-ax = plt.axes(projection=ccrs.LambertCylindrical())
-ax.coastlines(resolution='110m')
-ax.gridlines()
+../../../../shared_assets/c1237baf2fd7f6609aa0c43b4664e4875f0964e5dc765a878017117c-projections-6.py
