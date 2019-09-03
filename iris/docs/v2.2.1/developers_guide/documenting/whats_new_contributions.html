@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Contributing a “What’s New” entry &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>Contributing a “What’s New” entry &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -113,13 +111,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -169,17 +165,17 @@ directory in text files. The filename for each item should be structured as foll
 <div class="section" id="category">
 <h3>Category<a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h3>
 <p>The category must be one of the following:</p>
-<dl class="docutils">
-<dt><em>newfeature</em></dt>
-<dd>Features that are new or changed to add functionality.</dd>
-<dt><em>bugfix</em></dt>
-<dd>A bugfix.</dd>
-<dt><em>incompatiblechange</em></dt>
-<dd>A change that causes an incompatibility with prior versions of Iris.</dd>
-<dt><em>deprecate</em></dt>
-<dd>Deprecations of functionality.</dd>
-<dt><em>docchange</em></dt>
-<dd>Changes to documentation.</dd>
+<dl class="simple">
+<dt><em>newfeature</em></dt><dd><p>Features that are new or changed to add functionality.</p>
+</dd>
+<dt><em>bugfix</em></dt><dd><p>A bugfix.</p>
+</dd>
+<dt><em>incompatiblechange</em></dt><dd><p>A change that causes an incompatibility with prior versions of Iris.</p>
+</dd>
+<dt><em>deprecate</em></dt><dd><p>Deprecations of functionality.</p>
+</dd>
+<dt><em>docchange</em></dt><dd><p>Changes to documentation.</p>
+</dd>
 </dl>
 </div>
 <div class="section" id="date">
@@ -187,17 +183,17 @@ directory in text files. The filename for each item should be structured as foll
 <p>The date must be a hyphen-separated date in the format of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a four digit year,</li>
-<li>a three character month name, and</li>
-<li>a two digit day.</li>
+<li><p>a four digit year,</p></li>
+<li><p>a three character month name, and</p></li>
+<li><p>a two digit day.</p></li>
 </ul>
 </div></blockquote>
 <p>For example:</p>
 <blockquote>
 <div><ul class="simple">
-<li>2012-Jan-30</li>
-<li>2014-May-03</li>
-<li>2015-Feb-19</li>
+<li><p>2012-Jan-30</p></li>
+<li><p>2014-May-03</p></li>
+<li><p>2015-Feb-19</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -208,10 +204,10 @@ short identifying description of the change.</p>
 <p>For example:</p>
 <blockquote>
 <div><ul class="simple">
-<li>whats-new-aggregator</li>
-<li>using_mo_pack</li>
-<li>correction-to-bilinear-regrid</li>
-<li>GRIB2_pdt11</li>
+<li><p>whats-new-aggregator</p></li>
+<li><p>using_mo_pack</p></li>
+<li><p>correction-to-bilinear-regrid</p></li>
+<li><p>GRIB2_pdt11</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -220,15 +216,15 @@ short identifying description of the change.</p>
 <p>Some sample what’s new contribution filenames:</p>
 <blockquote>
 <div><ul class="simple">
-<li>bugfix_2015-Aug-18_partial_pp_constraints.txt</li>
-<li>deprecate_2015-Nov-01_unit-module.txt</li>
-<li>incompatiblechange_2015-Oct-12_GRIB_optional_Python3_unavailable.txt</li>
-<li>newfeature_2015-Jul-03_pearsonr_rewrite.txt</li>
+<li><p>bugfix_2015-Aug-18_partial_pp_constraints.txt</p></li>
+<li><p>deprecate_2015-Nov-01_unit-module.txt</p></li>
+<li><p>incompatiblechange_2015-Oct-12_GRIB_optional_Python3_unavailable.txt</p></li>
+<li><p>newfeature_2015-Jul-03_pearsonr_rewrite.txt</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">A test in the standard test suite ensures that all the contents of the
+<p class="admonition-title">Note</p>
+<p>A test in the standard test suite ensures that all the contents of the
 latest contributions directory conform to this naming scheme.</p>
 </div>
 </div>

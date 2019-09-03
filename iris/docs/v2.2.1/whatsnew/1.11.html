@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What’s New in Iris 1.11 &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>What’s New in Iris 1.11 &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -106,13 +104,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -127,45 +123,43 @@
             
   <div class="section" id="what-s-new-in-iris-1-11">
 <h1>What’s New in Iris 1.11<a class="headerlink" href="#what-s-new-in-iris-1-11" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.11</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">2016-11-28</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>1.11</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>2016-11-28</p>
+</dd>
+</dl>
 <p>This document explains the new/changed features of Iris in version 1.11
 (<a class="reference internal" href="index.html"><span class="doc">View all changes</span></a>.)</p>
 <div class="section" id="iris-1-11-features">
 <h2>Iris 1.11 Features<a class="headerlink" href="#iris-1-11-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>If available, display the <code class="docutils literal notranslate"><span class="pre">STASH</span></code> code instead of <code class="docutils literal notranslate"><span class="pre">unknown</span> <span class="pre">/</span> <span class="pre">(unknown)</span></code> when printing cubes
-with no <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> and no <code class="docutils literal notranslate"><span class="pre">units</span></code>.</li>
-<li>Support for saving to netCDF with data packing has been added.</li>
-<li>The coordinate system <a class="reference internal" href="../iris/iris/coord_systems.html#iris.coord_systems.LambertAzimuthalEqualArea" title="iris.coord_systems.LambertAzimuthalEqualArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord_systems.LambertAzimuthalEqualArea</span></code></a> has been added with NetCDF saving support.</li>
+<li><p>If available, display the <code class="docutils literal notranslate"><span class="pre">STASH</span></code> code instead of <code class="docutils literal notranslate"><span class="pre">unknown</span> <span class="pre">/</span> <span class="pre">(unknown)</span></code> when printing cubes
+with no <code class="docutils literal notranslate"><span class="pre">standard_name</span></code> and no <code class="docutils literal notranslate"><span class="pre">units</span></code>.</p></li>
+<li><p>Support for saving to netCDF with data packing has been added.</p></li>
+<li><p>The coordinate system <a class="reference internal" href="../iris/iris/coord_systems.html#iris.coord_systems.LambertAzimuthalEqualArea" title="iris.coord_systems.LambertAzimuthalEqualArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord_systems.LambertAzimuthalEqualArea</span></code></a> has been added with NetCDF saving support.</p></li>
 </ul>
 </div>
 <div class="section" id="bugs-fixed">
 <h2>Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fixed a floating point tolerance bug in <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid()</span></code></a>
-for wrapped longitudes.</li>
-<li>Allow <a class="reference internal" href="../iris/iris/util.html#iris.util.new_axis" title="iris.util.new_axis"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.new_axis()</span></code></a> to promote the nominated scalar coordinate of a cube
-with a scalar masked constant data payload.</li>
-<li>Fixed a bug where <code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util._is_circular()</span></code> would erroneously return false
-when coordinate values are decreasing.</li>
-<li>When saving to NetCDF, the existing behaviour of writing string attributes as ASCII has been
-maintained across known versions of netCDF4-python.</li>
+<li><p>Fixed a floating point tolerance bug in <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid" title="iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.experimental.regrid.regrid_area_weighted_rectilinear_src_and_grid()</span></code></a>
+for wrapped longitudes.</p></li>
+<li><p>Allow <a class="reference internal" href="../iris/iris/util.html#iris.util.new_axis" title="iris.util.new_axis"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.new_axis()</span></code></a> to promote the nominated scalar coordinate of a cube
+with a scalar masked constant data payload.</p></li>
+<li><p>Fixed a bug where <code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util._is_circular()</span></code> would erroneously return false
+when coordinate values are decreasing.</p></li>
+<li><p>When saving to NetCDF, the existing behaviour of writing string attributes as ASCII has been
+maintained across known versions of netCDF4-python.</p></li>
 </ul>
 </div>
 <div class="section" id="documentation-changes">
 <h2>Documentation Changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fuller doc-string detail added to <a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.unrotate_pole" title="iris.analysis.cartography.unrotate_pole"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.unrotate_pole()</span></code></a> and
-<a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.rotate_pole" title="iris.analysis.cartography.rotate_pole"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.rotate_pole()</span></code></a>.</li>
+<li><p>Fuller doc-string detail added to <a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.unrotate_pole" title="iris.analysis.cartography.unrotate_pole"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.unrotate_pole()</span></code></a> and
+<a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.rotate_pole" title="iris.analysis.cartography.rotate_pole"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.rotate_pole()</span></code></a>.</p></li>
 </ul>
 </div>
 </div>

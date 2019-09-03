@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>4. Navigating a cube &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>4. Navigating a cube &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -108,13 +106,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -185,13 +181,13 @@ are either a string or <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 <p>The result of which is <strong>always</strong> a string.</p>
-<p>Each cube also has a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/index.html#module-numpy" title="(in NumPy v1.16)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> array which represents the phenomenon of the cube which can be accessed with the
-<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Cube.data</span></code></a> attribute. As you can see the type is a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.16)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">n-dimensional</span> <span class="pre">array</span></code></a>:</p>
+<p>Each cube also has a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/index.html#module-numpy" title="(in NumPy v1.17)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy</span></code></a> array which represents the phenomenon of the cube which can be accessed with the
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Cube.data</span></code></a> attribute. As you can see the type is a <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy</span> <span class="pre">n-dimensional</span> <span class="pre">array</span></code></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">data</span><span class="p">))</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>When loading from most file formats in Iris, the data itself is not loaded until the <strong>first</strong> time that the data is requested.
 Hence you may have noticed that running the previous command for the first time takes a little longer than it does for
 subsequent calls.</p>
@@ -203,7 +199,7 @@ can tell you the shape of the cube’s data without loading it:</p>
 <span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="last">For more on the benefits, handling and uses of lazy data, see
+<p>For more on the benefits, handling and uses of lazy data, see
 <a class="reference internal" href="real_and_lazy_data.html"><span class="doc">Real and Lazy Data</span></a></p>
 </div>
 <p>You can change the units of a cube using the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.convert_units" title="iris.cube.Cube.convert_units"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_units()</span></code></a> method. For example:</p>
@@ -286,10 +282,10 @@ numpy array. If the coordinate has no bounds <code class="docutils literal notra
 This is often caused by one of the following:</p>
 <blockquote>
 <div><ul class="simple">
-<li>The file does not contain enough metadata, and therefore the cube cannot know everything about the file.</li>
-<li>Some of the metadata of the file is contained in the filename, but is not part of the actual file.</li>
-<li>There is not enough metadata loaded from the original file as Iris has not handled the format fully. <em>(in which case,
-please let us know about it)</em></li>
+<li><p>The file does not contain enough metadata, and therefore the cube cannot know everything about the file.</p></li>
+<li><p>Some of the metadata of the file is contained in the filename, but is not part of the actual file.</p></li>
+<li><p>There is not enough metadata loaded from the original file as Iris has not handled the format fully. <em>(in which case,
+please let us know about it)</em></p></li>
 </ul>
 </div></blockquote>
 <p>To solve this, all of <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a>, <a class="reference internal" href="../iris/iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load_cube()</span></code></a>, and <a class="reference internal" href="../iris/iris.html#iris.load_cubes" title="iris.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load_cubes()</span></code></a> support a callback keyword.</p>
@@ -317,9 +313,9 @@ which, given the filename, we could extract:</p>
 </div>
 <p>We can solve this problem by adding the appropriate metadata, on load, by using a callback function, which runs on a field
 by field basis <em>before</em> they are automatically merged together:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">iris</span>
-<span class="kn">import</span> <span class="nn">iris.coords</span> <span class="kn">as</span> <span class="nn">icoords</span>
+<span class="kn">import</span> <span class="nn">iris.coords</span> <span class="k">as</span> <span class="nn">icoords</span>
 
 <span class="k">def</span> <span class="nf">lagged_ensemble_callback</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="n">field</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
     <span class="c1"># Add our own realization coordinate if it doesn&#39;t already exist.</span>
@@ -330,7 +326,7 @@ by field basis <em>before</em> they are automatically merged together:</p>
 
 <span class="n">filename</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;GloSea4&#39;</span><span class="p">,</span> <span class="s1">&#39;*.pp&#39;</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;surface_temperature&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">lagged_ensemble_callback</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s1">&#39;surface_temperature&#39;</span><span class="p">,</span> <span class="n">callback</span><span class="o">=</span><span class="n">lagged_ensemble_callback</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The result is a single cube which represents the data in a form that was expected:</p>

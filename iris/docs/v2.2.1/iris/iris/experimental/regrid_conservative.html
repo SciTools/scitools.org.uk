@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.experimental.regrid_conservative &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>iris.experimental.regrid_conservative &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -97,13 +95,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -122,34 +118,34 @@
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="iris.experimental.regrid_conservative.regrid_conservative_via_esmpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regrid_conservative_via_esmpy</span></code></a></li>
+<li><p><a class="reference internal" href="#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="iris.experimental.regrid_conservative.regrid_conservative_via_esmpy"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regrid_conservative_via_esmpy</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <dl class="function">
 <dt id="iris.experimental.regrid_conservative.regrid_conservative_via_esmpy">
-<code class="descclassname">iris.experimental.regrid_conservative.</code><code class="descname">regrid_conservative_via_esmpy</code><span class="sig-paren">(</span><em>source_cube</em>, <em>grid_cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">iris.experimental.regrid_conservative.</code><code class="sig-name descname">regrid_conservative_via_esmpy</code><span class="sig-paren">(</span><em class="sig-param">source_cube</em>, <em class="sig-param">grid_cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.regrid_conservative.regrid_conservative_via_esmpy" title="Permalink to this definition">¶</a></dt>
 <dd><p>Perform a conservative regridding with ESMPy.</p>
 <p>Regrids the data of a source cube onto a new grid defined by a destination
 cube.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>source_cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
-<dd>Source data.  Must have two identifiable horizontal dimension
-coordinates.</dd>
+<li><dl class="simple">
+<dt>source_cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt><dd><p>Source data.  Must have two identifiable horizontal dimension
+coordinates.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>grid_cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt>
-<dd>Define the target horizontal grid:  Only the horizontal dimension
-coordinates are actually used.</dd>
+<li><dl class="simple">
+<dt>grid_cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt><dd><p>Define the target horizontal grid:  Only the horizontal dimension
+coordinates are actually used.</p>
+</dd>
 </dl>
 </li>
 </ul>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>A new cube derived from source_cube, regridded onto the specified
-horizontal grid.</dd>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A new cube derived from source_cube, regridded onto the specified
+horizontal grid.</p>
+</dd>
 </dl>
 <p>Any additional coordinates which map onto the horizontal dimensions are
 removed, while all other metadata is retained.
@@ -157,18 +153,18 @@ If there are coordinate factories with 2d horizontal reference surfaces,
 the reference surfaces are also regridded, using ordinary bilinear
 interpolation.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Both source and destination cubes must have two dimension coordinates
+<p class="admonition-title">Note</p>
+<p>Both source and destination cubes must have two dimension coordinates
 identified with axes ‘X’ and ‘Y’ which share a coord_system with a
 Cartopy CRS.
 The grids are defined by <a class="reference internal" href="../coords.html#iris.coords.Coord.contiguous_bounds" title="iris.coords.Coord.contiguous_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.coords.Coord.contiguous_bounds()</span></code></a> of
 these.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>Initialises the ESMF Manager, if it was not already called.
 This implements default Manager operations (e.g. logging).</p>
-<p class="last">To alter this, make a prior call to ESMF.Manager().</p>
+<p>To alter this, make a prior call to ESMF.Manager().</p>
 </div>
 </dd></dl>
 

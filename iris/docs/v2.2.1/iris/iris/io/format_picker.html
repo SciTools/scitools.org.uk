@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.io.format_picker &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>iris.io.format_picker &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -97,13 +95,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -150,29 +146,29 @@ and file based <em>magic</em> numbers.</p>
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileElement</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.FileExtension" title="iris.io.format_picker.FileExtension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileExtension</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.FormatAgent" title="iris.io.format_picker.FormatAgent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FormatAgent</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.FormatSpecification" title="iris.io.format_picker.FormatSpecification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FormatSpecification</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.LeadingLine" title="iris.io.format_picker.LeadingLine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LeadingLine</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.MagicNumber" title="iris.io.format_picker.MagicNumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MagicNumber</span></code></a></li>
-<li><a class="reference internal" href="#iris.io.format_picker.UriProtocol" title="iris.io.format_picker.UriProtocol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UriProtocol</span></code></a></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileElement</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.FileExtension" title="iris.io.format_picker.FileExtension"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FileExtension</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.FormatAgent" title="iris.io.format_picker.FormatAgent"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FormatAgent</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.FormatSpecification" title="iris.io.format_picker.FormatSpecification"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FormatSpecification</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.LeadingLine" title="iris.io.format_picker.LeadingLine"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LeadingLine</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.MagicNumber" title="iris.io.format_picker.MagicNumber"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MagicNumber</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.io.format_picker.UriProtocol" title="iris.io.format_picker.UriProtocol"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UriProtocol</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <p>Represents a specific aspect of a FileFormat which can be identified using the given element getter function.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FileElement">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">FileElement</code><span class="sig-paren">(</span><em>requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileElement" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">FileElement</code><span class="sig-paren">(</span><em class="sig-param">requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileElement" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Constructs a new file element, which may require a file buffer.</p>
 <p>Kwargs:</p>
 <ul class="simple">
-<li>requires_fh - Whether this FileElement needs a file buffer.</li>
+<li><p>requires_fh - Whether this FileElement needs a file buffer.</p></li>
 </ul>
 <dl class="method">
 <dt id="iris.io.format_picker.FileElement.get_element">
-<code class="descname">get_element</code><span class="sig-paren">(</span><em>basename</em>, <em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileElement.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileElement.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when identifying the element of a file that this FileElement is representing.</p>
 </dd></dl>
 
@@ -185,16 +181,16 @@ and file based <em>magic</em> numbers.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FileExtension">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">FileExtension</code><span class="sig-paren">(</span><em>requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileExtension" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">FileExtension</code><span class="sig-paren">(</span><em class="sig-param">requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileExtension" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.io.format_picker.FileElement</span></code></a></p>
 <p>Constructs a new file element, which may require a file buffer.</p>
 <p>Kwargs:</p>
 <ul class="simple">
-<li>requires_fh - Whether this FileElement needs a file buffer.</li>
+<li><p>requires_fh - Whether this FileElement needs a file buffer.</p></li>
 </ul>
 <dl class="method">
 <dt id="iris.io.format_picker.FileExtension.get_element">
-<code class="descname">get_element</code><span class="sig-paren">(</span><em>basename</em>, <em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileExtension.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FileExtension.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when identifying the element of a file that this FileElement is representing.</p>
 </dd></dl>
 
@@ -217,22 +213,22 @@ by interrogating its children FormatSpecification instances.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FormatAgent">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">FormatAgent</code><span class="sig-paren">(</span><em>format_specs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">FormatAgent</code><span class="sig-paren">(</span><em class="sig-param">format_specs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <dl class="method">
 <dt id="iris.io.format_picker.FormatAgent.add_spec">
-<code class="descname">add_spec</code><span class="sig-paren">(</span><em>format_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent.add_spec" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">add_spec</code><span class="sig-paren">(</span><em class="sig-param">format_spec</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent.add_spec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add a FormatSpecification instance to this agent for format consideration.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="iris.io.format_picker.FormatAgent.get_spec">
-<code class="descname">get_spec</code><span class="sig-paren">(</span><em>basename</em>, <em>buffer_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent.get_spec" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_spec</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">buffer_obj</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatAgent.get_spec" title="Permalink to this definition">¶</a></dt>
 <dd><p>Pick the first FormatSpecification which can handle the given
 filename and file/buffer object.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last"><code class="docutils literal notranslate"><span class="pre">buffer_obj</span></code> may be <code class="docutils literal notranslate"><span class="pre">None</span></code> when a seekable file handle is not
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">buffer_obj</span></code> may be <code class="docutils literal notranslate"><span class="pre">None</span></code> when a seekable file handle is not
 feasible (such as over the http protocol). In these cases only the
 format specifications which do not require a file handle are
 tested.</p>
@@ -250,43 +246,43 @@ a FileElement, such as filename extension or 32-bit magic number, with an associ
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.FormatSpecification">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">FormatSpecification</code><span class="sig-paren">(</span><em>format_name</em>, <em>file_element</em>, <em>file_element_value</em>, <em>handler=None</em>, <em>priority=0</em>, <em>constraint_aware_handler=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatSpecification" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">FormatSpecification</code><span class="sig-paren">(</span><em class="sig-param">format_name</em>, <em class="sig-param">file_element</em>, <em class="sig-param">file_element_value</em>, <em class="sig-param">handler=None</em>, <em class="sig-param">priority=0</em>, <em class="sig-param">constraint_aware_handler=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.FormatSpecification" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/functions.html#object" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
 <p>Constructs a new FormatSpecification given the format_name and particular FileElements</p>
 <p>Args:</p>
 <ul class="simple">
-<li>format_name - string name of fileformat being described</li>
-<li>file_element - FileElement instance of the element which identifies this FormatSpecification</li>
-<li>file_element_value - The value that the file_element should take if a file matches this FormatSpecification</li>
+<li><p>format_name - string name of fileformat being described</p></li>
+<li><p>file_element - FileElement instance of the element which identifies this FormatSpecification</p></li>
+<li><p>file_element_value - The value that the file_element should take if a file matches this FormatSpecification</p></li>
 </ul>
 <p>Kwargs:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>handler - function which will be called when the specification has been identified and is required to handler a format.</dt>
-<dd>If None, then the file can still be identified but no handling can be done.</dd>
+<li><dl class="simple">
+<dt>handler - function which will be called when the specification has been identified and is required to handler a format.</dt><dd><p>If None, then the file can still be identified but no handling can be done.</p>
+</dd>
 </dl>
 </li>
-<li>priority - Integer giving a priority for considering this specification where higher priority means sooner consideration.</li>
+<li><p>priority - Integer giving a priority for considering this specification where higher priority means sooner consideration.</p></li>
 </ul>
-<dl class="attribute">
+<dl class="method">
 <dt id="iris.io.format_picker.FormatSpecification.file_element">
-<code class="descname">file_element</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.file_element" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">file_element</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.file_element" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="iris.io.format_picker.FormatSpecification.file_element_value">
-<code class="descname">file_element_value</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.file_element_value" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">file_element_value</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.file_element_value" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="iris.io.format_picker.FormatSpecification.handler">
-<code class="descname">handler</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.handler" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">handler</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.handler" title="Permalink to this definition">¶</a></dt>
 <dd><p>The handler function of this FileFormat. (Read only)</p>
 </dd></dl>
 
-<dl class="attribute">
+<dl class="method">
 <dt id="iris.io.format_picker.FormatSpecification.name">
-<code class="descname">name</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.name" title="Permalink to this definition">¶</a></dt>
+<em class="property">property </em><code class="sig-name descname">name</code><a class="headerlink" href="#iris.io.format_picker.FormatSpecification.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>The name of this FileFormat. (Read only)</p>
 </dd></dl>
 
@@ -299,16 +295,16 @@ a FileElement, such as filename extension or 32-bit magic number, with an associ
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.LeadingLine">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">LeadingLine</code><span class="sig-paren">(</span><em>requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.LeadingLine" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">LeadingLine</code><span class="sig-paren">(</span><em class="sig-param">requires_fh=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.LeadingLine" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.io.format_picker.FileElement</span></code></a></p>
 <p>Constructs a new file element, which may require a file buffer.</p>
 <p>Kwargs:</p>
 <ul class="simple">
-<li>requires_fh - Whether this FileElement needs a file buffer.</li>
+<li><p>requires_fh - Whether this FileElement needs a file buffer.</p></li>
 </ul>
 <dl class="method">
 <dt id="iris.io.format_picker.LeadingLine.get_element">
-<code class="descname">get_element</code><span class="sig-paren">(</span><em>basename</em>, <em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.LeadingLine.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.LeadingLine.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when identifying the element of a file that this FileElement is representing.</p>
 </dd></dl>
 
@@ -321,18 +317,18 @@ a FileElement, such as filename extension or 32-bit magic number, with an associ
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.MagicNumber">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">MagicNumber</code><span class="sig-paren">(</span><em>num_bytes</em>, <em>offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.MagicNumber" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">MagicNumber</code><span class="sig-paren">(</span><em class="sig-param">num_bytes</em>, <em class="sig-param">offset=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.MagicNumber" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.io.format_picker.FileElement</span></code></a></p>
 <p>A <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileElement</span></code></a> that returns a byte sequence in the file.</p>
 <dl class="method">
 <dt id="iris.io.format_picker.MagicNumber.get_element">
-<code class="descname">get_element</code><span class="sig-paren">(</span><em>basename</em>, <em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.MagicNumber.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.MagicNumber.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when identifying the element of a file that this FileElement is representing.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="iris.io.format_picker.MagicNumber.len_formats">
-<code class="descname">len_formats</code><em class="property"> = {4: '&gt;L', 8: '&gt;Q'}</em><a class="headerlink" href="#iris.io.format_picker.MagicNumber.len_formats" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">len_formats</code><em class="property"> = {4: '&gt;L', 8: '&gt;Q'}</em><a class="headerlink" href="#iris.io.format_picker.MagicNumber.len_formats" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -345,13 +341,13 @@ using <a class="reference internal" href="../io.html#iris.io.decode_uri" title="
 <blockquote>
 <div><dl class="class">
 <dt id="iris.io.format_picker.UriProtocol">
-<em class="property">class </em><code class="descclassname">iris.io.format_picker.</code><code class="descname">UriProtocol</code><a class="headerlink" href="#iris.io.format_picker.UriProtocol" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.io.format_picker.</code><code class="sig-name descname">UriProtocol</code><a class="headerlink" href="#iris.io.format_picker.UriProtocol" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.io.format_picker.FileElement</span></code></a></p>
 <p>A <a class="reference internal" href="#iris.io.format_picker.FileElement" title="iris.io.format_picker.FileElement"><code class="xref py py-class docutils literal notranslate"><span class="pre">FileElement</span></code></a> that returns the “scheme” and “part” from a URI,
 using <a class="reference internal" href="../io.html#iris.io.decode_uri" title="iris.io.decode_uri"><code class="xref py py-func docutils literal notranslate"><span class="pre">decode_uri()</span></code></a>.</p>
 <dl class="method">
 <dt id="iris.io.format_picker.UriProtocol.get_element">
-<code class="descname">get_element</code><span class="sig-paren">(</span><em>basename</em>, <em>file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.UriProtocol.get_element" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">get_element</code><span class="sig-paren">(</span><em class="sig-param">basename</em>, <em class="sig-param">file_handle</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.io.format_picker.UriProtocol.get_element" title="Permalink to this definition">¶</a></dt>
 <dd><p>Called when identifying the element of a file that this FileElement is representing.</p>
 </dd></dl>
 

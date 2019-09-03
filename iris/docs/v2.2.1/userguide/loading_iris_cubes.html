@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>2. Loading Iris cubes &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>2. Loading Iris cubes &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -111,13 +109,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -145,8 +141,8 @@ into a single multidimensional cube.</p>
 <p>The <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a> function automatically recognises the format
 of the given files and attempts to produce Iris Cubes from their contents.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Currently there is support for CF NetCDF, GRIB 1 &amp; 2, PP and FieldsFiles
+<p class="admonition-title">Note</p>
+<p>Currently there is support for CF NetCDF, GRIB 1 &amp; 2, PP and FieldsFiles
 file formats with a framework for this to be extended to custom formats.</p>
 </div>
 <p>In order to find out what has been loaded, the result can be printed:</p>
@@ -160,38 +156,36 @@ file formats with a framework for this to be extended to custom formats.</p>
 </div>
 <p>This shows that there were 2 cubes as a result of loading the file, they were:
 <code class="docutils literal notranslate"><span class="pre">air_potential_temperature</span></code> and <code class="docutils literal notranslate"><span class="pre">surface_altitude</span></code>.</p>
-<dl class="docutils">
-<dt>The <code class="docutils literal notranslate"><span class="pre">surface_altitude</span></code> cube was 2 dimensional with:</dt>
-<dd><ul class="first last simple">
-<li>the two dimensions have extents of 204 and 187 respectively and are
-represented by the <code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> coordinates.</li>
+<dl class="simple">
+<dt>The <code class="docutils literal notranslate"><span class="pre">surface_altitude</span></code> cube was 2 dimensional with:</dt><dd><ul class="simple">
+<li><p>the two dimensions have extents of 204 and 187 respectively and are
+represented by the <code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> coordinates.</p></li>
 </ul>
 </dd>
-<dt>The <code class="docutils literal notranslate"><span class="pre">air_potential_temperature</span></code> cubes were 4 dimensional with:</dt>
-<dd><ul class="first last simple">
-<li>the same length <code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> dimensions as
-<code class="docutils literal notranslate"><span class="pre">surface_altitide</span></code></li>
-<li>a <code class="docutils literal notranslate"><span class="pre">time</span></code> dimension of length 3</li>
-<li>a <code class="docutils literal notranslate"><span class="pre">model_level_number</span></code> dimension of length 7</li>
+<dt>The <code class="docutils literal notranslate"><span class="pre">air_potential_temperature</span></code> cubes were 4 dimensional with:</dt><dd><ul class="simple">
+<li><p>the same length <code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code> and <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> dimensions as
+<code class="docutils literal notranslate"><span class="pre">surface_altitide</span></code></p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">time</span></code> dimension of length 3</p></li>
+<li><p>a <code class="docutils literal notranslate"><span class="pre">model_level_number</span></code> dimension of length 7</p></li>
 </ul>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The result of <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a> is <strong>always</strong> a
+<p class="admonition-title">Note</p>
+<p>The result of <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a> is <strong>always</strong> a
 <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">list</span> <span class="pre">of</span> <span class="pre">cubes</span></code></a>.
 Anything that can be done with a Python <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> can be done
 with the resultant list of cubes.</p>
 </div>
 <div class="admonition hint">
-<p class="first admonition-title">Hint</p>
+<p class="admonition-title">Hint</p>
 <p>Throughout this user guide you will see the function
 <code class="docutils literal notranslate"><span class="pre">iris.sample_data_path</span></code> being used to get the filename for the resources
 used in the examples. The result of this function is just a string.</p>
 <p>Using this function allows us to provide examples which will work
 across platforms and with data installed in different locations,
 however in practice you will want to use your own strings:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/path/to/file&#39;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;/path/to/file&#39;</span>
 <span class="n">cubes</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -232,8 +226,8 @@ which is provided when printing a list of cubes, information is provided
 on the coordinates which constitute the cube in question.
 This was the output discussed at the end of the <a class="reference internal" href="iris_cubes.html"><span class="doc">Introduction</span></a> section.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Dimensioned coordinates will have a dimension marker <code class="docutils literal notranslate"><span class="pre">x</span></code> in the
+<p class="admonition-title">Note</p>
+<p>Dimensioned coordinates will have a dimension marker <code class="docutils literal notranslate"><span class="pre">x</span></code> in the
 appropriate column for each cube data dimension that they describe.</p>
 </div>
 <div class="section" id="loading-multiple-files">
@@ -254,8 +248,8 @@ star wildcards can be used:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The cubes returned will not necessarily be in the same order as the
+<p class="admonition-title">Note</p>
+<p>The cubes returned will not necessarily be in the same order as the
 order of the filenames.</p>
 </div>
 </div>
@@ -329,11 +323,11 @@ this can be achieved by passing the constraint a function:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>As with many of the examples later in this documentation, the
 simple function above can be conveniently written as a lambda function
 on a single line:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bottom_16_levels</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span> <span class="o">&lt;=</span> <span class="mi">16</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bottom_16_levels</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">cell</span> <span class="o">&lt;=</span> <span class="mi">16</span>
 </pre></div>
 </div>
 </div>
@@ -347,8 +341,8 @@ then specific STASH codes can be filtered:</p>
 </pre></div>
 </div>
 <div class="admonition seealso">
-<p class="first admonition-title">See also</p>
-<p class="last">For advanced usage there are further examples in the
+<p class="admonition-title">See also</p>
+<p>For advanced usage there are further examples in the
 <a class="reference internal" href="../iris/iris.html#iris.Constraint" title="iris.Constraint"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.Constraint</span></code></a> reference documentation.</p>
 </div>
 <div class="section" id="constraining-a-circular-coordinate-across-its-boundary">
@@ -411,7 +405,7 @@ time selections when loading or extracting data.</p>
 </div>
 <p>A more complex example might be when there exists a time sequence representing the first day of every week
 for many years:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">long_ts</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">long_ts</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
 <span class="go">DimCoord([2007-04-09 00:00:00, 2007-04-16 00:00:00, 2007-04-23 00:00:00,</span>
 <span class="go">          ...</span>
 <span class="go">          2010-02-01 00:00:00, 2010-02-08 00:00:00, 2010-02-15 00:00:00],</span>
@@ -421,11 +415,11 @@ for many years:</p>
 <p>We can select points within a certain part of the year, in this case between
 the 15th of July through to the 25th of August, by combining the datetime cell
 functionality with PartialDateTime:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st_swithuns_daterange</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">st_swithuns_daterange</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span>
 <span class="gp">... </span>    <span class="n">time</span><span class="o">=</span><span class="k">lambda</span> <span class="n">cell</span><span class="p">:</span> <span class="n">PartialDateTime</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">cell</span> <span class="o">&lt;</span> <span class="n">PartialDateTime</span><span class="p">(</span><span class="n">month</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="mi">25</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">within_st_swithuns</span> <span class="o">=</span> <span class="n">long_ts</span><span class="o">.</span><span class="n">extract</span><span class="p">(</span><span class="n">st_swithuns_daterange</span><span class="p">)</span>
 <span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">within_st_swithuns</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">within_st_swithuns</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
 <span class="go">DimCoord([2007-07-16 00:00:00, 2007-07-23 00:00:00, 2007-07-30 00:00:00,</span>
 <span class="go">       2007-08-06 00:00:00, 2007-08-13 00:00:00, 2007-08-20 00:00:00,</span>
 <span class="go">       2008-07-21 00:00:00, 2008-07-28 00:00:00, 2008-08-04 00:00:00,</span>
@@ -471,8 +465,8 @@ one cube, an exception is raised:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">All the load functions share many of the same features, hence
+<p class="admonition-title">Note</p>
+<p>All the load functions share many of the same features, hence
 multiple files could be loaded with wildcard filenames
 or by providing a list of filenames.</p>
 </div>
@@ -503,10 +497,10 @@ in order to run:</p>
 ordered by the constraints provided. Multiple assignment has been used to put
 these two cubes into separate variables.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>In Python, lists of a pre-known length and order can be exploited
 using <em>multiple assignment</em>:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">number_one</span><span class="p">,</span> <span class="n">number_two</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">number_one</span><span class="p">,</span> <span class="n">number_two</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">number_one</span><span class="p">)</span>
 <span class="go">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">number_two</span><span class="p">)</span>

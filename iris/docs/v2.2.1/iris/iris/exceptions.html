@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.exceptions &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>iris.exceptions &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
@@ -96,13 +94,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -121,39 +117,41 @@
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.exceptions.CellMeasureNotFoundError" title="iris.exceptions.CellMeasureNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellMeasureNotFoundError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.ConcatenateError" title="iris.exceptions.ConcatenateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenateError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.ConstraintMismatchError" title="iris.exceptions.ConstraintMismatchError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstraintMismatchError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.CoordinateCollapseError" title="iris.exceptions.CoordinateCollapseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateCollapseError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.CoordinateMultiDimError" title="iris.exceptions.CoordinateMultiDimError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateMultiDimError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.CoordinateNotFoundError" title="iris.exceptions.CoordinateNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateNotFoundError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.CoordinateNotRegularError" title="iris.exceptions.CoordinateNotRegularError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateNotRegularError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.DuplicateDataError" title="iris.exceptions.DuplicateDataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DuplicateDataError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.IgnoreCubeException" title="iris.exceptions.IgnoreCubeException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IgnoreCubeException</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.InvalidCubeError" title="iris.exceptions.InvalidCubeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidCubeError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IrisError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.LazyAggregatorError" title="iris.exceptions.LazyAggregatorError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LazyAggregatorError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.MergeError" title="iris.exceptions.MergeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.NotYetImplementedError" title="iris.exceptions.NotYetImplementedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotYetImplementedError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.TranslationError" title="iris.exceptions.TranslationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TranslationError</span></code></a></li>
-<li><a class="reference internal" href="#iris.exceptions.UnitConversionError" title="iris.exceptions.UnitConversionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitConversionError</span></code></a></li>
+<li><p><a class="reference internal" href="#iris.exceptions.CellMeasureNotFoundError" title="iris.exceptions.CellMeasureNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CellMeasureNotFoundError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.ConcatenateError" title="iris.exceptions.ConcatenateError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConcatenateError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.ConstraintMismatchError" title="iris.exceptions.ConstraintMismatchError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ConstraintMismatchError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.CoordinateCollapseError" title="iris.exceptions.CoordinateCollapseError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateCollapseError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.CoordinateMultiDimError" title="iris.exceptions.CoordinateMultiDimError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateMultiDimError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.CoordinateNotFoundError" title="iris.exceptions.CoordinateNotFoundError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateNotFoundError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.CoordinateNotRegularError" title="iris.exceptions.CoordinateNotRegularError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CoordinateNotRegularError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.DuplicateDataError" title="iris.exceptions.DuplicateDataError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DuplicateDataError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.IgnoreCubeException" title="iris.exceptions.IgnoreCubeException"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IgnoreCubeException</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.InvalidCubeError" title="iris.exceptions.InvalidCubeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">InvalidCubeError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">IrisError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.LazyAggregatorError" title="iris.exceptions.LazyAggregatorError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LazyAggregatorError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.MergeError" title="iris.exceptions.MergeError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">MergeError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.NotYetImplementedError" title="iris.exceptions.NotYetImplementedError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NotYetImplementedError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.TranslationError" title="iris.exceptions.TranslationError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">TranslationError</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.exceptions.UnitConversionError" title="iris.exceptions.UnitConversionError"><code class="xref py py-obj docutils literal notranslate"><span class="pre">UnitConversionError</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <p>Raised when a search yields no cell measures.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.CellMeasureNotFoundError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">CellMeasureNotFoundError</code><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.KeyError" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.KeyError</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">CellMeasureNotFoundError</code><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">KeyError</span></code></p>
 <p>Raised when a search yields no cell measures.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.CellMeasureNotFoundError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.CellMeasureNotFoundError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.CellMeasureNotFoundError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.CellMeasureNotFoundError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.CellMeasureNotFoundError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -166,26 +164,28 @@ do so.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.ConcatenateError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">ConcatenateError</code><span class="sig-paren">(</span><em>differences</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.ConcatenateError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">ConcatenateError</code><span class="sig-paren">(</span><em class="sig-param">differences</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.ConcatenateError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Creates a ConcatenateError with a list of textual descriptions of
 the differences which prevented a concatenate.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>differences:</dt>
-<dd>The list of strings which describe the differences.</dd>
+<li><dl class="simple">
+<dt>differences:</dt><dd><p>The list of strings which describe the differences.</p>
+</dd>
 </dl>
 </li>
 </ul>
-<dl class="attribute">
-<dt id="iris.exceptions.ConcatenateError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.ConcatenateError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.ConcatenateError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.ConcatenateError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.ConcatenateError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.ConcatenateError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.ConcatenateError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.ConcatenateError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -198,18 +198,20 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.ConstraintMismatchError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">ConstraintMismatchError</code><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">ConstraintMismatchError</code><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised when a constraint operation has failed to find the correct number
 of results.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.ConstraintMismatchError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.ConstraintMismatchError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.ConstraintMismatchError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.ConstraintMismatchError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.ConstraintMismatchError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -221,17 +223,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.CoordinateCollapseError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">CoordinateCollapseError</code><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">CoordinateCollapseError</code><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised when a requested coordinate cannot be collapsed.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.CoordinateCollapseError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.CoordinateCollapseError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.CoordinateCollapseError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.CoordinateCollapseError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateCollapseError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -243,17 +247,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.CoordinateMultiDimError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">CoordinateMultiDimError</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.ValueError" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ValueError</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">CoordinateMultiDimError</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>Raised when a routine doesn’t support multi-dimensional coordinates.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.CoordinateMultiDimError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.CoordinateMultiDimError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.CoordinateMultiDimError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.CoordinateMultiDimError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateMultiDimError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -265,17 +271,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.CoordinateNotFoundError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">CoordinateNotFoundError</code><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.KeyError" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.KeyError</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">CoordinateNotFoundError</code><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">KeyError</span></code></p>
 <p>Raised when a search yields no coordinates.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.CoordinateNotFoundError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.CoordinateNotFoundError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.CoordinateNotFoundError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.CoordinateNotFoundError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateNotFoundError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -287,17 +295,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.CoordinateNotRegularError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">CoordinateNotRegularError</code><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.ValueError" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.ValueError</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">CoordinateNotRegularError</code><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ValueError</span></code></p>
 <p>Raised when a coordinate is unexpectedly irregular.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.CoordinateNotRegularError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.CoordinateNotRegularError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.CoordinateNotRegularError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.CoordinateNotRegularError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.CoordinateNotRegularError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -309,17 +319,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.DuplicateDataError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">DuplicateDataError</code><span class="sig-paren">(</span><em>msg</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.DuplicateDataError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">DuplicateDataError</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.DuplicateDataError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.MergeError" title="iris.exceptions.MergeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.MergeError</span></code></a></p>
 <p>Raised when merging two or more cubes that have identical metadata.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.DuplicateDataError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.DuplicateDataError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.DuplicateDataError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.DuplicateDataError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.DuplicateDataError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.DuplicateDataError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.DuplicateDataError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.DuplicateDataError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -331,17 +343,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.IgnoreCubeException">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">IgnoreCubeException</code><a class="headerlink" href="#iris.exceptions.IgnoreCubeException" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">IgnoreCubeException</code><a class="headerlink" href="#iris.exceptions.IgnoreCubeException" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised from a callback function when a cube should be ignored on load.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.IgnoreCubeException.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.IgnoreCubeException.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.IgnoreCubeException.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.IgnoreCubeException.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.IgnoreCubeException.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.IgnoreCubeException.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.IgnoreCubeException.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.IgnoreCubeException.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -353,17 +367,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.InvalidCubeError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">InvalidCubeError</code><a class="headerlink" href="#iris.exceptions.InvalidCubeError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">InvalidCubeError</code><a class="headerlink" href="#iris.exceptions.InvalidCubeError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised when a Cube validation check fails.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.InvalidCubeError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.InvalidCubeError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.InvalidCubeError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.InvalidCubeError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.InvalidCubeError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.InvalidCubeError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.InvalidCubeError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.InvalidCubeError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -375,17 +391,19 @@ of results.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.IrisError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">IrisError</code><a class="headerlink" href="#iris.exceptions.IrisError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></a></p>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">IrisError</code><a class="headerlink" href="#iris.exceptions.IrisError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 <p>Base class for errors in the Iris package.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.IrisError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.IrisError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.IrisError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.IrisError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.IrisError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.IrisError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.IrisError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.IrisError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -393,20 +411,22 @@ of results.</p>
 </div></blockquote>
 <p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
 <!--<hr class="docutils" />
---><p>None</p>
+--><p>Common base class for all non-exit exceptions.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.LazyAggregatorError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">LazyAggregatorError</code><a class="headerlink" href="#iris.exceptions.LazyAggregatorError" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference external" href="https://docs.python.org/2.7/library/exceptions.html#exceptions.Exception" title="(in Python v2.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">exceptions.Exception</span></code></a></p>
-<dl class="attribute">
-<dt id="iris.exceptions.LazyAggregatorError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.LazyAggregatorError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">LazyAggregatorError</code><a class="headerlink" href="#iris.exceptions.LazyAggregatorError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<dl class="method">
+<dt id="iris.exceptions.LazyAggregatorError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.LazyAggregatorError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.LazyAggregatorError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.LazyAggregatorError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.LazyAggregatorError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.LazyAggregatorError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -419,26 +439,28 @@ do so.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.MergeError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">MergeError</code><span class="sig-paren">(</span><em>differences</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.MergeError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">MergeError</code><span class="sig-paren">(</span><em class="sig-param">differences</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.MergeError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Creates a MergeError with a list of textual descriptions of
 the differences which prevented a merge.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>differences:</dt>
-<dd>The list of strings which describe the differences.</dd>
+<li><dl class="simple">
+<dt>differences:</dt><dd><p>The list of strings which describe the differences.</p>
+</dd>
 </dl>
 </li>
 </ul>
-<dl class="attribute">
-<dt id="iris.exceptions.MergeError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.MergeError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.MergeError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.MergeError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.MergeError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.MergeError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.MergeError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.MergeError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -451,18 +473,20 @@ the differences which prevented a merge.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.NotYetImplementedError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">NotYetImplementedError</code><a class="headerlink" href="#iris.exceptions.NotYetImplementedError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">NotYetImplementedError</code><a class="headerlink" href="#iris.exceptions.NotYetImplementedError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised by missing functionality.</p>
 <p>Different meaning to NotImplementedError, which is for abstract methods.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.NotYetImplementedError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.NotYetImplementedError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.NotYetImplementedError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.NotYetImplementedError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.NotYetImplementedError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.NotYetImplementedError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.NotYetImplementedError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.NotYetImplementedError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -474,17 +498,19 @@ the differences which prevented a merge.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.TranslationError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">TranslationError</code><a class="headerlink" href="#iris.exceptions.TranslationError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">TranslationError</code><a class="headerlink" href="#iris.exceptions.TranslationError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised when Iris is unable to translate format-specific codes.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.TranslationError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.TranslationError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.TranslationError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.TranslationError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.TranslationError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.TranslationError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.TranslationError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.TranslationError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -496,17 +522,19 @@ the differences which prevented a merge.</p>
 <blockquote>
 <div><dl class="class">
 <dt id="iris.exceptions.UnitConversionError">
-<em class="property">class </em><code class="descclassname">iris.exceptions.</code><code class="descname">UnitConversionError</code><a class="headerlink" href="#iris.exceptions.UnitConversionError" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">iris.exceptions.</code><code class="sig-name descname">UnitConversionError</code><a class="headerlink" href="#iris.exceptions.UnitConversionError" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#iris.exceptions.IrisError" title="iris.exceptions.IrisError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.IrisError</span></code></a></p>
 <p>Raised when Iris is unable to convert a unit.</p>
-<dl class="attribute">
-<dt id="iris.exceptions.UnitConversionError.args">
-<code class="descname">args</code><a class="headerlink" href="#iris.exceptions.UnitConversionError.args" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dl class="method">
+<dt id="iris.exceptions.UnitConversionError.with_traceback">
+<code class="sig-name descname">with_traceback</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.exceptions.UnitConversionError.with_traceback" title="Permalink to this definition">¶</a></dt>
+<dd><p>Exception.with_traceback(tb) –
+set self.__traceback__ to tb and return self.</p>
+</dd></dl>
 
 <dl class="attribute">
-<dt id="iris.exceptions.UnitConversionError.message">
-<code class="descname">message</code><a class="headerlink" href="#iris.exceptions.UnitConversionError.message" title="Permalink to this definition">¶</a></dt>
+<dt id="iris.exceptions.UnitConversionError.args">
+<code class="sig-name descname">args</code><a class="headerlink" href="#iris.exceptions.UnitConversionError.args" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
