@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.experimental.animate &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>iris.experimental.animate &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -97,13 +95,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -122,67 +118,67 @@
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.experimental.animate.animate" title="iris.experimental.animate.animate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animate</span></code></a></li>
+<li><p><a class="reference internal" href="#iris.experimental.animate.animate" title="iris.experimental.animate.animate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animate</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <dl class="function">
 <dt id="iris.experimental.animate.animate">
-<code class="descclassname">iris.experimental.animate.</code><code class="descname">animate</code><span class="sig-paren">(</span><em>cube_iterator</em>, <em>plot_func</em>, <em>fig=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.animate.animate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">iris.experimental.animate.</code><code class="sig-name descname">animate</code><span class="sig-paren">(</span><em class="sig-param">cube_iterator</em>, <em class="sig-param">plot_func</em>, <em class="sig-param">fig=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.animate.animate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Animates the given cube iterator.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>cube_iterator (iterable of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> objects):</dt>
-<dd>Each animation frame corresponds to each <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>
-object. See <a class="reference internal" href="../cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.slices()</span></code></a>.</dd>
+<li><dl class="simple">
+<dt>cube_iterator (iterable of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> objects):</dt><dd><p>Each animation frame corresponds to each <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>
+object. See <a class="reference internal" href="../cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.slices()</span></code></a>.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>plot_func (<a class="reference internal" href="../plot.html#module-iris.plot" title="iris.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.plot</span></code></a> or <a class="reference internal" href="../quickplot.html#module-iris.quickplot" title="iris.quickplot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.quickplot</span></code></a> plotting function):</dt>
-<dd>Plotting function used to animate. Must accept the signature
+<li><dl class="simple">
+<dt>plot_func (<a class="reference internal" href="../plot.html#module-iris.plot" title="iris.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.plot</span></code></a> or <a class="reference internal" href="../quickplot.html#module-iris.quickplot" title="iris.quickplot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.quickplot</span></code></a> plotting function):</dt><dd><p>Plotting function used to animate. Must accept the signature
 <code class="docutils literal notranslate"><span class="pre">plot_func(cube,</span> <span class="pre">vmin=vmin,</span> <span class="pre">vmax=vmax,</span> <span class="pre">coords=coords)</span></code>.
 <a class="reference internal" href="../plot.html#iris.plot.contourf" title="iris.plot.contourf"><code class="xref py py-func docutils literal notranslate"><span class="pre">contourf()</span></code></a>, <a class="reference internal" href="../plot.html#iris.plot.contour" title="iris.plot.contour"><code class="xref py py-func docutils literal notranslate"><span class="pre">contour()</span></code></a>,
 <a class="reference internal" href="../plot.html#iris.plot.pcolor" title="iris.plot.pcolor"><code class="xref py py-func docutils literal notranslate"><span class="pre">pcolor()</span></code></a> and <a class="reference internal" href="../plot.html#iris.plot.pcolormesh" title="iris.plot.pcolormesh"><code class="xref py py-func docutils literal notranslate"><span class="pre">pcolormesh()</span></code></a>
-all conform to this signature.</dd>
+all conform to this signature.</p>
+</dd>
 </dl>
 </li>
 </ul>
 <p>Kwargs:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>fig (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance):</dt>
-<dd>By default, the current figure will be used or a new figure instance
-created if no figure is available. See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.gcf.html#matplotlib.pyplot.gcf" title="(in Matplotlib v3.1.0)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.gcf()</span></code></a>.</dd>
+<li><dl class="simple">
+<dt>fig (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance):</dt><dd><p>By default, the current figure will be used or a new figure instance
+created if no figure is available. See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.gcf.html#matplotlib.pyplot.gcf" title="(in Matplotlib v3.1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.gcf()</span></code></a>.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>coords (list of <a class="reference internal" href="../coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a> objects or coordinate names):</dt>
-<dd>Use the given coordinates as the axes for the plot. The order of the
+<li><dl class="simple">
+<dt>coords (list of <a class="reference internal" href="../coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a> objects or coordinate names):</dt><dd><p>Use the given coordinates as the axes for the plot. The order of the
 given coordinates indicates which axis to use for each, where the first
 element is the horizontal axis of the plot and the second element is
-the vertical axis of the plot.</dd>
+the vertical axis of the plot.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>interval (int, float or long):</dt>
-<dd>Defines the time interval in milliseconds between successive frames.
-A default interval of 100ms is set.</dd>
+<li><dl class="simple">
+<dt>interval (int, float or long):</dt><dd><p>Defines the time interval in milliseconds between successive frames.
+A default interval of 100ms is set.</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>vmin, vmax (int, float or long):</dt>
-<dd>Color scaling values, see <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.Normalize.html#matplotlib.colors.Normalize" title="(in Matplotlib v3.1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.colors.Normalize</span></code></a> for
+<li><dl class="simple">
+<dt>vmin, vmax (int, float or long):</dt><dd><p>Color scaling values, see <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.Normalize.html#matplotlib.colors.Normalize" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.colors.Normalize</span></code></a> for
 further details. Default values are determined by the min-max across
-the data set over the entire sequence.</dd>
+the data set over the entire sequence.</p>
+</dd>
 </dl>
 </li>
 </ul>
-<p>See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.animation.FuncAnimation</span></code></a> for details of other valid
+<p>See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.animation.FuncAnimation</span></code></a> for details of other valid
 keyword arguments.</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FuncAnimation</span></code></a> object suitable for
-saving and or plotting.</dd>
+<dl class="simple">
+<dt>Returns:</dt><dd><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FuncAnimation</span></code></a> object suitable for
+saving and or plotting.</p>
+</dd>
 </dl>
 <p>For example, to animate along a set of cube slices:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube_iter</span> <span class="o">=</span> <span class="n">cubes</span><span class="o">.</span><span class="n">slices</span><span class="p">((</span><span class="s1">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;grid_latitude&#39;</span><span class="p">))</span>

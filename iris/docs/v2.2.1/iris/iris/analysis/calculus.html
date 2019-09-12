@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>iris.analysis.calculus &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>iris.analysis.calculus &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
@@ -97,13 +95,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../../../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -119,27 +115,27 @@
   <div class="section" id="iris-analysis-calculus">
 <span id="id1"></span><h1>iris.analysis.calculus<a class="headerlink" href="#iris-analysis-calculus" title="Permalink to this headline">¶</a></h1>
 <span class="target" id="module-iris.analysis.calculus"></span><p>Calculus operations on <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instances.</p>
-<p>See also: <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/index.html#module-numpy" title="(in NumPy v1.16)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">NumPy</span></code></a>.</p>
+<p>See also: <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/index.html#module-numpy" title="(in NumPy v1.17)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">NumPy</span></code></a>.</p>
 <p>In this module:</p>
 <blockquote>
 <div><ul class="simple">
-<li><a class="reference internal" href="#iris.analysis.calculus.cube_delta" title="iris.analysis.calculus.cube_delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cube_delta</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.calculus.differentiate" title="iris.analysis.calculus.differentiate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">differentiate</span></code></a></li>
-<li><a class="reference internal" href="#iris.analysis.calculus.curl" title="iris.analysis.calculus.curl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">curl</span></code></a></li>
+<li><p><a class="reference internal" href="#iris.analysis.calculus.cube_delta" title="iris.analysis.calculus.cube_delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cube_delta</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.calculus.differentiate" title="iris.analysis.calculus.differentiate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">differentiate</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.calculus.curl" title="iris.analysis.calculus.curl"><code class="xref py py-obj docutils literal notranslate"><span class="pre">curl</span></code></a></p></li>
 </ul>
 </div></blockquote>
 <dl class="function">
 <dt id="iris.analysis.calculus.cube_delta">
-<code class="descclassname">iris.analysis.calculus.</code><code class="descname">cube_delta</code><span class="sig-paren">(</span><em>cube</em>, <em>coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.cube_delta" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">iris.analysis.calculus.</code><code class="sig-name descname">cube_delta</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.cube_delta" title="Permalink to this definition">¶</a></dt>
 <dd><p>Given a cube calculate the difference between each value in the
 given coord’s direction.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>coord</dt>
-<dd>either a Coord instance or the unique name of a coordinate in the cube.
+<li><dl class="simple">
+<dt>coord</dt><dd><p>either a Coord instance or the unique name of a coordinate in the cube.
 If a Coord instance is provided, it does not necessarily have to
-exist in the cube.</dd>
+exist in the cube.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -148,8 +144,8 @@ exist in the cube.</dd>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Missing data support not yet implemented.</p>
+<p class="admonition-title">Note</p>
+<p>Missing data support not yet implemented.</p>
 </div>
 </dd></dl>
 
@@ -157,17 +153,17 @@ exist in the cube.</dd>
 <!--<hr class="docutils" />
 --><dl class="function">
 <dt id="iris.analysis.calculus.differentiate">
-<code class="descclassname">iris.analysis.calculus.</code><code class="descname">differentiate</code><span class="sig-paren">(</span><em>cube</em>, <em>coord_to_differentiate</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.differentiate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">iris.analysis.calculus.</code><code class="sig-name descname">differentiate</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">coord_to_differentiate</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.differentiate" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the differential of a given cube with respect to the
 coord_to_differentiate.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>coord_to_differentiate:</dt>
-<dd>Either a Coord instance or the unique name of a coordinate which
+<li><dl class="simple">
+<dt>coord_to_differentiate:</dt><dd><p>Either a Coord instance or the unique name of a coordinate which
 exists in the cube.
 If a Coord instance is provided, it does not necessarily have to
-exist on the cube.</dd>
+exist on the cube.</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -176,7 +172,9 @@ exist on the cube.</dd>
 </pre></div>
 </div>
 <p>The algorithm used is equivalent to:</p>
-<img src="../../../_images/mathmpl/math-ac108f9e00.png" class="center" /><p>Where <code class="docutils literal notranslate"><span class="pre">d</span></code> is the differential, <code class="docutils literal notranslate"><span class="pre">v</span></code> is the data value, <code class="docutils literal notranslate"><span class="pre">c</span></code> is
+<div class="math">
+<p><img src="../../../_images/math/767f808b4887e5ff1b99a9b173334dda7c661e2b.png" alt="d_i = \frac{v_{i+1}-v_i}{c_{i+1}-c_i}"/></p>
+</div><p>Where <code class="docutils literal notranslate"><span class="pre">d</span></code> is the differential, <code class="docutils literal notranslate"><span class="pre">v</span></code> is the data value, <code class="docutils literal notranslate"><span class="pre">c</span></code> is
 the coordinate value and <code class="docutils literal notranslate"><span class="pre">i</span></code> is the index in the differential
 direction. Hence, in a normal situation if a cube has a shape
 (x: n; y: m) differentiating with respect to x will result in a cube
@@ -192,20 +190,20 @@ the original lower bounds values and the output upper bounds values
 are set to the averages of the original upper bounds values. In more
 formal terms:</p>
 <ul class="simple">
-<li><cite>C[i] = (c[i] + c[i+1]) / 2</cite></li>
-<li><cite>B[i, 0] = (b[i, 0] + b[i+1, 0]) / 2</cite></li>
-<li><cite>B[i, 1] = (b[i, 1] + b[i+1, 1]) / 2</cite></li>
+<li><p><cite>C[i] = (c[i] + c[i+1]) / 2</cite></p></li>
+<li><p><cite>B[i, 0] = (b[i, 0] + b[i+1, 0]) / 2</cite></p></li>
+<li><p><cite>B[i, 1] = (b[i, 1] + b[i+1, 1]) / 2</cite></p></li>
 </ul>
 <p>where <cite>c</cite> and <cite>b</cite> represent the input coordinate values and bounds,
 and <cite>C</cite> and <cite>B</cite> the output coordinate values and bounds.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Difference method used is the same as <a class="reference internal" href="#iris.analysis.calculus.cube_delta" title="iris.analysis.calculus.cube_delta"><code class="xref py py-func docutils literal notranslate"><span class="pre">cube_delta()</span></code></a>
+<p class="admonition-title">Note</p>
+<p>Difference method used is the same as <a class="reference internal" href="#iris.analysis.calculus.cube_delta" title="iris.analysis.calculus.cube_delta"><code class="xref py py-func docutils literal notranslate"><span class="pre">cube_delta()</span></code></a>
 and therefore has the same limitations.</p>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Spherical differentiation does not occur in this routine.</p>
+<p class="admonition-title">Note</p>
+<p>Spherical differentiation does not occur in this routine.</p>
 </div>
 </dd></dl>
 
@@ -213,7 +211,7 @@ and therefore has the same limitations.</p>
 <!--<hr class="docutils" />
 --><dl class="function">
 <dt id="iris.analysis.calculus.curl">
-<code class="descclassname">iris.analysis.calculus.</code><code class="descname">curl</code><span class="sig-paren">(</span><em>i_cube</em>, <em>j_cube</em>, <em>k_cube=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.curl" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname">iris.analysis.calculus.</code><code class="sig-name descname">curl</code><span class="sig-paren">(</span><em class="sig-param">i_cube</em>, <em class="sig-param">j_cube</em>, <em class="sig-param">k_cube=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.calculus.curl" title="Permalink to this definition">¶</a></dt>
 <dd><p>Calculate the 2-dimensional or 3-dimensional spherical or cartesian
 curl of the given vector of cubes.</p>
 <p>As well as the standard x and y coordinates, this function requires each
@@ -221,22 +219,22 @@ cube to possess a vertical or z-like coordinate (representing some form
 of height or pressure).  This can be a scalar or dimension coordinate.</p>
 <p>Args:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>i_cube</dt>
-<dd>The i cube of the vector to operate on</dd>
+<li><dl class="simple">
+<dt>i_cube</dt><dd><p>The i cube of the vector to operate on</p>
+</dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>j_cube</dt>
-<dd>The j cube of the vector to operate on</dd>
+<li><dl class="simple">
+<dt>j_cube</dt><dd><p>The j cube of the vector to operate on</p>
+</dd>
 </dl>
 </li>
 </ul>
 <p>Kwargs:</p>
 <ul class="simple">
-<li><dl class="first docutils">
-<dt>k_cube</dt>
-<dd>The k cube of the vector to operate on</dd>
+<li><dl class="simple">
+<dt>k_cube</dt><dd><p>The k cube of the vector to operate on</p>
+</dd>
 </dl>
 </li>
 </ul>
@@ -258,14 +256,32 @@ the cartesian curl will be calculated:</p>
 <div><p>When cartesian calculus is used, i_cube is the u component,
 j_cube is the v component and k_cube is the w component.</p>
 <p>The Cartesian curl is defined as:</p>
-<img src="../../../_images/mathmpl/math-0891b450a9.png" class="center" /></div></blockquote>
+<div class="math">
+<p><img src="../../../_images/math/133cdfefdd9ef0d198eba1a05b27eb3651401370.png" alt="\nabla\times \vec u =
+(\frac{\delta w}{\delta y} - \frac{\delta v}{\delta z})\vec a_i
+-
+(\frac{\delta w}{\delta x} - \frac{\delta u}{\delta z})\vec a_j
++
+(\frac{\delta v}{\delta x} - \frac{\delta u}{\delta y})\vec a_k"/></p>
+</div></div></blockquote>
 <p>Spherical curl</p>
 <blockquote>
-<div><p>When spherical calculus is used, i_cube is the <img src="../../../_images/mathmpl/math-e22cc525ec.png" style="position: relative; bottom: -7px"/> vector
-component (e.g. eastward), j_cube is the <img src="../../../_images/mathmpl/math-5dc8912759.png" style="position: relative; bottom: -3px"/> component
+<div><p>When spherical calculus is used, i_cube is the <img class="math" src="../../../_images/math/fffd2357ee88a9c50ba9e831ed64c39c73d54a07.png" alt="\phi"/> vector
+component (e.g. eastward), j_cube is the <img class="math" src="../../../_images/math/8a87f04e7d7cca18343c084cceca5237fae62491.png" alt="\theta"/> component
 (e.g. northward) and k_cube is the radial component.</p>
 <p>The spherical curl is defined as:</p>
-<img src="../../../_images/mathmpl/math-b10cb386a5.png" class="center" /><p>where phi is longitude, theta is latitude.</p>
+<div class="math">
+<p><img src="../../../_images/math/23379a301932fe477782b1d8aee53725ed2bf1ef.png" alt="\nabla\times \vec A = \frac{1}{r cos \theta}
+(\frac{\delta}{\delta \theta}
+(\vec A_\phi cos \theta) -
+\frac{\delta \vec A_\theta}{\delta \phi}) \vec r +
+\frac{1}{r}(\frac{1}{cos \theta}
+\frac{\delta \vec A_r}{\delta \phi} -
+\frac{\delta}{\delta r} (r \vec A_\phi))\vec \theta +
+\frac{1}{r}
+(\frac{\delta}{\delta r}(r \vec A_\theta) -
+\frac{\delta \vec A_r}{\delta \theta}) \vec \phi"/></p>
+</div><p>where phi is longitude, theta is latitude.</p>
 </div></blockquote>
 </div></blockquote>
 </dd></dl>

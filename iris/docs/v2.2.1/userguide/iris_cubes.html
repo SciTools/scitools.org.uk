@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>1. Introduction &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>1. Introduction &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -113,13 +111,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -139,8 +135,9 @@
 <p>The top level object in Iris is called a cube. A cube contains data and metadata about a phenomenon.</p>
 <p>In Iris, a cube is an interpretation of the <em>Climate and Forecast (CF) Metadata Conventions</em> whose purpose is to:</p>
 <blockquote>
-<div><em>require conforming datasets to contain sufficient metadata that they are self-describing… including physical
-units if appropriate, and that each value can be located in space (relative to earth-based coordinates) and time.</em></div></blockquote>
+<div><p><em>require conforming datasets to contain sufficient metadata that they are self-describing… including physical
+units if appropriate, and that each value can be located in space (relative to earth-based coordinates) and time.</em></p>
+</div></blockquote>
 <p>Whilst the CF conventions are often mentioned alongside NetCDF, Iris implements several major format importers which can take
 files of specific formats and turn them into Iris cubes. Additionally, a framework is provided which allows users
 to extend Iris’ import capability to cater for specialist or unimplemented formats.</p>
@@ -154,23 +151,22 @@ exist on the cube.</p>
 by definition, its phenomenon.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Each coordinate has a name and a unit.</li>
-<li><dl class="first docutils">
-<dt>When a coordinate is added to a cube, the data dimensions that it represents are also provided.</dt>
-<dd><ul class="first last">
-<li>The shape of a coordinate is always the same as the shape of the associated data dimension(s) on the cube.</li>
-<li>A dimension not explicitly listed signifies that the coordinate is independent of that dimension.</li>
-<li>Each dimension of a coordinate must be mapped to a data dimension. The only coordinates with no mapping are
-scalar coordinates.</li>
+<li><p>Each coordinate has a name and a unit.</p></li>
+<li><dl class="simple">
+<dt>When a coordinate is added to a cube, the data dimensions that it represents are also provided.</dt><dd><ul>
+<li><p>The shape of a coordinate is always the same as the shape of the associated data dimension(s) on the cube.</p></li>
+<li><p>A dimension not explicitly listed signifies that the coordinate is independent of that dimension.</p></li>
+<li><p>Each dimension of a coordinate must be mapped to a data dimension. The only coordinates with no mapping are
+scalar coordinates.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li>Depending on the underlying data that the coordinate is representing, its values may be discrete points or be
-bounded to represent interval extents (e.g. temperature at <em>point x</em> <strong>vs</strong> rainfall accumulation <em>between 0000-1200 hours</em>).</li>
-<li>Coordinates have an attributes dictionary which can hold arbitrary extra metadata, excluding certain restricted CF names</li>
-<li>More complex coordinates may contain a coordinate system which is necessary to fully interpret the values
-contained within the coordinate.</li>
+<li><p>Depending on the underlying data that the coordinate is representing, its values may be discrete points or be
+bounded to represent interval extents (e.g. temperature at <em>point x</em> <strong>vs</strong> rainfall accumulation <em>between 0000-1200 hours</em>).</p></li>
+<li><p>Coordinates have an attributes dictionary which can hold arbitrary extra metadata, excluding certain restricted CF names</p></li>
+<li><p>More complex coordinates may contain a coordinate system which is necessary to fully interpret the values
+contained within the coordinate.</p></li>
 </ul>
 </div></blockquote>
 <p>There are two classes of coordinates:</p>
@@ -178,16 +174,16 @@ contained within the coordinate.</li>
 <div><p><strong>DimCoord</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>Numeric</li>
-<li>Monotonic</li>
-<li>Representative of, at most, a single data dimension (1d)</li>
+<li><p>Numeric</p></li>
+<li><p>Monotonic</p></li>
+<li><p>Representative of, at most, a single data dimension (1d)</p></li>
 </ul>
 </div></blockquote>
 <p><strong>AuxCoord</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>May be of any type, including strings</li>
-<li>May represent multiple data dimensions (n-dimensional)</li>
+<li><p>May be of any type, including strings</p></li>
+<li><p>May represent multiple data dimensions (n-dimensional)</p></li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -197,24 +193,19 @@ contained within the coordinate.</li>
 <p>A cube consists of:</p>
 <blockquote>
 <div><ul>
-<li><p class="first">a standard name and/or a long name and an appropriate unit</p>
-</li>
-<li><p class="first">a data array who’s values are representative of the phenomenon</p>
-</li>
-<li><p class="first">a collection of coordinates and associated data dimensions on the cube’s data array, which are split into two separate lists:</p>
+<li><p>a standard name and/or a long name and an appropriate unit</p></li>
+<li><p>a data array who’s values are representative of the phenomenon</p></li>
+<li><p>a collection of coordinates and associated data dimensions on the cube’s data array, which are split into two separate lists:</p>
 <blockquote>
 <div><ul class="simple">
-<li><em>dimension coordinates</em> - DimCoords which uniquely map to exactly one data dimension, ordered by dimension.</li>
-<li><em>auxiliary coordinates</em> - DimCoords or AuxCoords which map to as many data dimensions as the coordinate has dimensions.</li>
+<li><p><em>dimension coordinates</em> - DimCoords which uniquely map to exactly one data dimension, ordered by dimension.</p></li>
+<li><p><em>auxiliary coordinates</em> - DimCoords or AuxCoords which map to as many data dimensions as the coordinate has dimensions.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">an attributes dictionary which, other than some protected CF names, can hold arbitrary extra metadata.</p>
-</li>
-<li><p class="first">a list of cell methods to represent operations which have already been applied to the data (e.g. “mean over time”)</p>
-</li>
-<li><p class="first">a list of coordinate “factories” used for deriving coordinates from the values of other coordinates in the cube</p>
-</li>
+<li><p>an attributes dictionary which, other than some protected CF names, can hold arbitrary extra metadata.</p></li>
+<li><p>a list of cell methods to represent operations which have already been applied to the data (e.g. “mean over time”)</p></li>
+<li><p>a list of coordinate “factories” used for deriving coordinates from the values of other coordinates in the cube</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -230,33 +221,31 @@ contained within the coordinate.</li>
 <p>The Iris cube to represent this data would consist of:</p>
 <blockquote>
 <div><ul>
-<li><p class="first">a standard name of <code class="docutils literal notranslate"><span class="pre">air_temperature</span></code> and a unit of <code class="docutils literal notranslate"><span class="pre">kelvin</span></code></p>
-</li>
-<li><p class="first">a data array of shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">2,</span> <span class="pre">4)</span></code></p>
-</li>
-<li><p class="first">a coordinate, mapping to dimension 0, consisting of:</p>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">air_temperature</span></code> and a unit of <code class="docutils literal notranslate"><span class="pre">kelvin</span></code></p></li>
+<li><p>a data array of shape <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">2,</span> <span class="pre">4)</span></code></p></li>
+<li><p>a coordinate, mapping to dimension 0, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a standard name of <code class="docutils literal notranslate"><span class="pre">height</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">meters</span></code></li>
-<li>an array of length 3 representing the 3 <code class="docutils literal notranslate"><span class="pre">height</span></code> points</li>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">height</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">meters</span></code></p></li>
+<li><p>an array of length 3 representing the 3 <code class="docutils literal notranslate"><span class="pre">height</span></code> points</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">a coordinate, mapping to dimension 1, consisting of:</p>
+<li><p>a coordinate, mapping to dimension 1, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a standard name of <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">degrees</span></code></li>
-<li>an array of length 2 representing the 2 latitude points</li>
-<li>a coordinate system such that the <code class="docutils literal notranslate"><span class="pre">latitude</span></code> points could be fully located on the globe</li>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">latitude</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">degrees</span></code></p></li>
+<li><p>an array of length 2 representing the 2 latitude points</p></li>
+<li><p>a coordinate system such that the <code class="docutils literal notranslate"><span class="pre">latitude</span></code> points could be fully located on the globe</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">a coordinate, mapping to dimension 2, consisting of:</p>
+<li><p>a coordinate, mapping to dimension 2, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a standard name of <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">degrees</span></code></li>
-<li>an array of length 4 representing the 4 longitude points</li>
-<li>a coordinate system such that the <code class="docutils literal notranslate"><span class="pre">longitude</span></code> points could be fully located on the globe</li>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">longitude</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">degrees</span></code></p></li>
+<li><p>an array of length 4 representing the 4 longitude points</p></li>
+<li><p>a coordinate system such that the <code class="docutils literal notranslate"><span class="pre">longitude</span></code> points could be fully located on the globe</p></li>
 </ul>
 </div></blockquote>
 </li>
@@ -268,33 +257,32 @@ contained within the coordinate.</li>
 For example, it is possible to attach any of the following:</p>
 <blockquote>
 <div><ul>
-<li><p class="first">a coordinate, not mapping to any data dimensions, consisting of:</p>
+<li><p>a coordinate, not mapping to any data dimensions, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a standard name of <code class="docutils literal notranslate"><span class="pre">time</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">days</span> <span class="pre">since</span> <span class="pre">2000-01-01</span> <span class="pre">00:00</span></code></li>
-<li>a data array of length 1 representing the time that the data array is valid for</li>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">time</span></code> and unit of <code class="docutils literal notranslate"><span class="pre">days</span> <span class="pre">since</span> <span class="pre">2000-01-01</span> <span class="pre">00:00</span></code></p></li>
+<li><p>a data array of length 1 representing the time that the data array is valid for</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">an auxiliary coordinate, mapping to dimensions 1 and 2, consisting of:</p>
+<li><p>an auxiliary coordinate, mapping to dimensions 1 and 2, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a long name of <code class="docutils literal notranslate"><span class="pre">place</span> <span class="pre">name</span></code> and no unit</li>
-<li>a 2d string array of shape <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">4)</span></code> with the names of the 8 places that the lat/lons correspond to</li>
+<li><p>a long name of <code class="docutils literal notranslate"><span class="pre">place</span> <span class="pre">name</span></code> and no unit</p></li>
+<li><p>a 2d string array of shape <code class="docutils literal notranslate"><span class="pre">(2,</span> <span class="pre">4)</span></code> with the names of the 8 places that the lat/lons correspond to</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">an auxiliary coordinate “factory”, which can derive its own mapping, consisting of:</p>
+<li><p>an auxiliary coordinate “factory”, which can derive its own mapping, consisting of:</p>
 <blockquote>
 <div><ul class="simple">
-<li>a standard name of <code class="docutils literal notranslate"><span class="pre">height</span></code> and a unit of <code class="docutils literal notranslate"><span class="pre">feet</span></code></li>
-<li>knowledge of how data values for this coordinate can be calculated given the <code class="docutils literal notranslate"><span class="pre">height</span> <span class="pre">in</span> <span class="pre">meters</span></code> coordinate</li>
+<li><p>a standard name of <code class="docutils literal notranslate"><span class="pre">height</span></code> and a unit of <code class="docutils literal notranslate"><span class="pre">feet</span></code></p></li>
+<li><p>knowledge of how data values for this coordinate can be calculated given the <code class="docutils literal notranslate"><span class="pre">height</span> <span class="pre">in</span> <span class="pre">meters</span></code> coordinate</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">a cell method of “mean” over “ensemble” to indicate that the data has been meaned over
-a collection of “ensembles” (i.e. multiple model runs).</p>
-</li>
+<li><p>a cell method of “mean” over “ensemble” to indicate that the data has been meaned over
+a collection of “ensembles” (i.e. multiple model runs).</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -326,19 +314,19 @@ output as this is the quickest way of inspecting the contents of a cube. Here is
 <p>Using this output we can deduce that:</p>
 <blockquote>
 <div><ul class="simple">
-<li>The cube represents air potential temperature.</li>
-<li>There are 4 data dimensions, and the data has a shape of <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">7,</span> <span class="pre">204,</span> <span class="pre">187)</span></code></li>
-<li>The 4 data dimensions are mapped to the <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">model_level_number</span></code>,
-<code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> coordinates respectively</li>
-<li>There are three 1d auxiliary coordinates and one 2d auxiliary (<code class="docutils literal notranslate"><span class="pre">surface_altitude</span></code>)</li>
-<li>There is a single <code class="docutils literal notranslate"><span class="pre">altitude</span></code> derived coordinate, which spans 3 data dimensions</li>
-<li>There are 7 distinct values in the “model_level_number” coordinate. Similar inferences can
-be made for the other dimension coordinates.</li>
-<li>There are 7, not necessarily distinct, values in the <code class="docutils literal notranslate"><span class="pre">level_height</span></code> coordinate.</li>
-<li>There is a single <code class="docutils literal notranslate"><span class="pre">forecast_reference_time</span></code> scalar coordinate representing the entire cube.</li>
-<li>The cube has one further attribute relating to the  phenomenon.
+<li><p>The cube represents air potential temperature.</p></li>
+<li><p>There are 4 data dimensions, and the data has a shape of <code class="docutils literal notranslate"><span class="pre">(3,</span> <span class="pre">7,</span> <span class="pre">204,</span> <span class="pre">187)</span></code></p></li>
+<li><p>The 4 data dimensions are mapped to the <code class="docutils literal notranslate"><span class="pre">time</span></code>, <code class="docutils literal notranslate"><span class="pre">model_level_number</span></code>,
+<code class="docutils literal notranslate"><span class="pre">grid_latitude</span></code>, <code class="docutils literal notranslate"><span class="pre">grid_longitude</span></code> coordinates respectively</p></li>
+<li><p>There are three 1d auxiliary coordinates and one 2d auxiliary (<code class="docutils literal notranslate"><span class="pre">surface_altitude</span></code>)</p></li>
+<li><p>There is a single <code class="docutils literal notranslate"><span class="pre">altitude</span></code> derived coordinate, which spans 3 data dimensions</p></li>
+<li><p>There are 7 distinct values in the “model_level_number” coordinate. Similar inferences can
+be made for the other dimension coordinates.</p></li>
+<li><p>There are 7, not necessarily distinct, values in the <code class="docutils literal notranslate"><span class="pre">level_height</span></code> coordinate.</p></li>
+<li><p>There is a single <code class="docutils literal notranslate"><span class="pre">forecast_reference_time</span></code> scalar coordinate representing the entire cube.</p></li>
+<li><p>The cube has one further attribute relating to the  phenomenon.
 In this case the originating file format, PP, encodes information in a STASH code which in some cases can
-be useful for identifying advanced experiment information relating to the phenomenon.</li>
+be useful for identifying advanced experiment information relating to the phenomenon.</p></li>
 </ul>
 </div></blockquote>
 </div>

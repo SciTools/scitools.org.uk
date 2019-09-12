@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>9. Merge and Concatenate &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>9. Merge and Concatenate &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -119,13 +117,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -153,13 +149,13 @@ result in fewer cubes as output. The following diagram illustrates the two proce
 <p>There is one major difference between the <code class="docutils literal notranslate"><span class="pre">merge</span></code> and <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> processes.</p>
 <blockquote>
 <div><ul class="simple">
-<li>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process combines multiple input cubes into a
+<li><p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process combines multiple input cubes into a
 single resultant cube with new dimensions created from the
-<em>scalar coordinate values</em> of the input cubes.</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process combines multiple input cubes into a
+<em>scalar coordinate values</em> of the input cubes.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process combines multiple input cubes into a
 single resultant cube with the same <em>number of dimensions</em> as the input cubes,
 but with the length of one or more dimensions extended by <em>joining together
-sequential dimension coordinates</em>.</li>
+sequential dimension coordinates</em>.</p></li>
 </ul>
 </div></blockquote>
 <p>Let’s imagine 28 individual cubes representing the
@@ -182,10 +178,10 @@ The order of the input cubes does not affect the <code class="docutils literal n
 <p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process can produce a cube that has more than one new dimension,
 if the scalar coordinate sequences form an orthogonal basis.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>The shape, metadata, attributes, coordinates, coordinates metadata, fill value and
 other aspects of the input cubes must be consistent across all of the input cubes.</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process will fail if these are not consistent. Such failures are
+<p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process will fail if these are not consistent. Such failures are
 covered in the <a class="reference internal" href="#merge-concat-common-issues"><span class="std std-ref">Common issues with merge and concatenate</span></a> section.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process can be accessed using two methods. The two methods are
@@ -201,28 +197,28 @@ In this example we have a list of three lateral (<em>x</em>, <em>y</em>) cubes i
 variable called <code class="docutils literal notranslate"><span class="pre">cubes</span></code>, each with a scalar <code class="docutils literal notranslate"><span class="pre">z</span></code> coordinate of
 differing value. We can merge these cubes by stacking the scalar <code class="docutils literal notranslate"><span class="pre">z</span></code> coordinates to
 make a new <code class="docutils literal notranslate"><span class="pre">z</span></code> dimension coordinate:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">2: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="go">air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go"> ...</span>
 <span class="go">     Scalar coordinates:</span>
 <span class="go">          z: 1 meters</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="go">air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go"> ...</span>
 <span class="go">     Scalar coordinates:</span>
 <span class="go">          z: 2 meters</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
 <span class="go">air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go"> ...</span>
 <span class="go">     Scalar coordinates:</span>
 <span class="go">          z: 3 meters</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>
 <span class="go">0: air_temperature / (kelvin)          (z: 3; y: 4; x: 5)</span>
 </pre></div>
 </div>
@@ -247,23 +243,23 @@ from the earlier merge example.</p>
 cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.attributes" title="iris.cube.Cube.attributes"><code class="xref py py-data docutils literal notranslate"><span class="pre">attributes</span></code></a> dictionary.
 Remember that the attributes <em>must</em> be consistent across all cubes in order to merge
 into a single cube:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">2: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{&#39;Conventions&#39;: &#39;CF-1.5&#39;}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>
 <span class="go">0: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (z: 2; y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
 <span class="gt">Traceback (most recent call last):</span>
     <span class="o">...</span>
     <span class="k">raise</span> <span class="n">iris</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MergeError</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span>
@@ -307,10 +303,10 @@ sequential dimension coordinates</em>.</p>
 with dimension coordinates that can be combined together into monotonic sequences.
 The order of the input cubes does not affect the <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process.</p>
 <div class="admonition important">
-<p class="first admonition-title">Important</p>
+<p class="admonition-title">Important</p>
 <p>The shape, metadata, attributes, coordinates, coordinates metadata, fill value and
 other aspects of the input cubes must be consistent across all of the input cubes.</p>
-<p class="last">The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process will fail if these are not consistent. Such failures are
+<p>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process will fail if these are not consistent. Such failures are
 covered in the <a class="reference internal" href="#merge-concat-common-issues"><span class="std std-ref">Common issues with merge and concatenate</span></a> section.</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process can be accessed using two methods. The two methods are
@@ -326,12 +322,12 @@ In the example below we have three 3D <code class="docutils literal notranslate"
 have sequentially increasing ranges.
 These cubes can be concatenated by combining the <code class="docutils literal notranslate"><span class="pre">t</span></code> coordinates of the input
 cubes to form a new cube with an extended <code class="docutils literal notranslate"><span class="pre">t</span></code> coordinate:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 <span class="go">1: air_temperature / (kelvin)          (t: 28; y: 3; x: 4)</span>
 <span class="go">2: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate</span><span class="p">())</span>
 <span class="go">0: air_temperature / (kelvin)          (t: 90; y: 3; x: 4)</span>
 </pre></div>
 </div>
@@ -357,20 +353,20 @@ from the earlier concatenate example.</p>
 cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.attributes" title="iris.cube.Cube.attributes"><code class="xref py py-data docutils literal notranslate"><span class="pre">attributes</span></code></a> dictionary.
 Remember that the attributes <em>must</em> be consistent across all cubes in order to
 concatenate into a single cube:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 <span class="go">1: air_temperature / (kelvin)          (t: 28; y: 3; x: 4)</span>
 <span class="go">2: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{&#39;History&#39;: &#39;Created 2010-06-30&#39;}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate</span><span class="p">())</span>
 <span class="go">0: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 <span class="go">1: air_temperature / (kelvin)          (t: 59; y: 3; x: 4)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
 <span class="gt">Traceback (most recent call last):</span>
     <span class="o">...</span>
     <span class="k">raise</span> <span class="n">iris</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">ConcatenateError</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span>
@@ -416,8 +412,8 @@ In recognition of this, Iris has a helper function,
 <a class="reference internal" href="../iris/iris/experimental/equalise_cubes.html#iris.experimental.equalise_cubes.equalise_attributes" title="iris.experimental.equalise_cubes.equalise_attributes"><code class="xref py py-func docutils literal notranslate"><span class="pre">equalise_attributes()</span></code></a>, to equalise
 attributes differences in the input cubes.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">The functionality provided by <a class="reference internal" href="../iris/iris/util.html#iris.util.describe_diff" title="iris.util.describe_diff"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.describe_diff()</span></code></a> and
+<p class="admonition-title">Note</p>
+<p>The functionality provided by <a class="reference internal" href="../iris/iris/util.html#iris.util.describe_diff" title="iris.util.describe_diff"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.describe_diff()</span></code></a> and
 <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.is_compatible" title="iris.cube.Cube.is_compatible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.is_compatible()</span></code></a> are <strong>not</strong> designed to give user
 indication of whether two cubes can be merged.</p>
 </div>
@@ -426,20 +422,20 @@ let’s return to our non-merging list of input cubes from the merge_cube exampl
 from earlier.
 We’ll call <a class="reference internal" href="../iris/iris/experimental/equalise_cubes.html#iris.experimental.equalise_cubes.equalise_attributes" title="iris.experimental.equalise_cubes.equalise_attributes"><code class="xref py py-func docutils literal notranslate"><span class="pre">equalise_attributes()</span></code></a> on the
 input cubes before merging the input cubes using <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList.merge_cube" title="iris.cube.CubeList.merge_cube"><code class="xref py py-meth docutils literal notranslate"><span class="pre">merge_cube()</span></code></a>:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.experimental.equalise_cubes</span> <span class="kn">import</span> <span class="n">equalise_attributes</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.experimental.equalise_cubes</span> <span class="k">import</span> <span class="n">equalise_attributes</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">2: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{&#39;Conventions&#39;: &#39;CF-1.5&#39;}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
 <span class="gt">Traceback (most recent call last):</span>
     <span class="o">...</span>
     <span class="k">raise</span> <span class="n">iris</span><span class="o">.</span><span class="n">exceptions</span><span class="o">.</span><span class="n">MergeError</span><span class="p">(</span><span class="n">msgs</span><span class="p">)</span>
@@ -448,10 +444,10 @@ input cubes before merging the input cubes using <a class="reference internal" h
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">equalise_attributes</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">attributes</span><span class="p">)</span>
 <span class="go">{}</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">())</span>
 <span class="go">air_temperature / (kelvin)          (z: 3; y: 4; x: 5)</span>
 <span class="go">     Dimension coordinates:</span>
 <span class="go">          z                           x     -     -</span>
@@ -493,16 +489,16 @@ The first and third cubes are thus identical.
 We will demonstrate the effect of merging the input cubes with <code class="docutils literal notranslate"><span class="pre">unique=False</span></code>
 (duplicate cubes allowed) and <code class="docutils literal notranslate"><span class="pre">unique=True</span></code> (duplicate cubes not allowed, which
 is the default behaviour):</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 <span class="go">2: air_temperature / (kelvin)          (y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">unique</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
 <span class="go">0: air_temperature / (kelvin)          (z: 2; y: 4; x: 5)</span>
 <span class="go">1: air_temperature / (kelvin)          (z: 2; y: 4; x: 5)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>  <span class="c1"># unique=True is the default.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">merge</span><span class="p">())</span>  <span class="c1"># unique=True is the default.</span>
 <span class="gt">Traceback (most recent call last):</span>
   <span class="c">...</span>
 <span class="gr">iris.exceptions.DuplicateDataError</span>: <span class="n">failed to merge into a single cube.</span>
@@ -519,13 +515,13 @@ error highlighting the presence of the duplicate cube.</p>
 <p>Coordinates containing only a single value can cause confusion when
 combining input cubes. Remember:</p>
 <ul class="simple">
-<li>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process combines multiple input cubes into a
+<li><p>The <code class="docutils literal notranslate"><span class="pre">merge</span></code> process combines multiple input cubes into a
 single resultant cube with new dimensions created from the
-<strong>scalar</strong> <em>coordinate values</em> of the input cubes.</li>
-<li>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process combines multiple input cubes into a
+<strong>scalar</strong> <em>coordinate values</em> of the input cubes.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">concatenate</span></code> process combines multiple input cubes into a
 single resultant cube with the same <em>number of dimensions</em> as the input cubes,
 but with the length of one or more dimensions extended by <em>joining together
-sequential</em> <strong>dimension</strong> <em>coordinates</em>.</li>
+sequential</em> <strong>dimension</strong> <em>coordinates</em>.</p></li>
 </ul>
 <p>In Iris terminology a <strong>scalar</strong> coordinate is a
 coordinate of length 1 <em>which does not describe a data dimension</em>.</p>
@@ -570,18 +566,18 @@ let’s adapt our list of input cubes from the <code class="docutils literal not
 We’ll give the input cubes unequal time coordinate units and call
 <a class="reference internal" href="../iris/iris/util.html#iris.util.unify_time_units" title="iris.util.unify_time_units"><code class="xref py py-func docutils literal notranslate"><span class="pre">unify_time_units()</span></code></a> on the input cubes before concatenating
 the input cubes using <a class="reference internal" href="../iris/iris/cube.html#iris.cube.CubeList.concatenate_cube" title="iris.cube.CubeList.concatenate_cube"><code class="xref py py-meth docutils literal notranslate"><span class="pre">concatenate_cube()</span></code></a>:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.util</span> <span class="kn">import</span> <span class="n">unify_time_units</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.util</span> <span class="k">import</span> <span class="n">unify_time_units</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 <span class="go">0: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 <span class="go">1: air_temperature / (kelvin)          (t: 28; y: 3; x: 4)</span>
 <span class="go">2: air_temperature / (kelvin)          (t: 31; y: 3; x: 4)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 <span class="go">days since 1990-02-15</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 <span class="go">days since 1970-01-01</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
 <span class="gt">Traceback (most recent call last):</span>
  <span class="c">...</span>
 <span class="gr">ConcatenateError</span>: <span class="n">failed to concatenate into a single cube.</span>
@@ -589,10 +585,10 @@ the input cubes using <a class="reference internal" href="../iris/iris/cube.html
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">unify_time_units</span><span class="p">(</span><span class="n">cubes</span><span class="p">)</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
 <span class="go">days since 1990-02-15</span>
 
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">())</span>
 <span class="go">air_temperature / (kelvin)          (t: 90; y: 3; x: 4)</span>
 <span class="go">     Dimension coordinates:</span>
 <span class="go">          t                           x      -     -</span>

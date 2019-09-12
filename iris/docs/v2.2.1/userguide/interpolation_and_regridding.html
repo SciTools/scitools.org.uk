@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>8. Cube interpolation and regridding &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>8. Cube interpolation and regridding &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -113,13 +111,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -142,16 +138,16 @@ upon existing interpolation schemes implemented by SciPy.</p>
 available in Iris:</p>
 <blockquote>
 <div><ul class="simple">
-<li>linear interpolation (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>), and</li>
-<li>nearest-neighbour interpolation (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>).</li>
+<li><p>linear interpolation (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>), and</p></li>
+<li><p>nearest-neighbour interpolation (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>).</p></li>
 </ul>
 </div></blockquote>
 <p>The following are the regridding schemes that are currently available in Iris:</p>
 <blockquote>
 <div><ul class="simple">
-<li>linear regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>),</li>
-<li>nearest-neighbour regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>), and</li>
-<li>area-weighted regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.AreaWeighted</span></code></a>, first-order conservative).</li>
+<li><p>linear regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>),</p></li>
+<li><p>nearest-neighbour regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>), and</p></li>
+<li><p>area-weighted regridding (<a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.AreaWeighted</span></code></a>, first-order conservative).</p></li>
 </ul>
 </div></blockquote>
 <div class="section" id="interpolation">
@@ -160,8 +156,8 @@ available in Iris:</p>
 method. This method expects two arguments:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>the sample points to interpolate, and</li>
-<li>the second argument being the interpolation scheme to use.</li>
+<li><p>the sample points to interpolate, and</p></li>
+<li><p>the second argument being the interpolation scheme to use.</p></li>
 </ol>
 </div></blockquote>
 <p>The result is a new cube, interpolated at the sample points.</p>
@@ -170,9 +166,9 @@ The <cite>coord</cite> argument can be either a coordinate name or coordinate in
 The specified coordinate must exist on the cube being interpolated! For example:</p>
 <blockquote>
 <div><ul class="simple">
-<li>coordinate names and scalar sample points: <code class="docutils literal notranslate"><span class="pre">[('latitude',</span> <span class="pre">51.48),</span> <span class="pre">('longitude',</span> <span class="pre">0)]</span></code>,</li>
-<li>a coordinate instance and a scalar sample point: <code class="docutils literal notranslate"><span class="pre">[(cube.coord('latitude'),</span> <span class="pre">51.48)]</span></code>, and</li>
-<li>a coordinate name and a NumPy array of sample points: <code class="docutils literal notranslate"><span class="pre">[('longitude',</span> <span class="pre">np.linspace(-11,</span> <span class="pre">2,</span> <span class="pre">14))]</span></code></li>
+<li><p>coordinate names and scalar sample points: <code class="docutils literal notranslate"><span class="pre">[('latitude',</span> <span class="pre">51.48),</span> <span class="pre">('longitude',</span> <span class="pre">0)]</span></code>,</p></li>
+<li><p>a coordinate instance and a scalar sample point: <code class="docutils literal notranslate"><span class="pre">[(cube.coord('latitude'),</span> <span class="pre">51.48)]</span></code>, and</p></li>
+<li><p>a coordinate name and a NumPy array of sample points: <code class="docutils literal notranslate"><span class="pre">[('longitude',</span> <span class="pre">np.linspace(-11,</span> <span class="pre">2,</span> <span class="pre">14))]</span></code></p></li>
 </ul>
 </div></blockquote>
 <p>are all examples of valid sample points.</p>
@@ -273,7 +269,7 @@ these sample points:</p>
 <p>Let’s look at the original data, the interpolation line and
 the new data in a plot. This will help us to see what is going on:</p>
 <p>(<a class="reference external" href="../userguide/regridding_plots/interpolate_column.py">Source code</a>, <a class="reference external" href="../userguide/regridding_plots/interpolate_column.png">png</a>)</p>
-<div class="figure" id="interpolate-column">
+<div class="figure align-default" id="interpolate-column">
 <img alt="../_images/interpolate_column.png" src="../_images/interpolate_column.png" />
 </div>
 <p>The red diamonds on the extremes of the altitude values show that we have
@@ -289,11 +285,11 @@ For the available interpolation schemes available in Iris, the <code class="docu
 keyword must be one of:</p>
 <blockquote>
 <div><ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">extrapolate</span></code> – the extrapolation points will be calculated by extending the gradient of the closest two points,</li>
-<li><code class="docutils literal notranslate"><span class="pre">error</span></code> – a ValueError exception will be raised, notifying an attempt to extrapolate,</li>
-<li><code class="docutils literal notranslate"><span class="pre">nan</span></code> – the extrapolation points will be be set to NaN,</li>
-<li><code class="docutils literal notranslate"><span class="pre">mask</span></code> – the extrapolation points will always be masked, even if the source data is not a MaskedArray, or</li>
-<li><code class="docutils literal notranslate"><span class="pre">nanmask</span></code> – if the source data is a MaskedArray the extrapolation points will be masked. Otherwise they will be set to NaN.</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extrapolate</span></code> – the extrapolation points will be calculated by extending the gradient of the closest two points,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code> – a ValueError exception will be raised, notifying an attempt to extrapolate,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nan</span></code> – the extrapolation points will be be set to NaN,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask</span></code> – the extrapolation points will always be masked, even if the source data is not a MaskedArray, or</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nanmask</span></code> – if the source data is a MaskedArray the extrapolation points will be masked. Otherwise they will be set to NaN.</p></li>
 </ul>
 </div></blockquote>
 <p>Using an extrapolation mode is achieved by constructing an interpolation scheme
@@ -318,8 +314,8 @@ intensive part of an interpolation is setting up the interpolator.</p>
 scheme’s interpolator method. The interpolator method takes as arguments:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>a cube to be interpolated, and</li>
-<li>an iterable of coordinate names or coordinate instances of the coordinates that are to be interpolated over.</li>
+<li><p>a cube to be interpolated, and</p></li>
+<li><p>an iterable of coordinate names or coordinate instances of the coordinates that are to be interpolated over.</p></li>
 </ol>
 </div></blockquote>
 <p>For example:</p>
@@ -354,13 +350,13 @@ regridding is based on the <strong>horizontal</strong> grid of <em>another cube<
 This method expects two arguments:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><em>another cube</em> that defines the target grid onto which the cube should be regridded, and</li>
-<li>the regridding scheme to use.</li>
+<li><p><em>another cube</em> that defines the target grid onto which the cube should be regridded, and</p></li>
+<li><p>the regridding scheme to use.</p></li>
 </ol>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Regridding is a common operation needed to allow comparisons of data on different grids.
+<p class="admonition-title">Note</p>
+<p>Regridding is a common operation needed to allow comparisons of data on different grids.
 The powerful mapping functionality provided by cartopy, however, means that regridding
 is often not necessary if performed just for visualisation purposes.</p>
 </div>
@@ -371,7 +367,7 @@ is often not necessary if performed just for visualisation purposes.</p>
 </div>
 <p>We can visually confirm that they are on different grids by plotting the two cubes:</p>
 <p>(<a class="reference external" href="../userguide/regridding_plots/regridding_plot.py">Source code</a>, <a class="reference external" href="../userguide/regridding_plots/regridding_plot.png">png</a>)</p>
-<div class="figure" id="regridding-plot">
+<div class="figure align-default" id="regridding-plot">
 <img alt="../_images/regridding_plot.png" src="../_images/regridding_plot.png" />
 </div>
 <p>Let’s regrid the <code class="docutils literal notranslate"><span class="pre">global_air_temp</span></code> cube onto a rotated pole grid
@@ -382,7 +378,7 @@ cube onto:</p>
 </pre></div>
 </div>
 <p>(<a class="reference external" href="../userguide/regridding_plots/regridded_to_rotated.py">Source code</a>, <a class="reference external" href="../userguide/regridding_plots/regridded_to_rotated.png">png</a>)</p>
-<div class="figure" id="regridded-to-rotated">
+<div class="figure align-default" id="regridded-to-rotated">
 <img alt="../_images/regridded_to_rotated.png" src="../_images/regridded_to_rotated.png" />
 </div>
 <p>We could regrid the pressure values onto the global grid, but this will involve
@@ -392,22 +388,18 @@ mode when defining the regridding scheme.</p>
 must be one of:</p>
 <blockquote>
 <div><ul>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">extrapolate</span></code> –</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">extrapolate</span></code> –</p>
 <blockquote>
 <div><ul class="simple">
-<li>for <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Linear</span></code></a> the extrapolation points will be calculated by extending the gradient of the closest two points.</li>
-<li>for <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Nearest</span></code></a> the extrapolation points will take their value from the nearest source point.</li>
+<li><p>for <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">Linear</span></code></a> the extrapolation points will be calculated by extending the gradient of the closest two points.</p></li>
+<li><p>for <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">Nearest</span></code></a> the extrapolation points will take their value from the nearest source point.</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">nan</span></code> – the extrapolation points will be be set to NaN.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">error</span></code> – a ValueError exception will be raised, notifying an attempt to extrapolate.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">mask</span></code> – the extrapolation points will always be masked, even if the source data is not a MaskedArray.</p>
-</li>
-<li><p class="first"><code class="docutils literal notranslate"><span class="pre">nanmask</span></code> – if the source data is a MaskedArray the extrapolation points will be masked. Otherwise they will be set to NaN.</p>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nan</span></code> – the extrapolation points will be be set to NaN.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">error</span></code> – a ValueError exception will be raised, notifying an attempt to extrapolate.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mask</span></code> – the extrapolation points will always be masked, even if the source data is not a MaskedArray.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nanmask</span></code> – if the source data is a MaskedArray the extrapolation points will be masked. Otherwise they will be set to NaN.</p></li>
 </ul>
 </div></blockquote>
 <p>The <code class="docutils literal notranslate"><span class="pre">rotated_psl</span></code> cube is defined on a limited area rotated pole grid. If we regridded
@@ -421,7 +413,7 @@ pole grid:</p>
 </pre></div>
 </div>
 <p>(<a class="reference external" href="../userguide/regridding_plots/regridded_to_global.py">Source code</a>, <a class="reference external" href="../userguide/regridding_plots/regridded_to_global.png">png</a>)</p>
-<div class="figure" id="regridded-to-global">
+<div class="figure align-default" id="regridded-to-global">
 <img alt="../_images/regridded_to_global.png" src="../_images/regridded_to_global.png" />
 </div>
 <p>Notice that although we can still see the approximate shape of the rotated pole grid, the
@@ -460,12 +452,12 @@ regridding scheme is that the two input grids must be defined in the same
 coordinate system as each other. Both input grids must also contain monotonic,
 bounded, 1D spatial coordinates.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>The <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal notranslate"><span class="pre">AreaWeighted</span></code></a> regridding scheme requires spatial
 areas, therefore the longitude and latitude coordinates must be bounded.
 If the longitude and latitude bounds are not defined in the cube we can
 guess the bounds based on the coordinates’ point values:</p>
-<div class="last highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">global_air_temp</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">global_air_temp</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">global_air_temp</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">guess_bounds</span><span class="p">()</span>
 </pre></div>
 </div>
@@ -497,7 +489,7 @@ some data will be disregarded if it lies close to masked data.</p>
 <p>To visualise the above regrid, let’s plot the original data, along with 3 distinct
 <code class="docutils literal notranslate"><span class="pre">mdtol</span></code> values to compare the result:</p>
 <p>(<a class="reference external" href="../userguide/regridding_plots/regridded_to_global_area_weighted.py">Source code</a>, <a class="reference external" href="../userguide/regridding_plots/regridded_to_global_area_weighted.png">png</a>)</p>
-<div class="figure" id="regridded-to-global-area-weighted">
+<div class="figure align-default" id="regridded-to-global-area-weighted">
 <img alt="../_images/regridded_to_global_area_weighted.png" src="../_images/regridded_to_global_area_weighted.png" />
 </div>
 </div>
@@ -511,8 +503,8 @@ intensive part of a regrid is setting up the regridder.</p>
 scheme’s regridder method. The regridder method takes as arguments:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>a cube (that is to be regridded) defining the source grid, and</li>
-<li>a cube defining the target grid to regrid the source cube to.</li>
+<li><p>a cube (that is to be regridded) defining the source grid, and</p></li>
+<li><p>a cube defining the target grid to regrid the source cube to.</p></li>
 </ol>
 </div></blockquote>
 <p>For example:</p>

@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What’s New in Iris 1.9 &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>What’s New in Iris 1.9 &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -112,13 +110,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -133,170 +129,151 @@
             
   <div class="section" id="what-s-new-in-iris-1-9">
 <h1>What’s New in Iris 1.9<a class="headerlink" href="#what-s-new-in-iris-1-9" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.9.2</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">28th January 2016</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>1.9.2</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>28th January 2016</p>
+</dd>
+</dl>
 <p>This document explains the new/changed features of Iris in version 1.9
 (<a class="reference internal" href="index.html"><span class="doc">View all changes</span></a>.)</p>
 <div class="section" id="iris-1-9-features">
 <h2>Iris 1.9 Features<a class="headerlink" href="#iris-1-9-features" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p class="first">Support for running on Python 3.4 has been added to the whole code base. Some features which
+<li><p>Support for running on Python 3.4 has been added to the whole code base. Some features which
 depend on external libraries will not be available until they also support Python 3, namely:</p>
 <blockquote>
 <div><ul class="simple">
-<li>gribapi does not yet provide a Python 3 interface</li>
+<li><p>gribapi does not yet provide a Python 3 interface</p></li>
 </ul>
 </div></blockquote>
 </li>
-<li><p class="first">Added the UM pseudo level type to the information made available in the STASH_TRANS table in <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.um._ff_cross_references</span></code></p>
-</li>
-<li><p class="first">When reading “cell_methods” attributes from NetCDF files, allow optional whitespace before the colon.
-This is not strictly in the CF spec, but is a common occurrence.</p>
-</li>
-<li><p class="first">Basic cube arithemetic (plus, minus, times, divide) now supports lazy evaluation.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.rotate_winds" title="iris.analysis.cartography.rotate_winds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.analysis.cartography.rotate_winds()</span></code></a> can now operate much faster on multi-layer (i.e. &gt; 2-dimensional) cubes,
-as it calculates rotation coefficients only once and reuses them for additional layers.</p>
-</li>
-<li><p class="first">Linear regridding of a multi-layer (i.e. &gt; 2-dimensional) cube is now much faster,
-as it calculates transform coefficients just once and reuses them for additional layers.</p>
-</li>
-<li><p class="first">Ensemble statistics can now be saved to GRIB2, using Product Definition Template 4.11.</p>
-</li>
-<li><p class="first">Loading of NetCDF data with ocean vertical coordinates now returns a ‘depth’ in addition to an ‘eta’ cube.
-This operates on specific defined dimensionless coordinates : see CF spec version 1.6, Appendix D.</p>
-</li>
-<li><p class="first"><a class="reference internal" href="../iris/iris/analysis/stats.html#iris.analysis.stats.pearsonr" title="iris.analysis.stats.pearsonr"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.stats.pearsonr()</span></code></a> updates:</p>
+<li><p>Added the UM pseudo level type to the information made available in the STASH_TRANS table in <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.um._ff_cross_references</span></code></p></li>
+<li><p>When reading “cell_methods” attributes from NetCDF files, allow optional whitespace before the colon.
+This is not strictly in the CF spec, but is a common occurrence.</p></li>
+<li><p>Basic cube arithemetic (plus, minus, times, divide) now supports lazy evaluation.</p></li>
+<li><p><a class="reference internal" href="../iris/iris/analysis/cartography.html#iris.analysis.cartography.rotate_winds" title="iris.analysis.cartography.rotate_winds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.analysis.cartography.rotate_winds()</span></code></a> can now operate much faster on multi-layer (i.e. &gt; 2-dimensional) cubes,
+as it calculates rotation coefficients only once and reuses them for additional layers.</p></li>
+<li><p>Linear regridding of a multi-layer (i.e. &gt; 2-dimensional) cube is now much faster,
+as it calculates transform coefficients just once and reuses them for additional layers.</p></li>
+<li><p>Ensemble statistics can now be saved to GRIB2, using Product Definition Template 4.11.</p></li>
+<li><p>Loading of NetCDF data with ocean vertical coordinates now returns a ‘depth’ in addition to an ‘eta’ cube.
+This operates on specific defined dimensionless coordinates : see CF spec version 1.6, Appendix D.</p></li>
+<li><p><a class="reference internal" href="../iris/iris/analysis/stats.html#iris.analysis.stats.pearsonr" title="iris.analysis.stats.pearsonr"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.stats.pearsonr()</span></code></a> updates:</p>
 <ul class="simple">
-<li>Cubes can now be different shapes, provided one is broadcastable to the
-other.</li>
-<li>Accepts weights keyword for weighted correlations.</li>
-<li>Accepts mdtol keyword for missing data tolerance level.</li>
-<li>Accepts common_mask keyword for restricting calculation to unmasked pairs of
-cells.</li>
+<li><p>Cubes can now be different shapes, provided one is broadcastable to the
+other.</p></li>
+<li><p>Accepts weights keyword for weighted correlations.</p></li>
+<li><p>Accepts mdtol keyword for missing data tolerance level.</p></li>
+<li><p>Accepts common_mask keyword for restricting calculation to unmasked pairs of
+cells.</p></li>
 </ul>
 </li>
-<li><p class="first">Added a new point-in-cell regridding scheme, <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.PointInCell" title="iris.experimental.regrid.PointInCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.regrid.PointInCell</span></code></a>.</p>
-</li>
-<li><p class="first">Added <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.WPERCENTILE" title="iris.analysis.WPERCENTILE"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.analysis.WPERCENTILE()</span></code></a> - a new weighted aggregator for calculating
-percentiles.</p>
-</li>
-<li><p class="first">Added cell-method translations for LBPROC=64 and 192 in UM files, encoding ‘zonal mean’ and ‘zonal+time mean’.</p>
-</li>
-<li><p class="first">Support for loading GRIB2 messages defined on a Lambert conformal grid has been added to
-the GRIB2 loader.</p>
-</li>
-<li><p class="first">Data on potential-temperature (theta) levels can now be saved to GRIB2, with a fixed surface type of 107.</p>
-</li>
-<li><p class="first">Added several new helper functions for file-save customisation,
+<li><p>Added a new point-in-cell regridding scheme, <a class="reference internal" href="../iris/iris/experimental/regrid.html#iris.experimental.regrid.PointInCell" title="iris.experimental.regrid.PointInCell"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.regrid.PointInCell</span></code></a>.</p></li>
+<li><p>Added <a class="reference internal" href="../iris/iris/analysis.html#iris.analysis.WPERCENTILE" title="iris.analysis.WPERCENTILE"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.analysis.WPERCENTILE()</span></code></a> - a new weighted aggregator for calculating
+percentiles.</p></li>
+<li><p>Added cell-method translations for LBPROC=64 and 192 in UM files, encoding ‘zonal mean’ and ‘zonal+time mean’.</p></li>
+<li><p>Support for loading GRIB2 messages defined on a Lambert conformal grid has been added to
+the GRIB2 loader.</p></li>
+<li><p>Data on potential-temperature (theta) levels can now be saved to GRIB2, with a fixed surface type of 107.</p></li>
+<li><p>Added several new helper functions for file-save customisation,
 (see also : <a class="reference internal" href="../userguide/saving_iris_cubes.html"><span class="doc">Saving Iris Cubes</span></a>):</p>
 <ul class="simple">
-<li><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.as_pairs()</span></code></li>
-<li><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.as_messages()</span></code></li>
-<li><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.save_messages()</span></code></li>
-<li><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.as_pairs()</span></code></li>
-<li><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.as_fields" title="iris.fileformats.pp.as_fields"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.as_fields()</span></code></a></li>
-<li><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.save_fields" title="iris.fileformats.pp.save_fields"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.save_fields()</span></code></a></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.as_pairs()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.as_messages()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.grib.save_messages()</span></code></p></li>
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.as_pairs()</span></code></p></li>
+<li><p><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.as_fields" title="iris.fileformats.pp.as_fields"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.as_fields()</span></code></a></p></li>
+<li><p><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.save_fields" title="iris.fileformats.pp.save_fields"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.fileformats.pp.save_fields()</span></code></a></p></li>
 </ul>
 </li>
-<li><p class="first">Loading data from GRIB2 now supports most of the currently defined ‘data representation templates’ :
-code numbers 0, 1, 2, 3, 4, 40, 41, 50, 51 and 61.</p>
-</li>
-<li><p class="first">When a Fieldsfile is opened for update as a <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant</span></code>,
+<li><p>Loading data from GRIB2 now supports most of the currently defined ‘data representation templates’ :
+code numbers 0, 1, 2, 3, 4, 40, 41, 50, 51 and 61.</p></li>
+<li><p>When a Fieldsfile is opened for update as a <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant</span></code>,
 unmodified packed data in the file can now be retained in the original form.
-Previously it could only be stored in an unpacked form.</p>
-</li>
-<li><p class="first">When reading and writing NetCDF data, the CF ‘flag’ attributes,
-“flag_masks”, “flag_meanings” and “flag_values” are now preserved through Iris load and save.</p>
-</li>
-<li><p class="first"><a class="reference external" href="https://github.com/SciTools/mo_pack">mo_pack</a> was added as an optional dependency.
-It is used to encode and decode data in WGDOS packed form.</p>
-</li>
-<li><p class="first">The <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.experimental.um.Field.get_data()</span></code> method can now be used to read Fieldsfile data
-after the original <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant</span></code> has been closed.</p>
-</li>
+Previously it could only be stored in an unpacked form.</p></li>
+<li><p>When reading and writing NetCDF data, the CF ‘flag’ attributes,
+“flag_masks”, “flag_meanings” and “flag_values” are now preserved through Iris load and save.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciTools/mo_pack">mo_pack</a> was added as an optional dependency.
+It is used to encode and decode data in WGDOS packed form.</p></li>
+<li><p>The <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.experimental.um.Field.get_data()</span></code> method can now be used to read Fieldsfile data
+after the original <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant</span></code> has been closed.</p></li>
 </ul>
 </div>
 <div class="section" id="bugs-fixed">
 <h2>Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Fixed a bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.unit.Unit.convert()</span></code>
+<li><p>Fixed a bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.unit.Unit.convert()</span></code>
 (and the equivalent in <a class="reference external" href="https://github.com/SciTools/cf_units">cf_units</a>)
-so that it now converts data to the native endianness, without which udunits could not read it correctly.</li>
-<li>Fixed a bug with loading WGDOS packed data in <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.experimental.um</span></code>,
-which could occasionally crash, with some data.</li>
-<li>Ignore non-numeric suffices in the numpy version string, which would otherwise crash some regridding routines.</li>
-<li>fixed a bug in <a class="reference internal" href="../iris/iris/fileformats/um_cf_map.html#module-iris.fileformats.um_cf_map" title="iris.fileformats.um_cf_map"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.um_cf_map</span></code></a> where the standard name
+so that it now converts data to the native endianness, without which udunits could not read it correctly.</p></li>
+<li><p>Fixed a bug with loading WGDOS packed data in <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.experimental.um</span></code>,
+which could occasionally crash, with some data.</p></li>
+<li><p>Ignore non-numeric suffices in the numpy version string, which would otherwise crash some regridding routines.</p></li>
+<li><p>fixed a bug in <a class="reference internal" href="../iris/iris/fileformats/um_cf_map.html#module-iris.fileformats.um_cf_map" title="iris.fileformats.um_cf_map"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.um_cf_map</span></code></a> where the standard name
 for the stash code m01s12i187 was incorrectly set, such that it is inconsistent
 with the stated unit of measure, ‘m s-1’.  The different name, a long_name
 of ‘change_over_time_in_upward_air_velocity_due_to_advection’ with
-units of ‘m s-1’ is now used instead.</li>
-<li>Fixed a bug in <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.intersection" title="iris.cube.Cube.intersection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.intersection()</span></code></a>.
-When edge points were at (base + period), intersection would unnecessarily wrap the data.</li>
-<li>Fixed a bug in <a class="reference internal" href="../iris/iris/fileformats/pp.html#module-iris.fileformats.pp" title="iris.fileformats.pp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp</span></code></a>.
-A previous release removed the ability to pass a partial constraint on STASH attribute.</li>
-<li><a class="reference internal" href="../iris/iris/plot.html#iris.plot.default_projection_extent" title="iris.plot.default_projection_extent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.plot.default_projection_extent()</span></code></a> now correctly raises an exception if a cube has X bounds but no Y bounds, or vice versa.
-Previously it never failed this, as the test was wrong.</li>
-<li>When loading NetCDF data, a “units” attribute containing unicode characters is now transformed by backslash-replacement.
-Previously this caused a crash.  Note: unicode units are <em>not supported in the CF conventions</em>.</li>
-<li>When saving to NetCDF, factory-derived auxiliary coordinates are now correctly saved with different names when they are not identical.
-Previously, such coordinates could be saved with the same name, leading to errors.</li>
-<li>Fixed a bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant.close()</span></code>,
+units of ‘m s-1’ is now used instead.</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.intersection" title="iris.cube.Cube.intersection"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.intersection()</span></code></a>.
+When edge points were at (base + period), intersection would unnecessarily wrap the data.</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../iris/iris/fileformats/pp.html#module-iris.fileformats.pp" title="iris.fileformats.pp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp</span></code></a>.
+A previous release removed the ability to pass a partial constraint on STASH attribute.</p></li>
+<li><p><a class="reference internal" href="../iris/iris/plot.html#iris.plot.default_projection_extent" title="iris.plot.default_projection_extent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.plot.default_projection_extent()</span></code></a> now correctly raises an exception if a cube has X bounds but no Y bounds, or vice versa.
+Previously it never failed this, as the test was wrong.</p></li>
+<li><p>When loading NetCDF data, a “units” attribute containing unicode characters is now transformed by backslash-replacement.
+Previously this caused a crash.  Note: unicode units are <em>not supported in the CF conventions</em>.</p></li>
+<li><p>When saving to NetCDF, factory-derived auxiliary coordinates are now correctly saved with different names when they are not identical.
+Previously, such coordinates could be saved with the same name, leading to errors.</p></li>
+<li><p>Fixed a bug in <code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.experimental.um.FieldsFileVariant.close()</span></code>,
 which now correctly allocates extra blocks for larger lookups when saving.
-Previously, when larger files open for update were closed, they could be written out with data overlapping the lookup table.</li>
-<li>Fixed a bug in <a class="reference internal" href="../iris/iris/aux_factory.html#iris.aux_factory.OceanSigmaZFactory" title="iris.aux_factory.OceanSigmaZFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.OceanSigmaZFactory</span></code></a>
-which sometimes caused crashes when fetching the points of an “ocean sigma z” coordinate.</li>
+Previously, when larger files open for update were closed, they could be written out with data overlapping the lookup table.</p></li>
+<li><p>Fixed a bug in <a class="reference internal" href="../iris/iris/aux_factory.html#iris.aux_factory.OceanSigmaZFactory" title="iris.aux_factory.OceanSigmaZFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.OceanSigmaZFactory</span></code></a>
+which sometimes caused crashes when fetching the points of an “ocean sigma z” coordinate.</p></li>
 </ul>
 <div class="section" id="version-1-9-1">
 <h3>Version 1.9.1<a class="headerlink" href="#version-1-9-1" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>Fixed a unicode bug preventing standard names from being built cleanly when installing in Python3</li>
+<li><p>Fixed a unicode bug preventing standard names from being built cleanly when installing in Python3</p></li>
 </ul>
 </div>
 <div class="section" id="version-1-9-2">
 <h3>Version 1.9.2<a class="headerlink" href="#version-1-9-2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>New warning regarding data loss if writing to an open file which is also open to read, with lazy data.</li>
-<li>Removal of a warning about data payload loading from concatenate.</li>
-<li>Updates to concatenate documentation.</li>
-<li>Fixed a bug with a name change in the netcdf4-python package.</li>
-<li>Fixed a bug building the documentation examples.</li>
-<li>Fixed a bug avoiding sorting classes directly when <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.coord_system" title="iris.cube.Cube.coord_system"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.coord_system()</span></code></a> is used in Python3.</li>
-<li>Fixed a bug regarding unsuccessful dot import.</li>
+<li><p>New warning regarding data loss if writing to an open file which is also open to read, with lazy data.</p></li>
+<li><p>Removal of a warning about data payload loading from concatenate.</p></li>
+<li><p>Updates to concatenate documentation.</p></li>
+<li><p>Fixed a bug with a name change in the netcdf4-python package.</p></li>
+<li><p>Fixed a bug building the documentation examples.</p></li>
+<li><p>Fixed a bug avoiding sorting classes directly when <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.coord_system" title="iris.cube.Cube.coord_system"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.coord_system()</span></code></a> is used in Python3.</p></li>
+<li><p>Fixed a bug regarding unsuccessful dot import.</p></li>
 </ul>
 </div>
 </div>
 <div class="section" id="incompatible-changes">
 <h2>Incompatible Changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>GRIB message/file reading and writing may not be available for Python 3 due to GRIB API limitations.</li>
+<li><p>GRIB message/file reading and writing may not be available for Python 3 due to GRIB API limitations.</p></li>
 </ul>
 </div>
 <div class="section" id="deprecations">
 <h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Deprecated <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.unit</span></code>, with unit functionality provided by <a class="reference external" href="https://github.com/SciTools/cf_units">cf_units</a> instead.</li>
-<li>When loading from NetCDF, a deprecation warning is emitted if there is vertical coordinate information
+<li><p>Deprecated <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.unit</span></code>, with unit functionality provided by <a class="reference external" href="https://github.com/SciTools/cf_units">cf_units</a> instead.</p></li>
+<li><p>When loading from NetCDF, a deprecation warning is emitted if there is vertical coordinate information
 that <em>would</em> produce extra result cubes if <code class="xref py py-data docutils literal notranslate"><span class="pre">iris.FUTURE.netcdf_promote</span></code> were set,
-but it is <em>not</em> set.</li>
-<li>Deprecated <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.LazyArray</span></code></li>
+but it is <em>not</em> set.</p></li>
+<li><p>Deprecated <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.LazyArray</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="documentation-changes">
 <h2>Documentation Changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>A chapter on <a class="reference internal" href="../userguide/saving_iris_cubes.html"><span class="doc">saving iris cubes</span></a> has been
-added to the <a class="reference internal" href="../userguide/index.html"><span class="doc">user guide</span></a>.</li>
-<li>Added script and documentation for building a what’s new page from developer-submitted contributions.
-See <a class="reference internal" href="../developers_guide/documenting/whats_new_contributions.html"><span class="doc">Contributing a “What’s New” entry</span></a>.</li>
+<li><p>A chapter on <a class="reference internal" href="../userguide/saving_iris_cubes.html"><span class="doc">saving iris cubes</span></a> has been
+added to the <a class="reference internal" href="../userguide/index.html"><span class="doc">user guide</span></a>.</p></li>
+<li><p>Added script and documentation for building a what’s new page from developer-submitted contributions.
+See <a class="reference internal" href="../developers_guide/documenting/whats_new_contributions.html"><span class="doc">Contributing a “What’s New” entry</span></a>.</p></li>
 </ul>
 </div>
 </div>

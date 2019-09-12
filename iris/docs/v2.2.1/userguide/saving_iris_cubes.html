@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>3. Saving Iris cubes &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>3. Saving Iris cubes &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -109,13 +107,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -132,9 +128,9 @@
 <span id="id1"></span><h1>3. Saving Iris cubes<a class="headerlink" href="#saving-iris-cubes" title="Permalink to this headline">¶</a></h1>
 <p>Iris supports the saving of cubes and cube lists to:</p>
 <ul class="simple">
-<li>CF netCDF (1.5)</li>
-<li>GRIB (edition 2)</li>
-<li>Met Office PP</li>
+<li><p>CF netCDF (1.5)</p></li>
+<li><p>GRIB (edition 2)</p></li>
+<li><p>Met Office PP</p></li>
 </ul>
 <p>The <a class="reference internal" href="../iris/iris.html#iris.save" title="iris.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.save()</span></code></a> function saves one or more cubes to a file.</p>
 <p>If the filename includes a supported suffix then Iris will use the correct saver
@@ -146,7 +142,7 @@ and the keyword argument <cite>saver</cite> is not required.</p>
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="first admonition-title">Warning</p>
+<p class="admonition-title">Warning</p>
 <p>Saving a cube whose data has been loaded lazily
 (if <cite>cube.has_lazy_data()</cite> returns <cite>True</cite>) to the same file it expects
 to load data from will cause both the data in-memory and the data on
@@ -156,7 +152,7 @@ disk to be lost.</p>
 <span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;somefile.nc&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p class="last">In general, overwriting a file which is the source for any lazily loaded
+<p>In general, overwriting a file which is the source for any lazily loaded
 data can result in corruption. Users should proceed with caution when
 attempting to overwrite an existing file.</p>
 </div>
@@ -176,9 +172,9 @@ attempting to overwrite an existing file.</p>
 </div>
 <p>See</p>
 <ul class="simple">
-<li><a class="reference internal" href="../iris/iris/fileformats/netcdf.html#iris.fileformats.netcdf.save" title="iris.fileformats.netcdf.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.netcdf.save()</span></code></a></li>
-<li><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.grib.save_grib2()</span></code></li>
-<li><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.pp.save()</span></code></a></li>
+<li><p><a class="reference internal" href="../iris/iris/fileformats/netcdf.html#iris.fileformats.netcdf.save" title="iris.fileformats.netcdf.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.netcdf.save()</span></code></a></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.grib.save_grib2()</span></code></p></li>
+<li><p><a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.save" title="iris.fileformats.pp.save"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.pp.save()</span></code></a></p></li>
 </ul>
 <p>for more details on supported arguments for the individual savers.</p>
 </div>

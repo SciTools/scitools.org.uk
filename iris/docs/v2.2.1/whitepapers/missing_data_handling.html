@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Missing Data Handling in Iris &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>Missing Data Handling in Iris &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -110,13 +108,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -156,17 +152,17 @@ when a fill-value is specified by the user via a fileformat-specific saver.</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Not all savers accept the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> keyword argument.</p>
+<p class="admonition-title">Note</p>
+<p>Not all savers accept the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> keyword argument.</p>
 </div>
 <p>Iris will check for and issue warnings of fill-value ‘collisions’.
 This basically means that whenever there are unmasked values that would read back
 as masked, we issue a warning and suggest a workaround.</p>
 <p>This will occur in the following cases:</p>
 <ul class="simple">
-<li>where masked data contains <em>unmasked</em> points matching the fill-value, or</li>
-<li>where unmasked data contains the fill-value (either the format-specific default fill-value,
-or a fill-value specified by the user in the save call).</li>
+<li><p>where masked data contains <em>unmasked</em> points matching the fill-value, or</p></li>
+<li><p>where unmasked data contains the fill-value (either the format-specific default fill-value,
+or a fill-value specified by the user in the save call).</p></li>
 </ul>
 <div class="section" id="netcdf">
 <h3>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">¶</a></h3>
@@ -175,12 +171,12 @@ owing to the use of default fill values. The default fill-value used depends on 
 of the variable data.</p>
 <p>The exceptions to this are:</p>
 <ul class="simple">
-<li>One-byte values are not masked unless the variable has an explicit <code class="docutils literal notranslate"><span class="pre">_FillValue</span></code> attribute.
-That is, there is no default fill-value for <code class="docutils literal notranslate"><span class="pre">byte</span></code> types in NetCDF.</li>
-<li>Data may be tagged with a <code class="docutils literal notranslate"><span class="pre">_NoFill</span></code> attribute. This is not currently officially
-documented or widely implemented.</li>
-<li>Small integers create problems by <em>not</em> having the exemption applied to byte data.
-Thus, in principle, <code class="docutils literal notranslate"><span class="pre">int32</span></code> data cannot use the full range of 2**16 valid values.</li>
+<li><p>One-byte values are not masked unless the variable has an explicit <code class="docutils literal notranslate"><span class="pre">_FillValue</span></code> attribute.
+That is, there is no default fill-value for <code class="docutils literal notranslate"><span class="pre">byte</span></code> types in NetCDF.</p></li>
+<li><p>Data may be tagged with a <code class="docutils literal notranslate"><span class="pre">_NoFill</span></code> attribute. This is not currently officially
+documented or widely implemented.</p></li>
+<li><p>Small integers create problems by <em>not</em> having the exemption applied to byte data.
+Thus, in principle, <code class="docutils literal notranslate"><span class="pre">int32</span></code> data cannot use the full range of 2**16 valid values.</p></li>
 </ul>
 </div>
 </div>

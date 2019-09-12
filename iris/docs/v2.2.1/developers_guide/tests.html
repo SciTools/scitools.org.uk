@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Testing &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>Testing &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -110,13 +108,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -133,12 +129,11 @@
 <span id="developer-tests"></span><h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
 <p>The Iris tests may be run with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code> which has a
 command line utility included.</p>
-<dl class="docutils">
-<dt>There are three categories of tests within Iris:</dt>
-<dd><ul class="first last simple">
-<li>Unit tests</li>
-<li>Integration tests</li>
-<li>Legacy tests</li>
+<dl class="simple">
+<dt>There are three categories of tests within Iris:</dt><dd><ul class="simple">
+<li><p>Unit tests</p></li>
+<li><p>Integration tests</p></li>
+<li><p>Legacy tests</p></li>
 </ul>
 </dd>
 </dl>
@@ -155,14 +150,16 @@ addition, the unit tests can help describe the intent behind a change.</p>
 <p>The docstring for each test module must state the unit under test.
 For example:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Unit</span> <span class="pre">tests</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">`iris.experimental.raster.export_geotiff`</span> <span class="pre">function.&quot;&quot;&quot;</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Unit</span> <span class="pre">tests</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">`iris.experimental.raster.export_geotiff`</span> <span class="pre">function.&quot;&quot;&quot;</span></code></p>
+</div></blockquote>
 <p>All unit tests must be placed and named according to the following
 structure:</p>
 <div class="section" id="classes">
 <h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
 <p>When testing a class all the tests must reside in the module:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;ClassName&gt;.py</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;ClassName&gt;.py</span></code></p>
+</div></blockquote>
 <p>Within this test module each tested method must have one or more
 corresponding test classes:
 - Either: <cite>Test_name_of_public_method</cite>
@@ -172,7 +169,8 @@ to the aspect of the tested method which they address.</p>
 <p><strong>Examples</strong>:</p>
 <p>All unit tests for <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> must reside in:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/cube/test_Cube.py</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/cube/test_Cube.py</span></code></p>
+</div></blockquote>
 <p>Within that file the tests might look something like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tests for the Cube.xml() method.</span>
 <span class="k">class</span> <span class="nc">Test_xml</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
@@ -199,17 +197,19 @@ to the aspect of the tested method which they address.</p>
 <h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
 <p>When testing a function all the tests must reside in the module:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;function_name&gt;.py</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;function_name&gt;.py</span></code></p>
+</div></blockquote>
 <p>Within this test module there must be one or more test classes:
 - Either: <cite>Test</cite>
 - Or: <cite>TestAspectOfFunction</cite></p>
 <p>And within those test classes, the test methods must be named according
 to the aspect of the tested function which they address.</p>
 <p><strong>Examples</strong>:</p>
-<p>All unit tests for <a class="reference internal" href="../iris/iris/experimental/raster.html#iris.experimental.raster.export_geotiff" title="iris.experimental.raster.export_geotiff"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.experimental.raster.export_geotiff()</span></code></a>
+<p>All unit tests for <code class="xref py py-func docutils literal notranslate"><span class="pre">iris.experimental.raster.export_geotiff()</span></code>
 must reside in:</p>
 <blockquote>
-<div><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/experimental/raster/test_export_geotiff.py</span></code></div></blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/experimental/raster/test_export_geotiff.py</span></code></p>
+</div></blockquote>
 <p>Within that file the tests might look something like:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tests focussing on the handling of different data types.</span>
 <span class="k">class</span> <span class="nc">TestDtypeAndValues</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>

@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>What’s new in Iris 1.1 &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>What’s new in Iris 1.1 &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -113,13 +111,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -134,16 +130,14 @@
             
   <div class="section" id="what-s-new-in-iris-1-1">
 <h1>What’s new in Iris 1.1<a class="headerlink" href="#what-s-new-in-iris-1-1" title="Permalink to this headline">¶</a></h1>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Release:</th><td class="field-body">1.1.0</td>
-</tr>
-<tr class="field-even field"><th class="field-name">Date:</th><td class="field-body">7 Dec, 2012</td>
-</tr>
-</tbody>
-</table>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>1.1.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>7 Dec, 2012</p>
+</dd>
+</dl>
 <p>This document explains the new/changed features of Iris in version 1.1.
 (<a class="reference internal" href="index.html"><span class="doc">View all changes</span></a>.)</p>
 <p>With the release of Iris 1.1, we are introducing support for Mac OS X.
@@ -153,49 +147,49 @@ some notable improvements to netCDF/PP import.</p>
 <h2>Iris 1.1 features<a class="headerlink" href="#iris-1-1-features" title="Permalink to this headline">¶</a></h2>
 <p>A summary of the main features added with version 1.1:</p>
 <ul class="simple">
-<li>Support for Mac OS X.</li>
-<li>GRIB1 import now supports time units of “3 hours”.</li>
-<li>Fieldsfile import now supports unpacked and “CRAY” 32-bit packed data
-in 64-bit Fieldsfiles.</li>
-<li>PP file import now supports “CRAY” 32-bit packed data.</li>
-<li>Various performance improvements, particularly for netCDF import,
-PP import, and constraints.</li>
-<li>GRIB2 export now supports level types of altitude and height
-(codes 102 and 103).</li>
-<li>iris.analysis.cartography.area_weights now supports non-standard
-dimension orders.</li>
-<li>PP file import now adds the “forecast_reference_time” for fields
-where LBTIM is 11, 12, 13, 31, or 32.</li>
-<li>PP file import now supports LBTIM values of 1, 2, and 3.</li>
-<li>Fieldsfile import now has some support for ancillary files.</li>
-<li>Coordinate categorisation functions added for day-of-year and
-user-defined seasons.</li>
-<li>GRIB2 import now has partial support for probability data defined
-with product template 4.9.</li>
+<li><p>Support for Mac OS X.</p></li>
+<li><p>GRIB1 import now supports time units of “3 hours”.</p></li>
+<li><p>Fieldsfile import now supports unpacked and “CRAY” 32-bit packed data
+in 64-bit Fieldsfiles.</p></li>
+<li><p>PP file import now supports “CRAY” 32-bit packed data.</p></li>
+<li><p>Various performance improvements, particularly for netCDF import,
+PP import, and constraints.</p></li>
+<li><p>GRIB2 export now supports level types of altitude and height
+(codes 102 and 103).</p></li>
+<li><p>iris.analysis.cartography.area_weights now supports non-standard
+dimension orders.</p></li>
+<li><p>PP file import now adds the “forecast_reference_time” for fields
+where LBTIM is 11, 12, 13, 31, or 32.</p></li>
+<li><p>PP file import now supports LBTIM values of 1, 2, and 3.</p></li>
+<li><p>Fieldsfile import now has some support for ancillary files.</p></li>
+<li><p>Coordinate categorisation functions added for day-of-year and
+user-defined seasons.</p></li>
+<li><p>GRIB2 import now has partial support for probability data defined
+with product template 4.9.</p></li>
 </ul>
 <div class="section" id="bugs-fixed">
 <h3>Bugs fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>PP export no longer attempts to set/overwrite the STASH code based on
-the standard_name.</li>
-<li>Cell comparisons now work consistently, which fixes a bug where
+<li><p>PP export no longer attempts to set/overwrite the STASH code based on
+the standard_name.</p></li>
+<li><p>Cell comparisons now work consistently, which fixes a bug where
 bounded_cell &gt; point_cell compares the point to the bounds but,
-point_cell &lt; bounded_cell compares the points.</li>
-<li>Fieldsfile import now correctly recognises pre v3.1 and post v5.2
-versions, which fixes a bug where the two were interchanged.</li>
-<li>iris.analysis.trajectory.interpolate now handles hybrid-height.</li>
+point_cell &lt; bounded_cell compares the points.</p></li>
+<li><p>Fieldsfile import now correctly recognises pre v3.1 and post v5.2
+versions, which fixes a bug where the two were interchanged.</p></li>
+<li><p>iris.analysis.trajectory.interpolate now handles hybrid-height.</p></li>
 </ul>
 </div>
 <div class="section" id="incompatible-changes">
 <h3>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>N/A</li>
+<li><p>N/A</p></li>
 </ul>
 </div>
 <div class="section" id="deprecations">
 <h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li>N/A</li>
+<li><p>N/A</p></li>
 </ul>
 </div>
 </div>
@@ -211,9 +205,9 @@ complemented by two groups of functions which handle user-defined,
 custom seasons.</p>
 <p>The first group of functions is:</p>
 <ul class="simple">
-<li><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season()</span></code></li>
-<li><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_number()</span></code></li>
-<li><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_year()</span></code></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_number()</span></code></p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_year()</span></code></p></li>
 </ul>
 <p>These functions mimic their non-custom versions, but with the addition
 of a <code class="docutils literal notranslate"><span class="pre">seasons</span></code> parameter which is used to define the custom seasons.
@@ -230,7 +224,7 @@ one might do:</p>
 </div>
 <p>The other custom season function is:</p>
 <ul class="simple">
-<li><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_membership()</span></code>.</li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.coord_categorisation.add_custom_season_membership()</span></code>.</p></li>
 </ul>
 <p>This function adds a coordinate containing True/False values determined
 by membership of a single custom season.</p>

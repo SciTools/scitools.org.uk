@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Change Management in Iris from the User’s perspective &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>Change Management in Iris from the User’s perspective &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -107,13 +105,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -136,9 +132,9 @@ review existing code to ensure it functions correctly with new releases.</p>
 defined change management procedures to ensure that :</p>
 <blockquote>
 <div><ul class="simple">
-<li>you can be confident that your code will still work with a future release</li>
-<li>you will be aware of future incompatibility problems in advance</li>
-<li>you can defer making code compatibility changes for some time, until it suits you</li>
+<li><p>you can be confident that your code will still work with a future release</p></li>
+<li><p>you will be aware of future incompatibility problems in advance</p></li>
+<li><p>you can defer making code compatibility changes for some time, until it suits you</p></li>
 </ul>
 </div></blockquote>
 <div class="section" id="key-principles-you-can-rely-on">
@@ -148,14 +144,14 @@ major and minor version number in the version name, “major.minor.xxx”,
 as explained in the <a class="reference internal" href="#iris-change-releases"><span class="std std-ref">releases section</span></a> below.</p>
 <blockquote>
 <div><ul class="simple">
-<li>Code that currently works should <strong>still work</strong>, and have the same
+<li><p>Code that currently works should <strong>still work</strong>, and have the same
 results and effects, in any subsequent sub-release with the same major
-release number.</li>
-<li>The only time we will make changes that can break existing code is at
-a <strong>major release</strong>.</li>
-<li>At a major release, code that works <strong>and emits no deprecation warnings</strong>
+release number.</p></li>
+<li><p>The only time we will make changes that can break existing code is at
+a <strong>major release</strong>.</p></li>
+<li><p>At a major release, code that works <strong>and emits no deprecation warnings</strong>
 in the latest previous (minor) release should still work, and have the
-same results and effects.</li>
+same results and effects.</p></li>
 </ul>
 </div></blockquote>
 <p><strong>What can possibly go wrong ?</strong></p>
@@ -166,37 +162,35 @@ same results and effects.</li>
 <h2>User Actions : How you should respond to changes and releases<a class="headerlink" href="#user-actions-how-you-should-respond-to-changes-and-releases" title="Permalink to this headline">¶</a></h2>
 <p>Checklist :</p>
 <ul>
-<li><dl class="first docutils">
-<dt>when a new <strong>testing or candidate version</strong> is announced</dt>
-<dd><p class="first last">if convenient, test your working legacy code against it and report any problems.</p>
+<li><dl class="simple">
+<dt>when a new <strong>testing or candidate version</strong> is announced</dt><dd><p>if convenient, test your working legacy code against it and report any problems.</p>
 </dd>
 </dl>
 </li>
-<li><p class="first">when a new <strong>minor version is released</strong></p>
+<li><p>when a new <strong>minor version is released</strong></p>
 <blockquote>
 <div><ul class="simple">
-<li>review the ‘Whats New’ documentation to see if it introduces any
-deprecations that may affect you.</li>
-<li>run your working legacy code and check for any deprecation warnings,
-indicating that modifications may be necessary at some point</li>
-<li>when convenient :<ul>
-<li>review existing code for use of deprecated features</li>
-<li>rewrite code to replace deprecated features</li>
+<li><p>review the ‘Whats New’ documentation to see if it introduces any
+deprecations that may affect you.</p></li>
+<li><p>run your working legacy code and check for any deprecation warnings,
+indicating that modifications may be necessary at some point</p></li>
+<li><p>when convenient :</p>
+<ul>
+<li><p>review existing code for use of deprecated features</p></li>
+<li><p>rewrite code to replace deprecated features</p></li>
 </ul>
 </li>
 </ul>
 </div></blockquote>
 </li>
-<li><dl class="first docutils">
-<dt>when a new major version is <strong>announced</strong></dt>
-<dd><p class="first last">ensure your code runs, without producing deprecation warnings, in the
+<li><dl class="simple">
+<dt>when a new major version is <strong>announced</strong></dt><dd><p>ensure your code runs, without producing deprecation warnings, in the
 previous minor release</p>
 </dd>
 </dl>
 </li>
-<li><dl class="first docutils">
-<dt>when a new major version is <strong>released</strong></dt>
-<dd><p class="first last">check for new deprecation warnings, as for a minor release</p>
+<li><dl class="simple">
+<dt>when a new major version is <strong>released</strong></dt><dd><p>check for new deprecation warnings, as for a minor release</p>
 </dd>
 </dl>
 </li>
@@ -208,21 +202,20 @@ previous minor release</p>
 providing :</p>
 <blockquote>
 <div><ul class="simple">
-<li>defined processes for release and change management</li>
-<li>release versioning</li>
-<li>backwards code compatibility through minor version releases</li>
-<li>a way to ensure compatibility with a new major version release</li>
-<li>deprecation notices and warnings to highlight all impending changes</li>
+<li><p>defined processes for release and change management</p></li>
+<li><p>release versioning</p></li>
+<li><p>backwards code compatibility through minor version releases</p></li>
+<li><p>a way to ensure compatibility with a new major version release</p></li>
+<li><p>deprecation notices and warnings to highlight all impending changes</p></li>
 </ul>
 </div></blockquote>
 <p>Our practices are intended be compatible with the principles defined in the
 <a class="reference external" href="http://semver.org/">SemVer project</a> .</p>
-<dl class="docutils">
-<dt>Key concepts covered here:</dt>
-<dd><ul class="first last simple">
-<li><a class="reference internal" href="#iris-change-releases"><span class="std std-ref">Release versions</span></a></li>
-<li><a class="reference internal" href="#iris-backward-compatibility"><span class="std std-ref">Backwards compatibility</span></a></li>
-<li><a class="reference internal" href="#iris-deprecations"><span class="std std-ref">Deprecation</span></a></li>
+<dl class="simple">
+<dt>Key concepts covered here:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="#iris-change-releases"><span class="std std-ref">Release versions</span></a></p></li>
+<li><p><a class="reference internal" href="#iris-backward-compatibility"><span class="std std-ref">Backwards compatibility</span></a></p></li>
+<li><p><a class="reference internal" href="#iris-deprecations"><span class="std std-ref">Deprecation</span></a></p></li>
 </ul>
 </dd>
 </dl>
@@ -234,27 +227,27 @@ Minor releases may only include backwards-compatible changes.</p>
 <p>The following are examples of backward-compatible changes :</p>
 <blockquote>
 <div><ul class="simple">
-<li>changes to documentation</li>
-<li>adding to a module : new submodules, functions, classes or properties</li>
-<li>adding to a class : new methods or properties</li>
-<li>adding to a function or method : new <strong>optional</strong> arguments or keywords</li>
+<li><p>changes to documentation</p></li>
+<li><p>adding to a module : new submodules, functions, classes or properties</p></li>
+<li><p>adding to a class : new methods or properties</p></li>
+<li><p>adding to a function or method : new <strong>optional</strong> arguments or keywords</p></li>
 </ul>
 </div></blockquote>
 <p>The following are examples of <strong>non-</strong> backward-compatible changes :</p>
 <blockquote>
 <div><ul class="simple">
-<li>removing (which includes <em>renaming</em>) any public module or submodule</li>
-<li><dl class="first docutils">
-<dt>removing any public component <span class="classifier-delimiter">:</span> <span class="classifier">a module, class, method, function or</span></dt>
-<dd>data object property of a public API component</dd>
+<li><p>removing (which includes <em>renaming</em>) any public module or submodule</p></li>
+<li><dl class="simple">
+<dt>removing any public component<span class="classifier">a module, class, method, function or</span></dt><dd><p>data object property of a public API component</p>
+</dd>
 </dl>
 </li>
-<li>removing any property of a public object</li>
-<li>removing an argument or keyword from a method or function</li>
-<li>adding a required argument to a method or function</li>
-<li>removing a keyword (even one that has no effect)</li>
-<li>changing the effect of <em>any</em> particular combination of arguments and/or
-keywords</li>
+<li><p>removing any property of a public object</p></li>
+<li><p>removing an argument or keyword from a method or function</p></li>
+<li><p>adding a required argument to a method or function</p></li>
+<li><p>removing a keyword (even one that has no effect)</p></li>
+<li><p>changing the effect of <em>any</em> particular combination of arguments and/or
+keywords</p></li>
 </ul>
 </div></blockquote>
 <p>Note that it is also possible to modify the behaviour of an existing usage by
@@ -290,11 +283,11 @@ keyword has a specific value, like “interpolate(mode=’linear’)”.</p>
 <p>A “usage” is any code referring to public API elements, for example :</p>
 <blockquote>
 <div><ul class="simple">
-<li><cite>print(iris.thing)</cite></li>
-<li><cite>iris.submodule.call(arg1)</cite></li>
-<li><cite>iris.module.call(arg1, arg2, *more_args)</cite></li>
-<li><cite>iris.module.call(arg1, arg2, control=3)</cite></li>
-<li><cite>x = iris.module.class(arg, key=4)</cite></li>
+<li><p><cite>print(iris.thing)</cite></p></li>
+<li><p><cite>iris.submodule.call(arg1)</cite></p></li>
+<li><p><cite>iris.module.call(arg1, arg2, *more_args)</cite></p></li>
+<li><p><cite>iris.module.call(arg1, arg2, control=3)</cite></p></li>
+<li><p><cite>x = iris.module.class(arg, key=4)</cite></p></li>
 </ul>
 </div></blockquote>
 <p>A “behaviour” is whatever Iris does when you invoke a particular API usage,
@@ -304,7 +297,7 @@ changes or data written to files.</p>
 therefore continue to work, with the same behaviours, at least until the next
 <strong>major</strong> version release.</p>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
+<p class="admonition-title">Note</p>
 <p>What is the “same” behaviour, for backwards-compatibility purposes ?</p>
 <p>Unfortunately, the guarantee to preserve “what Iris does” within a major
 version cannot ensure <em>totally</em> identical and repeatable behaviour for any
@@ -320,7 +313,7 @@ dependencies could alter total behaviour in some respects :
 For instance, it could take more or less time or memory, produce results in
 a different sequence, or perform a calculation slightly differently (with
 possible small differences in floating point results).</p>
-<p class="last">As behaviour can only be tested in specific ways on a specific
+<p>As behaviour can only be tested in specific ways on a specific
 installation, so any given user installation may experience changes in
 behaviour, though hopefully always slight, with a minor release change.
 This applies to changes in the Iris minor release version, or a different
@@ -340,28 +333,28 @@ these are defined, following the <a class="reference external" href="http://semv
 are :</p>
 <blockquote>
 <div><ul class="simple">
-<li>“&lt;major&gt;”, “&lt;minor&gt;” and “&lt;micro&gt;” are all integers, thus version
+<li><p>“&lt;major&gt;”, “&lt;minor&gt;” and “&lt;micro&gt;” are all integers, thus version
 2.12 is later than 2.2 (i.e. it is “two point twelve”, not “two point one
-two”).</li>
-<li>“&lt;major&gt;.&lt;minor&gt;” denote the software release version.</li>
-<li>A non-zero “&lt;micro&gt;” denotes a bugfix version, thus a release “X.Y.0” may
+two”).</p></li>
+<li><p>“&lt;major&gt;.&lt;minor&gt;” denote the software release version.</p></li>
+<li><p>A non-zero “&lt;micro&gt;” denotes a bugfix version, thus a release “X.Y.0” may
 be followed by “X.Y.1”, “X.Y.2” etc, which <em>only</em> differ by containing
 bugfixes.  Any bugfix release supercedes its predecessors, and does not
 change any (valid) APIs or behaviour :  hence, it is always advised to
 replace a given version with its latest bugfix successor, and there
-should be no reason not to.</li>
-<li>“&lt;extension&gt;” is blank for formal releases.  It used to indicate
+should be no reason not to.</p></li>
+<li><p>“&lt;extension&gt;” is blank for formal releases.  It used to indicate
 provisional software for testing :  The version string in a development
 code branch is always labelled “-DEV”, and release candidates for testing
 during the release process are labelled “-rc1”, “-rc2” etc.
 For development code, the version number is that of the <em>next</em> release,
 which this code version is progressing towards, e.g. “1.2-DEV” for all
-code branches since the 1.1 release and intended for release in “1.2”.</li>
+code branches since the 1.1 release and intended for release in “1.2”.</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Our use of “-&lt;extension&gt;” is typical, but does not follow strict SemVer
+<p class="admonition-title">Note</p>
+<p>Our use of “-&lt;extension&gt;” is typical, but does not follow strict SemVer
 principles.</p>
 </div>
 <p>The code for a specific release is identified by a git tag which is the version
@@ -402,11 +395,11 @@ that existing code may need to be modified.</p>
 <p>When we make a release that introduces a deprecation :</p>
 <blockquote>
 <div><ul class="simple">
-<li>a deprecation notice appears in the
-<a class="reference internal" href="../whatsnew/index.html#iris-whatsnew"><span class="std std-ref">What’s New section</span></a></li>
-<li>deprecation notes are included in all relevant parts of the <a class="reference internal" href="../iris/iris.html#iris"><span class="std std-ref">reference
-documentation</span></a></li>
-<li>a runtime warning is produced when the old feature is used or triggered</li>
+<li><p>a deprecation notice appears in the
+<a class="reference internal" href="../whatsnew/index.html#iris-whatsnew"><span class="std std-ref">What’s New section</span></a></p></li>
+<li><p>deprecation notes are included in all relevant parts of the <a class="reference internal" href="../iris/iris.html#iris"><span class="std std-ref">reference
+documentation</span></a></p></li>
+<li><p>a runtime warning is produced when the old feature is used or triggered</p></li>
 </ul>
 </div></blockquote>
 <p>In most cases, we also provide detailed advice in the documentation and/or
@@ -416,18 +409,18 @@ In all cases, we must provide a transitional period where both old and new
 features are available :</p>
 <blockquote>
 <div><ul class="simple">
-<li>the ‘old’ style works as it did before</li>
-<li>any usage of the ‘old’ features will emit a
+<li><p>the ‘old’ style works as it did before</p></li>
+<li><p>any usage of the ‘old’ features will emit a
 <code class="xref py py-class docutils literal notranslate"><span class="pre">warnings.WarningMessage</span></code> message, noting that the feature is
-deprecated and what to use instead</li>
-<li>the ‘new’ style can be adopted as soon as convenient</li>
+deprecated and what to use instead</p></li>
+<li><p>the ‘new’ style can be adopted as soon as convenient</p></li>
 </ul>
 </div></blockquote>
 <p>This is to warn users :</p>
 <blockquote>
 <div><ul class="simple">
-<li>not to use the deprecated features in any new code, <em>and</em></li>
-<li>eventually to rewrite old code to use the newer or better alternatives</li>
+<li><p>not to use the deprecated features in any new code, <em>and</em></p></li>
+<li><p>eventually to rewrite old code to use the newer or better alternatives</p></li>
 </ul>
 </div></blockquote>
 <div class="section" id="deprecated-features-support-through-the-release-cycle">
@@ -438,15 +431,15 @@ When a version that introduces a deprecation is released, the effects are as
 follows:</p>
 <blockquote>
 <div><ul class="simple">
-<li>code that may be affected by the proposed change will result in
-deprecation warnings</li>
-<li>code that currently works will, however, continue to work unchanged, at
-least until the next major release</li>
-<li>you can avoid all deprecation warnings by suitable changes to your code</li>
-<li>code which uses no deprecated features, and thus produces no deprecation
-warnings, will continue to work unchanged even at a <strong>major</strong> release</li>
-<li>code that generates deprecation warnings may cease to work at the next
-<strong>major</strong> release.</li>
+<li><p>code that may be affected by the proposed change will result in
+deprecation warnings</p></li>
+<li><p>code that currently works will, however, continue to work unchanged, at
+least until the next major release</p></li>
+<li><p>you can avoid all deprecation warnings by suitable changes to your code</p></li>
+<li><p>code which uses no deprecated features, and thus produces no deprecation
+warnings, will continue to work unchanged even at a <strong>major</strong> release</p></li>
+<li><p>code that generates deprecation warnings may cease to work at the next
+<strong>major</strong> release.</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -467,11 +460,11 @@ with the new release, which we obviously need to avoid.</p>
 particular input data format.</p>
 <blockquote>
 <div><ul class="simple">
-<li>the user code usage is simply by calls to “iris.load”</li>
-<li>the change is not a bugfix, as the old way isn’t actually “wrong”</li>
-<li>we don’t want to add an extra keyword into all the relevant calls</li>
-<li>we don’t see a longterm future for the existing behaviour :  we
-expect everyone to adopt the new interpretation, eventually</li>
+<li><p>the user code usage is simply by calls to “iris.load”</p></li>
+<li><p>the change is not a bugfix, as the old way isn’t actually “wrong”</p></li>
+<li><p>we don’t want to add an extra keyword into all the relevant calls</p></li>
+<li><p>we don’t see a longterm future for the existing behaviour :  we
+expect everyone to adopt the new interpretation, eventually</p></li>
 </ul>
 </div></blockquote>
 </div></blockquote>
@@ -486,81 +479,75 @@ deprecation messages appearing when legacy code runs.</p>
 <p>To allow user code to avoid unexpected any behavioural changes, the
 <a class="reference internal" href="../iris/iris.html#iris.Future" title="iris.Future"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.Future</span></code></a> controls follow a special management cycle, as follows
 (see also the relevant <a class="reference internal" href="../developers_guide/deprecations.html#iris-developer-future"><span class="std std-ref">Developer Guide section</span></a>):</p>
-<dl class="docutils">
-<dt>At (minor) release “&lt;X&gt;.&lt;Y&gt;..”:</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Changes to API:</dt>
-<dd><ul class="first last simple">
-<li>the new behaviour is made available, alongside the old one</li>
-<li>a new future option <cite>iris.FUTURE.&lt;new_enable&gt;</cite> is provided to switch
-between them.</li>
-<li>the new option defaults to <cite>iris.FUTURE.&lt;new_enable&gt;=False</cite>, meaning
-the ‘old’ behaviour is the default.</li>
-<li>when any relevant API call is made that invokes the old behaviour, a
-deprecation warning is emitted.</li>
+<dl>
+<dt>At (minor) release “&lt;X&gt;.&lt;Y&gt;..”:</dt><dd><ul>
+<li><dl class="simple">
+<dt>Changes to API:</dt><dd><ul class="simple">
+<li><p>the new behaviour is made available, alongside the old one</p></li>
+<li><p>a new future option <cite>iris.FUTURE.&lt;new_enable&gt;</cite> is provided to switch
+between them.</p></li>
+<li><p>the new option defaults to <cite>iris.FUTURE.&lt;new_enable&gt;=False</cite>, meaning
+the ‘old’ behaviour is the default.</p></li>
+<li><p>when any relevant API call is made that invokes the old behaviour, a
+deprecation warning is emitted.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first">User actions:</p>
+<li><p>User actions:</p>
 <blockquote>
 <div><ul class="simple">
-<li>If your code encounters the new deprecation warning, you should try
+<li><p>If your code encounters the new deprecation warning, you should try
 enabling the new control option, and make any necessary rewrites to
-make it work.  This will stop the deprecation warning appearing.</li>
-<li>If you encounter problems making your code work with the new
+make it work.  This will stop the deprecation warning appearing.</p></li>
+<li><p>If you encounter problems making your code work with the new
 behaviour, and don’t have time to fix them, you should make your
 code explicitly turn <em>off</em> the option for now, i.e. ::
 <cite>iris.FUTURE.&lt;new_enable&gt; = False</cite>.
 This locks you into the old behaviour, but your code  will continue
 to work, even beyond the next major release when the default
-behaviour will change (see on).</li>
+behaviour will change (see on).</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 </dd>
-<dt>At (major) release “&lt;X+1&gt;.0…”:</dt>
-<dd><ul class="first last">
-<li><dl class="first docutils">
-<dt>Changes to API:</dt>
-<dd><ul class="first last simple">
-<li>the control default is changed to <cite>iris.FUTURE.&lt;new_enable&gt;=True</cite></li>
-<li>the control property is <em>itself</em> deprecated, so that assigning to it
-now results in a deprecation warning.</li>
-<li>when any affected API call is made, a deprecation warning is (still)
+<dt>At (major) release “&lt;X+1&gt;.0…”:</dt><dd><ul>
+<li><dl class="simple">
+<dt>Changes to API:</dt><dd><ul class="simple">
+<li><p>the control default is changed to <cite>iris.FUTURE.&lt;new_enable&gt;=True</cite></p></li>
+<li><p>the control property is <em>itself</em> deprecated, so that assigning to it
+now results in a deprecation warning.</p></li>
+<li><p>when any affected API call is made, a deprecation warning is (still)
 emitted, if the old behaviour is in force.  The “old” behaviour is,
-however, still available and functional.</li>
+however, still available and functional.</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p class="first">User actions:</p>
+<li><p>User actions:</p>
 <blockquote>
 <div><ul class="simple">
-<li>If your code is already using the “new” behaviour, it will now work
+<li><p>If your code is already using the “new” behaviour, it will now work
 without needing to set the Future option.  <em>You should remove</em> the
 code which enables the option, as this will now emit a deprecation
-message.  In the <em>next</em> major release, this would cause an error.</li>
-<li>If your code is explicitly turning the option off, it will continue
+message.  In the <em>next</em> major release, this would cause an error.</p></li>
+<li><p>If your code is explicitly turning the option off, it will continue
 to work in the same way at this point, but obviously time is
-runnning out.</li>
-<li>If your code is still using the old behaviour and <em>not</em> setting the
+runnning out.</p></li>
+<li><p>If your code is still using the old behaviour and <em>not</em> setting the
 control option at all, its behaviour might now have changed
-unexpectedly and you should review this.</li>
+unexpectedly and you should review this.</p></li>
 </ul>
 </div></blockquote>
 </li>
 </ul>
 </dd>
-<dt>At (major) release “&lt;X+2&gt;…”:</dt>
-<dd><ul class="first last simple">
-<li><dl class="first docutils">
-<dt>Changes to API:</dt>
-<dd><ul class="first last">
-<li>the control property is removed</li>
-<li>the “old” behaviour is removed</li>
+<dt>At (major) release “&lt;X+2&gt;…”:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>Changes to API:</dt><dd><ul>
+<li><p>the control property is removed</p></li>
+<li><p>the “old” behaviour is removed</p></li>
 </ul>
 </dd>
 </dl>

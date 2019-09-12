@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Graphics tests &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>Graphics tests &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -92,13 +90,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -127,22 +123,21 @@ However, as graphics tests are inherently “integration” style rather than tr
 unit tests, results can differ with the installed versions of dependent
 libraries (see below), so this is not recommended except where no alternative
 is practical.</p>
-<dl class="docutils">
-<dt>Testing actual plot results introduces some significant difficulties :</dt>
-<dd><ul class="first last simple">
-<li>Graphics tests are inherently ‘integration’ style tests, so results will
+<dl class="simple">
+<dt>Testing actual plot results introduces some significant difficulties :</dt><dd><ul class="simple">
+<li><p>Graphics tests are inherently ‘integration’ style tests, so results will
 often vary with the versions of key dependencies, i.e. the exact versions of
 third-party modules which are installed :  Obviously, results will depend on
 the matplotlib version, but they can also depend on numpy and other
-installed packages.</li>
-<li>Although it seems possible in principle to accommodate ‘small’ result changes
+installed packages.</p></li>
+<li><p>Although it seems possible in principle to accommodate ‘small’ result changes
 by distinguishing plots which are ‘nearly the same’ from those which are
 ‘significantly different’, in practice no <em>automatic</em> scheme for this can be
 perfect :  That is, any calculated tolerance in output matching will allow
-some changes which a human would judge as a significant error.</li>
-<li>Storing a variety of alternative ‘acceptable’ results as reference images
+some changes which a human would judge as a significant error.</p></li>
+<li><p>Storing a variety of alternative ‘acceptable’ results as reference images
 can easily lead to uncontrolled increases in the size of the repository,
-given multiple independent sources of variation.</li>
+given multiple independent sources of variation.</p></li>
 </ul>
 </dd>
 </dl>
@@ -158,26 +153,26 @@ the Iris repository.
 This consists of :</p>
 <blockquote>
 <div><ul class="simple">
-<li>using a perceptual ‘image hash’ of the outputs (see
+<li><p>using a perceptual ‘image hash’ of the outputs (see
 <a class="reference external" href="https://github.com/JohannesBuchner/imagehash">https://github.com/JohannesBuchner/imagehash</a>) as the basis for checking
-test results.</li>
-<li>storing the hashes of ‘known accepted results’ for each test in a
+test results.</p></li>
+<li><p>storing the hashes of ‘known accepted results’ for each test in a
 database in the repo (which is actually stored in
-<code class="docutils literal notranslate"><span class="pre">lib/iris/tests/results/imagerepo.json</span></code>).</li>
-<li>storing associated reference images for each hash value in a separate public
+<code class="docutils literal notranslate"><span class="pre">lib/iris/tests/results/imagerepo.json</span></code>).</p></li>
+<li><p>storing associated reference images for each hash value in a separate public
 repository, currently in <a class="reference external" href="https://github.com/SciTools/test-images-scitools">https://github.com/SciTools/test-images-scitools</a> ,
-allowing human-eye judgement of ‘valid equivalent’ results.</li>
-<li>a new version of the ‘iris/tests/idiff.py’ assists in comparing proposed
-new ‘correct’ result images with the existing accepted ones.</li>
+allowing human-eye judgement of ‘valid equivalent’ results.</p></li>
+<li><p>a new version of the ‘iris/tests/idiff.py’ assists in comparing proposed
+new ‘correct’ result images with the existing accepted ones.</p></li>
 </ul>
 </div></blockquote>
 <p>BRIEF…
 There should be sufficient work-flow detail here to allow an iris developer to:</p>
 <blockquote>
 <div><ul class="simple">
-<li>understand the new check graphic test process</li>
-<li>understand the steps to take and tools to use to add a new graphic test</li>
-<li>understand the steps to take and tools to use to diagnose and fix an graphic test failure</li>
+<li><p>understand the new check graphic test process</p></li>
+<li><p>understand the steps to take and tools to use to add a new graphic test</p></li>
+<li><p>understand the steps to take and tools to use to diagnose and fix an graphic test failure</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -187,33 +182,33 @@ There should be sufficient work-flow detail here to allow an iris developer to:<
 following changes in Iris or any of its dependencies, this is the process
 you now need to follow:</p>
 <ol class="arabic simple">
-<li>Create a directory in iris/lib/iris/tests called ‘result_image_comparison’.</li>
-<li>From your Iris root directory, run the tests by using the command:
-<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code>.</li>
-<li>Navigate to iris/lib/iris/tests and run the command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">idiff.py</span></code>.
+<li><p>Create a directory in iris/lib/iris/tests called ‘result_image_comparison’.</p></li>
+<li><p>From your Iris root directory, run the tests by using the command:
+<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code>.</p></li>
+<li><p>Navigate to iris/lib/iris/tests and run the command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">idiff.py</span></code>.
 This will open a window for you to visually inspect the changes to the
-graphic and then either accept or reject the new result.</li>
-<li>Upon acceptance of a change or a new image, a copy of the output PNG file
+graphic and then either accept or reject the new result.</p></li>
+<li><p>Upon acceptance of a change or a new image, a copy of the output PNG file
 is added to the reference image repository in
 <a class="reference external" href="https://github.com/SciTools/test-images-scitools">https://github.com/SciTools/test-images-scitools</a>.  The file is named
-according to the image hash value, as <code class="docutils literal notranslate"><span class="pre">&lt;hash&gt;.png</span></code>.</li>
-<li>The hash value of the new result is added into the relevant set of ‘valid
+according to the image hash value, as <code class="docutils literal notranslate"><span class="pre">&lt;hash&gt;.png</span></code>.</p></li>
+<li><p>The hash value of the new result is added into the relevant set of ‘valid
 result hashes’ in the image result database file,
-<code class="docutils literal notranslate"><span class="pre">tests/results/imagerepo.json</span></code>.</li>
-<li>The tests must now be re-run, and the ‘new’ result should be accepted.
+<code class="docutils literal notranslate"><span class="pre">tests/results/imagerepo.json</span></code>.</p></li>
+<li><p>The tests must now be re-run, and the ‘new’ result should be accepted.
 Occasionally there are several graphics checks in a single test, only the
 first of which will be run should it fail.  If this is the case, then you
 may well encounter further graphical test failures in your next runs, and
-you must repeat the process until all the graphical tests pass.</li>
-<li>To add your changes to Iris, you need to make two pull requests.  The first
+you must repeat the process until all the graphical tests pass.</p></li>
+<li><p>To add your changes to Iris, you need to make two pull requests.  The first
 should be made to the test-images-scitools repository, and this should
 contain all the newly-generated png files copied into the folder named
-‘image_files’.</li>
-<li>The second pull request should be created in the Iris repository, and should
+‘image_files’.</p></li>
+<li><p>The second pull request should be created in the Iris repository, and should
 only include the change to the image results database
 (<code class="docutils literal notranslate"><span class="pre">tests/results/imagerepo.json</span></code>) :
 This pull request must contain a reference to the matching one in
-test-images-scitools.</li>
+test-images-scitools.</p></li>
 </ol>
 <p>Note: the Iris pull-request will not test out successfully in Travis until the
 test-images-scitools pull request has been merged :  This is because there is

@@ -1,12 +1,10 @@
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>6. Real and Lazy Data &#8212; Iris 2.2.0 documentation</title>
+    <meta charset="utf-8" />
+    <title>6. Real and Lazy Data &#8212; Iris 2.2.1dev0 documentation</title>
     <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
@@ -111,13 +109,11 @@
     </ul>
    </div>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -235,11 +231,11 @@ as in the previous example.</p>
 current state:</p>
 <blockquote>
 <div><ul class="simple">
-<li>If a cube has lazy data, calling the cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method
+<li><p>If a cube has lazy data, calling the cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method
 will return the cube’s lazy dask array. Calling the cube’s
-<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method <strong>will never realise</strong> the cube’s data.</li>
-<li>If a cube has real data, calling the cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method
-will return the cube’s real NumPy array.</li>
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method <strong>will never realise</strong> the cube’s data.</p></li>
+<li><p>If a cube has real data, calling the cube’s <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method
+will return the cube’s real NumPy array.</p></li>
 </ul>
 </div></blockquote>
 <p>For example:</p>
@@ -271,55 +267,55 @@ points array and an optional bounds array.
 Coordinate points and bounds arrays can also be real or lazy:</p>
 <blockquote>
 <div><ul class="simple">
-<li>A <a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimCoord</span></code></a> will only ever have <strong>real</strong> points and bounds
-arrays because of monotonicity checks that realise lazy arrays.</li>
-<li>An <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> can have <strong>real or lazy</strong> points and bounds.</li>
-<li>An <a class="reference internal" href="../iris/iris/aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoordFactory</span></code></a> (or derived coordinate)
+<li><p>A <a class="reference internal" href="../iris/iris/coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">DimCoord</span></code></a> will only ever have <strong>real</strong> points and bounds
+arrays because of monotonicity checks that realise lazy arrays.</p></li>
+<li><p>An <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> can have <strong>real or lazy</strong> points and bounds.</p></li>
+<li><p>An <a class="reference internal" href="../iris/iris/aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoordFactory</span></code></a> (or derived coordinate)
 can have <strong>real or lazy</strong> points and bounds. If all of the
 <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> instances used to construct the derived coordinate
 have real points and bounds then the derived coordinate will have real points
-and bounds, otherwise the derived coordinate will have lazy points and bounds.</li>
+and bounds, otherwise the derived coordinate will have lazy points and bounds.</p></li>
 </ul>
 </div></blockquote>
 <p>Iris cubes and coordinates have very similar interfaces, which extends to accessing
 coordinates’ lazy points and bounds:</p>
-<div class="highlight-pycon notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;hybrid_height.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">)</span>
+<div class="highlight-pycon3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;hybrid_height.nc&#39;</span><span class="p">),</span> <span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">)</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">dim_coord</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;model_level_number&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">dim_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
 <span class="go">False</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">aux_coord</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;sigma&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
 <span class="go">True</span>
 
 <span class="go"># Realise the lazy points. This will **not** realise the lazy bounds.</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">points</span> <span class="o">=</span> <span class="n">aux_coord</span><span class="o">.</span><span class="n">points</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
 <span class="go">False</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">aux_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
 <span class="go">True</span>
 
 <span class="gp">&gt;&gt;&gt; </span><span class="n">derived_coord</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;altitude&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_lazy_points</span><span class="p">())</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_bounds</span><span class="p">())</span>
 <span class="go">True</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">derived_coord</span><span class="o">.</span><span class="n">has_lazy_bounds</span><span class="p">())</span>
 <span class="go">True</span>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="first admonition-title">Note</p>
-<p class="last">Printing a lazy <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> will realise its points and bounds arrays!</p>
+<p class="admonition-title">Note</p>
+<p>Printing a lazy <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> will realise its points and bounds arrays!</p>
 </div>
 </div>
 <div class="section" id="dask-processing-options">
