@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Missing Data Handling in Iris &#8212; Iris 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Iris copyright, licensing and contributors" href="../copyright.html" />
+    <link rel="prev" title="Iris handling of PP and Fieldsfiles" href="um_files_loading.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.3</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../copyright.html" title="Iris copyright, licensing and contributors"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="um_files_loading.html" title="Iris handling of PP and Fieldsfiles"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Iris technical ‘Whitepapers’</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Missing Data Handling in Iris</a><ul>
+<li><a class="reference internal" href="#loading">Loading</a></li>
+<li><a class="reference internal" href="#saving">Saving</a><ul>
+<li><a class="reference internal" href="#netcdf">NetCDF</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#merging">Merging</a></li>
+<li><a class="reference internal" href="#other-operations">Other operations</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="um_files_loading.html"
+                        title="previous chapter">Iris handling of PP and Fieldsfiles</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../copyright.html"
+                        title="next chapter">Iris copyright, licensing and contributors</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/whitepapers/missing_data_handling.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="missing-data-handling-in-iris">
+<h1>Missing Data Handling in Iris<a class="headerlink" href="#missing-data-handling-in-iris" title="Permalink to this headline">¶</a></h1>
+<p>This document provides a brief overview of how Iris handles missing data values
+when datasets are loaded as cubes, and when cubes are saved or modified.</p>
+<p>A missing data value, or fill-value, defines the value used within a dataset to
+indicate that data point is missing or not set.
+This value is included as part of a dataset’s metadata.</p>
+<p>For example, in a gridded global ocean dataset, no data values will be recorded
+over land, so land points will be missing data.
+In such a case, land points could be indicated by being set to the dataset’s
+missing data value.</p>
+<div class="section" id="loading">
+<h2>Loading<a class="headerlink" href="#loading" title="Permalink to this headline">¶</a></h2>
+<p>On load, any fill-value or missing data value defined in the loaded dataset
+should be used as the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> of the NumPy masked array data attribute of the
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>. This will only appear when the cube’s data is realised.</p>
+</div>
+<div class="section" id="saving">
+<h2>Saving<a class="headerlink" href="#saving" title="Permalink to this headline">¶</a></h2>
+<p>On save, the fill-value of a cube’s masked data array is <strong>not</strong> used in saving data.
+Instead, Iris always uses the default fill-value for the fileformat, <em>except</em>
+when a fill-value is specified by the user via a fileformat-specific saver.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s1">&#39;my_file.nc&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=-</span><span class="mi">99999</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Not all savers accept the <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> keyword argument.</p>
+</div>
+<p>Iris will check for and issue warnings of fill-value ‘collisions’.
+This basically means that whenever there are unmasked values that would read back
+as masked, we issue a warning and suggest a workaround.</p>
+<p>This will occur in the following cases:</p>
+<ul class="simple">
+<li><p>where masked data contains <em>unmasked</em> points matching the fill-value, or</p></li>
+<li><p>where unmasked data contains the fill-value (either the format-specific default fill-value,
+or a fill-value specified by the user in the save call).</p></li>
+</ul>
+<div class="section" id="netcdf">
+<h3>NetCDF<a class="headerlink" href="#netcdf" title="Permalink to this headline">¶</a></h3>
+<p>NetCDF is a special case, because all ordinary variable data is “potentially masked”,
+owing to the use of default fill values. The default fill-value used depends on the type
+of the variable data.</p>
+<p>The exceptions to this are:</p>
+<ul class="simple">
+<li><p>One-byte values are not masked unless the variable has an explicit <code class="docutils literal notranslate"><span class="pre">_FillValue</span></code> attribute.
+That is, there is no default fill-value for <code class="docutils literal notranslate"><span class="pre">byte</span></code> types in NetCDF.</p></li>
+<li><p>Data may be tagged with a <code class="docutils literal notranslate"><span class="pre">_NoFill</span></code> attribute. This is not currently officially
+documented or widely implemented.</p></li>
+<li><p>Small integers create problems by <em>not</em> having the exemption applied to byte data.
+Thus, in principle, <code class="docutils literal notranslate"><span class="pre">int32</span></code> data cannot use the full range of 2**16 valid values.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="merging">
+<h2>Merging<a class="headerlink" href="#merging" title="Permalink to this headline">¶</a></h2>
+<p>Merged data should have a fill-value equal to that of the components, if they
+all have the same fill-value. If the components have differing fill-values, a
+default fill-value will be used instead.</p>
+</div>
+<div class="section" id="other-operations">
+<h2>Other operations<a class="headerlink" href="#other-operations" title="Permalink to this headline">¶</a></h2>
+<p>Other operations, such as <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> arithmetic operations,
+generally produce output with a default (NumPy) fill-value. That is, these operations
+ignore the fill-values of the input(s) to the operation.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../copyright.html" title="Iris copyright, licensing and contributors"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="um_files_loading.html" title="Iris handling of PP and Fieldsfiles"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Iris technical ‘Whitepapers’</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

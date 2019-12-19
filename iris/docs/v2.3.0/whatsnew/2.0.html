@@ -1,0 +1,456 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>What’s New in Iris 2.0.0 &#8212; Iris 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="What’s New in Iris 1.13" href="1.13.html" />
+    <link rel="prev" title="What’s New in Iris 2.1" href="2.1.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.3</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="1.13.html" title="What’s New in Iris 1.13"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="2.1.html" title="What’s New in Iris 2.1"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">What’s new in Iris</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What’s New in Iris 2.0.0</a><ul>
+<li><a class="reference internal" href="#iris-2-0-0-features">Iris 2.0.0 Features</a><ul>
+<li><a class="reference internal" href="#the-iris-future-has-arrived">The <code class="xref py py-data docutils literal notranslate"><span class="pre">iris.FUTURE</span></code> has arrived!</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#bugs-fixed">Bugs Fixed</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible Changes</a><ul>
+<li><a class="reference internal" href="#deprecation-removals">Deprecation removals</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#documentation-changes">Documentation Changes</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="2.1.html"
+                        title="previous chapter">What’s New in Iris 2.1</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="1.13.html"
+                        title="next chapter">What’s New in Iris 1.13</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/whatsnew/2.0.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-new-in-iris-2-0-0">
+<h1>What’s New in Iris 2.0.0<a class="headerlink" href="#what-s-new-in-iris-2-0-0" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>2.0.0rc1</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>2018-01-11</p>
+</dd>
+</dl>
+<p>This document explains the new/changed features of Iris in version 2.0.0
+(<a class="reference internal" href="index.html"><span class="doc">View all changes</span></a>).</p>
+<div class="section" id="iris-2-0-0-features">
+<h2>Iris 2.0.0 Features<a class="headerlink" href="#iris-2-0-0-features" title="Permalink to this headline">¶</a></h2>
+<div class="admonition-dask-integration admonition" id="showcase">
+<p class="admonition-title">Dask Integration</p>
+<p>The use of <a class="reference external" href="https://biggus.readthedocs.io/en/latest/">Biggus</a> to provide support for <em>virtual arrays</em> and
+<em>lazy evaluation</em> within Iris has been replaced with <a class="reference external" href="http://dask.pydata.org/en/latest/">Dask</a>.</p>
+<p>In addition the concept of <em>lazy data</em>, already used for the
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> data component, has now been extended to the
+data arrays of a <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a> and an
+<a class="reference internal" href="../iris/iris/aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoordFactory</span></code></a>.</p>
+<p>This is a major feature enhancement, allowing Iris to leverage dask’s rich
+functionality and community knowledge.</p>
+<p>In particular, Dask’s <em>threaded</em>, <em>multiprocessing</em> or <em>distributed</em>
+<a class="reference external" href="http://dask.pydata.org/en/latest/scheduler-overview.html">schedulers</a> can be used in order to best utilise available compute and
+memory resource. For further details, see <a class="reference internal" href="../userguide/real_and_lazy_data.html"><span class="doc">Real and Lazy Data</span></a>.</p>
+</div>
+<ul class="simple">
+<li><p>Changes to the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>:</p>
+<ul>
+<li><p>The <em>new</em> <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.core_data" title="iris.cube.Cube.core_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_data()</span></code></a> method returns the <em>real</em> or
+<em>lazy</em> <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> <code class="xref py py-data docutils literal notranslate"><span class="pre">data</span></code>.</p></li>
+<li><p>The <em>new</em> in-place arithmetic operators <code class="xref py py-data docutils literal notranslate"><span class="pre">__iadd__</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">__idiv__</span></code>,
+<code class="xref py py-data docutils literal notranslate"><span class="pre">__imul__</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">__isub__</span></code>, and <code class="xref py py-data docutils literal notranslate"><span class="pre">__itruediv__</span></code> have been
+added to support <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> operations <code class="xref py py-data docutils literal notranslate"><span class="pre">+=</span></code>,
+<code class="xref py py-data docutils literal notranslate"><span class="pre">/=</span></code>, <code class="xref py py-data docutils literal notranslate"><span class="pre">*=</span></code>, and <code class="xref py py-data docutils literal notranslate"><span class="pre">-=</span></code>. Note that, for <strong>divison</strong>
+<em>__future__.division</em> is always in effect.</p></li>
+</ul>
+</li>
+<li><p>Changes to the <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a>:</p>
+<ul>
+<li><p>The <em>new</em> <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.bounds_dtype" title="iris.coords.Coord.bounds_dtype"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bounds_dtype</span></code></a> property (read-only)
+provides the <code class="xref py py-data docutils literal notranslate"><span class="pre">dtype</span></code> of the coordinate bounds, if they exist.</p></li>
+<li><p>The <em>new</em> <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.core_points" title="iris.coords.Coord.core_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_points()</span></code></a> and
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.core_bounds" title="iris.coords.Coord.core_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">core_bounds()</span></code></a> methods return the <em>real</em> or <em>lazy</em>
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a> <code class="xref py py-data docutils literal notranslate"><span class="pre">points</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">bounds</span></code> data,
+respectively.</p></li>
+<li><p>The <em>new</em> <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.has_lazy_points" title="iris.coords.Coord.has_lazy_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">has_lazy_points()</span></code></a> and
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.has_lazy_bounds" title="iris.coords.Coord.has_lazy_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">has_lazy_bounds()</span></code></a> boolean methods return whether
+the coordinate has <em>lazy</em> <code class="xref py py-data docutils literal notranslate"><span class="pre">points</span></code> and <em>lazy</em> <code class="xref py py-data docutils literal notranslate"><span class="pre">bounds</span></code> data,
+respectively.</p></li>
+<li><p>The <em>new</em> <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.lazy_points" title="iris.coords.Coord.lazy_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lazy_points()</span></code></a> and
+<a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.lazy_bounds" title="iris.coords.Coord.lazy_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lazy_bounds()</span></code></a> methods return <em>lazy</em>
+representations of the coordinate <code class="xref py py-data docutils literal notranslate"><span class="pre">points</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">bounds</span></code> data,
+respectively.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="the-iris-future-has-arrived">
+<h3>The <a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.FUTURE</span></code></a> has arrived!<a class="headerlink" href="#the-iris-future-has-arrived" title="Permalink to this headline">¶</a></h3>
+<p>Throughout version 1 of Iris a set of toggles in
+<a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.FUTURE</span></code></a> were maintained. These toggles allowed certain “future”
+behaviour to be enabled. Since the future has now arrived in Iris 2,
+all existing toggles in <a class="reference internal" href="../iris/iris.html#iris.FUTURE" title="iris.FUTURE"><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.FUTURE</span></code></a> now default to <a class="reference external" href="https://docs.python.org/2.7/library/constants.html#True" title="(in Python v2.7)"><code class="xref py py-data docutils literal notranslate"><span class="pre">True</span></code></a>.</p>
+<blockquote>
+<div><ul>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.Future.cell_datetime_objects</span></code></p>
+<ul>
+<li><p>Use of this FUTURE toggle is now deprecated.</p></li>
+<li><p><a class="reference internal" href="../iris/iris/coords.html#iris.coords.Cell" title="iris.coords.Cell"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Cell</span></code></a> objects in time coordinates now contain datetime objects by default and not numbers.
+For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>  &gt;&gt;&gt; cube = iris.load_cube(iris.sample_data_path(&#39;air_temp.pp&#39;))
+  &gt;&gt;&gt; print(cube.coord(&#39;time&#39;).cell(0).point)
+      1998-12-01 00:00:00
+
+This change particularly impacts constraining datasets on time. All time constraints
+must now be constructed with datetime objects or :class:`~iris.time.PartialDateTime` objects.
+See userguide section 2.2.1 for more details on producing time constraints.
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.Future.netcdf_promote</span></code></p>
+<ul class="simple">
+<li><p>Use of this FUTURE toggle is now deprecated.</p></li>
+<li><p>Removed deprecated behaviour that does not automatically promote NetCDF variables to cubes.
+This change means that NetCDF variables that define reference surfaces for
+dimensionless vertical coordinates will always be promoted and loaded as
+independent cubes.</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.Future.netcdf_no_unlimited</span></code></p>
+<ul>
+<li><p>Use of this FUTURE toggle is now deprecated.</p></li>
+<li><p>Removed deprecated behaviour that automatically set the length of the outer
+netCDF variable to ‘UNLIMITED’ on save. This change means that no cube
+dimension coordinates will be automatically saved as netCDF variables with
+‘UNLIMITED’ length.</p></li>
+<li><p>You can manually specify cube dimension coordinates to save with ‘UNLIMITED’
+length. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">my_cube</span><span class="p">,</span> <span class="s1">&#39;my_result_file.nc&#39;</span><span class="p">,</span> <span class="n">unlimited_dimensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;latitude&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</li>
+<li><p><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.Future.clip_latitudes</span></code></p>
+<ul class="simple">
+<li><p>Use of this FUTURE toggle is now deprecated.</p></li>
+<li><p>The <a class="reference internal" href="../iris/iris/coords.html#iris.coords.Coord.guess_bounds" title="iris.coords.Coord.guess_bounds"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.coords.Coord.guess_bounds()</span></code></a> now limits the guessed bounds
+to [-90, 90] for latitudes by default. The ability to turn this behaviour
+off is now deprecated.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="bugs-fixed">
+<h2>Bugs Fixed<a class="headerlink" href="#bugs-fixed" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Indexing or slicing an <a class="reference internal" href="../iris/iris/coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuxCoord</span></code></a> coordinate will return a coordinate with
+<code class="xref py py-data docutils literal notranslate"><span class="pre">points</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">bounds</span></code> data that are new copied arrays, rather than views onto those of
+the original parent coordinate.</p></li>
+<li><p>Indexing or slicing a cell measure will return a new cell measure with
+<code class="xref py py-data docutils literal notranslate"><span class="pre">data</span></code> that is a new copied array, rather than a view onto the original parent cell measure.</p></li>
+<li><p>Performing an in-place arithmetic <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.add" title="iris.analysis.maths.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">add()</span></code></a>,
+<a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.divide" title="iris.analysis.maths.divide"><code class="xref py py-func docutils literal notranslate"><span class="pre">divide()</span></code></a>, <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.multiply" title="iris.analysis.maths.multiply"><code class="xref py py-func docutils literal notranslate"><span class="pre">multiply()</span></code></a>,
+or <a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.subtract" title="iris.analysis.maths.subtract"><code class="xref py py-func docutils literal notranslate"><span class="pre">subtract()</span></code></a> operation on a
+<a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> with <code class="xref py py-data docutils literal notranslate"><span class="pre">integer</span></code> or <code class="xref py py-data docutils literal notranslate"><span class="pre">boolean</span></code> data with
+a <code class="xref py py-data docutils literal notranslate"><span class="pre">float</span></code> result will raise an <code class="xref py py-data docutils literal notranslate"><span class="pre">ArithmeticError</span></code> exception.</p></li>
+<li><p>Lazy data now refers to absolute paths rather than preserving the form that
+was passed to iris.load functions. This means that it is possible to use
+relative paths at load, change working directory, and still expect to be able
+to load any un-loaded/lazy data. (#2325)</p></li>
+<li><p>The order in which files are passed to iris.load functions is now the order in
+which they are processed. (#2325)</p></li>
+<li><p>Loading from netCDF files with <a class="reference internal" href="../iris/iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a> will load a cube for each scalar variable,
+a variable that does not reference a netCDF dimension, unless that scalar variable is identified as
+a CF scalar coordinate, referenced from another data variable via the ‘coordinates’ attribute.
+Previously such data variables were ignored during load.</p></li>
+</ul>
+</div>
+<div class="section" id="incompatible-changes">
+<h2>Incompatible Changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.lazy_data" title="iris.cube.Cube.lazy_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">lazy_data()</span></code></a> method no longer accepts any arguments.
+Setting lazy data should now be done with <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cube.data</span></code></a>.</p></li>
+</ul>
+<div class="admonition-significant-changes-in-calculated-results admonition">
+<p class="admonition-title">Significant Changes in Calculated Results</p>
+<p>Due to the replacement of <a class="reference external" href="https://biggus.readthedocs.io/en/latest/">Biggus</a> with <a class="reference external" href="http://dask.pydata.org/en/latest/">Dask</a>, as described above, the results
+of certain types of calculation may have significantly different values from
+those obtained in earlier versions.
+This is of a much greater order than the usual small changes in floating
+point results : it applies especially to any data with masked points, or of
+long integer types.</p>
+</div>
+<ul class="simple">
+<li><p>Due to concerns regarding maintainability and API consistency the
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.cube.Cube.share_data</span></code> flag introduced in v1.13 has been removed.
+Intra-cube data sharing is a oft-requested feature that we will be targeting
+in a future Iris release.</p></li>
+<li><p>Using <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.convert_units" title="iris.cube.Cube.convert_units"><code class="xref py py-meth docutils literal notranslate"><span class="pre">convert_units()</span></code></a> on a cube with unknown units will
+now result in a <code class="xref py py-data docutils literal notranslate"><span class="pre">UnitConversionError</span></code> being raised.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformats.pp_rules</span></code> has been renamed to
+<a class="reference internal" href="../iris/iris/fileformats/pp_load_rules.html#module-iris.fileformats.pp_load_rules" title="iris.fileformats.pp_load_rules"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp_load_rules</span></code></a> for consistency with the new
+<a class="reference internal" href="../iris/iris/fileformats/pp_save_rules.html#module-iris.fileformats.pp_save_rules" title="iris.fileformats.pp_save_rules"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp_save_rules</span></code></a>.</p></li>
+<li><p>Fill values are no longer taken from the cube’s <cite>data</cite> attribute when it is
+a masked array.</p></li>
+<li><p>When saving a cube or list of cubes in NetCDF format, a fill value or list of
+fill values can be specified via a new <cite>fill_value</cite> argument. If a list is
+supplied, each fill value will be applied to each cube in turn. If a
+<cite>fill_value</cite> argument is not specified, the default fill value for the file
+format and the cube’s data type will be used.</p></li>
+<li><p>When saving to PP, the “standard” BMDI of -1e30 is now always applied in
+<code class="docutils literal notranslate"><span class="pre">PPField</span></code> generation. To save PP data with an alternative BMDI, use
+<a class="reference internal" href="../iris/iris/fileformats/pp.html#iris.fileformats.pp.save_pairs_from_cube" title="iris.fileformats.pp.save_pairs_from_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.fileformats.pp.save_pairs_from_cube()</span></code></a> to generate <code class="docutils literal notranslate"><span class="pre">PPFields</span></code>,
+and modify these before saving them to file.</p></li>
+<li><p>A ‘fill_value’ key can no longer be specified as part of the <cite>packing</cite>
+argument to <cite>iris.save</cite> when saving in netCDF format. Instead, a fill value or
+list of fill values should be specified as a separate <cite>fill_value</cite> argument if
+required.</p></li>
+<li><p>If the <cite>packing</cite> argument to <cite>iris.save</cite> is a dictionary, an error is raised
+if it contains any keys other than ‘dtype’, ‘scale_factor’ and ‘add_offset’.</p></li>
+<li><p>The deprecated <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.grib</span></code> was removed. All Iris GRIB
+functionality is now delivered through <code class="xref py py-mod docutils literal notranslate"><span class="pre">iris-grib</span></code>.</p></li>
+<li><p>In Iris v1 it was possible to configure Iris to log at import time through
+<cite>iris.config.LOGGING</cite>. This capability has been removed in Iris v2.</p></li>
+<li><p>When coordinates have no well defined plot axis, <a class="reference internal" href="../iris/iris/plot.html#module-iris.plot" title="iris.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.plot</span></code></a> and
+<a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.quickplot</span></code></a> routines now use the order of the cube’s dimensions
+to determine the coordinates to plot as the x and y axis of a plot.</p></li>
+<li><p>The cf_units dependency version has been updated to v1.2.0, which prints
+shorter unit strings. For example, the unit <code class="docutils literal notranslate"><span class="pre">meter-second^-1</span></code> is now
+printed as <code class="docutils literal notranslate"><span class="pre">m.s-1</span></code>.</p></li>
+</ul>
+<div class="section" id="deprecation-removals">
+<h3>Deprecation removals<a class="headerlink" href="#deprecation-removals" title="Permalink to this headline">¶</a></h3>
+<p>All deprecated functionality that was announced for removal in Iris 2.0 has
+been removed. In particular:</p>
+<ul>
+<li><p>The deprecated keyword arguments <code class="docutils literal notranslate"><span class="pre">coord</span></code> and <code class="docutils literal notranslate"><span class="pre">name</span></code> have been removed from
+the <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> constructor.</p></li>
+<li><p>The deprecated methods <code class="docutils literal notranslate"><span class="pre">iris.cube.Cube.add_history</span></code>,
+<code class="docutils literal notranslate"><span class="pre">iris.cube.Cube.assert_valid</span></code> and <code class="docutils literal notranslate"><span class="pre">iris.cube.Cube.regridded</span></code> have
+been removed from <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p></li>
+<li><p>The deprecated module <code class="docutils literal notranslate"><span class="pre">iris.fileformats.pp_packing</span></code> has been removed.</p></li>
+<li><p>The deprecated module <code class="docutils literal notranslate"><span class="pre">iris.proxy</span></code> has been removed.</p></li>
+<li><p>The deprecated configuration variable <code class="docutils literal notranslate"><span class="pre">SAMPLE_DATA_DIR</span></code> has been removed
+from <code class="docutils literal notranslate"><span class="pre">iris.config</span></code> in favour of user installation of
+the <code class="docutils literal notranslate"><span class="pre">iris-sample-data</span></code> package.</p></li>
+<li><p>The deprecated module <code class="docutils literal notranslate"><span class="pre">iris.unit</span></code> has been removed in favour of
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">cf_units</span></code>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">BitwiseInt</span></code> class has been removed from <a class="reference internal" href="../iris/iris/fileformats/pp.html#module-iris.fileformats.pp" title="iris.fileformats.pp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp</span></code></a>.</p></li>
+<li><p>Removed deprecated functions <code class="docutils literal notranslate"><span class="pre">reset_load_rules</span></code>, <code class="docutils literal notranslate"><span class="pre">add_save_rules</span></code>,
+<code class="docutils literal notranslate"><span class="pre">reset_save_rules</span></code> and <code class="docutils literal notranslate"><span class="pre">as_pairs</span></code> from <a class="reference internal" href="../iris/iris/fileformats/pp.html#module-iris.fileformats.pp" title="iris.fileformats.pp"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.pp</span></code></a>.</p></li>
+<li><p>The deprecated module <code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate</span></code> has been removed, along
+with the following deprecated classes and functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.linear</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.nearest_neighbour_data_value</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.regrid</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.regrid_to_max_resolution</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.extract_nearest_neighbour</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.nearest_neighbour_indices</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.analysis.interpolate.Linear1dExtrapolator</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Removed deprecated module <code class="docutils literal notranslate"><span class="pre">iris.experimental.fieldsfile</span></code>.
+Note that there is no direct replacement for
+<code class="docutils literal notranslate"><span class="pre">:meth:iris.experimental.fieldsfile.load</span></code>, which specifically performed
+fast loading from _either_ PP or FF files.
+Instead, please use the <cite>:meth:iris.fileformats.um.structured_um_loading</cite>
+context manager, and within that context call <cite>:meth:iris.load</cite>, or the format-specific
+<cite>:meth:iris.fileformats.pp.load_cubes</cite> or
+<cite>:meth:iris.fileformats.um.load_cubes</cite>.</p></li>
+<li><p>Removed deprecated module <code class="docutils literal notranslate"><span class="pre">iris.fileformats.ff</span></code>.
+Please use facilities in <a class="reference internal" href="../iris/iris/fileformats/um.html#module-iris.fileformats.um" title="iris.fileformats.um"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.um</span></code></a> instead.</p></li>
+<li><dl class="simple">
+<dt>Removed deprecated and unused kwarg <code class="docutils literal notranslate"><span class="pre">ignore</span></code> from the following functions:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="../iris/iris/analysis/calculus.html#iris.analysis.calculus.curl" title="iris.analysis.calculus.curl"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.calculus.curl()</span></code></a>,</p></li>
+<li><p><a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.add" title="iris.analysis.maths.add"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.maths.add()</span></code></a>, and</p></li>
+<li><p><a class="reference internal" href="../iris/iris/analysis/maths.html#iris.analysis.maths.subtract" title="iris.analysis.maths.subtract"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.maths.subtract()</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Deprecated functions <code class="docutils literal notranslate"><span class="pre">iris.util.broadcast_weights</span></code>,
+<code class="docutils literal notranslate"><span class="pre">iris.util.ensure_array</span></code> and <code class="docutils literal notranslate"><span class="pre">iris.util.timers</span></code> have been removed from
+<a class="reference internal" href="../iris/iris/util.html#module-iris.util" title="iris.util"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.util</span></code></a>.</p></li>
+<li><p>The following classes and functions have been removed from
+<a class="reference internal" href="../iris/iris/fileformats/rules.html#module-iris.fileformats.rules" title="iris.fileformats.rules"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.fileformats.rules</span></code></a>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.calculate_forecast_period</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.log</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.CMAttribute</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.CMCustomAttribute</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.CoordAndDims</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.DebugString</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.FunctionRule</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.ProcedureRule</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.Rule</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.RulesContainer</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iris.fileformat.rules.RuleResult</span></code></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>In addition the deprecated keyword argument <code class="docutils literal notranslate"><span class="pre">legacy_custom_rules</span></code> has been
+removed from the <a class="reference internal" href="../iris/iris/fileformats/rules.html#iris.fileformats.rules.Loader" title="iris.fileformats.rules.Loader"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.rules.Loader</span></code></a> constructor.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="documentation-changes">
+<h2>Documentation Changes<a class="headerlink" href="#documentation-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>A new UserGuide chapter on <a class="reference internal" href="../userguide/real_and_lazy_data.html"><span class="doc">Real and Lazy Data</span></a> has been added, and referenced from key
+points in the <a class="reference internal" href="../userguide/index.html"><span class="doc">User Guide</span></a> .</p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="1.13.html" title="What’s New in Iris 1.13"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="2.1.html" title="What’s New in Iris 2.1"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >What’s new in Iris</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
