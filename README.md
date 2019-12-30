@@ -57,15 +57,25 @@ $ python tools/symlink_common.py .
 
 Adding contributors
 -------------------
+Our contributors list, and Contributor License Agreement ([the "CLA"](https://scitools.org.uk/cla/v4)), are currently in the process of change.\
+There is a long list of earlier SciTools contributors who signed our original CLA based explictly on [the LGPL3 License](<https://www.gnu.org/licenses/lgpl-3.0.html>).\
+However, we are now attempting to re-license all the SciTools projects under a new CLA that will allow us in future to adopt _any_ OSI license,
+as explained [here](https://github.com/SciTools/scitools.org.uk/wiki/Contributors-License-Agreement-processing-details).
 
-``contributors.json`` contains a JSON dictionary of all contributors who have
-signed the scitools CLA. It is the definitive source of such contributors.
-It is where the [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker)
-looks to determine if a CLA is required.
-If you've signed the CLA and aren't yet on this list, please consider submitting a PR
-to speed the process up. 
-A [rendered view](https://scitools.org.uk/signed_cla.html) of the list is also
-available.
+This process will only be complete when all previous contributors have signed the new terms.
+Until then, we respect the rights of all the original contributors, in addition to those on the new list.
 
+Details of the former, original Iris CLA and contributors list were as follows :
+
+    ``contributors.json``, in this repo, contains a JSON dictionary of all contributors who have
+    signed the scitools CLA. It is the definitive source of such contributors.
+    It is where the [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker)
+    looks to determine if a CLA is required.
+    If you've signed the CLA and aren't yet on this list, please consider submitting a PR
+    to speed the process up. 
+    A [rendered view](https://scitools.org.uk/signed_cla.html) of the list is also
+    available.
+
+The current [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker) checks for an entry in _either_ the old or the new contributors list.
 
 (C) British Crown Copyright 2010 - 2019, Met Office

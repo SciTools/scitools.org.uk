@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Install git &#8212; Iris 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Git for development" href="git_development.html" />
+    <link rel="prev" title="Introduction" href="git_intro.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.3</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="git_development.html" title="Git for development"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="git_intro.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris developer guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Working with <em>iris</em> source code</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Install git</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#in-detail">In detail</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="git_intro.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="git_development.html"
+                        title="next chapter">Git for development</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/developers_guide/gitwash/git_install.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="install-git">
+<span id="id1"></span><h1>Install git<a class="headerlink" href="#install-git" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Debian / Ubuntu</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">git</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>Fedora</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">git</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>Windows</p></td>
+<td><p>Download and install <a class="reference external" href="http://code.google.com/p/msysgit/downloads/list">msysGit</a></p></td>
+</tr>
+<tr class="row-even"><td><p>OS X</p></td>
+<td><p>Use the <a class="reference external" href="http://code.google.com/p/git-osx-installer/downloads/list">git-osx-installer</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="in-detail">
+<h2>In detail<a class="headerlink" href="#in-detail" title="Permalink to this headline">¶</a></h2>
+<p>See the git page for the most recent information.</p>
+<p>Have a look at the github install help pages available from <a class="reference external" href="http://help.github.com">github help</a></p>
+<p>There are good instructions here: <a class="reference external" href="http://book.git-scm.com/2_installing_git.html">http://book.git-scm.com/2_installing_git.html</a></p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="git_development.html" title="Git for development"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="git_intro.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris developer guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Working with <em>iris</em> source code</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

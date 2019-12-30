@@ -1,0 +1,1973 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris.cube &#8212; Iris 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="iris.exceptions" href="exceptions.html" />
+    <link rel="prev" title="iris.coords" href="coords.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.3</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="iris.exceptions"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="coords.html" title="iris.coords"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../iris.html" accesskey="U">Iris reference documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="coords.html"
+                        title="previous chapter">iris.coords</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="exceptions.html"
+                        title="next chapter">iris.exceptions</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/iris/iris/cube.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-cube">
+<span id="id1"></span><h1>iris.cube<a class="headerlink" href="#iris-cube" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.cube"></span><p>Classes for representing multi-dimensional data with metadata.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Cube</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CubeList</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-obj docutils literal notranslate"><span class="pre">CubeMetadata</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<p>A single Iris cube of data and metadata.</p>
+<p>Typically obtained from <a class="reference internal" href="../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a>, <a class="reference internal" href="../iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load_cube()</span></code></a>,
+<a class="reference internal" href="../iris.html#iris.load_cubes" title="iris.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load_cubes()</span></code></a>, or from the manipulation of existing cubes.</p>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+<span class="go">air_temperature / (K)               (latitude: 73; longitude: 96)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          latitude                           x              -</span>
+<span class="go">          longitude                          -              x</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_period: 6477 hours, bound=(-28083.0, 6477.0) hours</span>
+<span class="go">          forecast_reference_time: 1998-03-01 03:00:00</span>
+<span class="go">          pressure: 1000.0 hPa</span>
+<span class="go">          time: 1998-12-01 00:00:00, bound=(1994-12-01 00:00:00, 1998-12-01 00:00:00)</span>
+<span class="go">     Attributes:</span>
+<span class="go">          STASH: m01s16i203</span>
+<span class="go">          source: Data from Met Office Unified Model</span>
+<span class="go">     Cell methods:</span>
+<span class="go">          mean within years: time</span>
+<span class="go">          mean over years: time</span>
+</pre></div>
+</div>
+<p>See the <a class="reference internal" href="../../userguide/index.html"><span class="doc">user guide</span></a> for more information.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.cube.Cube">
+<em class="property">class </em><code class="sig-prename descclassname">iris.cube.</code><code class="sig-name descname">Cube</code><span class="sig-paren">(</span><em class="sig-param">data</em>, <em class="sig-param">standard_name=None</em>, <em class="sig-param">long_name=None</em>, <em class="sig-param">var_name=None</em>, <em class="sig-param">units=None</em>, <em class="sig-param">attributes=None</em>, <em class="sig-param">cell_methods=None</em>, <em class="sig-param">dim_coords_and_dims=None</em>, <em class="sig-param">aux_coords_and_dims=None</em>, <em class="sig-param">aux_factories=None</em>, <em class="sig-param">cell_measures_and_dims=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">iris._cube_coord_common.CFVariableMixin</span></code></p>
+<p>Creates a cube with data and optional metadata.</p>
+<p>Not typically used - normally cubes are obtained by loading data
+(e.g. <a class="reference internal" href="../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a>) or from manipulating existing cubes.</p>
+<p>Args:</p>
+<ul>
+<li><dl>
+<dt>data</dt><dd><p>This object defines the shape of the cube and the phenomenon
+value in each cell.</p>
+<p><code class="docutils literal notranslate"><span class="pre">data</span></code> can be a dask array, a NumPy array, a NumPy array
+subclass (such as <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/maskedarray.baseclass.html#numpy.ma.MaskedArray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ma.MaskedArray</span></code></a>), or
+array_like (as described in <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.asarray.html#numpy.asarray" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.asarray()</span></code></a>).</p>
+<p>See <a class="reference internal" href="#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Cube.data</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>standard_name</dt><dd><p>The standard name for the Cube’s data.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>long_name</dt><dd><p>An unconstrained description of the cube.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>var_name</dt><dd><p>The netCDF variable name for the cube.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>units</dt><dd><p>The unit of the cube, e.g. <code class="docutils literal notranslate"><span class="pre">&quot;m</span> <span class="pre">s-1&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;kelvin&quot;</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>attributes</dt><dd><p>A dictionary of cube attributes</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cell_methods</dt><dd><p>A tuple of CellMethod objects, generally set by Iris, e.g.
+<code class="docutils literal notranslate"><span class="pre">(CellMethod(&quot;mean&quot;,</span> <span class="pre">coords='latitude'),</span> <span class="pre">)</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dim_coords_and_dims</dt><dd><p>A list of coordinates with scalar dimension mappings, e.g
+<code class="docutils literal notranslate"><span class="pre">[(lat_coord,</span> <span class="pre">0),</span> <span class="pre">(lon_coord,</span> <span class="pre">1)]</span></code>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aux_coords_and_dims</dt><dd><p>A list of coordinates with dimension mappings,
+e.g <code class="docutils literal notranslate"><span class="pre">[(lat_coord,</span> <span class="pre">0),</span> <span class="pre">(lon_coord,</span> <span class="pre">(0,</span> <span class="pre">1))]</span></code>.
+See also <a class="reference internal" href="#iris.cube.Cube.add_dim_coord" title="iris.cube.Cube.add_dim_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.add_dim_coord()</span></code></a>
+and <a class="reference internal" href="#iris.cube.Cube.add_aux_coord" title="iris.cube.Cube.add_aux_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.add_aux_coord()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aux_factories</dt><dd><p>A list of auxiliary coordinate factories. See
+<a class="reference internal" href="aux_factory.html#module-iris.aux_factory" title="iris.aux_factory"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.aux_factory</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cell_measures_and_dims</dt><dd><p>A list of CellMeasures with dimension mappings.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl>
+<dt>For example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.coords</span> <span class="kn">import</span> <span class="n">DimCoord</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.cube</span> <span class="kn">import</span> <span class="n">Cube</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">latitude</span> <span class="o">=</span> <span class="n">DimCoord</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+<span class="gp">... </span>                    <span class="n">standard_name</span><span class="o">=</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                    <span class="n">units</span><span class="o">=</span><span class="s1">&#39;degrees&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">longitude</span> <span class="o">=</span> <span class="n">DimCoord</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">45</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<span class="gp">... </span>                     <span class="n">standard_name</span><span class="o">=</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                     <span class="n">units</span><span class="o">=</span><span class="s1">&#39;degrees&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">Cube</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">),</span>
+<span class="gp">... </span>            <span class="n">dim_coords_and_dims</span><span class="o">=</span><span class="p">[(</span><span class="n">latitude</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+<span class="gp">... </span>                                 <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+<dl class="method">
+<dt id="iris.cube.Cube.add_aux_coord">
+<code class="sig-name descname">add_aux_coord</code><span class="sig-paren">(</span><em class="sig-param">coord</em>, <em class="sig-param">data_dims=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.add_aux_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a CF auxiliary coordinate to the cube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord</dt><dd><p>The <a class="reference internal" href="coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.DimCoord</span></code></a> or <a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.AuxCoord</span></code></a>
+instance to add to the cube.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>data_dims</dt><dd><p>Integer or iterable of integers giving the data dimensions spanned
+by the coordinate.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Raises a ValueError if a coordinate with identical metadata already
+exists on the cube.</p>
+<p>See also <a class="reference internal" href="#iris.cube.Cube.remove_coord" title="iris.cube.Cube.remove_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.remove_coord()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.add_aux_factory">
+<code class="sig-name descname">add_aux_factory</code><span class="sig-paren">(</span><em class="sig-param">aux_factory</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.add_aux_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds an auxiliary coordinate factory to the cube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>aux_factory</dt><dd><p>The <a class="reference internal" href="aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.AuxCoordFactory</span></code></a> instance to add.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.add_cell_measure">
+<code class="sig-name descname">add_cell_measure</code><span class="sig-paren">(</span><em class="sig-param">cell_measure</em>, <em class="sig-param">data_dims=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.add_cell_measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds a CF cell measure to the cube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cell_measure</dt><dd><p>The <a class="reference internal" href="coords.html#iris.coords.CellMeasure" title="iris.coords.CellMeasure"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.CellMeasure</span></code></a>
+instance to add to the cube.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>data_dims</dt><dd><p>Integer or iterable of integers giving the data dimensions spanned
+by the coordinate.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Raises a ValueError if a cell_measure with identical metadata already
+exists on the cube.</p>
+<p>See also
+<a class="reference internal" href="#iris.cube.Cube.remove_cell_measure" title="iris.cube.Cube.remove_cell_measure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.remove_cell_measure()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.add_cell_method">
+<code class="sig-name descname">add_cell_method</code><span class="sig-paren">(</span><em class="sig-param">cell_method</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.add_cell_method" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a <a class="reference internal" href="coords.html#iris.coords.CellMethod" title="iris.coords.CellMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">CellMethod</span></code></a> to the Cube.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.add_dim_coord">
+<code class="sig-name descname">add_dim_coord</code><span class="sig-paren">(</span><em class="sig-param">dim_coord</em>, <em class="sig-param">data_dim</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.add_dim_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a CF coordinate to the cube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>dim_coord</dt><dd><p>The <a class="reference internal" href="coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.DimCoord</span></code></a> instance to add to the cube.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>data_dim</dt><dd><p>Integer giving the data dimension spanned by the coordinate.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Raises a ValueError if a coordinate with identical metadata already
+exists on the cube or if a coord already exists for the
+given dimension.</p>
+<p>See also <a class="reference internal" href="#iris.cube.Cube.remove_coord" title="iris.cube.Cube.remove_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.remove_coord()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.aggregated_by">
+<code class="sig-name descname">aggregated_by</code><span class="sig-paren">(</span><em class="sig-param">coords</em>, <em class="sig-param">aggregator</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.aggregated_by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform aggregation over the cube given one or more “group
+coordinates”.</p>
+<p>A “group coordinate” is a coordinate where repeating values represent a
+single group, such as a month coordinate on a daily time slice.
+Repeated values will form a group even if they are not consecutive.</p>
+<p>The group coordinates must all be over the same cube dimension. Each
+common value group identified over all the group-by coordinates is
+collapsed using the provided aggregator.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coords (list of coord names or <a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a> instances):</dt><dd><p>One or more coordinates over which group aggregation is to be
+performed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aggregator (<a class="reference internal" href="analysis.html#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Aggregator</span></code></a>):</dt><dd><p>Aggregator to be applied to each group.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>kwargs:</dt><dd><p>Aggregator and aggregation function keyword arguments.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p><a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris.analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris.coord_categorisation</span> <span class="k">as</span> <span class="nn">cat</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;ostia_monthly.nc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;surface_temperature&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cat</span><span class="o">.</span><span class="n">add_year</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">aggregated_by</span><span class="p">(</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="p">)</span>
+<span class="go">surface_temperature / (K)           (time: 5; latitude: 18; longitude: 432)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                           x            -              -</span>
+<span class="go">          latitude                       -            x              -</span>
+<span class="go">          longitude                      -            -              x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          forecast_reference_time        x            -              -</span>
+<span class="go">          year                           x            -              -</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_period: 0 hours</span>
+<span class="go">     Attributes:</span>
+<span class="go">          Conventions: CF-1.5</span>
+<span class="go">          STASH: m01s00i024</span>
+<span class="go">     Cell methods:</span>
+<span class="go">          mean: month, year</span>
+<span class="go">          mean: year</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.aux_factory">
+<code class="sig-name descname">aux_factory</code><span class="sig-paren">(</span><em class="sig-param">name=None</em>, <em class="sig-param">standard_name=None</em>, <em class="sig-param">long_name=None</em>, <em class="sig-param">var_name=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.aux_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the single coordinate factory that matches the criteria,
+or raises an error if not found.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>name</dt><dd><p>If not None, matches against factory.name().</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>standard_name</dt><dd><p>The CF standard name of the desired coordinate factory.
+If None, does not check for standard name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>long_name</dt><dd><p>An unconstrained description of the coordinate factory.
+If None, does not check for long_name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>var_name</dt><dd><p>The netCDF variable name of the desired coordinate factory.
+If None, does not check for var_name.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the arguments given do not result in precisely 1 coordinate
+factory being matched, an
+<a class="reference internal" href="exceptions.html#iris.exceptions.CoordinateNotFoundError" title="iris.exceptions.CoordinateNotFoundError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.CoordinateNotFoundError</span></code></a> is raised.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.cell_measure">
+<code class="sig-name descname">cell_measure</code><span class="sig-paren">(</span><em class="sig-param">name_or_cell_measure=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.cell_measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single cell_measure given the same arguments as
+<a class="reference internal" href="#iris.cube.Cube.cell_measures" title="iris.cube.Cube.cell_measures"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.cell_measures()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the arguments given do not result in precisely 1 cell_measure
+being matched, an <a class="reference internal" href="exceptions.html#iris.exceptions.CellMeasureNotFoundError" title="iris.exceptions.CellMeasureNotFoundError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.CellMeasureNotFoundError</span></code></a>
+is raised.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.cube.Cube.cell_measures" title="iris.cube.Cube.cell_measures"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.cell_measures()</span></code></a>
+for full keyword documentation.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.cell_measure_dims">
+<code class="sig-name descname">cell_measure_dims</code><span class="sig-paren">(</span><em class="sig-param">cell_measure</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.cell_measure_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of the data dimensions relevant to the given
+CellMeasure.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cell_measure</dt><dd><p>The CellMeasure to look for.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.cell_measures">
+<code class="sig-name descname">cell_measures</code><span class="sig-paren">(</span><em class="sig-param">name_or_cell_measure=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.cell_measures" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of cell measures in this cube fitting the given criteria.</p>
+<p>Kwargs:</p>
+<ul>
+<li><dl>
+<dt>name_or_cell_measure</dt><dd><p>Either</p>
+<p>(a) a <a class="reference internal" href="#iris.cube.Cube.standard_name" title="iris.cube.Cube.standard_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code></a>, <a class="reference internal" href="#iris.cube.Cube.long_name" title="iris.cube.Cube.long_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code></a>, or
+<a class="reference internal" href="#iris.cube.Cube.var_name" title="iris.cube.Cube.var_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">var_name</span></code></a>. Defaults to value of <cite>default</cite>
+(which itself defaults to <cite>unknown</cite>) as defined in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">iris._cube_coord_common.CFVariableMixin</span></code>.</p>
+<p>(b) a cell_measure instance with metadata equal to that of
+the desired cell_measures.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>See also <a class="reference internal" href="#iris.cube.Cube.cell_measure" title="iris.cube.Cube.cell_measure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.cell_measure()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.collapsed">
+<code class="sig-name descname">collapsed</code><span class="sig-paren">(</span><em class="sig-param">coords</em>, <em class="sig-param">aggregator</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.collapsed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Collapse one or more dimensions over the cube given the coordinate/s
+and an aggregation.</p>
+<p>Examples of aggregations that may be used include
+<a class="reference internal" href="analysis.html#iris.analysis.COUNT" title="iris.analysis.COUNT"><code class="xref py py-data docutils literal notranslate"><span class="pre">COUNT</span></code></a> and <a class="reference internal" href="analysis.html#iris.analysis.MAX" title="iris.analysis.MAX"><code class="xref py py-data docutils literal notranslate"><span class="pre">MAX</span></code></a>.</p>
+<p>Weighted aggregations (<a class="reference internal" href="analysis.html#iris.analysis.WeightedAggregator" title="iris.analysis.WeightedAggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.WeightedAggregator</span></code></a>) may
+also be supplied. These include <a class="reference internal" href="analysis.html#iris.analysis.MEAN" title="iris.analysis.MEAN"><code class="xref py py-data docutils literal notranslate"><span class="pre">MEAN</span></code></a> and
+sum <a class="reference internal" href="analysis.html#iris.analysis.SUM" title="iris.analysis.SUM"><code class="xref py py-data docutils literal notranslate"><span class="pre">SUM</span></code></a>.</p>
+<p>Weighted aggregations support an optional <em>weights</em> keyword argument.
+If set, this should be supplied as an array of weights whose shape
+matches the cube. Values for latitude-longitude area weights may be
+calculated using <a class="reference internal" href="analysis/cartography.html#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.area_weights()</span></code></a>.</p>
+<p>Some Iris aggregators support “lazy” evaluation, meaning that
+cubes resulting from this method may represent data arrays which are
+not computed until the data is requested (e.g. via <code class="docutils literal notranslate"><span class="pre">cube.data</span></code> or
+<code class="docutils literal notranslate"><span class="pre">iris.save</span></code>). If lazy evaluation exists for the given aggregator
+it will be used wherever possible when this cube’s data is itself
+a deferred array.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coords (string, coord or a list of strings/coords):</dt><dd><p>Coordinate names/coordinates over which the cube should be
+collapsed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aggregator (<a class="reference internal" href="analysis.html#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Aggregator</span></code></a>):</dt><dd><p>Aggregator to be applied for collapse operation.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>kwargs:</dt><dd><p>Aggregation function keyword arguments.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Collapsed cube.</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris.analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;ostia_monthly.nc&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_cube</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="p">)</span>
+<span class="go">surface_temperature / (K)           (time: 54; latitude: 18)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                           x             -</span>
+<span class="go">          latitude                       -             x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          forecast_reference_time        x             -</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_period: 0 hours</span>
+<span class="go">          longitude: 180.0 degrees, bound=(0.0, 360.0) degrees</span>
+<span class="go">     Attributes:</span>
+<span class="go">          Conventions: CF-1.5</span>
+<span class="go">          STASH: m01s00i024</span>
+<span class="go">     Cell methods:</span>
+<span class="go">          mean: month, year</span>
+<span class="go">          mean: longitude</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some aggregations are not commutative and hence the order of
+processing is important i.e.:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;realization&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is not necessarily the same result as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;height&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+<span class="n">result2</span> <span class="o">=</span> <span class="n">tmp</span><span class="o">.</span><span class="n">collapsed</span><span class="p">(</span><span class="s1">&#39;realization&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Conversely operations which operate on more than one coordinate
+at the same time are commutative as they are combined internally
+into a single operation. Hence the order of the coordinates
+supplied in the list does not matter:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">],</span>
+               <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>is the same (apart from the logically equivalent cell methods that
+may be created etc.) as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube</span><span class="o">.</span><span class="n">collapsed</span><span class="p">([</span><span class="s1">&#39;latitude&#39;</span><span class="p">,</span> <span class="s1">&#39;longitude&#39;</span><span class="p">],</span>
+               <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">VARIANCE</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.convert_units">
+<code class="sig-name descname">convert_units</code><span class="sig-paren">(</span><em class="sig-param">unit</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.convert_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Change the cube’s units, converting the values in the data array.</p>
+<p>For example, if a cube’s <a class="reference internal" href="#iris.cube.Cube.units" title="iris.cube.Cube.units"><code class="xref py py-attr docutils literal notranslate"><span class="pre">units</span></code></a> are
+kelvin then:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="s1">&#39;celsius&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>will change the cube’s <a class="reference internal" href="#iris.cube.Cube.units" title="iris.cube.Cube.units"><code class="xref py py-attr docutils literal notranslate"><span class="pre">units</span></code></a> attribute to
+celsius and subtract 273.15 from each value in
+<a class="reference internal" href="#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-attr docutils literal notranslate"><span class="pre">data</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Calling this method will trigger any deferred loading, causing
+the cube’s data array to be loaded into memory.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.coord">
+<code class="sig-name descname">coord</code><span class="sig-paren">(</span><em class="sig-param">name_or_coord=None</em>, <em class="sig-param">standard_name=None</em>, <em class="sig-param">long_name=None</em>, <em class="sig-param">var_name=None</em>, <em class="sig-param">attributes=None</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">contains_dimension=None</em>, <em class="sig-param">dimensions=None</em>, <em class="sig-param">coord_system=None</em>, <em class="sig-param">dim_coords=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a single coord given the same arguments as <a class="reference internal" href="#iris.cube.Cube.coords" title="iris.cube.Cube.coords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.coords()</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the arguments given do not result in precisely 1 coordinate
+being matched, an <a class="reference internal" href="exceptions.html#iris.exceptions.CoordinateNotFoundError" title="iris.exceptions.CoordinateNotFoundError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.CoordinateNotFoundError</span></code></a>
+is raised.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.cube.Cube.coords" title="iris.cube.Cube.coords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.coords()</span></code></a> for full keyword
+documentation.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.coord_dims">
+<code class="sig-name descname">coord_dims</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.coord_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a tuple of the data dimensions relevant to the given
+coordinate.</p>
+<p>When searching for the given coordinate in the cube the comparison is
+made using coordinate metadata equality. Hence the given coordinate
+instance need not exist on the cube, and may contain different
+coordinate values.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord (string or coord)</dt><dd><p>The (name of the) coord to look for.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.coord_system">
+<code class="sig-name descname">coord_system</code><span class="sig-paren">(</span><em class="sig-param">spec=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.coord_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find the coordinate system of the given type.</p>
+<p>If no target coordinate system is provided then find
+any available coordinate system.</p>
+<p>Kwargs:</p>
+<ul>
+<li><dl>
+<dt>spec:</dt><dd><p>The the name or type of a coordinate system subclass.
+E.g.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube</span><span class="o">.</span><span class="n">coord_system</span><span class="p">(</span><span class="s2">&quot;GeogCS&quot;</span><span class="p">)</span>
+<span class="n">cube</span><span class="o">.</span><span class="n">coord_system</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">coord_systems</span><span class="o">.</span><span class="n">GeogCS</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If spec is provided as a type it can be a superclass of
+any coordinate system found.</p>
+<p>If spec is None, then find any available coordinate
+systems within the <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>The <a class="reference internal" href="coord_systems.html#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord_systems.CoordSystem</span></code></a> or None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.coords">
+<code class="sig-name descname">coords</code><span class="sig-paren">(</span><em class="sig-param">name_or_coord=None</em>, <em class="sig-param">standard_name=None</em>, <em class="sig-param">long_name=None</em>, <em class="sig-param">var_name=None</em>, <em class="sig-param">attributes=None</em>, <em class="sig-param">axis=None</em>, <em class="sig-param">contains_dimension=None</em>, <em class="sig-param">dimensions=None</em>, <em class="sig-param">coord_system=None</em>, <em class="sig-param">dim_coords=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a list of coordinates in this cube fitting the given criteria.</p>
+<p>Kwargs:</p>
+<ul>
+<li><dl>
+<dt>name_or_coord</dt><dd><p>Either</p>
+<p>(a) a <a class="reference internal" href="#iris.cube.Cube.standard_name" title="iris.cube.Cube.standard_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code></a>, <a class="reference internal" href="#iris.cube.Cube.long_name" title="iris.cube.Cube.long_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code></a>, or
+<a class="reference internal" href="#iris.cube.Cube.var_name" title="iris.cube.Cube.var_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">var_name</span></code></a>. Defaults to value of <cite>default</cite>
+(which itself defaults to <cite>unknown</cite>) as defined in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">iris._cube_coord_common.CFVariableMixin</span></code>.</p>
+<p>(b) a coordinate instance with metadata equal to that of
+the desired coordinates. Accepts either a
+<a class="reference internal" href="coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.DimCoord</span></code></a>, <a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.AuxCoord</span></code></a>,
+<a class="reference internal" href="aux_factory.html#iris.aux_factory.AuxCoordFactory" title="iris.aux_factory.AuxCoordFactory"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.aux_factory.AuxCoordFactory</span></code></a>
+or <a class="reference internal" href="coords.html#iris.coords.CoordDefn" title="iris.coords.CoordDefn"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.CoordDefn</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>standard_name</dt><dd><p>The CF standard name of the desired coordinate. If None, does not
+check for standard name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>long_name</dt><dd><p>An unconstrained description of the coordinate. If None, does not
+check for long_name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>var_name</dt><dd><p>The netCDF variable name of the desired coordinate. If None, does
+not check for var_name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>attributes</dt><dd><p>A dictionary of attributes desired on the coordinates. If None,
+does not check for attributes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>axis</dt><dd><p>The desired coordinate axis, see
+<a class="reference internal" href="util.html#iris.util.guess_coord_axis" title="iris.util.guess_coord_axis"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.guess_coord_axis()</span></code></a>. If None, does not check for
+axis. Accepts the values ‘X’, ‘Y’, ‘Z’ and ‘T’ (case-insensitive).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>contains_dimension</dt><dd><p>The desired coordinate contains the data dimension. If None, does
+not check for the dimension.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dimensions</dt><dd><p>The exact data dimensions of the desired coordinate. Coordinates
+with no data dimension can be found with an empty tuple or list
+(i.e. <code class="docutils literal notranslate"><span class="pre">()</span></code> or <code class="docutils literal notranslate"><span class="pre">[]</span></code>). If None, does not check for dimensions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>coord_system</dt><dd><p>Whether the desired coordinates have coordinate systems equal to
+the given coordinate system. If None, no check is done.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dim_coords</dt><dd><p>Set to True to only return coordinates that are the cube’s
+dimension coordinates. Set to False to only return coordinates
+that are the cube’s auxiliary and derived coordinates. If None,
+returns all coordinates.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>See also <a class="reference internal" href="#iris.cube.Cube.coord" title="iris.cube.Cube.coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.coord()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><em class="sig-param">data=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a deep copy of this cube.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>data:</dt><dd><p>Replace the data of the cube copy with provided data payload.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A copy instance of the <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.core_data">
+<code class="sig-name descname">core_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.core_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieve the data array of this <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> in its
+current state, which will either be real or lazy.</p>
+<p>If this <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> has lazy data, accessing its data
+array via this method <strong>will not</strong> realise the data array. This means
+you can perform operations using this method that work equivalently
+on real or lazy data, and will maintain lazy data if present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.extract">
+<code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param">constraint</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter the cube by the given constraint using
+<a class="reference internal" href="../iris.html#iris.Constraint.extract" title="iris.Constraint.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.Constraint.extract()</span></code></a> method.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.has_lazy_data">
+<code class="sig-name descname">has_lazy_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.has_lazy_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Details whether this <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> has lazy data.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Boolean.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.interpolate">
+<code class="sig-name descname">interpolate</code><span class="sig-paren">(</span><em class="sig-param">sample_points</em>, <em class="sig-param">scheme</em>, <em class="sig-param">collapse_scalar=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.interpolate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Interpolate from this <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> to the given
+sample points using the given interpolation scheme.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="simple">
+<dt>sample_points:</dt><dd><p>A sequence of (coordinate, points) pairs over which to
+interpolate. The values for coordinates that correspond to
+dates or times may optionally be supplied as datetime.datetime or
+cftime.datetime instances.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>scheme:</dt><dd><p>The type of interpolation to use to interpolate from this
+<a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> to the given sample points. The
+interpolation schemes currently available in Iris are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>, and</p></li>
+<li><p><a class="reference internal" href="analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>collapse_scalar:</dt><dd><p>Whether to collapse the dimension of scalar sample points
+in the resulting cube. Default is True.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A cube interpolated at the given sample points.
+If <cite>collapse_scalar</cite> is True then the dimensionality of the cube
+will be the number of original cube dimensions minus
+the number of scalar coordinates.</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">datetime</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">path</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;uk_hires.pp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">shorten</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">air_potential_temperature / (K)     (time: 3; model_level_number: 7; grid_latitude: 204; grid_longitude: 187)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="go">DimCoord([2009-11-19 10:00:00, 2009-11-19 11:00:00, 2009-11-19 12:00:00], standard_name=&#39;time&#39;, calendar=&#39;gregorian&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[349618. 349619. 349620.]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">samples</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="mf">349618.5</span><span class="p">)]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">Linear</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">shorten</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">air_potential_temperature / (K)     (model_level_number: 7; grid_latitude: 204; grid_longitude: 187)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="go">DimCoord([2009-11-19 10:30:00], standard_name=&#39;time&#39;, calendar=&#39;gregorian&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[349618.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># For datetime-like coordinates, we can also use</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># datetime-like objects.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">samples</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">30</span><span class="p">))]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">result2</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">interpolate</span><span class="p">(</span><span class="n">samples</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">Linear</span><span class="p">())</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result2</span><span class="o">.</span><span class="n">summary</span><span class="p">(</span><span class="n">shorten</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+<span class="go">air_potential_temperature / (K)     (model_level_number: 7; grid_latitude: 204; grid_longitude: 187)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result2</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">))</span>
+<span class="go">DimCoord([2009-11-19 10:30:00], standard_name=&#39;time&#39;, calendar=&#39;gregorian&#39;)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result2</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[349618.5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">result</span> <span class="o">==</span> <span class="n">result2</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.intersection">
+<code class="sig-name descname">intersection</code><span class="sig-paren">(</span><em class="sig-param">*args</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.intersection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the intersection of the cube with specified coordinate
+ranges.</p>
+<p>Coordinate ranges can be specified as:</p>
+<ol class="loweralpha simple">
+<li><p>instances of <a class="reference internal" href="coords.html#iris.coords.CoordExtent" title="iris.coords.CoordExtent"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.CoordExtent</span></code></a>.</p></li>
+<li><p>keyword arguments, where the keyword name specifies the name
+of the coordinate (as defined in <a class="reference internal" href="#iris.cube.Cube.coords" title="iris.cube.Cube.coords"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.coords()</span></code></a>)
+and the value defines the corresponding range of coordinate
+values as a tuple. The tuple must contain two, three, or four
+items corresponding to: (minimum, maximum, min_inclusive,
+max_inclusive). Where the items are defined as:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>minimum</dt><dd><p>The minimum value of the range to select.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>maximum</dt><dd><p>The maximum value of the range to select.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>min_inclusive</dt><dd><p>If True, coordinate values equal to <cite>minimum</cite> will be included
+in the selection. Default is True.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>max_inclusive</dt><dd><p>If True, coordinate values equal to <cite>maximum</cite> will be included
+in the selection. Default is True.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</li>
+</ol>
+<p>To perform an intersection that ignores any bounds on the coordinates,
+set the optional keyword argument <em>ignore_bounds</em> to True. Defaults to
+False.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For ranges defined over “circular” coordinates (i.e. those
+where the <cite>units</cite> attribute has a modulus defined) the cube
+will be “rolled” to fit where neccesary.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Currently this routine only works with “circular”
+coordinates (as defined in the previous note.)</p>
+</div>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">[::</span><span class="mi">10</span><span class="p">])</span>
+<span class="go">[   0.           37.49999237   74.99998474  112.49996948  149.99996948</span>
+<span class="go">  187.49995422  224.99993896  262.49993896  299.99993896  337.49990845]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subset</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="p">(</span><span class="mi">30</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[ 33.74999237  37.49999237  41.24998856  44.99998856  48.74998856]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">subset</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">longitude</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">subset</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[-7.50012207 -3.75012207  0.          3.75        7.5       ]</span>
+</pre></div>
+</div>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A new <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> giving the subset of the cube
+which intersects with the requested coordinate intervals.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.is_compatible">
+<code class="sig-name descname">is_compatible</code><span class="sig-paren">(</span><em class="sig-param">other</em>, <em class="sig-param">ignore=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.is_compatible" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the cube is compatible with another.</p>
+<p>Compatibility is determined by comparing <a class="reference internal" href="#iris.cube.Cube.name" title="iris.cube.Cube.name"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.name()</span></code></a>,
+<a class="reference internal" href="#iris.cube.Cube.units" title="iris.cube.Cube.units"><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.cube.Cube.units</span></code></a>, <a class="reference internal" href="#iris.cube.Cube.cell_methods" title="iris.cube.Cube.cell_methods"><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.cube.Cube.cell_methods</span></code></a> and
+<a class="reference internal" href="#iris.cube.Cube.attributes" title="iris.cube.Cube.attributes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">iris.cube.Cube.attributes</span></code></a> that are present in both objects.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>other:</dt><dd><p>An instance of <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> or
+<a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.CubeMetadata</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ignore:</dt><dd><p>A single attribute key or iterable of attribute keys to ignore when
+comparing the cubes. Default is None. To ignore all attributes set
+this to other.attributes.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Boolean.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="util.html#iris.util.describe_diff" title="iris.util.describe_diff"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.util.describe_diff()</span></code></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function does not indicate whether the two cubes can be
+merged, instead it checks only the four items quoted above for
+equality. Determining whether two cubes will merge requires
+additional logic that is beyond the scope of this method.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.lazy_data">
+<code class="sig-name descname">lazy_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.lazy_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a “lazy array” representing the Cube data. A lazy array
+describes an array whose data values have not been loaded into memory
+from disk.</p>
+<p>Accessing this method will never cause the Cube data to be loaded.
+Similarly, calling methods on, or indexing, the returned Array
+will not cause the Cube data to be loaded.</p>
+<p>If the Cube data have already been loaded (for example by calling
+<a class="reference internal" href="#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">data()</span></code></a>), the returned Array will be a view of the
+loaded cube data represented as a lazy array object. Note that this
+does _not_ make the Cube data lazy again; the Cube data remains loaded
+in memory.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A lazy array, representing the Cube data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.name">
+<code class="sig-name descname">name</code><span class="sig-paren">(</span><em class="sig-param">default=None</em>, <em class="sig-param">token=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable name.</p>
+<p>First it tries <a class="reference internal" href="#iris.cube.Cube.standard_name" title="iris.cube.Cube.standard_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code></a>, then ‘long_name’, then
+‘var_name’, then the STASH attribute before falling back to
+the value of <cite>default</cite> (which itself defaults to ‘unknown’).</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>default:</dt><dd><p>The value of the default name.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>token:</dt><dd><p>If true, ensure that the name returned satisfies the criteria for
+the characters required by a valid NetCDF name. If it is not
+possible to return a valid name, then a ValueError exception is
+raised.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>String.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.regrid">
+<code class="sig-name descname">regrid</code><span class="sig-paren">(</span><em class="sig-param">grid</em>, <em class="sig-param">scheme</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.regrid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Regrid this <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> on to the given target <cite>grid</cite>
+using the given regridding <cite>scheme</cite>.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="simple">
+<dt>grid:</dt><dd><p>A <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a> that defines the target grid.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>scheme:</dt><dd><p>The type of regridding to use to regrid this cube onto the
+target grid. The regridding schemes currently available
+in Iris are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="analysis.html#iris.analysis.Linear" title="iris.analysis.Linear"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Linear</span></code></a>,</p></li>
+<li><p><a class="reference internal" href="analysis.html#iris.analysis.Nearest" title="iris.analysis.Nearest"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Nearest</span></code></a>, and</p></li>
+<li><p><a class="reference internal" href="analysis.html#iris.analysis.AreaWeighted" title="iris.analysis.AreaWeighted"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.AreaWeighted</span></code></a>.</p></li>
+</ul>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A cube defined with the horizontal dimensions of the target grid
+and the other dimensions from this cube. The data values of
+this cube will be converted to values on the new grid
+according to the given regridding scheme.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Both the source and target cubes must have a CoordSystem, otherwise
+this function is not applicable.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.remove_aux_factory">
+<code class="sig-name descname">remove_aux_factory</code><span class="sig-paren">(</span><em class="sig-param">aux_factory</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.remove_aux_factory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes the given auxiliary coordinate factory from the cube.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.remove_cell_measure">
+<code class="sig-name descname">remove_cell_measure</code><span class="sig-paren">(</span><em class="sig-param">cell_measure</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.remove_cell_measure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a cell measure from the cube.</p>
+<p>Args:</p>
+<ul>
+<li><dl>
+<dt>cell_measure (string or cell_measure)</dt><dd><p>The (name of the) cell measure to remove from the cube. As either</p>
+<p>(a) a <a class="reference internal" href="#iris.cube.Cube.standard_name" title="iris.cube.Cube.standard_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code></a>, <a class="reference internal" href="#iris.cube.Cube.long_name" title="iris.cube.Cube.long_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code></a>, or
+<a class="reference internal" href="#iris.cube.Cube.var_name" title="iris.cube.Cube.var_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">var_name</span></code></a>. Defaults to value of <cite>default</cite>
+(which itself defaults to <cite>unknown</cite>) as defined in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">iris._cube_coord_common.CFVariableMixin</span></code>.</p>
+<p>(b) a cell_measure instance with metadata equal to that of
+the desired cell_measures.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If the argument given does not represent a valid cell_measure on
+the cube, an <a class="reference internal" href="exceptions.html#iris.exceptions.CellMeasureNotFoundError" title="iris.exceptions.CellMeasureNotFoundError"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.exceptions.CellMeasureNotFoundError</span></code></a>
+is raised.</p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.cube.Cube.add_cell_measure" title="iris.cube.Cube.add_cell_measure"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.add_cell_measure()</span></code></a></p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.remove_coord">
+<code class="sig-name descname">remove_coord</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.remove_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes a coordinate from the cube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord (string or coord)</dt><dd><p>The (name of the) coordinate to remove from the cube.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>See also <a class="reference internal" href="#iris.cube.Cube.add_dim_coord" title="iris.cube.Cube.add_dim_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.add_dim_coord()</span></code></a>
+and <a class="reference internal" href="#iris.cube.Cube.add_aux_coord" title="iris.cube.Cube.add_aux_coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.add_aux_coord()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.rename">
+<code class="sig-name descname">rename</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.rename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Changes the human-readable name.</p>
+<p>If ‘name’ is a valid standard name it will assign it to
+<a class="reference internal" href="#iris.cube.Cube.standard_name" title="iris.cube.Cube.standard_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code></a>, otherwise it will assign it to
+<a class="reference internal" href="#iris.cube.Cube.long_name" title="iris.cube.Cube.long_name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.replace_coord">
+<code class="sig-name descname">replace_coord</code><span class="sig-paren">(</span><em class="sig-param">new_coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.replace_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Replace the coordinate whose metadata matches the given coordinate.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.rolling_window">
+<code class="sig-name descname">rolling_window</code><span class="sig-paren">(</span><em class="sig-param">coord</em>, <em class="sig-param">aggregator</em>, <em class="sig-param">window</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.rolling_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform rolling window aggregation on a cube given a coordinate, an
+aggregation method and a window size.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord (string/<a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a>):</dt><dd><p>The coordinate over which to perform the rolling window
+aggregation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>aggregator (<a class="reference internal" href="analysis.html#iris.analysis.Aggregator" title="iris.analysis.Aggregator"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.analysis.Aggregator</span></code></a>):</dt><dd><p>Aggregator to be applied to the data.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>window (int):</dt><dd><p>Size of window to use.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>kwargs:</dt><dd><p>Aggregator and aggregation function keyword arguments. The weights
+argument to the aggregator, if any, should be a 1d array with the
+same length as the chosen window.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p><a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operation does not yet have support for lazy evaluation.</p>
+</div>
+<p>For example:</p>
+<blockquote>
+<div><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span><span class="o">,</span> <span class="nn">iris.analysis</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;GloSea4&#39;</span><span class="p">,</span> <span class="s1">&#39;ensemble_010.pp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">air_press</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;surface_temperature&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">air_press</span><span class="p">)</span>
+<span class="go">surface_temperature / (K)           (time: 6; latitude: 145; longitude: 192)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                           x            -               -</span>
+<span class="go">          latitude                       -            x               -</span>
+<span class="go">          longitude                      -            -               x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          forecast_period                x            -               -</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_reference_time: 2011-07-23 00:00:00</span>
+<span class="go">          realization: 10</span>
+<span class="go">     Attributes:</span>
+<span class="go">          STASH: m01s00i024</span>
+<span class="go">          source: Data from Met Office Unified Model</span>
+<span class="go">          um_version: 7.6</span>
+<span class="go">     Cell methods:</span>
+<span class="go">          mean: time (1 hour)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">air_press</span><span class="o">.</span><span class="n">rolling_window</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="go">surface_temperature / (K)           (time: 4; latitude: 145; longitude: 192)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                           x            -               -</span>
+<span class="go">          latitude                       -            x               -</span>
+<span class="go">          longitude                      -            -               x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          forecast_period                x            -               -</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          forecast_reference_time: 2011-07-23 00:00:00</span>
+<span class="go">          realization: 10</span>
+<span class="go">     Attributes:</span>
+<span class="go">          STASH: m01s00i024</span>
+<span class="go">          source: Data from Met Office Unified Model</span>
+<span class="go">          um_version: 7.6</span>
+<span class="go">     Cell methods:</span>
+<span class="go">          mean: time (1 hour)</span>
+<span class="go">          mean: time</span>
+</pre></div>
+</div>
+<p>Notice that the forecast_period dimension now represents the 4
+possible windows of size 3 from the original cube.</p>
+</div></blockquote>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.slices">
+<code class="sig-name descname">slices</code><span class="sig-paren">(</span><em class="sig-param">ref_to_slice</em>, <em class="sig-param">ordered=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.slices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator of all subcubes given the coordinates or dimension
+indices desired to be present in each subcube.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>ref_to_slice (string, coord, dimension index or a list of these):</dt><dd><p>Determines which dimensions will be returned in the subcubes (i.e.
+the dimensions that are not iterated over).
+A mix of input types can also be provided. They must all be
+orthogonal (i.e. point to different dimensions).</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>ordered: if True, the order which the coords to slice or data_dims</dt><dd><p>are given will be the order in which they represent the data in
+the resulting cube slices.  If False, the order will follow that of
+the source cube.  Default is True.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>An iterator of subcubes.</p>
+</dd>
+</dl>
+<p>For example, to get all 2d longitude/latitude subcubes from a
+multi-dimensional cube:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sub_cube</span> <span class="ow">in</span> <span class="n">cube</span><span class="o">.</span><span class="n">slices</span><span class="p">([</span><span class="s1">&#39;longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;latitude&#39;</span><span class="p">]):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sub_cube</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.cube.Cube.slices_over" title="iris.cube.Cube.slices_over"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.slices_over()</span></code></a>.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.slices_over">
+<code class="sig-name descname">slices_over</code><span class="sig-paren">(</span><em class="sig-param">ref_to_slice</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.slices_over" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator of all subcubes along a given coordinate or
+dimension index, or multiple of these.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>ref_to_slice (string, coord, dimension index or a list of these):</dt><dd><p>Determines which dimensions will be iterated along (i.e. the
+dimensions that are not returned in the subcubes).
+A mix of input types can also be provided.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>An iterator of subcubes.</p>
+</dd>
+</dl>
+<p>For example, to get all subcubes along the time dimension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">sub_cube</span> <span class="ow">in</span> <span class="n">cube</span><span class="o">.</span><span class="n">slices_over</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">sub_cube</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.slices()</span></code></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The order of dimension references to slice along does not affect
+the order of returned items in the iterator; instead the ordering
+is based on the fastest-changing dimension.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.subset">
+<code class="sig-name descname">subset</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.subset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get a subset of the cube by providing the desired resultant
+coordinate. If the coordinate provided applies to the whole cube; the
+whole cube is returned. As such, the operation is not strict.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.summary">
+<code class="sig-name descname">summary</code><span class="sig-paren">(</span><em class="sig-param">shorten=False</em>, <em class="sig-param">name_padding=35</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.summary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unicode string summary of the Cube with name, a list of dim coord names
+versus length and optionally relevant coordinate information.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.token">
+<em class="property">static </em><code class="sig-name descname">token</code><span class="sig-paren">(</span><em class="sig-param">name</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.token" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether the provided name is a valid NetCDF name and thus
+safe to represent a single parsable token.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>name:</dt><dd><p>The string name to verify</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>The provided name if valid, otherwise None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.transpose">
+<code class="sig-name descname">transpose</code><span class="sig-paren">(</span><em class="sig-param">new_order=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.transpose" title="Permalink to this definition">¶</a></dt>
+<dd><p>Re-order the data dimensions of the cube in-place.</p>
+<dl class="simple">
+<dt>new_order - list of ints, optional</dt><dd><p>By default, reverse the dimensions, otherwise permute the
+axes according to the values given.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If defined, new_order must span all of the data dimensions.</p>
+</div>
+<p>Example usage:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># put the second dimension first, followed by the third dimension,</span>
+<span class="ow">and</span> <span class="k">finally</span> <span class="n">put</span> <span class="n">the</span> <span class="n">first</span> <span class="n">dimension</span> <span class="n">third</span><span class="p">::</span>
+
+    <span class="o">&gt;&gt;&gt;</span> <span class="n">cube</span><span class="o">.</span><span class="n">transpose</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.xml">
+<code class="sig-name descname">xml</code><span class="sig-paren">(</span><em class="sig-param">checksum=False</em>, <em class="sig-param">order=True</em>, <em class="sig-param">byteorder=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.Cube.xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a fully valid CubeML string representation of the Cube.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.attributes">
+<em class="property">property </em><code class="sig-name descname">attributes</code><a class="headerlink" href="#iris.cube.Cube.attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary, with a few restricted keys, for arbitrary
+Cube metadata.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.aux_coords">
+<em class="property">property </em><code class="sig-name descname">aux_coords</code><a class="headerlink" href="#iris.cube.Cube.aux_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all the auxiliary coordinates, ordered by
+dimension(s).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.aux_factories">
+<em class="property">property </em><code class="sig-name descname">aux_factories</code><a class="headerlink" href="#iris.cube.Cube.aux_factories" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all the coordinate factories.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.cell_methods">
+<em class="property">property </em><code class="sig-name descname">cell_methods</code><a class="headerlink" href="#iris.cube.Cube.cell_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tuple of <a class="reference internal" href="coords.html#iris.coords.CellMethod" title="iris.coords.CellMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.CellMethod</span></code></a> representing the processing
+done on the phenomenon.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.data">
+<em class="property">property </em><code class="sig-name descname">data</code><a class="headerlink" href="#iris.cube.Cube.data" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a> representing the multi-dimensional data of
+the cube.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cubes obtained from netCDF, PP, and FieldsFile files will only
+populate this attribute on its first use.</p>
+<p>To obtain the shape of the data without causing it to be loaded,
+use the Cube.shape attribute.</p>
+</div>
+<dl>
+<dt>Example::</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;air_temp.pp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="s1">&#39;air_temperature&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># cube.data does not yet have a value.</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(73, 96)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># cube.data still does not have a value.</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span> <span class="o">=</span> <span class="n">cube</span><span class="p">[:</span><span class="mi">10</span><span class="p">,</span> <span class="p">:</span><span class="mi">20</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># cube.data still does not have a value.</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">data</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">data</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Only now is the data loaded.</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<span class="go">(10, 20)</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.derived_coords">
+<em class="property">property </em><code class="sig-name descname">derived_coords</code><a class="headerlink" href="#iris.cube.Cube.derived_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all the coordinates generated by the coordinate
+factories.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.dim_coords">
+<em class="property">property </em><code class="sig-name descname">dim_coords</code><a class="headerlink" href="#iris.cube.Cube.dim_coords" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a tuple of all the dimension coordinates, ordered by dimension.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The length of the returned tuple is not necessarily the same as
+<a class="reference internal" href="#iris.cube.Cube.ndim" title="iris.cube.Cube.ndim"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Cube.ndim</span></code></a> as there may be dimensions on the cube without
+dimension coordinates. It is therefore unreliable to use the
+resulting tuple to identify the dimension coordinates for a given
+dimension - instead use the <a class="reference internal" href="#iris.cube.Cube.coord" title="iris.cube.Cube.coord"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Cube.coord()</span></code></a> method with the
+<code class="docutils literal notranslate"><span class="pre">dimensions</span></code> and <code class="docutils literal notranslate"><span class="pre">dim_coords</span></code> keyword arguments.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.dtype">
+<em class="property">property </em><code class="sig-name descname">dtype</code><a class="headerlink" href="#iris.cube.Cube.dtype" title="Permalink to this definition">¶</a></dt>
+<dd><p>The data type of the values in the data array of this
+<a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="iris.cube.Cube.long_name">
+<code class="sig-name descname">long_name</code><em class="property"> = None</em><a class="headerlink" href="#iris.cube.Cube.long_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The “long name” for the Cube’s phenomenon.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.metadata">
+<em class="property">property </em><code class="sig-name descname">metadata</code><a class="headerlink" href="#iris.cube.Cube.metadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeMetadata</span></code></a> describing the phenomenon.</p>
+<dl class="simple">
+<dt>This property can be updated with any of:</dt><dd><ul class="simple">
+<li><p>another <a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeMetadata</span></code></a> instance,</p></li>
+<li><p>a tuple/dict which can be used to make a <a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeMetadata</span></code></a>,</p></li>
+<li><p>or any object providing the attributes exposed by
+<a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeMetadata</span></code></a>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.ndim">
+<em class="property">property </em><code class="sig-name descname">ndim</code><a class="headerlink" href="#iris.cube.Cube.ndim" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of dimensions in the data of this cube.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.shape">
+<em class="property">property </em><code class="sig-name descname">shape</code><a class="headerlink" href="#iris.cube.Cube.shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>The shape of the data of this cube.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.standard_name">
+<em class="property">property </em><code class="sig-name descname">standard_name</code><a class="headerlink" href="#iris.cube.Cube.standard_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The “standard name” for the Cube’s phenomenon.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.units">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#iris.cube.Cube.units" title="Permalink to this definition">¶</a></dt>
+<dd><p>An instance of <code class="xref py py-class docutils literal notranslate"><span class="pre">cf_units.Unit</span></code> describing the Cube’s data.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.Cube.var_name">
+<em class="property">property </em><code class="sig-name descname">var_name</code><a class="headerlink" href="#iris.cube.Cube.var_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>The netCDF variable name for the Cube.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>All the functionality of a standard <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> with added “Cube”
+context.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.cube.CubeList">
+<em class="property">class </em><code class="sig-prename descclassname">iris.cube.</code><code class="sig-name descname">CubeList</code><span class="sig-paren">(</span><em class="sig-param">list_of_cubes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Given a <code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code> of cubes, return a CubeList instance.</p>
+<dl class="method">
+<dt id="iris.cube.CubeList.append">
+<code class="sig-name descname">append</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.append" title="Permalink to this definition">¶</a></dt>
+<dd><p>Append object to the end of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.clear">
+<code class="sig-name descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.clear" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove all items from list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.concatenate">
+<code class="sig-name descname">concatenate</code><span class="sig-paren">(</span><em class="sig-param">check_aux_coords=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.concatenate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Concatenate the cubes over their common dimensions.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>check_aux_coords</dt><dd><p>Checks the auxilliary coordinates of the cubes match. This check
+is not applied to auxilliary coordinates that span the dimension
+the concatenation is occuring along. Defaults to True.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A new <a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.CubeList</span></code></a> of concatenated
+<a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instances.</p>
+</dd>
+</dl>
+<p>This combines cubes with a common dimension coordinate, but occupying
+different regions of the coordinate value.  The cubes are joined across
+that dimension.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (y_vals: 2; x_vals: 4)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          y_vals                           x          -</span>
+<span class="go">          x_vals                           -          x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;y_vals&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[4 5]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (y_vals: 3; x_vals: 4)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          y_vals                           x          -</span>
+<span class="go">          x_vals                           -          x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;y_vals&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[ 7  9 10]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_list</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">CubeList</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_cube</span> <span class="o">=</span> <span class="n">cube_list</span><span class="o">.</span><span class="n">concatenate</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (y_vals: 5; x_vals: 4)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          y_vals                           x          -</span>
+<span class="go">          x_vals                           -          x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;y_vals&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[ 4  5  7  9 10]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Contrast this with <a class="reference internal" href="#iris.cube.CubeList.merge" title="iris.cube.CubeList.merge"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.CubeList.merge()</span></code></a>, which makes a new
+dimension from values of an auxiliary scalar coordinate.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If time coordinates in the list of cubes have differing epochs then
+the cubes will not be able to be concatenated. If this occurs, use
+<a class="reference internal" href="util.html#iris.util.unify_time_units" title="iris.util.unify_time_units"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.unify_time_units()</span></code></a> to normalise the epochs of the
+time coordinates so that the cubes can be concatenated.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Concatenation cannot occur along an anonymous dimension.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.concatenate_cube">
+<code class="sig-name descname">concatenate_cube</code><span class="sig-paren">(</span><em class="sig-param">check_aux_coords=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.concatenate_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the concatenated contents of the <a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeList</span></code></a> as a single
+<a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
+<p>If it is not possible to concatenate the <cite>CubeList</cite> into a single
+<cite>Cube</cite>, a <a class="reference internal" href="exceptions.html#iris.exceptions.ConcatenateError" title="iris.exceptions.ConcatenateError"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConcatenateError</span></code></a> will be raised
+describing the reason for the failure.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>check_aux_coords</dt><dd><p>Checks the auxilliary coordinates of the cubes match. This check
+is not applied to auxilliary coordinates that span the dimension
+the concatenation is occuring along. Defaults to True.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Concatenation cannot occur along an anonymous dimension.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.copy">
+<code class="sig-name descname">copy</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.copy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the list.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.extend">
+<code class="sig-name descname">extend</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.extend" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend list by appending elements from the iterable.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.extract">
+<code class="sig-name descname">extract</code><span class="sig-paren">(</span><em class="sig-param">constraints</em>, <em class="sig-param">strict=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.extract" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter each of the cubes which can be filtered by the given
+constraints.</p>
+<p>This method iterates over each constraint given, and subsets each of
+the cubes in this CubeList where possible. Thus, a CubeList of length
+<strong>n</strong> when filtered with <strong>m</strong> constraints can generate a maximum of
+<strong>m * n</strong> cubes.</p>
+<p>Keywords:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>strict - boolean</dt><dd><p>If strict is True, then there must be exactly one cube which is
+filtered per constraint.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.extract_overlapping">
+<code class="sig-name descname">extract_overlapping</code><span class="sig-paren">(</span><em class="sig-param">coord_names</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.extract_overlapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a <a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeList</span></code></a> of cubes extracted over regions
+where the coordinates overlap, for the coordinates
+in coord_names.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord_names:</dt><dd><p>A string or list of strings of the names of the coordinates
+over which to perform the extraction.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.extract_strict">
+<code class="sig-name descname">extract_strict</code><span class="sig-paren">(</span><em class="sig-param">constraints</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.extract_strict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calls <a class="reference internal" href="#iris.cube.CubeList.extract" title="iris.cube.CubeList.extract"><code class="xref py py-meth docutils literal notranslate"><span class="pre">CubeList.extract()</span></code></a> with the strict keyword set to True.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.index">
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.insert">
+<code class="sig-name descname">insert</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Insert object before index.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.merge">
+<code class="sig-name descname">merge</code><span class="sig-paren">(</span><em class="sig-param">unique=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.merge" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the <a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeList</span></code></a> resulting from merging this
+<a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeList</span></code></a>.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>unique:</dt><dd><p>If True, raises <cite>iris.exceptions.DuplicateDataError</cite> if
+duplicate cubes are detected.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>This combines cubes with different values of an auxiliary scalar
+coordinate, by constructing a new dimension.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c1</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (x_vals: 3)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          x_vals                           x</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          y_vals: 100</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">c2</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (x_vals: 3)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          x_vals                           x</span>
+<span class="go">     Scalar coordinates:</span>
+<span class="go">          y_vals: 200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_list</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">CubeList</span><span class="p">([</span><span class="n">c1</span><span class="p">,</span> <span class="n">c2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">new_cube</span> <span class="o">=</span> <span class="n">cube_list</span><span class="o">.</span><span class="n">merge</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="p">)</span>
+<span class="go">some_parameter / (unknown)          (y_vals: 2; x_vals: 3)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          y_vals                           x          -</span>
+<span class="go">          x_vals                           -          x</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">new_cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;y_vals&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">)</span>
+<span class="go">[100 200]</span>
+<span class="go">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>Contrast this with <a class="reference internal" href="#iris.cube.CubeList.concatenate" title="iris.cube.CubeList.concatenate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.CubeList.concatenate()</span></code></a>, which joins
+cubes along an existing dimension.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If time coordinates in the list of cubes have differing epochs then
+the cubes will not be able to be merged. If this occurs, use
+<a class="reference internal" href="util.html#iris.util.unify_time_units" title="iris.util.unify_time_units"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.unify_time_units()</span></code></a> to normalise the epochs of the
+time coordinates so that the cubes can be merged.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.merge_cube">
+<code class="sig-name descname">merge_cube</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.merge_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the merged contents of the <a class="reference internal" href="#iris.cube.CubeList" title="iris.cube.CubeList"><code class="xref py py-class docutils literal notranslate"><span class="pre">CubeList</span></code></a> as a single
+<a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
+<p>If it is not possible to merge the <cite>CubeList</cite> into a single
+<cite>Cube</cite>, a <a class="reference internal" href="exceptions.html#iris.exceptions.MergeError" title="iris.exceptions.MergeError"><code class="xref py py-class docutils literal notranslate"><span class="pre">MergeError</span></code></a> will be raised
+describing the reason for the failure.</p>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube_1</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">Cube</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_1</span><span class="o">.</span><span class="n">add_aux_coord</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">long_name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_2</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">Cube</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_2</span><span class="o">.</span><span class="n">add_aux_coord</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">long_name</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube_2</span><span class="o">.</span><span class="n">add_dim_coord</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">iris</span><span class="o">.</span><span class="n">coords</span><span class="o">.</span><span class="n">DimCoord</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">long_name</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">single_cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">cube</span><span class="o">.</span><span class="n">CubeList</span><span class="p">([</span><span class="n">cube_1</span><span class="p">,</span> <span class="n">cube_2</span><span class="p">])</span><span class="o">.</span><span class="n">merge_cube</span><span class="p">()</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="c">...</span>
+<span class="gr">iris.exceptions.MergeError</span>: <span class="n">failed to merge into a single cube.</span>
+<span class="go">  Coordinates in cube.dim_coords differ: z.</span>
+<span class="go">  Coordinate-to-dimension mapping differs for cube.dim_coords.</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.pop">
+<code class="sig-name descname">pop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.pop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove and return item at index (default last).</p>
+<p>Raises IndexError if list is empty or index is out of range.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.realise_data">
+<code class="sig-name descname">realise_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.realise_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fetch ‘real’ data for all cubes, in a shared calculation.</p>
+<p>This computes any lazy data, equivalent to accessing each <cite>cube.data</cite>.
+However, lazy calculations and data fetches can be shared between the
+computations, improving performance.</p>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Form stats.</span>
+<span class="n">a_std</span> <span class="o">=</span> <span class="n">cube_a</span><span class="o">.</span><span class="n">collapsed</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">)</span>
+<span class="n">b_std</span> <span class="o">=</span> <span class="n">cube_b</span><span class="o">.</span><span class="n">collapsed</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">STD_DEV</span><span class="p">)</span>
+<span class="n">ab_mean_diff</span> <span class="o">=</span> <span class="p">(</span><span class="n">cube_b</span> <span class="o">-</span> <span class="n">cube_a</span><span class="p">)</span><span class="o">.</span><span class="n">collapsed</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span>
+                                           <span class="n">iris</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">MEAN</span><span class="p">)</span>
+<span class="n">std_err</span> <span class="o">=</span> <span class="p">(</span><span class="n">a_std</span> <span class="o">*</span> <span class="n">a_std</span> <span class="o">+</span> <span class="n">b_std</span> <span class="o">*</span> <span class="n">b_std</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+
+<span class="c1"># Compute these stats together (avoiding multiple data passes).</span>
+<span class="n">CubeList</span><span class="p">([</span><span class="n">a_std</span><span class="p">,</span> <span class="n">b_std</span><span class="p">,</span> <span class="n">ab_mean_diff</span><span class="p">,</span> <span class="n">std_err</span><span class="p">])</span><span class="o">.</span><span class="n">realise_data</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Cubes with non-lazy data are not affected.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.remove">
+<code class="sig-name descname">remove</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.remove" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove first occurrence of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.reverse">
+<code class="sig-name descname">reverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse <em>IN PLACE</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.sort">
+<code class="sig-name descname">sort</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.sort" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stable sort <em>IN PLACE</em>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeList.xml">
+<code class="sig-name descname">xml</code><span class="sig-paren">(</span><em class="sig-param">checksum=False</em>, <em class="sig-param">order=True</em>, <em class="sig-param">byteorder=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeList.xml" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a string of the XML that this list of cubes represents.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>Represents the phenomenon metadata for a single <a class="reference internal" href="#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>.</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.cube.CubeMetadata">
+<em class="property">class </em><code class="sig-prename descclassname">iris.cube.</code><code class="sig-name descname">CubeMetadata</code><span class="sig-paren">(</span><em class="sig-param">_cls</em>, <em class="sig-param">standard_name</em>, <em class="sig-param">long_name</em>, <em class="sig-param">var_name</em>, <em class="sig-param">units</em>, <em class="sig-param">attributes</em>, <em class="sig-param">cell_methods</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.CubeMetadata</span></code></a></p>
+<p>Create new instance of CubeMetadata(standard_name, long_name, var_name, units, attributes, cell_methods)</p>
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeMetadata.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.index">
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeMetadata.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.name">
+<code class="sig-name descname">name</code><span class="sig-paren">(</span><em class="sig-param">default='unknown'</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.cube.CubeMetadata.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a human-readable name.</p>
+<p>First it tries self.standard_name, then it tries the ‘long_name’
+attribute, then the ‘var_name’ attribute, before falling back to
+the value of <cite>default</cite> (which itself defaults to ‘unknown’).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.attributes">
+<em class="property">property </em><code class="sig-name descname">attributes</code><a class="headerlink" href="#iris.cube.CubeMetadata.attributes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 4</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.cell_methods">
+<em class="property">property </em><code class="sig-name descname">cell_methods</code><a class="headerlink" href="#iris.cube.CubeMetadata.cell_methods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 5</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.long_name">
+<em class="property">property </em><code class="sig-name descname">long_name</code><a class="headerlink" href="#iris.cube.CubeMetadata.long_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.standard_name">
+<em class="property">property </em><code class="sig-name descname">standard_name</code><a class="headerlink" href="#iris.cube.CubeMetadata.standard_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.units">
+<em class="property">property </em><code class="sig-name descname">units</code><a class="headerlink" href="#iris.cube.CubeMetadata.units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.cube.CubeMetadata.var_name">
+<em class="property">property </em><code class="sig-name descname">var_name</code><a class="headerlink" href="#iris.cube.CubeMetadata.var_name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="exceptions.html" title="iris.exceptions"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="coords.html" title="iris.coords"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../iris.html" >Iris reference documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

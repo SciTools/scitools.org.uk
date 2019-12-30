@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris.experimental.animate &#8212; Iris 2.3.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="iris.experimental.concatenate" href="concatenate.html" />
+    <link rel="prev" title="iris.experimental" href="../experimental.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../../index.html">
+        <img src="../../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.3</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="concatenate.html" title="iris.experimental.concatenate"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../experimental.html" title="iris.experimental"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../experimental.html" accesskey="U">iris.experimental</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../experimental.html"
+                        title="previous chapter">iris.experimental</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="concatenate.html"
+                        title="next chapter">iris.experimental.concatenate</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/experimental/animate.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-experimental-animate">
+<span id="id1"></span><h1>iris.experimental.animate<a class="headerlink" href="#iris-experimental-animate" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.experimental.animate"></span><p>Wrapper for animating iris cubes using iris or matplotlib plotting functions</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#iris.experimental.animate.animate" title="iris.experimental.animate.animate"><code class="xref py py-obj docutils literal notranslate"><span class="pre">animate</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.experimental.animate.animate">
+<code class="sig-prename descclassname">iris.experimental.animate.</code><code class="sig-name descname">animate</code><span class="sig-paren">(</span><em class="sig-param">cube_iterator</em>, <em class="sig-param">plot_func</em>, <em class="sig-param">fig=None</em>, <em class="sig-param">**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.experimental.animate.animate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animates the given cube iterator.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube_iterator (iterable of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> objects):</dt><dd><p>Each animation frame corresponds to each <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>
+object. See <a class="reference internal" href="../cube.html#iris.cube.Cube.slices" title="iris.cube.Cube.slices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.slices()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>plot_func (<a class="reference internal" href="../plot.html#module-iris.plot" title="iris.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.plot</span></code></a> or <a class="reference internal" href="../quickplot.html#module-iris.quickplot" title="iris.quickplot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.quickplot</span></code></a> plotting function):</dt><dd><p>Plotting function used to animate. Must accept the signature
+<code class="docutils literal notranslate"><span class="pre">plot_func(cube,</span> <span class="pre">vmin=vmin,</span> <span class="pre">vmax=vmax,</span> <span class="pre">coords=coords)</span></code>.
+<a class="reference internal" href="../plot.html#iris.plot.contourf" title="iris.plot.contourf"><code class="xref py py-func docutils literal notranslate"><span class="pre">contourf()</span></code></a>, <a class="reference internal" href="../plot.html#iris.plot.contour" title="iris.plot.contour"><code class="xref py py-func docutils literal notranslate"><span class="pre">contour()</span></code></a>,
+<a class="reference internal" href="../plot.html#iris.plot.pcolor" title="iris.plot.pcolor"><code class="xref py py-func docutils literal notranslate"><span class="pre">pcolor()</span></code></a> and <a class="reference internal" href="../plot.html#iris.plot.pcolormesh" title="iris.plot.pcolormesh"><code class="xref py py-func docutils literal notranslate"><span class="pre">pcolormesh()</span></code></a>
+all conform to this signature.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>fig (<a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.figure.Figure</span></code></a> instance):</dt><dd><p>By default, the current figure will be used or a new figure instance
+created if no figure is available. See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.gcf.html#matplotlib.pyplot.gcf" title="(in Matplotlib v3.1.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.gcf()</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>coords (list of <a class="reference internal" href="../coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a> objects or coordinate names):</dt><dd><p>Use the given coordinates as the axes for the plot. The order of the
+given coordinates indicates which axis to use for each, where the first
+element is the horizontal axis of the plot and the second element is
+the vertical axis of the plot.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>interval (int, float or long):</dt><dd><p>Defines the time interval in milliseconds between successive frames.
+A default interval of 100ms is set.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>vmin, vmax (int, float or long):</dt><dd><p>Color scaling values, see <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.colors.Normalize.html#matplotlib.colors.Normalize" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.colors.Normalize</span></code></a> for
+further details. Default values are determined by the min-max across
+the data set over the entire sequence.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>See <a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.animation.FuncAnimation</span></code></a> for details of other valid
+keyword arguments.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p><a class="reference external" href="https://matplotlib.org/api/_as_gen/matplotlib.animation.FuncAnimation.html#matplotlib.animation.FuncAnimation" title="(in Matplotlib v3.1.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">FuncAnimation</span></code></a> object suitable for
+saving and or plotting.</p>
+</dd>
+</dl>
+<p>For example, to animate along a set of cube slices:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cube_iter</span> <span class="o">=</span> <span class="n">cubes</span><span class="o">.</span><span class="n">slices</span><span class="p">((</span><span class="s1">&#39;grid_longitude&#39;</span><span class="p">,</span> <span class="s1">&#39;grid_latitude&#39;</span><span class="p">))</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">animate</span><span class="p">(</span><span class="n">cube_iter</span><span class="p">,</span> <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="concatenate.html" title="iris.experimental.concatenate"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../experimental.html" title="iris.experimental"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../experimental.html" >iris.experimental</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2019, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
