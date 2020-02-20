@@ -7,12 +7,11 @@
   var url_re = /\/iris\/docs\/(latest|(v\d+\.\d+\.?\d?))\//;
 
   var all_versions = {
-    'latest': 'latest (2.4)',
+    'latest': 'latest (2.3)',
     // nb. Also include the latest version explictly as well as under "latest",
     // so that users can get to the versioned (non-latest) URL.
 
-    'v2.4.0': '2.4',
-    'v2.3.0': '2.3',
+    'v2.3': '2.3.0',
     'v2.2.1': '2.2',
     'v2.1': '2.1',
     'v2.0': '2.0',
