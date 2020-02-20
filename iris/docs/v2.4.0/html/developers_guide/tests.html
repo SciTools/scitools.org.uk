@@ -1,0 +1,303 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Testing &#8212; Iris 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Deprecations" href="deprecations.html" />
+    <link rel="prev" title="Pull Request Check List" href="pulls.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deprecations.html" title="Deprecations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="pulls.html" title="Pull Request Check List"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Iris developer guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Testing</a><ul>
+<li><a class="reference internal" href="#unit-tests">Unit tests</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions">Functions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#integration-tests">Integration tests</a></li>
+<li><a class="reference internal" href="#graphics-tests">Graphics tests</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="pulls.html"
+                        title="previous chapter">Pull Request Check List</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="deprecations.html"
+                        title="next chapter">Deprecations</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/developers_guide/tests.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="testing">
+<span id="developer-tests"></span><h1>Testing<a class="headerlink" href="#testing" title="Permalink to this headline">¶</a></h1>
+<p>The Iris tests may be run with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code> which has a
+command line utility included.</p>
+<dl class="simple">
+<dt>There are three categories of tests within Iris:</dt><dd><ul class="simple">
+<li><p>Unit tests</p></li>
+<li><p>Integration tests</p></li>
+<li><p>Legacy tests</p></li>
+</ul>
+</dd>
+</dl>
+<p>Ideally, all code changes should be accompanied by one or more unit
+tests, and by zero or more integration tests. And where possible, new
+tests should not be added to the legacy tests.</p>
+<p>But if in any doubt about what tests to add or how to write them please
+feel free to submit a pull-request in any state and ask for assistance.</p>
+<div class="section" id="unit-tests">
+<h2>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline">¶</a></h2>
+<p>Code changes should be accompanied by enough unit tests to give a
+high degree of confidence that the change works as expected. In
+addition, the unit tests can help describe the intent behind a change.</p>
+<p>The docstring for each test module must state the unit under test.
+For example:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;Unit</span> <span class="pre">tests</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">`iris.experimental.raster.export_geotiff`</span> <span class="pre">function.&quot;&quot;&quot;</span></code></p>
+</div></blockquote>
+<p>All unit tests must be placed and named according to the following
+structure:</p>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<p>When testing a class all the tests must reside in the module:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;ClassName&gt;.py</span></code></p>
+</div></blockquote>
+<p>Within this test module each tested method must have one or more
+corresponding test classes:
+- Either: <cite>Test_name_of_public_method</cite>
+- Or: <cite>Test_name_of_public_method__aspect_of_method</cite></p>
+<p>And within those test classes, the test methods must be named according
+to the aspect of the tested method which they address.</p>
+<p><strong>Examples</strong>:</p>
+<p>All unit tests for <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> must reside in:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/cube/test_Cube.py</span></code></p>
+</div></blockquote>
+<p>Within that file the tests might look something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tests for the Cube.xml() method.</span>
+<span class="k">class</span> <span class="nc">Test_xml</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_some_general_stuff</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="c1"># Tests for the Cube.xml() method, focussing on the behaviour of</span>
+<span class="c1"># the checksums.</span>
+<span class="k">class</span> <span class="nc">Test_xml__checksum</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_checksum_ignores_masked_values</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="c1"># Tests for the Cube.add_dim_coord() method.</span>
+<span class="k">class</span> <span class="nc">Test_add_dim_coord</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_normal_usage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">test_coord_already_present</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>When testing a function all the tests must reside in the module:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/&lt;fully/qualified/module&gt;/test_&lt;function_name&gt;.py</span></code></p>
+</div></blockquote>
+<p>Within this test module there must be one or more test classes:
+- Either: <cite>Test</cite>
+- Or: <cite>TestAspectOfFunction</cite></p>
+<p>And within those test classes, the test methods must be named according
+to the aspect of the tested function which they address.</p>
+<p><strong>Examples</strong>:</p>
+<p>All unit tests for <code class="xref py py-func docutils literal notranslate"><span class="pre">iris.experimental.raster.export_geotiff()</span></code>
+must reside in:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">lib/iris/tests/unit/experimental/raster/test_export_geotiff.py</span></code></p>
+</div></blockquote>
+<p>Within that file the tests might look something like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tests focussing on the handling of different data types.</span>
+<span class="k">class</span> <span class="nc">TestDtypeAndValues</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_int16</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">test_int16_big_endian</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+
+<span class="c1"># Tests focussing on the handling of different projections.</span>
+<span class="k">class</span> <span class="nc">TestProjection</span><span class="p">(</span><span class="n">tests</span><span class="o">.</span><span class="n">IrisTest</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_no_ellipsoid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="integration-tests">
+<h2>Integration tests<a class="headerlink" href="#integration-tests" title="Permalink to this headline">¶</a></h2>
+<p>Some code changes may require tests which exercise several units in
+order to demonstrate an important consequence of their interaction which
+may not be apparent when considering the units in isolation.</p>
+<p>These tests must be placed in the <cite>lib/iris/tests/integration</cite> folder.
+Unlike unit tests, there is no fixed naming scheme for integration
+tests. But folders and files must be created as required to help
+developers locate relevant tests. It is recommended they are named
+according to the capabilities under test, e.g.
+<cite>metadata/test_pp_preservation.py</cite>, and not named according to the
+module(s) under test.</p>
+</div>
+<div class="section" id="graphics-tests">
+<h2>Graphics tests<a class="headerlink" href="#graphics-tests" title="Permalink to this headline">¶</a></h2>
+<p>Certain Iris tests are based on checking plotted images.
+This the only way of testing the modules <a class="reference internal" href="../iris/iris/plot.html#module-iris.plot" title="iris.plot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.plot</span></code></a> and
+<a class="reference internal" href="../iris/iris/quickplot.html#module-iris.quickplot" title="iris.quickplot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iris.quickplot</span></code></a>, but is also used for some other legacy and integration-
+style testcases.</p>
+<p>Prior to Iris version 1.10, a single reference image for each testcase was
+stored in the main Iris repository, and a ‘tolerant’ comparison was performed
+against this.</p>
+<p>From version 1.11 onwards, graphics testcase outputs are compared against
+possibly <em>multiple</em> known-good images, of which only the signature is stored.
+This uses a sophisticated perceptual “image hashing” scheme (see:
+&lt;<a class="reference external" href="https://github.com/JohannesBuchner/imagehash">https://github.com/JohannesBuchner/imagehash</a>&gt;).
+Only imagehash signatures are stored in the Iris repo itself, thus freeing up
+valuable space.  Meanwhile, the actual reference <em>images</em> – which are required
+for human-eyes evaluation of proposed new “good results” – are all stored
+elsewhere in a separate public repository.
+See <a class="reference internal" href="graphics_tests.html#developer-graphics-tests"><span class="std std-ref">Graphics tests</span></a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="deprecations.html" title="Deprecations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="pulls.html" title="Pull Request Check List"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Iris developer guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

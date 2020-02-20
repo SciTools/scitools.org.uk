@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Contributing a “What’s New” entry &#8212; Iris 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Working with iris source code" href="../gitwash/index.html" />
+    <link rel="prev" title="reST quickstart" href="rest_guide.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../gitwash/index.html" title="Working with iris source code"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rest_guide.html" title="reST quickstart"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris developer guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Documentation in Iris</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Contributing a “What’s New” entry</a><ul>
+<li><a class="reference internal" href="#writing-a-contribution">Writing a Contribution</a></li>
+<li><a class="reference internal" href="#adding-contribution-files">Adding Contribution Files</a><ul>
+<li><a class="reference internal" href="#category">Category</a></li>
+<li><a class="reference internal" href="#date">Date</a></li>
+<li><a class="reference internal" href="#summary">Summary</a></li>
+<li><a class="reference internal" href="#complete-examples">Complete Examples</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#compiling-a-draft">Compiling a Draft</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rest_guide.html"
+                        title="previous chapter">reST quickstart</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../gitwash/index.html"
+                        title="next chapter">Working with <em>iris</em> source code</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/developers_guide/documenting/whats_new_contributions.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="contributing-a-what-s-new-entry">
+<span id="whats-new-contributions"></span><h1>Contributing a “What’s New” entry<a class="headerlink" href="#contributing-a-what-s-new-entry" title="Permalink to this headline">¶</a></h1>
+<p>Iris has an aggregator for building a draft what’s new document for each
+release. The draft what’s new document is built from contributions by code authors.
+This means contributions to the what’s new document are written by the
+developer most familiar with the change made.</p>
+<p>A contribution provides an entry in the what’s new document, which describes a
+change that improved Iris in some way. This change may be a new feature in Iris
+or the fix for a bug introduced in a previous release. The contribution should
+be included as part of the Iris Pull Request that introduces the change.</p>
+<p>When a new release is prepared, the what’s new contributions are combined into
+a draft what’s new document for the release.</p>
+<div class="section" id="writing-a-contribution">
+<h2>Writing a Contribution<a class="headerlink" href="#writing-a-contribution" title="Permalink to this headline">¶</a></h2>
+<p>As introduced above, a contribution is the description of a change to Iris
+which improved Iris in some way. As such, a single Iris Pull Request may
+contain multiple changes that are worth highlighting as contributions to the
+what’s new document.</p>
+<p>Each contribution will ideally be written as a single concise bullet point.
+The content of the bullet point should highlight the change that has been made
+to Iris, targeting an Iris user as the audience.</p>
+<p>A contribution is a feature summary by the code author, which avoids the
+release developer having to personally review the change in detail :
+It is not in itself the final documentation content,
+so it does not have to be perfect or complete in every respect.</p>
+</div>
+<div class="section" id="adding-contribution-files">
+<h2>Adding Contribution Files<a class="headerlink" href="#adding-contribution-files" title="Permalink to this headline">¶</a></h2>
+<p>Each release must have a directory called <code class="docutils literal notranslate"><span class="pre">contributions_&lt;release</span> <span class="pre">number&gt;</span></code>,
+which should be created following the release of the current version of Iris. Each
+release directory must be placed in <code class="docutils literal notranslate"><span class="pre">docs/iris/src/whatsnew/</span></code>.
+Contributions to the what’s new must be written in markdown and placed into this
+directory in text files. The filename for each item should be structured as follows:</p>
+<p><code class="docutils literal notranslate"><span class="pre">&lt;category&gt;_&lt;date&gt;_&lt;summary&gt;.txt</span></code></p>
+<div class="section" id="category">
+<h3>Category<a class="headerlink" href="#category" title="Permalink to this headline">¶</a></h3>
+<p>The category must be one of the following:</p>
+<dl class="simple">
+<dt><em>newfeature</em></dt><dd><p>Features that are new or changed to add functionality.</p>
+</dd>
+<dt><em>bugfix</em></dt><dd><p>A bugfix.</p>
+</dd>
+<dt><em>incompatiblechange</em></dt><dd><p>A change that causes an incompatibility with prior versions of Iris.</p>
+</dd>
+<dt><em>deprecate</em></dt><dd><p>Deprecations of functionality.</p>
+</dd>
+<dt><em>docchange</em></dt><dd><p>Changes to documentation.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="date">
+<h3>Date<a class="headerlink" href="#date" title="Permalink to this headline">¶</a></h3>
+<p>The date must be a hyphen-separated date in the format of:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>a four digit year,</p></li>
+<li><p>a three character month name, and</p></li>
+<li><p>a two digit day.</p></li>
+</ul>
+</div></blockquote>
+<p>For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>2012-Jan-30</p></li>
+<li><p>2014-May-03</p></li>
+<li><p>2015-Feb-19</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="summary">
+<h3>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h3>
+<p>The summary can be any remaining filename characters, and simply provides a
+short identifying description of the change.</p>
+<p>For example:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>whats-new-aggregator</p></li>
+<li><p>using_mo_pack</p></li>
+<li><p>correction-to-bilinear-regrid</p></li>
+<li><p>GRIB2_pdt11</p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="complete-examples">
+<h3>Complete Examples<a class="headerlink" href="#complete-examples" title="Permalink to this headline">¶</a></h3>
+<p>Some sample what’s new contribution filenames:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>bugfix_2015-Aug-18_partial_pp_constraints.txt</p></li>
+<li><p>deprecate_2015-Nov-01_unit-module.txt</p></li>
+<li><p>incompatiblechange_2015-Oct-12_GRIB_optional_Python3_unavailable.txt</p></li>
+<li><p>newfeature_2015-Jul-03_pearsonr_rewrite.txt</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A test in the standard test suite ensures that all the contents of the
+latest contributions directory conform to this naming scheme.</p>
+</div>
+</div>
+</div>
+<div class="section" id="compiling-a-draft">
+<h2>Compiling a Draft<a class="headerlink" href="#compiling-a-draft" title="Permalink to this headline">¶</a></h2>
+<p>Compiling a draft from the supplied contributions should be done when preparing
+a release. Running <code class="docutils literal notranslate"><span class="pre">docs/iris/src/whatsnew/aggregate_directory.py</span></code> with the
+release number as the argument will create a draft what’s new with the name
+<code class="docutils literal notranslate"><span class="pre">&lt;release&gt;.rst</span></code> file for the specified release, by aggregating the individual
+contributions from the relevant folder.
+Omitting the release number will build the latest version for which a
+contributions folder is present.
+This command fails if a file with the relevant name already exists.</p>
+<p>The resulting draft document is only a starting point, which the release
+developer will then edit to produce the final ‘What’s new in Iris x.x’
+documentation.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../gitwash/index.html" title="Working with iris source code"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rest_guide.html" title="reST quickstart"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris developer guide</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Documentation in Iris</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

@@ -1,0 +1,266 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Deriving Exner Pressure and Air Temperature &#8212; Iris 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Hovmoller diagram of monthly surface temperature" href="hovmoller.html" />
+    <link rel="prev" title="Ionosphere space weather" href="TEC.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hovmoller.html" title="Hovmoller diagram of monthly surface temperature"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="TEC.html" title="Ionosphere space weather"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris examples</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Meteorology visualisation examples</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="TEC.html"
+                        title="previous chapter">Ionosphere space weather</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="hovmoller.html"
+                        title="next chapter">Hovmoller diagram of monthly surface temperature</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/examples/Meteorology/deriving_phenomena.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="deriving-exner-pressure-and-air-temperature">
+<span id="meteorology-deriving-phenomena"></span><h1>Deriving Exner Pressure and Air Temperature<a class="headerlink" href="#deriving-exner-pressure-and-air-temperature" title="Permalink to this headline">¶</a></h1>
+<p>This example shows some processing of cubes in order to derive further related
+cubes; in this case the derived cubes are Exner pressure and air temperature
+which are calculated by combining air pressure, air potential temperature and
+specific humidity. Finally, the two new cubes are presented side-by-side in a
+plot.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Deriving Exner Pressure and Air Temperature</span>
+<span class="sd">===========================================</span>
+
+<span class="sd">This example shows some processing of cubes in order to derive further related</span>
+<span class="sd">cubes; in this case the derived cubes are Exner pressure and air temperature</span>
+<span class="sd">which are calculated by combining air pressure, air potential temperature and</span>
+<span class="sd">specific humidity. Finally, the two new cubes are presented side-by-side in a</span>
+<span class="sd">plot.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span>
+
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.coords</span> <span class="k">as</span> <span class="nn">coords</span>
+<span class="kn">import</span> <span class="nn">iris.iterate</span>
+<span class="kn">import</span> <span class="nn">iris.plot</span> <span class="k">as</span> <span class="nn">iplt</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="k">as</span> <span class="nn">qplt</span>
+
+
+<span class="k">def</span> <span class="nf">limit_colorbar_ticks</span><span class="p">(</span><span class="n">contour_object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Takes a contour object which has an associated colorbar and limits the</span>
+<span class="sd">    number of ticks on the colorbar to 4.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Under Matplotlib v1.2.x the colorbar attribute of a contour object is</span>
+    <span class="c1"># a tuple containing the colorbar and an axes object, whereas under</span>
+    <span class="c1"># Matplotlib v1.3.x it is simply the colorbar.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">contour_object</span><span class="o">.</span><span class="n">colorbar</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">except</span> <span class="p">(</span><span class="ne">AttributeError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+        <span class="n">colorbar</span> <span class="o">=</span> <span class="n">contour_object</span><span class="o">.</span><span class="n">colorbar</span>
+
+    <span class="n">colorbar</span><span class="o">.</span><span class="n">locator</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">MaxNLocator</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">colorbar</span><span class="o">.</span><span class="n">update_ticks</span><span class="p">()</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;colpex.pp&#39;</span><span class="p">)</span>
+
+    <span class="c1"># The list of phenomena of interest</span>
+    <span class="n">phenomena</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">,</span> <span class="s1">&#39;air_pressure&#39;</span><span class="p">]</span>
+
+    <span class="c1"># Define the constraint on standard name and model level</span>
+    <span class="n">constraints</span> <span class="o">=</span> <span class="p">[</span><span class="n">iris</span><span class="o">.</span><span class="n">Constraint</span><span class="p">(</span><span class="n">phenom</span><span class="p">,</span> <span class="n">model_level_number</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span>
+                   <span class="n">phenom</span> <span class="ow">in</span> <span class="n">phenomena</span><span class="p">]</span>
+
+    <span class="n">air_potential_temperature</span><span class="p">,</span> <span class="n">air_pressure</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cubes</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span>
+                                                              <span class="n">constraints</span><span class="p">)</span>
+
+    <span class="c1"># Define a coordinate which represents 1000 hPa</span>
+    <span class="n">p0</span> <span class="o">=</span> <span class="n">coords</span><span class="o">.</span><span class="n">AuxCoord</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="n">long_name</span><span class="o">=</span><span class="s1">&#39;P0&#39;</span><span class="p">,</span> <span class="n">units</span><span class="o">=</span><span class="s1">&#39;hPa&#39;</span><span class="p">)</span>
+    <span class="c1"># Convert reference pressure &#39;p0&#39; into the same units as &#39;air_pressure&#39;</span>
+    <span class="n">p0</span><span class="o">.</span><span class="n">convert_units</span><span class="p">(</span><span class="n">air_pressure</span><span class="o">.</span><span class="n">units</span><span class="p">)</span>
+
+    <span class="c1"># Calculate Exner pressure</span>
+    <span class="n">exner_pressure</span> <span class="o">=</span> <span class="p">(</span><span class="n">air_pressure</span> <span class="o">/</span> <span class="n">p0</span><span class="p">)</span> <span class="o">**</span> <span class="p">(</span><span class="mf">287.05</span> <span class="o">/</span> <span class="mf">1005.0</span><span class="p">)</span>
+    <span class="c1"># Set the name (the unit is scalar)</span>
+    <span class="n">exner_pressure</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;exner_pressure&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Calculate air_temp</span>
+    <span class="n">air_temperature</span> <span class="o">=</span> <span class="n">exner_pressure</span> <span class="o">*</span> <span class="n">air_potential_temperature</span>
+    <span class="c1"># Set the name (the unit is K)</span>
+    <span class="n">air_temperature</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="s1">&#39;air_temperature&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Now create an iterator which will give us lat lon slices of</span>
+    <span class="c1"># exner pressure and air temperature in the form</span>
+    <span class="c1"># (exner_slice, air_temp_slice).</span>
+    <span class="n">lat_lon_slice_pairs</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">iterate</span><span class="o">.</span><span class="n">izip</span><span class="p">(</span><span class="n">exner_pressure</span><span class="p">,</span>
+                                            <span class="n">air_temperature</span><span class="p">,</span>
+                                            <span class="n">coords</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;grid_latitude&#39;</span><span class="p">,</span>
+                                                    <span class="s1">&#39;grid_longitude&#39;</span><span class="p">])</span>
+
+    <span class="c1"># For the purposes of this example, we only want to demonstrate the first</span>
+    <span class="c1"># plot.</span>
+    <span class="n">lat_lon_slice_pairs</span> <span class="o">=</span> <span class="p">[</span><span class="nb">next</span><span class="p">(</span><span class="n">lat_lon_slice_pairs</span><span class="p">)]</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">exner_slice</span><span class="p">,</span> <span class="n">air_temp_slice</span> <span class="ow">in</span> <span class="n">lat_lon_slice_pairs</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">121</span><span class="p">)</span>
+        <span class="n">cont</span> <span class="o">=</span> <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">exner_slice</span><span class="p">)</span>
+
+        <span class="c1"># The default colorbar has a few too many ticks on it, causing text to</span>
+        <span class="c1"># overlap. Therefore, limit the number of ticks.</span>
+        <span class="n">limit_colorbar_ticks</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">122</span><span class="p">)</span>
+        <span class="n">cont</span> <span class="o">=</span> <span class="n">qplt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">air_temp_slice</span><span class="p">)</span>
+        <span class="n">limit_colorbar_ticks</span><span class="p">(</span><span class="n">cont</span><span class="p">)</span>
+        <span class="n">iplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../examples/Meteorology/deriving_phenomena.py">Source code</a>, <a class="reference external" href="../../examples/Meteorology/deriving_phenomena.png">png</a>)</p>
+<div class="figure align-default" id="deriving-phenomena">
+<img alt="../../_images/deriving_phenomena.png" src="../../_images/deriving_phenomena.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="hovmoller.html" title="Hovmoller diagram of monthly surface temperature"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="TEC.html" title="Ionosphere space weather"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris examples</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Meteorology visualisation examples</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
