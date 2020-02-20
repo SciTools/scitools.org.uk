@@ -1,0 +1,228 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Load a time series of data from the NEMO model &#8212; Iris 2.4.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Iris developer guide" href="../../developers_guide/index.html" />
+    <link rel="prev" title="Oceanographic profiles and T-S diagrams" href="atlantic_profiles.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../developers_guide/index.html" title="Iris developer guide"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="atlantic_profiles.html" title="Oceanographic profiles and T-S diagrams"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris examples</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U">Oceanography visualisation examples</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="atlantic_profiles.html"
+                        title="previous chapter">Oceanographic profiles and T-S diagrams</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../developers_guide/index.html"
+                        title="next chapter">Iris developer guide</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/examples/Oceanography/load_nemo.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="load-a-time-series-of-data-from-the-nemo-model">
+<span id="oceanography-load-nemo"></span><h1>Load a time series of data from the NEMO model<a class="headerlink" href="#load-a-time-series-of-data-from-the-nemo-model" title="Permalink to this headline">¶</a></h1>
+<p>This example demonstrates how to load multiple files containing data output by
+the NEMO model and combine them into a time series in a single cube. The
+different time dimensions in these files can prevent Iris from concatenating
+them without the intervention shown here.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Load a time series of data from the NEMO model</span>
+<span class="sd">==============================================</span>
+
+<span class="sd">This example demonstrates how to load multiple files containing data output by</span>
+<span class="sd">the NEMO model and combine them into a time series in a single cube. The</span>
+<span class="sd">different time dimensions in these files can prevent Iris from concatenating</span>
+<span class="sd">them without the intervention shown here.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">unicode_literals</span>
+
+<span class="kn">import</span> <span class="nn">iris</span>
+<span class="kn">import</span> <span class="nn">iris.plot</span> <span class="k">as</span> <span class="nn">iplt</span>
+<span class="kn">import</span> <span class="nn">iris.quickplot</span> <span class="k">as</span> <span class="nn">qplt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">iris.util</span> <span class="kn">import</span> <span class="n">promote_aux_coord_to_dim_coord</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># Load the three files of sample NEMO data.</span>
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;NEMO/nemo_1m_*.nc&#39;</span><span class="p">)</span>
+    <span class="n">cubes</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+    <span class="c1"># Some attributes are unique to each file and must be blanked</span>
+    <span class="c1"># to allow concatenation.</span>
+    <span class="n">differing_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;file_name&#39;</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;timeStamp&#39;</span><span class="p">,</span> <span class="s1">&#39;TimeStamp&#39;</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">cube</span> <span class="ow">in</span> <span class="n">cubes</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="n">differing_attrs</span><span class="p">:</span>
+            <span class="n">cube</span><span class="o">.</span><span class="n">attributes</span><span class="p">[</span><span class="n">attribute</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="c1"># The cubes still cannot be concatenated because their time dimension is</span>
+    <span class="c1"># time_counter rather than time. time needs to be promoted to allow</span>
+    <span class="c1"># concatenation.</span>
+    <span class="k">for</span> <span class="n">cube</span> <span class="ow">in</span> <span class="n">cubes</span><span class="p">:</span>
+        <span class="n">promote_aux_coord_to_dim_coord</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
+
+    <span class="c1"># The cubes can now be concatenated into a single time series.</span>
+    <span class="n">cube</span> <span class="o">=</span> <span class="n">cubes</span><span class="o">.</span><span class="n">concatenate_cube</span><span class="p">()</span>
+
+    <span class="c1"># Generate a time series plot of a single point</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+    <span class="n">y_point_index</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">x_point_index</span> <span class="o">=</span> <span class="mi">100</span>
+    <span class="n">qplt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cube</span><span class="p">[:,</span> <span class="n">y_point_index</span><span class="p">,</span> <span class="n">x_point_index</span><span class="p">],</span> <span class="s1">&#39;o-&#39;</span><span class="p">)</span>
+
+    <span class="c1"># Include the point&#39;s position in the plot&#39;s title</span>
+    <span class="n">lat_point</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;latitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">y_point_index</span><span class="p">,</span> <span class="n">x_point_index</span><span class="p">]</span>
+    <span class="n">lat_string</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="se">\u00B0</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">lat_point</span><span class="p">),</span>
+                                          <span class="s1">&#39;N&#39;</span> <span class="k">if</span> <span class="n">lat_point</span> <span class="o">&gt;</span> <span class="mf">0.</span> <span class="k">else</span> <span class="s1">&#39;S&#39;</span><span class="p">)</span>
+    <span class="n">lon_point</span> <span class="o">=</span> <span class="n">cube</span><span class="o">.</span><span class="n">coord</span><span class="p">(</span><span class="s1">&#39;longitude&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="n">y_point_index</span><span class="p">,</span> <span class="n">x_point_index</span><span class="p">]</span>
+    <span class="n">lon_string</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{:.3f}</span><span class="se">\u00B0</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">lon_point</span><span class="p">),</span>
+                                          <span class="s1">&#39;E&#39;</span> <span class="k">if</span> <span class="n">lon_point</span> <span class="o">&gt;</span> <span class="mf">0.</span> <span class="k">else</span> <span class="s1">&#39;W&#39;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> at </span><span class="si">{}</span><span class="s1"> </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cube</span><span class="o">.</span><span class="n">long_name</span><span class="o">.</span><span class="n">capitalize</span><span class="p">(),</span>
+                                   <span class="n">lat_string</span><span class="p">,</span> <span class="n">lon_string</span><span class="p">))</span>
+    <span class="n">iplt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../../examples/Oceanography/load_nemo.py">Source code</a>, <a class="reference external" href="../../examples/Oceanography/load_nemo.png">png</a>)</p>
+<div class="figure align-default" id="load-nemo">
+<img alt="../../_images/load_nemo.png" src="../../_images/load_nemo.png" />
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../developers_guide/index.html" title="Iris developer guide"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="atlantic_profiles.html" title="Oceanographic profiles and T-S diagrams"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Iris examples</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="index.html" >Oceanography visualisation examples</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
