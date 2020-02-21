@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Pull Request Check List &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Testing" href="tests.html" />
+    <link rel="prev" title="git resources" href="gitwash/git_resources.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../index.html">
+        <img src="../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="Testing"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gitwash/git_resources.html" title="git resources"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Iris developer guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../contents.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Pull Request Check List</a><ul>
+<li><a class="reference internal" href="#the-iris-check-list">The Iris Check List</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gitwash/git_resources.html"
+                        title="previous chapter">git resources</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="tests.html"
+                        title="next chapter">Testing</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/developers_guide/pulls.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="pull-request-check-list">
+<span id="pr-check"></span><h1>Pull Request Check List<a class="headerlink" href="#pull-request-check-list" title="Permalink to this headline">¶</a></h1>
+<p>A pull request to a SciTools project master should be ready to merge into the
+master branch.</p>
+<p>All pull request will be reviewed by a core developer who will manage the
+process of merging. It is the responsibility of a developer submitting a
+pull request to do their best to deliver a pull request which meets the
+requirements of the project it is submitted to.</p>
+<p>The check list summarises criteria which will be checked before a pull request
+is merged.  Before submitting a pull request please consider this list.</p>
+<div class="section" id="the-iris-check-list">
+<h2>The Iris Check List<a class="headerlink" href="#the-iris-check-list" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Have you provided a helpful description of the Pull Request?
+I.E. what has changed and why.  This should include:</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>the aim of the change ; the problem addressed ; a link to the issue.</p></li>
+<li><p>how the change has been delivered.</p></li>
+<li><p>a “What’s New” entry, submitted as a new file added in the pull request.
+See <a class="reference external" href="http://scitools.org.uk/iris/docs/latest/developers_guide/documenting/whats_new_contributions.html">Contributing a “What’s New” entry</a>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Do all the tests pass locally?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Iris tests may be run with <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">test</span></code> which has a command
+line utility included.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Have new tests been provided for all additional functionality?</p></li>
+<li><p>Do all modified and new sourcefiles pass PEP8?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://www.python.org/dev/peps/pep-0008/">PEP8</a> is the Python source code style guide.</p></li>
+<li><p>There is a python module for checking pep8 compliance: <a class="reference external" href="https://pypi.python.org/pypi/pep8">python-pep8</a></p></li>
+<li><p>a standard Iris test checks that all sourcefiles meet PEP8 compliance
+(see “iris.tests.test_coding_standards.TestCodeFormat”).</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Do all modified and new sourcefiles have a correct, up-to-date copyright
+header?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>a standard Iris test checks that all sourcefiles include a copyright
+message, including the correct year of the latest change
+(see “iris.tests.test_coding_standards.TestLicenseHeaders”).</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Has the documentation been updated to explain all new or changed features?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>refer to the developer guide on <a class="reference external" href="http://scitools.org.uk/iris/docs/latest/developers_guide/documenting/docstrings.html">docstrings</a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Have code examples been provided inside docstrings, where relevant?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>these are strongly recommended as concrete (working) examples always
+considerably enhance the documentation.</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>live test code can be included in docstrings.</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>See for example <a class="reference internal" href="../iris/iris/cube.html#iris.cube.Cube.data" title="iris.cube.Cube.data"><code class="xref py py-data docutils literal notranslate"><span class="pre">iris.cube.Cube.data</span></code></a></p></li>
+<li><p>Details at <a class="reference external" href="http://www.sphinx-doc.org/en/stable/ext/doctest.html">http://www.sphinx-doc.org/en/stable/ext/doctest.html</a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>The documentation tests may be run with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doctest</span></code>, from within the
+<code class="docutils literal notranslate"><span class="pre">./docs/iris</span></code> subdirectory.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<ul class="simple">
+<li><p>Have you provided a ‘whats new’ contribution?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>this should be done for all changes that affect API or behaviour.
+See <a class="reference internal" href="documenting/whats_new_contributions.html#whats-new-contributions"><span class="std std-ref">Contributing a “What’s New” entry</span></a></p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Does the documentation build without errors?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>The documentation is built using <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> in <code class="docutils literal notranslate"><span class="pre">./docs/iris</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Do the documentation and code-example tests pass?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>Run with <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">doctest</span></code> and <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">extest</span></code>, from within the subdirectory
+<code class="docutils literal notranslate"><span class="pre">./docs/iris</span></code>.</p></li>
+<li><p>note that code examples must <em>not</em> raise deprecations.  This is now checked
+and will result in an error.
+When an existing code example encounters a deprecation, it must be fixed.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Has the travis file been updated to reflect any dependency updates?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./.travis.yml</span></code> is used to manage the continuous integration testing.</p></li>
+<li><dl class="simple">
+<dt>the files <code class="docutils literal notranslate"><span class="pre">./conda-requirements.yml</span></code> and</dt><dd><p><code class="docutils literal notranslate"><span class="pre">./minimal-conda-requirements.yml</span></code> are used to define the software
+environments used, using the <a class="reference external" href="http://conda.readthedocs.io/en/latest/">conda</a> package manager.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>Have you provided updates to supporting projects for test or example data?</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>the following separate repos are used to manage larger files used by tests
+and code examples :</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://github.com/SciTools/iris-test-data">iris-test-data</a> is a github project containing all the data to support the
+tests.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciTools/iris-sample-data">iris-sample-data</a> is a github project containing all the data to support
+the gallery and examples.</p></li>
+<li><p><a class="reference external" href="https://github.com/SciTools/test-images-scitools">test-images-scitools</a> is a github project containing reference plot images
+to support iris graphics tests : see <a class="reference internal" href="graphics_tests.html#developer-graphics-tests"><span class="std std-ref">Graphics tests</span></a>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p>If new files are required by tests or code examples, they must be added to
+the appropriate supporting project via a suitable pull-request.
+This new ‘supporting pull request’ should be referenced in the main Iris
+pull request, and must be accepted and merged before the Iris one can be.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="tests.html" title="Testing"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gitwash/git_resources.html" title="git resources"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="index.html" >Iris developer guide</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

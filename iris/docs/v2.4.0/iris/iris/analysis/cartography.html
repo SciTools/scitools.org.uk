@@ -1,0 +1,757 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris.analysis.cartography &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="iris.analysis.geometry" href="geometry.html" />
+    <link rel="prev" title="iris.analysis.calculus" href="calculus.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../../index.html">
+        <img src="../../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="geometry.html" title="iris.analysis.geometry"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="calculus.html" title="iris.analysis.calculus"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" accesskey="U">iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="calculus.html"
+                        title="previous chapter">iris.analysis.calculus</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="geometry.html"
+                        title="next chapter">iris.analysis.geometry</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/analysis/cartography.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-analysis-cartography">
+<span id="id1"></span><h1>iris.analysis.cartography<a class="headerlink" href="#iris-analysis-cartography" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.analysis.cartography"></span><p>Various utilities and numeric transformations relevant to cartography.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#iris.analysis.cartography.area_weights" title="iris.analysis.cartography.area_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_weights</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.cosine_latitude_weights" title="iris.analysis.cartography.cosine_latitude_weights"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cosine_latitude_weights</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.get_xy_contiguous_bounded_grids" title="iris.analysis.cartography.get_xy_contiguous_bounded_grids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xy_contiguous_bounded_grids</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.get_xy_grids" title="iris.analysis.cartography.get_xy_grids"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_xy_grids</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.gridcell_angles" title="iris.analysis.cartography.gridcell_angles"><code class="xref py py-obj docutils literal notranslate"><span class="pre">gridcell_angles</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.project" title="iris.analysis.cartography.project"><code class="xref py py-obj docutils literal notranslate"><span class="pre">project</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.rotate_grid_vectors" title="iris.analysis.cartography.rotate_grid_vectors"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate_grid_vectors</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.rotate_pole" title="iris.analysis.cartography.rotate_pole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate_pole</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.rotate_winds" title="iris.analysis.cartography.rotate_winds"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rotate_winds</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.unrotate_pole" title="iris.analysis.cartography.unrotate_pole"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unrotate_pole</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.wrap_lons" title="iris.analysis.cartography.wrap_lons"><code class="xref py py-obj docutils literal notranslate"><span class="pre">wrap_lons</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.DistanceDifferential" title="iris.analysis.cartography.DistanceDifferential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">DistanceDifferential</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.analysis.cartography.PartialDifferential" title="iris.analysis.cartography.PartialDifferential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">PartialDifferential</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.analysis.cartography.area_weights">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">area_weights</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">normalize=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.area_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of area weights, with the same dimensions as the cube.</p>
+<p>This is a 2D lat/lon area weights array, repeated over the non lat/lon
+dimensions.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>):</dt><dd><p>The cube to calculate area weights for.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>normalize (False/True):</dt><dd><p>If False, weights are grid cell areas. If True, weights are grid
+cell areas divided by the total grid area.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The cube must have coordinates ‘latitude’ and ‘longitude’ with bounds.</p>
+<p>Area weights are calculated for each lat/lon cell as:</p>
+<blockquote>
+<div><div class="math">
+<p><img src="../../../_images/math/847bdfaead0bd20505dedc6f10065613c4e788de.png" alt="r^2 (lon_1 - lon_0) (\sin(lat_1) - \sin(lat_0))"/></p>
+</div></div></blockquote>
+<p>Currently, only supports a spherical datum.
+Uses earth radius from the cube, if present and spherical.
+Defaults to iris.analysis.cartography.DEFAULT_SPHERICAL_EARTH_RADIUS.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.cosine_latitude_weights">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">cosine_latitude_weights</code><span class="sig-paren">(</span><em class="sig-param">cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.cosine_latitude_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns an array of latitude weights, with the same dimensions as
+the cube. The weights are the cosine of latitude.</p>
+<p>These are n-dimensional latitude weights repeated over the dimensions
+not covered by the latitude coordinate.</p>
+<p>The cube must have a coordinate with ‘latitude’ in the name. Out of
+range values (greater than 90 degrees or less than -90 degrees) will
+be clipped to the valid range.</p>
+<p>Weights are calculated for each latitude as:</p>
+<blockquote>
+<div><div class="math">
+<p><img src="../../../_images/math/089f1c48082e97ae8b2c577fa459f712f285bdc2.png" alt="w_l = \cos \phi_l"/></p>
+</div></div></blockquote>
+<p>Examples:</p>
+<p>Compute weights suitable for averaging type operations:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">iris.analysis.cartography</span> <span class="kn">import</span> <span class="n">cosine_latitude_weights</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">cosine_latitude_weights</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Compute weights suitable for EOF analysis (or other covariance type
+analyses):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">iris.analysis.cartography</span> <span class="kn">import</span> <span class="n">cosine_latitude_weights</span>
+<span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;air_temp.pp&#39;</span><span class="p">))</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cosine_latitude_weights</span><span class="p">(</span><span class="n">cube</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.get_xy_contiguous_bounded_grids">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">get_xy_contiguous_bounded_grids</code><span class="sig-paren">(</span><em class="sig-param">cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.get_xy_contiguous_bounded_grids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 2d arrays for x and y bounds.</p>
+<p>Returns array of shape (n+1, m+1).</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">get_xy_contiguous_bounded_grids</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.get_xy_grids">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">get_xy_grids</code><span class="sig-paren">(</span><em class="sig-param">cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.get_xy_grids" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return 2D X and Y points for a given cube.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>cube - The cube for which to generate 2D X and Y points.</p></li>
+</ul>
+</div></blockquote>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">get_xy_grids</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.gridcell_angles">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">gridcell_angles</code><span class="sig-paren">(</span><em class="sig-param">x</em>, <em class="sig-param">y=None</em>, <em class="sig-param">cell_angle_boundpoints='mid-lhs</em>, <em class="sig-param">mid-rhs'</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.gridcell_angles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate gridcell orientations for an arbitrary 2-dimensional grid.</p>
+<p>The input grid is defined by two 2-dimensional coordinate arrays with the
+same dimensions (ny, nx), specifying the geolocations of a 2D mesh.</p>
+<p>Input values may be coordinate points (ny, nx) or bounds (ny, nx, 4).
+However, if points, the edges in the X direction are assumed to be
+connected by wraparound.</p>
+<p>Input can be either two arrays, two coordinates, or a single cube
+containing two suitable coordinates identified with the ‘x’ and’y’ axes.</p>
+<p>Args:</p>
+<p>The inputs (x [,y]) can be any of the folliwing :</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>x (<a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">Cube</span></code></a>):</dt><dd><p>a grid cube with 2D X and Y coordinates, identified by ‘axis’.
+The coordinates must be 2-dimensional with the same shape.
+The two dimensions represent grid dimensions in the order Y, then X.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>x, y (<a class="reference internal" href="../coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">Coord</span></code></a>):</dt><dd><p>X and Y coordinates, specifying grid locations on the globe.
+The coordinates must be 2-dimensional with the same shape.
+The two dimensions represent grid dimensions in the order Y, then X.
+If there is no coordinate system, they are assumed to be true
+longitudes and latitudes.  Units must convertible to ‘degrees’.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>x, y (2-dimensional arrays of same shape (ny, nx)):</dt><dd><p>longitude and latitude cell center locations, in degrees.
+The two dimensions represent grid dimensions in the order Y, then X.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>x, y (3-dimensional arrays of same shape (ny, nx, 4)):</dt><dd><p>longitude and latitude cell bounds, in degrees.
+The first two dimensions are grid dimensions in the order Y, then X.
+The last index maps cell corners anticlockwise from bottom-left.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Optional Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cell_angle_boundpoints (string):</dt><dd><p>Controls which gridcell bounds locations are used to calculate angles,
+if the inputs are bounds or bounded coordinates.
+Valid values are ‘lower-left, lower-right’, which takes the angle from
+the lower left to the lower right corner, and ‘mid-lhs, mid-rhs’ which
+takes an angles between the average of the left-hand and right-hand
+pairs of corners.  The default is ‘mid-lhs, mid-rhs’.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<blockquote>
+<div><p>angles : (2-dimensional cube)</p>
+<blockquote>
+<div><p>Cube of angles of grid-x vector from true Eastward direction for
+each gridcell, in degrees.
+It also has “true” longitude and latitude coordinates, with no
+coordinate system.
+When the input has coords, then the output ones are identical if
+the inputs are true-latlons, otherwise they are transformed
+true-latlon versions.
+When the input has bounded coords, then the output coords have
+matching bounds and centrepoints (possibly transformed).
+When the input is 2d arrays, or has unbounded coords, then the
+output coords have matching points and no bounds.
+When the input is 3d arrays, then the output coords have matching
+bounds, and the centrepoints are an average of the 4 boundpoints.</p>
+</div></blockquote>
+</div></blockquote>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.project">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">project</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">target_proj</em>, <em class="sig-param">nx=None</em>, <em class="sig-param">ny=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.project" title="Permalink to this definition">¶</a></dt>
+<dd><p>Nearest neighbour regrid to a specified target projection.</p>
+<p>Return a new cube that is the result of projecting a cube with 1 or 2
+dimensional latitude-longitude coordinates from its coordinate system into
+a specified projection e.g. Robinson or Polar Stereographic.
+This function is intended to be used in cases where the cube’s coordinates
+prevent one from directly visualising the data, e.g. when the longitude
+and latitude are two dimensional and do not make up a regular grid.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>cube</dt><dd><p>An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>target_proj</dt><dd><p>An instance of the Cartopy Projection class, or an instance of
+<a class="reference internal" href="../coord_systems.html#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord_systems.CoordSystem</span></code></a> from which a projection
+will be obtained.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Kwargs:</dt><dd><ul class="simple">
+<li><dl class="simple">
+<dt>nx</dt><dd><p>Desired number of sample points in the x direction for a domain
+covering the globe.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>ny</dt><dd><p>Desired number of sample points in the y direction for a domain
+covering the globe.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+<dt>Returns:</dt><dd><p>An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> and a list describing the
+extent of the projection.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function assumes global data and will if necessary extrapolate
+beyond the geographical extent of the source cube using a nearest
+neighbour approach. nx and ny then include those points which are
+outside of the target projection.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Masked arrays are handled by passing their masked status to the
+resulting nearest neighbour values.  If masked, the value in the
+resulting cube is set to 0.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This function uses a nearest neighbour approach rather than any form
+of linear/non-linear interpolation to determine the data value of each
+cell in the resulting cube. Consequently it may have an adverse effect
+on the statistics of the data e.g. the mean and standard deviation
+will not be preserved.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.rotate_grid_vectors">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">rotate_grid_vectors</code><span class="sig-paren">(</span><em class="sig-param">u_cube</em>, <em class="sig-param">v_cube</em>, <em class="sig-param">grid_angles_cube=None</em>, <em class="sig-param">grid_angles_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.rotate_grid_vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotate distance vectors from grid-oriented to true-latlon-oriented.</p>
+<p>Can also rotate by arbitrary angles, if they are passed in.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This operation overlaps somewhat in function with
+<a class="reference internal" href="#iris.analysis.cartography.rotate_winds" title="iris.analysis.cartography.rotate_winds"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.analysis.cartography.rotate_winds()</span></code></a>.
+However, that routine only rotates vectors according to transformations
+between coordinate systems.
+This function, by contrast, can rotate vectors by arbitrary angles.
+Most commonly, the angles are estimated solely from grid sampling
+points, using <a class="reference internal" href="#iris.analysis.cartography.gridcell_angles" title="iris.analysis.cartography.gridcell_angles"><code class="xref py py-func docutils literal notranslate"><span class="pre">gridcell_angles()</span></code></a> :  This allows operation on
+complex meshes defined by two-dimensional coordinates, such as most
+ocean grids.</p>
+</div>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>u_cube, v_cube<span class="classifier">(cube)</span></dt><dd><p>Cubes of grid-u and grid-v vector components.
+Units should be differentials of true-distance, e.g. ‘m/s’.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Optional args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>grid_angles_cube<span class="classifier">(cube)</span></dt><dd><p>gridcell orientation angles.
+Units must be angular, i.e. can be converted to ‘radians’.
+If not provided, grid angles are estimated from ‘u_cube’ using the
+<a class="reference internal" href="#iris.analysis.cartography.gridcell_angles" title="iris.analysis.cartography.gridcell_angles"><code class="xref py py-func docutils literal notranslate"><span class="pre">gridcell_angles()</span></code></a> method.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>grid_angles_kwargs<span class="classifier">(dict or None)</span></dt><dd><p>Additional keyword args to be passed to the <a class="reference internal" href="#iris.analysis.cartography.gridcell_angles" title="iris.analysis.cartography.gridcell_angles"><code class="xref py py-func docutils literal notranslate"><span class="pre">gridcell_angles()</span></code></a>
+method, if it is used.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<blockquote>
+<div><dl class="simple">
+<dt>true_u, true_v<span class="classifier">(cube)</span></dt><dd><p>Cubes of true-north oriented vector components.
+Units are same as inputs.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Vector magnitudes will always be the same as the inputs.</p>
+</div>
+</div></blockquote>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.rotate_pole">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">rotate_pole</code><span class="sig-paren">(</span><em class="sig-param">lons</em>, <em class="sig-param">lats</em>, <em class="sig-param">pole_lon</em>, <em class="sig-param">pole_lat</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.rotate_pole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert arrays of longitudes and latitudes to arrays of rotated-pole
+longitudes and latitudes. The values of <code class="docutils literal notranslate"><span class="pre">pole_lon</span></code> and <code class="docutils literal notranslate"><span class="pre">pole_lat</span></code>
+should describe the rotated pole that the arrays of longitudes and
+latitudes are to be rotated onto.</p>
+<p>As the arrays of longitudes and latitudes must describe a rectilinear grid,
+the arrays of rotated-pole longitudes and latitudes must be of the same
+shape as each other.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rotated_lons</span><span class="p">,</span> <span class="n">rotated_lats</span> <span class="o">=</span> <span class="n">rotate_pole</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">,</span>         <span class="n">pole_lon</span><span class="p">,</span> <span class="n">pole_lat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Uses proj.4 to perform the conversion.</p>
+</div>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>lons:</dt><dd><p>An array of longitude values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>lats:</dt><dd><p>An array of latitude values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pole_lon:</dt><dd><p>The longitude of the rotated pole that the arrays of longitudes and
+latitudes are to be rotated onto.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pole_lat:</dt><dd><p>The latitude of the rotated pole that the arrays of longitudes and
+latitudes are to be rotated onto.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>An array of rotated-pole longitudes and an array of rotated-pole
+latitudes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.rotate_winds">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">rotate_winds</code><span class="sig-paren">(</span><em class="sig-param">u_cube</em>, <em class="sig-param">v_cube</em>, <em class="sig-param">target_cs</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.rotate_winds" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transform wind vectors to a different coordinate system.</p>
+<p>The input cubes contain U and V components parallel to the local X and Y
+directions of the input grid at each point.</p>
+<p>The output cubes contain the same winds, at the same locations, but
+relative to the grid directions of a different coordinate system.
+Thus in vector terms, the magnitudes will always be the same, but the
+angles can be different.</p>
+<p>The outputs retain the original horizontal dimension coordinates, but
+also have two 2-dimensional auxiliary coordinates containing the X and
+Y locations in the target coordinate system.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>u_cube</dt><dd><p>An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> that contains the x-component
+of the vector.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>v_cube</dt><dd><p>An instance of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> that contains the y-component
+of the vector.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>target_cs</dt><dd><p>An instance of <a class="reference internal" href="../coord_systems.html#iris.coord_systems.CoordSystem" title="iris.coord_systems.CoordSystem"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord_systems.CoordSystem</span></code></a> that specifies
+the new grid directions.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A (u’, v’) tuple of <a class="reference internal" href="../cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instances that are the u
+and v components in the requested target coordinate system.
+The units are the same as the inputs.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The U and V values relate to distance, with units such as ‘m s-1’.
+These are not the same as coordinate vectors, which transform in a
+different manner.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The names of the output cubes are those of the inputs, prefixed with
+‘transformed_’ (e.g. ‘transformed_x_wind’).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Conversion between rotated-pole and non-rotated systems can be
+expressed analytically.  However, this function always uses a numerical
+approach. In locations where this numerical approach does not preserve
+magnitude to an accuracy of 0.1%, the corresponding elements of the
+returned cubes will be masked.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.unrotate_pole">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">unrotate_pole</code><span class="sig-paren">(</span><em class="sig-param">rotated_lons</em>, <em class="sig-param">rotated_lats</em>, <em class="sig-param">pole_lon</em>, <em class="sig-param">pole_lat</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.unrotate_pole" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert arrays of rotated-pole longitudes and latitudes to unrotated
+arrays of longitudes and latitudes. The values of <code class="docutils literal notranslate"><span class="pre">pole_lon</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pole_lat</span></code> should describe the location of the rotated pole that
+describes the arrays of rotated-pole longitudes and latitudes.</p>
+<p>As the arrays of rotated-pole longitudes and latitudes must describe a
+rectilinear grid, the arrays of rotated-pole longitudes and latitudes must
+be of the same shape as each other.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span> <span class="o">=</span> <span class="n">unrotate_pole</span><span class="p">(</span><span class="n">rotated_lons</span><span class="p">,</span> <span class="n">rotated_lats</span><span class="p">,</span>           <span class="n">pole_lon</span><span class="p">,</span> <span class="n">pole_lat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Uses proj.4 to perform the conversion.</p>
+</div>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>rotated_lons:</dt><dd><p>An array of rotated-pole longitude values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>rotated_lats:</dt><dd><p>An array of rotated-pole latitude values.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pole_lon:</dt><dd><p>The longitude of the rotated pole that describes the arrays of
+rotated-pole longitudes and latitudes.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>pole_lat:</dt><dd><p>The latitude of the rotated pole that describes the arrays of
+rotated-pole longitudes and latitudes.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>An array of unrotated longitudes and an array of unrotated latitudes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.analysis.cartography.wrap_lons">
+<code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">wrap_lons</code><span class="sig-paren">(</span><em class="sig-param">lons</em>, <em class="sig-param">base</em>, <em class="sig-param">period</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.wrap_lons" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrap longitude values into the range between base and base+period.</p>
+<dl>
+<dt>For example:</dt><dd><div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">wrap_lons</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">185</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="mi">75</span><span class="p">]),</span> <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">360</span><span class="p">))</span>
+<span class="go">[-175.   30.  160.   75.]</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>DistanceDifferential(dx1, dy1, dx2, dy2)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.analysis.cartography.DistanceDifferential">
+<em class="property">class </em><code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">DistanceDifferential</code><span class="sig-paren">(</span><em class="sig-param">_cls</em>, <em class="sig-param">dx1</em>, <em class="sig-param">dy1</em>, <em class="sig-param">dx2</em>, <em class="sig-param">dy2</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Create new instance of DistanceDifferential(dx1, dy1, dx2, dy2)</p>
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.index">
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.dx1">
+<em class="property">property </em><code class="sig-name descname">dx1</code><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.dx1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.dx2">
+<em class="property">property </em><code class="sig-name descname">dx2</code><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.dx2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.dy1">
+<em class="property">property </em><code class="sig-name descname">dy1</code><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.dy1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.DistanceDifferential.dy2">
+<em class="property">property </em><code class="sig-name descname">dy2</code><a class="headerlink" href="#iris.analysis.cartography.DistanceDifferential.dy2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 3</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>PartialDifferential(dx1, dy1)</p>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.analysis.cartography.PartialDifferential">
+<em class="property">class </em><code class="sig-prename descclassname">iris.analysis.cartography.</code><code class="sig-name descname">PartialDifferential</code><span class="sig-paren">(</span><em class="sig-param">_cls</em>, <em class="sig-param">dx1</em>, <em class="sig-param">dy1</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.PartialDifferential" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code></p>
+<p>Create new instance of PartialDifferential(dx1, dy1)</p>
+<dl class="method">
+<dt id="iris.analysis.cartography.PartialDifferential.count">
+<code class="sig-name descname">count</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.PartialDifferential.count" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return number of occurrences of value.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.PartialDifferential.index">
+<code class="sig-name descname">index</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.analysis.cartography.PartialDifferential.index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return first index of value.</p>
+<p>Raises ValueError if the value is not present.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.PartialDifferential.dx1">
+<em class="property">property </em><code class="sig-name descname">dx1</code><a class="headerlink" href="#iris.analysis.cartography.PartialDifferential.dx1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.analysis.cartography.PartialDifferential.dy1">
+<em class="property">property </em><code class="sig-name descname">dy1</code><a class="headerlink" href="#iris.analysis.cartography.PartialDifferential.dy1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="geometry.html" title="iris.analysis.geometry"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="calculus.html" title="iris.analysis.calculus"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../analysis.html" >iris.analysis</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
