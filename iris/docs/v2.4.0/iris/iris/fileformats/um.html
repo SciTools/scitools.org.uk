@@ -1,0 +1,488 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris.fileformats.um &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+    <link rel="next" title="iris.fileformats.um_cf_map" href="um_cf_map.html" />
+    <link rel="prev" title="iris.fileformats.rules" href="rules.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../../index.html">
+        <img src="../../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="um_cf_map.html" title="iris.fileformats.um_cf_map"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="rules.html" title="iris.fileformats.rules"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../fileformats.html" accesskey="U">iris.fileformats</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="rules.html"
+                        title="previous chapter">iris.fileformats.rules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="um_cf_map.html"
+                        title="next chapter">iris.fileformats.um_cf_map</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../../_sources/iris/iris/fileformats/um.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-fileformats-um">
+<span id="id1"></span><h1>iris.fileformats.um<a class="headerlink" href="#iris-fileformats-um" title="Permalink to this headline">¶</a></h1>
+<div class="sidebar">
+<p class="sidebar-title">Modules in this package</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<span class="target" id="module-iris.fileformats.um"></span><p>Provides iris loading support for UM Fieldsfile-like file types, and PP.</p>
+<p>At present, the only UM file types supported are true FieldsFiles and LBCs.
+Other types of UM file may fail to load correctly (or at all).</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#iris.fileformats.um.um_to_pp" title="iris.fileformats.um.um_to_pp"><code class="xref py py-obj docutils literal notranslate"><span class="pre">um_to_pp</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_cubes</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.fileformats.um.load_cubes_32bit_ieee" title="iris.fileformats.um.load_cubes_32bit_ieee"><code class="xref py py-obj docutils literal notranslate"><span class="pre">load_cubes_32bit_ieee</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.fileformats.um.structured_um_loading" title="iris.fileformats.um.structured_um_loading"><code class="xref py py-obj docutils literal notranslate"><span class="pre">structured_um_loading</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">FieldCollation</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.fileformats.um.um_to_pp">
+<code class="sig-prename descclassname">iris.fileformats.um.</code><code class="sig-name descname">um_to_pp</code><span class="sig-paren">(</span><em class="sig-param">filename</em>, <em class="sig-param">read_data=False</em>, <em class="sig-param">word_depth=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.um_to_pp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extract individual PPFields from within a UM Fieldsfile-like file.</p>
+<p>Returns an iterator over the fields contained within the FieldsFile,
+returned as <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a> instances.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>filename (string):</dt><dd><p>Specify the name of the FieldsFile.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>read_data (boolean):</dt><dd><p>Specify whether to read the associated PPField data within
+the FieldsFile.  Default value is False.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Iteration of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a>s.</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">field</span> <span class="ow">in</span> <span class="n">um</span><span class="o">.</span><span class="n">um_to_pp</span><span class="p">(</span><span class="n">filename</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="nb">print</span><span class="p">(</span><span class="n">field</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.um.load_cubes">
+<code class="sig-prename descclassname">iris.fileformats.um.</code><code class="sig-name descname">load_cubes</code><span class="sig-paren">(</span><em class="sig-param">filenames</em>, <em class="sig-param">callback</em>, <em class="sig-param">constraints=None</em>, <em class="sig-param">_loader_kwargs=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.load_cubes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads cubes from filenames of UM fieldsfile-like files.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><p>filenames - list of filenames to load</p></li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>callback - a function which can be passed on to</dt><dd><p><a class="reference internal" href="../io.html#iris.io.run_callback" title="iris.io.run_callback"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.io.run_callback()</span></code></a></p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resultant cubes may not be in the order that they are in the
+file (order is not preserved when there is a field with
+orography references).</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.um.load_cubes_32bit_ieee">
+<code class="sig-prename descclassname">iris.fileformats.um.</code><code class="sig-name descname">load_cubes_32bit_ieee</code><span class="sig-paren">(</span><em class="sig-param">filenames</em>, <em class="sig-param">callback</em>, <em class="sig-param">constraints=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.load_cubes_32bit_ieee" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads cubes from filenames of 32bit ieee converted UM fieldsfile-like
+files.</p>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#iris.fileformats.um.load_cubes" title="iris.fileformats.um.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cubes()</span></code></a> for keyword details</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.fileformats.um.structured_um_loading">
+<code class="sig-prename descclassname">iris.fileformats.um.</code><code class="sig-name descname">structured_um_loading</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.structured_um_loading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load cubes from structured UM Fieldsfile and PP files.</p>
+<p>“Structured” loading is a streamlined, fast load operation, to be used
+<strong>only</strong> on fieldsfiles or PP files whose fields repeat regularly over
+the same vertical levels and times (see full details below).</p>
+<p>This method is a context manager which enables an alternative loading
+mechanism for ‘structured’ UM files, providing much faster load times.
+Within the scope of the context manager, this affects all standard Iris
+load functions (<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">load()</span></code></a>, <a class="reference internal" href="../../iris.html#iris.load_cube" title="iris.load_cube"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cube()</span></code></a>,
+<a class="reference internal" href="../../iris.html#iris.load_cubes" title="iris.load_cubes"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_cubes()</span></code></a> and <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-func docutils literal notranslate"><span class="pre">load_raw()</span></code></a>), when loading from UM
+format files (PP or fieldsfiles).</p>
+<p>For example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">filepath</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">sample_data_path</span><span class="p">(</span><span class="s1">&#39;uk_hires.pp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">iris.fileformats.um</span> <span class="kn">import</span> <span class="n">structured_um_loading</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">with</span> <span class="n">structured_um_loading</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">cube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">load_cube</span><span class="p">(</span><span class="n">filepath</span><span class="p">,</span> <span class="s1">&#39;air_potential_temperature&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span>
+<span class="go">&lt;iris &#39;Cube&#39; of air_potential_temperature / (K) (time: 3; model_level_number: 7; grid_latitude: 204; grid_longitude: 187)&gt;</span>
+</pre></div>
+</div>
+<p>The results from this are normally equivalent to those generated by
+<a class="reference internal" href="../../iris.html#iris.load" title="iris.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">iris.load()</span></code></a>, but the operation is substantially faster for input
+which is structured.</p>
+<p>For calls other than <a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_raw()</span></code></a>, the resulting cubes are
+concatenated over all the input files, so there is normally just one
+output cube per phenomenon.</p>
+<p>However, actual loaded results are somewhat different from non-structured
+loads in many cases, and in a variety of ways.  Most commonly, dimension
+ordering and the choice of dimension coordinates are often different.</p>
+<p>Use of load callbacks:</p>
+<blockquote>
+<div><p>When a user callback function is used with structured-loading, it is
+called in a somewhat different way than in a ‘normal’ load :
+The callback is called once for each basic <em>structured</em> cube loaded,
+which is normally the whole of one phenomenon from a single input file.
+In particular, the callback’s “field” argument is a
+<a class="reference internal" href="#iris.fileformats.um.FieldCollation" title="iris.fileformats.um.FieldCollation"><code class="xref py py-class docutils literal notranslate"><span class="pre">FieldCollation</span></code></a>, from which “field.fields”
+gives a <em>list</em> of PPFields from which that cube was built, and the
+properties “field.load_filepath” and “field.load_file_indices”
+reference the original file locations of the cube data.
+The code required is therefore different from a ‘normal’ callback.
+For an example of this, see <a class="reference external" href="https://github.com/SciTools/iris/blob/ddb46f78e54b6ef4110357dfe9cfcffa7d186d90/lib/iris/tests/integration/fast_load/test_fast_load.py#L409">this example in the Iris test code</a>.</p>
+</div></blockquote>
+<p>Notes on applicability:</p>
+<blockquote>
+<div><p>For results to be <strong>correct and reliable</strong>, the input files must
+conform to the following requirements :</p>
+<ul>
+<li><p>the file must contain fields for all possible combinations of the
+vertical levels and time points found in the file.</p></li>
+<li><p>the fields must occur in a regular repeating order within the file,
+within the fields of each phenomenon.</p>
+<p>For example: a sequence of fields for NV vertical levels, repeated
+for NP different forecast periods, repeated for NT different
+forecast times.</p>
+</li>
+<li><p>all other metadata must be identical across all fields of the same
+phenomenon.</p></li>
+</ul>
+<p>Each group of fields with the same values of LBUSER4, LBUSER7 and
+LBPROC is identified as a separate phenomenon:  These groups are
+processed independently and returned as separate result cubes.
+The need for a regular sequence of fields applies separately to the
+fields of each phenomenon, such that different phenomena may have
+different field structures, and can be interleaved in any way at all.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>At present, fields with different values of ‘LBUSER5’
+(pseudo-level) are <em>also</em> treated internally as different
+phenomena, yielding a raw cube per level.
+The effects of this are not normally noticed, as the resulting
+multiple raw cubes merge together again in a ‘normal’ load.
+However, it is not an ideal solution as operation is less
+efficient (in particular, slower) :  it is done to avoid a
+limitation in the underlying code which would otherwise load data
+on pseudo-levels incorrectly.  In future, this may be corrected.</p>
+</div>
+</div></blockquote>
+<p>Known current shortcomings:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>orography fields may be returned with extra dimensions, e.g. time,
+where multiple fields exist in an input file.</p></li>
+<li><p>if some input files contain a <em>single</em> coordinate value while others
+contain <em>multiple</em> values, these will not be merged into a single
+cube over all input files :  Instead, the single- and multiple-valued
+sets will typically produce two separate cubes with overlapping
+coordinates.</p>
+<ul>
+<li><p>this can be worked around by loading files individually, or with
+<a class="reference internal" href="../../iris.html#iris.load_raw" title="iris.load_raw"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load_raw()</span></code></a>, and merging/concatenating explicitly.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The resulting time-related coordinates (‘time’, ‘forecast_time’ and
+‘forecast_period’) may be mapped to shared cube dimensions and in some
+cases can also be multidimensional.  However, the vertical level
+information <em>must</em> have a simple one-dimensional structure, independent
+of the time points, otherwise an error will be raised.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Where input data does <em>not</em> have a fully regular arrangement, the
+corresponding result cube will have a single anonymous extra dimension
+which indexes over all the input fields.</p>
+<p>This can happen if, for example, some fields are missing; or have
+slightly different metadata; or appear out of order in the file.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Restrictions and limitations:</p>
+<p>Any non-regular metadata variation in the input should be strictly
+avoided, as not all irregularities are detected, which can cause
+erroneous results.</p>
+<p>Various field header words which can in some cases vary are assumed to
+have a constant value throughout a given phenomenon.  This is <strong>not</strong>
+checked, and can lead to erroneous results if it is not the case.
+Header elements of potential concern include LBTIM, LBCODE, LBVC and
+LBRSVD4 (ensemble number).</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><p>An object representing a group of UM fields with array structure that can
+be vectorized into a single cube.</p>
+<p>For example:</p>
+<p>Suppose we have a set of 28 fields repeating over 7 vertical levels for
+each of 4 different data times.  If a BasicFieldCollation is created to
+contain these, it can identify that this is a 4*7 regular array structure.</p>
+<p>This BasicFieldCollation will then have the following properties:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>within ‘element_arrays_and_dims’ :</dt><dd><p>Element ‘blev’ have the array shape (7,) and dims of (1,).
+Elements ‘t1’ and ‘t2’ have shape (4,) and dims (0,).
+The other elements (lbft, lbrsvd4 and lbuser5) all have scalar array
+values and dims=None.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If no array structure is found, the element values are all
+either scalar or full-length 1-D vectors.</p>
+</div>
+<blockquote>
+<div><dl class="class">
+<dt id="iris.fileformats.um.FieldCollation">
+<em class="property">class </em><code class="sig-prename descclassname">iris.fileformats.um.</code><code class="sig-name descname">FieldCollation</code><span class="sig-paren">(</span><em class="sig-param">fields</em>, <em class="sig-param">filepath</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.FieldCollation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.um._fast_load_structured_fields.BasicFieldCollation</span></code></p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>fields (iterable of <a class="reference internal" href="pp.html#iris.fileformats.pp.PPField" title="iris.fileformats.pp.PPField"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.fileformats.pp.PPField</span></code></a>):</dt><dd><p>The fields in the collation.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>filepath (string):</dt><dd><p>The path of the file the collation is loaded from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.core_data">
+<code class="sig-name descname">core_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#iris.fileformats.um.FieldCollation.core_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.bmdi">
+<em class="property">property </em><code class="sig-name descname">bmdi</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.bmdi" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.data">
+<em class="property">property </em><code class="sig-name descname">data</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.data_field_indices">
+<em class="property">property </em><code class="sig-name descname">data_field_indices</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.data_field_indices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Field indices of the contained PPFields in the input file.</p>
+<p>This records the original file location of the individual data fields
+contained, within the input datafile.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>An integer array of shape <cite>self.vector_dims_shape</cite>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.data_filepath">
+<em class="property">property </em><code class="sig-name descname">data_filepath</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.data_filepath" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.data_proxy">
+<em class="property">property </em><code class="sig-name descname">data_proxy</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.data_proxy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.element_arrays_and_dims">
+<em class="property">property </em><code class="sig-name descname">element_arrays_and_dims</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.element_arrays_and_dims" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value arrays for vector metadata elements.</p>
+<p>A dictionary mapping element_name: (value_array, dims).</p>
+<p>The arrays are reduced to their minimum dimensions.  A scalar array
+has an associated ‘dims’ of None (instead of an empty tuple).</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.fields">
+<em class="property">property </em><code class="sig-name descname">fields</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.fields" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.realised_dtype">
+<em class="property">property </em><code class="sig-name descname">realised_dtype</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.realised_dtype" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="iris.fileformats.um.FieldCollation.vector_dims_shape">
+<em class="property">property </em><code class="sig-name descname">vector_dims_shape</code><a class="headerlink" href="#iris.fileformats.um.FieldCollation.vector_dims_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>The shape of the array structure.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div></blockquote>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="um_cf_map.html" title="iris.fileformats.um_cf_map"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="rules.html" title="iris.fileformats.rules"
+             >previous</a> |</li>
+        <li><a href="../../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../../iris.html" >Iris reference documentation</a> &#187;</li>
+          <li class="nav-item nav-item-2"><a href="../fileformats.html" >iris.fileformats</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>

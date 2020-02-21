@@ -1,0 +1,1037 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>iris.util &#8212; Iris 2.2.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="What’s new in Iris" href="../../whatsnew/index.html" />
+    <link rel="prev" title="iris.time" href="time.html" />
+ 
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE"> 
+
+    <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <script type="text/javascript" src="https://docs.python.org/2/_static/copybutton.js"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="../../_static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../_static/favicon-16x16.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Alike|Noto+Sans" rel="stylesheet">
+
+  </head><body>
+
+<a href="https://github.com/SciTools/iris">
+    <img class="github-forkme" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"
+         alt="Fork Iris on GitHub" />
+</a>
+
+
+<div class="header-content">
+    <a href="../../index.html">
+        <img src="../../_static/Iris7_1_trim_100.png" alt="Iris logo" />
+    </a>
+    <div class="strapline">
+      <h1>
+          Iris <span class="version">v2.4</span>
+      </h1>
+      <p>
+         A powerful, format-agnostic, community-driven Python library for analysing and
+         visualising Earth science data.
+      </p>
+    </div>
+</div>
+
+
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../whatsnew/index.html" title="What’s new in Iris"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="time.html" title="iris.time"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../iris.html" accesskey="U">Iris reference documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="time.html"
+                        title="previous chapter">iris.time</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../../whatsnew/index.html"
+                        title="next chapter">What’s new in Iris</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/iris/iris/util.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="iris-util">
+<span id="id1"></span><h1>iris.util<a class="headerlink" href="#iris-util" title="Permalink to this headline">¶</a></h1>
+<span class="target" id="module-iris.util"></span><p>Miscellaneous utility functions.</p>
+<p>In this module:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="#iris.util.approx_equal" title="iris.util.approx_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">approx_equal</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.array_equal" title="iris.util.array_equal"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array_equal</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.as_compatible_shape" title="iris.util.as_compatible_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">as_compatible_shape</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.between" title="iris.util.between"><code class="xref py py-obj docutils literal notranslate"><span class="pre">between</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.broadcast_to_shape" title="iris.util.broadcast_to_shape"><code class="xref py py-obj docutils literal notranslate"><span class="pre">broadcast_to_shape</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.clip_string" title="iris.util.clip_string"><code class="xref py py-obj docutils literal notranslate"><span class="pre">clip_string</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.column_slices_generator" title="iris.util.column_slices_generator"><code class="xref py py-obj docutils literal notranslate"><span class="pre">column_slices_generator</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.create_temp_filename" title="iris.util.create_temp_filename"><code class="xref py py-obj docutils literal notranslate"><span class="pre">create_temp_filename</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.delta" title="iris.util.delta"><code class="xref py py-obj docutils literal notranslate"><span class="pre">delta</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.demote_dim_coord_to_aux_coord" title="iris.util.demote_dim_coord_to_aux_coord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">demote_dim_coord_to_aux_coord</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.describe_diff" title="iris.util.describe_diff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">describe_diff</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.file_is_newer_than" title="iris.util.file_is_newer_than"><code class="xref py py-obj docutils literal notranslate"><span class="pre">file_is_newer_than</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.find_discontiguities" title="iris.util.find_discontiguities"><code class="xref py py-obj docutils literal notranslate"><span class="pre">find_discontiguities</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.format_array" title="iris.util.format_array"><code class="xref py py-obj docutils literal notranslate"><span class="pre">format_array</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.guess_coord_axis" title="iris.util.guess_coord_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">guess_coord_axis</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.is_regular" title="iris.util.is_regular"><code class="xref py py-obj docutils literal notranslate"><span class="pre">is_regular</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.mask_cube" title="iris.util.mask_cube"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mask_cube</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.monotonic" title="iris.util.monotonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">monotonic</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.new_axis" title="iris.util.new_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">new_axis</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.points_step" title="iris.util.points_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">points_step</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.promote_aux_coord_to_dim_coord" title="iris.util.promote_aux_coord_to_dim_coord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">promote_aux_coord_to_dim_coord</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.regular_step" title="iris.util.regular_step"><code class="xref py py-obj docutils literal notranslate"><span class="pre">regular_step</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.reverse" title="iris.util.reverse"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reverse</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.rolling_window" title="iris.util.rolling_window"><code class="xref py py-obj docutils literal notranslate"><span class="pre">rolling_window</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.squeeze" title="iris.util.squeeze"><code class="xref py py-obj docutils literal notranslate"><span class="pre">squeeze</span></code></a></p></li>
+<li><p><a class="reference internal" href="#iris.util.unify_time_units" title="iris.util.unify_time_units"><code class="xref py py-obj docutils literal notranslate"><span class="pre">unify_time_units</span></code></a></p></li>
+</ul>
+</div></blockquote>
+<dl class="function">
+<dt id="iris.util.approx_equal">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">approx_equal</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em>, <em class="sig-param">max_absolute_error=1e-10</em>, <em class="sig-param">max_relative_error=1e-10</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.approx_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether two numbers are almost equal, allowing for the
+finite precision of floating point numbers.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.array_equal">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">array_equal</code><span class="sig-paren">(</span><em class="sig-param">array1</em>, <em class="sig-param">array2</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.array_equal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns whether two arrays have the same shape and elements.</p>
+<p>This provides the same functionality as <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.array_equal.html#numpy.array_equal" title="(in NumPy v1.17)"><code class="xref py py-func docutils literal notranslate"><span class="pre">numpy.array_equal()</span></code></a> but with
+additional support for arrays of strings.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.as_compatible_shape">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">as_compatible_shape</code><span class="sig-paren">(</span><em class="sig-param">src_cube</em>, <em class="sig-param">target_cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.as_compatible_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a cube with added length one dimensions to match the dimensionality
+and dimension ordering of <cite>target_cube</cite>.</p>
+<p>This function can be used to add the dimensions that have been collapsed,
+aggregated or sliced out, promoting scalar coordinates to length one
+dimension coordinates where necessary. It operates by matching coordinate
+metadata to infer the dimensions that need modifying, so the provided
+cubes must have coordinates with the same metadata
+(see <a class="reference internal" href="coords.html#iris.coords.CoordDefn" title="iris.coords.CoordDefn"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.CoordDefn</span></code></a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function will load and copy the data payload of <cite>src_cube</cite>.</p>
+</div>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>src_cube:</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> with missing dimensions.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>target_cube:</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> with the desired dimensionality.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> with the same dimensionality as
+<cite>target_cube</cite> but with the data and coordinates from <cite>src_cube</cite>
+suitably reshaped to fit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.between">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">between</code><span class="sig-paren">(</span><em class="sig-param">lh</em>, <em class="sig-param">rh</em>, <em class="sig-param">lh_inclusive=True</em>, <em class="sig-param">rh_inclusive=True</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.between" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides a convenient way of defining a 3 element inequality such as
+<code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">number</span> <span class="pre">&lt;</span> <span class="pre">b</span></code>.</p>
+<p>Arguments:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>lh</dt><dd><p>The left hand element of the inequality</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>rh</dt><dd><p>The right hand element of the inequality</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Keywords:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>lh_inclusive - boolean</dt><dd><p>Affects the left hand comparison operator to use in the inequality.
+True for <code class="docutils literal notranslate"><span class="pre">&lt;=</span></code> false for <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>. Defaults to True.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>rh_inclusive - boolean</dt><dd><p>Same as lh_inclusive but for right hand operator.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">between_3_and_6</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">between_3_and_6</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+
+
+<span class="n">between_3_and_6</span> <span class="o">=</span> <span class="n">between</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="n">rh_inclusive</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+   <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">between_3_and_6</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.broadcast_to_shape">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">broadcast_to_shape</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">shape</em>, <em class="sig-param">dim_map</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.broadcast_to_shape" title="Permalink to this definition">¶</a></dt>
+<dd><p>Broadcast an array to a given shape.</p>
+<p>Each dimension of the array must correspond to a dimension in the
+given shape. Striding is used to repeat the array until it matches
+the desired shape, returning repeated views on the original array.
+If you need to write to the resulting array, make a copy first.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>array (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>-like)</dt><dd><p>An array to broadcast.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>shape (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code> etc.):</dt><dd><p>The shape the array should be broadcast to.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dim_map (<code class="xref py py-class docutils literal notranslate"><span class="pre">list</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">tuple</span></code> etc.):</dt><dd><p>A mapping of the dimensions of <em>array</em> to their corresponding
+element in <em>shape</em>. <em>dim_map</em> must be the same length as the
+number of dimensions in <em>array</em>. Each element of <em>dim_map</em>
+corresponds to a dimension of <em>array</em> and its value provides
+the index in <em>shape</em> which the dimension of <em>array</em> corresponds
+to, so the first element of <em>dim_map</em> gives the index of <em>shape</em>
+that corresponds to the first dimension of <em>array</em> etc.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Examples:</p>
+<p>Broadcasting an array of shape (2, 3) to the shape (5, 2, 6, 3)
+where the first dimension of the array corresponds to the second
+element of the desired shape and the second dimension of the array
+corresponds to the fourth element of the desired shape:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]])</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">broadcast_to_shape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Broadcasting an array of shape (48, 96) to the shape (96, 48, 12):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># a is an array of shape (48, 96)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">broadcast_to_shape</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">(</span><span class="mi">96</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">12</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.clip_string">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">clip_string</code><span class="sig-paren">(</span><em class="sig-param">the_str</em>, <em class="sig-param">clip_length=70</em>, <em class="sig-param">rider='...'</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.clip_string" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a clipped version of the string based on the specified clip
+length and whether or not any graceful clip points can be found.</p>
+<p>If the string to be clipped is shorter than the specified clip
+length, the original string is returned.</p>
+<p>If the string is longer than the clip length, a graceful point (a
+space character) after the clip length is searched for. If a
+graceful point is found the string is clipped at this point and the
+rider is added. If no graceful point can be found, then the string
+is clipped exactly where the user requested and the rider is added.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>the_str</dt><dd><p>The string to be clipped</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>clip_length</dt><dd><p>The length in characters that the input string should be clipped
+to. Defaults to a preconfigured value if not specified.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>rider</dt><dd><p>A series of characters appended at the end of the returned
+string to show it has been clipped. Defaults to a preconfigured
+value if not specified.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>The string clipped to the required length with a rider appended.
+If the clip length was greater than the orignal string, the
+original string is returned unaltered.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.column_slices_generator">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">column_slices_generator</code><span class="sig-paren">(</span><em class="sig-param">full_slice</em>, <em class="sig-param">ndims</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.column_slices_generator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a full slice full of tuples, return a dictionary mapping old
+data dimensions to new and a generator which gives the successive
+slices needed to index correctly (across columns).</p>
+<p>This routine deals with the special functionality for tuple based
+indexing e.g. [0, (3, 5), :, (1, 6, 8)] by first providing a slice
+which takes the non tuple slices out first i.e. [0, :, :, :] then
+subsequently iterates through each of the tuples taking out the
+appropriate slices i.e. [(3, 5), :, :] followed by [:, :, (1, 6, 8)]</p>
+<p>This method was developed as numpy does not support the direct
+approach of [(3, 5), : , (1, 6, 8)] for column based indexing.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.create_temp_filename">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">create_temp_filename</code><span class="sig-paren">(</span><em class="sig-param">suffix=''</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.create_temp_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a temporary file name.</p>
+<p>Args:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>suffix  -  Optional filename extension.</p></li>
+</ul>
+</div></blockquote>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.delta">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">delta</code><span class="sig-paren">(</span><em class="sig-param">ndarray</em>, <em class="sig-param">dimension</em>, <em class="sig-param">circular=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.delta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the difference between values along a given dimension.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="simple">
+<dt>ndarray:</dt><dd><p>The array over which to do the difference.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>dimension:</dt><dd><p>The dimension over which to do the difference on ndarray.</p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>circular:</dt><dd><p>If not False then return n results in the requested dimension
+with the delta between the last and first element included in
+the result otherwise the result will be of length n-1 (where n
+is the length of ndarray in the given dimension’s direction)</p>
+<p>If circular is numeric then the value of circular will be added
+to the last element of the given dimension if the last element
+is negative, otherwise the value of circular will be subtracted
+from the last element.</p>
+<p>The example below illustrates the process:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">original</span> <span class="n">array</span>              <span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span>  <span class="mi">0</span><span class="p">,</span>    <span class="mi">90</span>
+<span class="n">delta</span> <span class="p">(</span><span class="k">with</span> <span class="n">circular</span><span class="o">=</span><span class="mi">360</span><span class="p">):</span>    <span class="mi">90</span><span class="p">,</span>  <span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="o">-</span><span class="mi">270</span><span class="o">+</span><span class="mi">360</span>
+</pre></div>
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The difference algorithm implemented is forward difference:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">iris.util</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">original</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">array([90, 90, 90])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">delta</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">circular</span><span class="o">=</span><span class="mi">360</span><span class="p">)</span>
+<span class="go">array([90, 90, 90, 90])</span>
+</pre></div>
+</div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.demote_dim_coord_to_aux_coord">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">demote_dim_coord_to_aux_coord</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">name_or_coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.demote_dim_coord_to_aux_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Demotes a dimension coordinate  on the cube to an auxiliary coordinate.</p>
+<p>The DimCoord is demoted to an auxiliary coordinate on the cube.
+The dimension of the cube that was associated with the DimCoord becomes
+anonymous.  The class of the coordinate is left as DimCoord, it is not
+recast as an AuxCoord instance.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="simple">
+<dt>cube</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a></p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>name_or_coord:</dt><dd><p>Either</p>
+<ol class="loweralpha simple">
+<li><p>An instance of <a class="reference internal" href="coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.DimCoord</span></code></a></p></li>
+</ol>
+<p>or</p>
+<p>(b) the <code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code>, or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">var_name</span></code> of an instance of an instance of
+<a class="reference internal" href="coords.html#iris.coords.DimCoord" title="iris.coords.DimCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.DimCoord</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">cube</span>
+<span class="go">air_temperature / (K)       (time: 12; latitude: 73; longitude: 96)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                    x      -              -</span>
+<span class="go">          latitude                -      x              -</span>
+<span class="go">          longitude               -      -              x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          year                    x      -              -</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">demote_dim_coord_to_aux_coord</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">cube</span>
+<span class="go">air_temperature / (K)        (-- : 12; latitude: 73; longitude: 96)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          latitude                -      x              -</span>
+<span class="go">          longitude               -      -              x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          time                    x      -              -</span>
+<span class="go">          year                    x      -              -</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.describe_diff">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">describe_diff</code><span class="sig-paren">(</span><em class="sig-param">cube_a</em>, <em class="sig-param">cube_b</em>, <em class="sig-param">output_file=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.describe_diff" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints the differences that prevent compatibility between two cubes, as
+defined by <a class="reference internal" href="cube.html#iris.cube.Cube.is_compatible" title="iris.cube.Cube.is_compatible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.is_compatible()</span></code></a>.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube_a:</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> or
+<a class="reference internal" href="cube.html#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.CubeMetadata</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>cube_b:</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> or
+<a class="reference internal" href="cube.html#iris.cube.CubeMetadata" title="iris.cube.CubeMetadata"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.CubeMetadata</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>output_file:</dt><dd><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">file</span></code> or file-like object to receive output. Defaults to
+sys.stdout.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="cube.html#iris.cube.Cube.is_compatible" title="iris.cube.Cube.is_compatible"><code class="xref py py-meth docutils literal notranslate"><span class="pre">iris.cube.Cube.is_compatible()</span></code></a></p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Compatibility does not guarantee that two cubes can be merged.
+Instead, this function is designed to provide a verbose description
+of the differences in metadata between two cubes. Determining whether
+two cubes will merge requires additional logic that is beyond the
+scope of this function.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.file_is_newer_than">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">file_is_newer_than</code><span class="sig-paren">(</span><em class="sig-param">result_path</em>, <em class="sig-param">source_paths</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.file_is_newer_than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the ‘result’ file has a later modification time than all of
+the ‘source’ files.</p>
+<p>If a stored result depends entirely on known ‘sources’, it need only be
+re-built when one of them changes.  This function can be used to test that
+by comparing file timestamps.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>result_path (string):</dt><dd><p>The filepath of a file containing some derived result data.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>source_paths (string or iterable of strings):</dt><dd><p>The path(s) to the original datafiles used to make the result.  May
+include wildcards and ‘~’ expansions (like Iris load paths), but not
+URIs.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl>
+<dt>Returns:</dt><dd><p>True if all the sources are older than the result, else False.</p>
+<p>If any of the file paths describes no existing files, an exception will
+be raised.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are obvious caveats to using file timestamps for this, as correct
+usage depends on how the sources might change.  For example, a file
+could be replaced by one of the same name, but an older timestamp.</p>
+<p>If wildcards and ‘~’ expansions are used, this introduces even more
+uncertainty, as then you cannot even be sure that the resulting list of
+file names is the same as the originals.  For example, some files may
+have been deleted or others added.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The result file may often be a <a class="reference external" href="https://docs.python.org/2.7/library/pickle.html#module-pickle" title="(in Python v2.7)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pickle</span></code></a> file.  In that case, it
+also depends on the relevant module sources, so extra caution is
+required.  Ideally, an additional check on iris.__version__ is advised.</p>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.find_discontiguities">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">find_discontiguities</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">rel_tol=1e-05</em>, <em class="sig-param">abs_tol=1e-08</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.find_discontiguities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Searches coord for discontiguities in the bounds array, returned as a
+boolean array (True where discontiguities are present).</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube (<cite>iris.cube.Cube</cite>):</dt><dd><p>The cube to be checked for discontinuities in its ‘x’ and ‘y’
+coordinates.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>rel_tol (float):</dt><dd><p>The relative equality tolerance to apply in coordinate bounds
+checking.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>abs_tol (float):</dt><dd><p>The absolute value tolerance to apply in coordinate bounds
+checking.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><dl>
+<dt>result (<cite>numpy.ndarray</cite> of bool) :</dt><dd><p>true/false map of which cells in the cube XY grid have
+discontiguities in the coordinate points array.</p>
+<p>This can be used as the input array for
+<code class="xref py py-func docutils literal notranslate"><span class="pre">iris.util.mask_discontiguities()</span></code>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find any unknown discontiguities in your cube&#39;s x and y arrays:</span>
+<span class="n">discontiguities</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">find_discontiguities</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+
+<span class="c1"># Pass the resultant boolean array to `iris.util.mask_discontiguities`</span>
+<span class="c1"># with a cube slice; this will use the boolean array to mask</span>
+<span class="c1"># any discontiguous data points before plotting:</span>
+<span class="n">masked_cube_slice</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">mask_discontiguities</span><span class="p">(</span><span class="n">cube</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                                                   <span class="n">discontiguities</span><span class="p">)</span>
+
+<span class="c1"># Plot the masked cube slice:</span>
+<span class="n">iplt</span><span class="o">.</span><span class="n">pcolormesh</span><span class="p">(</span><span class="n">masked_cube_slice</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.format_array">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">format_array</code><span class="sig-paren">(</span><em class="sig-param">arr</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.format_array" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the given array as a string, using the python builtin str
+function on a piecewise basis.</p>
+<p>Useful for xml representation of arrays.</p>
+<p>For customisations, use the <code class="xref py py-mod docutils literal notranslate"><span class="pre">numpy.core.arrayprint</span></code> directly.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.guess_coord_axis">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">guess_coord_axis</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.guess_coord_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a “best guess” axis name of the coordinate.</p>
+<p>Heuristic categorisation of the coordinate into either label
+‘T’, ‘Z’, ‘Y’, ‘X’ or None.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>coord:</dt><dd><p>The <a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>‘T’, ‘Z’, ‘Y’, ‘X’, or None.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.is_regular">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">is_regular</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.is_regular" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine if the given coord is regular.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.mask_cube">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">mask_cube</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">points_to_mask</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.mask_cube" title="Permalink to this definition">¶</a></dt>
+<dd><p>Masks any cells in the data array which correspond to cells marked <cite>True</cite>
+in the <cite>points_to_mask</cite> array.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube (<cite>iris.cube.Cube</cite>):</dt><dd><p>A 2-dimensional instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>points_to_mask (<cite>numpy.ndarray</cite> of bool):</dt><dd><p>A 2d boolean array of Truth values representing points to mask in the
+x and y arrays of the cube.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>result (<cite>iris.cube.Cube</cite>):</dt><dd><p>A cube whose data array is masked at points specified by input array.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.monotonic">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">monotonic</code><span class="sig-paren">(</span><em class="sig-param">array</em>, <em class="sig-param">strict=False</em>, <em class="sig-param">return_direction=False</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.monotonic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return whether the given 1d array is monotonic.</p>
+<p>Note that, the array must not contain missing data.</p>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>strict (boolean)</dt><dd><p>Flag to enable strict monotonic checking</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>return_direction (boolean)</dt><dd><p>Flag to change return behaviour to return
+(monotonic_status, direction). Direction will be 1 for positive
+or -1 for negative. The direction is meaningless if the array is
+not monotonic.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<ul>
+<li><dl>
+<dt>monotonic_status (boolean)</dt><dd><p>Whether the array was monotonic.</p>
+<p>If the return_direction flag was given then the returned value
+will be:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">(monotonic_status,</span> <span class="pre">direction)</span></code></p>
+</div></blockquote>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.new_axis">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">new_axis</code><span class="sig-paren">(</span><em class="sig-param">src_cube</em>, <em class="sig-param">scalar_coord=None</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.new_axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a new axis as the leading dimension of the cube, promoting a scalar
+coordinate if specified.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>src_cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>)</dt><dd><p>Source cube on which to generate a new axis.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>scalar_coord (<code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coord.Coord</span></code> or ‘string’)</dt><dd><p>Scalar coordinate to promote to a dimension coordinate.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A new <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instance with one extra leading dimension
+(length 1).</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(360, 360)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">new_axis</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;time&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncube</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1, 360, 360)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.points_step">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">points_step</code><span class="sig-paren">(</span><em class="sig-param">points</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.points_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Determine whether a NumPy array has a regular step.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.promote_aux_coord_to_dim_coord">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">promote_aux_coord_to_dim_coord</code><span class="sig-paren">(</span><em class="sig-param">cube</em>, <em class="sig-param">name_or_coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.promote_aux_coord_to_dim_coord" title="Permalink to this definition">¶</a></dt>
+<dd><p>Promotes an AuxCoord on the cube to a DimCoord. This AuxCoord must be
+associated with a single cube dimension. If the AuxCoord is associated
+with a dimension that already has a DimCoord, that DimCoord gets
+demoted to an AuxCoord.</p>
+<p>Args:</p>
+<ul>
+<li><dl class="simple">
+<dt>cube</dt><dd><p>An instance of <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a></p>
+</dd>
+</dl>
+</li>
+<li><dl>
+<dt>name_or_coord:</dt><dd><p>Either</p>
+<ol class="loweralpha simple">
+<li><p>An instance of <a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.AuxCoord</span></code></a></p></li>
+</ol>
+<p>or</p>
+<p>(b) the <code class="xref py py-attr docutils literal notranslate"><span class="pre">standard_name</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">long_name</span></code>, or
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">var_name</span></code> of an instance of an instance of
+<a class="reference internal" href="coords.html#iris.coords.AuxCoord" title="iris.coords.AuxCoord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.AuxCoord</span></code></a>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">cube</span>
+<span class="go">air_temperature / (K)       (time: 12; latitude: 73; longitude: 96)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          time                    x      -              -</span>
+<span class="go">          latitude                -      x              -</span>
+<span class="go">          longitude               -      -              x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          year                    x      -              -</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">promote_aux_coord_to_dim_coord</span><span class="p">(</span><span class="n">cube</span><span class="p">,</span> <span class="s1">&#39;year&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span> <span class="n">cube</span>
+<span class="go">air_temperature / (K)       (year: 12; latitude: 73; longitude: 96)</span>
+<span class="go">     Dimension coordinates:</span>
+<span class="go">          year                    x      -              -</span>
+<span class="go">          latitude                -      x              -</span>
+<span class="go">          longitude               -      -              x</span>
+<span class="go">     Auxiliary coordinates:</span>
+<span class="go">          time                    x      -              -</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.regular_step">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">regular_step</code><span class="sig-paren">(</span><em class="sig-param">coord</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.regular_step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the regular step from a coord or fail.</p>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.reverse">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">reverse</code><span class="sig-paren">(</span><em class="sig-param">cube_or_array</em>, <em class="sig-param">coords_or_dims</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.reverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reverse the cube or array along the given dimensions.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube_or_array: <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> or <a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a></dt><dd><p>The cube or array to reverse.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>coords_or_dims: int, str, <a class="reference internal" href="coords.html#iris.coords.Coord" title="iris.coords.Coord"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.coords.Coord</span></code></a> or sequence of these</dt><dd><p>Identify one or more dimensions to reverse.  If cube_or_array is a
+numpy array, use int or a sequence of ints, as in the examples below.
+If cube_or_array is a Cube, a Coord or coordinate name (or sequence of
+these) may be specified instead.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="go">[[[ 0  1  2  3]</span>
+<span class="go">  [ 4  5  6  7]</span>
+<span class="go">  [ 8  9 10 11]]</span>
+
+<span class="go"> [[12 13 14 15]</span>
+<span class="go">  [16 17 18 19]</span>
+<span class="go">  [20 21 22 23]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="go">[[[ 8  9 10 11]</span>
+<span class="go">  [ 4  5  6  7]</span>
+<span class="go">  [ 0  1  2  3]]</span>
+
+<span class="go"> [[20 21 22 23]</span>
+<span class="go">  [16 17 18 19]</span>
+<span class="go">  [12 13 14 15]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">reverse</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]))</span>
+<span class="go">[[[11 10  9  8]</span>
+<span class="go">  [ 7  6  5  4]</span>
+<span class="go">  [ 3  2  1  0]]</span>
+
+<span class="go"> [[23 22 21 20]</span>
+<span class="go">  [19 18 17 16]</span>
+<span class="go">  [15 14 13 12]]]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.rolling_window">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">rolling_window</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">window=1</em>, <em class="sig-param">step=1</em>, <em class="sig-param">axis=-1</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.rolling_window" title="Permalink to this definition">¶</a></dt>
+<dd><p>Make an ndarray with a rolling window of the last dimension</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>a<span class="classifier">array_like</span></dt><dd><p>Array to add rolling window to</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Kwargs:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>window<span class="classifier">int</span></dt><dd><p>Size of rolling window</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>step<span class="classifier">int</span></dt><dd><p>Size of step between rolling windows</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>axis<span class="classifier">int</span></dt><dd><p>Axis to take the rolling window over</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>Returns:</p>
+<blockquote>
+<div><p>Array that is a view of the original array with an added dimension
+of the size of the given window at axis + 1.</p>
+</div></blockquote>
+<p>Examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rolling_window</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="go">array([[[0, 1, 2], [1, 2, 3], [2, 3, 4]],</span>
+<span class="go">       [[5, 6, 7], [6, 7, 8], [7, 8, 9]]])</span>
+</pre></div>
+</div>
+<p>Calculate rolling mean of last dimension:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">rolling_window</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">array([[ 1.,  2.,  3.],</span>
+<span class="go">       [ 6.,  7.,  8.]])</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.squeeze">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">squeeze</code><span class="sig-paren">(</span><em class="sig-param">cube</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.squeeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>Removes any dimension of length one. If it has an associated DimCoord or
+AuxCoord, this becomes a scalar coord.</p>
+<p>Args:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cube (<a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a>)</dt><dd><p>Source cube to remove length 1 dimension(s) from.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>A new <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instance without any dimensions of
+length 1.</p>
+</dd>
+</dl>
+<p>For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">cube</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(1, 360, 360)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncube</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">util</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="n">cube</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ncube</span><span class="o">.</span><span class="n">shape</span>
+<span class="go">(360, 360)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="hr_p"><a href="#">&uarr;&#32&#32 top &#32&#32&uarr;</a></p>
+<!--<hr class="docutils" />
+--><dl class="function">
+<dt id="iris.util.unify_time_units">
+<code class="sig-prename descclassname">iris.util.</code><code class="sig-name descname">unify_time_units</code><span class="sig-paren">(</span><em class="sig-param">cubes</em><span class="sig-paren">)</span><a class="headerlink" href="#iris.util.unify_time_units" title="Permalink to this definition">¶</a></dt>
+<dd><p>Performs an in-place conversion of the time units of all time coords in the
+cubes in a given iterable. One common epoch is defined for each calendar
+found in the cubes to prevent units being defined with inconsistencies
+between epoch and calendar.</p>
+<p>Each epoch is defined from the first suitable time coordinate found in the
+input cubes.</p>
+<p>Arg:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>cubes:</dt><dd><p>An iterable containing <a class="reference internal" href="cube.html#iris.cube.Cube" title="iris.cube.Cube"><code class="xref py py-class docutils literal notranslate"><span class="pre">iris.cube.Cube</span></code></a> instances.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../../whatsnew/index.html" title="What’s new in Iris"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="time.html" title="iris.time"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../examples/index.html">examples</a>|&nbsp;</li>
+        <li><a href="../../gallery.html">gallery</a>|&nbsp;</li>
+        <li><a href="../../contents.html">contents</a>|&nbsp;</li>
+
+          <li class="nav-item nav-item-1"><a href="../iris.html" >Iris reference documentation</a> &#187;</li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="http://reference.data.gov.uk/id/open-government-licence" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2010 - 2020, Met Office
+    </div>
+
+    <!-- Include a version switcher to easily move between the documentation of different versions -->
+    <script type=text/javascript src="/iris/docs/version_switch.js" async></script>
+
+  </body>
+</html>
