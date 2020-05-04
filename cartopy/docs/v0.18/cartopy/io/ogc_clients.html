@@ -1,0 +1,344 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>RasterSources and accessing WMS and WMTS &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="LinearRing/LineString projection" href="../trace.html" />
+    <link rel="prev" title="Image tile identification and fetching" href="img_tiles.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="../trace.html" title="LinearRing/LineString projection"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="img_tiles.html" title="Image tile identification and fetching"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="img_tiles.html"
+                        title="previous chapter">Image tile identification and fetching</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../trace.html"
+                        title="next chapter">LinearRing/LineString projection</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cartopy/io/ogc_clients.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartopy.io.ogc_clients">
+<span id="rastersources-and-accessing-wms-and-wmts"></span><h1>RasterSources and accessing WMS and WMTS<a class="headerlink" href="#module-cartopy.io.ogc_clients" title="Permalink to this headline">¶</a></h1>
+<p>Implements RasterSource classes which can retrieve imagery from web services
+such as WMS and WMTS.</p>
+<p>The matplotlib interface can make use of RasterSources via the
+<a class="reference internal" href="../../matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_raster" title="cartopy.mpl.geoaxes.GeoAxes.add_raster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.add_raster()</span></code></a> method,
+with additional specific methods which make use of this for WMS and WMTS
+(<a class="reference internal" href="../../matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wms" title="cartopy.mpl.geoaxes.GeoAxes.add_wms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_wms()</span></code></a> and
+<a class="reference internal" href="../../matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wmts" title="cartopy.mpl.geoaxes.GeoAxes.add_wmts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_wmts()</span></code></a>). An example of using WMTS in
+this way can be found at <a class="reference internal" href="../../gallery/wmts.html#sphx-glr-gallery-wmts-py"><span class="std std-ref">Interactive WMTS (Web Map Tile Service)</span></a>.</p>
+<dl class="class">
+<dt id="cartopy.io.ogc_clients.WFSGeometrySource">
+<em class="property">class </em><code class="descclassname">cartopy.io.ogc_clients.</code><code class="descname">WFSGeometrySource</code><span class="sig-paren">(</span><em>service</em>, <em>features</em>, <em>getfeature_extra_kwargs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WFSGeometrySource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WFSGeometrySource" title="Permalink to this definition">¶</a></dt>
+<dd><p>Web Feature Service (WFS) retrieval for Cartopy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>service</strong> – The URL of a WFS, or an instance of
+<code class="xref py py-class docutils literal notranslate"><span class="pre">owslib.wfs.WebFeatureService</span></code>.</p></li>
+<li><p><strong>features</strong> – The typename(s) of the features from the WFS that
+will be retrieved and made available as geometries.</p></li>
+<li><p><strong>getfeature_extra_kwargs</strong> (<em>optional</em>) – Extra keyword args to pass to the service’s <code class="xref py py-obj docutils literal notranslate"><span class="pre">getfeature</span></code> call.
+Defaults to None</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WFSGeometrySource.default_projection">
+<code class="descname">default_projection</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WFSGeometrySource.default_projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WFSGeometrySource.default_projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a <a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> in which the WFS
+service can supply the requested features.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WFSGeometrySource.fetch_geometries">
+<code class="descname">fetch_geometries</code><span class="sig-paren">(</span><em>projection</em>, <em>extent</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WFSGeometrySource.fetch_geometries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WFSGeometrySource.fetch_geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return any Point, Linestring or LinearRing geometries available
+from the WFS that lie within the specified extent.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>projection</strong> (<a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a>) – The projection in which the extent is specified and in
+which the geometries should be returned. Only the default
+(native) projection is supported.</p></li>
+<li><p><strong>extent</strong> (<em>four element tuple</em>) – (min_x, max_x, min_y, max_y) tuple defining the geographic extent
+of the geometries to obtain.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>geoms</em> – A list of Shapely geometries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource">
+<em class="property">class </em><code class="descclassname">cartopy.io.ogc_clients.</code><code class="descname">WMSRasterSource</code><span class="sig-paren">(</span><em>service</em>, <em>layers</em>, <em>getmap_extra_kwargs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMSRasterSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>A WMS imagery retriever which can be added to a map.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requires owslib and Pillow to work.</p>
+</div>
+<p>No caching of retrieved maps is done with this WMSRasterSource.</p>
+<p>To reduce load on the WMS server it is encouraged to tile
+map requests and subsequently stitch them together to recreate
+a single raster, thus allowing for a more aggressive caching scheme,
+but this WMSRasterSource does not currently implement WMS tile
+fetching.</p>
+<p>Whilst not the same service, there is also a WMTSRasterSource which
+makes use of tiles and comes with built-in caching for fast repeated
+map retrievals.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>service</strong> (<em>string</em><em> or </em><em>WebMapService instance</em>) – The WebMapService instance, or URL of a WMS service,
+from whence to retrieve the image.</p></li>
+<li><p><strong>layers</strong> (<em>string</em><em> or </em><em>list of strings</em>) – The name(s) of layers to use from the WMS service.</p></li>
+<li><p><strong>getmap_extra_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – Extra keywords to pass through to the service’s getmap method.
+If None, a dictionary with <code class="docutils literal notranslate"><span class="pre">{'transparent':</span> <span class="pre">True}</span></code> will be
+defined.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource.fetch_raster">
+<code class="descname">fetch_raster</code><span class="sig-paren">(</span><em>projection</em>, <em>extent</em>, <em>target_resolution</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMSRasterSource.fetch_raster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource.fetch_raster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of images with extents given some constraining
+information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>projection</strong> (<a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a>) – The desired projection of the image.</p></li>
+<li><p><strong>extent</strong> (<em>iterable of length 4</em>) – The extent of the requested image in projected coordinates.
+The resulting image may not be defined exactly by these extents,
+and so the extent of the resulting image is also returned. The
+extents must be defined in the form
+<code class="docutils literal notranslate"><span class="pre">(min_x,</span> <span class="pre">max_x,</span> <span class="pre">min_y,</span> <span class="pre">max_y)</span></code>.</p></li>
+<li><p><strong>target_resolution</strong> (<em>iterable of length 2</em>) – The desired resolution of the image as <code class="docutils literal notranslate"><span class="pre">(width,</span> <span class="pre">height)</span></code> in
+pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>images</em> – A sequence of <code class="xref py py-class docutils literal notranslate"><span class="pre">LocatedImage</span></code> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource.getmap_extra_kwargs">
+<code class="descname">getmap_extra_kwargs</code><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource.getmap_extra_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extra kwargs passed through to the service’s getmap request.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource.layers">
+<code class="descname">layers</code><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource.layers" title="Permalink to this definition">¶</a></dt>
+<dd><p>The names of the layers to fetch.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource.service">
+<code class="descname">service</code><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource.service" title="Permalink to this definition">¶</a></dt>
+<dd><p>The OWSLib WebMapService instance.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WMSRasterSource.validate_projection">
+<code class="descname">validate_projection</code><span class="sig-paren">(</span><em>projection</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMSRasterSource.validate_projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMSRasterSource.validate_projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error if this raster source cannot provide images in the
+specified projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>projection</strong> (<a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a>) – The desired projection of the image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.io.ogc_clients.WMTSRasterSource">
+<em class="property">class </em><code class="descclassname">cartopy.io.ogc_clients.</code><code class="descname">WMTSRasterSource</code><span class="sig-paren">(</span><em>wmts</em>, <em>layer_name</em>, <em>gettile_extra_kwargs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMTSRasterSource"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMTSRasterSource" title="Permalink to this definition">¶</a></dt>
+<dd><p>A WMTS imagery retriever which can be added to a map.</p>
+<p>Uses tile caching for fast repeated map retrievals.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Requires owslib and Pillow to work.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wmts</strong> – The URL of the WMTS, or an owslib.wmts.WebMapTileService instance.</p></li>
+<li><p><strong>layer_name</strong> – The name of the layer to use.</p></li>
+<li><p><strong>gettile_extra_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.8)"><em>dict</em></a><em>, </em><em>optional</em>) – Extra keywords (e.g. time) to pass through to the
+service’s gettile method.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WMTSRasterSource.fetch_raster">
+<code class="descname">fetch_raster</code><span class="sig-paren">(</span><em>projection</em>, <em>extent</em>, <em>target_resolution</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMTSRasterSource.fetch_raster"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMTSRasterSource.fetch_raster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a sequence of images with extents given some constraining
+information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>projection</strong> (<a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a>) – The desired projection of the image.</p></li>
+<li><p><strong>extent</strong> (<em>iterable of length 4</em>) – The extent of the requested image in projected coordinates.
+The resulting image may not be defined exactly by these extents,
+and so the extent of the resulting image is also returned. The
+extents must be defined in the form
+<code class="docutils literal notranslate"><span class="pre">(min_x,</span> <span class="pre">max_x,</span> <span class="pre">min_y,</span> <span class="pre">max_y)</span></code>.</p></li>
+<li><p><strong>target_resolution</strong> (<em>iterable of length 2</em>) – The desired resolution of the image as <code class="docutils literal notranslate"><span class="pre">(width,</span> <span class="pre">height)</span></code> in
+pixels.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>images</em> – A sequence of <code class="xref py py-class docutils literal notranslate"><span class="pre">LocatedImage</span></code> instances.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.ogc_clients.WMTSRasterSource.layer">
+<code class="descname">layer</code><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.ogc_clients.WMTSRasterSource.layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>The layer to fetch.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.io.ogc_clients.WMTSRasterSource.validate_projection">
+<code class="descname">validate_projection</code><span class="sig-paren">(</span><em>projection</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/ogc_clients.html#WMTSRasterSource.validate_projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.io.ogc_clients.WMTSRasterSource.validate_projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raise an error if this raster source cannot provide images in the
+specified projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>projection</strong> (<a class="reference internal" href="../../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a>) – The desired projection of the image.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.io.ogc_clients.WMTSRasterSource.wmts">
+<code class="descname">wmts</code><em class="property"> = None</em><a class="headerlink" href="#cartopy.io.ogc_clients.WMTSRasterSource.wmts" title="Permalink to this definition">¶</a></dt>
+<dd><p>The OWSLib WebMapTileService instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="../trace.html" title="LinearRing/LineString projection"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="img_tiles.html" title="Image tile identification and fetching"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

@@ -1,1 +1,0 @@
-../../shared_assets/3ee922d540ff65f347eb4c7024424864e2f430f04a8b7e9cc367e99f-favicon.py

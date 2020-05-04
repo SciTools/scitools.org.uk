@@ -1,1 +1,0 @@
-../../shared_assets/a3d92652b1bdd676057b828cb844b062caf3d063c24b765db6483b0a-logo.py

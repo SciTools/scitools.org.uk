@@ -1,0 +1,197 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="What’s New in cartopy 0.18" href="whats_new.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="whats_new.html" title="What’s New in cartopy 0.18"
+             accesskey="N">next</a> |</li>
+        <li><a href="#">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="#">
+<img src="_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a></li>
+<li><a class="reference internal" href="#getting-started">Getting started</a><ul>
+</ul>
+</li>
+<li><a class="reference internal" href="#getting-involved">Getting involved</a></li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="whats_new.html"
+                        title="next chapter">What’s New in cartopy 0.18</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="toctree-wrapper compound">
+</div>
+<div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>Cartopy is a Python package designed for geospatial data processing in order to produce maps and other geospatial data analyses.</p>
+<p>Cartopy makes use of the powerful PROJ.4, NumPy and Shapely libraries and includes a programmatic interface
+built on top of Matplotlib for the creation of publication quality maps.</p>
+<p>Key features of cartopy are its object oriented <a class="reference internal" href="crs/projections.html#cartopy-projections"><span class="std std-ref">projection definitions</span></a>, and its
+ability to transform points, lines, vectors, polygons and images between those projections.</p>
+<p>You will find cartopy especially useful for large area / small scale data, where Cartesian
+assumptions of spherical data traditionally break down. If you’ve ever experienced a singularity
+at the pole or a cut-off at the dateline, it is likely you will appreciate cartopy’s unique features!</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The 0.18 release is the final release that will support Python 2.7.</p>
+</div>
+</div>
+<div class="section" id="getting-started">
+<span id="getting-started-with-cartopy"></span><h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="installing.html#installing"><span class="std std-ref">installation guide</span></a> provides information on getting up and running.
+Cartopy’s documentation is arranged in userguide form, with reference documentation available inline.</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="crs/index.html">Coordinate reference systems in Cartopy</a></li>
+<li class="toctree-l1"><a class="reference internal" href="crs/projections.html">Cartopy projection list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib/intro.html">Using cartopy with matplotlib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="matplotlib/feature_interface.html">The cartopy Feature interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/understanding_transform.html">Understanding the <code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">projection</span></code> keywords</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorials/using_the_shapereader.html">Using the cartopy shapereader</a></li>
+<li class="toctree-l1"><a class="reference internal" href="developer_interfaces.html">Cartopy developer interfaces</a></li>
+</ul>
+</div>
+<p>The <a class="reference internal" href="cartopy_outline.html"><span class="doc">outline</span></a> link found above the cartopy logo on all pages can be used to
+quickly find the reference documentation for known classes or functions.</p>
+<p>For those updating from an older version of cartopy, the <a class="reference internal" href="whats_new.html"><span class="doc">what’s new</span></a> page
+outlines recent changes, new features, and future development plans.</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+<div class="section" id="getting-involved">
+<h1>Getting involved<a class="headerlink" href="#getting-involved" title="Permalink to this headline">¶</a></h1>
+<p>Cartopy was originally developed at the UK Met Office to allow scientists to visualise
+their data on maps quickly, easily and most importantly, accurately.
+Cartopy has been made freely available under the terms of the
+<a class="reference external" href="https://www.gnu.org/licenses/lgpl.html">GNU Lesser General Public License</a>.
+It is suitable to be used in a variety
+of scientific fields and has an <a class="reference internal" href="contributors.html"><span class="doc">active development community</span></a>.</p>
+<p>There are many ways to get involved in the development of cartopy:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If you write a paper which makes use of cartopy, please consider <a class="reference internal" href="citation.html"><span class="doc">citing</span></a> it.</p></li>
+<li><p>If you publish the maps and plots, please consider the required <a class="reference internal" href="citation.html#referencing-copyright"><span class="std std-ref">attribution of copyright</span></a> for the data.</p></li>
+<li><p>Report bugs and problems with the code or documentation to <a class="reference external" href="https://github.com/SciTools/cartopy/issues">https://github.com/SciTools/cartopy/issues</a> (please look to see if there are any outstanding
+bugs which cover the issue before making a new one).</p></li>
+<li><p>Help others with cartopy questions on <a class="reference external" href="https://stackoverflow.com/questions/tagged/cartopy">StackOverflow</a>.</p></li>
+<li><p>Contribute to the documentation fixing typos, adding examples, explaining things more clearly, or even
+re-designing its layout/logos etc. The <a class="reference external" href="https://github.com/SciTools/cartopy">documentation source</a> is kept in the same repository as the source code.</p></li>
+<li><p>Contribute bug fixes (<a class="reference external" href="https://github.com/SciTools/cartopy/labels/Type%3A%20bug">a list of outstanding bugs can be found on GitHub</a>).</p></li>
+<li><p>Contribute enhancements and new features on the issue tracker.</p></li>
+<li><p>Chat with users and developers in the <a class="reference external" href="https://gitter.im/SciTools/cartopy">Gitter chat room</a>.</p></li>
+</ul>
+</div></blockquote>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="whats_new.html" title="What’s New in cartopy 0.18"
+             >next</a> |</li>
+        <li><a href="#">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
