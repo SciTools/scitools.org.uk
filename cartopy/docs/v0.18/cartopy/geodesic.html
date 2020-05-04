@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Geodesic calculations &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Image tile identification and fetching" href="io/img_tiles.html" />
+    <link rel="prev" title="The cartopy module" href="../cartopy.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="io/img_tiles.html" title="Image tile identification and fetching"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../cartopy.html" title="The cartopy module"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../cartopy.html"
+                        title="previous chapter">The cartopy module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="io/img_tiles.html"
+                        title="next chapter">Image tile identification and fetching</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/cartopy/geodesic.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="geodesic-calculations">
+<h1>Geodesic calculations<a class="headerlink" href="#geodesic-calculations" title="Permalink to this headline">¶</a></h1>
+<p>This module defines the Geodesic class which can interface with the Proj
+geodesic functions. See the <a class="reference external" href="https://proj4.org/geodesic.html">Proj geodesic page</a> for more background
+information.</p>
+<dl class="class">
+<dt id="cartopy.geodesic.Geodesic">
+<em class="property">class </em><code class="descclassname">cartopy.geodesic.</code><code class="descname">Geodesic</code><span class="sig-paren">(</span><em>radius=6378137.0</em>, <em>flattening=1 / 298.257223563</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.geodesic.Geodesic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define an ellipsoid on which to solve geodesic problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – Equatorial radius (metres). Defaults to the WGS84 semimajor axis
+(6378137.0 metres).</p></li>
+<li><p><strong>flattening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em>, </em><em>optional</em>) – Flattening of ellipsoid.  Setting flattening = 0 gives a sphere.
+Negative flattening gives a prolate ellipsoid. If flattening &gt; 1,
+set flattening to 1/flattening.
+Defaults to the WGS84 flattening (1/298.257223563).</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.geodesic.Geodesic.circle">
+<code class="descname">circle</code><span class="sig-paren">(</span><em>self</em>, <em>double lon</em>, <em>double lat</em>, <em>double radius</em>, <em>int n_samples=180</em>, <em>endpoint=False</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.geodesic.Geodesic.circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find a geodesic circle of given radius at a given point.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>lon</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Longitude coordinate of the centre.</p></li>
+<li><p><strong>lat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – Latitude coordinate of the centre.</p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The radius of the circle (metres).</p></li>
+<li><p><strong>n_samples</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.8)"><em>int</em></a><em>, </em><em>optional</em>) – Integer number of sample points of circle.</p></li>
+<li><p><strong>endpoint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to repeat endpoint at the end of returned array.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, shape=(n_samples, 2) – The evenly spaced longitude-latitude points on the circle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.geodesic.Geodesic.direct">
+<code class="descname">direct</code><span class="sig-paren">(</span><em>self</em>, <em>points</em>, <em>azimuths</em>, <em>distances</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.geodesic.Geodesic.direct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the direct geodesic problem where the length of the geodesic is
+specified in terms of distance.</p>
+<p>Can accept and broadcast length 1 arguments. For example, given a
+single start point and distance, an array of different azimuths can be
+supplied to locate multiple endpoints.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (array_like, shape=(n <em>or</em> 1, 2)) – The starting longitude-latitude point(s) from which to travel.</p></li>
+<li><p><strong>azimuths</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array_like with shape=</em><em>(</em><em>n</em><em>, </em><em>)</em>) – List of azimuth values (degrees).</p></li>
+<li><p><strong>distances</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array_like with shape</em><em>(</em><em>n</em><em>, </em><em>)</em>) – List of distances values (metres).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, shape=(n, 3) – The longitudes, latitudes, and forward azimuths of the located
+endpoint(s).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.geodesic.Geodesic.geometry_length">
+<code class="descname">geometry_length</code><span class="sig-paren">(</span><em>self</em>, <em>geometry</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.geodesic.Geodesic.geometry_length" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the distance (in physical meters) of the given Shapely geometry.</p>
+<p>The geometry is assumed to be in spherical (lon, lat) coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>geometry</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">shapely.geometry.BaseGeometry</span></code>) – The Shapely geometry to compute the length of. For polygons, the
+exterior length will be calculated. For multi-part geometries, the
+sum of the parts will be computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.geodesic.Geodesic.inverse">
+<code class="descname">inverse</code><span class="sig-paren">(</span><em>self</em>, <em>points</em>, <em>endpoints</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.geodesic.Geodesic.inverse" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve the inverse geodesic problem.</p>
+<p>Can accept and broadcast length 1 arguments. For example, given a
+single start point, an array of different endpoints can be supplied to
+find multiple distances.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>points</strong> (array_like, shape=(n <em>or</em> 1, 2)) – The starting longitude-latitude point(s) from which to travel.</p></li>
+<li><p><strong>endpoints</strong> (array_like, shape=(n <em>or</em> 1, 2)) – The longitude-latitude point(s) to travel to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.17)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>, shape=(n, 3) – The distances, and the (forward) azimuths of the start and end
+points.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="io/img_tiles.html" title="Image tile identification and fetching"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../cartopy.html" title="The cartopy module"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

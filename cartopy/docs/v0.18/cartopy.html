@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>The cartopy module &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Geodesic calculations" href="cartopy/geodesic.html" />
+    <link rel="prev" title="Cartopy developer interfaces" href="developer_interfaces.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="cartopy/geodesic.html" title="Geodesic calculations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="developer_interfaces.html" title="Cartopy developer interfaces"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="developer_interfaces.html"
+                        title="previous chapter">Cartopy developer interfaces</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="cartopy/geodesic.html"
+                        title="next chapter">Geodesic calculations</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/cartopy.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-cartopy-module">
+<h1>The cartopy module<a class="headerlink" href="#the-cartopy-module" title="Permalink to this headline">¶</a></h1>
+<p>The top level cartopy module contains the <a class="reference internal" href="#cartopy.config" title="cartopy.config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">config</span></code></a> dictionary which controls various aspects of cartopy’s behaviour.</p>
+<dl class="data">
+<dt id="cartopy.config">
+<code class="descclassname">cartopy.</code><code class="descname">config</code><a class="headerlink" href="#cartopy.config" title="Permalink to this definition">¶</a></dt>
+<dd><p>The config dictionary stores global configuration values for cartopy.</p>
+<p>In the first instance, the config is defined in <code class="docutils literal notranslate"><span class="pre">cartopy/__init__.py</span></code>. It
+is possible to provide site wide customisations by including a
+<code class="docutils literal notranslate"><span class="pre">siteconfig.py</span></code> file along with the cartopy source code. <code class="docutils literal notranslate"><span class="pre">siteconfig.py</span></code>
+should contain a function called <code class="docutils literal notranslate"><span class="pre">update_config</span></code> which takes the config
+dictionary instance as its first and only argument (from where it is
+possible to update the dictionary howsoever desired).</p>
+<p>For users without write permission to the cartopy source directory, a package
+called <code class="docutils literal notranslate"><span class="pre">cartopy_userconfig</span></code> should be made importable (consider putting it
+in <code class="docutils literal notranslate"><span class="pre">site.getusersitepackages()</span></code>) and should expose a
+function called <code class="docutils literal notranslate"><span class="pre">update_config</span></code> which takes the config dictionary as its
+first and only argument.</p>
+<p>Keys in the config dictionary:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pre_existing_data_dir</span></code></dt><dd><p>The absolute path to a directory where standard data (such as that from
+NaturalEarth) can be found. If it is not found in this location the
+<code class="docutils literal notranslate"><span class="pre">data_dir</span></code> config item will be used.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">data_dir</span></code></dt><dd><p>The absolute path to a directory where standard data (such as that from
+NaturalEarth) can be found. If it is not found and the item is
+downloadable cartopy will download the appropriate file(s) to a
+subdirectory of this directory, therefore <code class="docutils literal notranslate"><span class="pre">data_dir</span></code> should be
+writable by the user.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">repo_data_dir</span></code></dt><dd><p>The absolute path to the directory where the data delivered with the
+cartopy repository is stored. Typically this will only be set by OS
+packagers and system administrators for site wide deployments.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">downloaders</span></code></dt><dd><p>A dictionary mapping standard “specifications” to the appropriate
+<a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Downloader</span></code></a>. For further documentation and an
+example see <a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader.from_config" title="cartopy.io.Downloader.from_config"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.Downloader.from_config()</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="cartopy/geodesic.html" title="Geodesic calculations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="developer_interfaces.html" title="Cartopy developer interfaces"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

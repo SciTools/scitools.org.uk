@@ -1,0 +1,419 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Coordinate reference systems in Cartopy &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Cartopy projection list" href="projections.html" />
+    <link rel="prev" title="cartopy" href="../cartopy_outline.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="projections.html" title="Cartopy projection list"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="cartopy"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../cartopy_outline.html"
+                        title="previous chapter">cartopy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="projections.html"
+                        title="next chapter">Cartopy projection list</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/crs/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="coordinate-reference-systems-in-cartopy">
+<h1>Coordinate reference systems in Cartopy<a class="headerlink" href="#coordinate-reference-systems-in-cartopy" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.CRS</span></code></a> class is the very core of cartopy, all coordinate reference systems
+in cartopy have <a class="reference internal" href="#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> as a parent class, meaning all projections have
+the interface described below.</p>
+<dl class="class">
+<dt id="cartopy.crs.CRS">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">CRS</code><span class="sig-paren">(</span><em>proj4_params</em>, <em>globe=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a Coordinate Reference System using proj.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable of key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="data">
+<dt id="cartopy.crs.CRS.globe">
+<code class="descname">globe</code><a class="headerlink" href="#cartopy.crs.CRS.globe" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance of this CRS.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.as_geocentric">
+<code class="descname">as_geocentric</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.as_geocentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new Geocentric CRS with the same ellipse/datum as this
+CRS.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.as_geodetic">
+<code class="descname">as_geodetic</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.as_geodetic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a new Geodetic CRS with the same ellipse/datum as this
+CRS.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.is_geodetic">
+<code class="descname">is_geodetic</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.is_geodetic" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.transform_point">
+<code class="descname">transform_point</code><span class="sig-paren">(</span><em>self</em>, <em>double x</em>, <em>double y</em>, <em>CRS src_crs</em>, <em>trap=True</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.transform_point" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform_point(x, y, src_crs)</p>
+<p>Transform the given float64 coordinate pair, in the given source
+coordinate system (<code class="docutils literal notranslate"><span class="pre">src_crs</span></code>), to this coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – the x coordinate, in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to transform</p></li>
+<li><p><strong>y</strong> – the y coordinate, in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to transform</p></li>
+<li><p><strong>src_crs</strong> – instance of <a class="reference internal" href="#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> that represents the coordinate
+system of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p><strong>trap</strong> – Whether proj errors for “latitude or longitude exceeded limits” and
+“tolerance condition error” should be trapped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>(x, y) in this coordinate system</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.transform_points">
+<code class="descname">transform_points</code><span class="sig-paren">(</span><em>self</em>, <em>CRS src_crs</em>, <em>ndarray x</em>, <em>ndarray y</em>, <em>ndarray z=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.transform_points" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform_points(src_crs, x, y[, z])</p>
+<p>Transform the given coordinates, in the given source
+coordinate system (<code class="docutils literal notranslate"><span class="pre">src_crs</span></code>), to this coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_crs</strong> – instance of <a class="reference internal" href="#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> that represents the
+coordinate system of <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p></li>
+<li><p><strong>x</strong> – the x coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates,
+to transform.  May be 1 or 2 dimensional.</p></li>
+<li><p><strong>y</strong> – the y coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates,
+to transform.  Its shape must match that of x.</p></li>
+<li><p><strong>z</strong> (<em>optional</em>) – the z coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to
+transform.  Defaults to None.
+If supplied, its shape must match that of x.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Array of shape <code class="docutils literal notranslate"><span class="pre">x.shape</span> <span class="pre">+</span> <span class="pre">(3,</span> <span class="pre">)</span></code> in this coordinate system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.CRS.transform_vectors">
+<code class="descname">transform_vectors</code><span class="sig-paren">(</span><em>self</em>, <em>src_proj</em>, <em>x</em>, <em>y</em>, <em>u</em>, <em>v</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.CRS.transform_vectors" title="Permalink to this definition">¶</a></dt>
+<dd><p>transform_vectors(src_proj, x, y, u, v)</p>
+<p>Transform the given vector components, with coordinates in the
+given source coordinate system (<code class="docutils literal notranslate"><span class="pre">src_proj</span></code>), to this coordinate
+system. The vector components must be given relative to the
+source projection’s coordinate reference system (grid eastward and
+grid northward).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_proj</strong> – The <code class="xref py py-class docutils literal notranslate"><span class="pre">CRS.Projection</span></code> that represents the coordinate system
+the vectors are defined in.</p></li>
+<li><p><strong>x</strong> – The x coordinates of the vectors in the source projection.</p></li>
+<li><p><strong>y</strong> – The y coordinates of the vectors in the source projection.</p></li>
+<li><p><strong>u</strong> – The grid-eastward components of the vectors.</p></li>
+<li><p><strong>v</strong> – The grid-northward components of the vectors.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>x, y, u and v may be 1 or 2 dimensional, but must all have matching
+shapes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>ut, vt</strong> (<em>The transformed vector components.</em>)</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The algorithm used to transform vectors is an approximation
+rather than an exact transform, but the accuracy should be
+good enough for visualization purposes.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>The <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> class is used to encapsulate the underlying sphere or ellipsoid of any cartopy CRS.
+All CRSs have an associated <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a>, though often it is just the default <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a>
+which represents the reference ellipsoid (i.e. “wgs84”).</p>
+<dl class="class">
+<dt id="cartopy.crs.Globe">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">Globe</code><span class="sig-paren">(</span><em>self</em>, <em>datum=None</em>, <em>ellipse='WGS84'</em>, <em>semimajor_axis=None</em>, <em>semiminor_axis=None</em>, <em>flattening=None</em>, <em>inverse_flattening=None</em>, <em>towgs84=None</em>, <em>nadgrids=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.Globe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define an ellipsoid and, optionally, how to relate it to the real world.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>datum</strong> – Proj “datum” definition. Defaults to None.</p></li>
+<li><p><strong>ellipse</strong> – Proj “ellps” definition. Defaults to ‘WGS84’.</p></li>
+<li><p><strong>semimajor_axis</strong> – Semimajor axis of the spheroid / ellipsoid.  Defaults to None.</p></li>
+<li><p><strong>semiminor_axis</strong> – Semiminor axis of the ellipsoid.  Defaults to None.</p></li>
+<li><p><strong>flattening</strong> – Flattening of the ellipsoid.  Defaults to None.</p></li>
+<li><p><strong>inverse_flattening</strong> – Inverse flattening of the ellipsoid.  Defaults to None.</p></li>
+<li><p><strong>towgs84</strong> – Passed through to the Proj definition.  Defaults to None.</p></li>
+<li><p><strong>nadgrids</strong> – Passed through to the Proj definition.  Defaults to None.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>The most common <a class="reference internal" href="#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> subclass is itself another abstract class;
+the <a class="reference internal" href="#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> class represents a 2 dimensional coordinate system
+which could be drawn directly as a map (i.e. on a flat piece of paper). <a class="reference internal" href="#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> is the parent class of
+all projections in the <a class="reference internal" href="projections.html#cartopy-projections"><span class="std std-ref">Cartopy projection list</span></a>.</p>
+<dl class="class">
+<dt id="cartopy.crs.Projection">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">Projection</code><a class="reference internal" href="../_modules/cartopy/crs.html#Projection"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a projected coordinate system with flat topology and Euclidean
+distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable of key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.crs.Projection.project_geometry">
+<code class="descname">project_geometry</code><span class="sig-paren">(</span><em>geometry</em>, <em>src_crs=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Projection.project_geometry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Projection.project_geometry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Project the given geometry into this projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> – The geometry to (re-)project.</p></li>
+<li><p><strong>src_crs</strong> (<em>optional</em>) – <p>The source CRS.  Defaults to None.</p>
+<p>If src_crs is None, the source CRS is assumed to be a geodetic
+version of the target CRS.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>geometry</em> – The projected result (a shapely geometry).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.crs.Projection.quick_vertices_transform">
+<code class="descname">quick_vertices_transform</code><span class="sig-paren">(</span><em>vertices</em>, <em>src_crs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Projection.quick_vertices_transform"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.Projection.quick_vertices_transform" title="Permalink to this definition">¶</a></dt>
+<dd><p>Where possible, return a vertices array transformed to this CRS from
+the given vertices array of shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">2)</span></code> and the source CRS.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method may return None to indicate that the vertices cannot
+be transformed quickly, and a more complex geometry transformation
+is required (see <a class="reference internal" href="#cartopy.crs.Projection.project_geometry" title="cartopy.crs.Projection.project_geometry"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.crs.Projection.project_geometry()</span></code></a>).</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>There are a few non-<a class="reference internal" href="#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> subclasses. These represent
+coordinate reference systems which are 3 dimensional and could not be drawn directly on a piece of paper.</p>
+<dl class="class">
+<dt id="cartopy.crs.Geodetic">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">Geodetic</code><span class="sig-paren">(</span><em>self</em>, <em>globe=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.Geodetic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a latitude/longitude coordinate system with spherical topology,
+geographical distance and coordinates are measured in degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>globe</strong> (A <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – Defaults to a “WGS84” datum.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.crs.Geocentric">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">Geocentric</code><span class="sig-paren">(</span><em>self</em>, <em>globe=None</em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.crs.Geocentric" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a Geocentric coordinate system, where x, y, z are Cartesian
+coordinates from the center of the Earth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>globe</strong> (A <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – Defaults to a “WGS84” datum.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.crs.RotatedGeodetic">
+<em class="property">class </em><code class="descclassname">cartopy.crs.</code><code class="descname">RotatedGeodetic</code><span class="sig-paren">(</span><em>pole_longitude</em>, <em>pole_latitude</em>, <em>central_rotated_longitude=0.0</em>, <em>globe=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#RotatedGeodetic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.RotatedGeodetic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Define a rotated latitude/longitude coordinate system with spherical
+topology and geographical distance.</p>
+<p>Coordinates are measured in degrees.</p>
+<p>The class uses proj to perform an ob_tran operation, using the
+pole_longitude to set a lon_0 then performing two rotations based on
+pole_latitude and central_rotated_longitude.
+This is equivalent to setting the new pole to a location defined by
+the pole_latitude and pole_longitude values in the GeogCRS defined by
+globe, then rotating this new CRS about it’s pole using the
+central_rotated_longitude value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pole_longitude</strong> – Pole longitude position, in unrotated degrees.</p></li>
+<li><p><strong>pole_latitude</strong> – Pole latitude position, in unrotated degrees.</p></li>
+<li><p><strong>central_rotated_longitude</strong> (<em>optional</em>) – Longitude rotation about the new pole, in degrees.  Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>.  Defaults to a “WGS84” datum.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>There is also a function for calling epsg.io with a specified code, returning the corresponding cartopy projection, see below.</p>
+<dl class="function">
+<dt id="cartopy.crs.epsg">
+<code class="descclassname">cartopy.crs.</code><code class="descname">epsg</code><span class="sig-paren">(</span><em>code</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#epsg"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.crs.epsg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the projection which corresponds to the given EPSG code.</p>
+<p>The EPSG code must correspond to a “projected coordinate system”,
+so EPSG codes such as 4326 (WGS-84) which define a “geodetic coordinate
+system” will not work.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The conversion is performed by querying <a class="reference external" href="https://epsg.io/">https://epsg.io/</a> so a
+live internet connection is required.</p>
+</div>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="projections.html" title="Cartopy projection list"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="cartopy"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

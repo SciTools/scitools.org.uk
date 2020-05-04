@@ -1,0 +1,1001 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>What’s New in cartopy 0.18 &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Installing Cartopy" href="installing.html" />
+    <link rel="prev" title="Introduction" href="index.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="installing.html" title="Installing Cartopy"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="index.html">
+<img src="_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">What’s New in cartopy 0.18</a><ul>
+<li><a class="reference internal" href="#features">Features</a></li>
+<li><a class="reference internal" href="#deprecations">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-17">What’s New in cartopy 0.17</a><ul>
+<li><a class="reference internal" href="#id2">Features</a></li>
+<li><a class="reference internal" href="#id3">Deprecations</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-16">What’s New in cartopy 0.16</a><ul>
+<li><a class="reference internal" href="#id4">Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-15">What’s New in cartopy 0.15</a><ul>
+<li><a class="reference internal" href="#id5">Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-14">What’s New in cartopy 0.14</a><ul>
+<li><a class="reference internal" href="#id6">Features</a></li>
+<li><a class="reference internal" href="#id7">Incompatible changes</a></li>
+<li><a class="reference internal" href="#id8">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-13">What’s new in cartopy 0.13</a><ul>
+<li><a class="reference internal" href="#id9">Features</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-12">What’s new in cartopy 0.12</a><ul>
+<li><a class="reference internal" href="#id10">Features</a></li>
+<li><a class="reference internal" href="#id11">Deprecations</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-11">What’s new in cartopy 0.11</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-10">What’s new in cartopy 0.10</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-9">What’s new in cartopy 0.9</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-8">What’s new in cartopy 0.8</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-7">What’s new in cartopy 0.7</a></li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-6">What’s new in cartopy 0.6</a><ul>
+<li><a class="reference internal" href="#development-plans-for-cartopy-0-7-and-beyond">Development plans for cartopy 0.7 and beyond</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#what-s-new-in-cartopy-0-5">What’s new in cartopy 0.5</a><ul>
+<li><a class="reference internal" href="#cartopy-0-5-features">Cartopy 0.5 features</a></li>
+<li><a class="reference internal" href="#id12">Incompatible changes</a></li>
+<li><a class="reference internal" href="#id13">Deprecations</a></li>
+<li><a class="reference internal" href="#feature-api">Feature API</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Introduction</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="installing.html"
+                        title="next chapter">Installing Cartopy</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/whats_new.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="what-s-new-in-cartopy-0-18">
+<h1>What’s New in cartopy 0.18<a class="headerlink" href="#what-s-new-in-cartopy-0-18" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.18.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>3rd May 2020</p>
+</dd>
+</dl>
+<p>For a full list of included Pull Requests and closed Issues, please see the
+<a class="reference external" href="https://github.com/SciTools/cartopy/milestone/25">0.18 milestone</a>.</p>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>We are very pleased to announce that Greg Lucas has been added to the cartopy
+core development team. Greg (&#64;greglucas) added the NightShade feature in the
+previous release, and has been instrumental in issue and PR triage leading up
+to 0.18. He has also ensured that CI systems have kept working through
+various upstream project changes.</p></li>
+<li><p>Kevin Donkers and Phil Elson made the AdaptiveScalar the default for Natural
+Earth Features. This will make the default features look much nicer when
+plotting on zoomed in axes. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1105">PR #1105</a>)</p></li>
+<li><p>Elliott Sales de Andrade added support for Matplotlib 3.2 and 3.3
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1425">PR #1425</a>) and Python 3.7 and 3.8 (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1428">PR #1428</a>).</p></li>
+<li><p>Alan Snow added the ability to use Proj version 6.x (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1289">PR #1289</a>) and
+Elliott Sales de Andrade updated a lot of the tests and build issues for this
+upgrade (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1417">PR #1417</a>).</p></li>
+<li><p>Andrew Huang added the ability to put the meridian and parallel gridline
+labels on the gridlines within the plot boundaries rather than
+only as labels on the boundary. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1089">PR #1089</a>)</p>
+<blockquote>
+<div><p>(<a class="reference external" href=".//whats_new-1.py">Source code</a>)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/whats_new-1.png"><img alt="_images/whats_new-1.png" src="_images/whats_new-1.png" style="width: 400pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>Stephane Raynaud added longitude and latitude labeling to all projections. It
+was previously restricted to the Mercator and PlateCarree projections.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1117">PR #1117</a>)</p>
+<blockquote>
+<div><p>(<a class="reference external" href=".//whats_new-2.py">Source code</a>)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/whats_new-2.png"><img alt="_images/whats_new-2.png" src="_images/whats_new-2.png" style="width: 400pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>Phil Elson added the (long awaited!) ability to label contours on GeoAxes. A
+<a class="reference internal" href="gallery/contour_labels.html#sphx-glr-gallery-contour-labels-py"><span class="std std-ref">Contour labels</span></a> example has been added to the
+gallery demonstrating the new capability.  (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1257">PR #1257</a>)</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/contour_labels.html"><img alt="_images/sphx_glr_contour_labels_001.png" src="_images/sphx_glr_contour_labels_001.png" /></a>
+</div>
+</li>
+<li><p>Matthew Bradbury added the ability to query <a class="reference external" href="https://apidocs.os.uk/">UK Ordnance Survey</a> image tiles. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1214">PR #1214</a>)</p></li>
+<li><p>Phil Elson added the ability to fetch image tiles using multiple
+threads. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1232">PR #1232</a>)</p></li>
+<li><p>Elliott Sales de Andrade added a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.GeoSpine</span></code> class to replace the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.outline_patch" title="cartopy.mpl.geoaxes.GeoAxes.outline_patch"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.outline_patch</span></code></a> that defines the map
+boundary. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1213">PR #1213</a>)</p></li>
+<li><p>Elliott Sales de Andrade improved appearance of plots with tight layout.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1213">PR #1213</a> and <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1422">PR #1422</a>)</p></li>
+<li><p>Ryan May fixed the Geostationary projection boundary so that geometries
+no longer extend beyond the map domain. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1216">PR #1216</a>)</p></li>
+<li><p>Phil Elson added support for style composition of Features. This means that
+the styles set on a Feature when it is created, and when it is added to an
+Axes, will be processed consistently.</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>This will be the last release with Python 2 support.</p></li>
+<li><p>The default value for the <code class="docutils literal notranslate"><span class="pre">origin</span></code> argument to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.imshow()</span></code> is now <code class="docutils literal notranslate"><span class="pre">'upper'</span></code> to match the
+default in Matplotlib.</p></li>
+<li><p>The <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.outline_patch" title="cartopy.mpl.geoaxes.GeoAxes.outline_patch"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.outline_patch</span></code></a> attribute is
+deprecated. In its place, use Matplotlib’s standard options for controlling
+the Axes frame, or access <code class="docutils literal notranslate"><span class="pre">GeoAxes.spines['geo']</span></code> directly.</p></li>
+<li><p>The <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.background_patch" title="cartopy.mpl.geoaxes.GeoAxes.background_patch"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.background_patch</span></code></a> attribute is
+deprecated. In its place, use Matplotlib’s standard options for controlling
+the Axes patch, i.e., pass values to the constructor or access
+<code class="docutils literal notranslate"><span class="pre">GeoAxes.patch</span></code> directly.</p></li>
+<li><p>The gridliner labelling options
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.xlabels_top" title="cartopy.mpl.gridliner.Gridliner.xlabels_top"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.xlabels_top</span></code></a>,
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.xlabels_bottom" title="cartopy.mpl.gridliner.Gridliner.xlabels_bottom"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.xlabels_bottom</span></code></a>,
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.ylabels_left" title="cartopy.mpl.gridliner.Gridliner.ylabels_left"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.ylabels_left</span></code></a>, and
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.ylabels_right" title="cartopy.mpl.gridliner.Gridliner.ylabels_right"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.ylabels_right</span></code></a> are deprecated.
+Instead, use <a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.top_labels" title="cartopy.mpl.gridliner.Gridliner.top_labels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.top_labels</span></code></a>,
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.bottom_labels" title="cartopy.mpl.gridliner.Gridliner.bottom_labels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.bottom_labels</span></code></a>,
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.left_labels" title="cartopy.mpl.gridliner.Gridliner.left_labels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.left_labels</span></code></a>, or
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.right_labels" title="cartopy.mpl.gridliner.Gridliner.right_labels"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.right_labels</span></code></a>.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-17">
+<h1>What’s New in cartopy 0.17<a class="headerlink" href="#what-s-new-in-cartopy-0-17" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.17.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>16th Nov 2018</p>
+</dd>
+</dl>
+<p>For a full list of included Pull Requests and closed Issues, please see the
+<a class="reference external" href="https://github.com/SciTools/cartopy/milestone/23">0.17 milestone</a>.</p>
+<div class="section" id="id2">
+<h2>Features<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>The <a class="reference internal" href="matplotlib/feature_interface.html#cartopy.feature.NaturalEarthFeature" title="cartopy.feature.NaturalEarthFeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.feature.NaturalEarthFeature</span></code></a> class now allows a
+<a class="reference internal" href="matplotlib/feature_interface.html#cartopy.feature.AdaptiveScaler" title="cartopy.feature.AdaptiveScaler"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.feature.AdaptiveScaler</span></code></a> object to be passed as the <code class="docutils literal notranslate"><span class="pre">scale</span></code>
+argument. This will automatically choose the appropriate feature scale from
+the GeoAxes extent. This can also be used interactively while panning and
+zooming in a figure. <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.feature.NaturalEarthFeature.scale</span></code> is
+now read-only. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1102">PR #1102</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/983">PR #983</a>)</p></li>
+<li><p>Proj version 5.x is now supported in Cartopy, thanks to hard work by
+Elliott Sales de Andrade. As part of making this version work, the inner
+workings and boundaries of many projections were improved.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1124">PR #1124</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1148">PR #1148</a>) Elliott also improved support for warped
+rectangular projections (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1180">PR #1180</a>) as well as added support for the
+Eckert family of projections (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1168">PR #1168</a>) and Equal Earth projection.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1182">PR #1182</a>)</p>
+<blockquote>
+<div><p>(<a class="reference external" href=".//whats_new-3.py">Source code</a>)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/whats_new-3.png"><img alt="_images/whats_new-3.png" src="_images/whats_new-3.png" style="width: 400pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>Greg Lucas contributed functionality to plot day/night across the globe,
+which was turned into a map feature by Phil Elson. The shading can be added
+to a map with <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.feature.nightshade.Nightshade(datetime)</span></code>. For
+more information, see the <a class="reference internal" href="gallery/nightshade.html#sphx-glr-gallery-nightshade-py"><span class="std std-ref">Nightshade feature</span></a> example.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1135">PR #1135</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1181">PR #1181</a>)</p></li>
+</ul>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/nightshade.html"><img alt="_images/sphx_glr_nightshade_001.png" src="_images/sphx_glr_nightshade_001.png" /></a>
+</div>
+<ul>
+<li><p>Elliott Sales de Andrade added optional support for the use of
+<a class="reference external" href="https://github.com/storpipfugl/pykdtree">pykdtree</a>
+when performing image transformations. This module has been demonstrated to
+be twice as fast as the old code for most of the Cartopy examples, with one
+example (geostationary) having a 95% reduction in run time. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1150">PR #1150</a>)</p></li>
+<li><p>Greg Lucas added a Fiona-based shapefile reader. If
+<a class="reference external" href="https://github.com/Toblerity/Fiona">Fiona</a> is installed on
+a user’s system, this will now be the default shapefile reader, adding
+significant speed improvements. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1000">PR #1000</a>)</p></li>
+<li><p>Phil Elson added the ability to control the appearance of Shapely geometries
+using a function. <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_geometries" title="cartopy.mpl.geoaxes.GeoAxes.add_geometries"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.add_geometries()</span></code></a> gained
+a <code class="docutils literal notranslate"><span class="pre">styler</span></code> argument that takes a function that given a geometry, returns a
+dictionary of style keyword arguments. The
+<a class="reference internal" href="gallery/hurricane_katrina.html#sphx-glr-gallery-hurricane-katrina-py"><span class="std std-ref">Hurricane Katrina</span></a>
+example has been updated to use this. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1019">PR #1019</a>)</p></li>
+<li><p>Kevin Donkers, with help from Phil Elson and Peter Killick, improved the
+interactivity of panning and zooming images by adding a raster
+image cache. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1192">PR #1192</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1195">PR #1195</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1197">PR #1197</a>)</p></li>
+<li><p>Peter Killick and Phil Elson improved the use of Cartopy in Jupyter notebook
+environments by adding an HTML representation for projections. These
+render vector images of the coastlines using a given
+projection to enable a quick preview. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/951">PR #951</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1196">PR #1196</a>)</p></li>
+<li><p>Fixes were added by Elliott Sales de Andrade to support the Matplotlib 3.x
+series. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1130">PR #1130</a>)</p></li>
+<li><p>Ryan May fixed up the <a class="reference internal" href="crs/projections.html#cartopy.crs.Geostationary" title="cartopy.crs.Geostationary"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Geostationary</span></code></a> and <a class="reference internal" href="crs/projections.html#cartopy.crs.NearsidePerspective" title="cartopy.crs.NearsidePerspective"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NearsidePerspective</span></code></a> projections
+as well as added additional options to the Mercator projection.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1189">PR #1189</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1043">PR #1043</a>)</p></li>
+<li><p>Andrey Kiselev contributed support for the Equidistant Conic projection.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1022">PR #1022</a>)</p>
+<blockquote>
+<div><p>(<a class="reference external" href=".//whats_new-4.py">Source code</a>)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/whats_new-4.png"><img alt="_images/whats_new-4.png" src="_images/whats_new-4.png" style="width: 400pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>Peter Killick updated and improved the interface to Mapbox image tiles.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1170">PR #1170</a>)</p></li>
+<li><p>Manuel Garrido and Phil Elson collaborated to add support for more themes
+for the Stamen map tile set. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1013">PR #1013</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1188">PR #1188</a>)</p></li>
+<li><p>Support for WMTS sources was made more robust by Alex Crosby.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1052">PR #1052</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1053">PR #1053</a>)</p></li>
+<li><p>Passing a <code class="docutils literal notranslate"><span class="pre">color</span></code> argument to
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="cartopy.mpl.geoaxes.GeoAxes.add_feature"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.add_feature()</span></code></a>
+now overrides default feature <code class="docutils literal notranslate"><span class="pre">edgecolor</span></code> and <code class="docutils literal notranslate"><span class="pre">facecolor</span></code> thanks to
+a change by Elliott Sales de Andrade. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1029">PR #1029</a>)</p></li>
+<li><p>Phil Elson added <a class="reference internal" href="cartopy/geodesic.html#cartopy.geodesic.Geodesic.geometry_length" title="cartopy.geodesic.Geodesic.geometry_length"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.geodesic.Geodesic.geometry_length()</span></code></a> to
+calculated the length in physical meters of any Shapely geometry.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1096">PR #1096</a>)</p></li>
+<li><p>Elliott Sales de Andrade improved the interpolation code by normalizing
+values, reducing issues due to precision. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1042">PR #1042</a>)</p></li>
+<li><p>Ryan May fixed a few corner cases in the plotting and transform code.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1062">PR #1062</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1090">PR #1090</a>)</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file has been added to Cartopy by
+Elliott Sales de Andrade to make it easier to build Cartopy. Newer
+versions of pip should now automatically install Cython and NumPy before
+trying to build Cartopy. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1132">PR #1132</a>)</p></li>
+<li><p>Andrew Dawson fixed a crash when calculating the boundary for the
+Lambert Azimuthal Equal Area projection. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1100">PR #1100</a>)</p></li>
+<li><p>Elliott Sales de Andrade and Andrew Dawson removed the use of deprecated
+functionality in NumPy. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1101">PR #1101</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1122">PR #1122</a>)</p></li>
+<li><p>Kevin Donkers added all 60 UTM zones to the images in the supported
+projection documentation. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1103">PR #1103</a>)</p></li>
+<li><p>Broken URLs to the SRTM imagery were corrected by Elliott Sales de Andrade.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/1143">PR #1143</a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>Deprecations<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.clip_path.clip_path()</span></code> has been deprecated. It is a simple
+wrapper for Matplotlib’s path clipping, so use that instead. You can replace
+<code class="docutils literal notranslate"><span class="pre">clip_path(subject,</span> <span class="pre">clip_bbox)</span></code> by <code class="docutils literal notranslate"><span class="pre">subject.clip_to_bbox(clip_bbox)</span></code>.</p></li>
+<li><p><a class="reference internal" href="cartopy/io/img_tiles.html#cartopy.io.img_tiles.StamenTerrain" title="cartopy.io.img_tiles.StamenTerrain"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.img_tiles.StamenTerrain</span></code></a> has been deprecated. Use
+<code class="docutils literal notranslate"><span class="pre">Stamen('terrain-background')</span></code> instead.</p></li>
+<li><p>In CartoPy 0.18, the default value for the <code class="docutils literal notranslate"><span class="pre">origin</span></code> argument to
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.imshow()</span></code> will change from <code class="docutils literal notranslate"><span class="pre">'lower'</span></code>
+to <code class="docutils literal notranslate"><span class="pre">'upper'</span></code> to match the default in Matplotlib.</p></li>
+</ul>
+</div>
+<div class="section" id="incompatible-changes">
+<h2>Incompatible Changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Support for Matplotlib &lt; 1.5.1 and NumPy &lt; 1.10 has been removed.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-16">
+<h1>What’s New in cartopy 0.16<a class="headerlink" href="#what-s-new-in-cartopy-0-16" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.16.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>21st Feb 2018</p>
+</dd>
+</dl>
+<div class="section" id="id4">
+<h2>Features<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>We are very pleased to announce that Ryan May has been added to the cartopy
+core development team. Ryan (&#64;dopplershift) brings a wealth of experience,
+and has already made significant contributions to the Matplotlib interface,
+extended projections, and helped modernise the development infrastructure.</p></li>
+<li><p>The <a class="reference internal" href="crs/projections.html#cartopy.crs.Gnomonic" title="cartopy.crs.Gnomonic"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gnomonic</span></code></a> projection was brought up-to-date to
+include the <code class="docutils literal notranslate"><span class="pre">central_longitude</span></code> argument. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/855">PR #855</a>)</p></li>
+<li><p>Ryan May improved the formulation of the boundary ellipse for the
+<a class="reference internal" href="crs/projections.html#cartopy.crs.Geostationary" title="cartopy.crs.Geostationary"><code class="xref py py-class docutils literal notranslate"><span class="pre">Geostationary</span></code></a> projection and added the
+<code class="docutils literal notranslate"><span class="pre">sweep_angle_axis</span></code> keyword argument. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/890">PR #890</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/897">PR #897</a>)</p></li>
+<li><p>Elliott Sales de Andrade made a number of micro-optimisations to the
+Matplotlib interface, fixed a number of documentation issues with
+Python 3 and added Matplotlib 2.0 &amp; 2.1 compatibility. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/886">PR #886</a>,
+<a class="reference external" href="https://github.com/SciTools/cartopy/pull/901">PR #901</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/780">PR #780</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/773">PR #773</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/977">PR #977</a>)</p></li>
+<li><p>Tick padding was added to the gridliner.
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.xpadding" title="cartopy.mpl.gridliner.Gridliner.xpadding"><code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner.xpadding</span></code></a> and
+<a class="reference internal" href="matplotlib/gridliner.html#cartopy.mpl.gridliner.Gridliner.ypadding" title="cartopy.mpl.gridliner.Gridliner.ypadding"><code class="xref py py-data docutils literal notranslate"><span class="pre">ypadding</span></code></a> relate. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/783">PR #783</a>)</p></li>
+<li><p>Ryan May added the <a class="reference internal" href="matplotlib/feature_interface.html#cartopy.feature.NaturalEarthFeature.with_scale" title="cartopy.feature.NaturalEarthFeature.with_scale"><code class="xref py py-meth docutils literal notranslate"><span class="pre">with_scale()</span></code></a>
+method to the NaturalEarthFeature class.
+For example, it is now possible to access higher resolution land features
+with <code class="docutils literal notranslate"><span class="pre">cartopy.feature.LAND.with_scale('50m')</span></code>. In addition to this,
+<a class="reference internal" href="matplotlib/feature_interface.html#cartopy.feature.STATES" title="cartopy.feature.STATES"><code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.feature.STATES</span></code></a> was added to easily access administrative
+area boundaries that were previously only accessible by manually
+constructing <a class="reference internal" href="matplotlib/feature_interface.html#cartopy.feature.NaturalEarthFeature" title="cartopy.feature.NaturalEarthFeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">NaturalEarthFeature</span></code></a> instances
+(as is done in the <a class="reference internal" href="gallery/feature_creation.html#sphx-glr-gallery-feature-creation-py"><span class="std std-ref">Feature Creation</span></a> example).
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/898">PR #898</a>)</p></li>
+<li><p>Daryl Herzmann and Robert Redl improved cartopy’s internal conversion
+between Shapely objects and Matplotlib Paths. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/885">PR #885</a> &amp; <a class="reference external" href="https://github.com/SciTools/cartopy/pull/1021">PR #1021</a>)</p></li>
+<li><p>Åsmund Steen Skjæveland fixed <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.tissot" title="cartopy.mpl.geoaxes.GeoAxes.tissot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.tissot()</span></code></a>
+to use the documented units of kilometres, where before it had been using
+metres. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/904">PR #904</a>)</p></li>
+<li><p>Andrew Dawson wrote a new tutorial for the user guide:
+<a class="reference internal" href="tutorials/understanding_transform.html#understanding-transform"><span class="std std-ref">Understanding the transform and projection keywords</span></a>. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/914">PR #914</a>)</p></li>
+</ul>
+<div class="figure align-center">
+<a class="reference external image-reference" href="tutorials/understanding_transform.html"><img alt="_images/understanding_transform-6.png" src="_images/understanding_transform-6.png" /></a>
+</div>
+<ul class="simple">
+<li><p>Daniel Kirkham and Daryl Herzmann made significant improvements to the
+stability of polygon transformation. The changes reduce the frequency
+of messages such as
+<code class="docutils literal notranslate"><span class="pre">Unidentified</span> <span class="pre">problem</span> <span class="pre">with</span> <span class="pre">geometry,</span> <span class="pre">linestring</span> <span class="pre">being</span> <span class="pre">re-added</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Self-intersection</span> <span class="pre">at</span> <span class="pre">or</span> <span class="pre">near</span> <span class="pre">point</span> <span class="pre">&lt;X&gt;</span> <span class="pre">&lt;Y&gt;</span></code> occurring.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/974">PR #974</a> and <a class="reference external" href="https://github.com/SciTools/cartopy/pull/903">PR #903</a>)</p></li>
+<li><p>Chris Holdgraf and Corinne Bosley worked collaboratively to bring
+<a class="reference external" href="https://github.com/sphinx-gallery/sphinx-gallery">sphinx-gallery</a> to the
+cartopy docs. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/969">PR #969</a>)</p></li>
+<li><p>Ray Bell neatened up many of the examples to explicitly pass the coordinate
+system when calling <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.set_extent" title="cartopy.mpl.geoaxes.GeoAxes.set_extent"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_extent()</span></code></a>.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/975">PR #975</a>)</p></li>
+<li><p>Ryan May changed the default zorder of LAND and OCEAN to -1, thus fixing
+an issue with LAND/OCEAN appearing above some data elements such as
+vectors. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/916">PR #916</a>)</p></li>
+<li><p>Kevin Donkers added the 60 UTM projections example to the gallery
+in <a class="reference external" href="https://github.com/SciTools/cartopy/pull/954">PR #954</a>:</p></li>
+</ul>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/utm_all_zones.html"><img alt="_images/sphx_glr_utm_all_zones_001.png" src="_images/sphx_glr_utm_all_zones_001.png" /></a>
+</div>
+<ul class="simple">
+<li><p>Andrey Kiselev added support for reading shapes with a third (Z) dimension.
+(<a class="reference external" href="https://github.com/SciTools/cartopy/pull/958">PR #958</a>)</p></li>
+<li><p>Corinne Bosley standardised the docstring format for improved readability
+and visual consistency. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/987">PR #987</a>)</p></li>
+<li><p>Cartopy now no longer enables <code class="xref py py-func docutils literal notranslate"><span class="pre">shapely.speedups()</span></code> at cartopy import
+time. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/990">PR #990</a>)</p></li>
+<li><p>Mahé Perrette and Ryan May collaborated to improve the
+<a class="reference internal" href="crs/projections.html#cartopy.crs.Stereographic" title="cartopy.crs.Stereographic"><code class="xref py py-class docutils literal notranslate"><span class="pre">Stereographic</span></code></a> projection. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/929">PR #929</a>)</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-15">
+<h1>What’s New in cartopy 0.15<a class="headerlink" href="#what-s-new-in-cartopy-0-15" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.15.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>1st February 2017</p>
+</dd>
+</dl>
+<div class="section" id="id5">
+<h2>Features<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="crs/projections.html#cartopy.crs.Mercator" title="cartopy.crs.Mercator"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Mercator</span></code></a> class now allows a <code class="docutils literal notranslate"><span class="pre">latitude_true_scale</span></code>
+to be specified.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">tiles</span></code> url can now be passed directly to the
+<a class="reference internal" href="cartopy/io/img_tiles.html#cartopy.io.img_tiles.GoogleTiles" title="cartopy.io.img_tiles.GoogleTiles"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.img_tiles.GoogleTiles</span></code></a> class.</p></li>
+<li><p>The <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.background_img" title="cartopy.mpl.geoaxes.GeoAxes.background_img"><code class="xref py py-meth docutils literal notranslate"><span class="pre">background_img()</span></code></a> method has been
+added. This allows users to add a background image to the map, from a
+selection of pre-prepared images held in a directory specified by the
+CARTOPY_USER_BACKGROUNDS environment variable.</p></li>
+<li><p>The Web Map Tile Service (WMTS) interface has been extended so that WMTS
+layers can be added to GeoAxes in different projections.</p></li>
+<li><p>The <a class="reference internal" href="crs/projections.html#cartopy.crs.NearsidePerspective" title="cartopy.crs.NearsidePerspective"><code class="xref py py-class docutils literal notranslate"><span class="pre">NearsidePerspective</span></code></a> projection has been added.</p></li>
+<li><p>Optional keyword arguments can now be supplied to the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wmts" title="cartopy.mpl.geoaxes.GeoAxes.add_wmts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_wmts()</span></code></a> method, which will be passed to
+the OGC WMTS <code class="docutils literal notranslate"><span class="pre">gettile</span></code> method.</p></li>
+<li><p>New additions to the gallery:</p></li>
+</ul>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/axes_grid_basic.html"><img alt="_images/sphx_glr_axes_grid_basic_001.png" src="_images/sphx_glr_axes_grid_basic_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/reprojected_wmts.html"><img alt="_images/sphx_glr_reprojected_wmts_001.png" src="_images/sphx_glr_reprojected_wmts_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/wmts_time.html"><img alt="_images/sphx_glr_wmts_time_001.png" src="_images/sphx_glr_wmts_time_001.png" style="width: 1176.0px; height: 560.0px;" /></a>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-14">
+<h1>What’s New in cartopy 0.14<a class="headerlink" href="#what-s-new-in-cartopy-0-14" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.14.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>24th March 2016</p>
+</dd>
+</dl>
+<div class="section" id="id6">
+<h2>Features<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Zachary Tessler and Raj Kesavan added the <a class="reference internal" href="crs/projections.html#cartopy.crs.Sinusoidal" title="cartopy.crs.Sinusoidal"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Sinusoidal</span></code></a> projection,
+allowing MODIS data to be visualised in its native projection. Additionally, a
+prepared <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.Sinusoidal.MODIS</span></code> projection has been made available for
+convenience.</p></li>
+<li><p>Joseph Hogg and Daniel Atton Beckmann added the <a class="reference internal" href="cartopy/geodesic.html#cartopy.geodesic.Geodesic" title="cartopy.geodesic.Geodesic"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.geodesic.Geodesic</span></code></a>
+class which wraps the proj.4 geodesic library. This allows users to solve the direct and
+inverse geodesic problems (calculating distances between points etc). It also contains a
+convenience function that returns geodetic circles. This is used by
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.tissot" title="cartopy.mpl.geoaxes.GeoAxes.tissot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.tissot()</span></code></a> which draws Tissot’s indicatrices on the axes.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/tissot.html"><img alt="_images/sphx_glr_tissot_001.png" src="_images/sphx_glr_tissot_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+<li><p>The SRTM3 data source has been changed to the <a class="reference external" href="https://lpdaac.usgs.gov/data_access/data_pool">LP DAAC Data Pool</a>. The Data Pool is more
+consistent, fixing several missing tiles, and the data is void-filled.
+Consequently, the <code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.srtm.fill_gaps()</span></code> function has been deprecated
+as it has no purpose within the STRM context. The
+SRTM example has also been updated to skip the void-filling step.
+Additionally, this data source provides SRTM at a higher resolution of
+1 arc-second, which may be accessed via <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM1Source</span></code>.</p></li>
+<li><p>All downloaders will use secure connections where available. Not
+every service supports this method, and so those will use non-secured
+HTTP connections instead. (See <a class="reference external" href="https://github.com/SciTools/cartopy/pull/736">PR #736</a> for full details.)</p></li>
+<li><p>Cartopy now supports, and is tested against, Matplotlib 1.3 and 1.5 as well as
+NumPy 1.7, 1.8 and 1.10.</p></li>
+<li><p>Daniel Eriksson added a new example to the gallery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/aurora_forecast.html"><img alt="_images/sphx_glr_aurora_forecast_001.png" src="_images/sphx_glr_aurora_forecast_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>Incompatible changes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="crs/index.html#cartopy.crs.CRS.transform_point" title="cartopy.crs.CRS.transform_point"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.crs.CRS.transform_point()</span></code></a> now issues NaNs when invalid transforms are identified.</p></li>
+</ul>
+</div>
+<div class="section" id="id8">
+<h2>Deprecations<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.GOOGLE_MERCATOR</span></code> has been moved to <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.Mercator.GOOGLE</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-13">
+<h1>What’s new in cartopy 0.13<a class="headerlink" href="#what-s-new-in-cartopy-0-13" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.13.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>30th June 2015</p>
+</dd>
+</dl>
+<div class="section" id="id9">
+<h2>Features<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Andrea Smith fixed the cartopy CRS class such that 3d transforms such as <a class="reference internal" href="crs/index.html#cartopy.crs.Geocentric" title="cartopy.crs.Geocentric"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Geocentric</span></code></a>
+now correctly apply deg2rad and rad2deg. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/625">PR #625</a>)</p></li>
+<li><p>Peter Killick fixed the cartopy.crs.Mercator projection for non-zero central longitudes. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/633">PR #633</a>)</p></li>
+<li><p>Conversion between Matplotlib <a class="reference external" href="https://matplotlib.org/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.Geometry</span></code> using
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.patch.path_to_geos" title="cartopy.mpl.patch.path_to_geos"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.patch.path_to_geos()</span></code></a> and <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.patch.geos_to_path" title="cartopy.mpl.patch.geos_to_path"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.mpl.patch.geos_to_path()</span></code></a> now
+handles degenerate point paths.</p></li>
+<li><p>Update of tools/feature_download.py to allow mass download of feature data rather than
+on-demand downloading.</p></li>
+<li><p>A new example was added to the gallery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/eccentric_ellipse.html"><img alt="_images/sphx_glr_eccentric_ellipse_001.png" src="_images/sphx_glr_eccentric_ellipse_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-12">
+<h1>What’s new in cartopy 0.12<a class="headerlink" href="#what-s-new-in-cartopy-0-12" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.12.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>14th April 2015</p>
+</dd>
+</dl>
+<div class="section" id="id10">
+<h2>Features<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>We are very pleased to announce that Elliott Sales de Andrade was added to the cartopy
+core development team. Elliott has added several new projections in this release, as well
+as setting up cartopy’s Python 3 testing on TravisCI and generally improving the cartopy
+codebase.</p></li>
+<li><p>Installing cartopy became much easier for conda users. A <code class="docutils literal notranslate"><span class="pre">scitools</span></code> channel has been
+added which makes getting cartopy and all of its dependencies on Linux, OSX and
+Windows possible with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">scitools</span> <span class="n">cartopy</span>
+</pre></div>
+</div>
+</li>
+<li><p>Support for Python 3, specifically 3.3 and 3.4, has been added. Some features that depend
+on OWSLib will not be available as it does not support Python 3.</p></li>
+<li><p>Two new projections, <a class="reference internal" href="crs/projections.html#cartopy.crs.AzimuthalEquidistant" title="cartopy.crs.AzimuthalEquidistant"><code class="xref py py-class docutils literal notranslate"><span class="pre">AzimuthalEquidistant</span></code></a> and
+<a class="reference internal" href="crs/projections.html#cartopy.crs.AlbersEqualArea" title="cartopy.crs.AlbersEqualArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlbersEqualArea</span></code></a> have been added. See the <a class="reference internal" href="crs/projections.html#cartopy-projections"><span class="std std-ref">Cartopy projection list</span></a>
+for the full list of projections now available in cartopy.</p></li>
+<li><p>The Web Map Service (WMS) interface has been extended to support on-the-fly reprojection
+of imagery if the service does not support the projection of the map being drawn.
+The following example demonstrates the process by adding WMS imagery to an Interrupted
+Goode Homolosine map - unsurprisingly this WMS service does not provide IGH imagery, so
+cartopy has had to reproject them from a projection the WMS does support:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/wms.html"><img alt="_images/sphx_glr_wms_001.png" src="_images/sphx_glr_wms_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+<li><p>Peter Killick added an interface for accessing MapBox tiles using the MapBox
+Developer API. A MapBox client can be created with,
+<a class="reference internal" href="cartopy/io/img_tiles.html#cartopy.io.img_tiles.MapboxTiles" title="cartopy.io.img_tiles.MapboxTiles"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapboxTiles</span></code></a> and as with the other imagery from a simple URL
+based imagery service, it can be added to a <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoAxes</span></code></a> with the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_image" title="cartopy.mpl.geoaxes.GeoAxes.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_image()</span></code></a> method. The following example demonstrates the
+interface for another source of imagery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/image_tiles.html"><img alt="_images/sphx_glr_image_tiles_001.png" src="_images/sphx_glr_image_tiles_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>Some improvements were made to the geometry transformation algorithm to improve
+the stability of geometry winding. Several cases of geometries being incorrectly
+inverted when transformed have now been resolved. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/545">PR #545</a>)</p></li>
+<li><p>Mark Hedley added the <code class="docutils literal notranslate"><span class="pre">central_rotated_longitude</span></code> keyword to
+<a class="reference internal" href="crs/projections.html#cartopy.crs.RotatedPole" title="cartopy.crs.RotatedPole"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.RotatedPole</span></code></a>, which is particularly useful for limited area
+rotated pole models in areas such as New Zealand:</p>
+<blockquote>
+<div><p>(<a class="reference external" href=".//whats_new-5.py">Source code</a>)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/whats_new-5.png"><img alt="_images/whats_new-5.png" src="_images/whats_new-5.png" style="width: 200pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>A new method has been added to the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoAxes</span></code></a> to
+allow control of the neatline of a map drawn with the Matplotlib interface.
+The method, <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.set_boundary" title="cartopy.mpl.geoaxes.GeoAxes.set_boundary"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_boundary()</span></code></a>, takes a
+<a class="reference external" href="https://matplotlib.org/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.2.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib</span> <span class="pre">Path</span></code></a> object, which means that
+arbitrary shaped edges can be achieved:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/star_shaped_boundary.html"><img alt="_images/sphx_glr_star_shaped_boundary_001.png" src="_images/sphx_glr_star_shaped_boundary_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>A new SRTM3 RasterSource has been implemented allowing interactive pan/zoom
+of 3 arc-second elevation data from the Shuttle Radar Topography Mission.
+The SRTM example has also been updated to use the new interface.</p></li>
+<li><p>New additions to the gallery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/un_flag.html"><img alt="_images/sphx_glr_un_flag_001.png" src="_images/sphx_glr_un_flag_001.png" style="width: 525.0px; height: 315.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/always_circular_stereo.html"><img alt="_images/sphx_glr_always_circular_stereo_001.png" src="_images/sphx_glr_always_circular_stereo_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/tube_stations.html"><img alt="_images/sphx_glr_tube_stations_001.png" src="_images/sphx_glr_tube_stations_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/wms.html"><img alt="_images/sphx_glr_wms_001.png" src="_images/sphx_glr_wms_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/image_tiles.html"><img alt="_images/sphx_glr_image_tiles_001.png" src="_images/sphx_glr_image_tiles_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="id11">
+<h2>Deprecations<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The SRTM module has been re-factored for simplicity and to take advantage
+of the new <a class="reference internal" href="developer_interfaces.html#raster-source-interface"><span class="std std-ref">raster source interface</span></a>. Some
+methods have therefore been deprecated and will be removed in future
+releases. The function <code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.srtm()</span></code> has been replaced with
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.single_tile()</span></code> method. Similarly,
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.srtm_composite()</span></code> and
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3_retrieve()</span></code> have been replaced with the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.combined()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.srtm_fname()</span></code> methods respectively.</p></li>
+<li><p>The <a class="reference internal" href="developer_interfaces.html#cartopy.io.RasterSource.fetch_raster" title="cartopy.io.RasterSource.fetch_raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.RasterSource.fetch_raster</span></code></a> interface has been
+changed such that a sequence of <a class="reference internal" href="developer_interfaces.html#cartopy.io.LocatedImage" title="cartopy.io.LocatedImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.LocatedImage</span></code></a> must be
+returned, rather than a single image and its associated extent.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">secant_latitudes</span></code> keyword in <a class="reference internal" href="crs/projections.html#cartopy.crs.LambertConformal" title="cartopy.crs.LambertConformal"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.LambertConformal</span></code></a> has
+been deprecated in favour of <code class="docutils literal notranslate"><span class="pre">standard_parallels</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-11">
+<h1>What’s new in cartopy 0.11<a class="headerlink" href="#what-s-new-in-cartopy-0-11" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.11.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>19 June 2014</p>
+</dd>
+</dl>
+<ul>
+<li><p>Richard Hattersley added <a class="reference internal" href="crs/index.html#cartopy.crs.epsg" title="cartopy.crs.epsg"><code class="xref py py-func docutils literal notranslate"><span class="pre">epsg()</span></code></a> support for generating
+a Cartopy projection at run-time based on the EPSG code of a projected
+coordinate system. This mechanism utilises <a class="reference external" href="https://epsg.io/">https://epsg.io/</a> as a coordinate
+system resource and employs EPSG request caching using
+<a class="reference external" href="https://github.com/rhattersley/pyepsg">pyepsg</a></p></li>
+<li><p>Phil Elson added <a class="reference internal" href="cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMSRasterSource" title="cartopy.io.ogc_clients.WMSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMSRasterSource</span></code></a> which
+provides interactive pan and zoom OGC web services support for a Web Map
+Service (WMS) aware axes. This capability may be added to an axes via the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wms" title="cartopy.mpl.geoaxes.GeoAxes.add_wms"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_wms()</span></code></a> method. Generic interactive
+slippy map panning and zooming capability is managed through the new
+<a class="reference internal" href="developer_interfaces.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist" title="cartopy.mpl.slippy_image_artist.SlippyImageArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlippyImageArtist</span></code></a> and use of the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_raster" title="cartopy.mpl.geoaxes.GeoAxes.add_raster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_raster()</span></code></a> method.</p></li>
+<li><p><a class="reference internal" href="cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMTSRasterSource" title="cartopy.io.ogc_clients.WMTSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMTSRasterSource</span></code></a> was added by Richard
+Hattersley to provide interactive pan and zoom OGC web services support for
+a Web Map Tile Service (WMTS) aware axes, which is available through the
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wmts" title="cartopy.mpl.geoaxes.GeoAxes.add_wmts"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_wmts()</span></code></a> method. This includes support
+for the Google Mercator projection and efficient WMTS tile caching. This new
+capability determines how to match up the available tiles projections
+with the target projection and chooses the zoom level to best match the pixel
+density in the rendered image.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/wmts.html"><img alt="_images/sphx_glr_wmts_001.png" src="_images/sphx_glr_wmts_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>Thomas Lecocq added functionality to <code class="xref py py-mod docutils literal notranslate"><span class="pre">cartopy.io.srtm</span></code> allowing
+intelligent filling of missing elevation data, as well as a function to
+compute elevation shading for relief style mapping. An example has been added
+which uses both of these functions to produce a grayscale shaded relief map</p></li>
+<li><p>Lion Krischer extended the capability of
+<a class="reference internal" href="cartopy/io/img_tiles.html#cartopy.io.img_tiles.GoogleTiles" title="cartopy.io.img_tiles.GoogleTiles"><code class="xref py py-class docutils literal notranslate"><span class="pre">GoogleTiles</span></code></a> to allow support for <strong>street</strong>,
+<strong>satellite</strong>, <strong>terrain</strong> and <strong>street_only</strong> style Google Map tiles.</p></li>
+<li><p>Nat Wilson’s contribution brought us a major step closer to Python 3 compatibility.</p></li>
+<li><p>Support for the <a class="reference internal" href="crs/projections.html#cartopy.crs.UTM" title="cartopy.crs.UTM"><code class="xref py py-class docutils literal notranslate"><span class="pre">UTM</span></code></a> projection was added by Mark Hedley.</p></li>
+<li><p>Andrew Dawson has added a new convenience utility function
+<a class="reference internal" href="cartopy/util/util.html#cartopy.util.add_cyclic_point" title="cartopy.util.add_cyclic_point"><code class="xref py py-func docutils literal notranslate"><span class="pre">add_cyclic_point()</span></code></a> to add a cyclic point to an array and
+optionally to a corresponding 1D coordinate.</p></li>
+<li><p>Andrew Dawson added formatters for producing longitude/latitude tick labels for
+rectangular projections. The formatters are customizable and can be used to produce
+nice tick labels in a variety of styles:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/tick_labels.html"><img alt="_images/sphx_glr_tick_labels_001.png" src="_images/sphx_glr_tick_labels_001.png" style="width: 560.0px; height: 700.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-10">
+<h1>What’s new in cartopy 0.10<a class="headerlink" href="#what-s-new-in-cartopy-0-10" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.10.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>17 January 2014</p>
+</dd>
+</dl>
+<p>We are very pleased to announce that Andrew Dawson was added to the cartopy
+core development team. In this release Andrew has single-handedly
+implemented comprehensive vector transformation and visualisation
+capabilities, including:</p>
+<ul>
+<li><p>The ability to transform vector fields between different coordinate
+reference systems via the <a class="reference internal" href="crs/index.html#cartopy.crs.CRS.transform_vectors" title="cartopy.crs.CRS.transform_vectors"><code class="xref py py-meth docutils literal notranslate"><span class="pre">transform_vectors()</span></code></a>
+CRS method.</p></li>
+<li><p><a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.quiver" title="cartopy.mpl.geoaxes.GeoAxes.quiver"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GeoAxes.quiver</span></code></a> and
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.barbs" title="cartopy.mpl.geoaxes.GeoAxes.barbs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GeoAxes.barbs</span></code></a> for arrow and
+barb plotting. More information is available at <a class="reference internal" href="matplotlib/advanced_plotting.html#vector-plotting"><span class="std std-ref">Vector plotting</span></a>.</p></li>
+<li><p>A regridding function for “regularising” a vector field in the target
+coordinate system. See also
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.vector_transform.vector_scalar_to_grid()</span></code>. Both
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.quiver" title="cartopy.mpl.geoaxes.GeoAxes.quiver"><code class="xref py py-meth docutils literal notranslate"><span class="pre">quiver()</span></code></a> and
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.barbs" title="cartopy.mpl.geoaxes.GeoAxes.barbs"><code class="xref py py-meth docutils literal notranslate"><span class="pre">barbs()</span></code></a> accept the <code class="docutils literal notranslate"><span class="pre">regrid_shape</span></code>
+keyword to trigger this behaviour automatically.</p></li>
+<li><p><a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.streamplot" title="cartopy.mpl.geoaxes.GeoAxes.streamplot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">GeoAxes.streamplot</span></code></a> adds
+the ability to draw streamlines in any projection from a vector field in
+any other projection.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/barbs.html"><img alt="_images/sphx_glr_barbs_001.png" src="_images/sphx_glr_barbs_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-9">
+<h1>What’s new in cartopy 0.9<a class="headerlink" href="#what-s-new-in-cartopy-0-9" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.9.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>12 September 2013</p>
+</dd>
+</dl>
+<ul>
+<li><p>We are very pleased to announce that Bill Little was added to the cartopy
+core development team. Bill has made some excellent contributions to cartopy,
+and <a class="reference external" href="https://www.euroscipy.org/2013/schedule/presentation/35/">his presentation at EuroScipy‘13 on
+“Iris &amp; Cartopy”</a>
+was voted best talk of the conference.</p></li>
+<li><p>Other talks and tutorials during this release cycle include Phil Elson’s <a class="reference external" href="https://conference.scipy.org/scipy2013/presentation_detail.php?id=132">talk at SciPy‘13
+(with video)</a>,
+<a class="reference external" href="https://www.euroscipy.org/2013/schedule/presentation/27/">Thomas Lecocq’s tutorial at EuroSciPy</a>
+and a forthcoming <a class="reference external" href="http://2013.foss4g.org/conf/programme/presentations/29/">talk at FOSS4G</a>.</p></li>
+<li><p>Christoph Gohlke updated cartopy to support Windows 7.</p></li>
+<li><p>The Plate Carree projection was updated to fully handle arbitrary globe definitions.</p></li>
+<li><p>Peter Killick updated the Mercator class’ default globe to WGS84. His refactor paved the way
+for some follow on work to fully implement the Google Spherical Mercator (EPSG:3857) projection.</p>
+<blockquote>
+<div><div class="figure align-center">
+<a class="reference external image-reference" href="gallery/eyja_volcano.html"><img alt="_images/sphx_glr_eyja_volcano_001.png" src="_images/sphx_glr_eyja_volcano_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>The TransverseMercator class saw a tidy up to include several common arguments (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/309">pull request</a>)</p></li>
+<li><p>Bill Little added the Geostationary projection to allow geolocation of satellite imagery.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/geostationary.html"><img alt="_images/sphx_glr_geostationary_001.png" src="_images/sphx_glr_geostationary_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>Byron Blay added the <a class="reference internal" href="crs/projections.html#cartopy.crs.LambertConformal" title="cartopy.crs.LambertConformal"><code class="xref py py-class docutils literal notranslate"><span class="pre">Lambert</span> <span class="pre">conformal</span> <span class="pre">conic</span> <span class="pre">projection</span></code></a>.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-8">
+<h1>What’s new in cartopy 0.8<a class="headerlink" href="#what-s-new-in-cartopy-0-8" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.8.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>3 June 2013</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Bill Little added support for the OSNI projection and enhanced the image nest capability. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/263">PR #263</a>)</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.img_nest.Img</span></code> has been extended to include a
+<code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.img_nest.Img.from_world_file()</span></code> static method for
+easier loading of georeferenced images.</p></li>
+<li><p>Phil Elson added a major performance improvement when plotting data from PlateCarree onto a
+PlateCarree map. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/260">PR #260</a>)</p></li>
+<li><p>Byron Blay and Richard Hattersley added a <a class="reference internal" href="crs/index.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a> class to encapsulate ellipsoid and optionally
+datum information for CRSs. Globe handling in many projections, including Stereographic, has been added.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-7">
+<h1>What’s new in cartopy 0.7<a class="headerlink" href="#what-s-new-in-cartopy-0-7" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.7.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>21 Mar 2013</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Carwyn Pelley added support for 2D arrays of points to <a class="reference internal" href="crs/index.html#cartopy.crs.CRS.transform_points" title="cartopy.crs.CRS.transform_points"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.crs.CRS.transform_points()</span></code></a>. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/192">PR #192</a>)</p></li>
+<li><p>Phil Elson added control for the gridlines and tick labels drawn with
+<a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.gridlines()</span></code></a>. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/238">PR #238</a>)</p></li>
+<li><p>Various documentation enhancements have been added. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/247">PR #247</a>, <a class="reference external" href="https://github.com/SciTools/cartopy/pull/244">PR #244</a> <a class="reference external" href="https://github.com/SciTools/cartopy/pull/240">PR #240</a> and <a class="reference external" href="https://github.com/SciTools/cartopy/pull/242">PR #242</a>)</p></li>
+</ul>
+<p>This is a quick release which targets two very specific requirements. The goals outlined in the development plan at
+<code class="docutils literal notranslate"><span class="pre">v0.6</span></code> still remain the primary target for <code class="docutils literal notranslate"><span class="pre">v0.8</span></code> and beyond.</p>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-6">
+<h1>What’s new in cartopy 0.6<a class="headerlink" href="#what-s-new-in-cartopy-0-6" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.6.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>19 Feb 2013</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p>Patrick Peglar added the ability to draw ticks for some limited projections
+when using the <a class="reference internal" href="matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><code class="xref py py-func docutils literal notranslate"><span class="pre">gridlines()</span></code></a> method on an Axes.</p></li>
+<li><p>Phil Elson and Carwyn Pelley extended the cartopy documentation to include
+new tutorials such as <a class="reference internal" href="tutorials/using_the_shapereader.html#using-the-shapereader"><span class="std std-ref">Using the cartopy shapereader</span></a>.</p></li>
+<li><p>Ian Edwards <a class="reference internal" href="gallery/favicon.html"><span class="doc">added a new example</span></a> to create a favicon for cartopy.</p></li>
+<li><p>Phil Elson <a class="reference internal" href="gallery/hurricane_katrina.html"><span class="doc">added a new example</span></a> to show polygon analysis
+and visualisation with Shapely and cartopy.</p></li>
+<li><p>Edward Campbell added a new <a class="reference internal" href="crs/projections.html#cartopy.crs.EuroPP" title="cartopy.crs.EuroPP"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.EuroPP</span></code></a> projection for UTM zone 32.</p></li>
+<li><p>Andrew Dawson added a <code class="docutils literal notranslate"><span class="pre">central_longitude</span></code> keyword for the Stereographic family of projections.</p></li>
+<li><p>Phil Elson added a <a class="reference internal" href="developer_interfaces.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Downloader</span></code></a> class which allows
+automatic downloading of shapefiles (currently from Natural Earth and GSHHS).
+The extension requires no user action and can be configured via the <a class="reference internal" href="cartopy.html#cartopy.config" title="cartopy.config"><code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.config</span></code></a> dictionary.</p></li>
+</ul>
+<div class="section" id="development-plans-for-cartopy-0-7-and-beyond">
+<h2>Development plans for cartopy 0.7 and beyond<a class="headerlink" href="#development-plans-for-cartopy-0-7-and-beyond" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Improve the projection definitions to support better control over datum definitions
+and consider adding WKT support (<a class="reference external" href="https://github.com/SciTools/cartopy/issues/153">ticket</a>).</p></li>
+<li><p>Begin work on vector field support (barbs, quiver, streamlines etc.).</p></li>
+<li><p>Continue identifying and implementing performance enhancements (particularly in contour drawing).</p></li>
+<li><p>Extend the number of projections for which it is possible to draw tick marks.</p></li>
+</ul>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="what-s-new-in-cartopy-0-5">
+<h1>What’s new in cartopy 0.5<a class="headerlink" href="#what-s-new-in-cartopy-0-5" title="Permalink to this headline">¶</a></h1>
+<dl class="field-list simple">
+<dt class="field-odd">Release</dt>
+<dd class="field-odd"><p>0.5.0</p>
+</dd>
+<dt class="field-even">Date</dt>
+<dd class="field-even"><p>7 Dec 2012</p>
+</dd>
+</dl>
+<p>This document explains the new/changed features of cartopy in version 0.5.</p>
+<p>Release 0.5 of cartopy continues the work to expand the feature-set of
+cartopy to encompass common operations, and provide performance
+improvements.</p>
+<div class="section" id="cartopy-0-5-features">
+<h2>Cartopy 0.5 features<a class="headerlink" href="#cartopy-0-5-features" title="Permalink to this headline">¶</a></h2>
+<p>A summary of the main features added with version 0.5:</p>
+<ul class="simple">
+<li><p>An improved feature API to support future expansion and
+sophistication, and a wider range of pre-defined Natural Earth
+datasets.</p></li>
+</ul>
+</div>
+<div class="section" id="id12">
+<h2>Incompatible changes<a class="headerlink" href="#id12" title="Permalink to this headline">¶</a></h2>
+<p>None</p>
+</div>
+<div class="section" id="id13">
+<h2>Deprecations<a class="headerlink" href="#id13" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The method <code class="xref py py-meth docutils literal notranslate"><span class="pre">Axes.natural_earth_shp()</span></code> has been replaced by the
+method <code class="xref py py-meth docutils literal notranslate"><span class="pre">Axes.add_feature()</span></code> and the <code class="xref py py-mod docutils literal notranslate"><span class="pre">cartopy.feature</span></code>
+module.</p></li>
+</ul>
+</div>
+<div class="section" id="feature-api">
+<h2>Feature API<a class="headerlink" href="#feature-api" title="Permalink to this headline">¶</a></h2>
+<p>A new features API is now available, see <a class="reference internal" href="tutorials/using_the_shapereader.html"><span class="doc">Using the cartopy shapereader</span></a>.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="gallery/features.html"><img alt="_images/sphx_glr_features_001.png" src="_images/sphx_glr_features_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="installing.html" title="Installing Cartopy"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Introduction"
+             >previous</a> |</li>
+        <li><a href="index.html">home</a>|&nbsp;</li>
+        <li><a href="gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

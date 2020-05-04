@@ -1,0 +1,430 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>The cartopy Feature interface &#8212; cartopy 0.18.0 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Understanding the transform and projection keywords" href="../tutorials/understanding_transform.html" />
+    <link rel="prev" title="Cartopy map gridlines and tick labels" href="gridliner.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/understanding_transform.html" title="Understanding the transform and projection keywords"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="gridliner.html" title="Cartopy map gridlines and tick labels"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The cartopy Feature interface</a><ul>
+<li><a class="reference internal" href="#example-of-using-the-feature-class-with-the-matplotlib-interface">Example of using the Feature class with the Matplotlib interface</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="gridliner.html"
+                        title="previous chapter">Cartopy map gridlines and tick labels</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../tutorials/understanding_transform.html"
+                        title="next chapter">Understanding the <code class="docutils literal notranslate"><span class="pre">transform</span></code> and <code class="docutils literal notranslate"><span class="pre">projection</span></code> keywords</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/matplotlib/feature_interface.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+        <!-- add an empty div to clear the logo on the right. -->
+        <div style="float: right; right:0px; height: 140px; width:100px; display: block;"></div>
+        
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="the-cartopy-feature-interface">
+<span id="cartopy-feature-interface"></span><h1>The cartopy Feature interface<a class="headerlink" href="#the-cartopy-feature-interface" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="../citation.html#referencing-copyright"><span class="std std-ref">data copyright, license and attribution</span></a> can be blended on the map using <a class="reference external" href="https://matplotlib.org/users/annotations_intro.html">text annotations (mpl docs)</a> as shown in <a class="reference external" href="../gallery/feature_creation.html">feature_creation</a>.</p>
+<dl class="class">
+<dt id="cartopy.feature.Feature">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">Feature</code><span class="sig-paren">(</span><em>crs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#Feature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.Feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents a collection of points, lines and polygons with convenience
+methods for common drawing and filtering operations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>crs</strong> – The coordinate reference system of this Feature</p>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>**kwargs</strong> – Keyword arguments to be used when drawing this feature.</p>
+</dd>
+</dl>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>To add features to the current Matplotlib axes, see
+<a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="cartopy.mpl.geoaxes.GeoAxes.add_feature"><code class="xref py py-func docutils literal notranslate"><span class="pre">GeoAxes</span></code></a>.</p>
+</div>
+<dl class="attribute">
+<dt id="cartopy.feature.Feature.crs">
+<code class="descname">crs</code><a class="headerlink" href="#cartopy.feature.Feature.crs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The cartopy CRS for the geometries in this feature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.feature.Feature.geometries">
+<code class="descname">geometries</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#Feature.geometries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.Feature.geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator of (shapely) geometries for this feature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="cartopy.feature.Feature.intersecting_geometries">
+<code class="descname">intersecting_geometries</code><span class="sig-paren">(</span><em>extent</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#Feature.intersecting_geometries"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.Feature.intersecting_geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an iterator of shapely geometries that intersect with
+the given extent. The extent is assumed to be in the CRS of
+the feature. If extent is None, the method returns all
+geometries for this dataset.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="cartopy.feature.Feature.kwargs">
+<code class="descname">kwargs</code><a class="headerlink" href="#cartopy.feature.Feature.kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>The read-only dictionary of keyword arguments that are used when
+creating the Matplotlib artists for this feature.</p>
+</dd></dl>
+
+</dd></dl>
+
+<hr class="docutils" />
+<p>Specific Feature subclasses have been defined for common functionality, such as accessing
+Natural Earth or GSHHS shapefiles.</p>
+<dl class="class">
+<dt id="cartopy.feature.ShapelyFeature">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">ShapelyFeature</code><span class="sig-paren">(</span><em>geometries</em>, <em>crs</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#ShapelyFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.ShapelyFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class capable of drawing a collection of
+shapely geometries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometries</strong> – A collection of shapely geometries.</p></li>
+<li><p><strong>crs</strong> – The cartopy CRS in which the provided geometries are defined.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>**kwargs</strong> – Keyword arguments to be used when drawing this feature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.feature.NaturalEarthFeature">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">NaturalEarthFeature</code><span class="sig-paren">(</span><em>category</em>, <em>name</em>, <em>scale</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#NaturalEarthFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.NaturalEarthFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>A simple interface to Natural Earth shapefiles.</p>
+<p>See <a class="reference external" href="https://www.naturalearthdata.com/">https://www.naturalearthdata.com/</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>category</strong> – The category of the dataset, i.e. either ‘cultural’ or ‘physical’.</p></li>
+<li><p><strong>name</strong> – The name of the dataset, e.g. ‘admin_0_boundary_lines_land’.</p></li>
+<li><p><strong>scale</strong> – The dataset scale, i.e. one of ‘10m’, ‘50m’, or ‘110m’,
+or Scaler object. Dataset scales correspond to 1:10,000,000,
+1:50,000,000, and 1:110,000,000 respectively.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>**kwargs</strong> – Keyword arguments to be used when drawing this feature.</p>
+</dd>
+</dl>
+<dl class="method">
+<dt id="cartopy.feature.NaturalEarthFeature.with_scale">
+<code class="descname">with_scale</code><span class="sig-paren">(</span><em>new_scale</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#NaturalEarthFeature.with_scale"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.NaturalEarthFeature.with_scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a copy of the feature with a new scale.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>new_scale</strong> – The new dataset scale, i.e. one of ‘10m’, ‘50m’, or ‘110m’.
+Corresponding to 1:10,000,000, 1:50,000,000, and 1:110,000,000
+respectively.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.feature.GSHHSFeature">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">GSHHSFeature</code><span class="sig-paren">(</span><em>scale='auto'</em>, <em>levels=None</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#GSHHSFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.GSHHSFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>An interface to the GSHHS dataset.</p>
+<p>See <a class="reference external" href="https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html">https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html</a></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>scale</strong> – The dataset scale. One of ‘auto’, ‘coarse’, ‘low’, ‘intermediate’,
+‘high, or ‘full’ (default is ‘auto’).</p></li>
+<li><p><strong>levels</strong> – A list of integers 1-4 corresponding to the desired GSHHS feature
+levels to draw (default is [1] which corresponds to coastlines).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>**kwargs</strong> – Keyword arguments to be used when drawing the feature. Defaults
+are edgecolor=’black’ and facecolor=’none’.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.feature.WFSFeature">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">WFSFeature</code><span class="sig-paren">(</span><em>wfs</em>, <em>features</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#WFSFeature"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.WFSFeature" title="Permalink to this definition">¶</a></dt>
+<dd><p>A class capable of drawing a collection of geometries
+obtained from an OGC Web Feature Service (WFS).</p>
+<p>This feature requires additional dependencies. If installed via pip,
+try <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cartopy[ows]</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wfs</strong> (string or <code class="xref py py-class docutils literal notranslate"><span class="pre">owslib.wfs.WebFeatureService</span></code> instance) – The WebFeatureService instance, or URL of a WFS service, from which
+to retrieve the geometries.</p></li>
+<li><p><strong>features</strong> (<em>string</em><em> or </em><em>list of strings</em>) – The typename(s) of features available from the web service that
+will be retrieved. Somewhat analogous to layers in WMS/WMTS.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>**kwargs</strong> – Keyword arguments to be used when drawing this feature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="class">
+<dt id="cartopy.feature.AdaptiveScaler">
+<em class="property">class </em><code class="descclassname">cartopy.feature.</code><code class="descname">AdaptiveScaler</code><span class="sig-paren">(</span><em>default_scale</em>, <em>limits</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/feature.html#AdaptiveScaler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cartopy.feature.AdaptiveScaler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically select scale of geometries based on extent of plotted axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>default_scale</strong> – Coarsest scale used as default when plot is at maximum extent.</p></li>
+<li><p><strong>limits</strong> – Scale-extent pairs at which scale of geometries change. Must be a
+tuple of tuples ordered from coarsest to finest scales. Limit
+values are the upper bounds for their corresponding scale.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">AdaptiveScaler</span><span class="p">(</span><span class="s1">&#39;coarse&#39;</span><span class="p">,</span>
+<span class="gp">... </span>          <span class="p">((</span><span class="s1">&#39;intermediate&#39;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;fine&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">scale_from_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">])</span>
+<span class="go">&#39;coarse&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">scale_from_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">56</span><span class="p">])</span>
+<span class="go">&#39;intermediate&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">scale_from_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">56</span><span class="p">])</span>
+<span class="go">&#39;fine&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<hr class="docutils" />
+<p>To simplify some very common cases, some pre-defined Features exist as <code class="xref py py-mod docutils literal notranslate"><span class="pre">cartopy.feature</span></code>
+constants. The pre-defined Features are all small-scale (1:110m)
+<a class="reference external" href="https://www.naturalearthdata.com">Natural Earth</a> datasets, and can be added with methods
+such as <a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="cartopy.mpl.geoaxes.GeoAxes.add_feature"><code class="xref py py-func docutils literal notranslate"><span class="pre">GeoAxes.add_feature</span></code></a>:</p>
+<table class="docutils align-center">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 74%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="data">
+<dt id="cartopy.feature.BORDERS">
+<code class="descclassname">cartopy.feature.</code><code class="descname">BORDERS</code><a class="headerlink" href="#cartopy.feature.BORDERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Country boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="data">
+<dt id="cartopy.feature.COASTLINE">
+<code class="descclassname">cartopy.feature.</code><code class="descname">COASTLINE</code><a class="headerlink" href="#cartopy.feature.COASTLINE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Coastline, including major islands.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="data">
+<dt id="cartopy.feature.LAKES">
+<code class="descclassname">cartopy.feature.</code><code class="descname">LAKES</code><a class="headerlink" href="#cartopy.feature.LAKES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Natural and artificial lakes.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="data">
+<dt id="cartopy.feature.LAND">
+<code class="descclassname">cartopy.feature.</code><code class="descname">LAND</code><a class="headerlink" href="#cartopy.feature.LAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Land polygons, including major islands.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="data">
+<dt id="cartopy.feature.OCEAN">
+<code class="descclassname">cartopy.feature.</code><code class="descname">OCEAN</code><a class="headerlink" href="#cartopy.feature.OCEAN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Ocean polygons.</p></td>
+</tr>
+<tr class="row-odd"><td><dl class="data">
+<dt id="cartopy.feature.RIVERS">
+<code class="descclassname">cartopy.feature.</code><code class="descname">RIVERS</code><a class="headerlink" href="#cartopy.feature.RIVERS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Single-line drainages, including lake centerlines.</p></td>
+</tr>
+<tr class="row-even"><td><dl class="data">
+<dt id="cartopy.feature.STATES">
+<code class="descclassname">cartopy.feature.</code><code class="descname">STATES</code><a class="headerlink" href="#cartopy.feature.STATES" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><p>Internal, first-order administrative boundaries (limited to the
+United States at this scale).
+Natural Earth have first-order admin boundaries for most
+countries at the 1:10,000,000 scale; these may be
+accessed with <code class="docutils literal notranslate"><span class="pre">cartopy.feature.STATES.with_scale('10m')</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Any Natural Earth dataset can be used by creating an
+instance of <a class="reference internal" href="#cartopy.feature.NaturalEarthFeature" title="cartopy.feature.NaturalEarthFeature"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.feature.NaturalEarthFeature</span></code></a>. For
+example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">cartopy.feature</span> <span class="k">as</span> <span class="nn">cfeature</span>
+<span class="n">land_50m</span> <span class="o">=</span> <span class="n">cfeature</span><span class="o">.</span><span class="n">NaturalEarthFeature</span><span class="p">(</span><span class="s1">&#39;physical&#39;</span><span class="p">,</span> <span class="s1">&#39;land&#39;</span><span class="p">,</span> <span class="s1">&#39;50m&#39;</span><span class="p">,</span>
+                                        <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;face&#39;</span><span class="p">,</span>
+                                        <span class="n">facecolor</span><span class="o">=</span><span class="n">cfeature</span><span class="o">.</span><span class="n">COLORS</span><span class="p">[</span><span class="s1">&#39;land&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<p>A dictionary of some useful colors for drawing features also exists:</p>
+<dl class="data">
+<dt id="cartopy.feature.COLORS">
+<code class="descclassname">cartopy.feature.</code><code class="descname">COLORS</code><em class="property"> = {'land': array([0.9375  , 0.9375  , 0.859375]), 'land_alt1': array([0.859375, 0.859375, 0.859375]), 'water': array([0.59375   , 0.71484375, 0.8828125 ])}</em><a class="headerlink" href="#cartopy.feature.COLORS" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary of colors useful for drawing Features.</p>
+<p>The named keys in this dictionary represent the “type” of
+feature being plotted.</p>
+</dd></dl>
+
+<p>For a full list of names in this dictionary:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">cartopy.feature</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">sorted</span><span class="p">(</span><span class="n">cartopy</span><span class="o">.</span><span class="n">feature</span><span class="o">.</span><span class="n">COLORS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="go">[&#39;land&#39;, &#39;land_alt1&#39;, &#39;water&#39;]</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<div class="section" id="example-of-using-the-feature-class-with-the-matplotlib-interface">
+<h2>Example of using the Feature class with the Matplotlib interface<a class="headerlink" href="#example-of-using-the-feature-class-with-the-matplotlib-interface" title="Permalink to this headline">¶</a></h2>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/feature_creation.html"><img alt="../_images/sphx_glr_feature_creation_0011.png" src="../_images/sphx_glr_feature_creation_0011.png" style="width: 320.0px; height: 240.0px;" /></a>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="../tutorials/understanding_transform.html" title="Understanding the transform and projection keywords"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="gridliner.html" title="Cartopy map gridlines and tick labels"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+ 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 2.0.1.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
