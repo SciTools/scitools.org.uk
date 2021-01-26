@@ -26,8 +26,24 @@ folder, thus reducing the overall repository size to those that need to clone
 the repository.
 
 
+Read the Docs Adoption
+----------------------
+
+As of **25/01/2021**, with the release of Iris 3 all documentation for **Iris**
+will be provisioned by Read the Docs (https://scitools-iris.readthedocs.io/en/stable/),
+this includes latest (master) and stable (most recent tagged release).  The
+scitools.org.uk repo now has a **latest** and **stable** redirect that points towards
+Read the Docs.  The older documentation (Iris 2.4 and earlier) will still be present
+in this repo, and as of today should no longer need to be updated via this repo,
+only via the Iris repo and then automatically built and served by Read the Docs.
+
+
 Example workflow
 ----------------
+
+Note, this example workflow uses Iris.  As stated in the previous section this
+is not how the Iris documentation is released, it should however still apply to
+Cartopy.
 
 To update scitools.org.uk so that it includes the Iris documentation for the
 Iris 1.12 release the following steps need to be followed.
