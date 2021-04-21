@@ -1,0 +1,834 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartopy Matplotlib integration reference document &#8212; cartopy 0.19.0rc2.dev8+gd251b2f documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Cartopy map gridlines and tick labels" href="gridliner.html" />
+    <link rel="prev" title="More advanced mapping with cartopy and matplotlib" href="advanced_plotting.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="gridliner.html" title="Cartopy map gridlines and tick labels"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="advanced_plotting.html" title="More advanced mapping with cartopy and matplotlib"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Using cartopy with matplotlib</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cartopy Matplotlib integration reference document</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cartopy-matplotlib-integration-reference-document">
+<h1>Cartopy Matplotlib integration reference document<a class="headerlink" href="#cartopy-matplotlib-integration-reference-document" title="Permalink to this headline">¶</a></h1>
+<p>The primary class for integrating cartopy into Matplotlib is the GeoAxes, which is a subclass of
+a normal Matplotlib Axes. The GeoAxes class adds extra functionality to an axes which is specific
+to drawing maps. The majority of the methods which have been specialised from the original Axes
+are there to add improved -expected- behaviour, but some are to work around limitations that the
+standard Matplotlib axes treats data in a Cartesian way (most of which either have, or will be,
+submitted back to the Matplotlib project).</p>
+<dl class="py class">
+<dt id="cartopy.mpl.geoaxes.GeoAxes">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.mpl.geoaxes.</span></code><code class="sig-name descname"><span class="pre">GeoAxes</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes" title="Permalink to this definition">¶</a></dt>
+<dd><p>A subclass of <a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a> which represents a
+map <a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a>.</p>
+<p>This class replaces the Matplotlib <a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a> class
+when created with the <em>projection</em> keyword. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set up a standard map for latlon data.</span>
+<span class="n">geo_axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+
+<span class="c1"># Set up a standard map for latlon data for multiple subplots</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">geo_axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">nrows</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ncols</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+                    <span class="n">subplot_kw</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;projection&#39;</span><span class="p">:</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()})</span>
+
+<span class="c1"># Set up an OSGB map.</span>
+<span class="n">geo_axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">OSGB</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>When a source projection is provided to one of it’s plotting methods,
+using the <em>transform</em> keyword, the standard Matplotlib plot result is
+transformed from source coordinates to the target projection. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot latlon data on an OSGB map.</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">OSGB</span><span class="p">())</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">cartopy</span><span class="o">.</span><span class="n">crs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>Create a GeoAxes object using standard matplotlib
+<a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Axes</span></code></a> args and kwargs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>map_projection</strong> (<em>optional</em>) – The target <a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> of this Axes object.</p>
+</dd>
+</dl>
+<p>All other args and keywords are passed through to
+<a class="reference external" href="https://matplotlib.org/stable/api/axes_api.html#matplotlib.axes.Axes" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.axes.Axes</span></code></a>.</p>
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_feature">
+<code class="sig-name descname"><span class="pre">add_feature</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">feature</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_feature"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_feature" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given <a class="reference internal" href="feature_interface.html#cartopy.feature.Feature" title="cartopy.feature.Feature"><code class="xref py py-class docutils literal notranslate"><span class="pre">Feature</span></code></a> instance to the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>feature</strong> – An instance of <a class="reference internal" href="feature_interface.html#cartopy.feature.Feature" title="cartopy.feature.Feature"><code class="xref py py-class docutils literal notranslate"><span class="pre">Feature</span></code></a>.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.feature_artist.FeatureArtist</span></code> instance – The instance responsible for drawing the feature.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matplotlib keyword arguments can be used when drawing the feature.
+This allows standard Matplotlib control over aspects such as
+‘facecolor’, ‘alpha’, etc.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_geometries">
+<code class="sig-name descname"><span class="pre">add_geometries</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geoms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_geometries"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_geometries" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given shapely geometries (in the given crs) to the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geoms</strong> – A collection of shapely geometries.</p></li>
+<li><p><strong>crs</strong> – The cartopy CRS in which the provided geometries are defined.</p></li>
+<li><p><strong>styler</strong> – A callable that returns matplotlib patch styling given a geometry.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.feature_artist.FeatureArtist</span></code> instance – The instance responsible for drawing the feature.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Matplotlib keyword arguments can be used when drawing the feature.
+This allows standard Matplotlib control over aspects such as
+‘facecolor’, ‘alpha’, etc.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_image">
+<code class="sig-name descname"><span class="pre">add_image</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">factory</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add an image “factory” to the Axes.</p>
+<p>Any image “factory” added will be asked to retrieve an image
+with associated metadata for a given bounding box at draw time.
+The advantage of this approach is that the limits of the map
+do not need to be known when adding the image factory, but can
+be deferred until everything which can effect the limits has been
+added.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>factory</strong> – Currently an image “factory” is just an object with
+an <code class="docutils literal notranslate"><span class="pre">image_for_domain</span></code> method. Examples of image factories
+are <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.img_nest.NestedImageCollection</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.image_tiles.GoogleTiles</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_raster">
+<code class="sig-name descname"><span class="pre">add_raster</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">raster_source</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">slippy_image_kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_raster"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_raster" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the given raster source to the GeoAxes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>raster_source</strong> – <dl class="simple">
+<dt><a class="reference internal" href="../developer_interfaces.html#cartopy.io.RasterSource" title="cartopy.io.RasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.RasterSource</span></code></a> like instance</dt><dd><p><code class="docutils literal notranslate"><span class="pre">raster_source</span></code> may be any object which
+implements the RasterSource interface, including
+instances of objects such as
+<a class="reference internal" href="../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMSRasterSource" title="cartopy.io.ogc_clients.WMSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMSRasterSource</span></code></a>
+and
+<a class="reference internal" href="../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMTSRasterSource" title="cartopy.io.ogc_clients.WMTSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMTSRasterSource</span></code></a>.
+Note that image retrievals are done at draw time,
+not at creation time.</p>
+</dd>
+</dl>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_wms">
+<code class="sig-name descname"><span class="pre">add_wms</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wms</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wms_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_wms"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_wms" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the specified WMS layer to the axes.</p>
+<p>This function requires owslib and PIL to work.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wms</strong> (string or <code class="xref py py-class docutils literal notranslate"><span class="pre">owslib.wms.WebMapService</span></code> instance) – The web map service URL or owslib WMS instance to use.</p></li>
+<li><p><strong>layers</strong> (<em>string</em><em> or </em><em>iterable of string</em>) – The name of the layer(s) to use.</p></li>
+<li><p><strong>wms_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><em>optional</em>) – Passed through to the
+<a class="reference internal" href="../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMSRasterSource" title="cartopy.io.ogc_clients.WMSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMSRasterSource</span></code></a>
+constructor’s <code class="docutils literal notranslate"><span class="pre">getmap_extra_kwargs</span></code> for defining
+getmap time keyword arguments.</p></li>
+</ul>
+</dd>
+</dl>
+<p>All other keywords are passed through to the construction of the
+image artist. See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="(in Matplotlib v3.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">imshow()</span></code></a> for
+more details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.add_wmts">
+<code class="sig-name descname"><span class="pre">add_wmts</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">wmts</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wmts_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.add_wmts"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.add_wmts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the specified WMTS layer to the axes.</p>
+<p>This function requires owslib and PIL to work.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>wmts</strong> – The URL of the WMTS, or an owslib.wmts.WebMapTileService instance.</p></li>
+<li><p><strong>layer_name</strong> – The name of the layer to use.</p></li>
+<li><p><strong>wmts_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.9)"><em>dict</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.9)"><em>None</em></a><em>, </em><em>optional</em>) – Passed through to the
+<a class="reference internal" href="../cartopy/io/ogc_clients.html#cartopy.io.ogc_clients.WMTSRasterSource" title="cartopy.io.ogc_clients.WMTSRasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">WMTSRasterSource</span></code></a> constructor’s
+<code class="docutils literal notranslate"><span class="pre">gettile_extra_kwargs</span></code> (e.g. time).</p></li>
+</ul>
+</dd>
+</dl>
+<p>All other keywords are passed through to the construction of the
+image artist. See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="(in Matplotlib v3.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">imshow()</span></code></a> for
+more details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.autoscale_view">
+<code class="sig-name descname"><span class="pre">autoscale_view</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tight</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scalex</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scaley</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.autoscale_view"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.autoscale_view" title="Permalink to this definition">¶</a></dt>
+<dd><p>Autoscale the view limits using the data limits, taking into
+account the projection of the geoaxes.</p>
+<p>See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="(in Matplotlib v3.4.1)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">imshow()</span></code></a> for more details.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.background_img">
+<code class="sig-name descname"><span class="pre">background_img</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ne_shaded'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'low'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">extent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.background_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.background_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a background image to the map, from a selection of pre-prepared
+images held in a directory specified by the CARTOPY_USER_BACKGROUNDS
+environment variable. That directory is checked with
+func:<code class="xref py py-obj docutils literal notranslate"><span class="pre">self.read_user_background_images</span></code> and needs to contain a JSON
+file which defines for the image metadata.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>optional</em>) – The name of the image to read according to the contents
+of the JSON file. A typical file might have, for instance:
+‘ne_shaded’ : Natural Earth Shaded Relief
+‘ne_grey’ : Natural Earth Grey Earth.</p></li>
+<li><p><strong>resolution</strong> (<em>optional</em>) – The resolution of the image to read, according to
+the contents of the JSON file. A typical file might
+have the following for each name of the image:
+‘low’, ‘med’, ‘high’, ‘vhigh’, ‘full’.</p></li>
+<li><p><strong>extent</strong> (<em>optional</em>) – <p>Using a high resolution background image zoomed into
+a small area will take a very long time to render as
+the image is prepared globally, even though only a small
+area is used. Adding the extent will only render a
+particular geographic region. Specified as
+[longitude start, longitude end,
+latitude start, latitude end].</p>
+<blockquote>
+<div><p>e.g. [-11, 3, 48, 60] for the UK
+or [167.0, 193.0, 47.0, 68.0] to cross the date line.</p>
+</div></blockquote>
+</p></li>
+<li><p><strong>cache</strong> (<em>optional</em>) – Logical flag as to whether or not to cache the loaded
+images into memory. The images are stored before the
+extent is used.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.background_patch">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">background_patch</span></code><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.background_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>DEPRECATED. The patch that provides the filled background of the
+projection.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.barbs">
+<code class="sig-name descname"><span class="pre">barbs</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.barbs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.barbs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a field of barbs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – An array containing the x-positions of data points.</p></li>
+<li><p><strong>y</strong> – An array containing the y-positions of data points.</p></li>
+<li><p><strong>u</strong> – An array of vector data in the u-direction.</p></li>
+<li><p><strong>v</strong> – An array of vector data in the v-direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>transform</strong> (<a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> or Matplotlib transform) – The coordinate system in which the vectors are defined.</p></li>
+<li><p><strong>regrid_shape</strong> (<em>int or 2-tuple of ints</em>) – If given, specifies that the points where the barbs are
+located will be interpolated onto a regular grid in
+projection space. If a single integer is given then that
+will be used as the minimum grid length dimension, while the
+other dimension will be scaled up according to the target
+extent’s aspect ratio. If a pair of ints are given they
+determine the grid length in the x and y directions
+respectively.</p></li>
+<li><p><strong>target_extent</strong> (<em>4-tuple</em>) – If given, specifies the extent in the target CRS that the
+regular grid defined by <em>regrid_shape</em> will have. Defaults
+to the current extent of the map projection.</p></li>
+</ul>
+</dd>
+</dl>
+<p>See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.barbs.html#matplotlib.pyplot.barbs" title="(in Matplotlib v3.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.barbs()</span></code></a> for details on arguments
+and other keyword arguments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The vector components must be defined as grid eastward and
+grid northward.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.coastlines">
+<code class="sig-name descname"><span class="pre">coastlines</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'auto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'black'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.coastlines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.coastlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add coastal <strong>outlines</strong> to the current axes from the Natural Earth
+“coastline” shapefile collection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>resolution</strong> (str or <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.feature.Scaler</span></code>, optional) – A named resolution to use from the Natural Earth
+dataset. Currently can be one of “auto” (default), “110m”, “50m”,
+and “10m”, or a Scaler object.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.get_extent">
+<code class="sig-name descname"><span class="pre">get_extent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.get_extent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.get_extent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get the extent (x0, x1, y0, y1) of the map in the given coordinate
+system.</p>
+<p>If no crs is given, the returned extents’ coordinate system will be
+the CRS of this Axes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.get_tightbbox">
+<code class="sig-name descname"><span class="pre">get_tightbbox</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.get_tightbbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.get_tightbbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Extend the standard behaviour of
+<code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.axes.Axes.get_tightbbox()</span></code>.</p>
+<p>Adjust the axes aspect ratio, background patch location, and add
+gridliners before calculating the tight bounding box.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.gridlines">
+<code class="sig-name descname"><span class="pre">gridlines</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylocs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.gridlines"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Automatically add gridlines to the axes, in the given coordinate
+system, at draw time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>crs</strong> (<em>optional</em>) – The <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy._crs.CRS</span></code> defining the coordinate system in
+which gridlines are drawn.
+Defaults to <a class="reference internal" href="../crs/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.PlateCarree</span></code></a>.</p></li>
+<li><p><strong>draw_labels</strong> (<em>optional</em>) – Label gridlines like axis ticks, around the edge.</p></li>
+<li><p><strong>xlocs</strong> (<em>optional</em>) – An iterable of gridline locations or a
+<a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be
+used to determine the locations of the gridlines in the
+x-coordinate of the given CRS. Defaults to None, which
+implies automatic locating of the gridlines.</p></li>
+<li><p><strong>ylocs</strong> (<em>optional</em>) – An iterable of gridline locations or a
+<a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be
+used to determine the locations of the gridlines in the
+y-coordinate of the given CRS. Defaults to None, which
+implies automatic locating of the gridlines.</p></li>
+<li><p><strong>dms</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – When default longitude and latitude locators and formatters are
+used, ticks are able to stop on minutes and seconds if minutes is
+set to True, and not fraction of degrees. This keyword is passed
+to <a class="reference internal" href="gridliner.html#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gridliner</span></code></a> and has no effect
+if xlocs and ylocs are explicitly set.</p></li>
+<li><p><strong>x_inline</strong> (<em>optional</em>) – Toggle whether the x labels drawn should be inline.</p></li>
+<li><p><strong>y_inline</strong> (<em>optional</em>) – Toggle whether the y labels drawn should be inline.</p></li>
+<li><p><strong>auto_inline</strong> (<em>optional</em>) – Set x_inline and y_inline automatically based on projection</p></li>
+<li><p><strong>xformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for x-coordinate gridlines. It defaults to None, which implies the
+use of a <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LongitudeFormatter</span></code> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../crs/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>yformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for y-coordinate gridlines. It defaults to None, which implies the
+use of a <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LatitudeFormatter</span></code> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../crs/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>xlim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. xlim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-xlim, +xlim).</p></li>
+<li><p><strong>ylim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. ylim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-ylim, +ylim).</p></li>
+<li><p><strong>Parameters</strong> (<em>Keyword</em>) – </p></li>
+<li><p><strong>------------------</strong> – </p></li>
+<li><p><strong>**kwargs</strong> – All other keywords control line properties.  These are passed
+through to <a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.Collection" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.Collection</span></code></a>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>gridliner</em> – A <a class="reference internal" href="gridliner.html#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.gridliner.Gridliner</span></code></a> instance.</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The “x” and “y” for locations and inline settings do not necessarily
+correspond to X and Y, but to the first and second coordinates of the
+specified CRS. For the common case of PlateCarree gridlines, these
+correspond to longitudes and latitudes. Depending on the projection
+used for the map, meridians and parallels can cross both the X axis and
+the Y axis.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.hexbin">
+<code class="sig-name descname"><span class="pre">hexbin</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.hexbin"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.hexbin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the “transform” keyword to <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hexbin.html#matplotlib.pyplot.hexbin" title="(in Matplotlib v3.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">hexbin()</span></code></a>.</p>
+<p>The points are first transformed into the projection of the axes and
+then the hexbin algorithm is computed using the data in the axes
+projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Other Parameters</dt>
+<dd class="field-odd"><p><strong>transform</strong> – A <a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.hold_limits">
+<code class="sig-name descname"><span class="pre">hold_limits</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">hold</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.hold_limits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.hold_limits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Keep track of the original view and data limits for the life of this
+context manager, optionally reverting any changes back to the original
+values after the manager exits.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>hold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a><em>, </em><em>optional</em>) – Whether to revert the data and view limits after the
+context manager exits.  Defaults to True.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.name">
+<code class="sig-name descname"><span class="pre">name</span></code><em class="property"> <span class="pre">=</span> <span class="pre">'cartopy.geoaxes'</span></em><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.name" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.natural_earth_shp">
+<code class="sig-name descname"><span class="pre">natural_earth_shp</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'land'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'110m'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">category</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'physical'</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.natural_earth_shp"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.natural_earth_shp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add the geometries from the specified Natural Earth shapefile to the
+Axes as a <a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PathCollection" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathCollection</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<em>optional</em>) – Name of the shapefile geometry to add.  Defaults to ‘land’.</p></li>
+<li><p><strong>resolution</strong> (<em>optional</em>) – Resolution of shapefile geometry to add.  Defaults to ‘110m’.</p></li>
+<li><p><strong>category</strong> (<em>optional</em>) – Category of shapefile geometry to add.  Defaults to ‘physical’.</p></li>
+</ul>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> are passed through to the
+<a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PathCollection" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathCollection</span></code></a> constructor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The created <a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.PathCollection" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">PathCollection</span></code></a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.outline_patch">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">outline_patch</span></code><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.outline_patch" title="Permalink to this definition">¶</a></dt>
+<dd><p>DEPRECATED. The patch that provides the line bordering the projection.</p>
+<p>Use GeoAxes.spines[‘geo’] or default Axes properties instead.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.projection">
+<code class="sig-name descname"><span class="pre">projection</span></code><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.projection" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> of this GeoAxes.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.quiver">
+<code class="sig-name descname"><span class="pre">quiver</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.quiver"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.quiver" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot a field of arrows.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – An array containing the x-positions of data points.</p></li>
+<li><p><strong>y</strong> – An array containing the y-positions of data points.</p></li>
+<li><p><strong>u</strong> – An array of vector data in the u-direction.</p></li>
+<li><p><strong>v</strong> – An array of vector data in the v-direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><ul class="simple">
+<li><p><strong>transform</strong> (<a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> or Matplotlib transform) – The coordinate system in which the vectors are defined.</p></li>
+<li><p><strong>regrid_shape</strong> (<em>int or 2-tuple of ints</em>) – If given, specifies that the points where the arrows are
+located will be interpolated onto a regular grid in
+projection space. If a single integer is given then that
+will be used as the minimum grid length dimension, while the
+other dimension will be scaled up according to the target
+extent’s aspect ratio. If a pair of ints are given they
+determine the grid length in the x and y directions
+respectively.</p></li>
+<li><p><strong>target_extent</strong> (<em>4-tuple</em>) – If given, specifies the extent in the target CRS that the
+regular grid defined by <em>regrid_shape</em> will have. Defaults
+to the current extent of the map projection.</p></li>
+</ul>
+</dd>
+</dl>
+<p>See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.quiver.html#matplotlib.pyplot.quiver" title="(in Matplotlib v3.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.quiver()</span></code></a> for details on arguments
+and other keyword arguments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The vector components must be defined as grid eastward and
+grid northward.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.read_user_background_images">
+<code class="sig-name descname"><span class="pre">read_user_background_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verify</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.read_user_background_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.read_user_background_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Read the metadata in the specified CARTOPY_USER_BACKGROUNDS
+environment variable to populate the dictionaries for background_img.</p>
+<p>If CARTOPY_USER_BACKGROUNDS is not set then by default the image in
+lib/cartopy/data/raster/natural_earth/ will be made available.</p>
+<p>The metadata should be a standard JSON file which specifies a two
+level dictionary. The first level is the image type.
+For each image type there must be the fields:
+__comment__, __source__ and __projection__
+and then an element giving the filename for each resolution.</p>
+<p>An example JSON file can be found at:
+lib/cartopy/data/raster/natural_earth/images.json</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.set_boundary">
+<code class="sig-name descname"><span class="pre">set_boundary</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_as_clip_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.set_boundary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.set_boundary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Given a path, update <code class="xref py py-data docutils literal notranslate"><span class="pre">spines['geo']</span></code> and <code class="xref py py-data docutils literal notranslate"><span class="pre">patch</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a>) – The path of the desired boundary.</p></li>
+<li><p><strong>transform</strong> (None or <a class="reference external" href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Transform" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.transforms.Transform</span></code></a>, optional) – The coordinate system of the given path. Currently
+this must be convertible to data coordinates, and
+therefore cannot extend beyond the limits of the
+axes’ projection.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.set_extent">
+<code class="sig-name descname"><span class="pre">set_extent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">extents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.set_extent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.set_extent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the extent (x0, x1, y0, y1) of the map in the given
+coordinate system.</p>
+<p>If no crs is given, the extents’ coordinate system will be assumed
+to be the Geodetic version of this axes’ projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>extents</strong> – Tuple of floats representing the required extent (x0, x1, y0, y1).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.set_global">
+<code class="sig-name descname"><span class="pre">set_global</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.set_global"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.set_global" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the extent of the Axes to the limits of the projection.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In some cases where the projection has a limited sensible range
+the <code class="docutils literal notranslate"><span class="pre">set_global</span></code> method does not actually make the whole globe
+visible. Instead, the most appropriate extents will be used (e.g.
+Ordnance Survey UK will set the extents to be around the British
+Isles.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.set_xticks">
+<code class="sig-name descname"><span class="pre">set_xticks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.set_xticks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.set_xticks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the x ticks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ticks</strong> – List of floats denoting the desired position of x ticks.</p></li>
+<li><p><strong>minor</strong> (<em>optional</em>) – flag indicating whether the ticks should be minor
+ticks i.e. small and unlabelled (defaults to False).</p></li>
+<li><p><strong>crs</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="../crs/index.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> indicating the
+coordinate system of the provided tick values. If no
+coordinate system is specified then the values are assumed
+to be in the coordinate system of the projection.
+Only transformations from one rectangular coordinate system
+to another rectangular coordinate system are supported (defaults
+to None).</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This interface is subject to change whilst functionality is added
+to support other map projections.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.set_yticks">
+<code class="sig-name descname"><span class="pre">set_yticks</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ticks</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.set_yticks"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.set_yticks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set the y ticks.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>ticks</strong> – List of floats denoting the desired position of y ticks.</p></li>
+<li><p><strong>minor</strong> (<em>optional</em>) – flag indicating whether the ticks should be minor
+ticks i.e. small and unlabelled (defaults to False).</p></li>
+<li><p><strong>crs</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="../crs/index.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> indicating the
+coordinate system of the provided tick values. If no
+coordinate system is specified then the values are assumed
+to be in the coordinate system of the projection.
+Only transformations from one rectangular coordinate system
+to another rectangular coordinate system are supported (defaults
+to None).</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This interface is subject to change whilst functionality is added
+to support other map projections.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.stock_img">
+<code class="sig-name descname"><span class="pre">stock_img</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'ne_shaded'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.stock_img"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.stock_img" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a standard image to the map.</p>
+<p>Currently, the only (and default) option is a downsampled version of
+the Natural Earth shaded relief raster.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.streamplot">
+<code class="sig-name descname"><span class="pre">streamplot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.streamplot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.streamplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plot streamlines of a vector flow.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – An array containing the x-positions of data points.</p></li>
+<li><p><strong>y</strong> – An array containing the y-positions of data points.</p></li>
+<li><p><strong>u</strong> – An array of vector data in the u-direction.</p></li>
+<li><p><strong>v</strong> – An array of vector data in the v-direction.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>transform</strong> (<a class="reference internal" href="../crs/index.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> or Matplotlib transform.) – The coordinate system in which the vector field is defined.</p>
+</dd>
+</dl>
+<p>See <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.streamplot.html#matplotlib.pyplot.streamplot" title="(in Matplotlib v3.4.1)"><code class="xref py py-func docutils literal notranslate"><span class="pre">matplotlib.pyplot.streamplot()</span></code></a> for details on arguments
+and keyword arguments.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The vector components must be defined as grid eastward and
+grid northward.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.geoaxes.GeoAxes.tissot">
+<code class="sig-name descname"><span class="pre">tissot</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rad_km</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lons</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lats</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">80</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/geoaxes.html#GeoAxes.tissot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxes.tissot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add Tissot’s indicatrices to the axes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rad_km</strong> – The radius in km of the the circles to be drawn.</p></li>
+<li><p><strong>lons</strong> – A numpy.ndarray, list or tuple of longitude values that
+locate the centre of each circle. Specifying more than one
+dimension allows individual points to be drawn whereas a
+1D array produces a grid of points.</p></li>
+<li><p><strong>lats</strong> – A numpy.ndarray, list or tuple of latitude values that
+that locate the centre of each circle. See lons.</p></li>
+<li><p><strong>n_samples</strong> – Integer number of points sampled around the circumference of
+each circle.</p></li>
+</ul>
+</dd>
+</dl>
+<p><code class="docutils literal notranslate"><span class="pre">**kwargs</span></code> are passed through to <code class="xref py py-obj docutils literal notranslate"><span class="pre">class:ShapelyFeature</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.mpl.geoaxes.GeoAxesSubplot">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.mpl.geoaxes.</span></code><code class="sig-name descname"><span class="pre">GeoAxesSubplot</span></code><a class="headerlink" href="#cartopy.mpl.geoaxes.GeoAxesSubplot" title="Permalink to this definition">¶</a></dt>
+<dd><p>See <a class="reference internal" href="#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cartopy.mpl.patch.path_to_geos">
+<code class="sig-prename descclassname"><span class="pre">cartopy.mpl.patch.</span></code><code class="sig-name descname"><span class="pre">path_to_geos</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">force_ccw</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/patch.html#path_to_geos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.patch.path_to_geos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of Shapely geometric objects from a
+<a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>path</strong> – A <a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a> instance.</p>
+</dd>
+<dt class="field-even">Other Parameters</dt>
+<dd class="field-even"><p><strong>force_ccw</strong> – Boolean flag determining whether the path can be inverted to enforce
+ccw. Defaults to False.</p>
+</dd>
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><em>A list of instances of the following type(s)</em> – <code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.polygon.Polygon</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.linestring.LineString</span></code> and/or
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.multilinestring.MultiLineString</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cartopy.mpl.patch.geos_to_path">
+<code class="sig-prename descclassname"><span class="pre">cartopy.mpl.patch.</span></code><code class="sig-name descname"><span class="pre">geos_to_path</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shape</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/patch.html#geos_to_path"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.patch.geos_to_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a list of <a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a> objects that describe
+a shape.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>shape</strong> – A list, tuple or single instance of any of the following
+types: <code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.point.Point</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.linestring.LineString</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.linestring.LinearRing</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.polygon.Polygon</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.multipoint.MultiPoint</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.multipolygon.MultiPolygon</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.multilinestring.MultiLineString</span></code>,
+<code class="xref py py-class docutils literal notranslate"><span class="pre">shapely.geometry.collection.GeometryCollection</span></code>,
+or any type with a _as_mpl_path() method.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><em>paths</em> – A list of <a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.path.Path</span></code></a> objects.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="advanced_plotting.html"
+                        title="previous chapter">More advanced mapping with cartopy and matplotlib</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="gridliner.html"
+                        title="next chapter">Cartopy map gridlines and tick labels</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/matplotlib/geoaxes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="gridliner.html" title="Cartopy map gridlines and tick labels"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="advanced_plotting.html" title="More advanced mapping with cartopy and matplotlib"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Using cartopy with matplotlib</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cartopy Matplotlib integration reference document</a></li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.5.4.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
