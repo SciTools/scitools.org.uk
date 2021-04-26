@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartopy map gridlines and tick labels &#8212; cartopy 0.19.0rc2.dev8+gd251b2f documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="The cartopy Feature interface" href="feature_interface.html" />
+    <link rel="prev" title="Cartopy Matplotlib integration reference document" href="geoaxes.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="feature_interface.html" title="The cartopy Feature interface"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="geoaxes.html" title="Cartopy Matplotlib integration reference document"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="intro.html" accesskey="U">Using cartopy with matplotlib</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cartopy map gridlines and tick labels</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="cartopy-map-gridlines-and-tick-labels">
+<h1>Cartopy map gridlines and tick labels<a class="headerlink" href="#cartopy-map-gridlines-and-tick-labels" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gridliner</span></code></a> instance, often created by calling the
+<a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.gridlines()</span></code></a> method on a
+<a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes</span></code></a> instance, has a variety of attributes which can be
+used to determine draw time behaviour of the gridlines and labels.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>The current <a class="reference internal" href="#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gridliner</span></code></a> interface is likely to undergo
+a significant change in the versions following v0.6 in order to fix some of the underying
+limitations of the current implementation.</p>
+</div>
+<dl class="py class">
+<dt id="cartopy.mpl.gridliner.Gridliner">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.mpl.gridliner.</span></code><code class="sig-name descname"><span class="pre">Gridliner</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlocator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylocator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/gridliner.html#Gridliner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner" title="Permalink to this definition">¶</a></dt>
+<dd><p>Object used by <a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.gridlines()</span></code></a>
+to add gridlines and tick labels to a map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> – The <a class="reference internal" href="geoaxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes</span></code></a> object to be drawn on.</p></li>
+<li><p><strong>crs</strong> – The <a class="reference internal" href="../crs/index.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.CRS</span></code></a> defining the coordinate system that
+the gridlines are drawn in.</p></li>
+<li><p><strong>draw_labels</strong> (<em>optional</em>) – Toggle whether to draw labels. For finer control, attributes of
+<a class="reference internal" href="#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gridliner</span></code></a> may be modified individually. Defaults to False.</p></li>
+<li><p><strong>xlocator</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be used
+to determine the locations of the gridlines in the x-coordinate of
+the given CRS. Defaults to None, which implies automatic locating
+of the gridlines.</p></li>
+<li><p><strong>ylocator</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be used
+to determine the locations of the gridlines in the y-coordinate of
+the given CRS. Defaults to None, which implies automatic locating
+of the gridlines.</p></li>
+<li><p><strong>xformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for x-coordinate gridlines. It defaults to None, which implies the
+use of a <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LongitudeFormatter</span></code> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../crs/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>yformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for y-coordinate gridlines. It defaults to None, which implies the
+use of a <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LatitudeFormatter</span></code> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../crs/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>collection_kwargs</strong> (<em>optional</em>) – Dictionary controlling line properties, passed to
+<a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.Collection" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.Collection</span></code></a>. Defaults to None.</p></li>
+<li><p><strong>dms</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.9)"><em>bool</em></a>) – When default locators and formatters are used,
+ticks are able to stop on minutes and seconds if minutes
+is set to True, and not fraction of degrees.</p></li>
+<li><p><strong>x_inline</strong> (<em>optional</em>) – Toggle whether the x labels drawn should be inline.</p></li>
+<li><p><strong>y_inline</strong> (<em>optional</em>) – Toggle whether the y labels drawn should be inline.</p></li>
+<li><p><strong>auto_inline</strong> (<em>optional</em>) – Set x_inline and y_inline automatically based on projection.</p></li>
+<li><p><strong>xlim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. xlim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-xlim, +xlim).</p></li>
+<li><p><strong>ylim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. ylim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-ylim, +ylim).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The “x” and “y” labels for locators and formatters do not necessarily
+correspond to X and Y, but to the first and second coordinates of the
+specified CRS. For the common case of PlateCarree gridlines, these
+correspond to longitudes and latitudes. Depending on the projection
+used for the map, meridians and parallels can cross both the X axis and
+the Y axis.</p>
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.bottom_labels">
+<code class="sig-name descname"><span class="pre">bottom_labels</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.bottom_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw labels on the bottom of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.collection_kwargs">
+<code class="sig-name descname"><span class="pre">collection_kwargs</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.collection_kwargs" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary passed through to
+<code class="docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code> on grid line creation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.has_labels">
+<code class="sig-name descname"><span class="pre">has_labels</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/mpl/gridliner.html#Gridliner.has_labels"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.has_labels" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.label_artists">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">label_artists</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.label_artists" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.left_labels">
+<code class="sig-name descname"><span class="pre">left_labels</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.left_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw labels on the left hand side of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.n_steps">
+<code class="sig-name descname"><span class="pre">n_steps</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.n_steps" title="Permalink to this definition">¶</a></dt>
+<dd><p>The number of interpolation points which are used to draw the
+gridlines.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.right_labels">
+<code class="sig-name descname"><span class="pre">right_labels</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.right_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw labels on the right hand side of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.rotate_labels">
+<code class="sig-name descname"><span class="pre">rotate_labels</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.rotate_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allow the rotation of labels.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.top_labels">
+<code class="sig-name descname"><span class="pre">top_labels</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.top_labels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw labels on the top of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.x_inline">
+<code class="sig-name descname"><span class="pre">x_inline</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.x_inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw x labels inline</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.xformatter">
+<code class="sig-name descname"><span class="pre">xformatter</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xformatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></a> to use for the lon labels.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.xlabel_style">
+<code class="sig-name descname"><span class="pre">xlabel_style</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlabel_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on x label creation
+for styling of the text labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.xlabels_bottom">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">xlabels_bottom</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlabels_bottom" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.xlabels_top">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">xlabels_top</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlabels_top" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.xline_artists">
+<code class="sig-name descname"><span class="pre">xline_artists</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xline_artists" title="Permalink to this definition">¶</a></dt>
+<dd><p>The x gridlines which were created at draw time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.xlines">
+<code class="sig-name descname"><span class="pre">xlines</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw the x gridlines.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.xpadding">
+<code class="sig-name descname"><span class="pre">xpadding</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xpadding" title="Permalink to this definition">¶</a></dt>
+<dd><p>The padding from the map edge to the x labels in points.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.y_inline">
+<code class="sig-name descname"><span class="pre">y_inline</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.y_inline" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw y labels inline</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.yformatter">
+<code class="sig-name descname"><span class="pre">yformatter</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.yformatter" title="Permalink to this definition">¶</a></dt>
+<dd><p>The <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.4.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></a> to use for the lat labels.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.ylabel_style">
+<code class="sig-name descname"><span class="pre">ylabel_style</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylabel_style" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on y label creation
+for styling of the text labels.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.ylabels_left">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">ylabels_left</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylabels_left" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.mpl.gridliner.Gridliner.ylabels_right">
+<em class="property"><span class="pre">property</span> </em><code class="sig-name descname"><span class="pre">ylabels_right</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylabels_right" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.yline_artists">
+<code class="sig-name descname"><span class="pre">yline_artists</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.yline_artists" title="Permalink to this definition">¶</a></dt>
+<dd><p>The y gridlines which were created at draw time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.ylines">
+<code class="sig-name descname"><span class="pre">ylines</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylines" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to draw the y gridlines.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="cartopy.mpl.gridliner.Gridliner.ypadding">
+<code class="sig-name descname"><span class="pre">ypadding</span></code><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ypadding" title="Permalink to this definition">¶</a></dt>
+<dd><p>The padding from the map edge to the y labels in points.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p>In this first example, gridines and tick labels are plotted in a
+non-rectangular projection, with most default values and
+no tuning of the gridliner attributes:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+<span class="n">rotated_crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">RotatedPole</span><span class="p">(</span><span class="n">pole_longitude</span><span class="o">=</span><span class="mf">120.0</span><span class="p">,</span> <span class="n">pole_latitude</span><span class="o">=</span><span class="mf">70.0</span><span class="p">)</span>
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">rotated_crs</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">6</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">58</span><span class="p">],</span> <span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="s1">&#39;50m&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">dms</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">x_inline</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">y_inline</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../matplotlib/gridliner-1.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="../_images/gridliner-1.png" src="../_images/gridliner-1.png" />
+</div>
+<p>The following contrived example makes use of many of the features of the Gridliner
+class to produce customized gridlines and tick labels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib.ticker</span> <span class="k">as</span> <span class="nn">mticker</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+
+<span class="kn">from</span> <span class="nn">cartopy.mpl.ticker</span> <span class="kn">import</span> <span class="p">(</span><span class="n">LongitudeFormatter</span><span class="p">,</span> <span class="n">LatitudeFormatter</span><span class="p">,</span>
+                                <span class="n">LatitudeLocator</span><span class="p">)</span>
+
+
+<span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">Mercator</span><span class="p">())</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">coastlines</span><span class="p">()</span>
+
+<span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="n">draw_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                  <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">)</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">top_labels</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">left_labels</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlines</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <span class="n">mticker</span><span class="o">.</span><span class="n">FixedLocator</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">45</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">180</span><span class="p">])</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">ylocator</span> <span class="o">=</span> <span class="n">LatitudeLocator</span><span class="p">()</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xformatter</span> <span class="o">=</span> <span class="n">LongitudeFormatter</span><span class="p">()</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">yformatter</span> <span class="o">=</span> <span class="n">LatitudeFormatter</span><span class="p">()</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">15</span><span class="p">,</span> <span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;gray&#39;</span><span class="p">}</span>
+<span class="n">gl</span><span class="o">.</span><span class="n">xlabel_style</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;color&#39;</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span><span class="p">}</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href="../matplotlib/gridliner-2.py">Source code</a>)</p>
+<div class="figure align-default">
+<img alt="../_images/gridliner-2.png" src="../_images/gridliner-2.png" />
+</div>
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../index.html">
+<img src="../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="geoaxes.html"
+                        title="previous chapter">Cartopy Matplotlib integration reference document</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="feature_interface.html"
+                        title="next chapter">The cartopy Feature interface</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/matplotlib/gridliner.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="feature_interface.html" title="The cartopy Feature interface"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="geoaxes.html" title="Cartopy Matplotlib integration reference document"
+             >previous</a> |</li>
+        <li><a href="../index.html">home</a>|&nbsp;</li>
+        <li><a href="../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="intro.html" >Using cartopy with matplotlib</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Cartopy map gridlines and tick labels</a></li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.5.4.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image tile identification and fetching &#8212; cartopy 0.19.0rc2.dev8+gd251b2f documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="RasterSources and accessing WMS and WMTS" href="ogc_clients.html" />
+    <link rel="prev" title="Geodesic calculations" href="../geodesic.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li class="right" >
+          <a href="ogc_clients.html" title="RasterSources and accessing WMS and WMTS"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="../geodesic.html" title="Geodesic calculations"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+        <li class="nav-item nav-item-this"><a href="">Image tile identification and fetching</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-cartopy.io.img_tiles">
+<span id="image-tile-identification-and-fetching"></span><h1>Image tile identification and fetching<a class="headerlink" href="#module-cartopy.io.img_tiles" title="Permalink to this headline">¶</a></h1>
+<p>Implements image tile identification and fetching from various sources.</p>
+<p>The Matplotlib interface can make use of tile objects (defined below) via the
+<a class="reference internal" href="../../matplotlib/geoaxes.html#cartopy.mpl.geoaxes.GeoAxes.add_image" title="cartopy.mpl.geoaxes.GeoAxes.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.add_image()</span></code></a> method. For example, to add a
+<a class="reference internal" href="#cartopy.io.img_tiles.MapQuestOpenAerial" title="cartopy.io.img_tiles.MapQuestOpenAerial"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapQuest</span> <span class="pre">Open</span> <span class="pre">Aerial</span> <span class="pre">tileset</span></code></a> to an existing axes
+at zoom level 2, do <code class="docutils literal notranslate"><span class="pre">ax.add_image(MapQuestOpenAerial(),</span> <span class="pre">2)</span></code>. An example of
+using tiles in this way can be found at the
+<a class="reference internal" href="../../gallery/scalar_data/eyja_volcano.html#sphx-glr-gallery-scalar-data-eyja-volcano-py"><span class="std std-ref">Map tile acquisition</span></a> example.</p>
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.AzureMapsTiles">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">AzureMapsTiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">subscription_key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tileset_id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'microsoft.imagery'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">api_version</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'2.0'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#AzureMapsTiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.AzureMapsTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set up a new instance to retrieve tiles from Azure Maps.</p>
+<p>Access to Azure Maps REST API requires a subscription key.
+See <a class="reference external" href="https://docs.microsoft.com/en-us/azure/azure-maps/azure-maps-authentication#shared-key-authentication/">https://docs.microsoft.com/en-us/azure/azure-maps/azure-maps-authentication#shared-key-authentication/</a>  # noqa: E501
+for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>subscription_key</strong> – A valid Azure Maps subscription key.</p></li>
+<li><p><strong>tileset_id</strong> – A tileset ID for a map. See
+<a class="reference external" href="https://docs.microsoft.com/en-us/rest/api/maps/renderv2/getmaptilepreview#tilesetid">https://docs.microsoft.com/en-us/rest/api/maps/renderv2/getmaptilepreview#tilesetid</a>  # noqa: E501
+for details.</p></li>
+<li><p><strong>api_version</strong> – API version to use. Defaults to 2.0 as recommended by Microsoft.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.GoogleTiles">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">GoogleTiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'street'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'https://mts0.google.com/vt/lyrs={style}&#64;177000000&amp;hl=en&amp;src=api&amp;x={x}&amp;y={y}&amp;z={z}&amp;s=G'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleTiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleTiles" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>desired_tile_form</strong> (<em>optional</em>) – Defaults to ‘RGB’.</p></li>
+<li><p><strong>style</strong> (<em>optional</em>) – The style for the Google Maps tiles.  One of ‘street’,
+‘satellite’, ‘terrain’, and ‘only_streets’.  Defaults to ‘street’.</p></li>
+<li><p><strong>url</strong> (<em>optional</em>) – URL pointing to a tile source and containing {x}, {y}, and {z}.
+Such as: <code class="docutils literal notranslate"><span class="pre">'https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}.jpg'</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.GoogleWTS">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">GoogleWTS</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CartoPy/0.19.0rc2.dev8+gd251b2f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval using the Google WTS coordinate system.</p>
+<p>A “tile” in this class refers to the coordinates (x, y, z).</p>
+<p>The tiles can be saved to a cache directory using the cache parameter, so
+they are downloaded only once. If it is set to True, the default path
+stored in the cartopy.config dictionary is used. If it is set to a custom
+path, this path is used instead of the default one. If it is set to False
+(the default behavior), the tiles are downloaded each time.</p>
+<dl class="py method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.find_images">
+<code class="sig-name descname"><span class="pre">find_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_tile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">0,</span> <span class="pre">0)</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.find_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Target domain is a shapely polygon in native coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.tile_bbox">
+<code class="sig-name descname"><span class="pre">tile_bbox</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0_at_north_pole</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS.tile_bbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.tile_bbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the <code class="docutils literal notranslate"><span class="pre">(x0,</span> <span class="pre">x1),</span> <span class="pre">(y0,</span> <span class="pre">y1)</span></code> bounding box for the given x, y, z
+tile position.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – The x tile coordinate in the Google tile numbering system.</p></li>
+<li><p><strong>y</strong> – The y tile coordinate in the Google tile numbering system.</p></li>
+<li><p><strong>z</strong> – The z tile coordinate in the Google tile numbering system.</p></li>
+<li><p><strong>y0_at_north_pole</strong> (<em>optional</em>) – Boolean representing whether the numbering of the y coordinate
+starts at the north pole (as is the convention for Google tiles)
+or not (in which case it will start at the south pole, as is the
+convention for TMS). Defaults to True.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.io.img_tiles.GoogleWTS.tileextent">
+<code class="sig-name descname"><span class="pre">tileextent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x_y_z</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#GoogleWTS.tileextent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.GoogleWTS.tileextent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return extent tuple <code class="docutils literal notranslate"><span class="pre">(x0,x1,y0,y1)</span></code> in Mercator coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.MapQuestOSM">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">MapQuestOSM</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CartoPy/0.19.0rc2.dev8+gd251b2f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapQuestOSM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapQuestOSM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.MapQuestOpenAerial">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">MapQuestOpenAerial</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CartoPy/0.19.0rc2.dev8+gd251b2f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapQuestOpenAerial"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapQuestOpenAerial" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.MapboxStyleTiles">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">MapboxStyleTiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">username</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapboxStyleTiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapboxStyleTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval from a user-defined Mapbox style. For more
+details on Mapbox styles, see
+<a class="reference external" href="https://www.mapbox.com/studio-manual/overview/map-styling/">https://www.mapbox.com/studio-manual/overview/map-styling/</a>.</p>
+<p>For terms of service, see <a class="reference external" href="https://www.mapbox.com/tos/">https://www.mapbox.com/tos/</a>.</p>
+<p>Set up a new instance to retrieve tiles from a Mapbox style.</p>
+<p>Access to Mapbox web services requires an access token and a map ID.
+See <a class="reference external" href="https://www.mapbox.com/api-documentation/">https://www.mapbox.com/api-documentation/</a> for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>access_token</strong> – A valid Mapbox API access token.</p></li>
+<li><p><strong>username</strong> – The username for the Mapbox user who defined the Mapbox style.</p></li>
+<li><p><strong>map_id</strong> – A map ID for a map defined by a Mapbox style. This is the map whose
+tiles will be retrieved through this process. Note that this style
+may be private and if your access token does not have permissions
+to view this style, then map tile retrieval will fail.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.MapboxTiles">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">MapboxTiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">access_token</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">map_id</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#MapboxTiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.MapboxTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval from Mapbox.</p>
+<p>For terms of service, see <a class="reference external" href="https://www.mapbox.com/tos/">https://www.mapbox.com/tos/</a>.</p>
+<p>Set up a new Mapbox tiles instance.</p>
+<p>Access to Mapbox web services requires an access token and a map ID.
+See <a class="reference external" href="https://www.mapbox.com/api-documentation/">https://www.mapbox.com/api-documentation/</a> for details.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>access_token</strong> – A valid Mapbox API access token.</p></li>
+<li><p><strong>map_id</strong> – An ID for a publicly accessible map (provided by Mapbox).
+This is the map whose tiles will be retrieved through this process.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.OSM">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">OSM</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CartoPy/0.19.0rc2.dev8+gd251b2f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#OSM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.OSM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.OrdnanceSurvey">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">OrdnanceSurvey</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">apikey</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'Road'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#OrdnanceSurvey"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.OrdnanceSurvey" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval from Ordnance Survey map data.
+To use this tile image source you will need to obtain an
+API key from Ordnance Survey.</p>
+<p>For more details on Ordnance Survey layer styles, see
+<a class="reference external" href="https://apidocs.os.uk/docs/map-styles">https://apidocs.os.uk/docs/map-styles</a>.</p>
+<p>For the API framework agreement, see
+<a class="reference external" href="https://developer.ordnancesurvey.co.uk/os-api-framework-agreement">https://developer.ordnancesurvey.co.uk/os-api-framework-agreement</a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>apikey</strong> (<em>required</em>) – The authentication key provided by OS to query the maps API</p></li>
+<li><p><strong>layer</strong> (<em>optional</em>) – <p>The style of the Ordnance Survey map tiles. One of ‘Outdoor’,
+‘Road’, ‘Light’, ‘Night’, ‘Leisure’. Defaults to ‘Road’.
+Details about the style of layer can be found at:</p>
+<ul>
+<li><p><a class="reference external" href="https://apidocs.os.uk/docs/layer-information">https://apidocs.os.uk/docs/layer-information</a></p></li>
+<li><p><a class="reference external" href="https://apidocs.os.uk/docs/map-styles">https://apidocs.os.uk/docs/map-styles</a></p></li>
+</ul>
+</p></li>
+<li><p><strong>desired_tile_form</strong> (<em>optional</em>) – Defaults to ‘RGB’.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">QuadtreeTiles</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">user_agent</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'CartoPy/0.19.0rc2.dev8+gd251b2f'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implement web tile retrieval using the Microsoft WTS quadkey coordinate
+system.</p>
+<p>A “tile” in this class refers to a quadkey such as “1”, “14” or “141”
+where the length of the quatree is the zoom level in Google Tile terms.</p>
+<dl class="py method">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles.find_images">
+<code class="sig-name descname"><span class="pre">find_images</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_domain</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_tile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles.find_images"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles.find_images" title="Permalink to this definition">¶</a></dt>
+<dd><p>Find all the quadtrees at the given target zoom, in the given
+target domain.</p>
+<p>target_z must be a value &gt;= 1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="cartopy.io.img_tiles.QuadtreeTiles.tileextent">
+<code class="sig-name descname"><span class="pre">tileextent</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">quadkey</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#QuadtreeTiles.tileextent"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.QuadtreeTiles.tileextent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return extent tuple <code class="docutils literal notranslate"><span class="pre">(x0,x1,y0,y1)</span></code> in Mercator coordinates.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.Stamen">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">Stamen</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'toner'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desired_tile_form</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'RGB'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#Stamen"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.Stamen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves tiles from maps.stamen.com. Styles include
+<code class="docutils literal notranslate"><span class="pre">terrain-background</span></code>, <code class="docutils literal notranslate"><span class="pre">terrain</span></code>, <code class="docutils literal notranslate"><span class="pre">toner</span></code> and <code class="docutils literal notranslate"><span class="pre">watercolor</span></code>.</p>
+<p>For a full reference on the styles available please see
+<a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a>. Of particular note are the sub-styles
+that are made available (e.g. <code class="docutils literal notranslate"><span class="pre">terrain</span></code> and <code class="docutils literal notranslate"><span class="pre">terrain-background</span></code>).
+To determine the name of the particular [sub-]style you want,
+follow the link on <a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a> to your desired style and
+observe the style name in the URL. Your style name will be in the
+form of: <code class="docutils literal notranslate"><span class="pre">http://maps.stamen.com/{STYLE_NAME}/#9/37/-122</span></code>.</p>
+<p>Except otherwise noted, the Stamen map tile sets are copyright Stamen
+Design, under a Creative Commons Attribution (CC BY 3.0) license.</p>
+<p>Please see the attribution notice at <a class="reference external" href="http://maps.stamen.com">http://maps.stamen.com</a> on how to
+attribute this imagery.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="cartopy.io.img_tiles.StamenTerrain">
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cartopy.io.img_tiles.</span></code><code class="sig-name descname"><span class="pre">StamenTerrain</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/io/img_tiles.html#StamenTerrain"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.io.img_tiles.StamenTerrain" title="Permalink to this definition">¶</a></dt>
+<dd><p><strong>DEPRECATED:</strong> This class is deprecated. Please use
+<code class="docutils literal notranslate"><span class="pre">Stamen('terrain-background')</span></code> instead.</p>
+<p>Terrain tiles defined for the continental United States, and include land
+color and shaded hills. The land colors are a custom palette developed by
+Gem Spear for the National Atlas 1km land cover data set, which defines
+twenty-four land classifications including five kinds of forest,
+combinations of shrubs, grasses and crops, and a few tundras and wetlands.
+The colors are at their highest contrast when fully zoomed-out to the
+whole U.S., and they slowly fade out to pale off-white as you zoom in to
+leave room for foreground data and break up the weirdness of large areas
+of flat, dark green.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p><a class="reference external" href="http://mike.teczno.com/notes/osm-us-terrain-layer/background.html">http://mike.teczno.com/notes/osm-us-terrain-layer/background.html</a></p></li>
+<li><p><a class="reference external" href="http://maps.stamen.com/">http://maps.stamen.com/</a></p></li>
+<li><p><a class="reference external" href="https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services">https://wiki.openstreetmap.org/wiki/List_of_OSM_based_Services</a></p></li>
+<li><p><a class="reference external" href="https://github.com/migurski/DEM-Tools">https://github.com/migurski/DEM-Tools</a></p></li>
+</ul>
+</dd></dl>
+
+</div>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="../geodesic.html"
+                        title="previous chapter">Geodesic calculations</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="ogc_clients.html"
+                        title="next chapter">RasterSources and accessing WMS and WMTS</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/cartopy/io/img_tiles.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li class="right" >
+          <a href="ogc_clients.html" title="RasterSources and accessing WMS and WMTS"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="../geodesic.html" title="Geodesic calculations"
+             >previous</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+        <li class="nav-item nav-item-this"><a href="">Image tile identification and fetching</a></li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.5.4.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,212 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.util &#8212; cartopy 0.19.0rc2.dev8+gd251b2f documentation</title>
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+ 
+
+     <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+     <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+     <link rel="stylesheet" href="../../_static/layout.css" type="text/css" />
+
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             accesskey="O">outline</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../index.html" accesskey="U">Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">cartopy.util</a></li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <h1>Source code for cartopy.util</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module contains utilities that are useful in conjunction with</span>
+<span class="sd">cartopy.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">numpy.ma</span> <span class="k">as</span> <span class="nn">ma</span>
+
+
+<div class="viewcode-block" id="add_cyclic_point"><a class="viewcode-back" href="../../cartopy/util/util.html#cartopy.util.add_cyclic_point">[docs]</a><span class="k">def</span> <span class="nf">add_cyclic_point</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">coord</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a cyclic point to an array and optionally a corresponding</span>
+<span class="sd">    coordinate.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data</span>
+<span class="sd">        An n-dimensional array of data to add a cyclic point to.</span>
+<span class="sd">    coord: optional</span>
+<span class="sd">        A 1-dimensional array which specifies the coordinate values for</span>
+<span class="sd">        the dimension the cyclic point is to be added to. The coordinate</span>
+<span class="sd">        values must be regularly spaced. Defaults to None.</span>
+<span class="sd">    axis: optional</span>
+<span class="sd">        Specifies the axis of the data array to add the cyclic point to.</span>
+<span class="sd">        Defaults to the right-most axis.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    cyclic_data</span>
+<span class="sd">        The data array with a cyclic point added.</span>
+<span class="sd">    cyclic_coord</span>
+<span class="sd">        The coordinate with a cyclic point, only returned if the coord</span>
+<span class="sd">        keyword was supplied.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    Adding a cyclic point to a data array, where the cyclic dimension is</span>
+<span class="sd">    the right-most dimension</span>
+
+<span class="sd">    .. testsetup::</span>
+<span class="sd">        &gt;&gt;&gt; from distutils.version import LooseVersion</span>
+<span class="sd">        &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">        &gt;&gt;&gt; if LooseVersion(np.__version__) &gt;= &#39;1.14.0&#39;:</span>
+<span class="sd">        ...     # To provide consistent doctests.</span>
+<span class="sd">        ...     np.set_printoptions(legacy=&#39;1.13&#39;)</span>
+
+<span class="sd">    &gt;&gt;&gt; import numpy as np</span>
+<span class="sd">    &gt;&gt;&gt; data = np.ones([5, 6]) * np.arange(6)</span>
+<span class="sd">    &gt;&gt;&gt; cyclic_data = add_cyclic_point(data)</span>
+<span class="sd">    &gt;&gt;&gt; print(cyclic_data)  # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [[ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]]</span>
+
+<span class="sd">    Adding a cyclic point to a data array and an associated coordinate</span>
+
+<span class="sd">    &gt;&gt;&gt; lons = np.arange(0, 360, 60)</span>
+<span class="sd">    &gt;&gt;&gt; cyclic_data, cyclic_lons = add_cyclic_point(data, coord=lons)</span>
+<span class="sd">    &gt;&gt;&gt; print(cyclic_data)  # doctest: +NORMALIZE_WHITESPACE</span>
+<span class="sd">    [[ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]</span>
+<span class="sd">     [ 0. 1. 2. 3. 4. 5. 0.]]</span>
+<span class="sd">    &gt;&gt;&gt; print(cyclic_lons)</span>
+<span class="sd">    [  0  60 120 180 240 300 360]</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">coord</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">coord</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The coordinate must be 1-dimensional.&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span> <span class="o">!=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The length of the coordinate does not match &#39;</span>
+                             <span class="s1">&#39;the size of the corresponding dimension of &#39;</span>
+                             <span class="s1">&#39;the data array: len(coord) = </span><span class="si">{}</span><span class="s1">, &#39;</span>
+                             <span class="s1">&#39;data.shape[</span><span class="si">{}</span><span class="s1">] = </span><span class="si">{}</span><span class="s1">.&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span>
+                                 <span class="nb">len</span><span class="p">(</span><span class="n">coord</span><span class="p">),</span> <span class="n">axis</span><span class="p">,</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="n">axis</span><span class="p">]))</span>
+        <span class="n">delta_coord</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">coord</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">np</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">delta_coord</span><span class="p">,</span> <span class="n">delta_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The coordinate must be equally spaced.&#39;</span><span class="p">)</span>
+        <span class="n">new_coord</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">coord</span><span class="p">,</span> <span class="n">coord</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="n">delta_coord</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">slicer</span> <span class="o">=</span> <span class="p">[</span><span class="nb">slice</span><span class="p">(</span><span class="kc">None</span><span class="p">)]</span> <span class="o">*</span> <span class="n">data</span><span class="o">.</span><span class="n">ndim</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">slicer</span><span class="p">[</span><span class="n">axis</span><span class="p">]</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;The specified axis does not correspond to an &#39;</span>
+                         <span class="s1">&#39;array dimension.&#39;</span><span class="p">)</span>
+    <span class="n">new_data</span> <span class="o">=</span> <span class="n">ma</span><span class="o">.</span><span class="n">concatenate</span><span class="p">((</span><span class="n">data</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">slicer</span><span class="p">)]),</span> <span class="n">axis</span><span class="o">=</span><span class="n">axis</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">coord</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">new_data</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">return_value</span> <span class="o">=</span> <span class="n">new_data</span><span class="p">,</span> <span class="n">new_coord</span>
+    <span class="k">return</span> <span class="n">return_value</span></div>
+</pre></div>
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<a href="../../index.html">
+<img src="../../_static/cartopy.png"
+border="0" alt="Cartopy"/>
+</a>
+
+
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../../cartopy_outline.html" title="Module outline"
+             >outline</a> |</li>
+        <li><a href="../../index.html">home</a>|&nbsp;</li>
+        <li><a href="../../gallery/index.html">gallery</a>|&nbsp;</li>
+
+
+          <li class="nav-item nav-item-1"><a href="../index.html" >Module code</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">cartopy.util</a></li> 
+      </ul>
+    </div>
+
+    <div class="footer">
+    <p style="text-align: left; float: left; margin: 0px; padding: 0 0 0 5px;">Documentation licensed under the <a href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/2/" rel="license">Open Government Licence</a></p>
+        &copy; <a href="../../copyright.html">British Crown Copyright</a> 2011 - 2018, Met Office
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 3.5.4.
+    </div>
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+
+  </body>
+</html>
