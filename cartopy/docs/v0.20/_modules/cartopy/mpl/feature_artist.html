@@ -1,0 +1,423 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.mpl.feature_artist &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../whatsnew/index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for cartopy.mpl.feature_artist</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">This module defines the :class:`FeatureArtist` class, for drawing</span>
+<span class="sd">:class:`Feature` instances with matplotlib.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">OrderedDict</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+<span class="kn">import</span> <span class="nn">weakref</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.artist</span>
+<span class="kn">import</span> <span class="nn">matplotlib.collections</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.mpl.patch</span> <span class="k">as</span> <span class="nn">cpatch</span>
+<span class="kn">from</span> <span class="nn">.style</span> <span class="kn">import</span> <span class="n">merge</span> <span class="k">as</span> <span class="n">style_merge</span><span class="p">,</span> <span class="n">finalize</span> <span class="k">as</span> <span class="n">style_finalize</span>
+
+
+<span class="k">class</span> <span class="nc">_GeomKey</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide id() based equality and hashing for geometries.</span>
+
+<span class="sd">    Instances of this class must be treated as immutable for the caching</span>
+<span class="sd">    to operate correctly.</span>
+
+<span class="sd">    A workaround for Shapely polygons no longer being hashable as of 1.5.13.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geom</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">=</span> <span class="nb">id</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_id</span> <span class="o">==</span> <span class="n">other</span><span class="o">.</span><span class="n">_id</span>
+
+    <span class="k">def</span> <span class="fm">__hash__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">hash</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_id</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_freeze</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Recursively freeze the given object so that it might be suitable for</span>
+<span class="sd">    use as a hashable.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="nb">frozenset</span><span class="p">(((</span><span class="n">k</span><span class="p">,</span> <span class="n">_freeze</span><span class="p">(</span><span class="n">v</span><span class="p">))</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">obj</span><span class="o">.</span><span class="n">items</span><span class="p">()))</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">_freeze</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="n">obj</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">obj</span>
+
+
+<div class="viewcode-block" id="FeatureArtist"><a class="viewcode-back" href="../../../reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist">[docs]</a><span class="k">class</span> <span class="nc">FeatureArtist</span><span class="p">(</span><span class="n">matplotlib</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">Artist</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A subclass of :class:`~matplotlib.artist.Artist` capable of</span>
+<span class="sd">    drawing a :class:`cartopy.feature.Feature`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">_geom_key_to_geometry_cache</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakValueDictionary</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A mapping from _GeomKey to geometry to assist with the caching of</span>
+<span class="sd">    transformed Matplotlib paths.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_geom_key_to_path_cache</span> <span class="o">=</span> <span class="n">weakref</span><span class="o">.</span><span class="n">WeakKeyDictionary</span><span class="p">()</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A nested mapping from geometry (converted to a _GeomKey) and target</span>
+<span class="sd">    projection to the resulting transformed Matplotlib paths::</span>
+
+<span class="sd">        {geom: {target_projection: list_of_paths}}</span>
+
+<span class="sd">    This provides a significant boost when producing multiple maps of the</span>
+<span class="sd">    same projection.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">feature</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        feature</span>
+<span class="sd">            An instance of :class:`cartopy.feature.Feature` to draw.</span>
+<span class="sd">        styler</span>
+<span class="sd">            A callable that given a gemometry, returns matplotlib styling</span>
+<span class="sd">            parameters.</span>
+
+<span class="sd">        Other Parameters</span>
+<span class="sd">        ----------------</span>
+<span class="sd">        **kwargs</span>
+<span class="sd">            Keyword arguments to be used when drawing the feature. These</span>
+<span class="sd">            will override those shared with the feature.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">kwargs</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_styler</span> <span class="o">=</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;styler&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="s1">&#39;color&#39;</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">:</span>
+            <span class="c1"># We want the user to be able to override both face and edge</span>
+            <span class="c1"># colours if the original feature already supplied it.</span>
+            <span class="n">color</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;color&#39;</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">[</span><span class="s1">&#39;facecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">[</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">color</span>
+
+        <span class="c1"># Set default zorder so that features are drawn under</span>
+        <span class="c1"># lines e.g. contours but over images and filled patches.</span>
+        <span class="c1"># Note that the zorder of Patch, PatchCollection and PathCollection</span>
+        <span class="c1"># are all 1 by default. Assuming default zorder, drawing takes place in</span>
+        <span class="c1"># the following order: collections, patches, FeatureArtist, lines,</span>
+        <span class="c1"># text.</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zorder&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">[</span><span class="s1">&#39;zorder&#39;</span><span class="p">])</span>
+        <span class="k">elif</span> <span class="n">feature</span><span class="o">.</span><span class="n">kwargs</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;zorder&#39;</span><span class="p">)</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="n">feature</span><span class="o">.</span><span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;zorder&#39;</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">set_zorder</span><span class="p">(</span><span class="mf">1.5</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span> <span class="o">=</span> <span class="n">feature</span>
+
+<div class="viewcode-block" id="FeatureArtist.draw"><a class="viewcode-back" href="../../../reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist.draw">[docs]</a>    <span class="nd">@matplotlib</span><span class="o">.</span><span class="n">artist</span><span class="o">.</span><span class="n">allow_rasterization</span>
+    <span class="k">def</span> <span class="nf">draw</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">renderer</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Draw the geometries of the feature that intersect with the extent of</span>
+<span class="sd">        the :class:`cartopy.mpl.GeoAxes` instance to which this</span>
+<span class="sd">        object has been added.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_visible</span><span class="p">():</span>
+            <span class="k">return</span>
+
+        <span class="n">ax</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">axes</span>
+        <span class="n">feature_crs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="o">.</span><span class="n">crs</span>
+
+        <span class="c1"># Get geometries that we need to draw.</span>
+        <span class="n">extent</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">extent</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_extent</span><span class="p">(</span><span class="n">feature_crs</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;Unable to determine extent. Defaulting to global.&#39;</span><span class="p">)</span>
+        <span class="n">geoms</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="o">.</span><span class="n">intersecting_geometries</span><span class="p">(</span><span class="n">extent</span><span class="p">)</span>
+
+        <span class="c1"># Combine all the keyword args in priority order.</span>
+        <span class="n">prepared_kwargs</span> <span class="o">=</span> <span class="n">style_merge</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_feature</span><span class="o">.</span><span class="n">kwargs</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">_kwargs</span><span class="p">,</span>
+                                      <span class="n">kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Freeze the kwargs so that we can use them as a dict key. We will</span>
+        <span class="c1"># need to unfreeze this with dict(frozen) before passing to mpl.</span>
+        <span class="n">prepared_kwargs</span> <span class="o">=</span> <span class="n">_freeze</span><span class="p">(</span><span class="n">prepared_kwargs</span><span class="p">)</span>
+
+        <span class="c1"># Project (if necessary) and convert geometries to matplotlib paths.</span>
+        <span class="n">stylised_paths</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">projection</span>
+        <span class="k">for</span> <span class="n">geom</span> <span class="ow">in</span> <span class="n">geoms</span><span class="p">:</span>
+            <span class="c1"># As Shapely geometries cannot be relied upon to be</span>
+            <span class="c1"># hashable, we have to use a WeakValueDictionary to manage</span>
+            <span class="c1"># their weak references. The key can then be a simple,</span>
+            <span class="c1"># &quot;disposable&quot;, hashable geom-key object that just uses the</span>
+            <span class="c1"># id() of a geometry to determine equality and hash value.</span>
+            <span class="c1"># The only persistent, strong reference to the geom-key is</span>
+            <span class="c1"># in the WeakValueDictionary, so when the geometry is</span>
+            <span class="c1"># garbage collected so is the geom-key.</span>
+            <span class="c1"># The geom-key is also used to access the WeakKeyDictionary</span>
+            <span class="c1"># cache of transformed geometries. So when the geom-key is</span>
+            <span class="c1"># garbage collected so are the transformed geometries.</span>
+            <span class="n">geom_key</span> <span class="o">=</span> <span class="n">_GeomKey</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+            <span class="n">FeatureArtist</span><span class="o">.</span><span class="n">_geom_key_to_geometry_cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span>
+                <span class="n">geom_key</span><span class="p">,</span> <span class="n">geom</span><span class="p">)</span>
+            <span class="n">mapping</span> <span class="o">=</span> <span class="n">FeatureArtist</span><span class="o">.</span><span class="n">_geom_key_to_path_cache</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span>
+                <span class="n">geom_key</span><span class="p">,</span> <span class="p">{})</span>
+            <span class="n">geom_paths</span> <span class="o">=</span> <span class="n">mapping</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">geom_paths</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">ax</span><span class="o">.</span><span class="n">projection</span> <span class="o">!=</span> <span class="n">feature_crs</span><span class="p">:</span>
+                    <span class="n">projected_geom</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="n">project_geometry</span><span class="p">(</span>
+                        <span class="n">geom</span><span class="p">,</span> <span class="n">feature_crs</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">projected_geom</span> <span class="o">=</span> <span class="n">geom</span>
+                <span class="n">geom_paths</span> <span class="o">=</span> <span class="n">cpatch</span><span class="o">.</span><span class="n">geos_to_path</span><span class="p">(</span><span class="n">projected_geom</span><span class="p">)</span>
+                <span class="n">mapping</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">geom_paths</span>
+
+            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styler</span><span class="p">:</span>
+                <span class="n">style</span> <span class="o">=</span> <span class="n">prepared_kwargs</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="c1"># Unfreeze, then add the computed style, and then re-freeze.</span>
+                <span class="n">style</span> <span class="o">=</span> <span class="n">style_merge</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">prepared_kwargs</span><span class="p">),</span> <span class="bp">self</span><span class="o">.</span><span class="n">_styler</span><span class="p">(</span><span class="n">geom</span><span class="p">))</span>
+                <span class="n">style</span> <span class="o">=</span> <span class="n">_freeze</span><span class="p">(</span><span class="n">style</span><span class="p">)</span>
+
+            <span class="n">stylised_paths</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">style</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">geom_paths</span><span class="p">)</span>
+
+        <span class="n">transform</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">projection</span><span class="o">.</span><span class="n">_as_mpl_transform</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
+
+        <span class="c1"># Draw one PathCollection per style. We could instead pass an array</span>
+        <span class="c1"># of style items through to a single PathCollection, but that</span>
+        <span class="c1"># complexity does not yet justify the effort.</span>
+        <span class="k">for</span> <span class="n">style</span><span class="p">,</span> <span class="n">paths</span> <span class="ow">in</span> <span class="n">stylised_paths</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">style</span> <span class="o">=</span> <span class="n">style_finalize</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">style</span><span class="p">))</span>
+            <span class="c1"># Build path collection and draw it.</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">matplotlib</span><span class="o">.</span><span class="n">collections</span><span class="o">.</span><span class="n">PathCollection</span><span class="p">(</span><span class="n">paths</span><span class="p">,</span>
+                                                      <span class="n">transform</span><span class="o">=</span><span class="n">transform</span><span class="p">,</span>
+                                                      <span class="o">**</span><span class="n">style</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">set_clip_path</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">set_figure</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">figure</span><span class="p">)</span>
+            <span class="n">c</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">renderer</span><span class="p">)</span>
+
+        <span class="c1"># n.b. matplotlib.collection.Collection.draw returns None</span>
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="../../../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

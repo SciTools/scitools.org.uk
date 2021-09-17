@@ -1,0 +1,735 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.io.srtm &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="../../../_static/css/theme.css" rel="stylesheet" />
+  <link href="../../../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../../../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../../../index.html">
+  <img src="../../../_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../whatsnew/index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <h1>Source code for cartopy.io.srtm</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">The Shuttle Radar Topography Mission (SRTM) is an international research</span>
+<span class="sd">effort that obtained digital elevation models on a near-global scale from</span>
+<span class="sd">56S to 60N, to generate the most complete high-resolution digital topographic</span>
+<span class="sd">database of Earth prior to the release of the ASTER GDEM in 2009.</span>
+
+<span class="sd">   - Wikipedia (August 2012)</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">io</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">config</span>
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io</span> <span class="kn">import</span> <span class="n">fh_getter</span><span class="p">,</span> <span class="n">Downloader</span><span class="p">,</span> <span class="n">RasterSource</span><span class="p">,</span> <span class="n">LocatedImage</span>
+
+
+<span class="k">class</span> <span class="nc">_SRTMSource</span><span class="p">(</span><span class="n">RasterSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A source of SRTM data, which implements Cartopy&#39;s :ref:`RasterSource</span>
+<span class="sd">    interface &lt;raster-source-interface&gt;`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">resolution</span><span class="p">,</span> <span class="n">downloader</span><span class="p">,</span> <span class="n">max_nx</span><span class="p">,</span> <span class="n">max_ny</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        resolution</span>
+<span class="sd">            The resolution of SRTM to download, in integer arc-seconds.</span>
+<span class="sd">            Data is available at resolutions of 3 and 1 arc-seconds.</span>
+<span class="sd">        downloader: :class:`cartopy.io.Downloader` instance or None</span>
+<span class="sd">            The downloader to use for the SRTM dataset. If None, the</span>
+<span class="sd">            downloader will be taken using</span>
+<span class="sd">            :class:`cartopy.io.Downloader.from_config` with (&#39;SRTM&#39;,</span>
+<span class="sd">            &#39;SRTM{resolution}&#39;) as the target.</span>
+<span class="sd">        max_nx</span>
+<span class="sd">            The maximum number of x tiles to be combined when producing a</span>
+<span class="sd">            wider composite for this RasterSource.</span>
+<span class="sd">        max_ny</span>
+<span class="sd">            The maximum number of y tiles to be combined when producing a</span>
+<span class="sd">            taller composite for this RasterSource.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">resolution</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1201</span><span class="p">,</span> <span class="mi">1201</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">resolution</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3601</span><span class="p">,</span> <span class="mi">3601</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Resolution is an unexpected value (</span><span class="si">{</span><span class="n">resolution</span><span class="si">}</span><span class="s1">).&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span> <span class="o">=</span> <span class="n">resolution</span>
+
+        <span class="c1">#: The CRS of the underlying SRTM data.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">()</span>
+
+        <span class="c1">#: The Cartopy Downloader which can handle SRTM data. Normally, this</span>
+        <span class="c1">#: will be a :class:`SRTMDownloader` instance.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">downloader</span> <span class="o">=</span> <span class="n">downloader</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">downloader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">downloader</span> <span class="o">=</span> <span class="n">Downloader</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span>
+                <span class="p">(</span><span class="s1">&#39;SRTM&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;SRTM</span><span class="si">{</span><span class="n">resolution</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+
+        <span class="c1">#: A tuple of (max_x_tiles, max_y_tiles).</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_max_tiles</span> <span class="o">=</span> <span class="p">(</span><span class="n">max_nx</span><span class="p">,</span> <span class="n">max_ny</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">projection</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Fetch SRTM elevation for the given projection and approximate extent.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">validate_projection</span><span class="p">(</span><span class="n">projection</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Unsupported projection for the &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;SRTM</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span><span class="si">}</span><span class="s1"> source.&#39;</span><span class="p">)</span>
+
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="n">extent</span>
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">floor</span><span class="p">([</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">])</span>
+        <span class="n">nx</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">max_x</span><span class="p">)</span> <span class="o">-</span> <span class="n">min_x</span><span class="p">)</span>
+        <span class="n">ny</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="n">max_y</span><span class="p">)</span> <span class="o">-</span> <span class="n">min_y</span><span class="p">)</span>
+        <span class="n">skip</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">if</span> <span class="n">nx</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Required SRTM</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span><span class="si">}</span><span class="s1"> tile count (</span><span class="si">{</span><span class="n">nx</span><span class="si">}</span><span class="s1">) exceeds &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;maximum (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_tiles</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s1">). Increase max_nx limit.&#39;</span><span class="p">)</span>
+            <span class="n">skip</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">ny</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">_max_tiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Required SRTM</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span><span class="si">}</span><span class="s1"> tile count (</span><span class="si">{</span><span class="n">ny</span><span class="si">}</span><span class="s1">) exceeds &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;maximum (</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_max_tiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">). Increase max_ny limit.&#39;</span><span class="p">)</span>
+            <span class="n">skip</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">img</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">extent</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">combined</span><span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">LocatedImage</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">flipud</span><span class="p">(</span><span class="n">img</span><span class="p">),</span> <span class="n">extent</span><span class="p">)]</span>
+
+    <span class="k">def</span> <span class="nf">srtm_fname</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the filename for the given lon/lat SRTM tile (downloading if</span>
+<span class="sd">        necessary), or None if no such tile exists (i.e. the tile would be</span>
+<span class="sd">        entirely over water, or out of latitude range).</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">int</span><span class="p">(</span><span class="n">lon</span><span class="p">)</span> <span class="o">!=</span> <span class="n">lon</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">lat</span><span class="p">)</span> <span class="o">!=</span> <span class="n">lat</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Integer longitude/latitude values required.&#39;</span><span class="p">)</span>
+
+        <span class="n">x</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%03d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;E&#39;</span> <span class="k">if</span> <span class="n">lon</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;W&#39;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lon</span><span class="p">)))</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">%s%02d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="s1">&#39;N&#39;</span> <span class="k">if</span> <span class="n">lat</span> <span class="o">&gt;=</span> <span class="mi">0</span> <span class="k">else</span> <span class="s1">&#39;S&#39;</span><span class="p">,</span> <span class="nb">abs</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">lat</span><span class="p">)))</span>
+
+        <span class="n">srtm_downloader</span> <span class="o">=</span> <span class="n">Downloader</span><span class="o">.</span><span class="n">from_config</span><span class="p">(</span>
+            <span class="p">(</span><span class="s1">&#39;SRTM&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;SRTM</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">))</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;config&#39;</span><span class="p">:</span> <span class="n">config</span><span class="p">,</span> <span class="s1">&#39;resolution&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_resolution</span><span class="p">,</span>
+                  <span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y</span><span class="p">}</span>
+
+        <span class="c1"># If the URL doesn&#39;t exist then we are over sea/north/south of the</span>
+        <span class="c1"># limits of the SRTM data and we return None.</span>
+        <span class="k">if</span> <span class="n">srtm_downloader</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">params</span><span class="p">)</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">downloader</span><span class="o">.</span><span class="n">path</span><span class="p">(</span><span class="n">params</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">combined</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lon_min</span><span class="p">,</span> <span class="n">lat_min</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an image and its extent for the group of nx by ny tiles</span>
+<span class="sd">        starting at the given bottom left location.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">bottom_left_ll</span> <span class="o">=</span> <span class="p">(</span><span class="n">lon_min</span><span class="p">,</span> <span class="n">lat_min</span><span class="p">)</span>
+        <span class="n">shape</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_shape</span><span class="p">)</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">shape</span> <span class="o">*</span> <span class="p">(</span><span class="n">ny</span><span class="p">,</span> <span class="n">nx</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">ndindex</span><span class="p">(</span><span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">):</span>
+            <span class="n">x_img_slice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">y_img_slice</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">j</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">tile_img</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">single_tile</span><span class="p">(</span><span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">i</span><span class="p">,</span>
+                                                  <span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">j</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+                <span class="n">img</span><span class="p">[</span><span class="n">y_img_slice</span><span class="p">,</span> <span class="n">x_img_slice</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">img</span><span class="p">[</span><span class="n">y_img_slice</span><span class="p">,</span> <span class="n">x_img_slice</span><span class="p">]</span> <span class="o">=</span> <span class="n">tile_img</span>
+
+        <span class="n">extent</span> <span class="o">=</span> <span class="p">(</span><span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">nx</span><span class="p">,</span>
+                  <span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">bottom_left_ll</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">ny</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">crs</span><span class="p">,</span> <span class="n">extent</span>
+
+    <span class="k">def</span> <span class="nf">single_tile</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+        <span class="n">fname</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">srtm_fname</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">fname</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No srtm tile found for those coordinates.&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">read_SRTM</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="SRTM3Source"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source">[docs]</a><span class="k">class</span> <span class="nc">SRTM3Source</span><span class="p">(</span><span class="n">_SRTMSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A source of SRTM3 data, which implements Cartopy&#39;s :ref:`RasterSource</span>
+<span class="sd">    interface &lt;raster-source-interface&gt;`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SRTM3Source.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">downloader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_nx</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_ny</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        downloader: :class:`cartopy.io.Downloader` instance or None</span>
+<span class="sd">            The downloader to use for the SRTM3 dataset. If None, the</span>
+<span class="sd">            downloader will be taken using</span>
+<span class="sd">            :class:`cartopy.io.Downloader.from_config` with (&#39;SRTM&#39;, &#39;SRTM3&#39;)</span>
+<span class="sd">            as the target.</span>
+<span class="sd">        max_nx</span>
+<span class="sd">            The maximum number of x tiles to be combined when</span>
+<span class="sd">            producing a wider composite for this RasterSource.</span>
+<span class="sd">        max_ny</span>
+<span class="sd">            The maximum number of y tiles to be combined when</span>
+<span class="sd">            producing a taller composite for this RasterSource.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">downloader</span><span class="o">=</span><span class="n">downloader</span><span class="p">,</span>
+                         <span class="n">max_nx</span><span class="o">=</span><span class="n">max_nx</span><span class="p">,</span> <span class="n">max_ny</span><span class="o">=</span><span class="n">max_ny</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="SRTM1Source"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source">[docs]</a><span class="k">class</span> <span class="nc">SRTM1Source</span><span class="p">(</span><span class="n">_SRTMSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A source of SRTM1 data, which implements Cartopy&#39;s :ref:`RasterSource</span>
+<span class="sd">    interface &lt;raster-source-interface&gt;`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SRTM1Source.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">downloader</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">max_nx</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">max_ny</span><span class="o">=</span><span class="mi">3</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        downloader: :class:`cartopy.io.Downloader` instance or None</span>
+<span class="sd">            The downloader to use for the SRTM1 dataset. If None, the</span>
+<span class="sd">            downloader will be taken using</span>
+<span class="sd">            :class:`cartopy.io.Downloader.from_config` with (&#39;SRTM&#39;, &#39;SRTM1&#39;)</span>
+<span class="sd">            as the target.</span>
+<span class="sd">        max_nx</span>
+<span class="sd">            The maximum number of x tiles to be combined when</span>
+<span class="sd">            producing a wider composite for this RasterSource.</span>
+<span class="sd">        max_ny</span>
+<span class="sd">            The maximum number of y tiles to be combined when</span>
+<span class="sd">            producing a taller composite for this RasterSource.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">downloader</span><span class="o">=</span><span class="n">downloader</span><span class="p">,</span>
+                         <span class="n">max_nx</span><span class="o">=</span><span class="n">max_nx</span><span class="p">,</span> <span class="n">max_ny</span><span class="o">=</span><span class="n">max_ny</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="srtm"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.srtm.html#cartopy.io.srtm.srtm">[docs]</a><span class="k">def</span> <span class="nf">srtm</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return (elevation, crs, extent) for the given longitude latitude.</span>
+<span class="sd">    Elevation is in meters.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This method has been deprecated. &quot;</span>
+                  <span class="s2">&quot;See the </span><span class="se">\&quot;</span><span class="s2">What&#39;s new</span><span class="se">\&quot;</span><span class="s2"> section for v0.12.&quot;</span><span class="p">,</span>
+                  <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                  <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SRTM3Source</span><span class="p">()</span><span class="o">.</span><span class="n">single_tile</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="add_shading"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.add_shading.html#cartopy.io.srtm.add_shading">[docs]</a><span class="k">def</span> <span class="nf">add_shading</span><span class="p">(</span><span class="n">elevation</span><span class="p">,</span> <span class="n">azimuth</span><span class="p">,</span> <span class="n">altitude</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Add shading to SRTM elevation data, using azimuth and altitude</span>
+<span class="sd">    of the sun.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    elevation</span>
+<span class="sd">        SRTM elevation data (in meters)</span>
+<span class="sd">    azimuth</span>
+<span class="sd">        Azimuth of the Sun (in degrees)</span>
+<span class="sd">    altitude</span>
+<span class="sd">        Altitude of the Sun (in degrees)</span>
+
+<span class="sd">    Return shaded SRTM relief map.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">azimuth</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">azimuth</span><span class="p">)</span>
+    <span class="n">altitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">altitude</span><span class="p">)</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">gradient</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span>
+    <span class="n">slope</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span><span class="p">))</span>
+    <span class="c1"># -x here because of pixel orders in the SRTM tile</span>
+    <span class="n">aspect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="o">-</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+    <span class="n">shaded</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">altitude</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">slope</span><span class="p">)</span>\
+        <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">altitude</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">slope</span><span class="p">)</span>\
+        <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">azimuth</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mf">2.</span><span class="p">)</span> <span class="o">-</span> <span class="n">aspect</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">shaded</span></div>
+
+
+<div class="viewcode-block" id="fill_gaps"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.fill_gaps.html#cartopy.io.srtm.fill_gaps">[docs]</a><span class="k">def</span> <span class="nf">fill_gaps</span><span class="p">(</span><span class="n">elevation</span><span class="p">,</span> <span class="n">max_distance</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Fill gaps in SRTM elevation data for which the distance from</span>
+<span class="sd">    missing pixel to nearest existing one is smaller than `max_distance`.</span>
+
+<span class="sd">    This function requires osgeo/gdal to work.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    elevation</span>
+<span class="sd">        SRTM elevation data (in meters)</span>
+<span class="sd">    max_distance</span>
+<span class="sd">        Maximal distance (in pixels) between a missing point</span>
+<span class="sd">        and the nearest valid one.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    elevation</span>
+<span class="sd">        SRTM elevation data with filled gaps.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;The fill_gaps function has been deprecated. &quot;</span>
+                  <span class="s2">&quot;See the </span><span class="se">\&quot;</span><span class="s2">What&#39;s new</span><span class="se">\&quot;</span><span class="s2"> section for v0.14.&quot;</span><span class="p">,</span>
+                  <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                  <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="c1"># Lazily import osgeo - it is only an optional dependency for cartopy.</span>
+    <span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal</span>
+    <span class="kn">from</span> <span class="nn">osgeo</span> <span class="kn">import</span> <span class="n">gdal_array</span>
+
+    <span class="n">src_ds</span> <span class="o">=</span> <span class="n">gdal_array</span><span class="o">.</span><span class="n">OpenArray</span><span class="p">(</span><span class="n">elevation</span><span class="p">)</span>
+    <span class="n">srcband</span> <span class="o">=</span> <span class="n">src_ds</span><span class="o">.</span><span class="n">GetRasterBand</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">dstband</span> <span class="o">=</span> <span class="n">srcband</span>
+    <span class="n">maskband</span> <span class="o">=</span> <span class="n">srcband</span>
+    <span class="n">smoothing_iterations</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">gdal</span><span class="o">.</span><span class="n">FillNodata</span><span class="p">(</span><span class="n">dstband</span><span class="p">,</span> <span class="n">maskband</span><span class="p">,</span>
+                    <span class="n">max_distance</span><span class="p">,</span> <span class="n">smoothing_iterations</span><span class="p">,</span> <span class="n">options</span><span class="p">,</span>
+                    <span class="n">callback</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">elevation</span> <span class="o">=</span> <span class="n">dstband</span><span class="o">.</span><span class="n">ReadAsArray</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">elevation</span></div>
+
+
+<div class="viewcode-block" id="srtm_composite"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.srtm_composite.html#cartopy.io.srtm.srtm_composite">[docs]</a><span class="k">def</span> <span class="nf">srtm_composite</span><span class="p">(</span><span class="n">lon_min</span><span class="p">,</span> <span class="n">lat_min</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">):</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This method has been deprecated. &quot;</span>
+                  <span class="s2">&quot;See the </span><span class="se">\&quot;</span><span class="s2">What&#39;s new</span><span class="se">\&quot;</span><span class="s2"> section for v0.12.&quot;</span><span class="p">,</span>
+                  <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                  <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SRTM3Source</span><span class="p">()</span><span class="o">.</span><span class="n">combined</span><span class="p">(</span><span class="n">lon_min</span><span class="p">,</span> <span class="n">lat_min</span><span class="p">,</span> <span class="n">nx</span><span class="p">,</span> <span class="n">ny</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="read_SRTM"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.read_SRTM.html#cartopy.io.srtm.read_SRTM">[docs]</a><span class="k">def</span> <span class="nf">read_SRTM</span><span class="p">(</span><span class="n">fh</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Read the array of (y, x) elevation data from the given named file-handle.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fh</span>
+<span class="sd">        A named file-like as passed through to :func:`cartopy.io.fh_getter`.</span>
+<span class="sd">        The filename is used to determine the extent of the resulting array.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    elevation</span>
+<span class="sd">        The elevation values from the SRTM file. Data is flipped</span>
+<span class="sd">        vertically such that the higher the y-index, the further north the</span>
+<span class="sd">        data. Data shape is automatically determined by the size of data read</span>
+<span class="sd">        from file, and is either (1201, 1201) for 3 arc-second data or</span>
+<span class="sd">        (3601, 3601) for 1 arc-second data.</span>
+<span class="sd">    crs: :class:`cartopy.crs.CRS`</span>
+<span class="sd">        The coordinate reference system of the extents.</span>
+<span class="sd">    extents: 4-tuple (x0, x1, y0, y1)</span>
+<span class="sd">        The boundaries of the returned elevation array.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fh</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">fh_getter</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">needs_filename</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">fname</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.zip&#39;</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+        <span class="n">zfh</span> <span class="o">=</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="s1">&#39;rb&#39;</span><span class="p">)</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="n">zfh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fname</span><span class="p">[:</span><span class="o">-</span><span class="mi">4</span><span class="p">]),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+    <span class="n">elev</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fromfile</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">(</span><span class="s1">&#39;&gt;i2&#39;</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">elev</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">12967201</span><span class="p">:</span>
+        <span class="n">elev</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3601</span><span class="p">,</span> <span class="mi">3601</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">elev</span><span class="o">.</span><span class="n">size</span> <span class="o">==</span> <span class="mi">1442401</span><span class="p">:</span>
+        <span class="n">elev</span><span class="o">.</span><span class="n">shape</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1201</span><span class="p">,</span> <span class="mi">1201</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s1">&#39;Shape of SRTM data (</span><span class="si">{</span><span class="n">elev</span><span class="o">.</span><span class="n">size</span><span class="si">}</span><span class="s1">) is unexpected.&#39;</span><span class="p">)</span>
+
+    <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">basename</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+    <span class="n">y_dir</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">x_dir</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="n">fname</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">fname</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">]),</span> <span class="n">fname</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="nb">int</span><span class="p">(</span><span class="n">fname</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+
+    <span class="k">if</span> <span class="n">y_dir</span> <span class="o">==</span> <span class="s1">&#39;S&#39;</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">if</span> <span class="n">x_dir</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">*=</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">return</span> <span class="n">elev</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">],</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span><span class="p">(),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span></div>
+
+
+<span class="n">read_SRTM3</span> <span class="o">=</span> <span class="n">read_SRTM</span>
+<span class="n">read_SRTM1</span> <span class="o">=</span> <span class="n">read_SRTM</span>
+
+
+<div class="viewcode-block" id="SRTM3_retrieve"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTM3_retrieve.html#cartopy.io.srtm.SRTM3_retrieve">[docs]</a><span class="k">def</span> <span class="nf">SRTM3_retrieve</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the path of a .hgt file for the given SRTM location.</span>
+
+<span class="sd">    If no such .hgt file exists (because it is over the ocean)</span>
+<span class="sd">    None will be returned.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s2">&quot;This method has been deprecated. &quot;</span>
+                  <span class="s2">&quot;See the </span><span class="se">\&quot;</span><span class="s2">What&#39;s new</span><span class="se">\&quot;</span><span class="s2"> section for v0.12.&quot;</span><span class="p">,</span>
+                  <span class="ne">DeprecationWarning</span><span class="p">,</span>
+                  <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">SRTM3Source</span><span class="p">()</span><span class="o">.</span><span class="n">srtm_fname</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span> <span class="n">lat</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="SRTMDownloader"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader">[docs]</a><span class="k">class</span> <span class="nc">SRTMDownloader</span><span class="p">(</span><span class="n">Downloader</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Provide a SRTM download mechanism.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">FORMAT_KEYS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,</span> <span class="s1">&#39;resolution&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">)</span>
+
+    <span class="n">_SRTM_BASE_URL</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;https://e4ftl01.cr.usgs.gov/MEASURES/&#39;</span>
+                      <span class="s1">&#39;SRTMGL</span><span class="si">{resolution}</span><span class="s1">.003/2000.02.11/&#39;</span><span class="p">)</span>
+    <span class="n">_SRTM_LOOKUP_CACHE</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="vm">__file__</span><span class="p">),</span>
+                                      <span class="s1">&#39;srtm.npz&#39;</span><span class="p">)</span>
+    <span class="n">_SRTM_LOOKUP_MASK</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">_SRTM_LOOKUP_CACHE</span><span class="p">)[</span><span class="s1">&#39;mask&#39;</span><span class="p">]</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The SRTM lookup mask determines whether keys such as &#39;N43E043&#39; are</span>
+<span class="sd">    available to download.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SRTMDownloader.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">target_path_template</span><span class="p">,</span>
+                 <span class="n">pre_downloaded_path_template</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span>
+                 <span class="p">):</span>
+        <span class="c1"># adds some SRTM defaults to the __init__ of a Downloader</span>
+        <span class="c1"># namely, the URL is determined on the fly using the</span>
+        <span class="c1"># ``SRTMDownloader._SRTM_LOOKUP_MASK`` array</span>
+        <span class="n">Downloader</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span>
+                            <span class="n">target_path_template</span><span class="p">,</span>
+                            <span class="n">pre_downloaded_path_template</span><span class="p">)</span></div>
+
+    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="s1">&#39;SRTM requires an account set up and log in to access. &#39;</span>
+                      <span class="s1">&#39;Use of this Downloader is likely to fail with HTTP 401 &#39;</span>
+                      <span class="s1">&#39;errors.&#39;</span><span class="p">)</span>
+
+        <span class="c1"># override the url method, looking up the url from the</span>
+        <span class="c1"># ``SRTMDownloader._SRTM_LOOKUP_MASK`` array</span>
+        <span class="n">lat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">format_dict</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])</span>
+        <span class="c1"># Change to co-latitude.</span>
+        <span class="k">if</span> <span class="n">format_dict</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+            <span class="n">colat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">-</span> <span class="n">lat</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">colat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+
+        <span class="n">lon</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">format_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">])</span>
+        <span class="c1"># Ensure positive.</span>
+        <span class="k">if</span> <span class="n">format_dict</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+            <span class="n">lon</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">-</span> <span class="n">lon</span>
+
+        <span class="k">if</span> <span class="n">SRTMDownloader</span><span class="o">.</span><span class="n">_SRTM_LOOKUP_MASK</span><span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">colat</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="p">(</span><span class="n">SRTMDownloader</span><span class="o">.</span><span class="n">_SRTM_BASE_URL</span> <span class="o">+</span>
+                    <span class="s1">&#39;</span><span class="si">{y}{x}</span><span class="s1">.SRTMGL</span><span class="si">{resolution}</span><span class="s1">.hgt.zip&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">format_dict</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">acquire_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">zipfile</span> <span class="kn">import</span> <span class="n">ZipFile</span>
+
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">format_dict</span><span class="p">)</span>
+
+        <span class="n">srtm_online</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+        <span class="n">zfh</span> <span class="o">=</span> <span class="n">ZipFile</span><span class="p">(</span><span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="n">srtm_online</span><span class="o">.</span><span class="n">read</span><span class="p">()),</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+        <span class="n">zip_member_path</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="si">{y}{x}</span><span class="s1">.hgt&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="o">**</span><span class="n">format_dict</span><span class="p">)</span>
+        <span class="n">member</span> <span class="o">=</span> <span class="n">zfh</span><span class="o">.</span><span class="n">getinfo</span><span class="p">(</span><span class="n">zip_member_path</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">zfh</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">member</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+        <span class="n">srtm_online</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">zfh</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="n">target_path</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_create_srtm_mask</span><span class="p">(</span><span class="n">resolution</span><span class="p">,</span> <span class="n">filename</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a NumPy mask of available lat/lon.</span>
+
+<span class="sd">        This is slow as it must query the SRTM server to identify the</span>
+<span class="sd">        continent from which the tile comes. Hence a NumPy file with this</span>
+<span class="sd">        content exists in ``SRTMDownloader._SRTM_LOOKUP_CACHE``.</span>
+
+<span class="sd">        The NumPy file was created with::</span>
+
+<span class="sd">            import cartopy.io.srtm as srtm</span>
+<span class="sd">            import numpy as np</span>
+<span class="sd">            np.savez_compressed(srtm.SRTMDownloader._SRTM_LOOKUP_CACHE,</span>
+<span class="sd">                                mask=srtm.SRTMDownloader._create_srtm_mask(3))</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># lazy imports. In most situations, these are not</span>
+        <span class="c1"># dependencies of cartopy.</span>
+        <span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span>
+        <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+            <span class="n">url</span> <span class="o">=</span> <span class="n">SRTMDownloader</span><span class="o">.</span><span class="n">_SRTM_BASE_URL</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">resolution</span><span class="o">=</span><span class="n">resolution</span><span class="p">)</span>
+            <span class="k">with</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">html</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+                <span class="n">html</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+        <span class="n">mask</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">360</span><span class="p">,</span> <span class="mi">181</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">bool</span><span class="p">)</span>
+
+        <span class="n">soup</span> <span class="o">=</span> <span class="n">BeautifulSoup</span><span class="p">(</span><span class="n">html</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">soup</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">):</span>
+            <span class="n">name</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">link</span><span class="o">.</span><span class="n">text</span><span class="p">)</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">in</span> <span class="s1">&#39;NS&#39;</span> <span class="ow">and</span> <span class="n">name</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="s1">&#39;.hgt.zip&#39;</span><span class="p">):</span>
+                <span class="n">lat</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+                <span class="c1"># Change to co-latitude.</span>
+                <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;N&#39;</span><span class="p">:</span>
+                    <span class="n">colat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">-</span> <span class="n">lat</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">colat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+
+                <span class="n">lon</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">name</span><span class="p">[</span><span class="mi">4</span><span class="p">:</span><span class="mi">7</span><span class="p">])</span>
+                <span class="c1"># Ensure positive.</span>
+                <span class="k">if</span> <span class="n">name</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+                    <span class="n">lon</span> <span class="o">=</span> <span class="mi">360</span> <span class="o">-</span> <span class="n">lon</span>
+
+                <span class="n">mask</span><span class="p">[</span><span class="n">lon</span><span class="p">,</span> <span class="n">colat</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+
+        <span class="k">return</span> <span class="n">mask</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">default_downloader</span><span class="p">(</span><span class="bp">cls</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a typical downloader for this class. In general, this static</span>
+<span class="sd">        method is used to create the default configuration in cartopy.config</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">default_spec</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;SRTM&#39;</span><span class="p">,</span> <span class="s1">&#39;SRTMGL</span><span class="si">{resolution}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;</span><span class="si">{y}{x}</span><span class="s1">.hgt&#39;</span><span class="p">)</span>
+        <span class="n">target_path_template</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{config[data_dir]}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                            <span class="o">*</span><span class="n">default_spec</span><span class="p">)</span>
+        <span class="n">pre_path_template</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{config[pre_existing_data_dir]}</span><span class="s1">&#39;</span><span class="p">,</span>
+                                         <span class="o">*</span><span class="n">default_spec</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">target_path_template</span><span class="o">=</span><span class="n">target_path_template</span><span class="p">,</span>
+                   <span class="n">pre_downloaded_path_template</span><span class="o">=</span><span class="n">pre_path_template</span><span class="p">)</span></div>
+
+
+<span class="c1"># add a generic SRTM downloader to the config &#39;downloaders&#39; section.</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">&#39;downloaders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">((</span><span class="s1">&#39;SRTM&#39;</span><span class="p">,</span> <span class="s1">&#39;SRTM3&#39;</span><span class="p">),</span>
+                                 <span class="n">SRTMDownloader</span><span class="o">.</span><span class="n">default_downloader</span><span class="p">())</span>
+<span class="n">config</span><span class="p">[</span><span class="s1">&#39;downloaders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">setdefault</span><span class="p">((</span><span class="s1">&#39;SRTM&#39;</span><span class="p">,</span> <span class="s1">&#39;SRTM1&#39;</span><span class="p">),</span>
+                                 <span class="n">SRTMDownloader</span><span class="o">.</span><span class="n">default_downloader</span><span class="p">())</span>
+</pre></div>
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../../../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="../../../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

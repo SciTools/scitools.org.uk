@@ -1,0 +1,390 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Installation &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="API reference" href="reference/index.html" />
+    <link rel="prev" title="Using Cartopy and AxesGrid toolkit" href="gallery/miscellanea/axes_grid_basic.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="whatsnew/index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#conda-pre-built-binaries">
+   Conda pre-built binaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#other-pre-built-binaries">
+   Other pre-built binaries
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#building-from-source">
+   Building from source
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#required-dependencies">
+     Required dependencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#optional-dependencies">
+     Optional Dependencies
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#testing-dependencies">
+     Testing Dependencies
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="installation">
+<span id="installing"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="conda-pre-built-binaries">
+<h2>Conda pre-built binaries<a class="headerlink" href="#conda-pre-built-binaries" title="Permalink to this headline">¶</a></h2>
+<p>The easiest way to install Cartopy is by using
+<a class="reference external" href="https://conda.io/miniconda.html">Conda</a>. If conda is already installed,
+installation is as easy as:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">cartopy</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="other-pre-built-binaries">
+<h2>Other pre-built binaries<a class="headerlink" href="#other-pre-built-binaries" title="Permalink to this headline">¶</a></h2>
+<p>Additional pre-built binaries can be found at a variety of sources, including:</p>
+<ul class="simple">
+<li><p>Christoph Gohlke (<a class="reference external" href="https://www.lfd.uci.edu/~gohlke/pythonlibs/">https://www.lfd.uci.edu/~gohlke/pythonlibs/</a>)
+maintains unofficial Windows binaries of cartopy.</p></li>
+<li><p><a class="reference external" href="https://live.osgeo.org">OSGeo Live</a>.</p></li>
+</ul>
+</div>
+<div class="section" id="building-from-source">
+<h2>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Before building Cartopy from source, you need to <strong>first</strong> install the
+required dependencies listed below. Once these are installed, Cartopy can be
+installed using the pip installer:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">cartopy</span>
+</pre></div>
+</div>
+<p>To instead install the most recent version found on the GitHub master branch,
+use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SciTools</span><span class="o">/</span><span class="n">cartopy</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>Alternatively, you can clone the git repo on your computer and install manually
+using the <code class="xref py py-obj docutils literal notranslate"><span class="pre">setup.py</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">SciTools</span><span class="o">/</span><span class="n">cartopy</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">cartopy</span>
+<span class="c1"># Uncomment the following to specify non-standard include and library paths</span>
+<span class="c1"># python setup.py build_ext -I/path/to/include -L/path/to/lib</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<div class="section" id="required-dependencies">
+<h3>Required dependencies<a class="headerlink" href="#required-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>In order to install Cartopy, or to access its basic functionality, it will be
+necessary to first install <strong>GEOS</strong>, <strong>Shapely</strong>, and
+<strong>pyshp</strong>. Many of these packages can be installed using pip or
+other package managers such as apt-get (Linux) and brew (macOS). Many of these
+dependencies are built as part of Cartopy’s conda distribution, and the recipes
+for these packages can be found at <a class="reference external" href="https://github.com/conda-forge/feedstocks">https://github.com/conda-forge/feedstocks</a>.</p>
+<p>For macOS, the required dependencies can be installed in the following way:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">proj</span> <span class="n">geos</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="o">--</span><span class="n">upgrade</span> <span class="n">pyshp</span>
+<span class="c1"># shapely needs to be built from source to link to geos. If it is already</span>
+<span class="c1"># installed, uninstall it by: pip3 uninstall shapely</span>
+<span class="n">pip3</span> <span class="n">install</span> <span class="n">shapely</span> <span class="o">--</span><span class="n">no</span><span class="o">-</span><span class="n">binary</span> <span class="n">shapely</span>
+</pre></div>
+</div>
+<p>Still on macOS, make sure you have installed pkg-config and set the
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">PKG_CONFIG_PATH</span></code> environment variable as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">brew</span> <span class="n">install</span> <span class="n">pkg</span><span class="o">-</span><span class="n">config</span>
+<span class="n">export</span> <span class="n">PKG_CONFIG_PATH</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pkgconfig</span>
+</pre></div>
+</div>
+<p>Then you can install cartopy using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">cartopy</span>
+</pre></div>
+</div>
+<p>If you are installing dependencies with a package manager on Linux, you may
+need to install the development packages (look for a “-dev” or “-devel” suffix) in addition
+to the core packages.</p>
+<p>Further information about the required dependencies can be found here:</p>
+<dl class="simple">
+<dt><strong>Python</strong> 3.7 or later (<a class="reference external" href="https://www.python.org/">https://www.python.org/</a>)</dt><dd><p>Python 2 support was removed in v0.19.</p>
+</dd>
+<dt><strong>Matplotlib</strong> 3.1 or later (<a class="reference external" href="https://matplotlib.org/">https://matplotlib.org/</a>)</dt><dd><p>Python package for 2D plotting. Python package required for any
+graphical capabilities.</p>
+</dd>
+<dt><strong>GEOS</strong> 3.7.2 or later (<a class="reference external" href="https://trac.osgeo.org/geos/">https://trac.osgeo.org/geos/</a>)</dt><dd><p>GEOS is an API of spatial predicates and functions for processing geometry
+written in C++.</p>
+</dd>
+<dt><strong>Shapely</strong> 1.6.4 or later (<a class="reference external" href="https://github.com/Toblerity/Shapely">https://github.com/Toblerity/Shapely</a>)</dt><dd><p>Python package for the manipulation and analysis of planar geometric
+objects.</p>
+</dd>
+<dt><strong>pyshp</strong> 2.1 or later (<a class="reference external" href="https://pypi.python.org/pypi/pyshp">https://pypi.python.org/pypi/pyshp</a>)</dt><dd><p>Pure Python read/write support for ESRI Shapefile format.</p>
+</dd>
+<dt><strong>PROJ</strong> 8.0.0 or later (<a class="reference external" href="https://proj.org/">https://proj.org/</a>)</dt><dd><p>Coordinate transformation library.</p>
+</dd>
+<dt><strong>pyproj</strong> 3.0.0 or later (<a class="reference external" href="https://github.com/pyproj4/pyproj/">https://github.com/pyproj4/pyproj/</a>)</dt><dd><p>Python interface to PROJ (cartographic projections and coordinate transformations library).</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="optional-dependencies">
+<h3>Optional Dependencies<a class="headerlink" href="#optional-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>To make the most of Cartopy by enabling additional functionality, you may want
+to install these optional dependencies.</p>
+<dl class="simple">
+<dt><strong>GDAL</strong> version 2.3.2 (<a class="reference external" href="https://gdal.org/">https://gdal.org/</a>)</dt><dd><p>GDAL is a translator library for raster and vector geospatial data formats,
+which has powerful data transformation and processing capabilities.</p>
+</dd>
+<dt><strong>Pillow</strong> 6.1.0 or later (<a class="reference external" href="https://python-pillow.org">https://python-pillow.org</a>)</dt><dd><p>A popular fork of PythonImagingLibrary.</p>
+</dd>
+<dt><strong>pykdtree</strong> 1.2.2 or later (<a class="reference external" href="https://github.com/storpipfugl/pykdtree">https://github.com/storpipfugl/pykdtree</a>)</dt><dd><p>A fast kd-tree implementation that is used for faster warping
+of images than SciPy.</p>
+</dd>
+<dt><strong>SciPy</strong> 1.3.1 or later (<a class="reference external" href="https://www.scipy.org/">https://www.scipy.org/</a>)</dt><dd><p>A Python package for scientific computing.</p>
+</dd>
+<dt><strong>OWSLib</strong> 0.18 (<a class="reference external" href="https://pypi.python.org/pypi/OWSLib">https://pypi.python.org/pypi/OWSLib</a>)</dt><dd><p>A Python package for client programming with the Open Geospatial
+Consortium (OGC) web service, and which gives access to Cartopy ogc
+clients.</p>
+</dd>
+<dt><strong>Fiona</strong> 1.0 or later (<a class="reference external" href="https://github.com/Toblerity/Fiona">https://github.com/Toblerity/Fiona</a>)</dt><dd><p>A Python package for reading shapefiles that is faster than pyshp.</p>
+</dd>
+</dl>
+</div>
+<div class="section" id="testing-dependencies">
+<h3>Testing Dependencies<a class="headerlink" href="#testing-dependencies" title="Permalink to this headline">¶</a></h3>
+<p>These packages are required for the full Cartopy test suite to run.</p>
+<dl class="simple">
+<dt><strong>flufl.lock</strong> (<a class="reference external" href="https://flufllock.readthedocs.io/">https://flufllock.readthedocs.io/</a>)</dt><dd><p>A platform independent file lock for Python.</p>
+</dd>
+<dt><strong>pytest</strong> 5.1.2 or later (<a class="reference external" href="https://docs.pytest.org/en/latest/">https://docs.pytest.org/en/latest/</a>)</dt><dd><p>Python package for software testing.</p>
+</dd>
+<dt><strong>pep8</strong> 1.3.3 or later (<a class="reference external" href="https://pypi.python.org/pypi/pep8">https://pypi.python.org/pypi/pep8</a>)</dt><dd><p>Python package for software testing.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="gallery/miscellanea/axes_grid_basic.html" title="previous page">Using Cartopy and AxesGrid toolkit</a>
+    <a class='right-next' id="next-link" href="reference/index.html" title="next page">API reference</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
