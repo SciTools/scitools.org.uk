@@ -1,0 +1,853 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feature interface (cartopy.feature) &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="cartopy.feature.COLORS" href="generated/cartopy.feature.COLORS.html" />
+    <link rel="prev" title="cartopy.mpl.patch.path_to_geos" href="generated/cartopy.mpl.patch.path_to_geos.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../whatsnew/index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="crs.html">
+   Coordinate reference systems (CRS)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.CRS.html">
+     cartopy.crs.CRS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.Globe.html">
+     cartopy.crs.Globe
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.Projection.html">
+     cartopy.crs.Projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.Geodetic.html">
+     cartopy.crs.Geodetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.Geocentric.html">
+     cartopy.crs.Geocentric
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.RotatedGeodetic.html">
+     cartopy.crs.RotatedGeodetic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.crs.epsg.html">
+     cartopy.crs.epsg
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.geodesic.Geodesic.html">
+     cartopy.geodesic.Geodesic
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="projections.html">
+     PlateCarree
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="io.html">
+   Input/output capabilities (cartopy.io)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.Reader.html">
+     cartopy.io.shapereader.Reader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.BasicReader.html">
+     cartopy.io.shapereader.BasicReader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.Record.html">
+     cartopy.io.shapereader.Record
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.natural_earth.html">
+     cartopy.io.shapereader.natural_earth
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.NEShpDownloader.html">
+     cartopy.io.shapereader.NEShpDownloader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.gshhs.html">
+     cartopy.io.shapereader.gshhs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.shapereader.GSHHSShpDownloader.html">
+     cartopy.io.shapereader.GSHHSShpDownloader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_nest.Img.html">
+     cartopy.io.img_nest.Img
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_nest.ImageCollection.html">
+     cartopy.io.img_nest.ImageCollection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_nest.NestedImageCollection.html">
+     cartopy.io.img_nest.NestedImageCollection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.OSM.html">
+     cartopy.io.img_tiles.OSM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.GoogleTiles.html">
+     cartopy.io.img_tiles.GoogleTiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.GoogleWTS.html">
+     cartopy.io.img_tiles.GoogleWTS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.MapQuestOSM.html">
+     cartopy.io.img_tiles.MapQuestOSM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.MapQuestOpenAerial.html">
+     cartopy.io.img_tiles.MapQuestOpenAerial
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.MapboxStyleTiles.html">
+     cartopy.io.img_tiles.MapboxStyleTiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.MapboxTiles.html">
+     cartopy.io.img_tiles.MapboxTiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.OrdnanceSurvey.html">
+     cartopy.io.img_tiles.OrdnanceSurvey
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.QuadtreeTiles.html">
+     cartopy.io.img_tiles.QuadtreeTiles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.Stamen.html">
+     cartopy.io.img_tiles.Stamen
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.img_tiles.StamenTerrain.html">
+     cartopy.io.img_tiles.StamenTerrain
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.ogc_clients.WFSGeometrySource.html">
+     cartopy.io.ogc_clients.WFSGeometrySource
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.ogc_clients.WMSRasterSource.html">
+     cartopy.io.ogc_clients.WMSRasterSource
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.ogc_clients.WMTSRasterSource.html">
+     cartopy.io.ogc_clients.WMTSRasterSource
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.SRTM1Source.html">
+     cartopy.io.srtm.SRTM1Source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.SRTM3Source.html">
+     cartopy.io.srtm.SRTM3Source
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.SRTMDownloader.html">
+     cartopy.io.srtm.SRTMDownloader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.SRTM3_retrieve.html">
+     cartopy.io.srtm.SRTM3_retrieve
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM.html">
+     cartopy.io.srtm.read_SRTM
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM1.html">
+     cartopy.io.srtm.read_SRTM1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM3.html">
+     cartopy.io.srtm.read_SRTM3
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.srtm.html">
+     cartopy.io.srtm.srtm
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.srtm_composite.html">
+     cartopy.io.srtm.srtm_composite
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.add_shading.html">
+     cartopy.io.srtm.add_shading
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.srtm.fill_gaps.html">
+     cartopy.io.srtm.fill_gaps
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.Downloader.html">
+     cartopy.io.Downloader
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.DownloadWarning.html">
+     cartopy.io.DownloadWarning
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.LocatedImage.html">
+     cartopy.io.LocatedImage
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.RasterSource.html">
+     cartopy.io.RasterSource
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.RasterSourceContainer.html">
+     cartopy.io.RasterSourceContainer
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.PostprocessedRasterSource.html">
+     cartopy.io.PostprocessedRasterSource
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.io.fh_getter.html">
+     cartopy.io.fh_getter
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="matplotlib.html">
+   Matplotlib interface (cartopy.mpl)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoAxes.html">
+     cartopy.mpl.geoaxes.GeoAxes
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoAxesSubplot.html">
+     cartopy.mpl.geoaxes.GeoAxesSubplot
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoSpine.html">
+     cartopy.mpl.geoaxes.GeoSpine
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.geoaxes.InterProjectionTransform.html">
+     cartopy.mpl.geoaxes.InterProjectionTransform
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.gridliner.Gridliner.html">
+     cartopy.mpl.gridliner.Gridliner
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.ticker.LongitudeFormatter.html">
+     cartopy.mpl.ticker.LongitudeFormatter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.ticker.LatitudeFormatter.html">
+     cartopy.mpl.ticker.LatitudeFormatter
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.ticker.LongitudeLocator.html">
+     cartopy.mpl.ticker.LongitudeLocator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.ticker.LatitudeLocator.html">
+     cartopy.mpl.ticker.LatitudeLocator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.feature_artist.FeatureArtist.html">
+     cartopy.mpl.feature_artist.FeatureArtist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html">
+     cartopy.mpl.slippy_image_artist.SlippyImageArtist
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.patch.geos_to_path.html">
+     cartopy.mpl.patch.geos_to_path
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.patch.path_segments.html">
+     cartopy.mpl.patch.path_segments
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.mpl.patch.path_to_geos.html">
+     cartopy.mpl.patch.path_to_geos
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Feature interface (cartopy.feature)
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.COLORS.html">
+     cartopy.feature.COLORS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.auto_scaler.html">
+     cartopy.feature.auto_scaler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.BORDERS.html">
+     cartopy.feature.BORDERS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.STATES.html">
+     cartopy.feature.STATES
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.COASTLINE.html">
+     cartopy.feature.COASTLINE
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.LAKES.html">
+     cartopy.feature.LAKES
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.LAND.html">
+     cartopy.feature.LAND
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.OCEAN.html">
+     cartopy.feature.OCEAN
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.RIVERS.html">
+     cartopy.feature.RIVERS
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.AdaptiveScaler.html">
+     cartopy.feature.AdaptiveScaler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.Feature.html">
+     cartopy.feature.Feature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.GSHHSFeature.html">
+     cartopy.feature.GSHHSFeature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.NaturalEarthFeature.html">
+     cartopy.feature.NaturalEarthFeature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.Scaler.html">
+     cartopy.feature.Scaler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.ShapelyFeature.html">
+     cartopy.feature.ShapelyFeature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.WFSFeature.html">
+     cartopy.feature.WFSFeature
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.feature.nightshade.Nightshade.html">
+     cartopy.feature.nightshade.Nightshade
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="transformations.html">
+   Image and vector transformations
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.img_transform.mesh_projection.html">
+     cartopy.img_transform.mesh_projection
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.img_transform.regrid.html">
+     cartopy.img_transform.regrid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.img_transform.warp_array.html">
+     cartopy.img_transform.warp_array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.img_transform.warp_img.html">
+     cartopy.img_transform.warp_img
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.vector_transform.vector_scalar_to_grid.html">
+     cartopy.vector_transform.vector_scalar_to_grid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.util.add_cyclic_point.html">
+     cartopy.util.add_cyclic_point
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.trace.project_linear.html">
+     cartopy.trace.project_linear
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.trace.Interpolator.html">
+     cartopy.trace.Interpolator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.trace.CartesianInterpolator.html">
+     cartopy.trace.CartesianInterpolator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.trace.SphericalInterpolator.html">
+     cartopy.trace.SphericalInterpolator
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="generated/cartopy.trace.LineAccumulator.html">
+     cartopy.trace.LineAccumulator
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="config.html">
+   Cartopy configuration
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-attributes">
+   Feature attributes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#feature-classes">
+   Feature classes
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="feature-interface-cartopy-feature">
+<span id="api-feature"></span><h1>Feature interface (cartopy.feature)<a class="headerlink" href="#feature-interface-cartopy-feature" title="Permalink to this headline">¶</a></h1>
+<p>The feature interface can be used and extended to add various “features”
+to geoaxes, such as Shapely objects and Natural Earth Imagery. The default
+zorder for Cartopy features is 1.5, which puts them above images and patches,
+but below lines and text.</p>
+<div class="section" id="feature-attributes">
+<h2>Feature attributes<a class="headerlink" href="#feature-attributes" title="Permalink to this headline">¶</a></h2>
+<p>Some commonly used features are stored as attributes in the
+feature module for ease of use.</p>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.COLORS.html#cartopy.feature.COLORS" title="cartopy.feature.COLORS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COLORS</span></code></a></p></td>
+<td><p>A dictionary of colors useful for drawing Features.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.auto_scaler.html#cartopy.feature.auto_scaler" title="cartopy.feature.auto_scaler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">auto_scaler</span></code></a></p></td>
+<td><p>AdaptiveScaler for NaturalEarthFeature.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.BORDERS.html#cartopy.feature.BORDERS" title="cartopy.feature.BORDERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BORDERS</span></code></a></p></td>
+<td><p>Automatically scaled country boundaries.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.STATES.html#cartopy.feature.STATES" title="cartopy.feature.STATES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">STATES</span></code></a></p></td>
+<td><p>Automatically scaled state and province boundaries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.COASTLINE.html#cartopy.feature.COASTLINE" title="cartopy.feature.COASTLINE"><code class="xref py py-obj docutils literal notranslate"><span class="pre">COASTLINE</span></code></a></p></td>
+<td><p>Automatically scaled coastline, including major islands.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.LAKES.html#cartopy.feature.LAKES" title="cartopy.feature.LAKES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LAKES</span></code></a></p></td>
+<td><p>Automatically scaled natural and artificial lakes.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.LAND.html#cartopy.feature.LAND" title="cartopy.feature.LAND"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LAND</span></code></a></p></td>
+<td><p>Automatically scaled land polygons, including major islands.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.OCEAN.html#cartopy.feature.OCEAN" title="cartopy.feature.OCEAN"><code class="xref py py-obj docutils literal notranslate"><span class="pre">OCEAN</span></code></a></p></td>
+<td><p>Automatically scaled ocean polygons.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.RIVERS.html#cartopy.feature.RIVERS" title="cartopy.feature.RIVERS"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RIVERS</span></code></a></p></td>
+<td><p>Automatically scaled single-line drainages, including lake centerlines.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="feature-classes">
+<h2>Feature classes<a class="headerlink" href="#feature-classes" title="Permalink to this headline">¶</a></h2>
+<table class="longtable table autosummary">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.AdaptiveScaler.html#cartopy.feature.AdaptiveScaler" title="cartopy.feature.AdaptiveScaler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">AdaptiveScaler</span></code></a>(default_scale, limits)</p></td>
+<td><p>Automatically select scale of geometries based on extent of plotted axes.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.Feature.html#cartopy.feature.Feature" title="cartopy.feature.Feature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Feature</span></code></a>(crs, **kwargs)</p></td>
+<td><p>Represents a collection of points, lines and polygons with convenience methods for common drawing and filtering operations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature" title="cartopy.feature.GSHHSFeature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">GSHHSFeature</span></code></a>([scale, levels])</p></td>
+<td><p>An interface to the GSHHS dataset.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature" title="cartopy.feature.NaturalEarthFeature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">NaturalEarthFeature</span></code></a>(category, name, scale, ...)</p></td>
+<td><p>A simple interface to Natural Earth shapefiles.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.Scaler.html#cartopy.feature.Scaler" title="cartopy.feature.Scaler"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Scaler</span></code></a>(scale)</p></td>
+<td><p>General object for handling the scale of the geometries used in a Feature.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature" title="cartopy.feature.ShapelyFeature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ShapelyFeature</span></code></a>(geometries, crs, **kwargs)</p></td>
+<td><p>A class capable of drawing a collection of shapely geometries.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature" title="cartopy.feature.WFSFeature"><code class="xref py py-obj docutils literal notranslate"><span class="pre">WFSFeature</span></code></a>(wfs, features, **kwargs)</p></td>
+<td><p>A class capable of drawing a collection of geometries obtained from an OGC Web Feature Service (WFS).</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade" title="cartopy.feature.nightshade.Nightshade"><code class="xref py py-obj docutils literal notranslate"><span class="pre">nightshade.Nightshade</span></code></a>([date, delta, ...])</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="generated/cartopy.mpl.patch.path_to_geos.html" title="previous page">cartopy.mpl.patch.path_to_geos</a>
+    <a class='right-next' id="next-link" href="generated/cartopy.feature.COLORS.html" title="next page">cartopy.feature.COLORS</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

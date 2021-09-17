@@ -1,0 +1,366 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartopy developer interfaces &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+    <link rel="next" title="Citing cartopy" href="citation.html" />
+    <link rel="prev" title="Using the cartopy shapereader" href="tutorials/using_the_shapereader.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="index.html">
+  <img src="_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="whatsnew/index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="getting_started/crs.html">
+   Coordinate reference systems
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="matplotlib/intro.html">
+   Using cartopy with matplotlib
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matplotlib/advanced_plotting.html">
+     More advanced mapping with cartopy and matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="matplotlib/gridliner.html">
+     Cartopy map gridlines and tick labels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="matplotlib/feature_interface.html">
+   The cartopy Feature interface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorials/understanding_transform.html">
+   Understanding the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     transform
+    </span>
+   </code>
+   and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     projection
+    </span>
+   </code>
+   keywords
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tutorials/using_the_shapereader.html">
+   Using the cartopy shapereader
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Cartopy developer interfaces
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="citation.html">
+   Citing cartopy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="copyright.html">
+   Cartopy copyright, licensing and contributors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="contributors.html">
+   Credits
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-download-api">
+   Data/Download API
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#raster-images">
+   Raster images
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="cartopy-developer-interfaces">
+<span id="id1"></span><h1>Cartopy developer interfaces<a class="headerlink" href="#cartopy-developer-interfaces" title="Permalink to this headline">¶</a></h1>
+<p>Cartopy exposes several interfaces to help make it easier to add new
+functionality quickly and easily.</p>
+<div class="section" id="data-download-api">
+<h2>Data/Download API<a class="headerlink" href="#data-download-api" title="Permalink to this headline">¶</a></h2>
+<p>In order to keep the size of a cartopy release low, the majority of data is
+not included as standard. This means that, when developing new features, it is
+often necessary to provide interfaces which can acquire data from external
+sources (normally via HTTP). The <a class="reference internal" href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Downloader</span></code></a> class
+has been designed to make this process as easy as possible for developers to
+extend, whilst still making it possible for users to configure in their own
+way.</p>
+<p>An example of specialising this class can be found in
+<a class="reference internal" href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader" title="cartopy.io.shapereader.NEShpDownloader"><code class="xref py py-mod docutils literal notranslate"><span class="pre">cartopy.io.shapereader.NEShpDownloader</span></code></a> which enables the downloading of
+zipped shapefiles from the <a class="reference external" href="https://www.naturalearthdata.com">https://www.naturalearthdata.com</a> website. All
+known subclasses of <a class="reference internal" href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader" title="cartopy.io.Downloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Downloader</span></code></a> are listed below for
+reference:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference internal" href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader" title="cartopy.io.shapereader.NEShpDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.shapereader.NEShpDownloader</span></code></a></p></li>
+<li><p><a class="reference internal" href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader" title="cartopy.io.srtm.SRTMDownloader"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTMDownloader</span></code></a></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="raster-images">
+<h2>Raster images<a class="headerlink" href="#raster-images" title="Permalink to this headline">¶</a></h2>
+<p>The abstraction between retrieval and visualisation of raster data means
+that the <a class="reference internal" href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource" title="cartopy.io.RasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.RasterSource</span></code></a> class exists to retrieve an image
+(given sufficient context of projection, extent, resolution etc.) while in the
+matplotlib interface the
+<a class="reference internal" href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist" title="cartopy.mpl.slippy_image_artist.SlippyImageArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.slippy_image_artist.SlippyImageArtist</span></code></a>
+class feeds the appropriate information to the
+<a class="reference internal" href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource" title="cartopy.io.RasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">RasterSource</span></code></a> and visualises it on a map.
+The orchestration in Matplotlib is made more convenient
+to the user of a <a class="reference internal" href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoAxes</span></code></a> through the
+<a class="reference internal" href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_raster" title="cartopy.mpl.geoaxes.GeoAxes.add_raster"><code class="xref py py-class docutils literal notranslate"><span class="pre">add_raster</span></code></a> method. Anything which exposes
+the <code class="docutils literal notranslate"><span class="pre">validate_projection</span></code> and <code class="docutils literal notranslate"><span class="pre">fetch_raster</span></code> methods in the form described
+in <a class="reference internal" href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource" title="cartopy.io.RasterSource"><code class="xref py py-class docutils literal notranslate"><span class="pre">RasterSource</span></code></a> can be used as a slippy maps source in
+this way.</p>
+<p>The <a class="reference internal" href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist" title="cartopy.mpl.slippy_image_artist.SlippyImageArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlippyImageArtist</span></code></a> class
+provides panning and zooming of image sources which are able to
+re-retrieve data (such as that from a web service) for efficient and
+interactive visualisation. Generally the SlippyImageArtist is a developer’s
+interface, with users often creating a
+<a class="reference internal" href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist" title="cartopy.mpl.slippy_image_artist.SlippyImageArtist"><code class="xref py py-class docutils literal notranslate"><span class="pre">SlippyImageArtist</span></code></a> instance through
+the GeoAxes’ <a class="reference internal" href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_raster" title="cartopy.mpl.geoaxes.GeoAxes.add_raster"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_raster()</span></code></a> method.</p>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="tutorials/using_the_shapereader.html" title="previous page">Using the cartopy shapereader</a>
+    <a class='right-next' id="next-link" href="citation.html" title="next page">Citing cartopy</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

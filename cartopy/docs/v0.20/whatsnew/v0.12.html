@@ -1,0 +1,425 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Version 0.12 (April 14, 2015) &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Version 0.11 (June 19, 2014)" href="v0.11.html" />
+    <link rel="prev" title="Version 0.13 (June 30, 2015)" href="v0.13.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.html">
+   Version 0.20 (September 17, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.html">
+   Version 0.19 (April 21, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.html">
+   Version 0.18 (May 3, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.html">
+   Version 0.17 (November 16, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.html">
+   Version 0.16 (February 21, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.html">
+   Version 0.15 (February 1, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.14.html">
+   Version 0.14 (March 24, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.html">
+   Version 0.13 (June 30, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Version 0.12 (April 14, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.11.html">
+   Version 0.11 (June 19, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.html">
+   Version 0.10 (January 17, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.html">
+   Version 0.9 (September 12, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.8.html">
+   Version 0.8 (June 3, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.html">
+   Version 0.7 (March 21, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.html">
+   Version 0.6 (February 19, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.5.html">
+   Version 0.5 (December 7, 2012)
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features">
+   Features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deprecations">
+   Deprecations
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="version-0-12-april-14-2015">
+<h1>Version 0.12 (April 14, 2015)<a class="headerlink" href="#version-0-12-april-14-2015" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>We are very pleased to announce that Elliott Sales de Andrade was added to the cartopy
+core development team. Elliott has added several new projections in this release, as well
+as setting up cartopy’s Python 3 testing on TravisCI and generally improving the cartopy
+codebase.</p></li>
+<li><p>Installing cartopy became much easier for conda users. A <code class="docutils literal notranslate"><span class="pre">scitools</span></code> channel has been
+added which makes getting cartopy and all of its dependencies on Linux, OSX and
+Windows possible with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">scitools</span> <span class="n">cartopy</span>
+</pre></div>
+</div>
+</li>
+<li><p>Support for Python 3, specifically 3.3 and 3.4, has been added. Some features that depend
+on OWSLib will not be available as it does not support Python 3.</p></li>
+<li><p>Two new projections, <a class="reference internal" href="../reference/projections.html#cartopy.crs.AzimuthalEquidistant" title="cartopy.crs.AzimuthalEquidistant"><code class="xref py py-class docutils literal notranslate"><span class="pre">AzimuthalEquidistant</span></code></a> and
+<a class="reference internal" href="../reference/projections.html#cartopy.crs.AlbersEqualArea" title="cartopy.crs.AlbersEqualArea"><code class="xref py py-class docutils literal notranslate"><span class="pre">AlbersEqualArea</span></code></a> have been added. See the <a class="reference internal" href="../reference/projections.html#cartopy-projections"><span class="std std-ref">PlateCarree</span></a>
+for the full list of projections now available in cartopy.</p></li>
+<li><p>The Web Map Service (WMS) interface has been extended to support on-the-fly reprojection
+of imagery if the service does not support the projection of the map being drawn.
+The following example demonstrates the process by adding WMS imagery to an Interrupted
+Goode Homolosine map - unsurprisingly this WMS service does not provide IGH imagery, so
+cartopy has had to reproject them from a projection the WMS does support:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/web_services/wms.html"><img alt="../_images/sphx_glr_wms_001.png" src="../_images/sphx_glr_wms_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+<li><p>Peter Killick added an interface for accessing MapBox tiles using the MapBox
+Developer API. A MapBox client can be created with,
+<a class="reference internal" href="../reference/generated/cartopy.io.img_tiles.MapboxTiles.html#cartopy.io.img_tiles.MapboxTiles" title="cartopy.io.img_tiles.MapboxTiles"><code class="xref py py-class docutils literal notranslate"><span class="pre">MapboxTiles</span></code></a> and as with the other imagery from a simple URL
+based imagery service, it can be added to a <a class="reference internal" href="../reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoAxes</span></code></a> with the
+<a class="reference internal" href="../reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_image" title="cartopy.mpl.geoaxes.GeoAxes.add_image"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_image()</span></code></a> method. The following example demonstrates the
+interface for another source of imagery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/web_services/image_tiles.html"><img alt="../_images/sphx_glr_image_tiles_001.png" src="../_images/sphx_glr_image_tiles_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>Some improvements were made to the geometry transformation algorithm to improve
+the stability of geometry winding. Several cases of geometries being incorrectly
+inverted when transformed have now been resolved. (<a class="reference external" href="https://github.com/SciTools/cartopy/pull/545">PR #545</a>)</p></li>
+<li><p>Mark Hedley added the <code class="docutils literal notranslate"><span class="pre">central_rotated_longitude</span></code> keyword to
+<a class="reference internal" href="../reference/projections.html#cartopy.crs.RotatedPole" title="cartopy.crs.RotatedPole"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.RotatedPole</span></code></a>, which is particularly useful for limited area
+rotated pole models in areas such as New Zealand:</p>
+<blockquote>
+<div><p>(<a class="reference external" href="../whatsnew/v0-12-1.py">Source code</a>)</p>
+<div class="figure align-default">
+<a class="plot-directive reference internal image-reference" href="../_images/v0-12-1.png"><img alt="../_images/v0-12-1.png" class="plot-directive" src="../_images/v0-12-1.png" style="width: 200pt;" /></a>
+</div>
+</div></blockquote>
+</li>
+<li><p>A new method has been added to the <a class="reference internal" href="../reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">GeoAxes</span></code></a> to
+allow control of the neatline of a map drawn with the Matplotlib interface.
+The method, <a class="reference internal" href="../reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_boundary" title="cartopy.mpl.geoaxes.GeoAxes.set_boundary"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_boundary()</span></code></a>, takes a
+<a class="reference external" href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="(in Matplotlib v3.4.3)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib</span> <span class="pre">Path</span></code></a> object, which means that
+arbitrary shaped edges can be achieved:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/miscellanea/star_shaped_boundary.html"><img alt="../_images/sphx_glr_star_shaped_boundary_001.png" src="../_images/sphx_glr_star_shaped_boundary_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+<li><p>A new SRTM3 RasterSource has been implemented allowing interactive pan/zoom
+of 3 arc-second elevation data from the Shuttle Radar Topography Mission.
+The SRTM example has also been updated to use the new interface.</p></li>
+<li><p>New additions to the gallery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/miscellanea/un_flag.html"><img alt="../_images/sphx_glr_un_flag_001.png" src="../_images/sphx_glr_un_flag_001.png" style="width: 525.0px; height: 315.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/lines_and_polygons/always_circular_stereo.html"><img alt="../_images/sphx_glr_always_circular_stereo_001.png" src="../_images/sphx_glr_always_circular_stereo_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/miscellanea/tube_stations.html"><img alt="../_images/sphx_glr_tube_stations_001.png" src="../_images/sphx_glr_tube_stations_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/web_services/wms.html"><img alt="../_images/sphx_glr_wms_001.png" src="../_images/sphx_glr_wms_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/web_services/image_tiles.html"><img alt="../_images/sphx_glr_image_tiles_001.png" src="../_images/sphx_glr_image_tiles_001.png" style="width: 448.0px; height: 336.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The SRTM module has been re-factored for simplicity and to take advantage
+of the new <a class="reference internal" href="../reference/generated/cartopy.io.RasterSource.html#raster-source-interface"><span class="std std-ref">raster source interface</span></a>. Some
+methods have therefore been deprecated and will be removed in future
+releases. The function <a class="reference internal" href="../reference/generated/cartopy.io.srtm.srtm.html#cartopy.io.srtm.srtm" title="cartopy.io.srtm.srtm"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.srtm()</span></code></a> has been replaced with
+the <code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.single_tile()</span></code> method. Similarly,
+<a class="reference internal" href="../reference/generated/cartopy.io.srtm.srtm_composite.html#cartopy.io.srtm.srtm_composite" title="cartopy.io.srtm.srtm_composite"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.srtm_composite()</span></code></a> and
+<a class="reference internal" href="../reference/generated/cartopy.io.srtm.SRTM3_retrieve.html#cartopy.io.srtm.SRTM3_retrieve" title="cartopy.io.srtm.SRTM3_retrieve"><code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3_retrieve()</span></code></a> have been replaced with the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.combined()</span></code> and
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM3Source.srtm_fname()</span></code> methods respectively.</p></li>
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.RasterSource.fetch_raster</span></code> interface has been
+changed such that a sequence of <a class="reference internal" href="../reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage" title="cartopy.io.LocatedImage"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.LocatedImage</span></code></a> must be
+returned, rather than a single image and its associated extent.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">secant_latitudes</span></code> keyword in <a class="reference internal" href="../reference/projections.html#cartopy.crs.LambertConformal" title="cartopy.crs.LambertConformal"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.LambertConformal</span></code></a> has
+been deprecated in favour of <code class="docutils literal notranslate"><span class="pre">standard_parallels</span></code>.</p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="v0.13.html" title="previous page">Version 0.13 (June 30, 2015)</a>
+    <a class='right-next' id="next-link" href="v0.11.html" title="next page">Version 0.11 (June 19, 2014)</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>

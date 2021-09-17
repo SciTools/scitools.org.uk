@@ -1,0 +1,376 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Version 0.14 (March 24, 2016) &#8212; cartopy 0.19.0.post2.dev209+g851199bb documentation</title>
+    
+  <link href="../_static/css/theme.css" rel="stylesheet" />
+  <link href="../_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-rendered-html.css" />
+    
+  <link rel="preload" as="script" href="../_static/js/index.1c5a1a01449ed65a7b51.js">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Version 0.13 (June 30, 2015)" href="v0.13.html" />
+    <link rel="prev" title="Version 0.15 (February 1, 2017)" href="v0.15.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+    
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+    <nav class="navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="container-xl">
+
+  <div id="navbar-start">
+    
+    
+
+<a class="navbar-brand" href="../index.html">
+  <img src="../_static/cartopy.png" class="logo" alt="logo">
+</a>
+
+
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class="col-lg-9 collapse navbar-collapse">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../getting_started/index.html">
+  Getting started
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../gallery/index.html">
+  Gallery
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../installing.html">
+  Installation
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../reference/index.html">
+  API reference
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="index.html">
+  What’s new
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/SciTools/cartopy" rel="noopener" target="_blank" title="GitHub">
+            <span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label>
+          </a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+            
+            <!-- Only show if we have sidebars configured, else just a small margin  -->
+            <div class="col-12 col-md-3 bd-sidebar"><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.20.html">
+   Version 0.20 (September 17, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.19.html">
+   Version 0.19 (April 21, 2021)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.18.html">
+   Version 0.18 (May 3, 2020)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.17.html">
+   Version 0.17 (November 16, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.16.html">
+   Version 0.16 (February 21, 2018)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.15.html">
+   Version 0.15 (February 1, 2017)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Version 0.14 (March 24, 2016)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.13.html">
+   Version 0.13 (June 30, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.12.html">
+   Version 0.12 (April 14, 2015)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.11.html">
+   Version 0.11 (June 19, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.10.html">
+   Version 0.10 (January 17, 2014)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.9.html">
+   Version 0.9 (September 12, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.8.html">
+   Version 0.8 (June 3, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.7.html">
+   Version 0.7 (March 21, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.6.html">
+   Version 0.6 (February 19, 2013)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="v0.5.html">
+   Version 0.5 (December 7, 2012)
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+            </div>
+            
+          
+
+          
+          <div class="d-none d-xl-block col-xl-2 bd-toc">
+            
+              
+              <div class="toc-item">
+                
+<div class="tocsection onthispage pt-5 pb-3">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav">
+    <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#features">
+   Features
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#deprecations">
+   Deprecations
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#incompatible-changes">
+   Incompatible changes
+  </a>
+ </li>
+</ul>
+
+</nav>
+              </div>
+              
+              <div class="toc-item">
+                
+              </div>
+              
+            
+          </div>
+          
+
+          
+          
+            
+          
+          <main class="col-12 col-md-9 col-xl-7 py-md-5 pl-md-5 pr-md-4 bd-content" role="main">
+              
+              <div>
+                
+  <div class="section" id="version-0-14-march-24-2016">
+<h1>Version 0.14 (March 24, 2016)<a class="headerlink" href="#version-0-14-march-24-2016" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Zachary Tessler and Raj Kesavan added the <a class="reference internal" href="../reference/projections.html#cartopy.crs.Sinusoidal" title="cartopy.crs.Sinusoidal"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Sinusoidal</span></code></a> projection,
+allowing MODIS data to be visualised in its native projection. Additionally, a
+prepared <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.Sinusoidal.MODIS</span></code> projection has been made available for
+convenience.</p></li>
+<li><p>Joseph Hogg and Daniel Atton Beckmann added the <a class="reference internal" href="../reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic" title="cartopy.geodesic.Geodesic"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.geodesic.Geodesic</span></code></a>
+class which wraps the proj.4 geodesic library. This allows users to solve the direct and
+inverse geodesic problems (calculating distances between points etc). It also contains a
+convenience function that returns geodetic circles. This is used by
+<a class="reference internal" href="../reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.tissot" title="cartopy.mpl.geoaxes.GeoAxes.tissot"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.tissot()</span></code></a> which draws Tissot’s indicatrices on the axes.</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/lines_and_polygons/tissot.html"><img alt="../_images/sphx_glr_tissot_001.png" src="../_images/sphx_glr_tissot_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+<li><p>The SRTM3 data source has been changed to the <a class="reference external" href="https://lpdaac.usgs.gov/data_access/data_pool">LP DAAC Data Pool</a>. The Data Pool is more
+consistent, fixing several missing tiles, and the data is void-filled.
+Consequently, the <code class="xref py py-func docutils literal notranslate"><span class="pre">cartopy.srtm.fill_gaps()</span></code> function has been deprecated
+as it has no purpose within the STRM context. The
+SRTM example has also been updated to skip the void-filling step.
+Additionally, this data source provides SRTM at a higher resolution of
+1 arc-second, which may be accessed via <a class="reference internal" href="../reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source" title="cartopy.io.srtm.SRTM1Source"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.io.srtm.SRTM1Source</span></code></a>.</p></li>
+<li><p>All downloaders will use secure connections where available. Not
+every service supports this method, and so those will use non-secured
+HTTP connections instead. (See <a class="reference external" href="https://github.com/SciTools/cartopy/pull/736">PR #736</a> for full details.)</p></li>
+<li><p>Cartopy now supports, and is tested against, Matplotlib 1.3 and 1.5 as well as
+NumPy 1.7, 1.8 and 1.10.</p></li>
+<li><p>Daniel Eriksson added a new example to the gallery:</p>
+<div class="figure align-center">
+<a class="reference external image-reference" href="../gallery/scalar_data/aurora_forecast.html"><img alt="../_images/sphx_glr_aurora_forecast_001.png" src="../_images/sphx_glr_aurora_forecast_001.png" style="width: 700.0px; height: 350.0px;" /></a>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="deprecations">
+<h2>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.GOOGLE_MERCATOR</span></code> has been moved to <code class="xref py py-data docutils literal notranslate"><span class="pre">cartopy.crs.Mercator.GOOGLE</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="incompatible-changes">
+<h2>Incompatible changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.crs.CRS.transform_point()</span></code> now issues NaNs when invalid transforms are identified.</p></li>
+</ul>
+</div>
+</div>
+
+
+              </div>
+              
+              
+              <div class='prev-next-bottom'>
+                
+    <a class='left-prev' id="prev-link" href="v0.15.html" title="previous page">Version 0.15 (February 1, 2017)</a>
+    <a class='right-next' id="next-link" href="v0.13.html" title="next page">Version 0.13 (June 30, 2015)</a>
+
+              </div>
+              
+          </main>
+          
+
+      </div>
+    </div>
+  
+  <script src="../_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+
+  <footer class="footer mt-5 mt-md-0">
+  <div class="container">
+    
+    <div class="footer-item">
+      <p class="copyright">
+    &copy; <a href="../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2021 Cartopy contributors.<br/>
+</p>
+    </div>
+    
+    <div class="footer-item">
+      <p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.2.0.<br/>
+</p>
+    </div>
+    
+  </div>
+</footer>
+  </body>
+</html>
