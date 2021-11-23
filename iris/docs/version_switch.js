@@ -118,7 +118,7 @@ a.banner_href:hover {
 const sbody= `
 <div id="banner">
 You are not reading the most recent version of this documentation.
-Pleasee see the
+Please see the
 <a class="banner_href" href="https://scitools-iris.readthedocs.io/en/latest/">latest documentation</a>
 instead.
 </div>
