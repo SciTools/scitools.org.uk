@@ -7,7 +7,7 @@
   var url_re = /\/iris\/docs\/(latest|(v\d+\.\d+\.?\d?))\//;
 
   var all_versions = {
-    'latest': 'latest (2.4)',
+    'latest': 'latest',
     // nb. Also include the latest version explictly as well as under "latest",
     // so that users can get to the versioned (non-latest) URL.
 
@@ -33,6 +33,7 @@
     'v0.9.1': '0.9',
     'dev': 'dev',
   };
+
 
   function build_select(current_version, current_release) {
     var buf = ['<select>'];
@@ -84,6 +85,53 @@
     }
   }
 
+
+  /* append a message pointing to the latest docs */
+  function append_latest_docs_message() {
+    const shead= `
+<style>
+#banner {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background-color: #FF0000;
+  color: #ffffff;
+  margin: 0 auto;
+}
+
+a.banner_href:link {
+  color:#ffffff;
+  text-decoration: underline;
+}
+a.banner_href:visited {
+  color:#ffffff;
+  text-decoration: underline;
+}
+a.banner_href:hover {
+  color:#ffffff;
+  text-decoration: underline;
+}
+
+</style>
+`;
+
+const sbody= `
+<div id="banner">
+You are not reading the most recent version of this documentation.
+Please see the
+<a class="banner_href" href="https://scitools-iris.readthedocs.io/en/latest/">latest documentation</a>
+instead.
+</div>
+`;
+
+    var the_body = document.getElementsByTagName('body')[0];
+    the_body.innerHTML = the_body.innerHTML + sbody;
+
+    var the_head = document.getElementsByTagName('head')[0];
+    the_head.innerHTML = the_head.innerHTML + shead;
+  }
+
+
   $(document).ready(function() {
     var release = DOCUMENTATION_OPTIONS.VERSION;
     // Take the first 2 parts of the release (e.g. "0.6.0" -> "0.6")
@@ -92,8 +140,10 @@
 
     // Insert the version switcher into the right-hand-side of the top pane.
     var index_li = $('li.right:contains("index")');
-    index_li.append('|&nbsp;'); 
+    index_li.append('|&nbsp;');
     index_li.before('<li class="version_switcher right">' + select + '</li>');
     $('.version_switcher select').bind('change', on_switch);
+
+    append_latest_docs_message();
   });
 })();
