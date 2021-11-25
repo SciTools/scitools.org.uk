@@ -133,6 +133,8 @@ instead.
 
 
   $(document).ready(function() {
+    append_latest_docs_message();
+
     var release = DOCUMENTATION_OPTIONS.VERSION;
     // Take the first 2 parts of the release (e.g. "0.6.0" -> "0.6")
     var version = release.split('.').slice(0, 2).join('.');
@@ -143,7 +145,5 @@ instead.
     index_li.append('|&nbsp;');
     index_li.before('<li class="version_switcher right">' + select + '</li>');
     $('.version_switcher select').bind('change', on_switch);
-
-    append_latest_docs_message();
   });
 })();
