@@ -145,5 +145,7 @@ instead.
     index_li.append('|&nbsp;');
     index_li.before('<li class="version_switcher right">' + select + '</li>');
     $('.version_switcher select').bind('change', on_switch);
+
+    append_latest_docs_message();
   });
 })();
