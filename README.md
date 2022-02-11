@@ -37,6 +37,9 @@ Read the Docs.  The older documentation (Iris 2.4 and earlier) will still be pre
 in this repo, and as of today should no longer need to be updated via this repo,
 only via the Iris repo and then automatically built and served by Read the Docs.
 
+cf-units is also provisioned by Read the Docs (https://cf-units.readthedocs.io/en/stable/)
+since the cf-units v3.0.0 release. Older documentation (v2.0 and earlier) lives
+in this repo.
 
 Example workflow
 ----------------
