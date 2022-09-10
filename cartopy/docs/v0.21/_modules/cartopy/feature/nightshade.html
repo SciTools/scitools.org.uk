@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.feature.nightshade &#8212; cartopy 0.21.0 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/cartopy/feature/nightshade';</script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/cartopy.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/cartopy.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <h1>Source code for cartopy.feature.nightshade</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+
+<span class="kn">import</span> <span class="nn">datetime</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="k">as</span> <span class="nn">sgeom</span>
+
+<span class="kn">from</span> <span class="nn">.</span> <span class="kn">import</span> <span class="n">ShapelyFeature</span>
+<span class="kn">from</span> <span class="nn">..</span> <span class="kn">import</span> <span class="n">crs</span> <span class="k">as</span> <span class="n">ccrs</span>
+
+
+<div class="viewcode-block" id="Nightshade"><a class="viewcode-back" href="../../../reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade">[docs]</a><span class="k">class</span> <span class="nc">Nightshade</span><span class="p">(</span><span class="n">ShapelyFeature</span><span class="p">):</span>
+<div class="viewcode-block" id="Nightshade.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">date</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">refraction</span><span class="o">=-</span><span class="mf">0.83</span><span class="p">,</span>
+                 <span class="n">color</span><span class="o">=</span><span class="s2">&quot;k&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Shade the darkside of the Earth, accounting for refraction.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        date : datetime</span>
+<span class="sd">            A UTC datetime object used to calculate the position of the sun.</span>
+<span class="sd">            Default: datetime.datetime.utcnow()</span>
+<span class="sd">        delta : float</span>
+<span class="sd">            Stepsize in degrees to determine the resolution of the</span>
+<span class="sd">            night polygon feature (``npts = 180 / delta``).</span>
+<span class="sd">        refraction : float</span>
+<span class="sd">            The adjustment in degrees due to refraction,</span>
+<span class="sd">            thickness of the solar disc, elevation etc...</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Matplotlib keyword arguments can be used when drawing the feature.</span>
+<span class="sd">            This allows standard Matplotlib control over aspects such as</span>
+<span class="sd">            &#39;color&#39;, &#39;alpha&#39;, etc.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">date</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">date</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">utcnow</span><span class="p">()</span>
+
+        <span class="c1"># make sure date is UTC, or naive with respect to time zones</span>
+        <span class="k">if</span> <span class="n">date</span><span class="o">.</span><span class="n">utcoffset</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;datetime instance must be UTC, not </span><span class="si">{</span><span class="n">date</span><span class="o">.</span><span class="n">tzname</span><span class="p">()</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="c1"># Returns the Greenwich hour angle,</span>
+        <span class="c1"># need longitude (opposite direction)</span>
+        <span class="n">lat</span><span class="p">,</span> <span class="n">lon</span> <span class="o">=</span> <span class="n">_solar_position</span><span class="p">(</span><span class="n">date</span><span class="p">)</span>
+        <span class="n">pole_lon</span> <span class="o">=</span> <span class="n">lon</span>
+        <span class="k">if</span> <span class="n">lat</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">pole_lat</span> <span class="o">=</span> <span class="o">-</span><span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+            <span class="n">central_lon</span> <span class="o">=</span> <span class="mi">180</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">pole_lat</span> <span class="o">=</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">lat</span>
+            <span class="n">central_lon</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">rotated_pole</span> <span class="o">=</span> <span class="n">ccrs</span><span class="o">.</span><span class="n">RotatedPole</span><span class="p">(</span><span class="n">pole_latitude</span><span class="o">=</span><span class="n">pole_lat</span><span class="p">,</span>
+                                        <span class="n">pole_longitude</span><span class="o">=</span><span class="n">pole_lon</span><span class="p">,</span>
+                                        <span class="n">central_rotated_longitude</span><span class="o">=</span><span class="n">central_lon</span><span class="p">)</span>
+
+        <span class="n">npts</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="mi">180</span> <span class="o">/</span> <span class="n">delta</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">npts</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="n">npts</span> <span class="o">*</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Solve the equation for sunrise/sunset:</span>
+        <span class="c1"># https://en.wikipedia.org/wiki/Sunrise_equation#Generalized_equation</span>
+        <span class="c1"># NOTE: In the generalized equation on Wikipedia,</span>
+        <span class="c1">#       delta == 0. in the rotated pole coordinate system.</span>
+        <span class="c1">#       Therefore, the max/min latitude is +/- (90+refraction)</span>
+
+        <span class="c1"># Fill latitudes up and then down</span>
+        <span class="n">y</span><span class="p">[:</span><span class="n">npts</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="mi">90</span> <span class="o">+</span> <span class="n">refraction</span><span class="p">),</span> <span class="mi">90</span> <span class="o">+</span> <span class="n">refraction</span><span class="p">,</span> <span class="n">npts</span><span class="p">)</span>
+        <span class="n">y</span><span class="p">[</span><span class="n">npts</span><span class="p">:]</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="n">npts</span><span class="p">][::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+        <span class="c1"># Solve the generalized equation for omega0, which is the</span>
+        <span class="c1"># angle of sunrise/sunset from solar noon</span>
+        <span class="c1"># We need to clip the input to arccos to [-1, 1] due to floating</span>
+        <span class="c1"># point precision and arccos creating nans for values outside</span>
+        <span class="c1"># of the domain</span>
+        <span class="n">arccos_tmp</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">refraction</span><span class="p">))</span> <span class="o">/</span>
+                             <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">omega0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">arccos_tmp</span><span class="p">))</span>
+
+        <span class="c1"># Fill the longitude values from the offset for midnight.</span>
+        <span class="c1"># This needs to be a closed loop to fill the polygon.</span>
+        <span class="c1"># Negative longitudes</span>
+        <span class="n">x</span><span class="p">[:</span><span class="n">npts</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="mi">180</span> <span class="o">-</span> <span class="n">omega0</span><span class="p">[:</span><span class="n">npts</span><span class="p">])</span>
+        <span class="c1"># Positive longitudes</span>
+        <span class="n">x</span><span class="p">[</span><span class="n">npts</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">180</span> <span class="o">-</span> <span class="n">omega0</span><span class="p">[</span><span class="n">npts</span><span class="p">:]</span>
+
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;facecolor&#39;</span><span class="p">,</span> <span class="n">color</span><span class="p">)</span>
+        <span class="n">kwargs</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;alpha&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="p">)</span>
+
+        <span class="n">geom</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">Polygon</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">geom</span><span class="p">],</span> <span class="n">rotated_pole</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></div></div>
+
+
+<span class="k">def</span> <span class="nf">_julian_day</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the Julian day from an input datetime.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    date</span>
+<span class="sd">        A UTC datetime object.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Algorithm implemented following equations from Chapter 3 (Algorithm 14):</span>
+<span class="sd">    Vallado, David &#39;Fundamentals of Astrodynamics and Applications&#39;, (2007)</span>
+
+<span class="sd">    Julian day epoch is: noon on January 1, 4713 BC (proleptic Julian)</span>
+<span class="sd">                         noon on November 24, 4714 BC (proleptic Gregorian)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">year</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">year</span>
+    <span class="n">month</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">month</span>
+    <span class="n">day</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">day</span>
+    <span class="n">hour</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">hour</span>
+    <span class="n">minute</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">minute</span>
+    <span class="n">second</span> <span class="o">=</span> <span class="n">date</span><span class="o">.</span><span class="n">second</span>
+
+    <span class="c1"># January/February correspond to months 13/14 respectively</span>
+    <span class="c1"># for the constants to work out properly</span>
+    <span class="k">if</span> <span class="n">month</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">month</span> <span class="o">+=</span> <span class="mi">12</span>
+        <span class="n">year</span> <span class="o">-=</span> <span class="mi">1</span>
+
+    <span class="n">B</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">year</span> <span class="o">//</span> <span class="mi">100</span> <span class="o">+</span> <span class="p">(</span><span class="n">year</span> <span class="o">//</span> <span class="mi">100</span><span class="p">)</span> <span class="o">//</span> <span class="mi">4</span>
+    <span class="n">C</span> <span class="o">=</span> <span class="p">((</span><span class="n">second</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">minute</span><span class="p">)</span> <span class="o">/</span> <span class="mi">60</span> <span class="o">+</span> <span class="n">hour</span><span class="p">)</span> <span class="o">/</span> <span class="mi">24</span>
+
+    <span class="n">JD</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="mf">365.25</span> <span class="o">*</span> <span class="p">(</span><span class="n">year</span> <span class="o">+</span> <span class="mi">4716</span><span class="p">))</span> <span class="o">+</span> <span class="nb">int</span><span class="p">(</span><span class="mf">30.6001</span> <span class="o">*</span> <span class="p">(</span><span class="n">month</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span> <span class="o">+</span>
+          <span class="n">day</span> <span class="o">+</span> <span class="n">B</span> <span class="o">-</span> <span class="mf">1524.5</span> <span class="o">+</span> <span class="n">C</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">JD</span>
+
+
+<span class="k">def</span> <span class="nf">_solar_position</span><span class="p">(</span><span class="n">date</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Calculate the latitude and longitude point where the sun is</span>
+<span class="sd">    directly overhead for the given date.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    date</span>
+<span class="sd">        A UTC datetime object.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    (latitude, longitude) in degrees</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Algorithm implemented following equations from Chapter 5 (Algorithm 29):</span>
+<span class="sd">    Vallado, David &#39;Fundamentals of Astrodynamics and Applications&#39;, (2007)</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># NOTE: Constants are in degrees in the textbook,</span>
+    <span class="c1">#       so we need to convert the values from deg2rad when taking sin/cos</span>
+
+    <span class="c1"># Centuries from J2000</span>
+    <span class="n">T_UT1</span> <span class="o">=</span> <span class="p">(</span><span class="n">_julian_day</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> <span class="o">-</span> <span class="mf">2451545.0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">36525</span>
+
+    <span class="c1"># solar longitude (deg)</span>
+    <span class="n">lambda_M_sun</span> <span class="o">=</span> <span class="p">(</span><span class="mf">280.460</span> <span class="o">+</span> <span class="mf">36000.771</span> <span class="o">*</span> <span class="n">T_UT1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span>
+
+    <span class="c1"># solar anomaly (deg)</span>
+    <span class="n">M_sun</span> <span class="o">=</span> <span class="p">(</span><span class="mf">357.5277233</span> <span class="o">+</span> <span class="mf">35999.05034</span> <span class="o">*</span> <span class="n">T_UT1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span>
+
+    <span class="c1"># ecliptic longitude</span>
+    <span class="n">lambda_ecliptic</span> <span class="o">=</span> <span class="p">(</span><span class="n">lambda_M_sun</span> <span class="o">+</span> <span class="mf">1.914666471</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">M_sun</span><span class="p">))</span> <span class="o">+</span>
+                       <span class="mf">0.019994643</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">M_sun</span><span class="p">)))</span>
+
+    <span class="c1"># obliquity of the ecliptic (epsilon in Vallado&#39;s notation)</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="mf">23.439291</span> <span class="o">-</span> <span class="mf">0.0130042</span> <span class="o">*</span> <span class="n">T_UT1</span>
+
+    <span class="c1"># declination of the sun</span>
+    <span class="n">delta_sun</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span> <span class="o">*</span>
+                                     <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">lambda_ecliptic</span><span class="p">))))</span>
+
+    <span class="c1"># Greenwich mean sidereal time (seconds)</span>
+    <span class="n">theta_GMST</span> <span class="o">=</span> <span class="p">(</span><span class="mf">67310.54841</span> <span class="o">+</span>
+                  <span class="p">(</span><span class="mi">876600</span> <span class="o">*</span> <span class="mi">3600</span> <span class="o">+</span> <span class="mf">8640184.812866</span><span class="p">)</span> <span class="o">*</span> <span class="n">T_UT1</span> <span class="o">+</span>
+                  <span class="mf">0.093104</span> <span class="o">*</span> <span class="n">T_UT1</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span>
+                  <span class="mf">6.2e-6</span> <span class="o">*</span> <span class="n">T_UT1</span><span class="o">**</span><span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># Convert to degrees</span>
+    <span class="n">theta_GMST</span> <span class="o">=</span> <span class="p">(</span><span class="n">theta_GMST</span> <span class="o">%</span> <span class="mi">86400</span><span class="p">)</span> <span class="o">/</span> <span class="mi">240</span>
+
+    <span class="c1"># Right ascension calculations</span>
+    <span class="n">numerator</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">epsilon</span><span class="p">))</span> <span class="o">*</span>
+                 <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">lambda_ecliptic</span><span class="p">))</span> <span class="o">/</span>
+                 <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">delta_sun</span><span class="p">)))</span>
+    <span class="n">denominator</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">lambda_ecliptic</span><span class="p">))</span> <span class="o">/</span>
+                   <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">deg2rad</span><span class="p">(</span><span class="n">delta_sun</span><span class="p">)))</span>
+
+    <span class="n">alpha_sun</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">numerator</span><span class="p">,</span> <span class="n">denominator</span><span class="p">))</span>
+
+    <span class="c1"># longitude is opposite of Greenwich Hour Angle (GHA)</span>
+    <span class="c1"># GHA == theta_GMST - alpha_sun</span>
+    <span class="n">lon</span> <span class="o">=</span> <span class="o">-</span><span class="p">(</span><span class="n">theta_GMST</span> <span class="o">-</span> <span class="n">alpha_sun</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">lon</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">180</span><span class="p">:</span>
+        <span class="n">lon</span> <span class="o">+=</span> <span class="mi">360</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="n">delta_sun</span><span class="p">,</span> <span class="n">lon</span><span class="p">)</span>
+</pre></div>
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; <a href="../../../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2022 Cartopy contributors.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
