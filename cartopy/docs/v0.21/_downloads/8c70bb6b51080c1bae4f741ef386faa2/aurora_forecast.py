@@ -1,0 +1,1 @@
+../../../../../shared_assets/1b892ea6479672bff7ea52f76dd2dff2eb171893fe10df010327e161-aurora_forecast.py

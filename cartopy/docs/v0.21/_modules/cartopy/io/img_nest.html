@@ -1,0 +1,932 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.io.img_nest &#8212; cartopy 0.21.0 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/cartopy/io/img_nest';</script>
+    <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../../copyright.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../../_static/cartopy.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/cartopy.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <h1>Source code for cartopy.io.img_nest</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">glob</span>
+<span class="kn">import</span> <span class="nn">os.path</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">shapely.geometry</span> <span class="k">as</span> <span class="nn">sgeom</span>
+
+
+<span class="n">_img_class_attrs</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;filename&#39;</span><span class="p">,</span> <span class="s1">&#39;extent&#39;</span><span class="p">,</span> <span class="s1">&#39;origin&#39;</span><span class="p">,</span> <span class="s1">&#39;pixel_size&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="Img"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img">[docs]</a><span class="k">class</span> <span class="nc">Img</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Img&#39;</span><span class="p">,</span> <span class="n">_img_class_attrs</span><span class="p">)):</span>
+    <span class="k">def</span> <span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># ensure any lists given as args or kwargs are turned into tuples.</span>
+        <span class="n">new_args</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="n">new_args</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+        <span class="n">new_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+                <span class="n">item</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+            <span class="n">new_kwargs</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">=</span> <span class="n">item</span>
+        <span class="k">return</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="o">*</span><span class="n">new_args</span><span class="p">,</span> <span class="o">**</span><span class="n">new_kwargs</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Img.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Represents a simple geo-located image.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        filename</span>
+<span class="sd">            Filename of the image tile.</span>
+<span class="sd">        extent</span>
+<span class="sd">            The (x_lower, x_upper, y_lower, y_upper) extent of the</span>
+<span class="sd">            image in units of the native projection.</span>
+<span class="sd">        origin</span>
+<span class="sd">            Name of the origin.</span>
+<span class="sd">        pixel_size</span>
+<span class="sd">            The (x_scale, y_scale) pixel width, in units of the</span>
+<span class="sd">            native projection per pixel.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            API is likely to change in the future to include a CRS.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+    <span class="k">def</span> <span class="nf">__getstate__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Override the default to ensure when pickling that any new attributes</span>
+<span class="sd">        introduced are included in the pickled object.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span>
+
+    <span class="k">def</span> <span class="nf">bbox</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a :class:`~shapely.geometry.polygon.Polygon` instance for</span>
+<span class="sd">        this image&#39;s extents.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">x0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extent</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span> <span class="o">=</span> <span class="n">sgeom</span><span class="o">.</span><span class="n">box</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">y0</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_bbox</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">world_files</span><span class="p">(</span><span class="n">fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine potential world filename combinations, without checking</span>
+<span class="sd">        their existence.</span>
+
+<span class="sd">        For example, a &#39;*.tif&#39; file may have one of the following</span>
+<span class="sd">        popular conventions for world file extensions &#39;*.tifw&#39;,</span>
+<span class="sd">        &#39;*.tfw&#39;, &#39;*.TIFW&#39; or &#39;*.TFW&#39;.</span>
+
+<span class="sd">        Given the possible world file extensions, the upper case basename</span>
+<span class="sd">        combinations are also generated. For example, the file &#39;map.tif&#39;</span>
+<span class="sd">        will generate the following world file variations, &#39;map.tifw&#39;,</span>
+<span class="sd">        &#39;map.tfw&#39;, &#39;map.TIFW&#39;, &#39;map.TFW&#39;, &#39;MAP.tifw&#39;, &#39;MAP.tfw&#39;, &#39;MAP.TIFW&#39;</span>
+<span class="sd">        and &#39;MAP.TFW&#39;.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        fname</span>
+<span class="sd">            Name of the file for which to get all the possible world</span>
+<span class="sd">            filename combinations.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">            A list of possible world filename combinations.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt; from cartopy.io.img_nest import Img</span>
+<span class="sd">        &gt;&gt;&gt; Img.world_files(&#39;img.png&#39;)[:6]</span>
+<span class="sd">        [&#39;img.pngw&#39;, &#39;img.pgw&#39;, &#39;img.PNGW&#39;, &#39;img.PGW&#39;, &#39;IMG.pngw&#39;, &#39;IMG.pgw&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; Img.world_files(&#39;/path/to/img.TIF&#39;)[:2]</span>
+<span class="sd">        [&#39;/path/to/img.tifw&#39;, &#39;/path/to/img.tfw&#39;]</span>
+<span class="sd">        &gt;&gt;&gt; Img.world_files(&#39;/path/to/img/with_no_extension&#39;)[0]</span>
+<span class="sd">        &#39;/path/to/img/with_no_extension.w&#39;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">froot</span><span class="p">,</span> <span class="n">fext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+        <span class="c1"># If there was no extension to the filename.</span>
+        <span class="k">if</span> <span class="n">froot</span> <span class="o">==</span> <span class="n">fname</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.w&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.W&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fext</span> <span class="o">=</span> <span class="n">fext</span><span class="p">[</span><span class="mi">1</span><span class="p">::]</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">fext</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.w&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fname</span><span class="si">}</span><span class="s1">.W&#39;</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fext_types</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fext</span><span class="si">}</span><span class="s1">w&#39;</span><span class="p">,</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fext</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}{</span><span class="n">fext</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s1">w&#39;</span><span class="p">]</span>
+                <span class="n">fext_types</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">ext</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">fext_types</span><span class="p">])</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">froot</span><span class="si">}</span><span class="s1">.</span><span class="si">{</span><span class="n">ext</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">ext</span> <span class="ow">in</span> <span class="n">fext_types</span><span class="p">]</span>
+
+        <span class="k">def</span> <span class="nf">_convert_basename</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="n">dirname</span><span class="p">,</span> <span class="n">basename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+            <span class="n">base</span><span class="p">,</span> <span class="n">ext</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">splitext</span><span class="p">(</span><span class="n">basename</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">base</span> <span class="o">==</span> <span class="n">base</span><span class="o">.</span><span class="n">upper</span><span class="p">():</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">base</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">+</span> <span class="n">ext</span>
+            <span class="k">if</span> <span class="n">dirname</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">result</span>
+
+        <span class="n">result</span> <span class="o">+=</span> <span class="p">[</span><span class="n">_convert_basename</span><span class="p">(</span><span class="n">r</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">__array__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filename</span><span class="p">))</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_world_file</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">img_fname</span><span class="p">,</span> <span class="n">world_fname</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an Img instance from the given image filename and</span>
+<span class="sd">        worldfile filename.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">im</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img_fname</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">world_fname</span><span class="p">)</span> <span class="k">as</span> <span class="n">world_fh</span><span class="p">:</span>
+            <span class="n">extent</span><span class="p">,</span> <span class="n">pix_size</span> <span class="o">=</span> <span class="bp">cls</span><span class="o">.</span><span class="n">world_file_extent</span><span class="p">(</span><span class="n">world_fh</span><span class="p">,</span> <span class="n">im</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">im</span><span class="p">,</span> <span class="s1">&#39;close&#39;</span><span class="p">):</span>
+            <span class="n">im</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">img_fname</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="s1">&#39;lower&#39;</span><span class="p">,</span> <span class="n">pix_size</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">world_file_extent</span><span class="p">(</span><span class="n">worldfile_handle</span><span class="p">,</span> <span class="n">im_shape</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return the extent ``(x0, x1, y0, y1)`` and pixel size</span>
+<span class="sd">        ``(x_width, y_width)`` as defined in the given worldfile file handle</span>
+<span class="sd">        and associated image shape ``(x, y)``.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">worldfile_handle</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">6</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only world files with 6 lines are supported.&#39;</span><span class="p">)</span>
+
+        <span class="n">pix_size</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">3</span><span class="p">]))</span>
+        <span class="n">pix_rotation</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+        <span class="k">if</span> <span class="n">pix_rotation</span> <span class="o">!=</span> <span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Rotated pixels in world files is not currently &#39;</span>
+                             <span class="s1">&#39;supported.&#39;</span><span class="p">)</span>
+        <span class="n">ul_corner</span> <span class="o">=</span> <span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">4</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">lines</span><span class="p">[</span><span class="mi">5</span><span class="p">]))</span>
+
+        <span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span> <span class="o">=</span> <span class="p">(</span><span class="n">ul_corner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span> <span class="n">pix_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+                        <span class="n">ul_corner</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">pix_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">im_shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">-</span>
+                        <span class="n">pix_size</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
+        <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">ul_corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">pix_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">,</span>
+                        <span class="n">ul_corner</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">pix_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">im_shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span>
+                        <span class="n">pix_size</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="mf">2.</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">min_x</span><span class="p">,</span> <span class="n">max_x</span><span class="p">,</span> <span class="n">min_y</span><span class="p">,</span> <span class="n">max_y</span><span class="p">),</span> <span class="n">pix_size</span></div>
+
+
+<div class="viewcode-block" id="ImageCollection"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.ImageCollection.html#cartopy.io.img_nest.ImageCollection">[docs]</a><span class="k">class</span> <span class="nc">ImageCollection</span><span class="p">:</span>
+<div class="viewcode-block" id="ImageCollection.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.ImageCollection.html#cartopy.io.img_nest.ImageCollection.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">images</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Represents a collection of images at the same logical level.</span>
+
+<span class="sd">        Typically these are images at the same zoom level or resolution.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of the image collection.</span>
+<span class="sd">        crs</span>
+<span class="sd">            The :class:`~cartopy.crs.Projection` instance.</span>
+<span class="sd">        images: optional</span>
+<span class="sd">            A list of one or more :class:`~cartopy.io.img_nest.Img`</span>
+<span class="sd">            instances. Defaults to None.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">images</span> <span class="o">=</span> <span class="n">images</span> <span class="ow">or</span> <span class="p">[]</span></div>
+
+    <span class="k">def</span> <span class="nf">scan_dir_for_imgs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">directory</span><span class="p">,</span> <span class="n">glob_pattern</span><span class="o">=</span><span class="s1">&#39;*.tif&#39;</span><span class="p">,</span>
+                          <span class="n">img_class</span><span class="o">=</span><span class="n">Img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Search the given directory for the associated world files</span>
+<span class="sd">        of the image files.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        directory</span>
+<span class="sd">            The directory path to search for image files.</span>
+<span class="sd">        glob_pattern: optional</span>
+<span class="sd">            The image filename glob pattern to search with.</span>
+<span class="sd">            Defaults to &#39;*.tif&#39;.</span>
+<span class="sd">        img_class: optional</span>
+<span class="sd">            The class used to construct each image in the Collection.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">            Does not recursively search sub-directories.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">imgs</span> <span class="o">=</span> <span class="n">glob</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">directory</span><span class="p">,</span> <span class="n">glob_pattern</span><span class="p">))</span>
+
+        <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">imgs</span><span class="p">:</span>
+            <span class="n">dirname</span><span class="p">,</span> <span class="n">fname</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+            <span class="n">worlds</span> <span class="o">=</span> <span class="n">img_class</span><span class="o">.</span><span class="n">world_files</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
+            <span class="k">for</span> <span class="n">fworld</span> <span class="ow">in</span> <span class="n">worlds</span><span class="p">:</span>
+                <span class="n">fworld</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">dirname</span><span class="p">,</span> <span class="n">fworld</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">fworld</span><span class="p">):</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Image file </span><span class="si">{</span><span class="n">img</span><span class="si">!r}</span><span class="s1"> has no associated world file&#39;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_class</span><span class="o">.</span><span class="n">from_world_file</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">fworld</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="NestedImageCollection"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection">[docs]</a><span class="k">class</span> <span class="nc">NestedImageCollection</span><span class="p">:</span>
+<div class="viewcode-block" id="NestedImageCollection.__init__"><a class="viewcode-back" href="../../../reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">collections</span><span class="p">,</span> <span class="n">_ancestry</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Represents a complex nest of ImageCollections.</span>
+
+<span class="sd">        On construction, the image collections are scanned for ancestry,</span>
+<span class="sd">        leading to fast image finding capabilities.</span>
+
+<span class="sd">        A complex (and time consuming to create) NestedImageCollection instance</span>
+<span class="sd">        can be saved as a pickle file and subsequently be (quickly) restored.</span>
+
+<span class="sd">        There is a simplified creation interface for NestedImageCollection</span>
+<span class="sd">        ``from_configuration`` for more detail.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name</span>
+<span class="sd">            The name of the nested image collection.</span>
+<span class="sd">        crs</span>
+<span class="sd">            The native :class:`~cartopy.crs.Projection` of all the image</span>
+<span class="sd">            collections.</span>
+<span class="sd">        collections</span>
+<span class="sd">            A list of one or more :class:`~cartopy.io.img_nest.ImageCollection`</span>
+<span class="sd">            instances.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># NOTE: all collections must have the same crs.</span>
+        <span class="n">_names</span> <span class="o">=</span> <span class="p">{</span><span class="n">collection</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">}</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">_names</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">collections</span><span class="p">),</span> \
+            <span class="s1">&#39;The collections must have unique names.&#39;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">crs</span> <span class="o">=</span> <span class="n">crs</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collections_by_name</span> <span class="o">=</span> <span class="p">{</span><span class="n">collection</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">collection</span>
+                                     <span class="k">for</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">collections</span><span class="p">}</span>
+
+        <span class="k">def</span> <span class="nf">sort_func</span><span class="p">(</span><span class="n">c</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">([</span><span class="n">image</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span><span class="o">.</span><span class="n">area</span> <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">images</span><span class="p">])</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">_collections</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">collections</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">sort_func</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_ancestry</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        maps (collection name, image) to a list of children</span>
+<span class="sd">        (collection name, image).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">_ancestry</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_ancestry</span> <span class="o">=</span> <span class="n">_ancestry</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">parent_wth_children</span> <span class="o">=</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_collections</span><span class="p">,</span>
+                                      <span class="bp">self</span><span class="o">.</span><span class="n">_collections</span><span class="p">[</span><span class="mi">1</span><span class="p">:])</span>
+            <span class="k">for</span> <span class="n">parent_collection</span><span class="p">,</span> <span class="n">collection</span> <span class="ow">in</span> <span class="n">parent_wth_children</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">parent_image</span> <span class="ow">in</span> <span class="n">parent_collection</span><span class="o">.</span><span class="n">images</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">image</span> <span class="ow">in</span> <span class="n">collection</span><span class="o">.</span><span class="n">images</span><span class="p">:</span>
+                        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_parent</span><span class="p">(</span><span class="n">parent_image</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+                            <span class="c1"># append the child image to the parent&#39;s ancestry</span>
+                            <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">parent_collection</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">parent_image</span><span class="p">)</span>
+                            <span class="bp">self</span><span class="o">.</span><span class="n">_ancestry</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
+                                <span class="p">(</span><span class="n">collection</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">image</span><span class="p">))</span></div>
+
+            <span class="c1"># TODO check that the ancestry is in a good state (i.e. that each</span>
+            <span class="c1"># collection has child images)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">_is_parent</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">child</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return whether the given Image is the parent of image.</span>
+<span class="sd">        Used by __init__.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="n">pbox</span> <span class="o">=</span> <span class="n">parent</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span>
+        <span class="n">cbox</span> <span class="o">=</span> <span class="n">child</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">pbox</span><span class="o">.</span><span class="n">area</span> <span class="o">&gt;</span> <span class="n">cbox</span><span class="o">.</span><span class="n">area</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">pbox</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">cbox</span><span class="p">)</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">pbox</span><span class="o">.</span><span class="n">touches</span><span class="p">(</span><span class="n">cbox</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="nf">image_for_domain</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine the image that provides complete coverage of target</span>
+<span class="sd">        location.</span>
+
+<span class="sd">        The composed image is merged from one or more image tiles that overlay</span>
+<span class="sd">        the target location and provide complete image coverage of the target</span>
+<span class="sd">        location.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_domain</span>
+<span class="sd">            A :class:`~shapely.geometry.linestring.LineString`</span>
+<span class="sd">            instance that specifies the target location requiring image</span>
+<span class="sd">            coverage.</span>
+<span class="sd">        target_z</span>
+<span class="sd">            The name of the target :class`~cartopy.io.img_nest.ImageCollection`</span>
+<span class="sd">            which specifies the target zoom level (resolution) of the required</span>
+<span class="sd">            images.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        img, extent, origin</span>
+<span class="sd">            A tuple containing three items, consisting of the target</span>
+<span class="sd">            location :class:`numpy.ndarray` image data, the</span>
+<span class="sd">            (x-lower, x-upper, y-lower, y-upper) extent of the image, and the</span>
+<span class="sd">            origin for the target location.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># XXX Copied from cartopy.io.img_tiles</span>
+        <span class="k">if</span> <span class="n">target_z</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collections_by_name</span><span class="p">:</span>
+            <span class="c1"># TODO: Handle integer depths also?</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">target_z</span><span class="si">!r}</span><span class="s1"> is not one of the possible collections.&#39;</span><span class="p">)</span>
+
+        <span class="n">tiles</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_images</span><span class="p">(</span><span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_image</span><span class="p">(</span><span class="n">tile</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+                <span class="k">continue</span>
+
+            <span class="n">img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">)</span>
+
+            <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                            <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="n">extent</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">extent</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span> <span class="n">img</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                            <span class="n">endpoint</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+            <span class="n">tiles</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">img</span><span class="p">),</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">origin</span><span class="p">])</span>
+
+        <span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <span class="n">_merge_tiles</span>
+        <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span> <span class="o">=</span> <span class="n">_merge_tiles</span><span class="p">(</span><span class="n">tiles</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">origin</span>
+
+    <span class="k">def</span> <span class="nf">find_images</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_domain</span><span class="p">,</span> <span class="n">target_z</span><span class="p">,</span> <span class="n">start_tiles</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A generator that finds all images that overlap the bounded</span>
+<span class="sd">        target location.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        target_domain</span>
+<span class="sd">            A :class:`~shapely.geometry.linestring.LineString` instance that</span>
+<span class="sd">            specifies the target location requiring image coverage.</span>
+
+<span class="sd">        target_z</span>
+<span class="sd">            The name of the target</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` which specifies</span>
+<span class="sd">            the target zoom level (resolution) of the required images.</span>
+<span class="sd">        start_tiles: optional</span>
+<span class="sd">            A list of one or more tuple pairs, composed of a</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` name and an</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.Img` instance, from which to search</span>
+<span class="sd">            for the target images.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        generator</span>
+<span class="sd">            A generator tuple pair composed of a</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` name and an</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.Img` instance.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># XXX Copied from cartopy.io.img_tiles</span>
+        <span class="k">if</span> <span class="n">target_z</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collections_by_name</span><span class="p">:</span>
+            <span class="c1"># TODO: Handle integer depths also?</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">target_z</span><span class="si">!r}</span><span class="s1"> is not one of the possible collections.&#39;</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">start_tiles</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">start_tiles</span> <span class="o">=</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">_collections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+                           <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_collections</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">images</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">start_tile</span> <span class="ow">in</span> <span class="n">start_tiles</span><span class="p">:</span>
+            <span class="c1"># recursively drill down to the images at the target zoom</span>
+            <span class="n">domain</span> <span class="o">=</span> <span class="n">start_tile</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">bbox</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">target_domain</span><span class="o">.</span><span class="n">intersects</span><span class="p">(</span><span class="n">domain</span><span class="p">)</span> <span class="ow">and</span> \
+                    <span class="ow">not</span> <span class="n">target_domain</span><span class="o">.</span><span class="n">touches</span><span class="p">(</span><span class="n">domain</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">start_tile</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">target_z</span><span class="p">:</span>
+                    <span class="k">yield</span> <span class="n">start_tile</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">for</span> <span class="n">tile</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">subtiles</span><span class="p">(</span><span class="n">start_tile</span><span class="p">):</span>
+                        <span class="k">yield from</span> <span class="bp">self</span><span class="o">.</span><span class="n">find_images</span><span class="p">(</span><span class="n">target_domain</span><span class="p">,</span>
+                                                    <span class="n">target_z</span><span class="p">,</span>
+                                                    <span class="n">start_tiles</span><span class="o">=</span><span class="p">[</span><span class="n">tile</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">subtiles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collection_image</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Find the higher resolution image tiles that compose this parent</span>
+<span class="sd">        image tile.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        collection_image</span>
+<span class="sd">            A tuple pair containing the parent</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` name and</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.Img` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        iterator</span>
+<span class="sd">            An iterator of tuple pairs containing the higher resolution child</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` name and</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.Img` instance that compose the parent.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_ancestry</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">collection_image</span><span class="p">,</span> <span class="p">[]))</span>
+
+    <span class="n">desired_tile_form</span> <span class="o">=</span> <span class="s1">&#39;RGB&#39;</span>
+
+    <span class="k">def</span> <span class="nf">get_image</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">collection_image</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Retrieve the data of the target image from file.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        collection_image:</span>
+<span class="sd">            A tuple pair containing the target</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.ImageCollection` name and</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.Img` instance.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        img_data, img.extent, img.origin</span>
+<span class="sd">            A tuple containing three items, consisting of the associated image</span>
+<span class="sd">            file data, the (x_lower, x_upper, y_lower, y_upper) extent of the</span>
+<span class="sd">            image, and the image origin.</span>
+
+<span class="sd">        Note</span>
+<span class="sd">        ----</span>
+<span class="sd">          The format of the retrieved image file data is controlled by</span>
+<span class="sd">          :attr:`~cartopy.io.img_nest.NestedImageCollection.desired_tile_form`,</span>
+<span class="sd">          which defaults to &#39;RGB&#39; format.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img</span> <span class="o">=</span> <span class="n">collection_image</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">img_data</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">img</span><span class="o">.</span><span class="n">filename</span><span class="p">)</span>
+        <span class="n">img_data</span> <span class="o">=</span> <span class="n">img_data</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">desired_tile_form</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">img_data</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">extent</span><span class="p">,</span> <span class="n">img</span><span class="o">.</span><span class="n">origin</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">from_configuration</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">name_dir_pairs</span><span class="p">,</span>
+                           <span class="n">glob_pattern</span><span class="o">=</span><span class="s1">&#39;*.tif&#39;</span><span class="p">,</span>
+                           <span class="n">img_class</span><span class="o">=</span><span class="n">Img</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Create a :class:`~cartopy.io.img_nest.NestedImageCollection` instance</span>
+<span class="sd">        given the list of image collection name and directory path pairs.</span>
+
+<span class="sd">        This is very convenient functionality for simple configuration level</span>
+<span class="sd">        creation of this complex object.</span>
+
+<span class="sd">        For example, to produce a nested collection of OS map tiles::</span>
+
+<span class="sd">            files = [[&#39;OS 1:1,000,000&#39;, &#39;/directory/to/1_to_1m&#39;],</span>
+<span class="sd">                     [&#39;OS 1:250,000&#39;, &#39;/directory/to/1_to_250k&#39;],</span>
+<span class="sd">                     [&#39;OS 1:50,000&#39;, &#39;/directory/to/1_to_50k&#39;],</span>
+<span class="sd">                    ]</span>
+<span class="sd">            r = NestedImageCollection.from_configuration(&#39;os&#39;,</span>
+<span class="sd">                                                         ccrs.OSGB(),</span>
+<span class="sd">                                                         files)</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        name</span>
+<span class="sd">            The name for the</span>
+<span class="sd">            :class:`~cartopy.io.img_nest.NestedImageCollection` instance.</span>
+<span class="sd">        crs</span>
+<span class="sd">            The :class:`~cartopy.crs.Projection` of the image collection.</span>
+<span class="sd">        name_dir_pairs</span>
+<span class="sd">            A list of image collection name and directory path pairs.</span>
+<span class="sd">        glob_pattern: optional</span>
+<span class="sd">            The image collection filename glob pattern. Defaults to &#39;*.tif&#39;.</span>
+<span class="sd">        img_class: optional</span>
+<span class="sd">            The class of images created in the image collection.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        A :class:`~cartopy.io.img_nest.NestedImageCollection` instance.</span>
+
+<span class="sd">        Warnings</span>
+<span class="sd">        --------</span>
+<span class="sd">            The list of image collection name and directory path pairs must be</span>
+<span class="sd">            given in increasing resolution order i.e. from low resolution to</span>
+<span class="sd">            high resolution.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">collections</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">collection_name</span><span class="p">,</span> <span class="n">collection_dir</span> <span class="ow">in</span> <span class="n">name_dir_pairs</span><span class="p">:</span>
+            <span class="n">collection</span> <span class="o">=</span> <span class="n">ImageCollection</span><span class="p">(</span><span class="n">collection_name</span><span class="p">,</span> <span class="n">crs</span><span class="p">)</span>
+            <span class="n">collection</span><span class="o">.</span><span class="n">scan_dir_for_imgs</span><span class="p">(</span><span class="n">collection_dir</span><span class="p">,</span>
+                                         <span class="n">glob_pattern</span><span class="o">=</span><span class="n">glob_pattern</span><span class="p">,</span>
+                                         <span class="n">img_class</span><span class="o">=</span><span class="n">img_class</span><span class="p">)</span>
+            <span class="n">collections</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">collection</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">crs</span><span class="p">,</span> <span class="n">collections</span><span class="p">)</span></div>
+</pre></div>
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; <a href="../../../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2022 Cartopy contributors.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

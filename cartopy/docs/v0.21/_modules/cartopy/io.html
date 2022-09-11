@@ -1,0 +1,817 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cartopy.io &#8212; cartopy 0.21.0 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/cartopy/io';</script>
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../../_static/cartopy.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/cartopy.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item">
+                    <a class="nav-link" href="../../getting_started/index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <h1>Source code for cartopy.io</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright Cartopy Contributors</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of Cartopy and is released under the LGPL license.</span>
+<span class="c1"># See COPYING and COPYING.LESSER in the root of the repository for full</span>
+<span class="c1"># licensing details.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Provides a collection of sub-packages for loading, saving and retrieving</span>
+<span class="sd">various data formats.</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">string</span>
+<span class="kn">from</span> <span class="nn">urllib.request</span> <span class="kn">import</span> <span class="n">urlopen</span>
+<span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">cartopy</span> <span class="kn">import</span> <span class="n">config</span>
+
+
+<div class="viewcode-block" id="fh_getter"><a class="viewcode-back" href="../../reference/generated/cartopy.io.fh_getter.html#cartopy.io.fh_getter">[docs]</a><span class="k">def</span> <span class="nf">fh_getter</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">needs_filename</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Convenience function for opening files.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    fh</span>
+<span class="sd">        File handle, filename or (file handle, filename) tuple.</span>
+<span class="sd">    mode: optional</span>
+<span class="sd">        Open mode. Defaults to &quot;r&quot;.</span>
+<span class="sd">    needs_filename: optional</span>
+<span class="sd">        Defaults to False</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    file handle, filename</span>
+<span class="sd">        Opened in the given mode.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">!=</span> <span class="s1">&#39;r&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Only mode &quot;r&quot; currently supported.&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">filename</span> <span class="o">=</span> <span class="n">fh</span>
+        <span class="n">fh</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fh</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">fh</span><span class="p">,</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">fh</span>
+
+    <span class="k">if</span> <span class="n">filename</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">filename</span> <span class="o">=</span> <span class="n">fh</span><span class="o">.</span><span class="n">name</span>
+        <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>  <span class="c1"># does this occur?</span>
+            <span class="k">if</span> <span class="n">needs_filename</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;filename cannot be determined&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">filename</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+
+    <span class="k">return</span> <span class="n">fh</span><span class="p">,</span> <span class="n">filename</span></div>
+
+
+<div class="viewcode-block" id="DownloadWarning"><a class="viewcode-back" href="../../reference/generated/cartopy.io.DownloadWarning.html#cartopy.io.DownloadWarning">[docs]</a><span class="k">class</span> <span class="nc">DownloadWarning</span><span class="p">(</span><span class="ne">Warning</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Issued when a file is being downloaded by a :class:`Downloader`.&quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="Downloader"><a class="viewcode-back" href="../../reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader">[docs]</a><span class="k">class</span> <span class="nc">Downloader</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a resource, that can be configured easily, which knows</span>
+<span class="sd">    how to acquire itself (perhaps via HTTP).</span>
+
+<span class="sd">    The key interface method is :meth:`path` - typically *all* external calls</span>
+<span class="sd">    will be made to that method. To get hold of an appropriate</span>
+<span class="sd">    :class:`Downloader` instance the :func:`Downloader.from_config` static</span>
+<span class="sd">    method should be considered.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    url_template</span>
+<span class="sd">        The template of the full URL representing this</span>
+<span class="sd">        resource.</span>
+
+<span class="sd">    target_path_template</span>
+<span class="sd">        The template of the full path to the file</span>
+<span class="sd">        that this Downloader represents. Typically the path will be a</span>
+<span class="sd">        subdirectory of ``config[&#39;data_dir&#39;]``, but this is not a strict</span>
+<span class="sd">        requirement. If the file does not exist when calling</span>
+<span class="sd">        :meth:`Downloader.path` it will be downloaded to this location.</span>
+
+<span class="sd">    pre_downloaded_path_template: optional</span>
+<span class="sd">        The template of a full path of a file which has been downloaded</span>
+<span class="sd">        outside of this Downloader which should be used as the file that</span>
+<span class="sd">        this resource represents. If the file does not exist when</span>
+<span class="sd">        :meth:`Downloader.path` is called it will not be downloaded</span>
+<span class="sd">        to this location (unlike the ``target_path_template`` argument).</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">        All ``*_template`` arguments should be formattable using the</span>
+<span class="sd">        standard :meth:`string.format` rules. The formatting itself</span>
+<span class="sd">        is not done until a call to a subsequent method (such as</span>
+<span class="sd">        :meth:`Downloader.path`).</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FORMAT_KEYS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;config&#39;</span><span class="p">,)</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The minimum keys which should be provided in the ``format_dict``</span>
+<span class="sd">    argument for the ``path``, ``url``, ``target_path``,</span>
+<span class="sd">    ``pre_downloaded_path`` and ``acquire_resource`` methods.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Downloader.__init__"><a class="viewcode-back" href="../../reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url_template</span><span class="p">,</span> <span class="n">target_path_template</span><span class="p">,</span>
+                 <span class="n">pre_downloaded_path_template</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">url_template</span> <span class="o">=</span> <span class="n">url_template</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_path_template</span> <span class="o">=</span> <span class="n">target_path_template</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">pre_downloaded_path_template</span> <span class="o">=</span> <span class="n">pre_downloaded_path_template</span>
+
+        <span class="c1"># define a formatter which will process the templates. Subclasses</span>
+        <span class="c1"># may override the standard ``&#39;&#39;.format`` formatting by defining</span>
+        <span class="c1"># their own formatter subclass here.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_formatter</span> <span class="o">=</span> <span class="n">string</span><span class="o">.</span><span class="n">Formatter</span><span class="p">()</span></div>
+
+    <span class="k">def</span> <span class="nf">url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The full URL that this resource represents.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        format_dict</span>
+<span class="sd">            The dictionary which is used to replace certain</span>
+<span class="sd">            template variables. Subclasses should document which keys are</span>
+<span class="sd">            expected as a minimum in their ``FORMAT_KEYS`` class attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">url_template</span><span class="p">,</span> <span class="o">**</span><span class="n">format_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">target_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The path on disk of the file that this resource represents, must</span>
+<span class="sd">        either exist, or be writable by the current user. This method</span>
+<span class="sd">        does not check either of these conditions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        format_dict</span>
+<span class="sd">            The dictionary which is used to replace certain</span>
+<span class="sd">            template variables. Subclasses should document which keys are</span>
+<span class="sd">            expected as a minimum in their ``FORMAT_KEYS`` class attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target_path_template</span><span class="p">,</span>
+                                      <span class="o">**</span><span class="n">format_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">pre_downloaded_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The path on disk of the file that this resource represents, if it does</span>
+<span class="sd">        not exist, then no further action will be taken with this path, and all</span>
+<span class="sd">        further processing will be done using :meth:`target_path` instead.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        format_dict</span>
+<span class="sd">            The dictionary which is used to replace certain</span>
+<span class="sd">            template variables. Subclasses should document which keys are</span>
+<span class="sd">            expected as a minimum in their ``FORMAT_KEYS`` class attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_formatter</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pre_downloaded_path_template</span><span class="p">,</span>
+                                      <span class="o">**</span><span class="n">format_dict</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the path to a file on disk that this resource represents.</span>
+
+<span class="sd">        If the file doesn&#39;t exist in :meth:`pre_downloaded_path` then it</span>
+<span class="sd">        will check whether it exists in :meth:`target_path`, otherwise</span>
+<span class="sd">        the resource will be downloaded via :meth:`acquire_resouce` from</span>
+<span class="sd">        :meth:`url` to :meth:`target_path`.</span>
+
+<span class="sd">        Typically, this is the method that most applications will call,</span>
+<span class="sd">        allowing implementors of new Downloaders to specialise</span>
+<span class="sd">        :meth:`acquire_resource`.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        format_dict</span>
+<span class="sd">            The dictionary which is used to replace certain</span>
+<span class="sd">            template variables. Subclasses should document which keys are</span>
+<span class="sd">            expected as a minimum in their ``FORMAT_KEYS`` class attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pre_downloaded_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">pre_downloaded_path</span><span class="p">(</span><span class="n">format_dict</span><span class="p">)</span>
+        <span class="n">target_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_path</span><span class="p">(</span><span class="n">format_dict</span><span class="p">)</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">pre_downloaded_path</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">pre_downloaded_path</span><span class="p">)):</span>
+            <span class="n">result_path</span> <span class="o">=</span> <span class="n">pre_downloaded_path</span>
+        <span class="k">elif</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">target_path</span><span class="p">):</span>
+            <span class="n">result_path</span> <span class="o">=</span> <span class="n">target_path</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># we need to download the file</span>
+            <span class="n">result_path</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">acquire_resource</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result_path</span>
+
+    <span class="k">def</span> <span class="nf">acquire_resource</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">target_path</span><span class="p">,</span> <span class="n">format_dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Download, via HTTP, the file that this resource represents.</span>
+<span class="sd">        Subclasses will typically override this method.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        format_dict</span>
+<span class="sd">            The dictionary which is used to replace certain</span>
+<span class="sd">            template variables. Subclasses should document which keys are</span>
+<span class="sd">            expected as a minimum in their ``FORMAT_KEYS`` class attribute.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">target_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">target_path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">target_dir</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">target_dir</span><span class="p">)</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">url</span><span class="p">(</span><span class="n">format_dict</span><span class="p">)</span>
+
+        <span class="c1"># try getting the resource (no exception handling, just let it raise)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">target_path</span><span class="p">,</span> <span class="s1">&#39;wb&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fh</span><span class="p">:</span>
+            <span class="n">fh</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+
+        <span class="k">return</span> <span class="n">target_path</span>
+
+    <span class="k">def</span> <span class="nf">_urlopen</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">url</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a file handle to the given HTTP resource URL.</span>
+
+<span class="sd">        Caller should close the file handle when finished with it.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Downloading: </span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">DownloadWarning</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+
+    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">from_config</span><span class="p">(</span><span class="n">specification</span><span class="p">,</span> <span class="n">config_dict</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ``from_config`` static method implements the logic for acquiring a</span>
+<span class="sd">        Downloader (sub)class instance from the config dictionary.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        specification</span>
+<span class="sd">            Should be iterable, as it will be traversed in</span>
+<span class="sd">            reverse order to find the most appropriate Downloader instance</span>
+<span class="sd">            for this specification.  An example specification is</span>
+<span class="sd">            ``(&#39;shapefiles&#39;, &#39;natural_earth&#39;)`` for the Natural Earth</span>
+<span class="sd">            shapefiles.</span>
+<span class="sd">        config_dict: optional</span>
+<span class="sd">            typically this is left as None to use the</span>
+<span class="sd">            default ``cartopy.config`` &quot;downloaders&quot; dictionary.</span>
+
+<span class="sd">        Examples</span>
+<span class="sd">        --------</span>
+
+<span class="sd">        &gt;&gt;&gt; from cartopy.io import Downloader</span>
+<span class="sd">        &gt;&gt;&gt;</span>
+<span class="sd">        &gt;&gt;&gt; dnldr = Downloader(&#39;https://example.com/{name}&#39;, &#39;./{name}.txt&#39;)</span>
+<span class="sd">        &gt;&gt;&gt; config = {(&#39;level_1&#39;, &#39;level_2&#39;): dnldr}</span>
+<span class="sd">        &gt;&gt;&gt; d1 = Downloader.from_config((&#39;level_1&#39;, &#39;level_2&#39;, &#39;level_3&#39;),</span>
+<span class="sd">        ...                             config_dict=config)</span>
+<span class="sd">        &gt;&gt;&gt; print(d1.url_template)</span>
+<span class="sd">        https://example.com/{name}</span>
+<span class="sd">        &gt;&gt;&gt; print(d1.url({&#39;name&#39;: &#39;item_name&#39;}))</span>
+<span class="sd">        https://example.com/item_name</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">spec_depth</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">specification</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">config_dict</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">downloaders</span> <span class="o">=</span> <span class="n">config</span><span class="p">[</span><span class="s1">&#39;downloaders&#39;</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">downloaders</span> <span class="o">=</span> <span class="n">config_dict</span>
+
+        <span class="n">result_downloader</span> <span class="o">=</span> <span class="kc">None</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">spec_depth</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">lookup</span> <span class="o">=</span> <span class="n">specification</span><span class="p">[:</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">downloadable_item</span> <span class="o">=</span> <span class="n">downloaders</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">lookup</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">downloadable_item</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">result_downloader</span> <span class="o">=</span> <span class="n">downloadable_item</span>
+                <span class="k">break</span>
+
+        <span class="k">if</span> <span class="n">result_downloader</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="c1"># should never really happen, but could if the user does</span>
+            <span class="c1"># some strange things like not having any downloaders defined</span>
+            <span class="c1"># in the config...</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;No generic downloadable item in the config &#39;</span>
+                             <span class="sa">f</span><span class="s1">&#39;dictionary for </span><span class="si">{</span><span class="n">specification</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">result_downloader</span></div>
+
+
+<div class="viewcode-block" id="LocatedImage"><a class="viewcode-back" href="../../reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage">[docs]</a><span class="k">class</span> <span class="nc">LocatedImage</span><span class="p">(</span><span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;LocatedImage&#39;</span><span class="p">,</span> <span class="s1">&#39;image, extent&#39;</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define an image and associated extent in the form:</span>
+<span class="sd">       ``image, (min_x, max_x, min_y, max_y)``</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="RasterSource"><a class="viewcode-back" href="../../reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource">[docs]</a><span class="k">class</span> <span class="nc">RasterSource</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Define the cartopy raster fetching interface.</span>
+
+<span class="sd">    A :class:`RasterSource` instance is able to supply images and</span>
+<span class="sd">    associated extents (as a sequence of :class:`LocatedImage` instances)</span>
+<span class="sd">    through its :meth:`~RasterSource.fetch_raster` method.</span>
+
+<span class="sd">    As a result, further interfacing classes, such as</span>
+<span class="sd">    :class:`cartopy.mpl.slippy_image_artist.SlippyImageArtist`, can then</span>
+<span class="sd">    make use of the interface for functionality such as interactive image</span>
+<span class="sd">    retrieval with pan and zoom functionality.</span>
+
+<span class="sd">    .. _raster-source-interface:</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">validate_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Raise an error if this raster source cannot provide images in the</span>
+<span class="sd">        specified projection.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        projection: :class:`cartopy.crs.Projection`</span>
+<span class="sd">            The desired projection of the image.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return a sequence of images with extents given some constraining</span>
+<span class="sd">        information.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        projection: :class:`cartopy.crs.Projection`</span>
+<span class="sd">            The desired projection of the image.</span>
+<span class="sd">        extent: iterable of length 4</span>
+<span class="sd">            The extent of the requested image in projected coordinates.</span>
+<span class="sd">            The resulting image may not be defined exactly by these extents,</span>
+<span class="sd">            and so the extent of the resulting image is also returned. The</span>
+<span class="sd">            extents must be defined in the form</span>
+<span class="sd">            ``(min_x, max_x, min_y, max_y)``.</span>
+<span class="sd">        target_resolution: iterable of length 2</span>
+<span class="sd">            The desired resolution of the image as ``(width, height)`` in</span>
+<span class="sd">            pixels.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        images</span>
+<span class="sd">            A sequence of :class:`LocatedImage` instances.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="RasterSourceContainer"><a class="viewcode-back" href="../../reference/generated/cartopy.io.RasterSourceContainer.html#cartopy.io.RasterSourceContainer">[docs]</a><span class="k">class</span> <span class="nc">RasterSourceContainer</span><span class="p">(</span><span class="n">RasterSource</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A container which simply calls the appropriate methods on the</span>
+<span class="sd">    contained :class:`RasterSource`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="RasterSourceContainer.__init__"><a class="viewcode-back" href="../../reference/generated/cartopy.io.RasterSourceContainer.html#cartopy.io.RasterSourceContainer.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contained_source</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        contained_source: :class:`RasterSource` instance.</span>
+<span class="sd">            The source of the raster that this container is wrapping.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_source</span> <span class="o">=</span> <span class="n">contained_source</span></div>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span> <span class="n">target_resolution</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source</span><span class="o">.</span><span class="n">fetch_raster</span><span class="p">(</span><span class="n">projection</span><span class="p">,</span> <span class="n">extent</span><span class="p">,</span>
+                                         <span class="n">target_resolution</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">validate_projection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">projection</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_source</span><span class="o">.</span><span class="n">validate_projection</span><span class="p">(</span><span class="n">projection</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="PostprocessedRasterSource"><a class="viewcode-back" href="../../reference/generated/cartopy.io.PostprocessedRasterSource.html#cartopy.io.PostprocessedRasterSource">[docs]</a><span class="k">class</span> <span class="nc">PostprocessedRasterSource</span><span class="p">(</span><span class="n">RasterSourceContainer</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A :class:`RasterSource` which wraps another, an then applies a</span>
+<span class="sd">    post-processing step on the raster fetched from the contained source.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="PostprocessedRasterSource.__init__"><a class="viewcode-back" href="../../reference/generated/cartopy.io.PostprocessedRasterSource.html#cartopy.io.PostprocessedRasterSource.__init__">[docs]</a>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contained_source</span><span class="p">,</span> <span class="n">img_post_process</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        contained_source: :class:`RasterSource` instance.</span>
+<span class="sd">            The source of the raster that this container is wrapping.</span>
+<span class="sd">        img_post_process: callable</span>
+<span class="sd">            Called after each `fetch_raster` call which yields a non-None</span>
+<span class="sd">            image result. The callable must accept the :class:`LocatedImage`</span>
+<span class="sd">            from the contained fetch_raster as its only argument, and must</span>
+<span class="sd">            return a single LocatedImage.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">contained_source</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_post_fetch_fn</span> <span class="o">=</span> <span class="n">img_post_process</span></div>
+
+    <span class="k">def</span> <span class="nf">fetch_raster</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="n">fetch_raster</span> <span class="o">=</span> <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="n">fetch_raster</span>
+        <span class="n">located_imgs</span> <span class="o">=</span> <span class="n">fetch_raster</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">located_imgs</span><span class="p">:</span>
+            <span class="n">located_imgs</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_fetch_fn</span><span class="p">(</span><span class="n">img</span><span class="p">)</span> <span class="k">for</span> <span class="n">img</span> <span class="ow">in</span> <span class="n">located_imgs</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">located_imgs</span></div>
+</pre></div>
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; <a href="../../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2022 Cartopy contributors.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>

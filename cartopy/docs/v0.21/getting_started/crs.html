@@ -1,0 +1,730 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Coordinate reference systems &#8212; cartopy 0.21.0 documentation</title>
+  <script>
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=9b1a4fa89bdd0e95b23b" rel="stylesheet">
+
+  
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/6.1.2/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'getting_started/crs';</script>
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Using cartopy with matplotlib" href="../matplotlib/intro.html" />
+    <link rel="prev" title="Getting started" href="index.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="docsearch:language" content="en">
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__primary" id="__primary">
+  <label class="overlay overlay-primary" for="__primary"></label>
+
+  
+  <input type="checkbox" class="sidebar-toggle" name="__secondary" id="__secondary">
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+      
+<form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+    </div>
+  </div>
+
+  
+  <nav class="bd-header navbar navbar-expand-lg bd-navbar" id="navbar-main"><div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+      <span class="fas fa-bars"></span>
+  </label>
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../index.html">
+
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <img src="../_static/cartopy.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/cartopy.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  
+  <div class="col-lg-9 navbar-header-items">
+    <div id="navbar-center" class="mr-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      <div class="navbar-end-item navbar-end__search-button-container">
+        
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+      </div>
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+
+
+  
+  <div class="search-button-container--mobile">
+<button class="btn btn-sm navbar-btn search-button search-button__button" title="Search">
+  <i class="fas fa-search"></i>
+</button>
+  </div>
+
+  
+  <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fas fa-outdent"></span>
+  </label>
+  
+
+</div>
+  </nav>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+      
+      <div class="navbar-center-item">
+        <nav class="navbar-nav">
+    <p class="sidebar-header-items__title" role="heading" aria-level="1" aria-label="Site Navigation">
+        Site Navigation
+    </p>
+    <ul id="navbar-main-elements" class="navbar-nav">
+        
+                <li class="nav-item current active">
+                    <a class="nav-link" href="index.html">
+                        Getting started
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../gallery/index.html">
+                        Gallery
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../installing.html">
+                        Installation
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../reference/index.html">
+                        API reference
+                    </a>
+                </li>
+                
+
+                <li class="nav-item">
+                    <a class="nav-link" href="../whatsnew/index.html">
+                        What’s new
+                    </a>
+                </li>
+                
+    </ul>
+</nav>
+      </div>
+      
+      </div>
+    
+
+    
+    
+    <div class="sidebar-header-items__end">
+      
+      <div class="navbar-end-item">
+        <span class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank"><span><i class="fab fa-github-square"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+    
+  </div>
+
+  
+  <div class="sidebar-start-items sidebar-primary__section">
+    <div class="sidebar-start-items__item"><nav class="bd-links" id="bd-docs-nav" aria-label="Section navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">
+    Section Navigation
+  </p>
+  <div class="bd-toc-item navbar-nav">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Coordinate reference systems
+  </a>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../matplotlib/intro.html">
+   Using cartopy with matplotlib
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label class="toctree-toggle" for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../matplotlib/advanced_plotting.html">
+     More advanced mapping with cartopy and matplotlib
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../matplotlib/gridliner.html">
+     Cartopy map gridlines and tick labels
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../matplotlib/feature_interface.html">
+   The cartopy Feature interface
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials/understanding_transform.html">
+   Understanding the
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     transform
+    </span>
+   </code>
+   and
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     projection
+    </span>
+   </code>
+   keywords
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../tutorials/using_the_shapereader.html">
+   Using the cartopy shapereader
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../developer_interfaces.html">
+   Cartopy developer interfaces
+  </a>
+ </li>
+</ul>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contribute.html">
+   Contributing to Cartopy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../citation.html">
+   Citing cartopy
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../copyright.html">
+   Cartopy copyright, licensing and contributors
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../contributors.html">
+   Credits
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+    </div>
+  </div>
+  
+
+  
+  <div class="sidebar-end-items sidebar-primary__section">
+    <div class="sidebar-end-items__item">
+    </div>
+  </div>
+
+      </div>
+      <main class="bd-main">
+        
+        
+        <div class="bd-content">
+          <div class="bd-article-container">
+            
+            <div class="bd-header-article">
+                
+            </div>
+            
+            
+            <article class="bd-article" role="main">
+              
+  <section id="coordinate-reference-systems">
+<h1>Coordinate reference systems<a class="headerlink" href="#coordinate-reference-systems" title="Permalink to this heading">#</a></h1>
+<p>The <a class="reference internal" href="../reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.CRS</span></code></a> class is the very core of cartopy, all coordinate reference systems
+in cartopy have <a class="reference internal" href="../reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> as a parent class, meaning all projections have
+the interface described below.</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">CRS</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">proj4_params</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define a Coordinate Reference System using proj.</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="cartopy.crs.CRS.globe">
+<span class="sig-name descname"><span class="pre">globe</span></span><a class="headerlink" href="#cartopy.crs.CRS.globe" title="Permalink to this definition">#</a></dt>
+<dd><p>The <a class="reference internal" href="../reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance of this CRS.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">as_geocentric</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS.as_geocentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Return a new Geocentric CRS with the same ellipse/datum as this
+CRS.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">as_geodetic</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS.as_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Return a new Geodetic CRS with the same ellipse/datum as this
+CRS.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">transform_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_crs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS.transform_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Transform the given float64 coordinate pair, in the given source
+coordinate system (<code class="docutils literal notranslate"><span class="pre">src_crs</span></code>), to this coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> – the x coordinate, in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to transform</p></li>
+<li><p><strong>y</strong> – the y coordinate, in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to transform</p></li>
+<li><p><strong>src_crs</strong> – instance of <a class="reference internal" href="../reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> that represents the coordinate
+system of <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p></li>
+<li><p><strong>trap</strong> – Whether proj errors for “latitude or longitude exceeded limits” and
+“tolerance condition error” should be trapped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>(x, y) in this coordinate system</em></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">transform_points</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">z</span></span></em><span class="optional">]</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS.transform_points"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Transform the given coordinates, in the given source
+coordinate system (<code class="docutils literal notranslate"><span class="pre">src_crs</span></code>), to this coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_crs</strong> – instance of <a class="reference internal" href="../reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> that represents the
+coordinate system of <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> and <code class="docutils literal notranslate"><span class="pre">z</span></code>.</p></li>
+<li><p><strong>x</strong> – the x coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates,
+to transform.  May be 1 or 2 dimensional.</p></li>
+<li><p><strong>y</strong> – the y coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates,
+to transform.  Its shape must match that of x.</p></li>
+<li><p><strong>z</strong> (<em>optional</em>) – the z coordinates (array), in <code class="docutils literal notranslate"><span class="pre">src_crs</span></code> coordinates, to
+transform.  Defaults to None.
+If supplied, its shape must match that of x.</p></li>
+<li><p><strong>trap</strong> – Whether proj errors for “latitude or longitude exceeded limits” and
+“tolerance condition error” should be trapped.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Array of shape <code class="docutils literal notranslate"><span class="pre">x.shape</span> <span class="pre">+</span> <span class="pre">(3,</span> <span class="pre">)</span></code> in this coordinate system.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">transform_vectors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">src_proj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#CRS.transform_vectors"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Transform the given vector components, with coordinates in the
+given source coordinate system (<code class="docutils literal notranslate"><span class="pre">src_proj</span></code>), to this coordinate
+system. The vector components must be given relative to the
+source projection’s coordinate reference system (grid eastward and
+grid northward).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_proj</strong> – The <code class="xref py py-class docutils literal notranslate"><span class="pre">CRS.Projection</span></code> that represents the coordinate system
+the vectors are defined in.</p></li>
+<li><p><strong>x</strong> – The x coordinates of the vectors in the source projection.</p></li>
+<li><p><strong>y</strong> – The y coordinates of the vectors in the source projection.</p></li>
+<li><p><strong>u</strong> – The grid-eastward components of the vectors.</p></li>
+<li><p><strong>v</strong> – The grid-northward components of the vectors.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>x, y, u and v may be 1 or 2 dimensional, but must all have matching
+shapes.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ut, vt</strong> (<em>The transformed vector components.</em>)</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The algorithm used to transform vectors is an approximation
+rather than an exact transform, but the accuracy should be
+good enough for visualization purposes.</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>The <a class="reference internal" href="../reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> class is used to encapsulate the underlying sphere or ellipsoid of any cartopy CRS.
+All CRSs have an associated <a class="reference internal" href="../reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a>, though often it is just the default <a class="reference internal" href="../reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a>
+which represents the reference ellipsoid (i.e. “wgs84”).</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Globe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">datum</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ellipse</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'WGS84'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semiminor_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flattening</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">inverse_flattening</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">towgs84</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">nadgrids</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Globe"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define an ellipsoid and, optionally, how to relate it to the real world.</p>
+</dd></dl>
+
+<p>The most common <a class="reference internal" href="../reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">CRS</span></code></a> subclass is itself another abstract class;
+the <a class="reference internal" href="../reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Projection</span></code></a> class represents a 2 dimensional coordinate system
+which could be drawn directly as a map (i.e. on a flat piece of paper). <a class="reference internal" href="../reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> is the parent class of
+all projections in the <a class="reference internal" href="../reference/projections.html#cartopy-projections"><span class="std std-ref">Cartopy projection list</span></a>.</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Projection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Projection"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define a projected coordinate system with flat topology and Euclidean
+distance.</p>
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">project_geometry</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">geometry</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_crs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Projection.project_geometry"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Project the given geometry into this projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>geometry</strong> – The geometry to (re-)project.</p></li>
+<li><p><strong>src_crs</strong> (<em>optional</em>) – <p>The source CRS.  Defaults to None.</p>
+<p>If src_crs is None, the source CRS is assumed to be a geodetic
+version of the target CRS.</p>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><em>geometry</em> – The projected result (a shapely geometry).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">quick_vertices_transform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vertices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_crs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Projection.quick_vertices_transform"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Where possible, return a vertices array transformed to this CRS from
+the given vertices array of shape <code class="docutils literal notranslate"><span class="pre">(n,</span> <span class="pre">2)</span></code> and the source CRS.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method may return None to indicate that the vertices cannot
+be transformed quickly, and a more complex geometry transformation
+is required (see <code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.crs.Projection.project_geometry()</span></code>).</p>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<p>There are a few non-<a class="reference internal" href="../reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection" title="cartopy.crs.Projection"><code class="xref py py-class docutils literal notranslate"><span class="pre">Projection</span></code></a> subclasses. These represent
+coordinate reference systems which are 3 dimensional and could not be drawn directly on a piece of paper.</p>
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define a latitude/longitude coordinate system with spherical topology,
+geographical distance and coordinates are measured in degrees.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Geocentric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Geocentric"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define a Geocentric coordinate system, where x, y, z are Cartesian
+coordinates from the center of the Earth.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">RotatedGeodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pole_longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pole_latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_rotated_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#RotatedGeodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Define a rotated latitude/longitude coordinate system with spherical
+topology and geographical distance.</p>
+<p>Coordinates are measured in degrees.</p>
+<p>The class uses proj to perform an ob_tran operation, using the
+pole_longitude to set a lon_0 then performing two rotations based on
+pole_latitude and central_rotated_longitude.
+This is equivalent to setting the new pole to a location defined by
+the pole_latitude and pole_longitude values in the GeogCRS defined by
+globe, then rotating this new CRS about it’s pole using the
+central_rotated_longitude value.</p>
+</dd></dl>
+
+<p>There is also a function for calling epsg.io with a specified code, returning the corresponding cartopy projection, see below.</p>
+<dl class="py function">
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">epsg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">code</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#epsg"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Return the projection which corresponds to the given EPSG code.</p>
+<p>The EPSG code must correspond to a “projected coordinate system”,
+so EPSG codes such as 4326 (WGS-84) which define a “geodetic coordinate
+system” will not work.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The conversion is performed by pyproj.CRS.</p>
+</div>
+</dd></dl>
+
+</section>
+
+
+            </article>
+            
+            
+            
+            <footer class="bd-footer-article">
+                <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+  <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+      <i class="fas fa-angle-left"></i>
+      <div class="prev-next-info">
+          <p class="prev-next-subtitle">previous</p>
+          <p class="prev-next-title">Getting started</p>
+      </div>
+  </a>
+  <a class='right-next' id="next-link" href="../matplotlib/intro.html" title="next page">
+  <div class="prev-next-info">
+      <p class="prev-next-subtitle">next</p>
+      <p class="prev-next-title">Using cartopy with matplotlib</p>
+  </div>
+  <i class="fas fa-angle-right"></i>
+  </a>
+</div>
+            </footer>
+            
+          </div>
+          
+          
+          
+            <div class="bd-sidebar-secondary bd-toc">
+              
+<div class="toc-item">
+  
+</div>
+
+<div class="toc-item">
+  
+<div class="tocsection sourcelink">
+    <a href="../_sources/getting_started/crs.rst.txt">
+        <i class="fas fa-file-alt"></i> Show Source
+    </a>
+</div>
+
+</div>
+
+            </div>
+          
+          
+        </div>
+        <footer class="bd-footer-content">
+          <div class="bd-footer-content__inner">
+            
+          </div>
+        </footer>
+        
+      </main>
+    </div>
+  </div>
+
+  
+    
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=9b1a4fa89bdd0e95b23b"></script>
+
+  <footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    
+<p class="copyright">
+
+    &copy; <a href="../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2022 Cartopy contributors.<br>
+
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+<p class="sphinx-version">
+Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br>
+</p>
+
+  </div>
+  
+</div>
+  </footer>
+  </body>
+</html>
