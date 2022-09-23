@@ -97,4 +97,4 @@ Details of the former, original Iris CLA and contributors list were as follows :
 
 The current [CLA bot](https://github.com/SciTools-incubator/scitools-cla-checker) checks for an entry in _either_ the old or the new contributors list.
 
-(C) British Crown Copyright 2010 - 2019, Met Office
+(C) British Crown Copyright 2010 - 2022, Met Office
