@@ -1,1 +1,0 @@
-../../../../../../shared_assets/c15b8fd6ffc09cc30278baa1a8aa31b1ae688d3049fd8a28965070e6-regridded_to_rotated.py

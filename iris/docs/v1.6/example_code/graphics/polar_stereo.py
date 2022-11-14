@@ -1,1 +1,0 @@
-../../../../../shared_assets/641f7771c59e36cf272ec2f66ee021cdd48dab04e63c1ce64818896c-polar_stereo.py

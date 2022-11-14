@@ -1,1 +1,0 @@
-../../../../../shared_assets/9d21c07cd48de9303085e819664f76129f93aa13f6a271275ead24f5-wind_speed.py

@@ -1,1 +1,0 @@
-../../../../../../shared_assets/05cf11bcff00cd61b8b0bc535339d2967586fc50720295007aa57c61-regridded_to_global.py
