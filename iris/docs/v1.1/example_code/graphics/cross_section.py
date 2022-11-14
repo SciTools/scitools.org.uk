@@ -1,1 +1,0 @@
-../../../../../shared_assets/92973e22063a5d1fbf974de46d7609c130f2907f075fc03390856940-cross_section.py

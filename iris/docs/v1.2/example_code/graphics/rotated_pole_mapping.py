@@ -1,1 +1,0 @@
-../../../../../shared_assets/0a5afa2ddf7828c66e7a26ad4e7384d1ca5e54ef6b08595925ef5851-rotated_pole_mapping.py

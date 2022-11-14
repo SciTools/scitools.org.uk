@@ -1,1 +1,0 @@
-../../../../../shared_assets/d86e4c1c69017ddc502901424d904edb43862f5f75b636d661ba5841-global_map.py
