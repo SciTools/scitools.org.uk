@@ -1,0 +1,1833 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Cartopy projection list &#8212; cartopy 0.22.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=e5fbc548" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=07ce6644"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/projections';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Input/output capabilities (cartopy.io)" href="io.html" />
+    <link rel="prev" title="cartopy.geodesic.Geodesic" href="generated/cartopy.geodesic.Geodesic.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cartopy.png" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/cartopy.png" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../gallery/index.html">
+                        Gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installing.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../whatsnew/index.html">
+                        What’s new
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav class="navbar-nav">
+  <p class="sidebar-header-items__title"
+     role="heading"
+     aria-level="1"
+     aria-label="Site Navigation">
+    Site Navigation
+  </p>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../getting_started/index.html">
+                        Getting started
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../gallery/index.html">
+                        Gallery
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../installing.html">
+                        Installation
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item current active">
+                      <a class="nav-link nav-internal" href="index.html">
+                        API reference
+                      </a>
+                    </li>
+                
+
+                    <li class="nav-item">
+                      <a class="nav-link nav-internal" href="../whatsnew/index.html">
+                        What’s new
+                      </a>
+                    </li>
+                
+  </ul>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links navbar-nav"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><span><i class="fa-brands fa-square-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="crs.html">Coordinate reference systems (CRS)</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.CRS.html">cartopy.crs.CRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.Globe.html">cartopy.crs.Globe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.Projection.html">cartopy.crs.Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.Geodetic.html">cartopy.crs.Geodetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.Geocentric.html">cartopy.crs.Geocentric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.RotatedGeodetic.html">cartopy.crs.RotatedGeodetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.crs.epsg.html">cartopy.crs.epsg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.geodesic.Geodesic.html">cartopy.geodesic.Geodesic</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Cartopy projection list</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="io.html">Input/output capabilities (cartopy.io)</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.Reader.html">cartopy.io.shapereader.Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.BasicReader.html">cartopy.io.shapereader.BasicReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.FionaReader.html">cartopy.io.shapereader.FionaReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.Record.html">cartopy.io.shapereader.Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.FionaRecord.html">cartopy.io.shapereader.FionaRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.natural_earth.html">cartopy.io.shapereader.natural_earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.NEShpDownloader.html">cartopy.io.shapereader.NEShpDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.gshhs.html">cartopy.io.shapereader.gshhs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.shapereader.GSHHSShpDownloader.html">cartopy.io.shapereader.GSHHSShpDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_nest.Img.html">cartopy.io.img_nest.Img</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_nest.ImageCollection.html">cartopy.io.img_nest.ImageCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_nest.NestedImageCollection.html">cartopy.io.img_nest.NestedImageCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.OSM.html">cartopy.io.img_tiles.OSM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.GoogleTiles.html">cartopy.io.img_tiles.GoogleTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.GoogleWTS.html">cartopy.io.img_tiles.GoogleWTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.MapQuestOSM.html">cartopy.io.img_tiles.MapQuestOSM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.MapQuestOpenAerial.html">cartopy.io.img_tiles.MapQuestOpenAerial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.MapboxStyleTiles.html">cartopy.io.img_tiles.MapboxStyleTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.MapboxTiles.html">cartopy.io.img_tiles.MapboxTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.OrdnanceSurvey.html">cartopy.io.img_tiles.OrdnanceSurvey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.QuadtreeTiles.html">cartopy.io.img_tiles.QuadtreeTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.img_tiles.Stamen.html">cartopy.io.img_tiles.Stamen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.ogc_clients.WFSGeometrySource.html">cartopy.io.ogc_clients.WFSGeometrySource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.ogc_clients.WMSRasterSource.html">cartopy.io.ogc_clients.WMSRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.ogc_clients.WMTSRasterSource.html">cartopy.io.ogc_clients.WMTSRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.SRTM1Source.html">cartopy.io.srtm.SRTM1Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.SRTM3Source.html">cartopy.io.srtm.SRTM3Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.SRTMDownloader.html">cartopy.io.srtm.SRTMDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM.html">cartopy.io.srtm.read_SRTM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM1.html">cartopy.io.srtm.read_SRTM1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.read_SRTM3.html">cartopy.io.srtm.read_SRTM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.srtm.add_shading.html">cartopy.io.srtm.add_shading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.Downloader.html">cartopy.io.Downloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.DownloadWarning.html">cartopy.io.DownloadWarning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.LocatedImage.html">cartopy.io.LocatedImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.RasterSource.html">cartopy.io.RasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.RasterSourceContainer.html">cartopy.io.RasterSourceContainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.PostprocessedRasterSource.html">cartopy.io.PostprocessedRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.io.fh_getter.html">cartopy.io.fh_getter</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="matplotlib.html">Matplotlib interface (cartopy.mpl)</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoAxes.html">cartopy.mpl.geoaxes.GeoAxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoAxesSubplot.html">cartopy.mpl.geoaxes.GeoAxesSubplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.geoaxes.GeoSpine.html">cartopy.mpl.geoaxes.GeoSpine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.geoaxes.InterProjectionTransform.html">cartopy.mpl.geoaxes.InterProjectionTransform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.gridliner.Gridliner.html">cartopy.mpl.gridliner.Gridliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.ticker.LongitudeFormatter.html">cartopy.mpl.ticker.LongitudeFormatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.ticker.LatitudeFormatter.html">cartopy.mpl.ticker.LatitudeFormatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.ticker.LongitudeLocator.html">cartopy.mpl.ticker.LongitudeLocator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.ticker.LatitudeLocator.html">cartopy.mpl.ticker.LatitudeLocator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.feature_artist.FeatureArtist.html">cartopy.mpl.feature_artist.FeatureArtist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html">cartopy.mpl.slippy_image_artist.SlippyImageArtist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.patch.geos_to_path.html">cartopy.mpl.patch.geos_to_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.patch.path_segments.html">cartopy.mpl.patch.path_segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.mpl.patch.path_to_geos.html">cartopy.mpl.patch.path_to_geos</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="feature.html">Feature interface (cartopy.feature)</a><input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-4"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.COLORS.html">cartopy.feature.COLORS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.auto_scaler.html">cartopy.feature.auto_scaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.BORDERS.html">cartopy.feature.BORDERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.STATES.html">cartopy.feature.STATES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.COASTLINE.html">cartopy.feature.COASTLINE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.LAKES.html">cartopy.feature.LAKES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.LAND.html">cartopy.feature.LAND</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.OCEAN.html">cartopy.feature.OCEAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.RIVERS.html">cartopy.feature.RIVERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.AdaptiveScaler.html">cartopy.feature.AdaptiveScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.Feature.html">cartopy.feature.Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.GSHHSFeature.html">cartopy.feature.GSHHSFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.NaturalEarthFeature.html">cartopy.feature.NaturalEarthFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.Scaler.html">cartopy.feature.Scaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.ShapelyFeature.html">cartopy.feature.ShapelyFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.WFSFeature.html">cartopy.feature.WFSFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.feature.nightshade.Nightshade.html">cartopy.feature.nightshade.Nightshade</a></li>
+</ul>
+</li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="transformations.html">Image and vector transformations</a><input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-5"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.img_transform.mesh_projection.html">cartopy.img_transform.mesh_projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.img_transform.regrid.html">cartopy.img_transform.regrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.img_transform.warp_array.html">cartopy.img_transform.warp_array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.img_transform.warp_img.html">cartopy.img_transform.warp_img</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.vector_transform.vector_scalar_to_grid.html">cartopy.vector_transform.vector_scalar_to_grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.util.add_cyclic_point.html">cartopy.util.add_cyclic_point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.util.add_cyclic.html">cartopy.util.add_cyclic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.trace.project_linear.html">cartopy.trace.project_linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.trace.Interpolator.html">cartopy.trace.Interpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.trace.CartesianInterpolator.html">cartopy.trace.CartesianInterpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.trace.SphericalInterpolator.html">cartopy.trace.SphericalInterpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generated/cartopy.trace.LineAccumulator.html">cartopy.trace.LineAccumulator</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">Cartopy configuration</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="crs.html" class="nav-link">Coordinate reference systems (CRS)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page">Cartopy projection list</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="cartopy-projection-list">
+<span id="cartopy-projections"></span><h1>Cartopy projection list<a class="headerlink" href="#cartopy-projection-list" title="Permalink to this heading">#</a></h1>
+<section id="platecarree">
+<h2>PlateCarree<a class="headerlink" href="#platecarree" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.PlateCarree">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">PlateCarree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#PlateCarree"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.PlateCarree" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/70eeb9c721c86b0528ade42f302e0018/projections-1.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-1.png" class="plot-directive" src="../_images/projections-1.png" />
+</figure>
+</section>
+<section id="albersequalarea">
+<h2>AlbersEqualArea<a class="headerlink" href="#albersequalarea" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.AlbersEqualArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">AlbersEqualArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_parallels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20.0,</span> <span class="pre">50.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#AlbersEqualArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.AlbersEqualArea" title="Permalink to this definition">#</a></dt>
+<dd><p>An Albers Equal Area projection</p>
+<p>This projection is conic and equal-area, and is commonly used for maps of
+the conterminous United States.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The central latitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>standard_parallels</strong> (<em>optional</em>) – The one or two latitudes of correct scale. Defaults to (20, 50).</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default globe is
+created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/4457d84353d67feb87081f9859132d96/projections-2.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-2.png" class="plot-directive" src="../_images/projections-2.png" />
+</figure>
+</section>
+<section id="azimuthalequidistant">
+<h2>AzimuthalEquidistant<a class="headerlink" href="#azimuthalequidistant" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.AzimuthalEquidistant">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">AzimuthalEquidistant</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#AzimuthalEquidistant"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.AzimuthalEquidistant" title="Permalink to this definition">#</a></dt>
+<dd><p>An Azimuthal Equidistant projection</p>
+<p>This projection provides accurate angles about and distances through the
+central position. Other angles, distances, or areas may be distorted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The true longitude of the central meridian in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/83e3c48b7e1acf328f39b0c45fecd9b4/projections-3.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-3.png" class="plot-directive" src="../_images/projections-3.png" />
+</figure>
+</section>
+<section id="equidistantconic">
+<h2>EquidistantConic<a class="headerlink" href="#equidistantconic" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EquidistantConic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EquidistantConic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_parallels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(20.0,</span> <span class="pre">50.0)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EquidistantConic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EquidistantConic" title="Permalink to this definition">#</a></dt>
+<dd><p>An Equidistant Conic projection.</p>
+<p>This projection is conic and equidistant, and the scale is true along all
+meridians and along one or two specified standard parallels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>standard_parallels</strong> (<em>optional</em>) – The one or two latitudes of correct scale. Defaults to (20, 50).</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default globe is
+created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/7ff8889de133f167dc3009b4360cd81a/projections-4.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-4.png" class="plot-directive" src="../_images/projections-4.png" />
+</figure>
+</section>
+<section id="lambertconformal">
+<h2>LambertConformal<a class="headerlink" href="#lambertconformal" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.LambertConformal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">LambertConformal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-96.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">39.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">standard_parallels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(33,</span> <span class="pre">45)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cutoff</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-30</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#LambertConformal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.LambertConformal" title="Permalink to this definition">#</a></dt>
+<dd><p>A Lambert Conformal conic projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to -96.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The central latitude. Defaults to 39.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>standard_parallels</strong> (<em>optional</em>) – Standard parallel latitude(s). Defaults to (33, 45).</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default globe is
+created.</p></li>
+<li><p><strong>cutoff</strong> (<em>optional</em>) – Latitude of map cutoff.
+The map extends to infinity opposite the central pole
+so we must cut off the map drawing before then.
+A value of 0 will draw half the globe. Defaults to -30.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/ac80dd5544246dc7ecd99d2da93bc0dc/projections-5.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-5.png" class="plot-directive" src="../_images/projections-5.png" />
+</figure>
+</section>
+<section id="lambertcylindrical">
+<h2>LambertCylindrical<a class="headerlink" href="#lambertcylindrical" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.LambertCylindrical">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">LambertCylindrical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#LambertCylindrical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.LambertCylindrical" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/4275b23c02152789c71eb285bd04b8bf/projections-6.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-6.png" class="plot-directive" src="../_images/projections-6.png" />
+</figure>
+</section>
+<section id="mercator">
+<h2>Mercator<a class="headerlink" href="#mercator" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Mercator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Mercator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">min_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-80.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">84.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude_true_scale</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Mercator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Mercator" title="Permalink to this definition">#</a></dt>
+<dd><p>A Mercator projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>min_latitude</strong> (<em>optional</em>) – The maximum southerly extent of the projection. Defaults
+to -80 degrees.</p></li>
+<li><p><strong>max_latitude</strong> (<em>optional</em>) – The maximum northerly extent of the projection. Defaults
+to 84 degrees.</p></li>
+<li><p><strong>globe</strong> (A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – If omitted, a default globe is created.</p></li>
+<li><p><strong>latitude_true_scale</strong> (<em>optional</em>) – The latitude where the scale is 1. Defaults to 0 degrees.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>scale_factor</strong> (<em>optional</em>) – Scale factor at natural origin. Defaults to unused.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Only one of <code class="docutils literal notranslate"><span class="pre">latitude_true_scale</span></code> and <code class="docutils literal notranslate"><span class="pre">scale_factor</span></code> should
+be included.</p>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/bdfe336c47ed5f1ed9a11e5eec2fa8ee/projections-7.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-7.png" class="plot-directive" src="../_images/projections-7.png" />
+</figure>
+</section>
+<section id="miller">
+<h2>Miller<a class="headerlink" href="#miller" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Miller">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Miller</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Miller"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Miller" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/faba58aee2ff0eb2fd5c18df7042919a/projections-8.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-8.png" class="plot-directive" src="../_images/projections-8.png" />
+</figure>
+</section>
+<section id="mollweide">
+<h2>Mollweide<a class="headerlink" href="#mollweide" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Mollweide">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Mollweide</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Mollweide"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Mollweide" title="Permalink to this definition">#</a></dt>
+<dd><p>A Mollweide projection.</p>
+<p>This projection is pseudocylindrical, and equal area. Parallels are
+unequally-spaced straight lines, while meridians are elliptical arcs up to
+semicircles on the edges. Poles are points.</p>
+<p>It is commonly used for world maps, or interrupted with several central
+meridians.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/1387dcb5a201ed95318fd39e92d9d61c/projections-9.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-9.png" class="plot-directive" src="../_images/projections-9.png" />
+</figure>
+</section>
+<section id="obliquemercator">
+<h2>ObliqueMercator<a class="headerlink" href="#obliquemercator" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.ObliqueMercator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">ObliqueMercator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">azimuth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#ObliqueMercator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.ObliqueMercator" title="Permalink to this definition">#</a></dt>
+<dd><p>An Oblique Mercator projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The true longitude of the central meridian in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>scale_factor</strong> (<em>optional</em>) – Scale factor at the central meridian. Defaults to 1.</p></li>
+<li><p><strong>azimuth</strong> (<em>optional</em>) – Azimuth of centerline clockwise from north at the center point of
+the centre line. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The ‘Rotated Mercator’ projection can be achieved using Oblique
+Mercator with <code class="xref py py-obj docutils literal notranslate"><span class="pre">azimuth</span></code> <code class="docutils literal notranslate"><span class="pre">=90</span></code>.</p>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/4040c908602c10fdc1d4008152cf0be0/projections-10.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-10.png" class="plot-directive" src="../_images/projections-10.png" />
+</figure>
+</section>
+<section id="orthographic">
+<h2>Orthographic<a class="headerlink" href="#orthographic" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Orthographic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Orthographic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Orthographic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Orthographic" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/0c3e96bdab28f7fc4bcf17c46d8809fa/projections-11.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-11.png" class="plot-directive" src="../_images/projections-11.png" />
+</figure>
+</section>
+<section id="robinson">
+<h2>Robinson<a class="headerlink" href="#robinson" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Robinson">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Robinson</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Robinson"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Robinson" title="Permalink to this definition">#</a></dt>
+<dd><p>A Robinson projection.</p>
+<p>This projection is pseudocylindrical, and a compromise that is neither
+equal-area nor conformal. Parallels are unequally-spaced straight lines,
+and meridians are curved lines of no particular form.</p>
+<p>It is commonly used for “visually-appealing” world maps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/1a6fa48692f0ab02ec0d85579924a827/projections-12.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-12.png" class="plot-directive" src="../_images/projections-12.png" />
+</figure>
+</section>
+<section id="sinusoidal">
+<h2>Sinusoidal<a class="headerlink" href="#sinusoidal" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Sinusoidal">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Sinusoidal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Sinusoidal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Sinusoidal" title="Permalink to this definition">#</a></dt>
+<dd><p>A Sinusoidal projection.</p>
+<p>This projection is equal-area.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default globe is
+created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/d41aca8f61a30de72ff32fc51d27c609/projections-13.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-13.png" class="plot-directive" src="../_images/projections-13.png" />
+</figure>
+</section>
+<section id="stereographic">
+<h2>Stereographic<a class="headerlink" href="#stereographic" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Stereographic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Stereographic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_scale_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Stereographic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Stereographic" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/002536e13c78c0366b11482516bca964/projections-14.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-14.png" class="plot-directive" src="../_images/projections-14.png" />
+</figure>
+</section>
+<section id="transversemercator">
+<h2>TransverseMercator<a class="headerlink" href="#transversemercator" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.TransverseMercator">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">TransverseMercator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">approx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#TransverseMercator"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.TransverseMercator" title="Permalink to this definition">#</a></dt>
+<dd><p>A Transverse Mercator projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The true longitude of the central meridian in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>scale_factor</strong> (<em>optional</em>) – Scale factor at the central meridian. Defaults to 1.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+<li><p><strong>approx</strong> (<em>optional</em>) – Whether to use Proj’s approximate projection (True), or the new
+Extended Transverse Mercator code (False). Defaults to True, but
+will change to False in the next release.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/3844f0cee2ceed38bf85c03dd97ac04b/projections-15.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-15.png" class="plot-directive" src="../_images/projections-15.png" />
+</figure>
+</section>
+<section id="utm">
+<h2>UTM<a class="headerlink" href="#utm" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.UTM">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">UTM</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">zone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">southern_hemisphere</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#UTM"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.UTM" title="Permalink to this definition">#</a></dt>
+<dd><p>Universal Transverse Mercator projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zone</strong> – The numeric zone of the UTM required.</p></li>
+<li><p><strong>southern_hemisphere</strong> (<em>optional</em>) – Set to True if the zone is in the southern hemisphere. Defaults to
+False.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/cfa945cff5ba6011c8a74cb5b6d4d376/projections-16.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-16.png" class="plot-directive" src="../_images/projections-16.png" />
+</figure>
+</section>
+<section id="interruptedgoodehomolosine">
+<h2>InterruptedGoodeHomolosine<a class="headerlink" href="#interruptedgoodehomolosine" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.InterruptedGoodeHomolosine">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">InterruptedGoodeHomolosine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">emphasis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'land'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#InterruptedGoodeHomolosine"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.InterruptedGoodeHomolosine" title="Permalink to this definition">#</a></dt>
+<dd><p>Composite equal-area projection empahsizing either land or
+ocean features.</p>
+<dl class="simple">
+<dt>Original Reference:</dt><dd><p>Goode, J. P., 1925: The Homolosine Projection: A new device for
+portraying the Earth’s surface entire. Annals of the
+Association of American Geographers, 15:3, 119-125,
+DOI: 10.1080/00045602509356949</p>
+</dd>
+</dl>
+<p>A central_longitude value of -160 is recommended for the oceanic view.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude, by default 0</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – If omitted, a default Globe object is created, by default None</p></li>
+<li><p><strong>emphasis</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><em>optional</em>) – Options ‘land’ and ‘ocean’ are available, by default ‘land’</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/a7c5202dbdc3d2d3db0d084d5487b3b1/projections-17.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-17.png" class="plot-directive" src="../_images/projections-17.png" />
+</figure>
+</section>
+<section id="rotatedpole">
+<h2>RotatedPole<a class="headerlink" href="#rotatedpole" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.RotatedPole">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">RotatedPole</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pole_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pole_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">90.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_rotated_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#RotatedPole"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.RotatedPole" title="Permalink to this definition">#</a></dt>
+<dd><p>A rotated latitude/longitude projected coordinate system
+with cylindrical topology and projected distance.</p>
+<p>Coordinates are measured in projection metres.</p>
+<p>The class uses proj to perform an ob_tran operation, using the
+pole_longitude to set a lon_0 then performing two rotations based on
+pole_latitude and central_rotated_longitude.
+This is equivalent to setting the new pole to a location defined by
+the pole_latitude and pole_longitude values in the GeogCRS defined by
+globe, then rotating this new CRS about it’s pole using the
+central_rotated_longitude value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pole_longitude</strong> (<em>optional</em>) – Pole longitude position, in unrotated degrees. Defaults to 0.</p></li>
+<li><p><strong>pole_latitude</strong> (<em>optional</em>) – Pole latitude position, in unrotated degrees. Defaults to 0.</p></li>
+<li><p><strong>central_rotated_longitude</strong> (<em>optional</em>) – Longitude rotation about the new pole, in degrees. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An optional <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. Defaults to a “WGS84”
+datum.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/df08d252bd74ed3fba7b9dbb181c1978/projections-18.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-18.png" class="plot-directive" src="../_images/projections-18.png" />
+</figure>
+</section>
+<section id="osgb">
+<h2>OSGB<a class="headerlink" href="#osgb" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.OSGB">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">OSGB</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#OSGB"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.OSGB" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The true longitude of the central meridian in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>scale_factor</strong> (<em>optional</em>) – Scale factor at the central meridian. Defaults to 1.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+<li><p><strong>approx</strong> (<em>optional</em>) – Whether to use Proj’s approximate projection (True), or the new
+Extended Transverse Mercator code (False). Defaults to True, but
+will change to False in the next release.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/87dbae5f5d81cd8cf095ea945494f95b/projections-19.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-19.png" class="plot-directive" src="../_images/projections-19.png" />
+</figure>
+</section>
+<section id="europp">
+<h2>EuroPP<a class="headerlink" href="#europp" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EuroPP">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EuroPP</span></span><a class="reference internal" href="../_modules/cartopy/crs.html#EuroPP"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EuroPP" title="Permalink to this definition">#</a></dt>
+<dd><p>UTM Zone 32 projection for EuroPP domain.</p>
+<p>Ellipsoid is International 1924, Datum is ED50.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>zone</strong> – The numeric zone of the UTM required.</p></li>
+<li><p><strong>southern_hemisphere</strong> (<em>optional</em>) – Set to True if the zone is in the southern hemisphere. Defaults to
+False.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/ebb35e16779a3e2c9824b7ff1236ca17/projections-20.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-20.png" class="plot-directive" src="../_images/projections-20.png" />
+</figure>
+</section>
+<section id="geostationary">
+<h2>Geostationary<a class="headerlink" href="#geostationary" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Geostationary">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Geostationary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">35785831</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sweep_axis</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'y'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Geostationary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Geostationary" title="Permalink to this definition">#</a></dt>
+<dd><p>A view appropriate for satellites in Geostationary Earth orbit.</p>
+<p>Perspective view looking directly down from above a point on the equator.</p>
+<p>In this projection, the projected coordinates are scanning angles measured
+from the satellite looking directly downward, multiplied by the height of
+the satellite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>satellite_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The height of the satellite. Defaults to 35785831 metres
+(true geostationary orbit).</p></li>
+<li><p><strong>false_easting</strong> – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – If omitted, a default globe is created.</p></li>
+<li><p><strong>sweep_axis</strong> (<em>'x'</em><em> or </em><em>'y'</em><em>, </em><em>optional. Defaults to 'y'.</em>) – Controls which axis is scanned first, and thus which angle is
+applied first. The default is appropriate for Meteosat, while
+‘x’ should be used for GOES.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/64632038c4f93e67d9844c2efac67219/projections-21.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-21.png" class="plot-directive" src="../_images/projections-21.png" />
+</figure>
+</section>
+<section id="nearsideperspective">
+<h2>NearsidePerspective<a class="headerlink" href="#nearsideperspective" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.NearsidePerspective">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">NearsidePerspective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">satellite_height</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">35785831</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#NearsidePerspective"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.NearsidePerspective" title="Permalink to this definition">#</a></dt>
+<dd><p>Perspective view looking directly down from above a point on the globe.</p>
+<p>In this projection, the projected coordinates are x and y measured from
+the origin of a plane tangent to the Earth directly below the perspective
+point (e.g. a satellite).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central latitude. Defaults to 0.</p></li>
+<li><p><strong>satellite_height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The height of the satellite. Defaults to 35785831 meters
+(true geostationary orbit).</p></li>
+<li><p><strong>false_easting</strong> – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/1051934683957bc6f5c811fbda0a0f96/projections-22.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-22.png" class="plot-directive" src="../_images/projections-22.png" />
+</figure>
+</section>
+<section id="eckerti">
+<h2>EckertI<a class="headerlink" href="#eckerti" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertI" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert I projection.</p>
+<p>This projection is pseudocylindrical, but not equal-area. Both meridians
+and parallels are straight lines. Its equal-area pair is <a class="reference internal" href="#cartopy.crs.EckertII" title="cartopy.crs.EckertII"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertII</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/4a26dcc3ed15f8e5aa07104d65036e2c/projections-23.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-23.png" class="plot-directive" src="../_images/projections-23.png" />
+</figure>
+</section>
+<section id="eckertii">
+<h2>EckertII<a class="headerlink" href="#eckertii" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertII">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertII</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertII"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertII" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert II projection.</p>
+<p>This projection is pseudocylindrical, and equal-area. Both meridians and
+parallels are straight lines. Its non-equal-area pair with equally-spaced
+parallels is <a class="reference internal" href="#cartopy.crs.EckertI" title="cartopy.crs.EckertI"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertI</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/3bea125f9f94e4e389daf1a2b524d8c6/projections-24.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-24.png" class="plot-directive" src="../_images/projections-24.png" />
+</figure>
+</section>
+<section id="eckertiii">
+<h2>EckertIII<a class="headerlink" href="#eckertiii" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertIII">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertIII</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertIII"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertIII" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert III projection.</p>
+<p>This projection is pseudocylindrical, but not equal-area. Parallels are
+equally-spaced straight lines, while meridians are elliptical arcs up to
+semicircles on the edges. Its equal-area pair is <a class="reference internal" href="#cartopy.crs.EckertIV" title="cartopy.crs.EckertIV"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertIV</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/c436de0df668c002eb9d25a9607585d1/projections-25.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-25.png" class="plot-directive" src="../_images/projections-25.png" />
+</figure>
+</section>
+<section id="eckertiv">
+<h2>EckertIV<a class="headerlink" href="#eckertiv" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertIV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertIV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertIV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertIV" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert IV projection.</p>
+<p>This projection is pseudocylindrical, and equal-area. Parallels are
+unequally-spaced straight lines, while meridians are elliptical arcs up to
+semicircles on the edges. Its non-equal-area pair with equally-spaced
+parallels is <a class="reference internal" href="#cartopy.crs.EckertIII" title="cartopy.crs.EckertIII"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertIII</span></code></a>.</p>
+<p>It is commonly used for world maps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/fe07c2ac39e5eb9bb870478316f79594/projections-26.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-26.png" class="plot-directive" src="../_images/projections-26.png" />
+</figure>
+</section>
+<section id="eckertv">
+<h2>EckertV<a class="headerlink" href="#eckertv" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertV">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertV</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertV"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertV" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert V projection.</p>
+<p>This projection is pseudocylindrical, but not equal-area. Parallels are
+equally-spaced straight lines, while meridians are sinusoidal arcs. Its
+equal-area pair is <a class="reference internal" href="#cartopy.crs.EckertVI" title="cartopy.crs.EckertVI"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertVI</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/2569579203a312ccec781ae21c69c963/projections-27.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-27.png" class="plot-directive" src="../_images/projections-27.png" />
+</figure>
+</section>
+<section id="eckertvi">
+<h2>EckertVI<a class="headerlink" href="#eckertvi" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EckertVI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EckertVI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EckertVI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EckertVI" title="Permalink to this definition">#</a></dt>
+<dd><p>An Eckert VI projection.</p>
+<p>This projection is pseudocylindrical, and equal-area. Parallels are
+unequally-spaced straight lines, while meridians are sinusoidal arcs. Its
+non-equal-area pair with equally-spaced parallels is <a class="reference internal" href="#cartopy.crs.EckertV" title="cartopy.crs.EckertV"><code class="xref py py-class docutils literal notranslate"><span class="pre">EckertV</span></code></a>.</p>
+<p>It is commonly used for world maps.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/fe7659db329aa3ef51a1a1b45289015d/projections-28.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-28.png" class="plot-directive" src="../_images/projections-28.png" />
+</figure>
+</section>
+<section id="aitoff">
+<h2>Aitoff<a class="headerlink" href="#aitoff" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Aitoff">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Aitoff</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Aitoff"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Aitoff" title="Permalink to this definition">#</a></dt>
+<dd><p>An Aitoff projection.</p>
+<p>This projection is a modified azimuthal equidistant projection, balancing
+shape and scale distortion. There are no standard lines and only the
+central point is free of distortion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/4d0c7b1f53acc6bbc05c0b3d65b93c33/projections-29.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-29.png" class="plot-directive" src="../_images/projections-29.png" />
+</figure>
+</section>
+<section id="equalearth">
+<h2>EqualEarth<a class="headerlink" href="#equalearth" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.EqualEarth">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">EqualEarth</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#EqualEarth"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.EqualEarth" title="Permalink to this definition">#</a></dt>
+<dd><p>An Equal Earth projection.</p>
+<p>This projection is pseudocylindrical, and equal area. Parallels are
+unequally-spaced straight lines, while meridians are equally-spaced arcs.</p>
+<p>It is intended for world maps.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To use this projection, you must be using Proj 5.2.0 or newer.</p>
+</div>
+<p class="rubric">References</p>
+<p>Bojan Šavrič, Tom Patterson &amp; Bernhard Jenny (2018)
+The Equal Earth map projection,
+International Journal of Geographical Information Science,
+DOI: 10.1080/13658816.2018.1504949</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – If omitted, a default globe is created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/e88ee951ba54e44110725cf613a75da4/projections-30.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-30.png" class="plot-directive" src="../_images/projections-30.png" />
+</figure>
+</section>
+<section id="gnomonic">
+<h2>Gnomonic<a class="headerlink" href="#gnomonic" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Gnomonic">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Gnomonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Gnomonic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Gnomonic" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/26406ead83946427de20e20e15ca27a0/projections-31.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-31.png" class="plot-directive" src="../_images/projections-31.png" />
+</figure>
+</section>
+<section id="hammer">
+<h2>Hammer<a class="headerlink" href="#hammer" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.Hammer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">Hammer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#Hammer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.Hammer" title="Permalink to this definition">#</a></dt>
+<dd><p>A Hammer projection.</p>
+<p>This projection is a modified <a class="reference internal" href="#cartopy.crs.LambertAzimuthalEqualArea" title="cartopy.crs.LambertAzimuthalEqualArea"><code class="xref py py-obj docutils literal notranslate"><span class="pre">LambertAzimuthalEqualArea</span></code></a> projection,
+similar to <a class="reference internal" href="#cartopy.crs.Aitoff" title="cartopy.crs.Aitoff"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Aitoff</span></code></a>, and intended to reduce distortion in the outer
+meridians compared to <a class="reference internal" href="#cartopy.crs.Mollweide" title="cartopy.crs.Mollweide"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Mollweide</span></code></a>. There are no standard lines and only
+the central point is free of distortion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>, </em><em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>, optional) – <p>If omitted, a default globe is created.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This projection does not handle elliptical globes.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/a107eb9bee5a510f2143699a9ca0fa4c/projections-32.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-32.png" class="plot-directive" src="../_images/projections-32.png" />
+</figure>
+</section>
+<section id="lambertazimuthalequalarea">
+<h2>LambertAzimuthalEqualArea<a class="headerlink" href="#lambertazimuthalequalarea" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.LambertAzimuthalEqualArea">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">LambertAzimuthalEqualArea</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">central_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_easting</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">false_northing</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#LambertAzimuthalEqualArea"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.LambertAzimuthalEqualArea" title="Permalink to this definition">#</a></dt>
+<dd><p>A Lambert Azimuthal Equal-Area projection.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The central longitude. Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The central latitude. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – A <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default globe is
+created.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/fc57ae56f1cfe830059820c216b841d1/projections-33.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-33.png" class="plot-directive" src="../_images/projections-33.png" />
+</figure>
+</section>
+<section id="northpolarstereo">
+<h2>NorthPolarStereo<a class="headerlink" href="#northpolarstereo" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.NorthPolarStereo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">NorthPolarStereo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_scale_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#NorthPolarStereo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.NorthPolarStereo" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/42e3924c62e6d3f055be128ef0969f3c/projections-34.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-34.png" class="plot-directive" src="../_images/projections-34.png" />
+</figure>
+</section>
+<section id="osni">
+<h2>OSNI<a class="headerlink" href="#osni" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.OSNI">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">OSNI</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">approx</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#OSNI"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.OSNI" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>central_longitude</strong> (<em>optional</em>) – The true longitude of the central meridian in degrees.
+Defaults to 0.</p></li>
+<li><p><strong>central_latitude</strong> (<em>optional</em>) – The true latitude of the planar origin in degrees. Defaults to 0.</p></li>
+<li><p><strong>false_easting</strong> (<em>optional</em>) – X offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>false_northing</strong> (<em>optional</em>) – Y offset from the planar origin in metres. Defaults to 0.</p></li>
+<li><p><strong>scale_factor</strong> (<em>optional</em>) – Scale factor at the central meridian. Defaults to 1.</p></li>
+<li><p><strong>globe</strong> (<em>optional</em>) – An instance of <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.Globe</span></code></a>. If omitted, a default
+globe is created.</p></li>
+<li><p><strong>approx</strong> (<em>optional</em>) – Whether to use Proj’s approximate projection (True), or the new
+Extended Transverse Mercator code (False). Defaults to True, but
+will change to False in the next release.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/87db2350e55e5a2793a1d39297c5eddf/projections-35.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-35.png" class="plot-directive" src="../_images/projections-35.png" />
+</figure>
+</section>
+<section id="southpolarstereo">
+<h2>SouthPolarStereo<a class="headerlink" href="#southpolarstereo" title="Permalink to this heading">#</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.crs.SouthPolarStereo">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.crs.</span></span><span class="sig-name descname"><span class="pre">SouthPolarStereo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">central_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">true_scale_latitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">globe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cartopy/crs.html#SouthPolarStereo"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.crs.SouthPolarStereo" title="Permalink to this definition">#</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>proj4_params</strong> (<em>iterable</em><em> of </em><em>key-value pairs</em>) – The proj4 parameters required to define the
+desired CRS.  The parameters should not describe
+the desired elliptic model, instead create an
+appropriate Globe instance. The <code class="docutils literal notranslate"><span class="pre">proj4_params</span></code>
+parameters will override any parameters that the
+Globe defines.</p></li>
+<li><p><strong>globe</strong> (<a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> instance, optional) – If omitted, the default Globe instance will be created.
+See <a class="reference internal" href="generated/cartopy.crs.Globe.html#cartopy.crs.Globe" title="cartopy.crs.Globe"><code class="xref py py-class docutils literal notranslate"><span class="pre">Globe</span></code></a> for details.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p>(<a class="reference download internal" download="" href="../_downloads/3ccf17b949aaea943d1cc81b781d09de/projections-36.py"><code class="xref download docutils literal notranslate"><span class="pre">Source</span> <span class="pre">code</span></code></a>)</p>
+<figure class="align-default">
+<img alt="../_images/projections-36.png" class="plot-directive" src="../_images/projections-36.png" />
+</figure>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="generated/cartopy.geodesic.Geodesic.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">cartopy.geodesic.Geodesic</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="io.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Input/output capabilities (cartopy.io)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#platecarree">PlateCarree</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.PlateCarree"><code class="docutils literal notranslate"><span class="pre">PlateCarree</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#albersequalarea">AlbersEqualArea</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.AlbersEqualArea"><code class="docutils literal notranslate"><span class="pre">AlbersEqualArea</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#azimuthalequidistant">AzimuthalEquidistant</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.AzimuthalEquidistant"><code class="docutils literal notranslate"><span class="pre">AzimuthalEquidistant</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equidistantconic">EquidistantConic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EquidistantConic"><code class="docutils literal notranslate"><span class="pre">EquidistantConic</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambertconformal">LambertConformal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.LambertConformal"><code class="docutils literal notranslate"><span class="pre">LambertConformal</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambertcylindrical">LambertCylindrical</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.LambertCylindrical"><code class="docutils literal notranslate"><span class="pre">LambertCylindrical</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercator">Mercator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Mercator"><code class="docutils literal notranslate"><span class="pre">Mercator</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miller">Miller</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Miller"><code class="docutils literal notranslate"><span class="pre">Miller</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mollweide">Mollweide</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Mollweide"><code class="docutils literal notranslate"><span class="pre">Mollweide</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#obliquemercator">ObliqueMercator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.ObliqueMercator"><code class="docutils literal notranslate"><span class="pre">ObliqueMercator</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#orthographic">Orthographic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Orthographic"><code class="docutils literal notranslate"><span class="pre">Orthographic</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#robinson">Robinson</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Robinson"><code class="docutils literal notranslate"><span class="pre">Robinson</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sinusoidal">Sinusoidal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Sinusoidal"><code class="docutils literal notranslate"><span class="pre">Sinusoidal</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#stereographic">Stereographic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Stereographic"><code class="docutils literal notranslate"><span class="pre">Stereographic</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transversemercator">TransverseMercator</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.TransverseMercator"><code class="docutils literal notranslate"><span class="pre">TransverseMercator</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#utm">UTM</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.UTM"><code class="docutils literal notranslate"><span class="pre">UTM</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#interruptedgoodehomolosine">InterruptedGoodeHomolosine</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.InterruptedGoodeHomolosine"><code class="docutils literal notranslate"><span class="pre">InterruptedGoodeHomolosine</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rotatedpole">RotatedPole</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.RotatedPole"><code class="docutils literal notranslate"><span class="pre">RotatedPole</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osgb">OSGB</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.OSGB"><code class="docutils literal notranslate"><span class="pre">OSGB</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#europp">EuroPP</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EuroPP"><code class="docutils literal notranslate"><span class="pre">EuroPP</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geostationary">Geostationary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Geostationary"><code class="docutils literal notranslate"><span class="pre">Geostationary</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nearsideperspective">NearsidePerspective</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.NearsidePerspective"><code class="docutils literal notranslate"><span class="pre">NearsidePerspective</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckerti">EckertI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertI"><code class="docutils literal notranslate"><span class="pre">EckertI</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckertii">EckertII</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertII"><code class="docutils literal notranslate"><span class="pre">EckertII</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckertiii">EckertIII</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertIII"><code class="docutils literal notranslate"><span class="pre">EckertIII</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckertiv">EckertIV</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertIV"><code class="docutils literal notranslate"><span class="pre">EckertIV</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckertv">EckertV</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertV"><code class="docutils literal notranslate"><span class="pre">EckertV</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eckertvi">EckertVI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EckertVI"><code class="docutils literal notranslate"><span class="pre">EckertVI</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#aitoff">Aitoff</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Aitoff"><code class="docutils literal notranslate"><span class="pre">Aitoff</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equalearth">EqualEarth</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.EqualEarth"><code class="docutils literal notranslate"><span class="pre">EqualEarth</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gnomonic">Gnomonic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Gnomonic"><code class="docutils literal notranslate"><span class="pre">Gnomonic</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hammer">Hammer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.Hammer"><code class="docutils literal notranslate"><span class="pre">Hammer</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lambertazimuthalequalarea">LambertAzimuthalEqualArea</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.LambertAzimuthalEqualArea"><code class="docutils literal notranslate"><span class="pre">LambertAzimuthalEqualArea</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#northpolarstereo">NorthPolarStereo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.NorthPolarStereo"><code class="docutils literal notranslate"><span class="pre">NorthPolarStereo</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#osni">OSNI</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.OSNI"><code class="docutils literal notranslate"><span class="pre">OSNI</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#southpolarstereo">SouthPolarStereo</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.crs.SouthPolarStereo"><code class="docutils literal notranslate"><span class="pre">SouthPolarStereo</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div class="tocsection sourcelink">
+    <a href="../_sources/reference/projections.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © <a href="../copyright.html">Copyright</a> 2011 - 2018 British Crown Copyright, 2018 - 2023 Cartopy contributors.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
