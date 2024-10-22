@@ -17,10 +17,10 @@ def rationalise(root, common_directory, dry_run=False):
     directory = root
     shas, to_link, common_shas = compute_commonality(directory,
                                                      common_directory)
-    print to_link
+    print(to_link)
     if not os.path.exists(common_directory):
         if dry_run:
-            print 'mkdir -p {}'.format(common_directory)
+            print('mkdir -p {}'.format(common_directory))
         else:
             os.mkdir(common_directory)
 
@@ -30,7 +30,7 @@ def rationalise(root, common_directory, dry_run=False):
         common_path = os.path.join(common_directory, common_name)
         if not os.path.exists(common_path) or (dry_run and common_path not in new_files):
             if dry_run:
-                print 'git mv {} {}'.format(fpath, common_path)
+                print('git mv {} {}'.format(fpath, common_path))
                 new_files.append(common_path)
             else:
                 tracked = subprocess.check_output(['git', 'ls-files', fpath])
@@ -42,14 +42,14 @@ def rationalise(root, common_directory, dry_run=False):
                     shutil.move(fpath, common_path)
         else:
             if dry_run:
-                print 'rm {}'.format(fpath)
+                print('rm {}'.format(fpath))
             else:
                 os.unlink(fpath)
         rel_common_path = os.path.relpath(common_path,
                                           os.path.dirname(fpath))
         if dry_run:
-            print 'ln -s {} {}'.format(rel_common_path, fpath)
-            print 'git add {}'.format(fpath)
+            print('ln -s {} {}'.format(rel_common_path, fpath))
+            print('git add {}'.format(fpath))
         else:
             os.symlink(rel_common_path, fpath)
             subprocess.check_call(['git', 'add', fpath], cwd=directory)
@@ -69,7 +69,7 @@ def compute_commonality(directory, common_directory):
         subdirs[:] = [d for d in subdirs if not d.startswith('.')]
         for fname in files:
             fpath = os.path.join(root, fname)
-            with open(fpath, 'r') as fh:
+            with open(fpath, 'rb') as fh:
                 sha = hashlib.sha224(fh.read()).hexdigest()
                 common_shas[sha] = fname
 
@@ -84,7 +84,7 @@ def compute_commonality(directory, common_directory):
             if os.path.islink(fpath):
                 continue
 
-            with open(fpath, 'r') as fh:
+            with open(fpath, 'rb') as fh:
                 sha = hashlib.sha224(fh.read()).hexdigest()
                 if sha in common_shas:
                     to_link[fpath] = common_shas[sha]
