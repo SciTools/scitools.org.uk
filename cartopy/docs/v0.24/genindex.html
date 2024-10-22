@@ -1,0 +1,1718 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; cartopy 0.24.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=0d70ca51"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="copyright" title="Copyright" href="copyright.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.24.1" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.24.1 documentation - Home"/>
+    <img src="_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.24.1 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="gallery/index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="gallery/index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none"></div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ | <a href="#X"><strong>X</strong></a>
+ | <a href="#Y"><strong>Y</strong></a>
+ | <a href="#Z"><strong>Z</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.acquire_resource">acquire_resource() (cartopy.io.Downloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.acquire_resource">(cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.acquire_resource">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.acquire_resource">(cartopy.io.srtm.SRTMDownloader method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.feature.AdaptiveScaler.html#cartopy.feature.AdaptiveScaler">AdaptiveScaler (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.util.add_cyclic.html#cartopy.util.add_cyclic">add_cyclic() (in module cartopy.util)</a>
+</li>
+      <li><a href="reference/generated/cartopy.util.add_cyclic_point.html#cartopy.util.add_cyclic_point">add_cyclic_point() (in module cartopy.util)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_feature">add_feature() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_geometries">add_geometries() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_image">add_image() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_raster">add_raster() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.add_shading.html#cartopy.io.srtm.add_shading">add_shading() (in module cartopy.io.srtm)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wms">add_wms() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.add_wmts">add_wmts() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Aitoff">Aitoff (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.AlbersEqualArea">AlbersEqualArea (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.annotate">annotate() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS.as_geocentric">as_geocentric() (cartopy.crs.CRS method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS.as_geodetic">as_geodetic() (cartopy.crs.CRS method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.FionaRecord.html#cartopy.io.shapereader.FionaRecord.attributes">attributes (cartopy.io.shapereader.FionaRecord attribute)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.Record.html#cartopy.io.shapereader.Record.attributes">(cartopy.io.shapereader.Record attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.feature.auto_scaler.html#cartopy.feature.auto_scaler">auto_scaler (in module cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.autoscale_view">autoscale_view() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.AzimuthalEquidistant">AzimuthalEquidistant (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.background_img">background_img() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.barbs">barbs() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.BasicReader.html#cartopy.io.shapereader.BasicReader">BasicReader (class in cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.bbox">bbox() (cartopy.io.img_nest.Img method)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#BORDERS">BORDERS (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.BORDERS.html#cartopy.feature.BORDERS">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.bottom_label_artists">bottom_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.bottom_labels">bottom_labels (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.FionaRecord.html#cartopy.io.shapereader.FionaRecord.bounds">bounds (cartopy.io.shapereader.FionaRecord property)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.Record.html#cartopy.io.shapereader.Record.bounds">(cartopy.io.shapereader.Record property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist.can_composite">can_composite() (cartopy.mpl.slippy_image_artist.SlippyImageArtist method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.trace.CartesianInterpolator.html#cartopy.trace.CartesianInterpolator">CartesianInterpolator (class in cartopy.trace)</a>
+</li>
+      <li>
+    cartopy
+
+      <ul>
+        <li><a href="reference/config.html#module-cartopy">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.crs
+
+      <ul>
+        <li><a href="reference/crs.html#module-cartopy.crs">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.feature
+
+      <ul>
+        <li><a href="reference/feature.html#module-cartopy.feature">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.geodesic
+
+      <ul>
+        <li><a href="reference/crs.html#module-cartopy.geodesic">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.img_transform
+
+      <ul>
+        <li><a href="reference/transformations.html#module-cartopy.img_transform">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io.img_nest
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io.img_nest">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io.img_tiles
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io.img_tiles">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io.ogc_clients
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io.ogc_clients">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io.shapereader
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io.shapereader">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.io.srtm
+
+      <ul>
+        <li><a href="reference/io.html#module-cartopy.io.srtm">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl.feature_artist
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.feature_artist">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl.geoaxes
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.geoaxes">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl.gridliner
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.gridliner">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl.patch
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.patch">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    cartopy.mpl.slippy_image_artist
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.slippy_image_artist">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.mpl.ticker
+
+      <ul>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.ticker">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.trace
+
+      <ul>
+        <li><a href="reference/transformations.html#module-cartopy.trace">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.util
+
+      <ul>
+        <li><a href="reference/transformations.html#module-cartopy.util">module</a>
+</li>
+      </ul></li>
+      <li>
+    cartopy.vector_transform
+
+      <ul>
+        <li><a href="reference/transformations.html#module-cartopy.vector_transform">module</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic.circle">circle() (cartopy.geodesic.Geodesic method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.clear">clear() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#COASTLINE">COASTLINE (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.COASTLINE.html#cartopy.feature.COASTLINE">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.coastlines">coastlines() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.collection_kwargs">collection_kwargs (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.COLORS.html#cartopy.feature.COLORS">COLORS (in module cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.combined">combined() (cartopy.io.srtm.SRTM1Source method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.combined">(cartopy.io.srtm.SRTM3Source method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/config.html#cartopy.config">config (in module cartopy)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.contour">contour() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.contourf">contourf() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.count">count() (cartopy.io.img_nest.Img method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage.count">(cartopy.io.LocatedImage method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.feature.Feature.html#cartopy.feature.Feature.crs">crs (cartopy.feature.Feature property)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature.crs">(cartopy.feature.GSHHSFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature.crs">(cartopy.feature.NaturalEarthFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade.crs">(cartopy.feature.nightshade.Nightshade property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature.crs">(cartopy.feature.ShapelyFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature.crs">(cartopy.feature.WFSFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.crs">(cartopy.io.srtm.SRTM1Source attribute)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.crs">(cartopy.io.srtm.SRTM3Source attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS">CRS (class in cartopy.crs)</a>
+</li>
+      <li><a href="getting_started/crs.html#cartopy.crs.CRS.globe">CRS.globe (in module cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.default_downloader">default_downloader() (cartopy.io.shapereader.GSHHSShpDownloader static method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.default_downloader">(cartopy.io.shapereader.NEShpDownloader static method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.default_downloader">(cartopy.io.srtm.SRTMDownloader class method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WFSGeometrySource.html#cartopy.io.ogc_clients.WFSGeometrySource.default_projection">default_projection() (cartopy.io.ogc_clients.WFSGeometrySource method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic.direct">direct() (cartopy.geodesic.Geodesic method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.downloader">downloader (cartopy.io.srtm.SRTM1Source attribute)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.downloader">(cartopy.io.srtm.SRTM3Source attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader">Downloader (class in cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.DownloadWarning.html#cartopy.io.DownloadWarning">DownloadWarning</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist.draw">draw() (cartopy.mpl.feature_artist.FeatureArtist method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.draw">(cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoSpine.html#cartopy.mpl.geoaxes.GeoSpine.draw">(cartopy.mpl.geoaxes.GeoSpine method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.draw">(cartopy.mpl.gridliner.Gridliner method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist.draw">(cartopy.mpl.slippy_image_artist.SlippyImageArtist method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.EckertI">EckertI (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EckertII">EckertII (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EckertIII">EckertIII (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EckertIV">EckertIV (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EckertV">EckertV (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EckertVI">EckertVI (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.crs.epsg.html#cartopy.crs.epsg">epsg (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EqualEarth">EqualEarth (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EquidistantConic">EquidistantConic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.EuroPP">EuroPP (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.extent">extent (cartopy.io.img_nest.Img attribute)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage.extent">(cartopy.io.LocatedImage attribute)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.feature.Feature.html#cartopy.feature.Feature">Feature (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist">FeatureArtist (class in cartopy.mpl.feature_artist)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WFSGeometrySource.html#cartopy.io.ogc_clients.WFSGeometrySource.fetch_geometries">fetch_geometries() (cartopy.io.ogc_clients.WFSGeometrySource method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource.fetch_raster">fetch_raster() (cartopy.io.ogc_clients.WMSRasterSource method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.ogc_clients.WMTSRasterSource.html#cartopy.io.ogc_clients.WMTSRasterSource.fetch_raster">(cartopy.io.ogc_clients.WMTSRasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.PostprocessedRasterSource.html#cartopy.io.PostprocessedRasterSource.fetch_raster">(cartopy.io.PostprocessedRasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource.fetch_raster">(cartopy.io.RasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.RasterSourceContainer.html#cartopy.io.RasterSourceContainer.fetch_raster">(cartopy.io.RasterSourceContainer method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.fetch_raster">(cartopy.io.srtm.SRTM1Source method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.fetch_raster">(cartopy.io.srtm.SRTM3Source method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.fh_getter.html#cartopy.io.fh_getter">fh_getter() (in module cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.filename">filename (cartopy.io.img_nest.Img attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.find_images">find_images() (cartopy.io.img_nest.NestedImageCollection method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.img_tiles.GoogleTiles.html#cartopy.io.img_tiles.GoogleTiles.find_images">(cartopy.io.img_tiles.GoogleTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.GoogleWTS.html#cartopy.io.img_tiles.GoogleWTS.find_images">(cartopy.io.img_tiles.GoogleWTS method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxStyleTiles.html#cartopy.io.img_tiles.MapboxStyleTiles.find_images">(cartopy.io.img_tiles.MapboxStyleTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxTiles.html#cartopy.io.img_tiles.MapboxTiles.find_images">(cartopy.io.img_tiles.MapboxTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOpenAerial.html#cartopy.io.img_tiles.MapQuestOpenAerial.find_images">(cartopy.io.img_tiles.MapQuestOpenAerial method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOSM.html#cartopy.io.img_tiles.MapQuestOSM.find_images">(cartopy.io.img_tiles.MapQuestOSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OrdnanceSurvey.html#cartopy.io.img_tiles.OrdnanceSurvey.find_images">(cartopy.io.img_tiles.OrdnanceSurvey method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM.find_images">(cartopy.io.img_tiles.OSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.QuadtreeTiles.html#cartopy.io.img_tiles.QuadtreeTiles.find_images">(cartopy.io.img_tiles.QuadtreeTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.StadiaMapsTiles.html#cartopy.io.img_tiles.StadiaMapsTiles.find_images">(cartopy.io.img_tiles.StadiaMapsTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.Stamen.html#cartopy.io.img_tiles.Stamen.find_images">(cartopy.io.img_tiles.Stamen method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.shapereader.FionaReader.html#cartopy.io.shapereader.FionaReader">FionaReader (class in cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.FionaRecord.html#cartopy.io.shapereader.FionaRecord">FionaRecord (class in cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.format_coord">format_coord() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.FORMAT_KEYS">FORMAT_KEYS (cartopy.io.Downloader attribute)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.FORMAT_KEYS">(cartopy.io.shapereader.GSHHSShpDownloader attribute)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.FORMAT_KEYS">(cartopy.io.shapereader.NEShpDownloader attribute)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.FORMAT_KEYS">(cartopy.io.srtm.SRTMDownloader attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.from_config">from_config() (cartopy.io.Downloader static method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.from_config">(cartopy.io.shapereader.GSHHSShpDownloader static method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.from_config">(cartopy.io.shapereader.NEShpDownloader static method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.from_config">(cartopy.io.srtm.SRTMDownloader static method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.from_configuration">from_configuration() (cartopy.io.img_nest.NestedImageCollection class method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.from_world_file">from_world_file() (cartopy.io.img_nest.Img class method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.geo_label_artists">geo_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.geo_labels">geo_labels (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes">GeoAxes (class in cartopy.mpl.geoaxes)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxesSubplot.html#cartopy.mpl.geoaxes.GeoAxesSubplot">GeoAxesSubplot (in module cartopy.mpl.geoaxes)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.Geocentric.html#cartopy.crs.Geocentric">Geocentric (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic">Geodesic (class in cartopy.geodesic)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.Geodetic.html#cartopy.crs.Geodetic">Geodetic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.Feature.html#cartopy.feature.Feature.geometries">geometries() (cartopy.feature.Feature method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature.geometries">(cartopy.feature.GSHHSFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature.geometries">(cartopy.feature.NaturalEarthFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade.geometries">(cartopy.feature.nightshade.Nightshade method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature.geometries">(cartopy.feature.ShapelyFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature.geometries">(cartopy.feature.WFSFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.BasicReader.html#cartopy.io.shapereader.BasicReader.geometries">(cartopy.io.shapereader.BasicReader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.FionaReader.html#cartopy.io.shapereader.FionaReader.geometries">(cartopy.io.shapereader.FionaReader method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.shapereader.FionaRecord.html#cartopy.io.shapereader.FionaRecord.geometry">geometry (cartopy.io.shapereader.FionaRecord property)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.Record.html#cartopy.io.shapereader.Record.geometry">(cartopy.io.shapereader.Record property)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic.geometry_length">geometry_length() (cartopy.geodesic.Geodesic method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.patch.geos_to_path.html#cartopy.mpl.patch.geos_to_path">geos_to_path() (in module cartopy.mpl.patch)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoSpine.html#cartopy.mpl.geoaxes.GeoSpine">GeoSpine (class in cartopy.mpl.geoaxes)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Geostationary">Geostationary (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.get_extent">get_extent() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.get_image">get_image() (cartopy.io.img_nest.NestedImageCollection method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.get_tightbbox">get_tightbbox() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.get_tightbbox">(cartopy.mpl.gridliner.Gridliner method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.get_visible_children">get_visible_children() (cartopy.mpl.gridliner.Gridliner method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoSpine.html#cartopy.mpl.geoaxes.GeoSpine.get_window_extent">get_window_extent() (cartopy.mpl.geoaxes.GeoSpine method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist.get_window_extent">(cartopy.mpl.slippy_image_artist.SlippyImageArtist method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource.getmap_extra_kwargs">getmap_extra_kwargs (cartopy.io.ogc_clients.WMSRasterSource attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe">Globe (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Gnomonic">Gnomonic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.GoogleTiles.html#cartopy.io.img_tiles.GoogleTiles">GoogleTiles (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.GoogleWTS.html#cartopy.io.img_tiles.GoogleWTS">GoogleWTS (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner">Gridliner (class in cartopy.mpl.gridliner)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines">gridlines() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.gshhs.html#cartopy.io.shapereader.gshhs">gshhs() (in module cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature">GSHHSFeature (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader">GSHHSShpDownloader (class in cartopy.io.shapereader)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.Hammer">Hammer (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.has_inverse">has_inverse (cartopy.mpl.geoaxes.InterProjectionTransform attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.hexbin">hexbin() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.hold_limits">hold_limits() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage.image">image (cartopy.io.LocatedImage attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.image_for_domain">image_for_domain() (cartopy.io.img_nest.NestedImageCollection method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.ImageCollection.html#cartopy.io.img_nest.ImageCollection">ImageCollection (class in cartopy.io.img_nest)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img">Img (class in cartopy.io.img_nest)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.imshow">imshow() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.index">index() (cartopy.io.img_nest.Img method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage.index">(cartopy.io.LocatedImage method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.input_dims">input_dims (cartopy.mpl.geoaxes.InterProjectionTransform attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.trace.Interpolator.html#cartopy.trace.Interpolator">Interpolator (class in cartopy.trace)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform">InterProjectionTransform (class in cartopy.mpl.geoaxes)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.InterruptedGoodeHomolosine">InterruptedGoodeHomolosine (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.Feature.html#cartopy.feature.Feature.intersecting_geometries">intersecting_geometries() (cartopy.feature.Feature method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature.intersecting_geometries">(cartopy.feature.GSHHSFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature.intersecting_geometries">(cartopy.feature.NaturalEarthFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade.intersecting_geometries">(cartopy.feature.nightshade.Nightshade method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature.intersecting_geometries">(cartopy.feature.ShapelyFeature method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature.intersecting_geometries">(cartopy.feature.WFSFeature method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.geodesic.Geodesic.html#cartopy.geodesic.Geodesic.inverse">inverse() (cartopy.geodesic.Geodesic method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.inverted">inverted() (cartopy.mpl.geoaxes.InterProjectionTransform method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.is_separable">is_separable (cartopy.mpl.geoaxes.InterProjectionTransform attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.feature.Feature.html#cartopy.feature.Feature.kwargs">kwargs (cartopy.feature.Feature property)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.GSHHSFeature.html#cartopy.feature.GSHHSFeature.kwargs">(cartopy.feature.GSHHSFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature.kwargs">(cartopy.feature.NaturalEarthFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade.kwargs">(cartopy.feature.nightshade.Nightshade property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature.kwargs">(cartopy.feature.ShapelyFeature property)</a>
+</li>
+        <li><a href="reference/generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature.kwargs">(cartopy.feature.WFSFeature property)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.label_artists">label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.labels_bbox_style">labels_bbox_style (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#LAKES">LAKES (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.LAKES.html#cartopy.feature.LAKES">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/projections.html#cartopy.crs.LambertAzimuthalEqualArea">LambertAzimuthalEqualArea (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.LambertConformal">LambertConformal (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.LambertCylindrical">LambertCylindrical (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.LambertZoneII">LambertZoneII (class in cartopy.crs)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#LAND">LAND (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.LAND.html#cartopy.feature.LAND">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LatitudeFormatter.html#cartopy.mpl.ticker.LatitudeFormatter">LatitudeFormatter (class in cartopy.mpl.ticker)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LatitudeLocator.html#cartopy.mpl.ticker.LatitudeLocator">LatitudeLocator (class in cartopy.mpl.ticker)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMTSRasterSource.html#cartopy.io.ogc_clients.WMTSRasterSource.layer">layer (cartopy.io.ogc_clients.WMTSRasterSource attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource.layers">layers (cartopy.io.ogc_clients.WMSRasterSource attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.left_label_artists">left_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.left_labels">left_labels (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.trace.LineAccumulator.html#cartopy.trace.LineAccumulator">LineAccumulator (class in cartopy.trace)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.LocatedImage.html#cartopy.io.LocatedImage">LocatedImage (class in cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LongitudeFormatter.html#cartopy.mpl.ticker.LongitudeFormatter">LongitudeFormatter (class in cartopy.mpl.ticker)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LongitudeLocator.html#cartopy.mpl.ticker.LongitudeLocator">LongitudeLocator (class in cartopy.mpl.ticker)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.img_tiles.MapboxStyleTiles.html#cartopy.io.img_tiles.MapboxStyleTiles">MapboxStyleTiles (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.MapboxTiles.html#cartopy.io.img_tiles.MapboxTiles">MapboxTiles (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOpenAerial.html#cartopy.io.img_tiles.MapQuestOpenAerial">MapQuestOpenAerial (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOSM.html#cartopy.io.img_tiles.MapQuestOSM">MapQuestOSM (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Mercator">Mercator (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.img_transform.mesh_projection.html#cartopy.img_transform.mesh_projection">mesh_projection() (in module cartopy.img_transform)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Miller">Miller (class in cartopy.crs)</a>
+</li>
+      <li>
+    module
+
+      <ul>
+        <li><a href="reference/config.html#module-cartopy">cartopy</a>
+</li>
+        <li><a href="reference/crs.html#module-cartopy.crs">cartopy.crs</a>
+</li>
+        <li><a href="reference/feature.html#module-cartopy.feature">cartopy.feature</a>
+</li>
+        <li><a href="reference/crs.html#module-cartopy.geodesic">cartopy.geodesic</a>
+</li>
+        <li><a href="reference/transformations.html#module-cartopy.img_transform">cartopy.img_transform</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io">cartopy.io</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io.img_nest">cartopy.io.img_nest</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io.img_tiles">cartopy.io.img_tiles</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io.ogc_clients">cartopy.io.ogc_clients</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io.shapereader">cartopy.io.shapereader</a>
+</li>
+        <li><a href="reference/io.html#module-cartopy.io.srtm">cartopy.io.srtm</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl">cartopy.mpl</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.feature_artist">cartopy.mpl.feature_artist</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.geoaxes">cartopy.mpl.geoaxes</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.gridliner">cartopy.mpl.gridliner</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.patch">cartopy.mpl.patch</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.slippy_image_artist">cartopy.mpl.slippy_image_artist</a>
+</li>
+        <li><a href="reference/matplotlib.html#module-cartopy.mpl.ticker">cartopy.mpl.ticker</a>
+</li>
+        <li><a href="reference/transformations.html#module-cartopy.trace">cartopy.trace</a>
+</li>
+        <li><a href="reference/transformations.html#module-cartopy.util">cartopy.util</a>
+</li>
+        <li><a href="reference/transformations.html#module-cartopy.vector_transform">cartopy.vector_transform</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.Mollweide">Mollweide (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.n_steps">n_steps (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.natural_earth.html#cartopy.io.shapereader.natural_earth">natural_earth() (in module cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature">NaturalEarthFeature (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.NearsidePerspective">NearsidePerspective (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader">NEShpDownloader (class in cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection">NestedImageCollection (class in cartopy.io.img_nest)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.nightshade.Nightshade.html#cartopy.feature.nightshade.Nightshade">Nightshade (class in cartopy.feature.nightshade)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.NorthPolarStereo">NorthPolarStereo (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.ObliqueMercator">ObliqueMercator (class in cartopy.crs)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#OCEAN">OCEAN (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.OCEAN.html#cartopy.feature.OCEAN">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.OrdnanceSurvey.html#cartopy.io.img_tiles.OrdnanceSurvey">OrdnanceSurvey (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.origin">origin (cartopy.io.img_nest.Img attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.Orthographic">Orthographic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.OSGB">OSGB (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM">OSM (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.OSNI">OSNI (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.output_dims">output_dims (cartopy.mpl.geoaxes.InterProjectionTransform attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.path">path() (cartopy.io.Downloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.path">(cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.path">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.path">(cartopy.io.srtm.SRTMDownloader method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.patch.path_segments.html#cartopy.mpl.patch.path_segments">path_segments() (in module cartopy.mpl.patch)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.patch.path_to_geos.html#cartopy.mpl.patch.path_to_geos">path_to_geos() (in module cartopy.mpl.patch)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.pcolor">pcolor() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.pcolormesh">pcolormesh() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.pixel_size">pixel_size (cartopy.io.img_nest.Img attribute)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.PlateCarree">PlateCarree (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.PostprocessedRasterSource.html#cartopy.io.PostprocessedRasterSource">PostprocessedRasterSource (class in cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.pre_downloaded_path">pre_downloaded_path() (cartopy.io.Downloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.pre_downloaded_path">(cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.pre_downloaded_path">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.pre_downloaded_path">(cartopy.io.srtm.SRTMDownloader method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection.project_geometry">project_geometry() (cartopy.crs.Projection method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.trace.project_linear.html#cartopy.trace.project_linear">project_linear() (in module cartopy.trace)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection">Projection (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.img_tiles.QuadtreeTiles.html#cartopy.io.img_tiles.QuadtreeTiles">QuadtreeTiles (class in cartopy.io.img_tiles)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.crs.Projection.html#cartopy.crs.Projection.quick_vertices_transform">quick_vertices_transform() (cartopy.crs.Projection method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.quiver">quiver() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource">RasterSource (class in cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.RasterSourceContainer.html#cartopy.io.RasterSourceContainer">RasterSourceContainer (class in cartopy.io)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.read_SRTM.html#cartopy.io.srtm.read_SRTM">read_SRTM() (in module cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.read_SRTM1.html#cartopy.io.srtm.read_SRTM1">read_SRTM1() (in module cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.read_SRTM3.html#cartopy.io.srtm.read_SRTM3">read_SRTM3() (in module cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.read_user_background_images">read_user_background_images() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.Reader.html#cartopy.io.shapereader.Reader">Reader (in module cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.Record.html#cartopy.io.shapereader.Record">Record (class in cartopy.io.shapereader)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.shapereader.BasicReader.html#cartopy.io.shapereader.BasicReader.records">records() (cartopy.io.shapereader.BasicReader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.FionaReader.html#cartopy.io.shapereader.FionaReader.records">(cartopy.io.shapereader.FionaReader method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.img_transform.regrid.html#cartopy.img_transform.regrid">regrid() (in module cartopy.img_transform)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.right_label_artists">right_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.right_labels">right_labels (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#RIVERS">RIVERS (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.RIVERS.html#cartopy.feature.RIVERS">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/projections.html#cartopy.crs.Robinson">Robinson (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.RotatedGeodetic.html#cartopy.crs.RotatedGeodetic">RotatedGeodetic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.RotatedPole">RotatedPole (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.feature.AdaptiveScaler.html#cartopy.feature.AdaptiveScaler.scale_from_extent">scale_from_extent() (cartopy.feature.AdaptiveScaler method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.Scaler.html#cartopy.feature.Scaler.scale_from_extent">(cartopy.feature.Scaler method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.feature.Scaler.html#cartopy.feature.Scaler">Scaler (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.ImageCollection.html#cartopy.io.img_nest.ImageCollection.scan_dir_for_imgs">scan_dir_for_imgs() (cartopy.io.img_nest.ImageCollection method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.scatter">scatter() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource.service">service (cartopy.io.ogc_clients.WMSRasterSource attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist.set">set() (cartopy.mpl.feature_artist.FeatureArtist method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set">(cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoSpine.html#cartopy.mpl.geoaxes.GeoSpine.set">(cartopy.mpl.geoaxes.GeoSpine method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.set">(cartopy.mpl.gridliner.Gridliner method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist.set">(cartopy.mpl.slippy_image_artist.SlippyImageArtist method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_boundary">set_boundary() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_extent">set_extent() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.feature_artist.FeatureArtist.html#cartopy.mpl.feature_artist.FeatureArtist.set_facecolor">set_facecolor() (cartopy.mpl.feature_artist.FeatureArtist method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_global">set_global() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LongitudeFormatter.html#cartopy.mpl.ticker.LongitudeFormatter.set_locs">set_locs() (cartopy.mpl.ticker.LongitudeFormatter method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LongitudeLocator.html#cartopy.mpl.ticker.LongitudeLocator.set_params">set_params() (cartopy.mpl.ticker.LongitudeLocator method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoSpine.html#cartopy.mpl.geoaxes.GeoSpine.set_position">set_position() (cartopy.mpl.geoaxes.GeoSpine method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_xticks">set_xticks() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.set_yticks">set_yticks() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.ShapelyFeature.html#cartopy.feature.ShapelyFeature">ShapelyFeature (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.Sinusoidal">Sinusoidal (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.slippy_image_artist.SlippyImageArtist.html#cartopy.mpl.slippy_image_artist.SlippyImageArtist">SlippyImageArtist (class in cartopy.mpl.slippy_image_artist)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.SouthPolarStereo">SouthPolarStereo (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.trace.SphericalInterpolator.html#cartopy.trace.SphericalInterpolator">SphericalInterpolator (class in cartopy.trace)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source">SRTM1Source (class in cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source">SRTM3Source (class in cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.srtm_fname">srtm_fname() (cartopy.io.srtm.SRTM1Source method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.srtm_fname">(cartopy.io.srtm.SRTM3Source method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader">SRTMDownloader (class in cartopy.io.srtm)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.StadiaMapsTiles.html#cartopy.io.img_tiles.StadiaMapsTiles">StadiaMapsTiles (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.Stamen.html#cartopy.io.img_tiles.Stamen">Stamen (class in cartopy.io.img_tiles)</a>
+</li>
+      <li><a href="matplotlib/feature_interface.html#STATES">STATES (built-in variable)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.feature.STATES.html#cartopy.feature.STATES">(in module cartopy.feature)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/projections.html#cartopy.crs.Stereographic">Stereographic (class in cartopy.crs)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.stock_img">stock_img() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.streamplot">streamplot() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.NestedImageCollection.html#cartopy.io.img_nest.NestedImageCollection.subtiles">subtiles() (cartopy.io.img_nest.NestedImageCollection method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.target_path">target_path() (cartopy.io.Downloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.target_path">(cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.target_path">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.target_path">(cartopy.io.srtm.SRTMDownloader method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.mpl.ticker.LatitudeLocator.html#cartopy.mpl.ticker.LatitudeLocator.tick_values">tick_values() (cartopy.mpl.ticker.LatitudeLocator method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.GoogleTiles.html#cartopy.io.img_tiles.GoogleTiles.tile_bbox">tile_bbox() (cartopy.io.img_tiles.GoogleTiles method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.img_tiles.GoogleWTS.html#cartopy.io.img_tiles.GoogleWTS.tile_bbox">(cartopy.io.img_tiles.GoogleWTS method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxStyleTiles.html#cartopy.io.img_tiles.MapboxStyleTiles.tile_bbox">(cartopy.io.img_tiles.MapboxStyleTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxTiles.html#cartopy.io.img_tiles.MapboxTiles.tile_bbox">(cartopy.io.img_tiles.MapboxTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOpenAerial.html#cartopy.io.img_tiles.MapQuestOpenAerial.tile_bbox">(cartopy.io.img_tiles.MapQuestOpenAerial method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOSM.html#cartopy.io.img_tiles.MapQuestOSM.tile_bbox">(cartopy.io.img_tiles.MapQuestOSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OrdnanceSurvey.html#cartopy.io.img_tiles.OrdnanceSurvey.tile_bbox">(cartopy.io.img_tiles.OrdnanceSurvey method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM.tile_bbox">(cartopy.io.img_tiles.OSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.QuadtreeTiles.html#cartopy.io.img_tiles.QuadtreeTiles.tile_bbox">(cartopy.io.img_tiles.QuadtreeTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.StadiaMapsTiles.html#cartopy.io.img_tiles.StadiaMapsTiles.tile_bbox">(cartopy.io.img_tiles.StadiaMapsTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.Stamen.html#cartopy.io.img_tiles.Stamen.tile_bbox">(cartopy.io.img_tiles.Stamen method)</a>
+</li>
+      </ul></li>
+      <li><a href="reference/generated/cartopy.io.img_tiles.GoogleTiles.html#cartopy.io.img_tiles.GoogleTiles.tileextent">tileextent() (cartopy.io.img_tiles.GoogleTiles method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.img_tiles.GoogleWTS.html#cartopy.io.img_tiles.GoogleWTS.tileextent">(cartopy.io.img_tiles.GoogleWTS method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxStyleTiles.html#cartopy.io.img_tiles.MapboxStyleTiles.tileextent">(cartopy.io.img_tiles.MapboxStyleTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapboxTiles.html#cartopy.io.img_tiles.MapboxTiles.tileextent">(cartopy.io.img_tiles.MapboxTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOpenAerial.html#cartopy.io.img_tiles.MapQuestOpenAerial.tileextent">(cartopy.io.img_tiles.MapQuestOpenAerial method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.MapQuestOSM.html#cartopy.io.img_tiles.MapQuestOSM.tileextent">(cartopy.io.img_tiles.MapQuestOSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OrdnanceSurvey.html#cartopy.io.img_tiles.OrdnanceSurvey.tileextent">(cartopy.io.img_tiles.OrdnanceSurvey method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM.tileextent">(cartopy.io.img_tiles.OSM method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.QuadtreeTiles.html#cartopy.io.img_tiles.QuadtreeTiles.tileextent">(cartopy.io.img_tiles.QuadtreeTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.StadiaMapsTiles.html#cartopy.io.img_tiles.StadiaMapsTiles.tileextent">(cartopy.io.img_tiles.StadiaMapsTiles method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.img_tiles.Stamen.html#cartopy.io.img_tiles.Stamen.tileextent">(cartopy.io.img_tiles.Stamen method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.tissot">tissot() (cartopy.mpl.geoaxes.GeoAxes method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.Globe.html#cartopy.crs.Globe.to_proj4_params">to_proj4_params() (cartopy.crs.Globe method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.top_label_artists">top_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.top_labels">top_labels (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.transform_non_affine">transform_non_affine() (cartopy.mpl.geoaxes.InterProjectionTransform method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.geoaxes.InterProjectionTransform.html#cartopy.mpl.geoaxes.InterProjectionTransform.transform_path_non_affine">transform_path_non_affine() (cartopy.mpl.geoaxes.InterProjectionTransform method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS.transform_point">transform_point() (cartopy.crs.CRS method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS.transform_points">transform_points() (cartopy.crs.CRS method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.crs.CRS.html#cartopy.crs.CRS.transform_vectors">transform_vectors() (cartopy.crs.CRS method)</a>
+</li>
+      <li><a href="reference/projections.html#cartopy.crs.TransverseMercator">TransverseMercator (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.Downloader.html#cartopy.io.Downloader.url">url() (cartopy.io.Downloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.url">(cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.url">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTMDownloader.html#cartopy.io.srtm.SRTMDownloader.url">(cartopy.io.srtm.SRTMDownloader method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/projections.html#cartopy.crs.UTM">UTM (class in cartopy.crs)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource.validate_projection">validate_projection() (cartopy.io.ogc_clients.WMSRasterSource method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.ogc_clients.WMTSRasterSource.html#cartopy.io.ogc_clients.WMTSRasterSource.validate_projection">(cartopy.io.ogc_clients.WMTSRasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.PostprocessedRasterSource.html#cartopy.io.PostprocessedRasterSource.validate_projection">(cartopy.io.PostprocessedRasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.RasterSource.html#cartopy.io.RasterSource.validate_projection">(cartopy.io.RasterSource method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.RasterSourceContainer.html#cartopy.io.RasterSourceContainer.validate_projection">(cartopy.io.RasterSourceContainer method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM1Source.html#cartopy.io.srtm.SRTM1Source.validate_projection">(cartopy.io.srtm.SRTM1Source method)</a>
+</li>
+        <li><a href="reference/generated/cartopy.io.srtm.SRTM3Source.html#cartopy.io.srtm.SRTM3Source.validate_projection">(cartopy.io.srtm.SRTM3Source method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.vector_transform.vector_scalar_to_grid.html#cartopy.vector_transform.vector_scalar_to_grid">vector_scalar_to_grid() (in module cartopy.vector_transform)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.img_transform.warp_array.html#cartopy.img_transform.warp_array">warp_array() (in module cartopy.img_transform)</a>
+</li>
+      <li><a href="reference/generated/cartopy.img_transform.warp_img.html#cartopy.img_transform.warp_img">warp_img() (in module cartopy.img_transform)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.WFSFeature.html#cartopy.feature.WFSFeature">WFSFeature (class in cartopy.feature)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WFSGeometrySource.html#cartopy.io.ogc_clients.WFSGeometrySource">WFSGeometrySource (class in cartopy.io.ogc_clients)</a>
+</li>
+      <li><a href="reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature.with_scale">with_scale() (cartopy.feature.NaturalEarthFeature method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMSRasterSource.html#cartopy.io.ogc_clients.WMSRasterSource">WMSRasterSource (class in cartopy.io.ogc_clients)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMTSRasterSource.html#cartopy.io.ogc_clients.WMTSRasterSource.wmts">wmts (cartopy.io.ogc_clients.WMTSRasterSource attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.ogc_clients.WMTSRasterSource.html#cartopy.io.ogc_clients.WMTSRasterSource">WMTSRasterSource (class in cartopy.io.ogc_clients)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.world_file_extent">world_file_extent() (cartopy.io.img_nest.Img static method)</a>
+</li>
+      <li><a href="reference/generated/cartopy.io.img_nest.Img.html#cartopy.io.img_nest.Img.world_files">world_files() (cartopy.io.img_nest.Img static method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="X">X</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.x_inline">x_inline (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.x_inline_label_artists">x_inline_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xformatter">xformatter (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xlabel_artists">xlabel_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xlabel_style">xlabel_style (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xline_artists">xline_artists (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xlines">xlines (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.xpadding">xpadding (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Y">Y</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.y_inline">y_inline (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.y_inline_label_artists">y_inline_label_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.yformatter">yformatter (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.ylabel_artists">ylabel_artists (cartopy.mpl.gridliner.Gridliner property)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.ylabel_style">ylabel_style (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.yline_artists">yline_artists (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.ylines">ylines (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+      <li><a href="reference/generated/cartopy.mpl.gridliner.Gridliner.html#cartopy.mpl.gridliner.Gridliner.ypadding">ypadding (cartopy.mpl.gridliner.Gridliner attribute)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Z">Z</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="reference/generated/cartopy.io.shapereader.GSHHSShpDownloader.html#cartopy.io.shapereader.GSHHSShpDownloader.zip_file_contents">zip_file_contents() (cartopy.io.shapereader.GSHHSShpDownloader method)</a>
+
+      <ul>
+        <li><a href="reference/generated/cartopy.io.shapereader.NEShpDownloader.html#cartopy.io.shapereader.NEShpDownloader.zip_file_contents">(cartopy.io.shapereader.NEShpDownloader method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2024 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
