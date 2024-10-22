@@ -1,0 +1,1 @@
+../../../../../shared_assets/83c934c811a54c9baa2cea81455b6b18e12174aab6526160f57853ad-logo.py

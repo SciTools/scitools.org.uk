@@ -1,0 +1,656 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Tube Stations &#8212; cartopy 0.24.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=0d70ca51"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/miscellanea/tube_stations';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="UN Flag" href="un_flag.html" />
+    <link rel="prev" title="Modifying the boundary/neatline of a map in cartopy" href="star_shaped_boundary.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.24.1" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.24.1 documentation - Home"/>
+    <img src="../../_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.24.1 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lines_and_polygons/index.html">Lines and polygons</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/always_circular_stereo.html">Custom Boundary Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/feature_creation.html">Feature Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/features.html">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/global_map.html">Global Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/hurricane_katrina.html">Hurricane Katrina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/nightshade.html">Nightshade feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/ocean_bathymetry.html">Ocean bathymetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/rotated_pole.html">Rotated pole boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/effects_of_the_ellipse.html">The effect of badly referencing an ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/tissot.html">Tissot’s Indicatrix</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scalar_data/index.html">Scalar data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/wrapping_global.html">Adding a cyclic point to help with wrapping of global data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/geometry_data.html">Choropleth map: associating data with geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/contour_labels.html">Contour labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/contour_transforms.html">Contour transform options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/waves.html">Filled contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/eyja_volcano.html">Map tile acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/aurora_forecast.html">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/geostationary.html">Reprojecting images from a Geostationary projection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vector_data/index.html">Vector data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/arrows.html">Arrows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/barbs.html">Barbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/regridding_arrows.html">Regridding vectors with quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/streamplot.html">Streamplot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../web_services/index.html">Web services</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/reprojected_wmts.html">Displaying WMTS tiled map data on an arbitrary projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wms.html">Interactive WMS (Web Map Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts.html">Interactive WMTS (Web Map Tile Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts_time.html">Web Map Tile Service time dimension demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/image_tiles.html">Web tile imagery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gridlines_and_labels/index.html">Gridlines and labels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/gridliner.html">Gridlines and tick labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/tick_labels.html">Tick Labels</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Miscellanea</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="animate_surface.html">Animating a gridded surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="favicon.html">Cartopy Favicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logo.html">Cartopy Logo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utm_all_zones.html">Displaying all 60 zones of the UTM projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eccentric_ellipse.html">Displaying data on an eccentric ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="star_shaped_boundary.html">Modifying the boundary/neatline of a map in cartopy</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Tube Stations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="un_flag.html">UN Flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes_grid_basic.html">Using Cartopy and AxesGrid toolkit</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Gallery</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Miscellanea</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Tube Stations</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-gallery-miscellanea-tube-stations-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="tube-stations">
+<span id="sphx-glr-gallery-miscellanea-tube-stations-py"></span><h1>Tube Stations<a class="headerlink" href="#tube-stations" title="Link to this heading">#</a></h1>
+<p>Produces a map showing London Underground station locations with high
+resolution background imagery provided by OpenStreetMap.</p>
+<img src="../../_images/sphx_glr_tube_stations_001.png" srcset="../../_images/sphx_glr_tube_stations_001.png" alt="London underground locations" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">matplotlib.path</span> <span class="kn">import</span> <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="matplotlib.path.Path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">import</span> <span class="nn">cartopy.crs</span> <span class="k">as</span> <span class="nn">ccrs</span>
+<span class="kn">from</span> <span class="nn">cartopy.io.img_tiles</span> <span class="kn">import</span> <a href="../../reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM" title="cartopy.io.img_tiles.OSM" class="sphx-glr-backref-module-cartopy-io-img_tiles sphx-glr-backref-type-py-class"><span class="n">OSM</span></a>
+
+
+<span class="k">def</span> <span class="nf">tube_locations</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an (n, 2) array of selected London Tube locations in Ordnance</span>
+<span class="sd">    Survey GB coordinates.</span>
+
+<span class="sd">    Source: https://www.doogal.co.uk/london_stations.php</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([[</span><span class="mf">531738.</span><span class="p">,</span> <span class="mf">180890.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532379.</span><span class="p">,</span> <span class="mf">179734.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531096.</span><span class="p">,</span> <span class="mf">181642.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530234.</span><span class="p">,</span> <span class="mf">180492.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531688.</span><span class="p">,</span> <span class="mf">181150.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530242.</span><span class="p">,</span> <span class="mf">180982.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531940.</span><span class="p">,</span> <span class="mf">179144.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530406.</span><span class="p">,</span> <span class="mf">180380.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529012.</span><span class="p">,</span> <span class="mf">180283.</span><span class="p">],</span> <span class="p">[</span><span class="mf">530553.</span><span class="p">,</span> <span class="mf">181488.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">531165.</span><span class="p">,</span> <span class="mf">179489.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529987.</span><span class="p">,</span> <span class="mf">180812.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">532347.</span><span class="p">,</span> <span class="mf">180962.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529102.</span><span class="p">,</span> <span class="mf">181227.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529612.</span><span class="p">,</span> <span class="mf">180625.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531566.</span><span class="p">,</span> <span class="mf">180025.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">529629.</span><span class="p">,</span> <span class="mf">179503.</span><span class="p">],</span> <span class="p">[</span><span class="mf">532105.</span><span class="p">,</span> <span class="mf">181261.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530995.</span><span class="p">,</span> <span class="mf">180810.</span><span class="p">],</span> <span class="p">[</span><span class="mf">529774.</span><span class="p">,</span> <span class="mf">181354.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">528941.</span><span class="p">,</span> <span class="mf">179131.</span><span class="p">],</span> <span class="p">[</span><span class="mf">531050.</span><span class="p">,</span> <span class="mf">179933.</span><span class="p">],</span>
+                     <span class="p">[</span><span class="mf">530240.</span><span class="p">,</span> <span class="mf">179718.</span><span class="p">]])</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">imagery</span> <span class="o">=</span> <a href="../../reference/generated/cartopy.io.img_tiles.OSM.html#cartopy.io.img_tiles.OSM" title="cartopy.io.img_tiles.OSM" class="sphx-glr-backref-module-cartopy-io-img_tiles sphx-glr-backref-type-py-class"><span class="n">OSM</span></a><span class="p">()</span>
+
+    <span class="n">fig</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">()</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="n">imagery</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mf">0.14</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">51.495</span><span class="p">,</span> <span class="mf">51.515</span><span class="p">],</span> <a href="../../reference/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span></a><span class="p">())</span>
+
+    <span class="c1"># Construct concentric circles and a rectangle,</span>
+    <span class="c1"># suitable for a London Underground logo.</span>
+    <span class="n">theta</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.linspace.html#numpy.linspace" title="numpy.linspace" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">linspace</span></a><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <a href="https://docs.python.org/3/library/functions.html#float" title="builtins.float" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">pi</span></a><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+    <span class="n">circle_verts</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.vstack.html#numpy.vstack" title="numpy.vstack" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">vstack</span></a><span class="p">([</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">sin</span></a><span class="p">(</span><span class="n">theta</span><span class="p">),</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.ufunc.html#numpy.ufunc" title="numpy.ufunc" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">np</span><span class="o">.</span><span class="n">cos</span></a><span class="p">(</span><span class="n">theta</span><span class="p">)])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">concentric_circle</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path.make_compound_path" title="matplotlib.path.Path.make_compound_path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-method"><span class="n">Path</span><span class="o">.</span><span class="n">make_compound_path</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="matplotlib.path.Path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><span class="n">circle_verts</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span>
+                                                <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="matplotlib.path.Path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><span class="n">circle_verts</span> <span class="o">*</span> <span class="mf">0.6</span><span class="p">))</span>
+
+    <span class="n">rectangle</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="matplotlib.path.Path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">([[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.2</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mf">1.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]])</span>
+
+    <span class="c1"># Add the imagery to the map.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">add_image</span><span class="p">(</span><span class="n">imagery</span><span class="p">,</span> <span class="mi">14</span><span class="p">)</span>
+
+    <span class="c1"># Plot the locations twice, first with the red concentric circles,</span>
+    <span class="c1"># then with the blue rectangle.</span>
+    <span class="n">xs</span><span class="p">,</span> <span class="n">ys</span> <span class="o">=</span> <span class="n">tube_locations</span><span class="p">()</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><a href="../../reference/projections.html#cartopy.crs.OSGB" title="cartopy.crs.OSGB" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span></a><span class="p">(</span><span class="n">approx</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">concentric_circle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">ys</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><a href="../../reference/projections.html#cartopy.crs.OSGB" title="cartopy.crs.OSGB" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">OSGB</span></a><span class="p">(</span><span class="n">approx</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">marker</span><span class="o">=</span><span class="n">rectangle</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">markersize</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;London underground locations&#39;</span><span class="p">)</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.338 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-miscellanea-tube-stations-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/cc38ff992c658e7dd94518e392c2e20d/tube_stations.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">tube_stations.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/6e81bdd5eafa0ce633c662af69f93c2a/tube_stations.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">tube_stations.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/ba1f5307f3e053b2f555fc67da80916e/tube_stations.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">tube_stations.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="star_shaped_boundary.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Modifying the boundary/neatline of a map in cartopy</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="un_flag.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">UN Flag</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+
+  <div class="tocsection sourcelink">
+    <a href="../../_sources/gallery/miscellanea/tube_stations.rst.txt">
+      <i class="fa-solid fa-file-lines"></i> Show Source
+    </a>
+  </div>
+</div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="../../copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2024 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.1.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
