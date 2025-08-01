@@ -1,0 +1,605 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Scalar data &#8212; cartopy 0.25.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d8dd0411"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/scalar_data/index';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Adding a cyclic point to help with wrapping of global data" href="wrapping_global.html" />
+    <link rel="prev" title="Tissot’s Indicatrix" href="../lines_and_polygons/tissot.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.25.0" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.25.0 documentation - Home"/>
+    <img src="../../_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.25.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lines_and_polygons/index.html">Lines and polygons</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/always_circular_stereo.html">Custom Boundary Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/feature_creation.html">Feature Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/features.html">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/global_map.html">Global Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/hurricane_katrina.html">Hurricane Katrina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/nightshade.html">Nightshade feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/ocean_bathymetry.html">Ocean bathymetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/rotated_pole.html">Rotated pole boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/effects_of_the_ellipse.html">The effect of badly referencing an ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/tissot.html">Tissot’s Indicatrix</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Scalar data</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="wrapping_global.html">Adding a cyclic point to help with wrapping of global data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry_data.html">Choropleth map: associating data with geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contour_labels.html">Contour labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="contour_transforms.html">Contour transform options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="waves.html">Filled contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eyja_volcano.html">Map tile acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="aurora_forecast.html">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="raster_reprojections.html">Raster reprojections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geostationary.html">Reprojecting images from a Geostationary projection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vector_data/index.html">Vector data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/arrows.html">Arrows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/barbs.html">Barbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/regridding_arrows.html">Regridding vectors with quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/streamplot.html">Streamplot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../web_services/index.html">Web services</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/reprojected_wmts.html">Displaying WMTS tiled map data on an arbitrary projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wms.html">Interactive WMS (Web Map Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts.html">Interactive WMTS (Web Map Tile Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts_time.html">Web Map Tile Service time dimension demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/image_tiles.html">Web tile imagery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gridlines_and_labels/index.html">Gridlines and labels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/map_latitudes.html">Aligning Cartopy and Matplotlib axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/gridliner.html">Gridlines and tick labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/tick_labels.html">Tick Labels</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../miscellanea/index.html">Miscellanea</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/animate_surface.html">Animating a gridded surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/favicon.html">Cartopy Favicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/logo.html">Cartopy Logo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/utm_all_zones.html">Displaying all 60 zones of the UTM projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/eccentric_ellipse.html">Displaying data on an eccentric ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/star_shaped_boundary.html">Modifying the boundary/neatline of a map in cartopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/tube_stations.html">Tube Stations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/un_flag.html">UN Flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../miscellanea/axes_grid_basic.html">Using Cartopy and AxesGrid toolkit</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Gallery</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scalar data</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="scalar-data">
+<span id="sphx-glr-gallery-scalar-data"></span><span id="id1"></span><h1>Scalar data<a class="headerlink" href="#scalar-data" title="Link to this heading">#</a></h1>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Cartopy represents data in Cartesian projected coordinates, meaning that 350 degrees longitude, is not just 10 degrees away from 0 degrees as it is when represented in spherical coordinates. This means that the plotting methods will not plot data between the last and the first longitude."><img alt="" src="../../_images/sphx_glr_wrapping_global_thumb.png" />
+<p><a class="reference internal" href="wrapping_global.html#sphx-glr-gallery-scalar-data-wrapping-global-py"><span class="std std-ref">Adding a cyclic point to help with wrapping of global data</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Adding a cyclic point to help with wrapping of global data</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to colour geometries based on a data array.  This functionality is available since Cartopy 0.23."><img alt="" src="../../_images/sphx_glr_geometry_data_thumb.png" />
+<p><a class="reference internal" href="geometry_data.html#sphx-glr-gallery-scalar-data-geometry-data-py"><span class="std std-ref">Choropleth map: associating data with geometries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Choropleth map: associating data with geometries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example of adding contour labels to matplotlib contours."><img alt="" src="../../_images/sphx_glr_contour_labels_thumb.png" />
+<p><a class="reference internal" href="contour_labels.html#sphx-glr-gallery-scalar-data-contour-labels-py"><span class="std std-ref">Contour labels</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Contour labels</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the difference between transforming the points before/after generating the contours. It uses the transform_first keyword argument to indicate that Cartopy should transform the points before calling the contouring algorithm, which can have a significant impact on speed (it is much faster to transform points than it is to transform patches). This does have a negative impact on the wrapped coordinates as one can see in the second axes that the data does not extend to the full global extent."><img alt="" src="../../_images/sphx_glr_contour_transforms_thumb.png" />
+<p><a class="reference internal" href="contour_transforms.html#sphx-glr-gallery-scalar-data-contour-transforms-py"><span class="std std-ref">Contour transform options</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Contour transform options</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example of contourf on manufactured data."><img alt="" src="../../_images/sphx_glr_waves_thumb.png" />
+<p><a class="reference internal" href="waves.html#sphx-glr-gallery-scalar-data-waves-py"><span class="std std-ref">Filled contours</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Filled contours</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Demonstrates cartopy&#x27;s ability to draw map tiles which are downloaded on demand from the Google tile server. Internally these tiles are then combined into a single image and displayed in the cartopy GeoAxes."><img alt="" src="../../_images/sphx_glr_eyja_volcano_thumb.png" />
+<p><a class="reference internal" href="eyja_volcano.html#sphx-glr-gallery-scalar-data-eyja-volcano-py"><span class="std std-ref">Map tile acquisition</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Map tile acquisition</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The National Oceanic and Atmospheric Administration (NOAA) monitors the solar wind conditions using the ACE spacecraft orbiting close to the L1 Lagrangian point of the Sun-Earth system. This data is fed into the OVATION-Prime model to forecast the probability of visible aurora at various locations on Earth. Every five minutes a new forecast is published for the coming 30 minutes. The data is provided as a 360 by 181 grid of probabilities in percent of visible aurora. The data spaced equally in degrees from 0 to 359 and -90 to 90."><img alt="" src="../../_images/sphx_glr_aurora_forecast_thumb.png" />
+<p><a class="reference internal" href="aurora_forecast.html#sphx-glr-gallery-scalar-data-aurora-forecast-py"><span class="std std-ref">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="When plotting raster data onto a map with imshow, we need to first set the extent of the map so the reprojection is done correctly."><img alt="" src="../../_images/sphx_glr_raster_reprojections_thumb.png" />
+<p><a class="reference internal" href="raster_reprojections.html#sphx-glr-gallery-scalar-data-raster-reprojections-py"><span class="std std-ref">Raster reprojections</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Raster reprojections</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates Cartopy&#x27;s ability to project images into the desired projection on-the-fly. The image itself is retrieved from a URL and is loaded directly into memory without storing it intermediately into a file. It represents pre-processed data from the Spinning Enhanced Visible and Infrared Imager onboard Meteosat Second Generation, which has been put into an image in the data&#x27;s native Geostationary coordinate system - it is then projected by cartopy into a global Miller map."><img alt="" src="../../_images/sphx_glr_geostationary_thumb.png" />
+<p><a class="reference internal" href="geostationary.html#sphx-glr-gallery-scalar-data-geostationary-py"><span class="std std-ref">Reprojecting images from a Geostationary projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Reprojecting images from a Geostationary projection</div>
+</div></div><div class="toctree-wrapper compound">
+</div>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../lines_and_polygons/tissot.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tissot’s Indicatrix</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="wrapping_global.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Adding a cyclic point to help with wrapping of global data</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/gallery/scalar_data/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="../../copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2025 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
