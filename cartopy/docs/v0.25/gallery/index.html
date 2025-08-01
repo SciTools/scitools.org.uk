@@ -1,0 +1,743 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Gallery &#8212; cartopy 0.25.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=d8dd0411"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/index';</script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="copyright" title="Copyright" href="../copyright.html" />
+    <link rel="next" title="Lines and polygons" href="lines_and_polygons/index.html" />
+    <link rel="prev" title="Credits" href="../contributors.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.25.0" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.25.0 documentation - Home"/>
+    <img src="../_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.25.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="lines_and_polygons/index.html">Lines and polygons</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/always_circular_stereo.html">Custom Boundary Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/feature_creation.html">Feature Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/features.html">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/global_map.html">Global Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/hurricane_katrina.html">Hurricane Katrina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/nightshade.html">Nightshade feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/ocean_bathymetry.html">Ocean bathymetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/rotated_pole.html">Rotated pole boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/effects_of_the_ellipse.html">The effect of badly referencing an ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lines_and_polygons/tissot.html">Tissot’s Indicatrix</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="scalar_data/index.html">Scalar data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/wrapping_global.html">Adding a cyclic point to help with wrapping of global data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/geometry_data.html">Choropleth map: associating data with geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/contour_labels.html">Contour labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/contour_transforms.html">Contour transform options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/waves.html">Filled contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/eyja_volcano.html">Map tile acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/aurora_forecast.html">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/raster_reprojections.html">Raster reprojections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scalar_data/geostationary.html">Reprojecting images from a Geostationary projection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="vector_data/index.html">Vector data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="vector_data/arrows.html">Arrows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector_data/barbs.html">Barbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector_data/regridding_arrows.html">Regridding vectors with quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vector_data/streamplot.html">Streamplot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="web_services/index.html">Web services</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="web_services/reprojected_wmts.html">Displaying WMTS tiled map data on an arbitrary projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_services/wms.html">Interactive WMS (Web Map Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_services/wmts.html">Interactive WMTS (Web Map Tile Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_services/wmts_time.html">Web Map Tile Service time dimension demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="web_services/image_tiles.html">Web tile imagery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="gridlines_and_labels/index.html">Gridlines and labels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="gridlines_and_labels/map_latitudes.html">Aligning Cartopy and Matplotlib axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gridlines_and_labels/gridliner.html">Gridlines and tick labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="gridlines_and_labels/tick_labels.html">Tick Labels</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="miscellanea/index.html">Miscellanea</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/animate_surface.html">Animating a gridded surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/favicon.html">Cartopy Favicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/logo.html">Cartopy Logo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/utm_all_zones.html">Displaying all 60 zones of the UTM projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/eccentric_ellipse.html">Displaying data on an eccentric ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/star_shaped_boundary.html">Modifying the boundary/neatline of a map in cartopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/tube_stations.html">Tube Stations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/un_flag.html">UN Flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="miscellanea/axes_grid_basic.html">Using Cartopy and AxesGrid toolkit</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Gallery</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="gallery">
+<h1>Gallery<a class="headerlink" href="#gallery" title="Link to this heading">#</a></h1>
+<p>The following examples show off the functionality of Cartopy. They
+illustrate the kinds of things you can do with this library. For
+more examples, tutorials, and guides on how to use Cartopy, see
+the <a class="reference internal" href="../getting_started/index.html"><span class="doc">getting started</span></a> section.</p>
+<div class="sphx-glr-thumbnails"></div><section id="lines-and-polygons">
+<h2>Lines and polygons<a class="headerlink" href="#lines-and-polygons" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how a custom shape geometry may be used instead of the projection&#x27;s default boundary."><img alt="" src="../_images/sphx_glr_always_circular_stereo_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/always_circular_stereo.html#sphx-glr-gallery-lines-and-polygons-always-circular-stereo-py"><span class="std std-ref">Custom Boundary Shape</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Custom Boundary Shape</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example manually instantiates a cartopy.feature.NaturalEarthFeature to access administrative boundaries (states and provinces)."><img alt="" src="../_images/sphx_glr_feature_creation_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/feature_creation.html#sphx-glr-gallery-lines-and-polygons-feature-creation-py"><span class="std std-ref">Feature Creation</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Feature Creation</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A demonstration of some of the built-in Natural Earth features found in cartopy."><img alt="" src="../_images/sphx_glr_features_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/features.html#sphx-glr-gallery-lines-and-polygons-features-py"><span class="std std-ref">Features</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Features</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example of a simple map that compares Geodetic and Plate Carree lines between two locations."><img alt="" src="../_images/sphx_glr_global_map_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/global_map.html#sphx-glr-gallery-lines-and-polygons-global-map-py"><span class="std std-ref">Global Map</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Global Map</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example uses the power of Shapely to illustrate states that are likely to have been significantly impacted by Hurricane Katrina."><img alt="" src="../_images/sphx_glr_hurricane_katrina_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/hurricane_katrina.html#sphx-glr-gallery-lines-and-polygons-hurricane-katrina-py"><span class="std std-ref">Hurricane Katrina</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Hurricane Katrina</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Draws a polygon where there is no sunlight for the given datetime."><img alt="" src="../_images/sphx_glr_nightshade_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/nightshade.html#sphx-glr-gallery-lines-and-polygons-nightshade-py"><span class="std std-ref">Nightshade feature</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Nightshade feature</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Produces a map of ocean seafloor depth, demonstrating the cartopy.io.shapereader.Reader interface. The data is a series of 10m resolution nested polygons obtained from Natural Earth, derived from the NASA SRTM Plus product. Since the dataset contains a zipfile with multiple shapefiles representing different depths, the example demonstrates manually downloading and reading them with the general shapereader interface, instead of the specialized cartopy.feature.NaturalEarthFeature interface."><img alt="" src="../_images/sphx_glr_ocean_bathymetry_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/ocean_bathymetry.html#sphx-glr-gallery-lines-and-polygons-ocean-bathymetry-py"><span class="std std-ref">Ocean bathymetry</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Ocean bathymetry</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A demonstration of the way a box is warped when it is defined in a rotated pole coordinate system."><img alt="" src="../_images/sphx_glr_rotated_pole_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/rotated_pole.html#sphx-glr-gallery-lines-and-polygons-rotated-pole-py"><span class="std std-ref">Rotated pole boxes</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Rotated pole boxes</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the effect of referencing your data to an incorrect ellipse."><img alt="" src="../_images/sphx_glr_effects_of_the_ellipse_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/effects_of_the_ellipse.html#sphx-glr-gallery-lines-and-polygons-effects-of-the-ellipse-py"><span class="std std-ref">The effect of badly referencing an ellipse</span></a></p>
+  <div class="sphx-glr-thumbnail-title">The effect of badly referencing an ellipse</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Visualize Tissot&#x27;s indicatrix on a map."><img alt="" src="../_images/sphx_glr_tissot_thumb.png" />
+<p><a class="reference internal" href="lines_and_polygons/tissot.html#sphx-glr-gallery-lines-and-polygons-tissot-py"><span class="std std-ref">Tissot’s Indicatrix</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Tissot's Indicatrix</div>
+</div></div></section>
+<section id="scalar-data">
+<h2>Scalar data<a class="headerlink" href="#scalar-data" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Cartopy represents data in Cartesian projected coordinates, meaning that 350 degrees longitude, is not just 10 degrees away from 0 degrees as it is when represented in spherical coordinates. This means that the plotting methods will not plot data between the last and the first longitude."><img alt="" src="../_images/sphx_glr_wrapping_global_thumb.png" />
+<p><a class="reference internal" href="scalar_data/wrapping_global.html#sphx-glr-gallery-scalar-data-wrapping-global-py"><span class="std std-ref">Adding a cyclic point to help with wrapping of global data</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Adding a cyclic point to help with wrapping of global data</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example shows how to colour geometries based on a data array.  This functionality is available since Cartopy 0.23."><img alt="" src="../_images/sphx_glr_geometry_data_thumb.png" />
+<p><a class="reference internal" href="scalar_data/geometry_data.html#sphx-glr-gallery-scalar-data-geometry-data-py"><span class="std std-ref">Choropleth map: associating data with geometries</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Choropleth map: associating data with geometries</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example of adding contour labels to matplotlib contours."><img alt="" src="../_images/sphx_glr_contour_labels_thumb.png" />
+<p><a class="reference internal" href="scalar_data/contour_labels.html#sphx-glr-gallery-scalar-data-contour-labels-py"><span class="std std-ref">Contour labels</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Contour labels</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the difference between transforming the points before/after generating the contours. It uses the transform_first keyword argument to indicate that Cartopy should transform the points before calling the contouring algorithm, which can have a significant impact on speed (it is much faster to transform points than it is to transform patches). This does have a negative impact on the wrapped coordinates as one can see in the second axes that the data does not extend to the full global extent."><img alt="" src="../_images/sphx_glr_contour_transforms_thumb.png" />
+<p><a class="reference internal" href="scalar_data/contour_transforms.html#sphx-glr-gallery-scalar-data-contour-transforms-py"><span class="std std-ref">Contour transform options</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Contour transform options</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="An example of contourf on manufactured data."><img alt="" src="../_images/sphx_glr_waves_thumb.png" />
+<p><a class="reference internal" href="scalar_data/waves.html#sphx-glr-gallery-scalar-data-waves-py"><span class="std std-ref">Filled contours</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Filled contours</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Demonstrates cartopy&#x27;s ability to draw map tiles which are downloaded on demand from the Google tile server. Internally these tiles are then combined into a single image and displayed in the cartopy GeoAxes."><img alt="" src="../_images/sphx_glr_eyja_volcano_thumb.png" />
+<p><a class="reference internal" href="scalar_data/eyja_volcano.html#sphx-glr-gallery-scalar-data-eyja-volcano-py"><span class="std std-ref">Map tile acquisition</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Map tile acquisition</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The National Oceanic and Atmospheric Administration (NOAA) monitors the solar wind conditions using the ACE spacecraft orbiting close to the L1 Lagrangian point of the Sun-Earth system. This data is fed into the OVATION-Prime model to forecast the probability of visible aurora at various locations on Earth. Every five minutes a new forecast is published for the coming 30 minutes. The data is provided as a 360 by 181 grid of probabilities in percent of visible aurora. The data spaced equally in degrees from 0 to 359 and -90 to 90."><img alt="" src="../_images/sphx_glr_aurora_forecast_thumb.png" />
+<p><a class="reference internal" href="scalar_data/aurora_forecast.html#sphx-glr-gallery-scalar-data-aurora-forecast-py"><span class="std std-ref">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="When plotting raster data onto a map with imshow, we need to first set the extent of the map so the reprojection is done correctly."><img alt="" src="../_images/sphx_glr_raster_reprojections_thumb.png" />
+<p><a class="reference internal" href="scalar_data/raster_reprojections.html#sphx-glr-gallery-scalar-data-raster-reprojections-py"><span class="std std-ref">Raster reprojections</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Raster reprojections</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates Cartopy&#x27;s ability to project images into the desired projection on-the-fly. The image itself is retrieved from a URL and is loaded directly into memory without storing it intermediately into a file. It represents pre-processed data from the Spinning Enhanced Visible and Infrared Imager onboard Meteosat Second Generation, which has been put into an image in the data&#x27;s native Geostationary coordinate system - it is then projected by cartopy into a global Miller map."><img alt="" src="../_images/sphx_glr_geostationary_thumb.png" />
+<p><a class="reference internal" href="scalar_data/geostationary.html#sphx-glr-gallery-scalar-data-geostationary-py"><span class="std std-ref">Reprojecting images from a Geostationary projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Reprojecting images from a Geostationary projection</div>
+</div></div></section>
+<section id="vector-data">
+<h2>Vector data<a class="headerlink" href="#vector-data" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Plotting arrows."><img alt="" src="../_images/sphx_glr_arrows_thumb.png" />
+<p><a class="reference internal" href="vector_data/arrows.html#sphx-glr-gallery-vector-data-arrows-py"><span class="std std-ref">Arrows</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Arrows</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Plotting barbs."><img alt="" src="../_images/sphx_glr_barbs_thumb.png" />
+<p><a class="reference internal" href="vector_data/barbs.html#sphx-glr-gallery-vector-data-barbs-py"><span class="std std-ref">Barbs</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Barbs</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the regridding functionality in quiver (there exists equivalent functionality in cartopy.mpl.geoaxes.GeoAxes.barbs)."><img alt="" src="../_images/sphx_glr_regridding_arrows_thumb.png" />
+<p><a class="reference internal" href="vector_data/regridding_arrows.html#sphx-glr-gallery-vector-data-regridding-arrows-py"><span class="std std-ref">Regridding vectors with quiver</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Regridding vectors with quiver</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Generating a vector-based streamplot."><img alt="" src="../_images/sphx_glr_streamplot_thumb.png" />
+<p><a class="reference internal" href="vector_data/streamplot.html#sphx-glr-gallery-vector-data-streamplot-py"><span class="std std-ref">Streamplot</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Streamplot</div>
+</div></div></section>
+<section id="web-services">
+<h2>Web services<a class="headerlink" href="#web-services" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example displays imagery from a web map tile service on two different projections, one of which is not provided by the service."><img alt="" src="../_images/sphx_glr_reprojected_wmts_thumb.png" />
+<p><a class="reference internal" href="web_services/reprojected_wmts.html#sphx-glr-gallery-web-services-reprojected-wmts-py"><span class="std std-ref">Displaying WMTS tiled map data on an arbitrary projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Displaying WMTS tiled map data on an arbitrary projection</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the interactive pan and zoom capability supported by an OGC web services Web Map Service (WMS) aware axes."><img alt="" src="../_images/sphx_glr_wms_thumb.png" />
+<p><a class="reference internal" href="web_services/wms.html#sphx-glr-gallery-web-services-wms-py"><span class="std std-ref">Interactive WMS (Web Map Service)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Interactive WMS (Web Map Service)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the interactive pan and zoom capability supported by an OGC web services Web Map Tile Service (WMTS) aware axes."><img alt="" src="../_images/sphx_glr_wmts_thumb.png" />
+<p><a class="reference internal" href="web_services/wmts.html#sphx-glr-gallery-web-services-wmts-py"><span class="std std-ref">Interactive WMTS (Web Map Tile Service)</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Interactive WMTS (Web Map Tile Service)</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example further demonstrates WMTS support within cartopy. Optional keyword arguments can be supplied to the OGC WMTS &#x27;gettile&#x27; method. This allows for the specification of the &#x27;time&#x27; dimension for a WMTS layer which supports it."><img alt="" src="../_images/sphx_glr_wmts_time_thumb.png" />
+<p><a class="reference internal" href="web_services/wmts_time.html#sphx-glr-gallery-web-services-wmts-time-py"><span class="std std-ref">Web Map Tile Service time dimension demonstration</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Web Map Tile Service time dimension demonstration</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how imagery from a tile providing web service can be accessed."><img alt="" src="../_images/sphx_glr_image_tiles_thumb.png" />
+<p><a class="reference internal" href="web_services/image_tiles.html#sphx-glr-gallery-web-services-image-tiles-py"><span class="std std-ref">Web tile imagery</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Web tile imagery</div>
+</div></div></section>
+<section id="gridlines-and-labels">
+<h2>Gridlines and labels<a class="headerlink" href="#gridlines-and-labels" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Sometimes it is useful to line up a standard Matplotlib axes with a Cartopy map, for example when plotting zonal mean data next to a global contour plot.  This example demonstrates one way to do that for projections where latitude lines are horizontal."><img alt="" src="../_images/sphx_glr_map_latitudes_thumb.png" />
+<p><a class="reference internal" href="gridlines_and_labels/map_latitudes.html#sphx-glr-gallery-gridlines-and-labels-map-latitudes-py"><span class="std std-ref">Aligning Cartopy and Matplotlib axes</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Aligning Cartopy and Matplotlib axes</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="These examples demonstrate how to quickly add longitude and latitude gridlines and tick labels on a non-rectangular projection."><img alt="" src="../_images/sphx_glr_gridliner_thumb.png" />
+<p><a class="reference internal" href="gridlines_and_labels/gridliner.html#sphx-glr-gallery-gridlines-and-labels-gridliner-py"><span class="std std-ref">Gridlines and tick labels</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Gridlines and tick labels</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates adding tick labels to maps on rectangular projections using special tick formatters."><img alt="" src="../_images/sphx_glr_tick_labels_thumb.png" />
+<p><a class="reference internal" href="gridlines_and_labels/tick_labels.html#sphx-glr-gallery-gridlines-and-labels-tick-labels-py"><span class="std std-ref">Tick Labels</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Tick Labels</div>
+</div></div></section>
+<section id="miscellanea">
+<h2>Miscellanea<a class="headerlink" href="#miscellanea" title="Link to this heading">#</a></h2>
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to animate gridded data using pcolormesh()."><img alt="" src="../_images/sphx_glr_animate_surface_thumb.gif" />
+<p><a class="reference internal" href="miscellanea/animate_surface.html#sphx-glr-gallery-miscellanea-animate-surface-py"><span class="std std-ref">Animating a gridded surface</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Animating a gridded surface</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The actual code to generate cartopy&#x27;s favicon."><img alt="" src="../_images/sphx_glr_favicon_thumb.png" />
+<p><a class="reference internal" href="miscellanea/favicon.html#sphx-glr-gallery-miscellanea-favicon-py"><span class="std std-ref">Cartopy Favicon</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Cartopy Favicon</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="The actual code to produce cartopy&#x27;s logo."><img alt="" src="../_images/sphx_glr_logo_thumb.png" />
+<p><a class="reference internal" href="miscellanea/logo.html#sphx-glr-gallery-miscellanea-logo-py"><span class="std std-ref">Cartopy Logo</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Cartopy Logo</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example displays all 60 zones of the Universal Transverse Mercator projection next to each other in a figure."><img alt="" src="../_images/sphx_glr_utm_all_zones_thumb.png" />
+<p><a class="reference internal" href="miscellanea/utm_all_zones.html#sphx-glr-gallery-miscellanea-utm-all-zones-py"><span class="std std-ref">Displaying all 60 zones of the UTM projection</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Displaying all 60 zones of the UTM projection</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates plotting data on an eccentric ellipse. The data plotted is a topography map of the asteroid Vesta. The map is actually an image, which is defined on an equirectangluar projection relative to an ellipse with a semi-major axis of 285 km and a semi-minor axis of 229 km. The image is reprojected on-the-fly onto a geostationary projection with matching eccentricity."><img alt="" src="../_images/sphx_glr_eccentric_ellipse_thumb.png" />
+<p><a class="reference internal" href="miscellanea/eccentric_ellipse.html#sphx-glr-gallery-miscellanea-eccentric-ellipse-py"><span class="std std-ref">Displaying data on an eccentric ellipse</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Displaying data on an eccentric ellipse</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to modify the boundary/neatline of an axes. We construct a star with coordinates in a Plate Carree coordinate system, and use the star as the outline of the map."><img alt="" src="../_images/sphx_glr_star_shaped_boundary_thumb.png" />
+<p><a class="reference internal" href="miscellanea/star_shaped_boundary.html#sphx-glr-gallery-miscellanea-star-shaped-boundary-py"><span class="std std-ref">Modifying the boundary/neatline of a map in cartopy</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Modifying the boundary/neatline of a map in cartopy</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Produces a map showing London Underground station locations with high resolution background imagery provided by OpenStreetMap."><img alt="" src="../_images/sphx_glr_tube_stations_thumb.png" />
+<p><a class="reference internal" href="miscellanea/tube_stations.html#sphx-glr-gallery-miscellanea-tube-stations-py"><span class="std std-ref">Tube Stations</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Tube Stations</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="A demonstration of the power of Matplotlib combined with cartopy&#x27;s Azimuthal Equidistant projection to reproduce the UN flag."><img alt="" src="../_images/sphx_glr_un_flag_thumb.png" />
+<p><a class="reference internal" href="miscellanea/un_flag.html#sphx-glr-gallery-miscellanea-un-flag-py"><span class="std std-ref">UN Flag</span></a></p>
+  <div class="sphx-glr-thumbnail-title">UN Flag</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to use cartopy GeoAxes with AxesGrid from the mpl_toolkits.axes_grid1. The script constructs an axes_class kwarg with Plate Carree projection and passes it to the AxesGrid instance. The AxesGrid built-in tick labelling is not used, and instead a standard procedure of creating grid lines is used. Then some fake data is plotted."><img alt="" src="../_images/sphx_glr_axes_grid_basic_thumb.png" />
+<p><a class="reference internal" href="miscellanea/axes_grid_basic.html#sphx-glr-gallery-miscellanea-axes-grid-basic-py"><span class="std std-ref">Using Cartopy and AxesGrid toolkit</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Using Cartopy and AxesGrid toolkit</div>
+</div></div><div class="toctree-wrapper compound">
+</div>
+<div class="sphx-glr-footer sphx-glr-footer-gallery docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/46b4cb42d5bb56cc39e2b5b2b520b38d/gallery_python.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">gallery_python.zip</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/fcaddee3a42ae2e2c41e00ae08d70347/gallery_jupyter.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">all</span> <span class="pre">examples</span> <span class="pre">in</span> <span class="pre">Jupyter</span> <span class="pre">notebooks:</span> <span class="pre">gallery_jupyter.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../contributors.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Credits</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="lines_and_polygons/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Lines and polygons</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lines-and-polygons">Lines and polygons</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scalar-data">Scalar data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-data">Vector data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#web-services">Web services</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gridlines-and-labels">Gridlines and labels</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellanea">Miscellanea</a></li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/gallery/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="../copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2025 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

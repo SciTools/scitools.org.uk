@@ -1,0 +1,1037 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>cartopy.mpl.gridliner.Gridliner &#8212; cartopy 0.25.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d8dd0411"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'reference/generated/cartopy.mpl.gridliner.Gridliner';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="cartopy.mpl.ticker.LongitudeFormatter" href="cartopy.mpl.ticker.LongitudeFormatter.html" />
+    <link rel="prev" title="cartopy.mpl.geoaxes.InterProjectionTransform" href="cartopy.mpl.geoaxes.InterProjectionTransform.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.25.0" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.25.0 documentation - Home"/>
+    <img src="../../_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.25.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../gallery/index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../crs.html">Coordinate reference systems (CRS)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.CRS.html">cartopy.crs.CRS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.Globe.html">cartopy.crs.Globe</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.Projection.html">cartopy.crs.Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.Geodetic.html">cartopy.crs.Geodetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.Geocentric.html">cartopy.crs.Geocentric</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.RotatedGeodetic.html">cartopy.crs.RotatedGeodetic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.crs.epsg.html">cartopy.crs.epsg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.geodesic.Geodesic.html">cartopy.geodesic.Geodesic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../projections.html">Cartopy projection list</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../io.html">Input/output capabilities (cartopy.io)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.Reader.html">cartopy.io.shapereader.Reader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.BasicReader.html">cartopy.io.shapereader.BasicReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.FionaReader.html">cartopy.io.shapereader.FionaReader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.Record.html">cartopy.io.shapereader.Record</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.FionaRecord.html">cartopy.io.shapereader.FionaRecord</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.natural_earth.html">cartopy.io.shapereader.natural_earth</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.NEShpDownloader.html">cartopy.io.shapereader.NEShpDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.gshhs.html">cartopy.io.shapereader.gshhs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.shapereader.GSHHSShpDownloader.html">cartopy.io.shapereader.GSHHSShpDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_nest.Img.html">cartopy.io.img_nest.Img</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_nest.ImageCollection.html">cartopy.io.img_nest.ImageCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_nest.NestedImageCollection.html">cartopy.io.img_nest.NestedImageCollection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.OSM.html">cartopy.io.img_tiles.OSM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.GoogleTiles.html">cartopy.io.img_tiles.GoogleTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.GoogleWTS.html">cartopy.io.img_tiles.GoogleWTS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.MapQuestOSM.html">cartopy.io.img_tiles.MapQuestOSM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.MapQuestOpenAerial.html">cartopy.io.img_tiles.MapQuestOpenAerial</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.MapboxStyleTiles.html">cartopy.io.img_tiles.MapboxStyleTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.MapboxTiles.html">cartopy.io.img_tiles.MapboxTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.OrdnanceSurvey.html">cartopy.io.img_tiles.OrdnanceSurvey</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.QuadtreeTiles.html">cartopy.io.img_tiles.QuadtreeTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.StadiaMapsTiles.html">cartopy.io.img_tiles.StadiaMapsTiles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.img_tiles.Stamen.html">cartopy.io.img_tiles.Stamen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.ogc_clients.WFSGeometrySource.html">cartopy.io.ogc_clients.WFSGeometrySource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.ogc_clients.WMSRasterSource.html">cartopy.io.ogc_clients.WMSRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.ogc_clients.WMTSRasterSource.html">cartopy.io.ogc_clients.WMTSRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.SRTM1Source.html">cartopy.io.srtm.SRTM1Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.SRTM3Source.html">cartopy.io.srtm.SRTM3Source</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.SRTMDownloader.html">cartopy.io.srtm.SRTMDownloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.read_SRTM.html">cartopy.io.srtm.read_SRTM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.read_SRTM1.html">cartopy.io.srtm.read_SRTM1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.read_SRTM3.html">cartopy.io.srtm.read_SRTM3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.srtm.add_shading.html">cartopy.io.srtm.add_shading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.Downloader.html">cartopy.io.Downloader</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.DownloadWarning.html">cartopy.io.DownloadWarning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.LocatedImage.html">cartopy.io.LocatedImage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.RasterSource.html">cartopy.io.RasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.RasterSourceContainer.html">cartopy.io.RasterSourceContainer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.PostprocessedRasterSource.html">cartopy.io.PostprocessedRasterSource</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.io.fh_getter.html">cartopy.io.fh_getter</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../matplotlib.html">Matplotlib interface (cartopy.mpl)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.geoaxes.GeoAxes.html">cartopy.mpl.geoaxes.GeoAxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.geoaxes.GeoAxesSubplot.html">cartopy.mpl.geoaxes.GeoAxesSubplot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.geoaxes.GeoSpine.html">cartopy.mpl.geoaxes.GeoSpine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.geoaxes.InterProjectionTransform.html">cartopy.mpl.geoaxes.InterProjectionTransform</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">cartopy.mpl.gridliner.Gridliner</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.ticker.LongitudeFormatter.html">cartopy.mpl.ticker.LongitudeFormatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.ticker.LatitudeFormatter.html">cartopy.mpl.ticker.LatitudeFormatter</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.ticker.LongitudeLocator.html">cartopy.mpl.ticker.LongitudeLocator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.ticker.LatitudeLocator.html">cartopy.mpl.ticker.LatitudeLocator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.feature_artist.FeatureArtist.html">cartopy.mpl.feature_artist.FeatureArtist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.slippy_image_artist.SlippyImageArtist.html">cartopy.mpl.slippy_image_artist.SlippyImageArtist</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.patch.geos_to_path.html">cartopy.mpl.patch.geos_to_path</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.patch.path_segments.html">cartopy.mpl.patch.path_segments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.patch.path_to_geos.html">cartopy.mpl.patch.path_to_geos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.path.path_to_shapely.html">cartopy.mpl.path.path_to_shapely</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.mpl.path.shapely_to_path.html">cartopy.mpl.path.shapely_to_path</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../feature.html">Feature interface (cartopy.feature)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.COLORS.html">cartopy.feature.COLORS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.auto_scaler.html">cartopy.feature.auto_scaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.BORDERS.html">cartopy.feature.BORDERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.STATES.html">cartopy.feature.STATES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.COASTLINE.html">cartopy.feature.COASTLINE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.LAKES.html">cartopy.feature.LAKES</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.LAND.html">cartopy.feature.LAND</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.OCEAN.html">cartopy.feature.OCEAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.RIVERS.html">cartopy.feature.RIVERS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.AdaptiveScaler.html">cartopy.feature.AdaptiveScaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.Feature.html">cartopy.feature.Feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.GSHHSFeature.html">cartopy.feature.GSHHSFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.NaturalEarthFeature.html">cartopy.feature.NaturalEarthFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.Scaler.html">cartopy.feature.Scaler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.ShapelyFeature.html">cartopy.feature.ShapelyFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.WFSFeature.html">cartopy.feature.WFSFeature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.feature.nightshade.Nightshade.html">cartopy.feature.nightshade.Nightshade</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../transformations.html">Image and vector transformations</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.img_transform.mesh_projection.html">cartopy.img_transform.mesh_projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.img_transform.regrid.html">cartopy.img_transform.regrid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.img_transform.warp_array.html">cartopy.img_transform.warp_array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.img_transform.warp_img.html">cartopy.img_transform.warp_img</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.vector_transform.vector_scalar_to_grid.html">cartopy.vector_transform.vector_scalar_to_grid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.util.add_cyclic_point.html">cartopy.util.add_cyclic_point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.util.add_cyclic.html">cartopy.util.add_cyclic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.trace.project_linear.html">cartopy.trace.project_linear</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.trace.Interpolator.html">cartopy.trace.Interpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.trace.CartesianInterpolator.html">cartopy.trace.CartesianInterpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.trace.SphericalInterpolator.html">cartopy.trace.SphericalInterpolator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cartopy.trace.LineAccumulator.html">cartopy.trace.LineAccumulator</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">Cartopy configuration</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">API reference</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../matplotlib.html" class="nav-link">Matplotlib interface (cartopy.mpl)</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">cartopy.mpl.gridliner.Gridliner</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="cartopy-mpl-gridliner-gridliner">
+<h1>cartopy.mpl.gridliner.Gridliner<a class="headerlink" href="#cartopy-mpl-gridliner-gridliner" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">cartopy.mpl.gridliner.</span></span><span class="sig-name descname"><span class="pre">Gridliner</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">crs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">draw_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlocator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylocator</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collection_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">yformatter</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dms</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">x_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_inline</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylim</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotate_labels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xlabel_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ylabel_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">labels_bbox_style</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">xpadding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ypadding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">5</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">25</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">auto_update</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">formatter_kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/mpl/gridliner.html#Gridliner"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner" title="Link to this definition">#</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://matplotlib.org/stable/api/artist_api.html#matplotlib.artist.Artist" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Artist</span></code></a></p>
+<p>Artist used by <a class="reference internal" href="cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes.gridlines" title="cartopy.mpl.geoaxes.GeoAxes.gridlines"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes.gridlines()</span></code></a>
+to add gridlines and tick labels to a map.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>axes</strong> – The <a class="reference internal" href="cartopy.mpl.geoaxes.GeoAxes.html#cartopy.mpl.geoaxes.GeoAxes" title="cartopy.mpl.geoaxes.GeoAxes"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.geoaxes.GeoAxes</span></code></a> object to be drawn on.</p></li>
+<li><p><strong>crs</strong> – The <a class="reference internal" href="cartopy.crs.CRS.html#cartopy.crs.CRS" title="cartopy.crs.CRS"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.crs.CRS</span></code></a> defining the coordinate system that
+the gridlines are drawn in.</p></li>
+<li><p><strong>draw_labels</strong> (<em>optional</em>) – <p>Toggle whether to draw labels. For finer control, attributes of
+<a class="reference internal" href="#cartopy.mpl.gridliner.Gridliner" title="cartopy.mpl.gridliner.Gridliner"><code class="xref py py-class docutils literal notranslate"><span class="pre">Gridliner</span></code></a> may be modified individually. Defaults to False.</p>
+<ul>
+<li><p>string: “x” or “y” to only draw labels of the respective
+coordinate in the CRS.</p></li>
+<li><p>list: Can contain the side identifiers and/or coordinate
+types to select which ones to draw.
+For all labels one would use
+<code class="xref py py-obj docutils literal notranslate"><span class="pre">[&quot;x&quot;,</span> <span class="pre">&quot;y&quot;,</span> <span class="pre">&quot;top&quot;,</span> <span class="pre">&quot;bottom&quot;,</span> <span class="pre">&quot;left&quot;,</span> <span class="pre">&quot;right&quot;,</span> <span class="pre">&quot;geo&quot;]</span></code>.</p></li>
+<li><p>dict: The keys are the side identifiers
+(“top”, “bottom”, “left”, “right”) and the values are the
+coordinates (“x”, “y”); this way you can precisely
+decide what kind of label to draw and where.
+For x labels on the bottom and y labels on the right you
+could pass in <code class="xref py py-obj docutils literal notranslate"><span class="pre">{&quot;bottom&quot;:</span> <span class="pre">&quot;x&quot;,</span> <span class="pre">&quot;left&quot;:</span> <span class="pre">&quot;y&quot;}</span></code>.</p></li>
+</ul>
+<p>Note that, by default, x and y labels are not drawn on left/right
+and top/bottom edges respectively, unless explicitly requested.</p>
+</p></li>
+<li><p><strong>xlocator</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be used
+to determine the locations of the gridlines in the x-coordinate of
+the given CRS. Defaults to None, which implies automatic locating
+of the gridlines.</p></li>
+<li><p><strong>ylocator</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Locator" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Locator</span></code></a> instance which will be used
+to determine the locations of the gridlines in the y-coordinate of
+the given CRS. Defaults to None, which implies automatic locating
+of the gridlines.</p></li>
+<li><p><strong>xformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for x-coordinate gridlines. It defaults to None, which implies the
+use of a <a class="reference internal" href="cartopy.mpl.ticker.LongitudeFormatter.html#cartopy.mpl.ticker.LongitudeFormatter" title="cartopy.mpl.ticker.LongitudeFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LongitudeFormatter</span></code></a> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>yformatter</strong> (<em>optional</em>) – A <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.ticker.Formatter</span></code></a> instance to format labels
+for y-coordinate gridlines. It defaults to None, which implies the
+use of a <a class="reference internal" href="cartopy.mpl.ticker.LatitudeFormatter.html#cartopy.mpl.ticker.LatitudeFormatter" title="cartopy.mpl.ticker.LatitudeFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">cartopy.mpl.ticker.LatitudeFormatter</span></code></a> initiated
+with the <code class="docutils literal notranslate"><span class="pre">dms</span></code> argument, if the crs is of
+<a class="reference internal" href="../projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree"><code class="xref py py-class docutils literal notranslate"><span class="pre">PlateCarree</span></code></a> type.</p></li>
+<li><p><strong>collection_kwargs</strong> (<em>optional</em>) – Dictionary controlling line properties, passed to
+<a class="reference external" href="https://matplotlib.org/stable/api/collections_api.html#matplotlib.collections.Collection" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">matplotlib.collections.Collection</span></code></a>. Defaults to None.</p></li>
+<li><p><strong>dms</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a>) – When default locators and formatters are used,
+ticks are able to stop on minutes and seconds if minutes
+is set to True, and not fraction of degrees.</p></li>
+<li><p><strong>x_inline</strong> (<em>optional</em>) – Toggle whether the x labels drawn should be inline.</p></li>
+<li><p><strong>y_inline</strong> (<em>optional</em>) – Toggle whether the y labels drawn should be inline.</p></li>
+<li><p><strong>auto_inline</strong> (<em>optional</em>) – Set x_inline and y_inline automatically based on projection.</p></li>
+<li><p><strong>xlim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. xlim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-xlim, +xlim).</p></li>
+<li><p><strong>ylim</strong> (<em>optional</em>) – Set a limit for the gridlines so that they do not go all the
+way to the edge of the boundary. ylim can be a single number or
+a (min, max) tuple. If a single number, the limits will be
+(-ylim, +ylim).</p></li>
+<li><p><strong>rotate_labels</strong> (<em>optional</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><em>str</em></a>) – <p>Allow the rotation of non-inline labels.</p>
+<ul>
+<li><p>False: Do not rotate the labels.</p></li>
+<li><p>True: Rotate the labels parallel to the gridlines.</p></li>
+<li><p>None: no rotation except for some projections (default).</p></li>
+<li><p>A float: Rotate labels by this value in degrees.</p></li>
+</ul>
+</p></li>
+<li><p><strong>xlabel_style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on x label creation
+for styling of the text labels.</p></li>
+<li><p><strong>ylabel_style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on y label creation
+for styling of the text labels.</p></li>
+<li><p><strong>labels_bbox_style</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a>) – bbox style for all text labels</p></li>
+<li><p><strong>xpadding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Padding for x labels. If negative, the labels are
+drawn inside the map.</p></li>
+<li><p><strong>ypadding</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Padding for y labels. If negative, the labels are
+drawn inside the map.</p></li>
+<li><p><strong>offset_angle</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><em>float</em></a>) – Difference of angle in degrees from 90 to define when
+a label must be flipped to be more readable.
+For example, a value of 10 makes a vertical top label to be
+flipped only at 100 degrees.</p></li>
+<li><p><strong>auto_update</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.13)"><em>bool</em></a><em>, </em><em>default=True</em>) – <p>Whether to redraw the gridlines and labels when the figure is
+updated.</p>
+<div class="deprecated">
+<p><span class="versionmodified deprecated">Deprecated since version 0.23: </span>In future the gridlines and labels will always be redrawn.</p>
+</div>
+</p></li>
+<li><p><strong>formatter_kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.13)"><em>dict</em></a><em>, </em><em>optional</em>) – Options passed to the default formatters.
+See <a class="reference internal" href="cartopy.mpl.ticker.LongitudeFormatter.html#cartopy.mpl.ticker.LongitudeFormatter" title="cartopy.mpl.ticker.LongitudeFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">LongitudeFormatter</span></code></a> and
+<a class="reference internal" href="cartopy.mpl.ticker.LatitudeFormatter.html#cartopy.mpl.ticker.LatitudeFormatter" title="cartopy.mpl.ticker.LatitudeFormatter"><code class="xref py py-class docutils literal notranslate"><span class="pre">LatitudeFormatter</span></code></a></p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The “x” and “y” labels for locators and formatters do not necessarily
+correspond to X and Y, but to the first and second coordinates of the
+specified CRS. For the common case of PlateCarree gridlines, these
+correspond to longitudes and latitudes. Depending on the projection
+used for the map, meridians and parallels can cross both the X axis and
+the Y axis.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.bottom_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bottom_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.bottom_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The bottom labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.bottom_labels">
+<span class="sig-name descname"><span class="pre">bottom_labels</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.bottom_labels" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw labels on the bottom of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.collection_kwargs">
+<span class="sig-name descname"><span class="pre">collection_kwargs</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.collection_kwargs" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary passed through to
+<code class="docutils literal notranslate"><span class="pre">matplotlib.collections.LineCollection</span></code> on grid line creation.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.draw">
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/mpl/gridliner.html#Gridliner.draw"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.draw" title="Link to this definition">#</a></dt>
+<dd><p>Draw the Artist (and its children) using the given renderer.</p>
+<p>This has no effect if the artist is not visible (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Artist.get_visible</span></code>
+returns False).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>renderer</strong> (<a class="reference external" href="https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.RendererBase" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RendererBase</span></code></a> subclass.)</p>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>This method is overridden in the Artist subclasses.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.geo_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">geo_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.geo_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The geo spine labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.geo_labels">
+<span class="sig-name descname"><span class="pre">geo_labels</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.geo_labels" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw labels near the geographic limits of the map.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.get_tightbbox">
+<span class="sig-name descname"><span class="pre">get_tightbbox</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">renderer</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/mpl/gridliner.html#Gridliner.get_tightbbox"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.get_tightbbox" title="Link to this definition">#</a></dt>
+<dd><p>Like <code class="xref py py-obj docutils literal notranslate"><span class="pre">Artist.get_window_extent</span></code>, but includes any clipping.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>renderer</strong> (<a class="reference external" href="https://matplotlib.org/stable/api/backend_bases_api.html#matplotlib.backend_bases.RendererBase" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">RendererBase</span></code></a> subclass, optional) – renderer that will be used to draw the figures (i.e.
+<code class="docutils literal notranslate"><span class="pre">fig.canvas.get_renderer()</span></code>)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Bbox</span></code> or None – The enclosing bounding box (in figure pixel coordinates).
+Returns None if clipping results in no intersection.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.get_visible_children">
+<span class="sig-name descname"><span class="pre">get_visible_children</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/cartopy/mpl/gridliner.html#Gridliner.get_visible_children"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.get_visible_children" title="Link to this definition">#</a></dt>
+<dd><p>Return a list of the visible child <code class="xref py py-obj docutils literal notranslate"><span class="pre">Artist</span></code>s.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.label_artists" title="Link to this definition">#</a></dt>
+<dd><p>All the labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.labels_bbox_style">
+<span class="sig-name descname"><span class="pre">labels_bbox_style</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.labels_bbox_style" title="Link to this definition">#</a></dt>
+<dd><p>bbox style for grid labels</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.left_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">left_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.left_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The left labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.left_labels">
+<span class="sig-name descname"><span class="pre">left_labels</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.left_labels" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw labels on the left hand side of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.n_steps">
+<span class="sig-name descname"><span class="pre">n_steps</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.n_steps" title="Link to this definition">#</a></dt>
+<dd><p>The number of interpolation points which are used to draw the
+gridlines.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.right_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">right_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.right_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The right labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.right_labels">
+<span class="sig-name descname"><span class="pre">right_labels</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.right_labels" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw labels on the right hand side of the map.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.set">
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">agg_filter=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">alpha=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">animated=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_box=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_on=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clip_path=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gid=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">in_layout=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">label=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mouseover=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">path_effects=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">picker=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rasterized=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sketch_params=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snap=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">transform=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">visible=&lt;UNSET&gt;</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">zorder=&lt;UNSET&gt;</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.set" title="Link to this definition">#</a></dt>
+<dd><p>Set multiple properties at once.</p>
+<p>Supported properties are</p>
+<dl class="simple">
+<dt>Properties:</dt><dd><p>agg_filter: a filter function, which takes a (m, n, 3) float array and a dpi value, and returns a (m, n, 3) array and two offsets from the bottom left corner of the image
+alpha: float or None
+animated: bool
+clip_box: <a class="reference external" href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxBase" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BboxBase</span></code></a> or None
+clip_on: bool
+clip_path: Patch or (Path, Transform) or None
+figure: <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Figure</span></code></a> or <a class="reference external" href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.SubFigure.html#matplotlib.figure.SubFigure" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">SubFigure</span></code></a>
+gid: str
+in_layout: bool
+label: object
+mouseover: bool
+path_effects: list of <code class="xref py py-obj docutils literal notranslate"><span class="pre">AbstractPathEffect</span></code>
+picker: None or bool or float or callable
+rasterized: bool
+sketch_params: (scale: float, length: float, randomness: float)
+snap: bool or None
+transform: <a class="reference external" href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Transform" title="(in Matplotlib v3.10.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Transform</span></code></a>
+url: str
+visible: bool
+zorder: float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.top_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">top_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.top_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The top labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.top_labels">
+<span class="sig-name descname"><span class="pre">top_labels</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.top_labels" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw labels on the top of the map.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.x_inline">
+<span class="sig-name descname"><span class="pre">x_inline</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.x_inline" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw x labels inline</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.x_inline_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">x_inline_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.x_inline_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate inline labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xformatter">
+<span class="sig-name descname"><span class="pre">xformatter</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xformatter" title="Link to this definition">#</a></dt>
+<dd><p>The <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></a> to use for the lon labels.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xlabel_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">xlabel_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlabel_artists" title="Link to this definition">#</a></dt>
+<dd><p>The x-coordinate labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xlabel_style">
+<span class="sig-name descname"><span class="pre">xlabel_style</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlabel_style" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on x label creation
+for styling of the text labels.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xline_artists">
+<span class="sig-name descname"><span class="pre">xline_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xline_artists" title="Link to this definition">#</a></dt>
+<dd><p>The x gridlines which were created at draw time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xlines">
+<span class="sig-name descname"><span class="pre">xlines</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xlines" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw the x gridlines.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.xpadding">
+<span class="sig-name descname"><span class="pre">xpadding</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.xpadding" title="Link to this definition">#</a></dt>
+<dd><p>The padding from the map edge to the x labels in points.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.y_inline">
+<span class="sig-name descname"><span class="pre">y_inline</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.y_inline" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw y labels inline</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.y_inline_label_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y_inline_label_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.y_inline_label_artists" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate inline labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.yformatter">
+<span class="sig-name descname"><span class="pre">yformatter</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.yformatter" title="Link to this definition">#</a></dt>
+<dd><p>The <a class="reference external" href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.Formatter" title="(in Matplotlib v3.10.5)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Formatter</span></code></a> to use for the lat labels.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.ylabel_artists">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ylabel_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylabel_artists" title="Link to this definition">#</a></dt>
+<dd><p>The y-coordinate labels which were created at draw time</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.ylabel_style">
+<span class="sig-name descname"><span class="pre">ylabel_style</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylabel_style" title="Link to this definition">#</a></dt>
+<dd><p>A dictionary passed through to <code class="docutils literal notranslate"><span class="pre">ax.text</span></code> on y label creation
+for styling of the text labels.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.yline_artists">
+<span class="sig-name descname"><span class="pre">yline_artists</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.yline_artists" title="Link to this definition">#</a></dt>
+<dd><p>The y gridlines which were created at draw time.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.ylines">
+<span class="sig-name descname"><span class="pre">ylines</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ylines" title="Link to this definition">#</a></dt>
+<dd><p>Whether to draw the y gridlines.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="cartopy.mpl.gridliner.Gridliner.ypadding">
+<span class="sig-name descname"><span class="pre">ypadding</span></span><a class="headerlink" href="#cartopy.mpl.gridliner.Gridliner.ypadding" title="Link to this definition">#</a></dt>
+<dd><p>The padding from the map edge to the y labels in points.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="cartopy.mpl.geoaxes.InterProjectionTransform.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">cartopy.mpl.geoaxes.InterProjectionTransform</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="cartopy.mpl.ticker.LongitudeFormatter.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">cartopy.mpl.ticker.LongitudeFormatter</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+<div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner"><code class="docutils literal notranslate"><span class="pre">Gridliner</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.bottom_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.bottom_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.bottom_labels"><code class="docutils literal notranslate"><span class="pre">Gridliner.bottom_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.collection_kwargs"><code class="docutils literal notranslate"><span class="pre">Gridliner.collection_kwargs</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.draw"><code class="docutils literal notranslate"><span class="pre">Gridliner.draw()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.geo_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.geo_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.geo_labels"><code class="docutils literal notranslate"><span class="pre">Gridliner.geo_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.get_tightbbox"><code class="docutils literal notranslate"><span class="pre">Gridliner.get_tightbbox()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.get_visible_children"><code class="docutils literal notranslate"><span class="pre">Gridliner.get_visible_children()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.labels_bbox_style"><code class="docutils literal notranslate"><span class="pre">Gridliner.labels_bbox_style</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.left_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.left_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.left_labels"><code class="docutils literal notranslate"><span class="pre">Gridliner.left_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.n_steps"><code class="docutils literal notranslate"><span class="pre">Gridliner.n_steps</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.right_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.right_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.right_labels"><code class="docutils literal notranslate"><span class="pre">Gridliner.right_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.set"><code class="docutils literal notranslate"><span class="pre">Gridliner.set()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.top_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.top_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.top_labels"><code class="docutils literal notranslate"><span class="pre">Gridliner.top_labels</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.x_inline"><code class="docutils literal notranslate"><span class="pre">Gridliner.x_inline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.x_inline_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.x_inline_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xformatter"><code class="docutils literal notranslate"><span class="pre">Gridliner.xformatter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xlabel_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.xlabel_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xlabel_style"><code class="docutils literal notranslate"><span class="pre">Gridliner.xlabel_style</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xline_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.xline_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xlines"><code class="docutils literal notranslate"><span class="pre">Gridliner.xlines</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.xpadding"><code class="docutils literal notranslate"><span class="pre">Gridliner.xpadding</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.y_inline"><code class="docutils literal notranslate"><span class="pre">Gridliner.y_inline</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.y_inline_label_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.y_inline_label_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.yformatter"><code class="docutils literal notranslate"><span class="pre">Gridliner.yformatter</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.ylabel_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.ylabel_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.ylabel_style"><code class="docutils literal notranslate"><span class="pre">Gridliner.ylabel_style</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.yline_artists"><code class="docutils literal notranslate"><span class="pre">Gridliner.yline_artists</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.ylines"><code class="docutils literal notranslate"><span class="pre">Gridliner.ylines</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cartopy.mpl.gridliner.Gridliner.ypadding"><code class="docutils literal notranslate"><span class="pre">Gridliner.ypadding</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/reference/generated/cartopy.mpl.gridliner.Gridliner.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="../../copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2025 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

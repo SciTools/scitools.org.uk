@@ -1,0 +1,756 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>UN Flag &#8212; cartopy 0.25.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=d8dd0411"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'gallery/miscellanea/un_flag';</script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="copyright" title="Copyright" href="../../copyright.html" />
+    <link rel="next" title="Using Cartopy and AxesGrid toolkit" href="axes_grid_basic.html" />
+    <link rel="prev" title="Tube Stations" href="tube_stations.html" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="0.25.0" />
+
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="PRAGMA" CONTENT="NO-CACHE">
+
+    <!-- Point to the *latest* version switcher. This will allow the latest versions to appear on older documentation. -->
+    <script type="text/javascript" src="https://scitools.org.uk/cartopy/docs/latest/_static/version_switch.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-3 navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/cartopy.png" class="logo__image only-light" alt="cartopy 0.25.0 documentation - Home"/>
+    <img src="../../_static/cartopy.png" class="logo__image only-dark pst-js-only" alt="cartopy 0.25.0 documentation - Home"/>
+  
+  
+</a></div>
+    
+  </div>
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../getting_started/index.html">
+    Getting started
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../index.html">
+    Gallery
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../installing.html">
+    Installation
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../reference/index.html">
+    API reference
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../whatsnew/index.html">
+    What’s new
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/SciTools/cartopy" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fa-brands fa-square-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+</ul></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../lines_and_polygons/index.html">Lines and polygons</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/always_circular_stereo.html">Custom Boundary Shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/feature_creation.html">Feature Creation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/features.html">Features</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/global_map.html">Global Map</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/hurricane_katrina.html">Hurricane Katrina</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/nightshade.html">Nightshade feature</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/ocean_bathymetry.html">Ocean bathymetry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/rotated_pole.html">Rotated pole boxes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/effects_of_the_ellipse.html">The effect of badly referencing an ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../lines_and_polygons/tissot.html">Tissot’s Indicatrix</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../scalar_data/index.html">Scalar data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/wrapping_global.html">Adding a cyclic point to help with wrapping of global data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/geometry_data.html">Choropleth map: associating data with geometries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/contour_labels.html">Contour labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/contour_transforms.html">Contour transform options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/waves.html">Filled contours</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/eyja_volcano.html">Map tile acquisition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/aurora_forecast.html">Plotting the Aurora Forecast from NOAA on Orthographic Polar Projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/raster_reprojections.html">Raster reprojections</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scalar_data/geostationary.html">Reprojecting images from a Geostationary projection</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../vector_data/index.html">Vector data</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/arrows.html">Arrows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/barbs.html">Barbs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/regridding_arrows.html">Regridding vectors with quiver</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../vector_data/streamplot.html">Streamplot</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../web_services/index.html">Web services</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/reprojected_wmts.html">Displaying WMTS tiled map data on an arbitrary projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wms.html">Interactive WMS (Web Map Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts.html">Interactive WMTS (Web Map Tile Service)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/wmts_time.html">Web Map Tile Service time dimension demonstration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../web_services/image_tiles.html">Web tile imagery</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../gridlines_and_labels/index.html">Gridlines and labels</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/map_latitudes.html">Aligning Cartopy and Matplotlib axes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/gridliner.html">Gridlines and tick labels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gridlines_and_labels/tick_labels.html">Tick Labels</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Miscellanea</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="animate_surface.html">Animating a gridded surface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="favicon.html">Cartopy Favicon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="logo.html">Cartopy Logo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utm_all_zones.html">Displaying all 60 zones of the UTM projection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="eccentric_ellipse.html">Displaying data on an eccentric ellipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="star_shaped_boundary.html">Modifying the boundary/neatline of a map in cartopy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tube_stations.html">Tube Stations</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">UN Flag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="axes_grid_basic.html">Using Cartopy and AxesGrid toolkit</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../index.html" class="nav-link">Gallery</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="index.html" class="nav-link">Miscellanea</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">UN Flag</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-gallery-miscellanea-un-flag-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="un-flag">
+<span id="sphx-glr-gallery-miscellanea-un-flag-py"></span><h1>UN Flag<a class="headerlink" href="#un-flag" title="Link to this heading">#</a></h1>
+<p>A demonstration of the power of Matplotlib combined with cartopy’s Azimuthal
+Equidistant projection to reproduce the UN flag.</p>
+<img src="../../_images/sphx_glr_un_flag_001.png" srcset="../../_images/sphx_glr_un_flag_001.png" alt="un flag" class = "sphx-glr-single-img"/><div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.patches</span><span class="w"> </span><span class="kn">import</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.PathPatch.html#matplotlib.patches.PathPatch" title="matplotlib.patches.PathPatch" class="sphx-glr-backref-module-matplotlib-patches sphx-glr-backref-type-py-class"><span class="n">PathPatch</span></a>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.path</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.ticker</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib.transforms</span><span class="w"> </span><span class="kn">import</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Bbox" title="matplotlib.transforms.Bbox" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">Bbox</span></a><span class="p">,</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxTransform" title="matplotlib.transforms.BboxTransform" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">BboxTransform</span></a>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.crs</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ccrs</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">cartopy.feature</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cfeature</span>
+
+
+<span class="c1"># When drawing the flag, we can either use white filled land, or be a little</span>
+<span class="c1"># more fancy and use the Natural Earth shaded relief imagery.</span>
+<a href="https://docs.python.org/3/library/functions.html#bool" title="builtins.bool" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filled_land</span></a> <span class="o">=</span> <span class="kc">True</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">olive_path</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return a Matplotlib path representing a single olive branch from the</span>
+<span class="sd">    UN Flag. The path coordinates were extracted from the SVG at</span>
+<span class="sd">    https://commons.wikimedia.org/wiki/File:Flag_of_the_United_Nations.svg.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">olives_verts</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">(</span>
+        <span class="p">[[</span><span class="mi">0</span><span class="p">,</span>   <span class="mi">2</span><span class="p">,</span>   <span class="mi">6</span><span class="p">,</span>   <span class="mi">9</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>  <span class="mi">55</span><span class="p">,</span>  <span class="mi">79</span><span class="p">,</span>  <span class="mi">94</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">117</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">157</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span>
+          <span class="mi">188</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">191</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span>  <span class="mi">87</span><span class="p">,</span>  <span class="mi">53</span><span class="p">,</span>  <span class="mi">22</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span>
+          <span class="mi">245</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">187</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">146</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span> <span class="mi">158</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span>
+          <span class="mi">181</span><span class="p">,</span> <span class="mi">167</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">142</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">119</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">127</span><span class="p">,</span> <span class="mi">151</span><span class="p">,</span> <span class="mi">178</span><span class="p">,</span> <span class="mi">203</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span>
+          <span class="mi">237</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">209</span><span class="p">,</span> <span class="mi">205</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">196</span><span class="p">,</span> <span class="mi">201</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span>
+          <span class="mi">211</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">219</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">212</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">195</span><span class="p">,</span> <span class="mi">176</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span>
+          <span class="mi">259</span><span class="p">,</span> <span class="mi">277</span><span class="p">,</span> <span class="mi">280</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span> <span class="mi">295</span><span class="p">,</span> <span class="mi">293</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span>
+          <span class="mi">244</span><span class="p">,</span> <span class="mi">249</span><span class="p">,</span> <span class="mi">251</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span>
+          <span class="mi">234</span><span class="p">,</span> <span class="mi">249</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">291</span><span class="p">,</span> <span class="mi">295</span><span class="p">,</span> <span class="mi">296</span><span class="p">,</span> <span class="mi">295</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">293</span><span class="p">,</span> <span class="mi">292</span><span class="p">,</span>
+          <span class="mi">289</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">277</span><span class="p">,</span> <span class="mi">271</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">272</span><span class="p">,</span> <span class="mi">260</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span>
+          <span class="mi">245</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">243</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">259</span><span class="p">,</span> <span class="mi">258</span><span class="p">,</span> <span class="mi">257</span><span class="p">,</span> <span class="mi">258</span><span class="p">,</span>
+          <span class="mi">267</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">297</span><span class="p">,</span> <span class="mi">294</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">277</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span>
+          <span class="mi">265</span><span class="p">,</span> <span class="mi">277</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">268</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">267</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">248</span><span class="p">,</span>
+          <span class="mi">235</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">228</span><span class="p">,</span> <span class="mi">229</span><span class="p">,</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">246</span><span class="p">,</span> <span class="mi">266</span><span class="p">,</span> <span class="mi">269</span><span class="p">,</span> <span class="mi">271</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span> <span class="mi">285</span><span class="p">,</span>
+          <span class="mi">663</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">238</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">246</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span>
+          <span class="mi">249</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">231</span><span class="p">,</span> <span class="mi">214</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">208</span><span class="p">,</span> <span class="mi">227</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">258</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">261</span><span class="p">,</span>
+          <span class="mi">262</span><span class="p">,</span> <span class="mi">264</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">663</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">197</span><span class="p">,</span> <span class="mi">206</span><span class="p">,</span> <span class="mi">215</span><span class="p">,</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">237</span><span class="p">,</span>
+          <span class="mi">237</span><span class="p">,</span> <span class="mi">230</span><span class="p">,</span> <span class="mi">220</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">185</span><span class="p">,</span> <span class="mi">663</span><span class="p">],</span>
+         <span class="p">[</span><span class="mi">8</span><span class="p">,</span>   <span class="mi">5</span><span class="p">,</span>   <span class="mi">3</span><span class="p">,</span>   <span class="mi">0</span><span class="p">,</span>  <span class="mi">22</span><span class="p">,</span>  <span class="mi">46</span><span class="p">,</span>  <span class="mi">46</span><span class="p">,</span>  <span class="mi">46</span><span class="p">,</span>  <span class="mi">35</span><span class="p">,</span>  <span class="mi">27</span><span class="p">,</span>  <span class="mi">16</span><span class="p">,</span>  <span class="mi">10</span><span class="p">,</span>  <span class="mi">18</span><span class="p">,</span>
+          <span class="mi">22</span><span class="p">,</span>  <span class="mi">28</span><span class="p">,</span>  <span class="mi">38</span><span class="p">,</span>  <span class="mi">27</span><span class="p">,</span>  <span class="mi">26</span><span class="p">,</span>  <span class="mi">33</span><span class="p">,</span>  <span class="mi">41</span><span class="p">,</span>  <span class="mi">52</span><span class="p">,</span>  <span class="mi">52</span><span class="p">,</span>  <span class="mi">52</span><span class="p">,</span>  <span class="mi">30</span><span class="p">,</span>   <span class="mi">8</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span>
+          <span class="mi">77</span><span class="p">,</span>  <span class="mi">52</span><span class="p">,</span>  <span class="mi">61</span><span class="p">,</span>  <span class="mi">54</span><span class="p">,</span>  <span class="mi">53</span><span class="p">,</span>  <span class="mi">52</span><span class="p">,</span>  <span class="mi">53</span><span class="p">,</span>  <span class="mi">55</span><span class="p">,</span>  <span class="mi">55</span><span class="p">,</span>  <span class="mi">57</span><span class="p">,</span>  <span class="mi">65</span><span class="p">,</span>  <span class="mi">90</span><span class="p">,</span> <span class="mi">106</span><span class="p">,</span>
+          <span class="mi">96</span><span class="p">,</span>  <span class="mi">81</span><span class="p">,</span>  <span class="mi">68</span><span class="p">,</span>  <span class="mi">58</span><span class="p">,</span>  <span class="mi">54</span><span class="p">,</span>  <span class="mi">51</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>  <span class="mi">51</span><span class="p">,</span>  <span class="mi">50</span><span class="p">,</span>  <span class="mi">44</span><span class="p">,</span>  <span class="mi">34</span><span class="p">,</span>  <span class="mi">43</span><span class="p">,</span>  <span class="mi">48</span><span class="p">,</span>
+          <span class="mi">61</span><span class="p">,</span>  <span class="mi">77</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">104</span><span class="p">,</span> <span class="mi">102</span><span class="p">,</span>  <span class="mi">83</span><span class="p">,</span>  <span class="mi">79</span><span class="p">,</span>  <span class="mi">76</span><span class="p">,</span>  <span class="mi">74</span><span class="p">,</span>  <span class="mi">74</span><span class="p">,</span>  <span class="mi">79</span><span class="p">,</span>  <span class="mi">84</span><span class="p">,</span>
+          <span class="mi">90</span><span class="p">,</span> <span class="mi">109</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">145</span><span class="p">,</span> <span class="mi">133</span><span class="p">,</span> <span class="mi">121</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span>  <span class="mi">77</span><span class="p">,</span>  <span class="mi">62</span><span class="p">,</span>  <span class="mi">69</span><span class="p">,</span>  <span class="mi">67</span><span class="p">,</span>  <span class="mi">80</span><span class="p">,</span>
+          <span class="mi">92</span><span class="p">,</span> <span class="mi">113</span><span class="p">,</span> <span class="mi">135</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">171</span><span class="p">,</span> <span class="mi">156</span><span class="p">,</span> <span class="mi">134</span><span class="p">,</span> <span class="mi">129</span><span class="p">,</span> <span class="mi">124</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span>
+          <span class="mi">129</span><span class="p">,</span> <span class="mi">138</span><span class="p">,</span> <span class="mi">149</span><span class="p">,</span> <span class="mi">161</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">188</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">177</span><span class="p">,</span> <span class="mi">144</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">110</span><span class="p">,</span> <span class="mi">105</span><span class="p">,</span>  <span class="mi">99</span><span class="p">,</span>
+          <span class="mi">108</span><span class="p">,</span> <span class="mi">116</span><span class="p">,</span> <span class="mi">126</span><span class="p">,</span> <span class="mi">136</span><span class="p">,</span> <span class="mi">147</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">173</span><span class="p">,</span> <span class="mi">186</span><span class="p">,</span> <span class="mi">198</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">249</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">261</span><span class="p">,</span>
+          <span class="mi">267</span><span class="p">,</span> <span class="mi">241</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">192</span><span class="p">,</span> <span class="mi">183</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">175</span><span class="p">,</span> <span class="mi">199</span><span class="p">,</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span>
+          <span class="mi">245</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">245</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">194</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">172</span><span class="p">,</span> <span class="mi">162</span><span class="p">,</span> <span class="mi">153</span><span class="p">,</span> <span class="mi">154</span><span class="p">,</span>
+          <span class="mi">171</span><span class="p">,</span> <span class="mi">184</span><span class="p">,</span> <span class="mi">202</span><span class="p">,</span> <span class="mi">216</span><span class="p">,</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">249</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span> <span class="mi">296</span><span class="p">,</span> <span class="mi">312</span><span class="p">,</span> <span class="mi">327</span><span class="p">,</span> <span class="mi">327</span><span class="p">,</span> <span class="mi">327</span><span class="p">,</span>
+          <span class="mi">327</span><span class="p">,</span> <span class="mi">308</span><span class="p">,</span> <span class="mi">284</span><span class="p">,</span> <span class="mi">262</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">239</span><span class="p">,</span> <span class="mi">242</span><span class="p">,</span> <span class="mi">244</span><span class="p">,</span> <span class="mi">247</span><span class="p">,</span> <span class="mi">265</span><span class="p">,</span> <span class="mi">277</span><span class="p">,</span>
+          <span class="mi">290</span><span class="p">,</span> <span class="mi">293</span><span class="p">,</span> <span class="mi">296</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">291</span><span class="p">,</span> <span class="mi">282</span><span class="p">,</span> <span class="mi">274</span><span class="p">,</span> <span class="mi">253</span><span class="p">,</span> <span class="mi">236</span><span class="p">,</span> <span class="mi">213</span><span class="p">,</span> <span class="mi">235</span><span class="p">,</span> <span class="mi">252</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span>
+          <span class="mi">595</span><span class="p">,</span> <span class="mi">342</span><span class="p">,</span> <span class="mi">349</span><span class="p">,</span> <span class="mi">355</span><span class="p">,</span> <span class="mi">357</span><span class="p">,</span> <span class="mi">346</span><span class="p">,</span> <span class="mi">326</span><span class="p">,</span> <span class="mi">309</span><span class="p">,</span> <span class="mi">303</span><span class="p">,</span> <span class="mi">297</span><span class="p">,</span> <span class="mi">291</span><span class="p">,</span> <span class="mi">290</span><span class="p">,</span> <span class="mi">297</span><span class="p">,</span>
+          <span class="mi">304</span><span class="p">,</span> <span class="mi">310</span><span class="p">,</span> <span class="mi">321</span><span class="p">,</span> <span class="mi">327</span><span class="p">,</span> <span class="mi">343</span><span class="p">,</span> <span class="mi">321</span><span class="p">,</span> <span class="mi">305</span><span class="p">,</span> <span class="mi">292</span><span class="p">,</span> <span class="mi">286</span><span class="p">,</span> <span class="mi">278</span><span class="p">,</span> <span class="mi">270</span><span class="p">,</span> <span class="mi">276</span><span class="p">,</span> <span class="mi">281</span><span class="p">,</span>
+          <span class="mi">287</span><span class="p">,</span> <span class="mi">306</span><span class="p">,</span> <span class="mi">328</span><span class="p">,</span> <span class="mi">342</span><span class="p">,</span> <span class="mi">595</span><span class="p">,</span> <span class="mi">379</span><span class="p">,</span> <span class="mi">369</span><span class="p">,</span> <span class="mi">355</span><span class="p">,</span> <span class="mi">343</span><span class="p">,</span> <span class="mi">333</span><span class="p">,</span> <span class="mi">326</span><span class="p">,</span> <span class="mi">318</span><span class="p">,</span> <span class="mi">328</span><span class="p">,</span>
+          <span class="mi">340</span><span class="p">,</span> <span class="mi">349</span><span class="p">,</span> <span class="mi">366</span><span class="p">,</span> <span class="mi">373</span><span class="p">,</span> <span class="mi">379</span><span class="p">,</span> <span class="mi">595</span><span class="p">]])</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">olives_codes</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.array.html#numpy.array" title="numpy.array" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">array</span></a><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span>
+                             <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">79</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><a href="https://numpy.org/doc/stable/reference/arrays.scalars.html#numpy.uint8" title="numpy.uint8" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-attribute"><span class="n">np</span><span class="o">.</span><span class="n">uint8</span></a><span class="p">)</span>
+
+    <span class="k">return</span> <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path" title="matplotlib.path.Path" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-class"><span class="n">matplotlib</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span></a><span class="p">(</span><span class="n">olives_verts</span><span class="p">,</span> <span class="n">olives_codes</span><span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+    <span class="n">blue</span> <span class="o">=</span> <span class="s1">&#39;#4b92db&#39;</span>
+
+    <span class="c1"># We&#39;re drawing a flag with a 3:5 aspect ratio.</span>
+    <span class="n">fig</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.figure.html#matplotlib.pyplot.figure" title="matplotlib.pyplot.figure" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">figure</span></a><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mf">7.5</span><span class="p">,</span> <span class="mf">4.5</span><span class="p">],</span> <span class="n">facecolor</span><span class="o">=</span><span class="n">blue</span><span class="p">)</span>
+    <span class="c1"># Put a blue background on the figure.</span>
+    <span class="n">blue_background</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.PathPatch.html#matplotlib.patches.PathPatch" title="matplotlib.patches.PathPatch" class="sphx-glr-backref-module-matplotlib-patches sphx-glr-backref-type-py-class"><span class="n">PathPatch</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path.unit_rectangle" title="matplotlib.path.Path.unit_rectangle" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-method"><span class="n">matplotlib</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">unit_rectangle</span></a><span class="p">(),</span>
+                                <span class="n">transform</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">blue</span><span class="p">,</span>
+                                <span class="n">zorder</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">blue_background</span><span class="p">)</span>
+
+    <span class="c1"># Set up the Azimuthal Equidistant and Plate Carree projections</span>
+    <span class="c1"># for later use.</span>
+    <span class="n">az_eq</span> <span class="o">=</span> <a href="../../reference/projections.html#cartopy.crs.AzimuthalEquidistant" title="cartopy.crs.AzimuthalEquidistant" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">AzimuthalEquidistant</span></a><span class="p">(</span><span class="n">central_latitude</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+    <span class="n">pc</span> <span class="o">=</span> <a href="../../reference/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span></a><span class="p">()</span>
+
+    <span class="c1"># Pick a suitable location for the map (which is in an Azimuthal</span>
+    <span class="c1"># Equidistant projection).</span>
+    <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_axes</span><span class="p">([</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.24</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.54</span><span class="p">],</span> <span class="n">projection</span><span class="o">=</span><span class="n">az_eq</span><span class="p">)</span>
+
+    <span class="c1"># The background patch is not needed in this example.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">patch</span><span class="o">.</span><span class="n">set_facecolor</span><span class="p">(</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="c1"># The Axes frame produces the outer meridian line.</span>
+    <span class="k">for</span> <span class="n">spine</span> <span class="ow">in</span> <span class="n">ax</span><span class="o">.</span><span class="n">spines</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+        <span class="n">spine</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;edgecolor&#39;</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="s1">&#39;linewidth&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+
+    <span class="c1"># We want the map to go down to -60 degrees latitude.</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_extent</span><span class="p">([</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <a href="../../reference/projections.html#cartopy.crs.PlateCarree" title="cartopy.crs.PlateCarree" class="sphx-glr-backref-module-cartopy-crs sphx-glr-backref-type-py-class"><span class="n">ccrs</span><span class="o">.</span><span class="n">PlateCarree</span></a><span class="p">())</span>
+
+    <span class="c1"># Importantly, we want the axes to be circular at the -60 latitude</span>
+    <span class="c1"># rather than cartopy&#39;s default behaviour of zooming in and becoming</span>
+    <span class="c1"># square.</span>
+    <span class="n">_</span><span class="p">,</span> <span class="n">patch_radius</span> <span class="o">=</span> <span class="n">az_eq</span><span class="o">.</span><span class="n">transform_point</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">60</span><span class="p">,</span> <span class="n">pc</span><span class="p">)</span>
+    <span class="n">circular_path</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/path_api.html#matplotlib.path.Path.circle" title="matplotlib.path.Path.circle" class="sphx-glr-backref-module-matplotlib-path sphx-glr-backref-type-py-method"><span class="n">matplotlib</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">Path</span><span class="o">.</span><span class="n">circle</span></a><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">patch_radius</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_boundary</span><span class="p">(</span><span class="n">circular_path</span><span class="p">)</span>
+
+    <span class="k">if</span> <a href="https://docs.python.org/3/library/functions.html#bool" title="builtins.bool" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">filled_land</span></a><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">add_feature</span><span class="p">(</span>
+            <a href="../../reference/generated/cartopy.feature.NaturalEarthFeature.html#cartopy.feature.NaturalEarthFeature" title="cartopy.feature.NaturalEarthFeature" class="sphx-glr-backref-module-cartopy-feature sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cfeature</span><span class="o">.</span><span class="n">LAND</span></a><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">stock_img</span><span class="p">()</span>
+
+    <span class="n">gl</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">gridlines</span><span class="p">(</span><span class="n">crs</span><span class="o">=</span><span class="n">pc</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">)</span>
+    <span class="c1"># Meridians every 45 degrees, and 4 parallels.</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">xlocator</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.FixedLocator" title="matplotlib.ticker.FixedLocator" class="sphx-glr-backref-module-matplotlib-ticker sphx-glr-backref-type-py-class"><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">FixedLocator</span></a><span class="p">(</span><a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html#numpy.arange" title="numpy.arange" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">,</span> <span class="mi">181</span><span class="p">,</span> <span class="mi">45</span><span class="p">))</span>
+    <span class="n">parallels</span> <span class="o">=</span> <a href="https://numpy.org/doc/stable/reference/generated/numpy.arange.html#numpy.arange" title="numpy.arange" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-function"><span class="n">np</span><span class="o">.</span><span class="n">arange</span></a><span class="p">(</span><span class="o">-</span><span class="mi">30</span><span class="p">,</span> <span class="mi">70</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+    <span class="n">gl</span><span class="o">.</span><span class="n">ylocator</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/ticker_api.html#matplotlib.ticker.FixedLocator" title="matplotlib.ticker.FixedLocator" class="sphx-glr-backref-module-matplotlib-ticker sphx-glr-backref-type-py-class"><span class="n">matplotlib</span><span class="o">.</span><span class="n">ticker</span><span class="o">.</span><span class="n">FixedLocator</span></a><span class="p">(</span><span class="n">parallels</span><span class="p">)</span>
+
+    <span class="c1"># Now add the olive branches around the axes. We do this in normalised</span>
+    <span class="c1"># figure coordinates</span>
+    <span class="n">olive_leaf</span> <span class="o">=</span> <span class="n">olive_path</span><span class="p">()</span>
+
+    <span class="n">olives_bbox</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Bbox.null" title="matplotlib.transforms.Bbox.null" class="sphx-glr-backref-module-matplotlib-transforms-Bbox sphx-glr-backref-type-py-method"><span class="n">Bbox</span><span class="o">.</span><span class="n">null</span></a><span class="p">()</span>
+    <span class="n">olives_bbox</span><span class="o">.</span><span class="n">update_from_path</span><span class="p">(</span><span class="n">olive_leaf</span><span class="p">)</span>
+
+    <span class="c1"># The first olive branch goes from left to right.</span>
+    <span class="n">olive1_axes_bbox</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Bbox" title="matplotlib.transforms.Bbox" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">Bbox</span></a><span class="p">([[</span><span class="mf">0.45</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.725</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]])</span>
+    <span class="n">olive1_trans</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxTransform" title="matplotlib.transforms.BboxTransform" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">BboxTransform</span></a><span class="p">(</span><span class="n">olives_bbox</span><span class="p">,</span> <span class="n">olive1_axes_bbox</span><span class="p">)</span>
+
+    <span class="c1"># THe second olive branch goes from right to left (mirroring the first).</span>
+    <span class="n">olive2_axes_bbox</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.Bbox" title="matplotlib.transforms.Bbox" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">Bbox</span></a><span class="p">([[</span><span class="mf">0.55</span><span class="p">,</span> <span class="mf">0.15</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.275</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">]])</span>
+    <span class="n">olive2_trans</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/transformations.html#matplotlib.transforms.BboxTransform" title="matplotlib.transforms.BboxTransform" class="sphx-glr-backref-module-matplotlib-transforms sphx-glr-backref-type-py-class"><span class="n">BboxTransform</span></a><span class="p">(</span><span class="n">olives_bbox</span><span class="p">,</span> <span class="n">olive2_axes_bbox</span><span class="p">)</span>
+
+    <span class="n">olive1</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.PathPatch.html#matplotlib.patches.PathPatch" title="matplotlib.patches.PathPatch" class="sphx-glr-backref-module-matplotlib-patches sphx-glr-backref-type-py-class"><span class="n">PathPatch</span></a><span class="p">(</span><span class="n">olive_leaf</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                       <span class="n">transform</span><span class="o">=</span><span class="n">olive1_trans</span> <span class="o">+</span> <span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">)</span>
+    <span class="n">olive2</span> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.patches.PathPatch.html#matplotlib.patches.PathPatch" title="matplotlib.patches.PathPatch" class="sphx-glr-backref-module-matplotlib-patches sphx-glr-backref-type-py-class"><span class="n">PathPatch</span></a><span class="p">(</span><span class="n">olive_leaf</span><span class="p">,</span> <span class="n">facecolor</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+                       <span class="n">transform</span><span class="o">=</span><span class="n">olive2_trans</span> <span class="o">+</span> <span class="n">fig</span><span class="o">.</span><span class="n">transFigure</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">olive1</span><span class="p">)</span>
+    <span class="n">fig</span><span class="o">.</span><span class="n">patches</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">olive2</span><span class="p">)</span>
+
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 1.444 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-gallery-miscellanea-un-flag-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/593f8c30e5a52f8c07493e1709d65162/un_flag.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">un_flag.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/8b2ff05b378ca9ab080cde3d2377787d/un_flag.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">un_flag.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/d768cde33578883a70d3c596f2c6505f/un_flag.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">un_flag.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+                </article>
+              
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="tube_stations.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tube Stations</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="axes_grid_basic.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Using Cartopy and AxesGrid toolkit</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../../_sources/gallery/miscellanea/un_flag.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © <a href="../../copyright.html">Copyright 2011 - 2018 British Crown Copyright, 2018 - 2025 Cartopy contributors</a>.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
